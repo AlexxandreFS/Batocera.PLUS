@@ -1,0 +1,71 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>DC0029</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>F1C002</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>00A79B</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>326BB1</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Manufacturer : Thomson</text>
+			<pos>0.38 0.72</pos>
+		</text>
+		<text name="info2" extra="true">
+			<text>Year of Release : 1986</text>
+			<pos>0.38 0.74</pos>
+		</text>
+		<text name="info3" extra="true">
+			<text>CPU : Motorola 6809E @ 1 MHz</text>
+			<pos>0.38 0.76</pos>
+		</text>
+		<text name="info4" extra="true">
+			<text>RAM : 256kB, ROM : 80kB</text>
+			<pos>0.38 0.78</pos>
+		</text>
+		<text name="info5" extra="true">
+			<text>8 Display modes, palette of 4096 colors </text>
+			<pos>0.38 0.80</pos>
+		</text>
+		<text name="info6" extra="true">
+			<text>Low resolutions: 160 × 200 (16, 5 or 2 colors)</text>
+			<pos>0.38 0.82</pos>
+		</text>
+		<text name="info7" extra="true">
+			<text>Medium resolutions: 320 × 200 (16, 4, 3 or 2 colors)</text>
+			<pos>0.38 0.84</pos>
+		</text>
+		<text name="info8" extra="true">
+			<text>High resolution: 640 × 200 (2 colors)</text>
+			<pos>0.38 0.86</pos>
+		</text>
+		<text name="info9" extra="true">
+			<text>Media : Cartridge, external 3½" floppy disk and tape drives</text>
+			<pos>0.38 0.88</pos>
+		</text>
+	</view>
+	
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>FF0000</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>0000A0</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>FFE41B</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>23B14D</color>
+		</image>
+	</view>
+</theme>

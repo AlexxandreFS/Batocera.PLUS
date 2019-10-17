@@ -1,0 +1,67 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>b2b2b2</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>FE0000</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>333333</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>D9D9D9</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Manufacturer : NEC</text>
+			<pos>0.38 0.72</pos>
+		</text>
+		<text name="info2" extra="true">
+			<text>Year of Release : 1987</text>
+			<pos>0.38 0.74</pos>
+		</text>
+		<text name="info3" extra="true">
+			<text>Units sold : 10 million</text>
+			<pos>0.38 0.76</pos>
+		</text>
+		<text name="info4" extra="true">
+			<text>CPU : HuC6280 8-bit 7,16 Mhz</text>
+			<pos>0.38 0.8</pos>
+		</text>
+		<text name="info5" extra="true">
+			<text>RAM : 8 Kbyte</text>
+			<pos>0.38 0.82</pos>
+		</text>
+		<text name="info6" extra="true">
+			<text>Picture Processor Unit : 8-bit</text>
+			<pos>0.38 0.84</pos>
+		</text>
+		<text name="info7" extra="true">
+			<text>Video RAM : 64 Kbyte</text>
+			<pos>0.38 0.86</pos>
+		</text>
+		<text name="info8" extra="true">
+			<text>Media : HU-Card, SHU-Card, CD-ROM, Super-CD-ROM</text>
+			<pos>0.38 0.88</pos>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>b2b2b2</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>FE0000</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>333333</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>D9D9D9</color>
+		</image>
+	</view>
+</theme>

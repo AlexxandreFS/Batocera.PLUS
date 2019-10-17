@@ -1,0 +1,55 @@
+RAINE
+=====
+
+OS X requirements
+-----------------
+
+In order to run (and compile) Raine on OS X >=10.10.x, you need to install mandatory 3rd party libs:
+
+Start by getting a fresh copy of raine sources :
+git clone https://github.com/zelurker/raine.git
+git is already available in recent osx versions...
+
+Now sorry the frameworks uploaded for 0.64.13 can't be used to compile
+raine because they don't include the header files, + using frameworks for
+compilation is really not convenient, so you'll have to install everything
+using homebrew.
+
+### install Homebrew
+Open a terminal and enter the command
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+See http://brew.sh/ how to keep it up to date
+This is a package manager for 3rd party libs. Its advantage : it maintains
+packages in seaparate directories in the /usr/local tree without requiring
+root authorization (just the 1st time to create the tree).
+
+### install libs
+To install libs, just type "brew install xxxx --universal" in a terminal
+where xxx are
+* sdl
+* sdl_image
+* sdl_ttf
+* sdl_sound
+* gettext
+* muparser
+Once done, force link to gettext: type "brew link gettext --force"
+
+If you compile, you'll need the latest nasm version, the one bundled with
+osx, even Sierra, is totally outdated and broken. So use brew install nasm
+too.
+
+That's it ! Raine should now run on your MacOS.
+
+If you want to convert the shared libs you just built to frameworks, use
+the TOOLS/make_framework.pl script like this :
+otool -L raine|grep local
+it will give you a list of the shared libs it uses from /usr/local
+directory, then call the script passing the libraries one by one on the
+command line. It will automatically create frameworks needed by any shared
+lib, for example sdl_sound can use FLAC, ogg and vorbis libs so it will
+create all these frameworks when calling the script for sdl_sound.
+After this you can move the frameworks to the standard
+/Libraries/Frameworks and update your build to use them by calling
+rm raine
+FRAMEWORK=1 make
+

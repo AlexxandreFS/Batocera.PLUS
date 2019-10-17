@@ -1,0 +1,19 @@
+# Raine Translation (base file).
+# Copyright (C) 2015
+# This file is distributed under the same license as the raine package.
+# Emmanuel Anne.
+#
+#,
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-08 22:31+0200\n"
+"PO-Revision-Date: 2015-08-11 11:06+0200\n"
+"Last-Translator: Emmanuel Anne <emmanuel.anne@gmail.com>\n"
+"Language-Team: -\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+

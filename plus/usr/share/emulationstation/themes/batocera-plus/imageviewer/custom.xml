@@ -1,0 +1,46 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>F2F2F2</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>D50F2A</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>A19795</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>4C504E</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>To capture a screenshot use:
+
+PrintScreen: Save image in PNG format
+WinKey + PrintScreen: Save the image in JPG format
+
+The images will be saved in the screenshots folder press, F1 to manage your images ...</text>
+			<pos>0.38 0.72</pos>
+			<size>0.40 0.20</size>
+			<lineSpacing>1.1</lineSpacing>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>F2F2F2</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>D50F2A</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>A19795</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>4C504E</color>
+		</image>
+	</view>
+</theme>

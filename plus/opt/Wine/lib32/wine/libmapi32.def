@@ -1,0 +1,195 @@
+; File generated automatically from dlls/mapi32/mapi32.spec; do not edit!
+
+LIBRARY mapi32.dll
+
+EXPORTS
+  MAPILogonEx@20 @10
+  MAPILogonEx@20@20=MAPILogonEx @11
+  MAPIAllocateBuffer@8 @12
+  MAPIAllocateBuffer@8@8=MAPIAllocateBuffer @13
+  MAPIAllocateMore@12 @14
+  MAPIAllocateMore@12@12=MAPIAllocateMore @15
+  MAPIFreeBuffer@4 @16
+  MAPIFreeBuffer@4@4=MAPIFreeBuffer @17
+  MAPIAdminProfiles@8 @18
+  MAPIAdminProfiles@8@8=MAPIAdminProfiles @19
+  MAPIInitialize@4 @20
+  MAPIInitialize@4@4=MAPIInitialize @21
+  MAPIUninitialize@0 @22
+  MAPIUninitialize@0@0=MAPIUninitialize @23
+  PRProviderInit@0 @24 PRIVATE
+  LAUNCHWIZARD@0 @25 PRIVATE
+  LaunchWizard@20@0 @26 PRIVATE
+  DllGetClassObject@12 @27 PRIVATE
+  DllCanUnloadNow@0 @28 PRIVATE
+  MAPIOpenFormMgr@0 @29 PRIVATE
+  MAPIOpenFormMgr@8@0 @30 PRIVATE
+  MAPIOpenLocalFormContainer@4 @31
+  MAPIOpenLocalFormContainer@4@4=MAPIOpenLocalFormContainer @32
+  ScInitMapiUtil@4@4=ScInitMapiUtil @33
+  DeinitMapiUtil@0@0=DeinitMapiUtil @34
+  ScGenerateMuid@4@0 @35 PRIVATE
+  HrAllocAdviseSink@12@0 @36 PRIVATE
+  WrapProgress@20@20=WrapProgress @41
+  HrThisThreadAdviseSink@8@8=HrThisThreadAdviseSink @42
+  ScBinFromHexBounded@12@0 @43 PRIVATE
+  FBinFromHex@8@8=FBinFromHex @44
+  HexFromBin@12@12=HexFromBin @45
+  BuildDisplayTable@40@0 @46 PRIVATE
+  SwapPlong@8@8=SwapPlong @47
+  SwapPword@8@8=SwapPword @48
+  MAPIInitIdle@4@0 @49 PRIVATE
+  MAPIDeinitIdle@0@0 @50 PRIVATE
+  InstallFilterHook@4@0 @51 PRIVATE
+  FtgRegisterIdleRoutine@20@0 @52 PRIVATE
+  EnableIdleRoutine@8@0 @53 PRIVATE
+  DeregisterIdleRoutine@4@0 @54 PRIVATE
+  ChangeIdleRoutine@28@0 @55 PRIVATE
+  MAPIGetDefaultMalloc@0@0=MAPIGetDefaultMalloc @59
+  CreateIProp@24@24=CreateIProp @60
+  CreateTable@36@0 @61 PRIVATE
+  MNLS_lstrlenW@4@4=MNLS_lstrlenW @62
+  MNLS_lstrcmpW@8@8=MNLS_lstrcmpW @63
+  MNLS_lstrcpyW@8@8=MNLS_lstrcpyW @64
+  MNLS_CompareStringW@24@12=MNLS_CompareStringW @65
+  MNLS_MultiByteToWideChar@24@24=kernel32.MultiByteToWideChar @66
+  MNLS_WideCharToMultiByte@32@32=kernel32.WideCharToMultiByte @67
+  MNLS_IsBadStringPtrW@8@8=kernel32.IsBadStringPtrW @68
+  FEqualNames@8@8=FEqualNames @72
+  WrapStoreEntryID@24@0 @73 PRIVATE
+  IsBadBoundedStringPtr@8@8=IsBadBoundedStringPtr @74
+  HrQueryAllRows@24@24=HrQueryAllRows @75
+  PropCopyMore@16@16=PropCopyMore @76
+  UlPropSize@4@4=UlPropSize @77
+  FPropContainsProp@12@12=FPropContainsProp @78
+  FPropCompareProp@12@12=FPropCompareProp @79
+  LPropCompareProp@8@8=LPropCompareProp @80
+  HrAddColumns@16@0 @81 PRIVATE
+  HrAddColumnsEx@20@0 @82 PRIVATE
+  FtAddFt@16@16=MAPI32_FtAddFt @121
+  FtAdcFt@20@0 @122 PRIVATE
+  FtSubFt@16@16=MAPI32_FtSubFt @123
+  FtMulDw@12@12=MAPI32_FtMulDw @124
+  FtMulDwDw@8@8=MAPI32_FtMulDwDw @125
+  FtNegFt@8@8=MAPI32_FtNegFt @126
+  FtDivFtBogus@20@0 @127 PRIVATE
+  UlAddRef@4@4=UlAddRef @128
+  UlRelease@4@4=UlRelease @129
+  SzFindCh@8@8=shlwapi.StrChrA @130
+  SzFindLastCh@8@12=shlwapi.StrRChrA @131
+  SzFindSz@8@8=shlwapi.StrStrA @132
+  UFromSz@4@4=UFromSz @133
+  HrGetOneProp@12@12=HrGetOneProp @135
+  HrSetOneProp@8@8=HrSetOneProp @136
+  FPropExists@8@8=FPropExists @137
+  PpropFindProp@12@12=PpropFindProp @138
+  FreePadrlist@4@4=FreePadrlist @139
+  FreeProws@4@4=FreeProws @140
+  HrSzFromEntryID@12@0 @141 PRIVATE
+  HrEntryIDFromSz@12@0 @142 PRIVATE
+  HrComposeEID@28@0 @143 PRIVATE
+  HrDecomposeEID@28@0 @144 PRIVATE
+  HrComposeMsgID@24@0 @145 PRIVATE
+  HrDecomposeMsgID@24@0 @146 PRIVATE
+  OpenStreamOnFile@24@24=OpenStreamOnFile @147
+  OpenStreamOnFile@24 @148
+  OpenTnefStream@28@0 @149 PRIVATE
+  OpenTnefStream@0 @150 PRIVATE
+  OpenTnefStreamEx@32@0 @151 PRIVATE
+  OpenTnefStreamEx@0 @152 PRIVATE
+  GetTnefStreamCodepage@12@0 @153 PRIVATE
+  GetTnefStreamCodepage@0 @154 PRIVATE
+  UlFromSzHex@4@4=UlFromSzHex @155
+  UNKOBJ_ScAllocate@12@0 @156 PRIVATE
+  UNKOBJ_ScAllocateMore@16@0 @157 PRIVATE
+  UNKOBJ_Free@8@0 @158 PRIVATE
+  UNKOBJ_FreeRows@8@0 @159 PRIVATE
+  UNKOBJ_ScCOAllocate@12@0 @160 PRIVATE
+  UNKOBJ_ScCOReallocate@12@0 @161 PRIVATE
+  UNKOBJ_COFree@8@0 @162 PRIVATE
+  UNKOBJ_ScSzFromIdsAlloc@20@0 @163 PRIVATE
+  ScCountNotifications@12@0 @164 PRIVATE
+  ScCopyNotifications@16@0 @165 PRIVATE
+  ScRelocNotifications@20@0 @166 PRIVATE
+  ScCountProps@12@12=ScCountProps @170
+  ScCopyProps@16@16=ScCopyProps @171
+  ScRelocProps@20@20=ScRelocProps @172
+  LpValFindProp@12@12=LpValFindProp @173
+  ScDupPropset@16@16=ScDupPropset @174
+  FBadRglpszA@8@8=FBadRglpszA @175
+  FBadRglpszW@8@8=FBadRglpszW @176
+  FBadRowSet@4@4=FBadRowSet @177
+  FBadRglpNameID@8@0 @178 PRIVATE
+  FBadPropTag@4@4=FBadPropTag @179
+  FBadRow@4@4=FBadRow @180
+  FBadProp@4@4=FBadProp @181
+  FBadColumnSet@4@4=FBadColumnSet @182
+  RTFSync@12@0 @183 PRIVATE
+  RTFSync@0 @184 PRIVATE
+  WrapCompressedRTFStream@12@12=WrapCompressedRTFStream @185
+  WrapCompressedRTFStream@12 @186
+  __ValidateParameters@8@0 @187 PRIVATE
+  __CPPValidateParameters@8@0 @188 PRIVATE
+  FBadSortOrderSet@4@0 @189 PRIVATE
+  FBadEntryList@4@4=FBadEntryList @190
+  FBadRestriction@4@0 @191 PRIVATE
+  ScUNCFromLocalPath@12@0 @192 PRIVATE
+  ScLocalPathFromUNC@12@0 @193 PRIVATE
+  HrIStorageFromStream@16@0 @194 PRIVATE
+  HrValidateIPMSubtree@20@0 @195 PRIVATE
+  OpenIMsgSession@12@0 @196 PRIVATE
+  CloseIMsgSession@4@0 @197 PRIVATE
+  OpenIMsgOnIStg@44@0 @198 PRIVATE
+  SetAttribIMsgOnIStg@16@0 @199 PRIVATE
+  GetAttribIMsgOnIStg@12@0 @200 PRIVATE
+  MapStorageSCode@4@0 @201 PRIVATE
+  ScMAPIXFromCMC@0 @202 PRIVATE
+  ScMAPIXFromSMAPI@0 @203 PRIVATE
+  EncodeID@12@0 @204 PRIVATE
+  FDecodeID@12@0 @205 PRIVATE
+  CchOfEncoding@4@0 @206 PRIVATE
+  CbOfEncoded@4@4=CbOfEncoded @207
+  MAPISendDocuments@20 @208
+  MAPILogon@24 @209
+  MAPILogoff@16 @210
+  MAPISendMail@20 @211
+  MAPISaveMail@24 @212
+  MAPIReadMail@24 @213
+  MAPIFindNext@28 @214
+  MAPIDeleteMail@20 @215
+  MAPIAddress@44 @217
+  MAPIDetails@20 @218
+  MAPIResolveName@24 @219
+  BMAPISendMail@0 @220 PRIVATE
+  BMAPISaveMail@0 @221 PRIVATE
+  BMAPIReadMail@0 @222 PRIVATE
+  BMAPIGetReadMail@0 @223 PRIVATE
+  BMAPIFindNext@0 @224 PRIVATE
+  BMAPIAddress@0 @225 PRIVATE
+  BMAPIGetAddress@0 @226 PRIVATE
+  BMAPIDetails@0 @227 PRIVATE
+  BMAPIResolveName@0 @228 PRIVATE
+  cmc_act_on@0 @229 PRIVATE
+  cmc_free@0 @230 PRIVATE
+  cmc_list@0 @231 PRIVATE
+  cmc_logoff@0 @232 PRIVATE
+  cmc_logon@0 @233 PRIVATE
+  cmc_look_up@0 @234 PRIVATE
+  cmc_query_configuration@16 @235
+  cmc_read@0 @236 PRIVATE
+  cmc_send@0 @237 PRIVATE
+  cmc_send_documents@0 @238 PRIVATE
+  HrDispatchNotifications@4@4=HrDispatchNotifications @239
+  HrValidateParameters@8@0 @241 PRIVATE
+  ScCreateConversationIndex@16@0 @244 PRIVATE
+  HrGetOmiProvidersFlags@0 @246 PRIVATE
+  HrGetOmiProvidersFlags@8@0 @247 PRIVATE
+  HrSetOmiProvidersFlagsInvalid@0 @248 PRIVATE
+  HrSetOmiProvidersFlagsInvalid@4@0 @249 PRIVATE
+  GetOutlookVersion@0 @250 PRIVATE
+  GetOutlookVersion@0@0 @251 PRIVATE
+  FixMAPI@0 @252 PRIVATE
+  FixMAPI@0@0 @253 PRIVATE
+  FGetComponentPath@20 @254
+  FGetComponentPath@20@20=FGetComponentPath @255
+  MAPISendMailW@20 @256

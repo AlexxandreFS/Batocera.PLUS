@@ -1,0 +1,29 @@
+; File generated automatically from dlls/ninput/ninput.spec; do not edit!
+
+LIBRARY ninput.dll
+
+EXPORTS
+  DefaultInputHandler@0 @1 PRIVATE
+  AddPointerInteractionContext@0 @2 PRIVATE
+  BufferPointerPacketsInteractionContext@0 @3 PRIVATE
+  CreateInteractionContext@4 @4
+  DestroyInteractionContext@4 @5
+  GetCrossSlideParameterInteractionContext@0 @6 PRIVATE
+  GetInertiaParameterInteractionContext@0 @7 PRIVATE
+  GetInteractionConfigurationInteractionContext@0 @8 PRIVATE
+  GetMouseWheelParameterInteractionContext@0 @9 PRIVATE
+  GetPropertyInteractionContext@12 @10
+  GetStateInteractionContext@0 @11 PRIVATE
+  ProcessBufferedPacketsInteractionContext@0 @12 PRIVATE
+  ProcessInertiaInteractionContext@4 @13
+  ProcessPointerFramesInteractionContext@0 @14 PRIVATE
+  RegisterOutputCallbackInteractionContext@12 @15
+  RemovePointerInteractionContext@0 @16 PRIVATE
+  ResetInteractionContext@0 @17 PRIVATE
+  SetCrossSlideParametersInteractionContext@0 @18 PRIVATE
+  SetInertiaParameterInteractionContext@0 @19 PRIVATE
+  SetInteractionConfigurationInteractionContext@12 @20
+  SetMouseWheelParameterInteractionContext@0 @21 PRIVATE
+  SetPivotInteractionContext@0 @22 PRIVATE
+  SetPropertyInteractionContext@12 @23
+  StopInteractionContext@0 @24 PRIVATE

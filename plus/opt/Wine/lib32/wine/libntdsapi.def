@@ -1,0 +1,101 @@
+; File generated automatically from dlls/ntdsapi/ntdsapi.spec; do not edit!
+
+LIBRARY ntdsapi.dll
+
+EXPORTS
+  DsAddSidHistoryA@0 @1 PRIVATE
+  DsAddSidHistoryW@0 @2 PRIVATE
+  DsBindA@12 @3
+  DsBindW@12 @4
+  DsBindWithCredA@0 @5 PRIVATE
+  DsBindWithCredW@0 @6 PRIVATE
+  DsBindWithSpnA@0 @7 PRIVATE
+  DsBindWithSpnW@0 @8 PRIVATE
+  DsClientMakeSpnForTargetServerA@0 @9 PRIVATE
+  DsClientMakeSpnForTargetServerW@16 @10
+  DsCrackNamesA@28 @11
+  DsCrackNamesW@28 @12
+  DsCrackSpn2A@0 @13 PRIVATE
+  DsCrackSpn2W@0 @14 PRIVATE
+  DsCrackSpn3W@0 @15 PRIVATE
+  DsCrackSpnA@0 @16 PRIVATE
+  DsCrackSpnW@0 @17 PRIVATE
+  DsCrackUnquotedMangledRdnA@0 @18 PRIVATE
+  DsCrackUnquotedMangledRdnW@0 @19 PRIVATE
+  DsFreeDomainControllerInfoA@0 @20 PRIVATE
+  DsFreeDomainControllerInfoW@0 @21 PRIVATE
+  DsFreeNameResultA@0 @22 PRIVATE
+  DsFreeNameResultW@0 @23 PRIVATE
+  DsFreePasswordCredentials@0 @24 PRIVATE
+  DsFreeSchemaGuidMapA@0 @25 PRIVATE
+  DsFreeSchemaGuidMapW@0 @26 PRIVATE
+  DsFreeSpnArrayA@0 @27 PRIVATE
+  DsFreeSpnArrayW@0 @28 PRIVATE
+  DsGetDomainControllerInfoA@0 @29 PRIVATE
+  DsGetDomainControllerInfoW@0 @30 PRIVATE
+  DsGetRdnW@0 @31 PRIVATE
+  DsGetSpnA@36 @32
+  DsGetSpnW@0 @33 PRIVATE
+  DsInheritSecurityIdentityA@0 @34 PRIVATE
+  DsInheritSecurityIdentityW@0 @35 PRIVATE
+  DsIsMangledDnA@0 @36 PRIVATE
+  DsIsMangledDnW@0 @37 PRIVATE
+  DsIsMangledRdnValueA@0 @38 PRIVATE
+  DsIsMangledRdnValueW@0 @39 PRIVATE
+  DsListDomainsInSiteA@0 @40 PRIVATE
+  DsListDomainsInSiteW@0 @41 PRIVATE
+  DsListInfoForServerA@0 @42 PRIVATE
+  DsListInfoForServerW@0 @43 PRIVATE
+  DsListRolesA@0 @44 PRIVATE
+  DsListRolesW@0 @45 PRIVATE
+  DsListServersForDomainInSiteA@0 @46 PRIVATE
+  DsListServersForDomainInSiteW@0 @47 PRIVATE
+  DsListServersInSiteA@0 @48 PRIVATE
+  DsListServersInSiteW@0 @49 PRIVATE
+  DsListSitesA@0 @50 PRIVATE
+  DsListSitesW@0 @51 PRIVATE
+  DsLogEntry@0 @52 PRIVATE
+  DsMakePasswordCredentialsA@0 @53 PRIVATE
+  DsMakePasswordCredentialsW@0 @54 PRIVATE
+  DsMakeSpnA@28 @55
+  DsMakeSpnW@28 @56
+  DsMapSchemaGuidsA@0 @57 PRIVATE
+  DsMapSchemaGuidsW@0 @58 PRIVATE
+  DsQuoteRdnValueA@0 @59 PRIVATE
+  DsQuoteRdnValueW@0 @60 PRIVATE
+  DsRemoveDsDomainA@0 @61 PRIVATE
+  DsRemoveDsDomainW@0 @62 PRIVATE
+  DsRemoveDsServerA@0 @63 PRIVATE
+  DsRemoveDsServerW@0 @64 PRIVATE
+  DsReplicaAddA@0 @65 PRIVATE
+  DsReplicaAddW@0 @66 PRIVATE
+  DsReplicaConsistencyCheck@0 @67 PRIVATE
+  DsReplicaDelA@0 @68 PRIVATE
+  DsReplicaDelW@0 @69 PRIVATE
+  DsReplicaFreeInfo@0 @70 PRIVATE
+  DsReplicaGetInfo2W@0 @71 PRIVATE
+  DsReplicaGetInfoW@0 @72 PRIVATE
+  DsReplicaModifyA@0 @73 PRIVATE
+  DsReplicaModifyW@0 @74 PRIVATE
+  DsReplicaSyncA@0 @75 PRIVATE
+  DsReplicaSyncAllA@0 @76 PRIVATE
+  DsReplicaSyncAllW@0 @77 PRIVATE
+  DsReplicaSyncW@0 @78 PRIVATE
+  DsReplicaUpdateRefsA@0 @79 PRIVATE
+  DsReplicaUpdateRefsW@0 @80 PRIVATE
+  DsReplicaVerifyObjectsA@0 @81 PRIVATE
+  DsReplicaVerifyObjectsW@0 @82 PRIVATE
+  DsServerRegisterSpnA@12 @83
+  DsServerRegisterSpnW@12 @84
+  DsUnBindA@0 @85 PRIVATE
+  DsUnBindW@0 @86 PRIVATE
+  DsUnquoteRdnValueA@0 @87 PRIVATE
+  DsUnquoteRdnValueW@0 @88 PRIVATE
+  DsWriteAccountSpnA@0 @89 PRIVATE
+  DsWriteAccountSpnW@0 @90 PRIVATE
+  DsaopBind@0 @91 PRIVATE
+  DsaopBindWithCred@0 @92 PRIVATE
+  DsaopBindWithSpn@0 @93 PRIVATE
+  DsaopExecuteScript@0 @94 PRIVATE
+  DsaopPrepareScript@0 @95 PRIVATE
+  DsaopUnBind@0 @96 PRIVATE

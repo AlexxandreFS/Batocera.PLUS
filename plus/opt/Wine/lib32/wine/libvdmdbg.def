@@ -1,0 +1,24 @@
+; File generated automatically from dlls/vdmdbg/vdmdbg.spec; do not edit!
+
+LIBRARY vdmdbg.dll
+
+EXPORTS
+  VDMBreakThread@0 @1 PRIVATE
+  VDMDetectWOW@0 @2 PRIVATE
+  VDMEnumProcessWOW@8 @3
+  VDMEnumTaskWOW@12 @4
+  VDMEnumTaskWOWEx@0 @5 PRIVATE
+  VDMGetModuleSelector@0 @6 PRIVATE
+  VDMGetPointer@0 @7 PRIVATE
+  VDMGetSelectorModule@0 @8 PRIVATE
+  VDMGetThreadContext@0 @9 PRIVATE
+  VDMGetThreadSelectorEntry@0 @10 PRIVATE
+  VDMGlobalFirst@0 @11 PRIVATE
+  VDMGlobalNext@0 @12 PRIVATE
+  VDMKillWOW@0 @13 PRIVATE
+  VDMModuleFirst@0 @14 PRIVATE
+  VDMModuleNext@0 @15 PRIVATE
+  VDMProcessException@0 @16 PRIVATE
+  VDMSetThreadContext@0 @17 PRIVATE
+  VDMStartTaskInWOW@0 @18 PRIVATE
+  VDMTerminateTaskWOW@0 @19 PRIVATE

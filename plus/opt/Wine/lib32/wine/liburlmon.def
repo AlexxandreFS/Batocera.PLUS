@@ -1,0 +1,98 @@
+; File generated automatically from dlls/urlmon/urlmon.spec; do not edit!
+
+LIBRARY urlmon.dll
+
+EXPORTS
+  CDLGetLongPathNameA@0 @1 PRIVATE
+  CDLGetLongPathNameW@0 @2 PRIVATE
+  AsyncGetClassBits@0 @3 PRIVATE
+  AsyncInstallDistributionUnit@36 @4
+  BindAsyncMoniker@20 @5
+  CoGetClassObjectFromURL@40 @6
+  CoInstall@0 @7 PRIVATE
+  CoInternetCombineUrl@28 @8
+  CoInternetCombineUrlEx@20 @9
+  CoInternetCompareUrl@12 @10
+  CoInternetCombineIUri@20 @11
+  CoInternetCreateSecurityManager@12 @12
+  CoInternetCreateZoneManager@12 @13
+  CoInternetGetProtocolFlags@0 @14 PRIVATE
+  CoInternetGetSecurityUrl@16 @15
+  CoInternetGetSecurityUrlEx@16 @16
+  CoInternetGetSession@12 @17
+  CoInternetIsFeatureEnabled@8 @18
+  CoInternetIsFeatureEnabledForUrl@16 @19
+  CoInternetIsFeatureZoneElevationEnabled@16 @20
+  CoInternetParseUrl@28 @21
+  CoInternetParseIUri@28 @22
+  CoInternetQueryInfo@28 @23
+  CoInternetSetFeatureEnabled@12 @24
+  CompareSecurityIds@20 @25
+  CopyBindInfo@8 @26
+  CopyStgMedium@8 @27
+  CreateAsyncBindCtx@16 @28
+  CreateAsyncBindCtxEx@24 @29
+  CreateFormatEnumerator@12 @30
+  CreateIUriBuilder@16 @31
+  CreateUri@16 @32
+  CreateUriWithFragment@20 @33
+  CreateURLMoniker@12 @34
+  CreateURLMonikerEx@16 @35
+  CreateURLMonikerEx2@16 @36
+  DllCanUnloadNow@0 @37 PRIVATE
+  DllGetClassObject@12 @38 PRIVATE
+  DllInstall@8 @39 PRIVATE
+  DllRegisterServer@0 @40 PRIVATE
+  DllRegisterServerEx@0 @41 PRIVATE
+  DllUnregisterServer@0 @42 PRIVATE
+  Extract@8 @43
+  FaultInIEFeature@16 @44
+  FindMediaType@0 @45 PRIVATE
+  FindMediaTypeClass@0 @46 PRIVATE
+  FindMimeFromData@32 @47
+  GetClassFileOrMime@28 @48
+  GetClassURL@0 @49 PRIVATE
+  GetComponentIDFromCLSSPEC@0 @50 PRIVATE
+  GetIUriPriv@8 @51
+  GetMarkOfTheWeb@0 @52 PRIVATE
+  GetSoftwareUpdateInfo@8 @53
+  HlinkGoBack@0 @54 PRIVATE
+  HlinkGoForward@0 @55 PRIVATE
+  HlinkNavigateMoniker@0 @56 PRIVATE
+  HlinkNavigateString@8 @57
+  HlinkSimpleNavigateToMoniker@32 @58
+  HlinkSimpleNavigateToString@32 @59
+  IEInstallScope@0 @60 PRIVATE
+  IsAsyncMoniker@4 @61
+  IsLoggingEnabledA@4 @62
+  IsLoggingEnabledW@4 @63
+  IsValidURL@12 @64
+  MkParseDisplayNameEx@16 @65
+  ObtainUserAgentString@12 @66
+  PrivateCoInstall@0 @67 PRIVATE
+  RegisterBindStatusCallback@16 @68
+  RegisterFormatEnumerator@12 @69
+  RegisterMediaTypeClass@0 @70 PRIVATE
+  RegisterMediaTypes@12 @71
+  ReleaseBindInfo@4 @72
+  RevokeBindStatusCallback@8 @73
+  RevokeFormatEnumerator@8 @74
+  SetSoftwareUpdateAdvertisementState@0 @75 PRIVATE
+  ShouldShowIntranetWarningSecband@4 @76
+  URLDownloadA@0 @77 PRIVATE
+  URLDownloadToCacheFileA@24 @78
+  URLDownloadToCacheFileW@24 @79
+  URLDownloadToFileA@20 @80
+  URLDownloadToFileW@20 @81
+  URLDownloadW@0 @82 PRIVATE
+  URLOpenBlockingStreamA@20 @83
+  URLOpenBlockingStreamW@20 @84
+  URLOpenPullStreamA@0 @85 PRIVATE
+  URLOpenPullStreamW@0 @86 PRIVATE
+  URLOpenStreamA@16 @87
+  URLOpenStreamW@16 @88
+  UrlMkBuildVersion@0 @89 PRIVATE
+  UrlMkGetSessionOption@20 @90
+  UrlMkSetSessionOption@16 @91
+  WriteHitLogging@0 @92 PRIVATE
+  ZonesReInit@0 @93 PRIVATE

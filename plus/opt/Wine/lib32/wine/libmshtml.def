@@ -1,0 +1,20 @@
+; File generated automatically from dlls/mshtml/mshtml.spec; do not edit!
+
+LIBRARY mshtml.dll
+
+EXPORTS
+  CreateHTMLPropertyPage@0 @1 PRIVATE
+  DllCanUnloadNow@0 @2 PRIVATE
+  DllEnumClassObjects@0 @3 PRIVATE
+  DllGetClassObject@12 @4 PRIVATE
+  DllInstall@8 @5 PRIVATE
+  DllRegisterServer@0 @6 PRIVATE
+  DllUnregisterServer@0 @7 PRIVATE
+  MatchExactGetIDsOfNames@0 @8 PRIVATE
+  PrintHTML@16 @9
+  RNIGetCompatibleVersion@0 @10
+  RunHTMLApplication@16 @11
+  ShowHTMLDialog@20 @12
+  ShowModalDialog@0 @13 PRIVATE
+  ShowModelessHTMLDialog@0 @14 PRIVATE
+  NP_GetEntryPoints@4 @15

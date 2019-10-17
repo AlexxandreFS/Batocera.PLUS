@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=NeoRaine
+GenericName=Arcade Emulator
+Comment=Play arcade games
+Exec=neoraine
+Icon=neoraine
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=Game;Emulator;

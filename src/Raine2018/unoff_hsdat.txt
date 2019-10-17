@@ -1,0 +1,16 @@
+this is the unofficial highscore.dat file version 8.2
+
+place the highscore.dat file in the same directory as your mame.exe is in
+
+** now the unofficial highscore.dat supports some games that use nv ram to save
+** highscores, these need  special nv ram files that can be 
+** downloaded at :- www.mameworld.net/highscore look in the nvram files section. 
+
+visit the unofficial highscore.dat website at www.mameworld.net/highscore
+
+your favourite game not supported yet ??
+feel free to mail me any requests
+
+enjoy
+
+Leezer.

@@ -1,0 +1,179 @@
+; File generated automatically from dlls/odbc32/odbc32.spec; do not edit!
+
+LIBRARY odbc32.dll
+
+EXPORTS
+  SQLAllocConnect@8=ODBC32_SQLAllocConnect @1
+  SQLAllocEnv@4=ODBC32_SQLAllocEnv @2
+  SQLAllocStmt@8=ODBC32_SQLAllocStmt @3
+  SQLBindCol@24=ODBC32_SQLBindCol @4
+  SQLCancel@4=ODBC32_SQLCancel @5
+  SQLColAttributes@28=ODBC32_SQLColAttributes @6
+  SQLConnect@28=ODBC32_SQLConnect @7
+  SQLDescribeCol@36=ODBC32_SQLDescribeCol @8
+  SQLDisconnect@4=ODBC32_SQLDisconnect @9
+  SQLError@32=ODBC32_SQLError @10
+  SQLExecDirect@12=ODBC32_SQLExecDirect @11
+  SQLExecute@4=ODBC32_SQLExecute @12
+  SQLFetch@4=ODBC32_SQLFetch @13
+  SQLFreeConnect@4=ODBC32_SQLFreeConnect @14
+  SQLFreeEnv@4=ODBC32_SQLFreeEnv @15
+  SQLFreeStmt@8=ODBC32_SQLFreeStmt @16
+  SQLGetCursorName@16=ODBC32_SQLGetCursorName @17
+  SQLNumResultCols@8=ODBC32_SQLNumResultCols @18
+  SQLPrepare@12=ODBC32_SQLPrepare @19
+  SQLRowCount@8=ODBC32_SQLRowCount @20
+  SQLSetCursorName@12=ODBC32_SQLSetCursorName @21
+  SQLSetParam@32=ODBC32_SQLSetParam @22
+  SQLTransact@12=ODBC32_SQLTransact @23
+  SQLAllocHandle@12=ODBC32_SQLAllocHandle @24
+  SQLBindParam@32=ODBC32_SQLBindParam @25
+  SQLCloseCursor@4=ODBC32_SQLCloseCursor @26
+  SQLColAttribute@28=ODBC32_SQLColAttribute @27
+  SQLCopyDesc@8=ODBC32_SQLCopyDesc @28
+  SQLEndTran@12=ODBC32_SQLEndTran @29
+  SQLFetchScroll@12=ODBC32_SQLFetchScroll @30
+  SQLFreeHandle@8=ODBC32_SQLFreeHandle @31
+  SQLGetConnectAttr@20=ODBC32_SQLGetConnectAttr @32
+  SQLGetDescField@24=ODBC32_SQLGetDescField @33
+  SQLGetDescRec@44=ODBC32_SQLGetDescRec @34
+  SQLGetDiagField@28=ODBC32_SQLGetDiagField @35
+  SQLGetDiagRec@32=ODBC32_SQLGetDiagRec @36
+  SQLGetEnvAttr@20=ODBC32_SQLGetEnvAttr @37
+  SQLGetStmtAttr@20=ODBC32_SQLGetStmtAttr @38
+  SQLSetConnectAttr@16=ODBC32_SQLSetConnectAttr @39
+  SQLColumns@36=ODBC32_SQLColumns @40
+  SQLDriverConnect@32=ODBC32_SQLDriverConnect @41
+  SQLGetConnectOption@12=ODBC32_SQLGetConnectOption @42
+  SQLGetData@24=ODBC32_SQLGetData @43
+  SQLGetFunctions@12=ODBC32_SQLGetFunctions @44
+  SQLGetInfo@20=ODBC32_SQLGetInfo @45
+  SQLGetStmtOption@12=ODBC32_SQLGetStmtOption @46
+  SQLGetTypeInfo@8=ODBC32_SQLGetTypeInfo @47
+  SQLParamData@8=ODBC32_SQLParamData @48
+  SQLPutData@12=ODBC32_SQLPutData @49
+  SQLSetConnectOption@12=ODBC32_SQLSetConnectOption @50
+  SQLSetStmtOption@12=ODBC32_SQLSetStmtOption @51
+  SQLSpecialColumns@40=ODBC32_SQLSpecialColumns @52
+  SQLStatistics@36=ODBC32_SQLStatistics @53
+  SQLTables@36=ODBC32_SQLTables @54
+  SQLBrowseConnect@24=ODBC32_SQLBrowseConnect @55
+  SQLColumnPrivileges@36=ODBC32_SQLColumnPrivileges @56
+  SQLDataSources@32=ODBC32_SQLDataSources @57
+  SQLDescribeParam@24=ODBC32_SQLDescribeParam @58
+  SQLExtendedFetch@20=ODBC32_SQLExtendedFetch @59
+  SQLForeignKeys@52=ODBC32_SQLForeignKeys @60
+  SQLMoreResults@4=ODBC32_SQLMoreResults @61
+  SQLNativeSql@24=ODBC32_SQLNativeSql @62
+  SQLNumParams@8=ODBC32_SQLNumParams @63
+  SQLParamOptions@12=ODBC32_SQLParamOptions @64
+  SQLPrimaryKeys@28=ODBC32_SQLPrimaryKeys @65
+  SQLProcedureColumns@36=ODBC32_SQLProcedureColumns @66
+  SQLProcedures@28=ODBC32_SQLProcedures @67
+  SQLSetPos@16=ODBC32_SQLSetPos @68
+  SQLSetScrollOptions@16=ODBC32_SQLSetScrollOptions @69
+  SQLTablePrivileges@28=ODBC32_SQLTablePrivileges @70
+  SQLDrivers@32=ODBC32_SQLDrivers @71
+  SQLBindParameter@40=ODBC32_SQLBindParameter @72
+  SQLSetDescField@20=ODBC32_SQLSetDescField @73
+  SQLSetDescRec@40=ODBC32_SQLSetDescRec @74
+  SQLSetEnvAttr@16=ODBC32_SQLSetEnvAttr @75
+  SQLSetStmtAttr@16=ODBC32_SQLSetStmtAttr @76
+  SQLAllocHandleStd@12=ODBC32_SQLAllocHandleStd @77
+  SQLBulkOperations@8=ODBC32_SQLBulkOperations @78
+  CloseODBCPerfData@0 @79 PRIVATE
+  CollectODBCPerfData@0 @80 PRIVATE
+  CursorLibLockDbc@0 @81 PRIVATE
+  CursorLibLockDesc@0 @82 PRIVATE
+  CursorLibLockStmt@0 @83 PRIVATE
+  ODBCGetTryWaitValue@0 @84 PRIVATE
+  CursorLibTransact@0 @85 PRIVATE
+  ODBSetTryWaitValue@0 @86 PRIVATE
+  ODBCSharedPerfMon@0 @89 PRIVATE
+  ODBCSharedVSFlag@0 @90 PRIVATE
+  SQLColAttributesW@28=ODBC32_SQLColAttributesW @106
+  SQLConnectW@28=ODBC32_SQLConnectW @107
+  SQLDescribeColW@36=ODBC32_SQLDescribeColW @108
+  SQLErrorW@32=ODBC32_SQLErrorW @110
+  SQLExecDirectW@12=ODBC32_SQLExecDirectW @111
+  SQLGetCursorNameW@16=ODBC32_SQLGetCursorNameW @117
+  SQLPrepareW@12=ODBC32_SQLPrepareW @119
+  SQLSetCursorNameW@12=ODBC32_SQLSetCursorNameW @121
+  SQLColAttributeW@28=ODBC32_SQLColAttributeW @127
+  SQLGetConnectAttrW@20=ODBC32_SQLGetConnectAttrW @132
+  SQLGetDescFieldW@24=ODBC32_SQLGetDescFieldW @133
+  SQLGetDescRecW@44=ODBC32_SQLGetDescRecW @134
+  SQLGetDiagFieldW@28=ODBC32_SQLGetDiagFieldW @135
+  SQLGetDiagRecW@32=ODBC32_SQLGetDiagRecW @136
+  SQLGetStmtAttrW@20=ODBC32_SQLGetStmtAttrW @138
+  SQLSetConnectAttrW@16=ODBC32_SQLSetConnectAttrW @139
+  SQLColumnsW@36=ODBC32_SQLColumnsW @140
+  SQLDriverConnectW@32=ODBC32_SQLDriverConnectW @141
+  SQLGetConnectOptionW@12=ODBC32_SQLGetConnectOptionW @142
+  SQLGetInfoW@20=ODBC32_SQLGetInfoW @145
+  SQLGetTypeInfoW@8=ODBC32_SQLGetTypeInfoW @147
+  SQLSetConnectOptionW@12=ODBC32_SQLSetConnectOptionW @150
+  SQLSpecialColumnsW@40=ODBC32_SQLSpecialColumnsW @152
+  SQLStatisticsW@36=ODBC32_SQLStatisticsW @153
+  SQLTablesW@36=ODBC32_SQLTablesW @154
+  SQLBrowseConnectW@24=ODBC32_SQLBrowseConnectW @155
+  SQLColumnPrivilegesW@36=ODBC32_SQLColumnPrivilegesW @156
+  SQLDataSourcesW@32=ODBC32_SQLDataSourcesW @157
+  SQLForeignKeysW@52=ODBC32_SQLForeignKeysW @160
+  SQLNativeSqlW@24=ODBC32_SQLNativeSqlW @162
+  SQLPrimaryKeysW@28=ODBC32_SQLPrimaryKeysW @165
+  SQLProcedureColumnsW@36=ODBC32_SQLProcedureColumnsW @166
+  SQLProceduresW@28=ODBC32_SQLProceduresW @167
+  SQLTablePrivilegesW@28=ODBC32_SQLTablePrivilegesW @170
+  SQLDriversW@32=ODBC32_SQLDriversW @171
+  SQLSetDescFieldW@20=ODBC32_SQLSetDescFieldW @173
+  SQLSetStmtAttrW@16=ODBC32_SQLSetStmtAttrW @176
+  SQLColAttributesA@0 @206 PRIVATE
+  SQLConnectA@0 @207 PRIVATE
+  SQLDescribeColA@0 @208 PRIVATE
+  SQLErrorA@0 @210 PRIVATE
+  SQLExecDirectA@0 @211 PRIVATE
+  SQLGetCursorNameA@0 @217 PRIVATE
+  SQLPrepareA@0 @219 PRIVATE
+  SQLSetCursorNameA@0 @221 PRIVATE
+  SQLColAttributeA@0 @227 PRIVATE
+  SQLGetConnectAttrA@0 @232 PRIVATE
+  SQLGetDescFieldA@0 @233 PRIVATE
+  SQLGetDescRecA@0 @234 PRIVATE
+  SQLGetDiagFieldA@0 @235 PRIVATE
+  SQLGetDiagRecA@32=ODBC32_SQLGetDiagRecA @236
+  SQLGetStmtAttrA@0 @238 PRIVATE
+  SQLSetConnectAttrA@0 @239 PRIVATE
+  SQLColumnsA@0 @240 PRIVATE
+  SQLDriverConnectA@0 @241 PRIVATE
+  SQLGetConnectOptionA@0 @242 PRIVATE
+  SQLGetInfoA@0 @245 PRIVATE
+  SQLGetTypeInfoA@0 @247 PRIVATE
+  SQLSetConnectOptionA@0 @250 PRIVATE
+  SQLSpecialColumnsA@0 @252 PRIVATE
+  SQLStatisticsA@0 @253 PRIVATE
+  SQLTablesA@0 @254 PRIVATE
+  SQLBrowseConnectA@0 @255 PRIVATE
+  SQLColumnPrivilegesA@0 @256 PRIVATE
+  SQLDataSourcesA@32=ODBC32_SQLDataSourcesA @257
+  SQLForeignKeysA@0 @260 PRIVATE
+  SQLNativeSqlA@0 @262 PRIVATE
+  SQLPrimaryKeysA@0 @265 PRIVATE
+  SQLProcedureColumnsA@0 @266 PRIVATE
+  SQLProceduresA@0 @267 PRIVATE
+  SQLTablePrivilegesA@0 @270 PRIVATE
+  SQLDriversA@0 @271 PRIVATE
+  SQLSetDescFieldA@0 @273 PRIVATE
+  SQLSetStmtAttrA@0 @276 PRIVATE
+  ODBCSharedTraceFlag@0 @300 PRIVATE
+  ODBCQualifyFileDSNW@0 @301 PRIVATE
+  LockHandle@0 @87 PRIVATE
+  ODBCInternalConnectW@0 @88 PRIVATE
+  OpenODBCPerfData@0 @91 PRIVATE
+  PostComponentError@0 @92 PRIVATE
+  PostODBCComponentError@0 @93 PRIVATE
+  PostODBCError@0 @94 PRIVATE
+  SearchStatusCode@0 @95 PRIVATE
+  VFreeErrors@0 @96 PRIVATE
+  VRetrieveDriverErrorsRowCol@0 @97 PRIVATE
+  ValidateErrorQueue@0 @98 PRIVATE

@@ -1,0 +1,50 @@
+; File generated automatically from dlls/wsdapi/wsdapi.spec; do not edit!
+
+LIBRARY wsdapi.dll
+
+EXPORTS
+  WSDAddFirewallCheck@0 @1 PRIVATE
+  WSDCancelNetworkChangeNotify@0 @2 PRIVATE
+  WSDCopyNameList@0 @3 PRIVATE
+  WSDNotifyNetworkChange@0 @4 PRIVATE
+  WSDRemoveFirewallCheck@0 @5 PRIVATE
+  WSDXMLCompareNames@0 @6 PRIVATE
+  WSDAllocateLinkedMemory@8 @7
+  WSDAttachLinkedMemory@8 @8
+  WSDCompareEndpoints@0 @9 PRIVATE
+  WSDCopyEndpoint@0 @10 PRIVATE
+  WSDCreateDeviceHost2@0 @11 PRIVATE
+  WSDCreateDeviceHost@0 @12 PRIVATE
+  WSDCreateDeviceHostAdvanced@0 @13 PRIVATE
+  WSDCreateDeviceProxy2@0 @14 PRIVATE
+  WSDCreateDeviceProxy@0 @15 PRIVATE
+  WSDCreateDeviceProxyAdvanced@0 @16 PRIVATE
+  WSDCreateDiscoveryProvider2@0 @17 PRIVATE
+  WSDCreateDiscoveryProvider@0 @18 PRIVATE
+  WSDCreateDiscoveryPublisher2@0 @19 PRIVATE
+  WSDCreateDiscoveryPublisher@8 @20
+  WSDCreateHttpAddress@0 @21 PRIVATE
+  WSDCreateHttpMessageParameters@0 @22 PRIVATE
+  WSDCreateHttpTransport@0 @23 PRIVATE
+  WSDCreateMetadataAgent@0 @24 PRIVATE
+  WSDCreateOutboundAttachment@0 @25 PRIVATE
+  WSDCreateUdpAddress@4 @26
+  WSDCreateUdpMessageParameters@4 @27
+  WSDCreateUdpTransport@0 @28 PRIVATE
+  WSDDetachLinkedMemory@4 @29
+  WSDFreeLinkedMemory@4 @30
+  WSDGenerateFault@0 @31 PRIVATE
+  WSDGenerateFaultEx@0 @32 PRIVATE
+  WSDGenerateRandomDelay@0 @33 PRIVATE
+  WSDGetConfigurationOption@0 @34 PRIVATE
+  WSDProcessFault@0 @35 PRIVATE
+  WSDSetConfigurationOption@0 @36 PRIVATE
+  WSDUriDecode@0 @37 PRIVATE
+  WSDUriEncode@0 @38 PRIVATE
+  WSDXMLAddChild@8 @39
+  WSDXMLAddSibling@8 @40
+  WSDXMLBuildAnyForSingleElement@12 @41
+  WSDXMLCleanupElement@4 @42
+  WSDXMLCreateContext@4 @43
+  WSDXMLGetNameFromBuiltinNamespace@0 @44 PRIVATE
+  WSDXMLGetValueFromAny@16 @45

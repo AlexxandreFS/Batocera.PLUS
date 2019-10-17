@@ -1,0 +1,44 @@
+## SYSTEM WINDOWS GAMES ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted (Batocera.PLUS): ".plus .PLUS"
+-------------------------------------------------------------------------------
+Alguns jogos de Windows podem ser jogados no Batocera.PLUS por meio do Wine.
+
+Os jogos podem vir em apenas um unico arquivo ou uma pasta com arquivos, ambos
+com extensao .plus ou .PLUS
+
+Exemplo 1: My Game.plus         (arquivo)
+
+Exemplo 2:  My Game.plus        (pasta)
+            |---- batocera.plus (arquivo)
+            |---- game.exe      (arquivo)
+            |---- game.dat      (arquivo) (se existir)
+            |---- game.bin      (arquivo) (se existir)
+            |---- ...                     (se existir)
+
+Jogos compactados usam o formato squashfs.
+
+Nunca renomei o jogo (pasta ou arquivo) pois ele pode deixar de funcionar ou
+o sistema de save pode nao funcionar adequadamente.
+----------------------------------------------------------------------------
+Ao iniciar um jogo pela primeira vez no wine ele vai demorar um pouco para ser
+iniciado, algo em torno de 2 minutos. Na primeira inicializacao o wine configura
+a instalacao virtual do windows e faz a instacao do Mono e do Directx, dentre
+outras configuracoes.
+----------------------------------------------------------------------------
+"WINEPREFIX" (Diretorio de instalacao virtual do Windows)
+Por padrao o Wine cria o diretorio que simula uma instalacao do Windows em
+/userdata/system/configs/wine
+
+Alguns jogos criam a pasta separada no diretorio do save do jogo, neste caso
+as modificacoes no configurador do Wine (winecfg, F1) nao vai ter efeito sobre
+estes jogos, caso nao encontre um script na pasta de save ou na pasta dos
+arquivos do jogo para abrir o winecfg e configurar o wine para este jogo em
+particular, basta exportar as variaveis "WINEPREFIX" e WINEARCH antes de chamar
+o configurador do wine "winecfg" no terminal (win + F4)
+
+Exemplo:
+export WINEPREFIX='/userdata/saves/windows/Cuphead/wine'
+export WINEACH='win32'
+wine winecfg
+----------------------------------------------------------------------------

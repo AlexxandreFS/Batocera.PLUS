@@ -1,0 +1,30 @@
+script "max charge" always
+  poke $1019e8 255
+
+script "get 3 lives now"
+  poke $10167c 3
+
+script "max speed"
+  poke $101b30 7
+
+script "get front pod"
+  poke $101b33 peek($101b33)|1
+
+script "get upper pod"
+  poke $101b33 peek($101b33)|2
+
+script "get lower pod"
+  poke $101b33 peek($101b33)|4
+
+script "get unknown power-up"
+  poke $101b33 peek($101b33)|8
+
+script "get unknown2 power-up"
+  poke $101b33 peek($101b33)|16
+
+script "get extra weapon"
+  poke $101b33 peek($101b33)|32
+
+script "get homing missiles"
+  poke $101b33 peek($101b33)|64
+

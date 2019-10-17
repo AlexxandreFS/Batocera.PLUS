@@ -1,0 +1,16 @@
+; File generated automatically from dlls/d2d1/d2d1.spec; do not edit!
+
+LIBRARY d2d1.dll
+
+EXPORTS
+  D2D1CreateFactory@16 @1
+  D2D1MakeRotateMatrix@16 @2
+  D2D1MakeSkewMatrix@20 @3
+  D2D1IsMatrixInvertible@4 @4
+  D2D1InvertMatrix@4 @5
+  D2D1ConvertColorSpace@0 @6 PRIVATE
+  D2D1CreateDevice@0 @7 PRIVATE
+  D2D1CreateDeviceContext@0 @8 PRIVATE
+  D2D1SinCos@0 @9 PRIVATE
+  D2D1Tan@0 @10 PRIVATE
+  D2D1Vec3Length@0 @11 PRIVATE

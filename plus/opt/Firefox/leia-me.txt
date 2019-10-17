@@ -1,0 +1,73 @@
+
+Favor desconsidere este arquivo.
+Este arquivo está desatualizado! Em breve será atualizado
+
+MOZILLA FIREFOX BATOCERA
+========================
+O que é o Firefox.Batocera? É um pacote com o navegador scripts e bibliotecas
+que possibilitam que o Firefox seja executado no Batocera.
+
+Basicamente com ele você vai poder usar o Batocera para navegar na Web abrindo
+mais possivilidades para o sistema.
+
+
+PROFILE [PERFIL DE USUÁRIO
+==========================
+Os dados de preferência do navegador e do usuário são salvos automáticamente
+no diretório share/saves/pc/Mozilla-Firefox assim como um jogo qualquer.
+
+Para voltar o navegador a suas configurações padrões basta escluir o "save".
+
+Se você cria versões customizadas e coletâneas de jogos com o Batocera, e
+pretende adicionar sua página como inicial ou fazer outras customizações leia o
+arquivo leia-me no diretório default-profile deste pacote para mais informações.
+
+Problemas com o perfil padrão do navegador?
+O firefox.batocera já vem com algumas configurações predefinidas, que são
+criadas na primeira execução do navegador, elas foram criadas para melhorar a
+experiência de navegação do navegador neste sistema, mas se por algum motivo elas
+apresentarem problemas, você pode excluir as configurações apagando todos arquivos
+que ficam dentro do diretório de save do navegador share/saves/pc/Mozilla-Firefox
+Não remova o diretório Mozilla-Firefox, apenas os arquivos que ficam dentro.
+
+
+PROFILE CUSTOMIZADO
+===================
+Se você cria versões customizadas e coletâneas de jogos com o Batocera e
+pretende adicionar sua página como inicial ou fazer outra customizações leia o
+arquivo leia-me no diretório default-profile deste pacote para mais informações.
+
+
+DOWNLOADS
+=========
+São salvos do diretório share/downloads
+
+
+COMO ATUALIZAR  
+==============
+Na versão 1.0 do firefox.batocera não contava com o esquema de "saves" então os 
+arquivos ficavam espalhados no diretório share/system.
+Estes arquivos não serão mais utilizados nesta versão, então apenas exclua
+estes arquivos e pastas para economizar espaço em disco e passe a usar a nova
+versão.
+
+Exclua:
+share/system/.adobe
+share/system/.cache/mozilla
+share/system/.macromedia
+share/system/.mozilla
+
+
+BUGS CONHECIDOS
+===============
+Em alguns monitores a tela pode ficar com cortes nas laterais, pressione a tecla
+F11 para o navegador ficar em tela cheia e reinicie o navegador, repita o processo
+até ele voltar ao normal (normalmente umas 5 vezes)
+
+SOBRE
+=====
+AUTOR: Alexandre Freire dos Santos
+EMAIL: alexandre.freire@gmail.com
+
+Este é um arquivo leia-me inicial.
+Ainda não foram feitas correções de coerência e ortografia.

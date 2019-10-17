@@ -1,0 +1,14 @@
+Este é o código modificado para funcionar no batocera, tudo pronto para compilar.
+este código foi testado no gcc version 8.2.0 (Debian 8.2.0-8)
+
+Para mudar a versão do emulador de neogeocd basta renomear o arquivo
+source/neocd/neocd.c [versão] para source/neocd/neocd.c
+
+Altere também a versão do emulador que é exibida na interface do emulador
+no arquivo makefile.
+
+Para implantar a tradução os seguintes arquivos foram alterados:
+source/sdl/dialogs/gui_options.cpp
+source/translate.c
+makefile
+

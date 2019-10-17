@@ -1,0 +1,1468 @@
+   Link: copyright
+
+                     Neo-Geo Big List of Debug Dipswitches
+
+   From Neo-Geo
+   Jump to: navigation, search
+
+   Contents
+
+     * 1 3 Count Bout / Fire Suplex [ne7]
+     * 2 Aero Fighters 3 / Sonic Wings 3 [ne7]
+     * 3 Art of Fighting
+     * 4 Art of Fighting 2
+     * 5 Art of Fighting 3
+     * 6 Alpha Mission II / ASO 2[ne7]
+     * 7 Breakers [evilwasabi]
+     * 8 Breakers Revenge
+     * 9 Double Dragon
+     * 10 Fatal Fury 2 [ne7]
+     * 11 Fatal Fury Special [bonuskun]
+     * 12 Fatal Fury 3 [ne7+kagami007]
+     * 13 Garou Mark of the Wolves
+     * 14 Iron Clad [SuperGun + Xian Xi]
+     * 15 Kabuki Klash / Far East of Eden [ne7+kagami007]
+     * 16 King of Fighters '94 [bonuskun]
+     * 17 King of Fighters '95 [bonuskun]
+     * 18 King of Fighters '96 [bonuskun]
+     * 19 King of Fighters '97 [bonuskun]
+     * 20 King of Fighters '98 [bonuskun]
+     * 21 King of Fighters '99 [bonuskun / Thomas Giboin]
+     * 22 King of Fighters 2000 [bonuskun]
+     * 23 King of Fighters 2001 [kagami007]
+     * 24 King of Fighters 2002 [MR Sakaki]
+     * 25 King of Fighters 2003
+     * 26 King of the Monsters 2 [ne7]
+     * 27 Last Blade [ne7]
+     * 28 Last Blade 2 [kagami007]
+     * 29 Money Puzzle Exchanger [ne7+Kagami007]
+     * 30 Metal Slug [ne7]
+     * 31 Metal Slug 2 [ne7]
+     * 32 Metal Slug X [Wasabi]
+     * 33 Metal Slug 3 [bonuskun]
+     * 34 Metal Slug 4
+     * 35 Metal Slug 5 [hellishtempura]
+     * 36 Neo Drift Out [ne7]
+     * 37 Neo Turf Masters / Big Tournament Golf [ne7]
+     * 38 Pleasure Goal [ne7]
+     * 39 Puzzle Bobble / Bust A Move [kagami007]
+     * 40 Real Bout Fatal Fury [ne7]
+     * 41 Real Bout Fatal Fury Special [Meta-Ukyo]
+     * 42 Real Bout Fatal Fury 2 [bonuskun]
+     * 43 Robo Army [ne7]
+     * 44 Samurai Shodown
+     * 45 Samurai Shodown II [bonuskun]
+     * 46 Samurai Showdown III [bonuskun]
+     * 47 Samurai Shodown IV [bonuskun]
+     * 48 Samurai Shodown V [kagami007]
+     * 49 Samurai Shodown V: Special
+     * 50 Savage Reign
+     * 51 Shock Troopers 2 [ne7]
+     * 52 SNK vs Capcom Chaos
+     * 53 Top Hunter [ne7]
+     * 54 Ultimate 11 / Super Sidekicks 4 [ne7]
+     * 55 Windjammers [ne7]
+     * 56 General Information
+     * 57 INFO: How Debug Dipswitch modes work...
+     * 58 INFO: Debug Dipswitch Wiki Notes
+
+3 Count Bout / Fire Suplex [ne7]
+
+   1-1 Pal Mode/Job Meter
+   1-2 Debug Text on screen
+   1-3 Gives game link (assembly date) + extra text info
+   1-4 Target boxes ingame
+   1-5 Massive amount of textual info over game
+   1-6 Sprite data on screen
+   1-7 Font data on screen
+   1-8 Possible sprite viewer...
+
+   2-1 More debug text
+   2-2 "
+   2-3 "
+   2-4 Disables P1 buttons?
+   2-5 ?unknown
+   2-6 "Dont Touch Me" + Safety Mode appear on screen - needs further
+   investigation - prob with P2 controls :)
+   2-7 ?
+   2-8 Enables pause with select button
+
+Aero Fighters 3 / Sonic Wings 3 [ne7]
+
+   1-1 to 2-7 unknown...
+   2-8 Enable for Stage Select
+
+Art of Fighting
+
+   1-1 Player 1 controls CPU.
+   1-2 Same as above
+   1-3 Stat boxes
+   1-4 Play during "How to Play" screen
+   1-5 Vs. mode collision detection boxes (press Start)
+   1-6 Both players are invincible
+   1-7 Unknown
+   1-8 Press Start during fight to skip to next fight
+
+   2-1 Slow mode
+   2-2 Slower mode (combine with prior code for super slow)
+   2-3 Clean paused game screen
+   2-4 Press Select for RGB test palette
+   2-5 Unknown
+   2-6 Unknown
+   2-7 Stop timer
+   2-8 Pal Mode/Job Meter
+
+Art of Fighting 2
+
+   1-1 P1 is CPU (play Geese if you load Special Stage)
+   1-2 P2 is CPU
+   1-3 Press select for data display
+   1-4 P2 No KO (also play behind how to play screen)
+   1-5 Unknown
+   1-6 Invincible CPU
+   1-7 Numeric display for each player?
+   1-8 Unknown
+
+   2-1 Slower game
+   2-2 Even Slower game
+   2-3 Pause without Pause Display
+   2-4 Press Select for Sound Test (w/2-3 RGB Test)
+   2-5 Unknown
+   2-6 Skip to ending
+   2-7 Freeze timer
+   2-8 Toggle Pal Mode/Job Meter
+   2-4 + 2-3 Press select for RGB test pallete
+
+Art of Fighting 3
+
+   1-1 Unknown
+   1-2 P1 & P2 take no damage
+   1-3 Unknown
+   1-4 Unknown
+   1-5 Unknown
+   1-6 Practice mode? Must be on before match starts
+   1-7 Unknown
+   1-8 Unlock Sinclair and Wyler
+
+   2-1 Player 1 is CPU controlled?
+   2-2 Player 2 is CPU controlled? (if 2-8 is on, P1 is CPU instead. P2
+   doesn't move)
+   2-3 Displays "W!" at the top of the screen
+   2-4 Players are invincible
+   2-5 Unknown
+   2-6 Unknown
+   2-7 "Random Mode" displayed
+   2-8 Total Round Display
+
+Alpha Mission II / ASO 2[ne7]
+
+   1-1 Debug display + in console mode press pause, level select menu display
+   will appear under the debug text - select level/stage with UP/DOWN and A
+   to select then unpause to skip to that stage.
+   1-2 Nothing
+   1-3 Nothing
+   1-4 Nothing
+   1-5 Nothing
+   1-6 Nothing
+   1-7 Nothing
+   1-8 Nothing
+
+   2-1 Nothing
+   2-2 Nothing
+   2-3 Nothing
+   2-4 Nothing
+   2-5 Nothing
+   2-6 Nothing
+   2-7 Nothing
+   2-8 Nothing
+
+Breakers [evilwasabi]
+
+   1-1 Debug Menu Default (note 1)
+   1-2 Screen Scroll Debug (not sure how it works)
+   1-3 Kakuto Char No. Disp (not sure how it works)
+   1-4 Kakuto Trigger Free (rapid fire)
+   1-5 Kakuto Sound Test (not sure how it works)
+   1-6 Obj. Status Debug (not sure how it works)
+   1-7 Unknown
+   1-8 Task Lsp. Weight Chk
+
+   2-1 for CPU Algo Debug (character data displayed on screen)
+   2-2 Char Select mode (hold ABCD, then hit down to scroll) (note 2)
+   2-3 Center and Size Display (little ring appears to mark player position)
+   2-4 Hit Area Display
+   2-5 Ougi (pow) Max (unlimited pow)
+   2-6 No Limit Battle (on time/health limits)
+   2-7 Pal Sim (Europe only)
+   2-8 Stop Motion (hit select to pause, start to unpause)
+
+   Note 1 - select this and then reset the machine to enter to complete debug
+   menu from the start screen. When the game restarts, you'll be able to
+   select the select a lot more debug options through a special debug screen.
+   Note 2 - changing characters in mid-match also restores your health to
+   100%
+
+Breakers Revenge
+
+   (Seems to share its debug info with Breakers)
+   1-1 Debug Menu Default (note 1)
+   1-2 Screen Scroll Debug (not sure how it works)
+   1-3 Kakuto Char No. Disp (not sure how it works)
+   1-4 Kakuto Trigger Free (rapid fire)
+   1-5 Kakuto Sound Test (not sure how it works)
+   1-6 Obj. Status Debug (not sure how it works)
+   1-7 Unknown
+   1-8 Task Lsp. Weight Chk
+
+   2-1 for CPU Algo Debug (character data displayed on screen)
+   2-2 Char Select mode (hold ABCD, then hit down to scroll) (note 2)
+   2-3 Center and Size Display (little ring appears to mark player position)
+   2-4 Hit Area Display
+   2-5 Ougi (pow) Max (unlimited pow)
+   2-6 No Limit Battle (on time/health limits)
+   2-7 Pal Sim (Europe only)
+   2-8 Stop Motion (hit select to pause, start to unpause)
+
+   Note 1 - select this and then reset the machine to enter to complete debug
+   menu from the start screen. When the game restarts, you'll be able to
+   select the select a lot more debug options through a special debug screen.
+   Note 2 - changing characters in mid-match also restores your health to
+   100%
+
+Double Dragon
+
+   1-1 Unknown
+   1-2 Unknown
+   1-3 Unknown
+   1-4 Unknown
+   1-5 Unknown
+   1-6 Unknown
+   1-7 Unknown
+   1-8 Unknown
+
+   2-1 Slow motion
+   2-2 No damage taken for either character
+   2-3 Full charge for both players
+   2-4 Unknown
+   2-5 Unknown
+   2-6 Unknown
+   2-7 Unknown
+   2-8 Unknown
+
+Fatal Fury 2 [ne7]
+
+   1-1 Unknown
+   1-2 Unknown
+   1-3 CPU vs CPU
+   1-4 unknown
+   1-5 Enable alternate character selection screen including access to the
+   bosses in 1p mode & W.Krauser (you must select this at the title screen)
+   1-6 View characters ending
+   1-7 unknown
+   1-8 unknown
+
+   2-1 Invincible mode
+   2-2 unknown
+   2-3 unknown
+   2-4 unknown
+   2-5 Press A+B+C+D to reduce opponents energy
+   2-6 unknown
+   2-7 unknown
+   2-8 unknown
+
+   Notes:
+   1-5 Krauser seems to not quite work correctly in this mode unfortunately -
+   some of his moves are missing and it drops frames when you try and do
+   certain commands :), still tis interesting!
+
+Fatal Fury Special [bonuskun]
+
+   1-1 Pal Mode/Job Meter
+   1-2 Both players are invincible
+   1-3 Unlimited time, Ryo Sakazaki Selectable
+   1-4 Unlocks Ryo Sakazaki
+   1-5 Allows you to view selected character's endings
+   1-6 Allows you to goto Dream Match vs Ryo Sakazaki
+   1-7 Message screen, Use controller one to adjust.
+   1-8 Sprite viewer, Press 'Select' on P1, Use P2 to view
+
+   2-1 Displays hit detection boxes
+   2-2 Displays distance grid boxes
+   2-3 Unknown
+   2-4 Unknown
+   2-5 Press A,B,C,& D at the same to to drop CPU's lifebar to near death
+   2-6 Sprite location information
+   2-7 Unknown
+   2-8 Stage selection screen
+
+   Notes: To View all the character's endings, Turn on Dips 1-4 & 1-5.
+   To have Ryo Sakazaki selectable you must turn on Dip 1-3 BEFORE you get to
+   the character selection screen or the dip will not work.
+
+Fatal Fury 3 [ne7+kagami007]
+
+   1-1 Pal Mode/Job Meter
+   1-2 Both players are invincible
+   1-3 Unlimited time; secret character selectable
+   1-4 Set before character selection screen; unlock Ryo; CPU opponent
+   selectable
+   1-5 View selected vs. character's ending
+   1-6 Take selected character to dream match
+   1-7 Message screen; use controller one
+   1-8 Sprite viewer; press Select on controller one, use controller two to
+   view
+
+   2-1 Sprite character grids
+   2-2 Sprite distance grids
+   2-3 Show ending after selection of character
+   2-4 Unknown
+   2-5 Press A + B + C + D to set opponent's life to minimum + All characters
+   available on selection roll
+   2-6 Sprite location information
+   2-7 Debug Object display
+   2-8 Stage selection screen
+
+   Note: Use 1-4 + 1-5 View all character's endings
+
+Garou Mark of the Wolves
+
+   1-1 Unknown
+   1-2 Both players are Invicible
+   1-3 Stage select
+   1-4 Unknown
+   1-5 Unknown
+   1-6 Unknown
+   1-7 Unknown
+   1-8 Unknown
+
+   2-1 Easy special moves
+   2-2 View characters ending
+   2-3 Skip to next round
+   2-4 Unknown
+   2-5 Unknown
+   2-6 Unknown
+   2-7 Unknown
+   2-8 Unknown
+
+Iron Clad [SuperGun + Xian Xi]
+
+   1-1 Stage Select (must be enabled with 1-8)
+   1-2 Unknown
+   1-3 Unknown
+   1-4 Unknown
+   1-5 Unknown
+   1-6 Unknown
+   1-7 Unknown
+   1-8 Stage Select + Additional Options!
+
+   2-1 Unknown
+   2-2 Unknown
+   2-3 Unknown
+   2-4 Unknown
+   2-5 Unknown
+   2-6 Unknown
+   2-7 Unknown
+   2-8 Unknown
+
+Kabuki Klash / Far East of Eden [ne7+kagami007]
+
+   1-1 Debug info / Both P1/P2 Sides
+   1-2 Unknown
+   1-3 Infinite Time
+   1-4 Use with 1-6 for both players invicible
+   1-5 Debug info P2 side (info on range etc + amusing move data)
+   1-6 Use with 1-4 for Both players invicible
+   1-7 Unknown
+   1-8 Unknown
+
+   2-1 CPU Controls Player
+   2-2 Halt CPU opponent (they will be frozen while this code is in use)
+   2-3 Skip straight to battling MANTO (1st boss) after selection of
+   character
+   2-4 Show ending, right after selection of character
+   2-5 Unknown
+   2-6 Unknown
+   2-7 Unknown
+   2-8 Unknown
+
+King of Fighters '94 [bonuskun]
+
+   1-1 Sprite debug menu
+   1-2 Collision detection boxes can be seen
+   1-3 Disable the timer
+   1-4 Both Players Invincible, SDM's also always at max
+   1-5 Display hex code on screen
+   1-6 Unknown
+   1-7 Stages now Selectable
+   1-8 Pal Mode/Job Meter
+
+   2-1 Able to adjust RGB levels of color palette
+   2-2 Program Editing Data
+   2-3 Unknown
+   2-4 Human player is invincible
+   2-5 Displays frame information
+   2-6 Sound menu. Press 'Select' to access
+   2-7 CPU controls both teams
+   2-8 Display character statistics
+
+   Notes: Play as Rugal
+   To access Rugal you need to go into the debug menu at the 'How To Play'
+   screen. Turn on Dips 1-4 and 2-6. Then on the player selection screen,
+   Hold Select and press up. To choose The Normal or 'Full Power' Rugal,
+   Simply press left or right. The Normal Rugal's standing animation will
+   stop which in turn will be 'Full Power' Rugal when you select him. After
+   entering the code, Turn the Dips off and resume the game.
+
+King of Fighters '95 [bonuskun]
+
+   1-1 Sprite debug menu. Also puts a sprite a Hiedern on the top of screen
+   1-2 Collision detection boxes can be seen
+   1-3 Allows you to play as Saishu Kusanagi and Omega Rugal
+   1-4 Both players are invincible
+   1-5 Displays hex code on screen
+   1-6 Unknown
+   1-7 Unknown
+   1-8 Pal Mode/Job Meter
+
+   2-1 Unknown
+   2-2 Unknown
+   2-3 Unknown
+   2-4 Human player is invincible
+   2-5 Displays frame information
+   2-6 Sound test menu. Press 'Select' to access
+   2-7 CPU controls both teams
+   2-8 Unknown
+
+   Notes: For code 1-3 to play as Saishu and Rugal you need to enter the Dip
+   Code on the 'How To Play' screen. Once you've selected Saishu and Rugal,
+   Turn the Dip off...
+
+King of Fighters '96 [bonuskun]
+
+   1-1 Sprite debug menu
+   1-2 Collision detection boxes can be seen
+   1-3 Disable timer, Display coordinates and Goenitz and Chizuru now
+   selectable
+   1-4 Edit menu
+   1-5 Display hex code on screen
+   1-6 Both characters are invincible
+   1-7 Unknown
+   1-8 Annoying shadow covering screen
+
+   2-1 Another edit menu inculding AI controls
+   2-2 CPU controls both teams
+   2-3 Human player is invincible
+   2-4 Unknown
+   2-5 Displays frame information
+   2-6 Sound test menu. Press 'Select' to access
+   2-7 Player 2 can control CPU characters
+   2-8 Unknown
+
+   Notes:
+   To make the code for Goenitz and Chizuru work, You need to turn on the Dip
+   at the 'How To Play' screen. You can either leave this on or off for the
+   extras features this dip offers.
+
+King of Fighters '97 [bonuskun]
+
+   1-1 Sprite debug menu
+   1-2 Collision detection boxes can be seen
+   1-3 Unlocks Orochi Chris, Shermie, Yashiro, Iori & Leona
+   1-4 Displays player 1 data
+   1-5 Displays hex code on screen
+   1-6 Both players are invincible
+   1-7 Unknown
+   1-8 Pal Mode/Job Meter
+
+   2-1 Sprite edit menu
+   2-2 CPU controls both teams
+   2-3 Human player is invincible
+   2-4 Unknown
+   2-5 Displays frame information
+   2-6 Sound test menu. Press 'Select' to access
+   2-7 Unknown
+   2-8 Unknown
+
+   Notes:
+   For code 1-3 to play as the Orochi characters, you need to enter the Dip
+   Code on the 'How To Play' screen. Once you've selected your team, Turn the
+   Dip off...
+
+King of Fighters '98 [bonuskun]
+
+   1-1 Sprite debug menu
+   1-2 Collision detection boxes can be seen
+   1-3 Stops timer
+   1-4 Data menu
+   1-5 Displays hex code on screen
+   1-6 Both players are invincible
+   1-7 Unknown
+   1-8 Annoying shadow covering screen
+
+   2-1 Data menu 2
+   2-2 CPU controls both teams
+   2-3 Human player is invincible
+   2-4 Unknown
+   2-5 Displays frame information and column of hex code for CPU
+   2-6 Sound test menu. Press 'Select' to access
+   2-7 Player can control CPU player 2
+   2-8 Unknown
+
+King of Fighters '99 [bonuskun / Thomas Giboin]
+
+   1-1 Sprite debug menu. Also puts a Sprite of K' on the screen.
+   1-2 Collision detection boxes can be seen
+   1-3 Stops timer, Play as Krizalid
+   1-4 Data menu
+   1-5 Displays hex code on screen
+   1-6 Both players are invincible
+   1-7 Unknown
+   1-8 Annoying shadow covering screen
+
+   2-1 Data menu 2
+   2-2 CPU controls both teams
+   2-3 Human player is invincible, Play as Krizalid
+   2-4 Unknown
+   2-5 Displays frame information and column of hex code for CPU
+   2-6 Sound test menu. Press 'Select' to access
+   2-7 Unknown
+   2-8 Unknown
+
+   Notes:
+   To play as either versions of Krizalid you have both Dips 1-3 and 2-3
+   turned on at the 'How to Play Screen'. Once you're on the player select
+   screen, Highlight either K' or Maxima, Press and Hold Start and then press
+   any button to get version 1 of Krizalid or press and hold select then
+   press any button to play as version 2. Once you have selected him, Turn
+   the Dips off and resume normal play.
+
+King of Fighters 2000 [bonuskun]
+
+   1-1 Sprite debug menu
+   1-2 Collision detection boxes can be seen
+   1-3 Play as Zero
+   1-4 Data menu
+   1-5 Unknown
+   1-6 Both players are invincible
+   1-7 Unknown
+   1-8 Annoying shadow covering screen
+
+   2-1 Data menu 2
+   2-2 CPU controls both teams
+   2-3 Human player is invincible
+   2-4 Displays hit count numbers?
+   2-5 Displays frame information and column of hex code for CPU
+   2-6 Sound test menu. Press 'Select' to access
+   2-7 Disables all SDM's.
+   2-8 Unknown
+
+   Notes: To play as Zero you need to have Dip 1-3 on when you're on the
+   player select screen. When this is on, Highlight Kula Diamond, Hold Start
+   and press down to select Zero. Once you have selected him, Turn the Dip
+   off.
+
+King of Fighters 2001 [kagami007]
+
+   1-1 Debug Object (press select on 1UP side)
+   1-2 Unknown
+   1-3 Unknown
+   1-4 Data Menu
+   1-5 Enable boss selection
+   1-6 both characters invincible
+   1-7 Auto fire
+   1-8 Screen Filter ON/OFF (also P1 can pause anywhere with Select)
+
+   2-1 SEQ menu
+   2-2 CPUvsCPU (CPU controlls both chars)
+   2-3 Unknown
+   2-4 Damage value display
+   2-5 Sound Info/Log mode
+   2-6 Sound test (Select on 2UP side)
+   2-7 CPU operation may crash
+   2-8 RGB Palette table
+
+King of Fighters 2002 [MR Sakaki]
+
+   1-1 Debug objects (hold select to access)
+   1-2 Collision boxes
+   1-3 Inf Time
+   1-4 Performance changes? (1P press select)
+   1-5 Unknown
+   1-6 Both invincible
+   1-7 Auto Fire
+   1-8 2P can pause via Select button at any time
+
+   2-1 SEQ tool, 1P controls (CPU cannot move)
+   2-2 CPU vs CPU
+   2-3 ?
+   2-4 Display extra score info
+   2-5 Display extra Sound info
+   2-6 Sound Test
+   2-7 CPU cannot move
+   2-8 Debug Colors
+
+King of Fighters 2003
+
+   1-1 w/1-3 = Anim viewer
+   1-2 Messes with the palettes for the lifebars after Coin/Select is
+   pressed. Use A/B/C/D to scroll through.
+   1-3 Text viewer. Pretty nice. Press Coin/Select to view. A/B/C/D to
+   scroll.
+   1-4 CLSN viewer.
+   1-5 Unknown
+   1-6 Invincibility for both players.
+   1-7 Invincibility for Player 1.
+   1-8 Unknown
+
+   2-1 Unknown
+   2-2 Unknown
+   2-3 Shows commands on screen. Looks like something that was left out of
+   Practice mode.
+   2-4 Shows what appears to be a chart for the axis values and changes for
+   Players 1 and 2.
+   2-5 Unknown
+   2-6 Unknown
+   2-7 Unknown
+   2-8 Unknown
+
+King of the Monsters 2 [ne7]
+
+   1-1 Unknown
+   1-2 Unknown
+   1-3 Unknown
+   1-4 Unknown
+   1-5 Unknown
+   1-6 Unknown
+   1-7 Unknown
+   1-8 Unknown
+   </p>
+
+   2-1 Enable with 2-2 for invincibility
+   2-2 Enable with 2-1 for invincibility
+   2-3 Debug text display
+   2-4 Unknown
+   2-5 Unknown
+   2-6 Unknown
+   2-7 Further text display
+   2-8 Job Meter
+
+Last Blade [ne7]
+
+   1-1 Pal Mode/Job Meter / Raster mode
+   1-2 Ingame debug info display
+   1-3 Both P1 + P2 energy sapped to nothing, power bar maxxed.
+   1-4 P1 Immediate Win when set before start of round
+   1-5 P2 Immediate Win when set before start of round
+   1-6 ????
+   1-7 ????
+   1-8 View Software Version
+
+   2-1 Ingame debug info display (more information)
+   2-2 ???
+   2-3 ???
+   2-4 Ingame menu - soundtest / pallete editor
+   2-5 More debug display (different info)
+   2-6 ???
+   2-7 Background viewer - scrolls bg with location co-ordinates
+   2-8 Target boxes around characters
+
+Last Blade 2 [kagami007]
+
+   1-1 Unknown
+   1-2 Attack info display
+   1-3 Energy/Sword/Power MAX
+   1-4 2UP energy zero
+   1-5 1UP energy zero
+   1-6 Pallete tool
+   1-7 Unknown
+   1-8 View software version
+
+   2-1 View Level
+   2-2 CPU stop
+   2-3 Unknown
+   2-4 Tool Menu (Soundtest/Pallete Editor etc)
+   2-5 Data display
+   2-6 Pause screen
+   2-7 Unknown
+   2-8 Show attack roll
+
+Money Puzzle Exchanger [ne7+Kagami007]
+
+   1-1 Job Meter (raster time)
+   1-2 Unknown
+   1-3 Unknown
+   1-4 CPU Autopilot
+   1-5 Select character and play against for ever (prob debug)
+   1-6 Unknown
+   1-7 Unknown
+   1-8 Unknown
+
+   2-1 Show ending after selection of character
+   2-2 "
+   2-3 " (Needs 2-1/2-2/2-3)
+   2-4 Unknown
+   2-5 Unknown
+   2-6 Unknown
+   2-7 Unknown
+   2-8 Debug Menu
+
+   NOTE: Setting dip 2-8 on and developer mode ON, start game and you'll be
+   able to explore the ingame tools and debug menu - including some quite odd
+   stuff possibly used for loading data off of memory card onto dev carts?!
+   Quite odd :)
+
+Metal Slug [ne7]
+
+   1-1 Unknown
+   1-2 Unknown
+   1-3 Unknown
+   1-4 Unknown
+   1-5 Unknown
+   1-6 Unknown
+   1-7 Unknown
+   1-8 Turns Blood On
+
+   2-1 On screen stats...
+   2-2 Unknown
+   2-3 Unknown
+   2-4 Marco is invincible
+   2-5 Unknown
+   2-6 Unable to jump (seems to screw with button debounce)
+   2-7 Unknown
+   2-8 Unknown
+
+Metal Slug 2 [ne7]
+
+   1-1 - view onscreen information
+   1-2 - Unknown
+   1-3 - Pal Mode/Job Meter?
+   1-4 - 1st plane check (shows the walkable ground)
+   1-5 - 2nd plane check
+   1-6 - view attack rectangle
+   1-7 - view body rectangle
+   1-8 - invincibility
+
+   2-1 - press D to destroy all onscreen enemies!
+   2-2 - display weird creature on screen
+   2-3 - unlimited grenades
+   2-4 - unlimited ammo
+   2-5 - unknown
+   2-6 - unknown
+   2-7 - unknown
+   2-8 - unknown
+
+   Note: In console mode only! Simply set debug developer mode "on" at the
+   Neo Geo boot up screen (pre to game start up), enter game and COIN up the
+   game twice, then pause the game (via select button) and then hit select
+   again; this will then bring you to the debug menu - with various extra
+   options and even the ability to play on test levels not available ingame.
+
+   Note 2: just checked and yep the Dip Codes are 98% the same as Metal Slug
+   X
+
+Metal Slug X [Wasabi]
+
+   1-1 - view onscreen information
+   1-2 - pause mode
+   1-3 - Pal Mode/Job Meter?
+   1-4 - 1st plane check (shows the walkable ground)
+   1-5 - 2nd plane check
+   1-6 - view attack rectangle
+   1-7 - view body rectangle
+   1-8 - invincibility
+
+   2-1 - press D to destroy all onscreen enemies!
+   2-2 - display weird creature on screen
+   2-3 - unlimited grenades
+   2-4 - unlimited ammo
+   2-5 - unknown
+   2-6 - unknown
+   2-7 - unknown
+   2-8 - unknown
+
+   Note: In console mode only! Simply set debug developer mode "on" at the
+   Neo Geo boot up screen (pre to game start up), enter game and COIN up the
+   game twice, then pause the game (via select button) and then hit select
+   again; this will then bring you to the debug menu - with various extra
+   options and even the ability to play on test levels not available ingame.
+
+Metal Slug 3 [bonuskun]
+
+   1-1 Displays program code on screen
+   1-2 Unknown
+   1-3 Unknown
+   1-4 Removes information off screen expect Credits,Score & Time
+   1-5 Displays a pathline on the screen
+   1-6 Displays attack data on character and bullets fired.
+   1-7 Collision detection boxes can be seen
+   1-8 Player is invincible
+
+   2-1 Unknown
+   2-2 Displays a messed up sprite on screen
+   2-3 Infinite Grenades & Tank Shells
+   2-4 Infinite Ammo on ALL special weapons
+   2-5 Pal Mode/Job Meter
+   2-6 Unknown
+   2-7 Unknown
+   2-8 Displays attack data on enemy characters
+
+   Note: In console mode only! Simply set debug developer mode "on" at the
+   Neo Geo boot up screen (pre to game start up), enter game and COIN up the
+   game twice, then pause the game (via select button) and then hit select
+   again; this will then bring you to the debug menu - with various extra
+   options and even the ability to play on test levels not available ingame.
+
+Metal Slug 4
+
+   1-1 display data
+   1-2 unknown
+   1-3 unknown
+   1-4 unknown
+   1-5 shows the levels progress "baseline/pathline"
+   1-6 shows the pointer
+   1-7 shows the pointer 2
+   1-8 die?
+   2-1 unknown
+   2-2 shows junk on screen
+   2-3 unlimited ammunition, props
+   2-4 unlimited special weapons
+   2-5 screen appears a shadow figure
+   2-6 unknown
+   2-7 unknown
+   2-8 unknown
+
+   Dip Note: apologies - having to translate this from Chinese via
+   fantabulous Google :) do correct it if you can!
+
+   Note: In console mode only! Simply set debug developer mode "on" at the
+   Neo Geo boot up screen (pre to game start up), enter game and COIN up the
+   game twice, then pause the game (via select button) and then hit select
+   again; this will then bring you to the debug menu - with various extra
+   options and even the ability to play on test levels not available ingame.
+
+Metal Slug 5 [hellishtempura]
+
+   1-1 Unknown
+   1-2 Unknown
+   1-3 Unknown
+   1-4 Unknown
+   1-5 Unknown
+   1-6 Unknown
+   1-7 Unknown
+   1-8 Inf Ammo
+
+   2-1 Unknown
+   2-2 Unknown
+   2-3 Player Invincible
+   2-4 Inf Bombs
+   2-5 Unknown
+   2-6 Unknown
+   2-7 Unknown
+   2-8 Unknown
+
+   Note: In console mode only! Simply set debug developer mode "on" at the
+   Neo Geo boot up screen (pre to game start up), enter game and COIN up the
+   game twice, then pause the game (via select button) and then hit select
+   again; this will then bring you to the debug menu - with various extra
+   options and even the ability to play on test levels not available ingame.
+
+Neo Drift Out [ne7]
+
+   1-1 Stop Race Timer Countdown
+   1-2 Unknown
+   1-3 Unknown
+   1-4 Unknown
+   1-5 Unknown
+   1-6 Unknown
+   1-7 Unknown
+   1-8 Unknown
+
+   2-1 Unknown
+   2-2 Unknown
+   2-3 Unknown
+   2-4 Unknown
+   2-5 Unknown
+   2-6 Unknown
+   2-7 Unknown
+   2-8 Unknown
+
+Neo Turf Masters / Big Tournament Golf [ne7]
+
+   1-1 Level/Round Select Enabled + Control Ball with Joystick after you hit
+   it :)
+   1-2 Scanlines
+   1-3 Unknown
+   1-4 Unknown
+   1-5 Unknown
+   1-6 Debug Co-ordinates
+   1-7 Unknown
+   1-8 Scanlines
+
+   2-1 Unknown
+   2-2 Unknown
+   2-3 Unknown
+   2-4 Unknown
+   2-5 Unknown
+   2-6 Unknown
+   2-7 Unknown
+   2-8 Unknown
+
+Pleasure Goal [ne7]
+
+   1-1 to 2-3 Unknown
+   2-4 Enabling and allowing game to restart enters fairly extensive ingame
+   debug menu :)
+   2-5 to 2-8 Unknown
+
+Puzzle Bobble / Bust A Move [kagami007]
+
+   1-1 Set this and restart a game (die on purpose and press start) for a
+   full debug dipswitch list, press D to exit
+   1-2 OBJ status display
+   1-3 OBJ viewer (call by game entry)
+   1-4 Nothing
+   1-5 Nothing
+   1-6 Nothing
+   1-7 Job Meter (shadow) +note: raster cpu time?
+   1-8 Job Meter (color bar)
+
+   2-1 Stage Select (just press start at title screen, but u must have it set
+   prior to the title screen)
+   2-2 Memory card test (call it by starting game)
+   2-3 Arkanoid Type Game? +note: this seems to put the game in BAM mode if
+   its a Puzzle Bobble cart - i get the BAM music+GFX!! its definately worth
+   investigating further! :-) +see Notes
+   2-4 Europe (PAL) Debug
+   2-5 Nothing
+   2-6 Nothing
+   2-7 Nothing
+   2-8 Stop motion & Mode Flag Display
+
+   Notes:
+   To get this working this set dip 1-1 and set Dev Mode to "enable" on the
+   Unibios; lose a game and do not continue, press start at title and set 2-3
+   and remove 1-1 on the debug dip info screen then hit D. it will put u back
+   into a round, die again and don't continue, on returning to the title
+   screen you'll see the effect of the dip code you have selected. For extra
+   fun set your region to USA/Arcade for a full game of Bust a Move on a
+   Japanese cart with the BAM graphics + music.
+
+Real Bout Fatal Fury [ne7]
+
+   1-1 Instant 'Time Up' (Press Start during fight).
+   1-2 Both players are invincible.
+   1-3 Stage select. Enable before you select your character.
+   1-4 Disables Player 1 'Start'.
+   1-5 Displays program code on sides of screen.
+   1-6 Press ABCD on either player to decrease your opponent's Health bar.
+   1-7 Memory Error.
+   1-8 Displays character collision boxes.
+
+   2-1 Enable "Easy Super moves". S.Power : Down,Down+A ; P.Power :
+   Down,Down+C.
+   2-2 Skip the next match.
+   2-3 View ending. Enable before you select your character.
+   2-4 Unknown
+   2-5 Unknown
+   2-6 Displays more program code. (Sprites Coordonnates ?)
+   2-7 Sprite Viewer.
+   2-8 Debug Bios On./ Geese available.
+
+   Note: These seem to be 100% the same as RBFF Special...
+
+Real Bout Fatal Fury Special [Meta-Ukyo]
+
+   1-1 Instant 'Time Up' (Press Start during fight).
+   1-2 Both players are invincible.
+   1-3 Stage select. Enable before you select your character.
+   1-4 Disables Player 1 'Start'.
+   1-5 Displays program code on sides of screen.
+   1-6 Press ABCD on either player to decrease your opponent's Health bar.
+   1-7 Memory Error.
+   1-8 Displays character collision boxes.
+
+   2-1 Enable "Easy Super moves". S.Power : Down,Down+A ; P.Power :
+   Down,Down+C.
+   2-2 Skip the next match.
+   2-3 View ending. Enable before you select your character.
+   2-4 Unknown
+   2-5 Unknown
+   2-6 Displays more program code. (Sprites Coordonnates ?)
+   2-7 Sprite Viewer.
+   2-8 Debug Bios On./ Geese available.
+
+   Notes:
+   On Dip 2-8:
+
+   If you can access these settings, i assume you have a debug bios chip
+   installed. So dip switch 2-8 will be on (1), on default. When it is, you
+   can pause at anytime with Player 1 controller 'select', P2 'select' will
+   only do a frame by frame when the game is paused.
+
+   When game is paused, on P1 controller : A,B,C,D,A Will open the sound
+   test. 'start' lets you switch between to two voices. Interesting
+   adresses : 0022 : Game Musics 00C0 : instruments 1A10 : sound effects
+
+   When game is paused, keying the following into the on P1 controller:
+   D,C,B,A,D will open The GAME DEBUG DIP !!! with extra switches !
+
+   3-1 CPU controlled opponent doesn't move anymore.
+   3-2 Unknown.
+   3-3 Unknown.
+   3-4 Power Max.
+   3-5 Unknown.
+   3-6 Unknown.
+   3-7 Manager Menu. 2P controller acts on this menu. (Looks tough)
+   3-8 Shadow on top of screen. (Pal Mode/Job Meter ?)
+
+   4-1 Unknown.
+   4-2 Unknown.
+   4-3 Unknown.
+   4-4 Unknown
+   4-5 More coordonnates
+   4-6 Unknown.
+   4-7 Unknown.
+   4-8 Unknown.
+
+Real Bout Fatal Fury 2 [bonuskun]
+
+   1-1 Instant 'Time Over' (Press Start during fight)
+   1-2 Both players are invincible
+   1-3 Stage select enable (switch on before character selection)
+   1-4 Unknown
+   1-5 Displays program code on bottom of screen
+   1-6 Press ABCD on either player to decrease your opponent's Health bar.
+   1-7 Displays oddly placed hit detection boxes
+   1-8 Play as Alfred. Displays character collision detection boxes
+
+   2-1 Enable "Easy Super moves". For SDM Press D,D+'A' Hidden SDM's D,D+'C'
+   2-2 Skip the next match.
+   2-3 View ending. Enable at character select screen
+   2-4 Unknown
+   2-5 Unknown
+   2-6 Displays more program code
+   2-7 Unknown
+   2-8 Play as Alfred
+
+   Notes:To Select Alfred you need to have both Dips 1-8 & 2-8 on.
+   Turn these on at the 'How to play Screen'. When you are on the player
+   Select screen, Highlight Terry, Hold B & C, then press either A or D.
+   You will still see Terry's pic until the VS Screen which it will change to
+   Alfred.
+   Once done, Turn the dips off and Resume normal play.
+
+Robo Army [ne7]
+
+   1-1 Job Meter / Raster time / flicker etc.
+   1-2 Invincible (works for both players)
+   1-3 Infinite Energy (works for both players)
+   1-4 Debug Text
+   1-5 Press Select on P1 side for Sound Test :)
+   1-6 Unknown
+   1-7 Unknown
+   1-8 Unknown
+
+   2-1 Unknown
+   2-2 Unknown
+   2-3 Unknown
+   2-4 Unknown
+   2-5 Unknown
+   2-6 More Debug Text
+   2-7 Unknown
+   2-8 Debug (enemy + level location data?)
+
+Samurai Shodown
+
+   1-1 Unknown
+   1-2 Press Pause to display red Hex Stats menu
+   1-3 Slow motion
+   1-4 Glitched graphics with small bar of background image hovering over
+   characters until new match starts or game is reset.
+   1-5 Both characters invincible, weapons appear and disappear randomly
+   during match.
+   1-6 Sprite coordinates displayed as hex values
+   1-7 Unknown
+   1-8 Pal Mode/Job Meter
+
+   2-1 Press Select to display "Special Key Edit" menu
+   2-2 Color edit
+   2-3 Unknown
+   2-4 Set at character selection screen. Choose any character and win one
+   round. Player will then fight as Amakusa. Game will glitch at
+   "confrontation" intermission. Change error setting to "Run" and press C
+   followed by A to skip ahead and avoid freezing the game.
+   2-5 Animation test; CPU player will freeze and "PACK=000" will be
+   displayed below player two's life bar. Change this value and press A to
+   force the CPU character to go through various motions. If the game is
+   continued in this mode, the CPU will be unable to attack, but will block
+   frequently and may be thrown.
+   2-6 Both characters invincible with disabled timer
+   2-7 Display attack stats that lists character's attributes
+   2-8 Timer counts down to 98 and stops
+
+Samurai Shodown II [bonuskun]
+
+   1-1 Displays task editor
+   1-2 Unknown
+   1-3 Unknown
+   1-4 CPU controls 2nd player's character
+   1-5 Allows human to control CPU. Load last stage to control Mizuki
+   1-6 Unknown
+   1-7 Unknown
+   1-8 Pal Mode/Job Meter
+
+   2-1 Unknown
+   2-2 Player 1 is invincible. Sound test. Press select to use.
+   2-3 Unknown
+   2-4 CPU controls both characters.
+   2-5 Unknown 2-6 Unknown
+   2-7 Displays player data and Sprite viewer.
+   2-8 Displays hit detection boxes and memory addresser.
+
+Samurai Showdown III [bonuskun]
+
+   1-1 Press Select for sound test, creation date, & time
+   1-2 Color Test
+   1-3 Sprite Viewer
+   1-4 Press select to advance frame by frame
+   1-5 Disable timer, select next CPU opponent. +
+   1-6 Both characeters are invinvible, Allows character cycling ++
+   1-7 No text appears when game is paused.
+
+   1-8 Displays Hex debug data.
+   2-1 Unknown
+   2-2 Press select to pause at any screen
+   2-3 Single character can interrupt normal moves into special moves +++
+   2-4 Disable Flashing background when super moves are connecting
+   2-5 Unknown
+   2-6 Disable charging POW meter with A+B+C
+   2-7 Unknown
+   2-8 Unknown
+
+   Notes:
+   + The final stage VS Zankuro wil not appear if this Dip is on.
+   ++ In regards to Dip 1-6, You need to turn it on during a match and then
+   press and hold the A button then press the D button to cycle through all
+   of the characters in the game. This works out pretty awesome if you want
+   to change your character in the middle of a match.
+   +++ The game might freeze up if your opponent is cut in half or Slash
+   Galford's super move is blocked.
+
+Samurai Shodown IV [bonuskun]
+
+   1-1 Unknown
+   1-2 Unknown
+   1-3 Unknown
+   1-4 Unknown
+   1-5 Disables the timers.
+   1-6 Both players are now invincible
+   1-7 Player 1 is invincible
+   1-8 Unknown
+
+   2-1 Unknown
+   2-2 Unknown
+   2-3 Able to now Cancel normal moves into SDM's
+   2-4 Unknown
+   2-5 Unknown
+   2-6 Unknown
+   2-7 Unknown
+   2-8 Play as Zankuro
+
+   Notes: To access Zankuro, You must turn this dip on at the character
+   selection screen. Once on, Hold 'D' and press 'A'.Once this is done, Turn
+   the dip Off.
+   Extra Note:Turning on ANY of the dips codes will automatically have your
+   Rage Guess filled infinitely.
+
+Samurai Shodown V [kagami007]
+
+   1-1 Unknown
+   1-2 Unknown
+   1-3 Unknown
+   1-4 Unknown
+   1-5 Stop Timer
+   1-6 Inf Energy, also change selected character (hold D down and hit A)
+   1-7 Inf Strength
+   1-8 Unknown
+
+   2-1 Unknown
+   2-2 Unknown
+   2-3 Infinite Weapon Flipping Techniques
+   2-4 Unknown
+   2-5 Unknown
+   2-6 Unknown
+   2-7 Unknown
+   2-8 Use Zankuro (Hold D and hit A), hidden Dip menu (+), also Infinite
+   Rage Explosion use
+
+   (+) Note: To access the hidden dip menu (containing another two rows of
+   dips :) press pause whilst in console mode, then input the following code:
+   D,C,B,A,D - this will bring up a hidden menu:
+
+   3-1 Unknown
+   3-2 Unknown
+   3-3 Unknown
+   3-4 Unknown
+   3-5 Unknown
+   3-6 Unknown
+   3-7 Unknown
+   3-8 Unknown
+
+   4-1 Stage Select
+   4-2 Select 2 Enemies
+   4-3 Stop CPU
+   4-4 View Ending SW#1 (++)
+   4-5 View Ending SW#2 (++)
+   4-6 Autofire
+   4-7 Rasterbar
+   4-8 Pal Mode/Job Meter
+
+   (++) Note 2: Select 4-4:1 + 4-5:1 for good ending, Select 4-4:0 and 4-5:1
+   for bad ending
+
+Samurai Shodown V: Special
+
+   1-1 Unknown
+   1-2 Unknown
+   1-3 Unknown
+   1-4 Unknown
+   1-5 Unknown
+   1-6 Selection of Bosses Enabled - NOTE: disable after selection of
+   character
+   1-7 Unknown
+   1-8 Unknown
+
+   2-1 Unknown
+   2-2 Unknown
+   2-3 Unknown
+   2-4 Unknown
+   2-5 Unknown
+   2-6 Unknown
+   2-7 Unknown
+   2-8 Unknown
+
+   Note: May well share its settings with Samurai Shodown V...
+
+Savage Reign
+
+   1:1 Sound code
+   1:2 Palette editor
+   1:3 Text view (w/1:1 Anim viewer)
+   1:4 Frame Advance (press coin)
+   1:5 Stop Timer
+   1:6 Unknown
+   1:7 Clsn and Axis
+   1:8 Menu
+
+   2:1 Unknown
+   2:2 Full zoom out
+   2:3 Unknown
+   2:4 Unknown
+   2:5 Unknown
+   2:6 Unknown
+   2:7 Unknown
+   2:8 Unknown
+
+Shock Troopers 2 [ne7]
+
+   1-1 Level Debug Info Text
+   1-2 More Enemy Label Debug Info Text
+   1-3 Enemy Buffer Status Text display
+   1-4 More Status Text
+   1-5 Output test text
+   1-6 Unknown+
+   1-7 Player 1 is invincible
+   1-8 Puts snow on the screen (probably measuring cpu time etc)
+
+   2-1 Unknown+
+   2-2 Unknown+
+   2-3 Unknown+
+   2-4 More Debug Text
+   2-5 Unknown+
+   2-6 Unknown
+   2-7 Unknown
+   2-8 Enables fully featured ingame graphics viewer, simply enable -before-
+   starting a game -
+   Note: If enabled ingame the character moves a little faster (looks like
+   he's tweaking on something :)
+
+   Note2: Set all switches on before character select for a LEVEL SELECT
+   screen (disable afterwards for clean gameplay, also bonus test levels are
+   available)
+
+SNK vs Capcom Chaos
+
+   1:1 Anim Viewer
+   1:2 CLSN Viewer
+   1:3 Appears to be Vels and Axis. Not really sure. Also freezes the timer.
+   1:4 Menu to adjust vels, and random things in game.
+   1:5 Unknown
+   1:6 Invincibility, both players.
+   1:7 Unknown
+   1:8 Unknown
+
+   2:1 Unknown
+   2:2 Unknown
+   2:3 Data Menu
+   2:4 Unknown
+   2:5 Sound Display
+   2:6 Unknown
+   2:7 Unknown
+   2:8 Unknown
+
+Top Hunter [ne7]
+
+   1-1 Unknown
+   1-2 Menu/Play/Code text on screen...
+   1-3 Debug text
+   1-4 Unknown
+   1-5 Unknown
+   1-6 Stage Select after selecting world (up/down for area | left/right for
+   level)
+   1-7 Unknown
+   1-8 Tank can perform extra actions (fireball/missile) (from forums, not
+   verified)
+
+   2-1 Job Meter/Raster/Flicker
+   2-2 Unknown
+   2-3 Unknown
+   2-4 Unknown
+   2-5 Easy uppercut via button A :)
+   2-6 Invincible
+   2-7 Unknown
+   2-8 Unknown
+
+Ultimate 11 / Super Sidekicks 4 [ne7]
+
+   1-1 to 1-8 = Unknown
+
+   2-1 Unknown
+   2-2 Ingame Debug / Distance Text
+   2-3 to 2-8 = Unknown
+
+Windjammers [ne7]
+
+   1-1 Unknown
+   1-2 Unknown
+   1-3 Unknown
+   1-4 Unknown
+   1-5 Unknown
+   1-6 Unknown
+   1-7 Debug Text on screen (item position etc)
+   1-8 Sprites outlined with bounding box
+
+   2-1 Unknown
+   2-2 Unknown
+   2-3 Unknown
+   2-4 Unknown
+   2-5 Unknown
+   2-6 Unknown
+   2-7 Unknown
+   2-8 Unknown
+
+General Information
+
+     * What are Debug Dips?
+       Debug dips are debug settings added into arcade games at the time of
+       development by developers themselves to aid testing and de-bugging of
+       the game. They might add features, re-introduce removed items, allow
+       you to play boss characters, add new gameplay modes and hidden menus
+       or just make you invicible...
+     * Why don't I just use in-built cheats in the UniBios?
+       Debug dips are already in the game and vary wildly from cheats that
+       are already in the UniBios, for example certain codes might let you
+       run the game in its original graphical and musical state (see Puzzle
+       Bobble's 'Arkanoid Mode') or allow you access to whole hidden menus
+       ingame (see Pleasure Goal), they are also hardcoded into the games
+       themselves by the developers so are entirely different from normal
+       UniBios cheats (hence Raz sticking a mode in to switch them on :P) in
+       addition, ocassionally (it's rare but it happens...) there might
+       actually be a game that lets you cheat ingame in a way not supported
+       yet by the UniBios - for example see the King Of the Monsters 2
+       invicibility cheat. Also it is worth noting that you might not HAVE a
+       UniBios, you might be running one of the original Debug Bios chips,
+       this wiki page should definately make you smile... :)
+
+INFO: How Debug Dipswitch modes work...
+
+   Generally you can enable debug dips at the title screen for desired
+   effects to take place (unless noted otherwise in the dip settings above),
+   however - some modes, for example - in game debug menu's might require you
+   letting the game cycle once back to the NeoGeo boot up logo before the
+   code has the required effect.
+
+   On a multislot system if you have more than one game in this means
+   allowing the MVS board to cycle thru all games back to the one you are
+   running: to avoid this simply set those codes at the NeoGeo logo itself
+   and make sure your game you are messing with is in SLOT1 :P
+
+   For games that require console mode and a coin in to activate a menu (Like
+   Metal Slug 2/X/3/4/5), try popping a coin into your coin chute whilst in
+   console mode + make sure your UniBios is not configured for SELECT as coin
+   in as this will stop you being able to pause and insert a coin
+   seperately...
+
+INFO: Debug Dipswitch Wiki Notes
+
+     * Collected together by Ne7 + (add contributors name here) from various
+       sources... I'll keep adding to this page as I find them, do add your
+       own finds! :)
+     * [Data in square brackets are credits of source for dipswitches if
+       known]
+     * See bonuskun's original dipswitch page here:
+       http://www.neo-geo.com/snk/dipcodes/dipcodes.html
+     * Further more in depth details on the Metal Slug series debug modes
+       here:
+       http://www.randomhoohaas.flyingomelette.com/MetalSlug-MissingInAction/MSAction-debugmenu.htm
+     * What does the phrase "Job Meter" mean?
+       A job meter is a programmers way of ascertaining how long a particular
+       routine is taking in terms of CPU time, this can be achieved by
+       writing colorbars or shadow to the screen and reading how far down the
+       screen the lines go to see how fast the routine is running... hope
+       that clears that up, it's nothing to do with TV Modes this :) more in
+       depth info here: http://wiki.neogeodev.org/index.php?title=Job_meter
+
+   Retrieved from
+   "http://www.neo-geo.com/wiki/index.php?title=Neo-Geo_Big_List_of_Debug_Dipswitches&oldid=4365"
+
+      Views
+
+     * Page
+     * Discussion
+     * View source
+     * History
+
+      Personal tools
+
+     * &lt;0&gt;
+     * Back to the Forum
+   Visit the main page
+
+      Navigation
+
+     * Main page
+     * Community portal
+     * Current events
+     * Recent changes
+     * Random page
+     * Help
+
+      Search
+
+   _____________________ [ Go ]   [ Search ]
+
+      Toolbox
+
+     * What links here
+     * Related changes
+     * Special pages
+     * Printable version
+     * Permanent link
+   GNU Free Documentation License 1.2
+   Powered by MediaWiki
+     * This page was last modified on 26 June 2012, at 09:34.
+     * This page has been accessed 13,820 times.
+     * Content is available under GNU Free Documentation License 1.2.
+     * Privacy policy
+     * About Neo-Geo
+     * Disclaimers

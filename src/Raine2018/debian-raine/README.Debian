@@ -1,0 +1,4 @@
+Don't use artsd, the kde sound daemon, with sdl for now or you will get a
+segfault when you try to produce sound.
+So to make raine work with sound, just kill artsd before running raine.
+

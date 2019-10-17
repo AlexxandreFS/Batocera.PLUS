@@ -1,0 +1,3 @@
+# Ver as teclas permitidas "thd --listevents"
+# Ao pressionar uma tecla o código da tecla é exibido "thd --dump /dev/input/event2"
+# Reinicia o serviço scripts "/etc/init.d/S10triggerhappy restart"

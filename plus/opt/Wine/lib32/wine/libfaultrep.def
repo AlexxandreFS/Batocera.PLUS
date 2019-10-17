@@ -1,0 +1,19 @@
+; File generated automatically from dlls/faultrep/faultrep.spec; do not edit!
+
+LIBRARY faultrep.dll
+
+EXPORTS
+  AddERExcludedApplicationA@4 @1
+  AddERExcludedApplicationW@4 @2
+  CreateMinidumpA@0 @3 PRIVATE
+  CreateMinidumpW@0 @4 PRIVATE
+  ReportEREvent@0 @5 PRIVATE
+  ReportEREventDW@0 @6 PRIVATE
+  ReportFault@8 @7
+  ReportFaultDWM@0 @8 PRIVATE
+  ReportFaultFromQueue@0 @9 PRIVATE
+  ReportFaultToQueue@0 @10 PRIVATE
+  ReportHang@0 @11 PRIVATE
+  ReportKernelFaultA@0 @12 PRIVATE
+  ReportKernelFaultDWW@0 @13 PRIVATE
+  ReportKernelFaultW@0 @14 PRIVATE

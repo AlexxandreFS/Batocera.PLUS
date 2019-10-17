@@ -1,0 +1,11 @@
+; File generated automatically from dlls/dxgi/dxgi.spec; do not edit!
+
+LIBRARY dxgi.dll
+
+EXPORTS
+  CreateDXGIFactory@8 @1
+  CreateDXGIFactory1@8 @2
+  CreateDXGIFactory2@12 @3
+  DXGID3D10CreateDevice@28 @4
+  DXGID3D10RegisterLayers@8 @5
+  DXGIGetDebugInterface1@12 @6

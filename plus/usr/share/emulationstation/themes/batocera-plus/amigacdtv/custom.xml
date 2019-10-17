@@ -1,0 +1,63 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>192753</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>5BA079</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>F9EA38</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>ED2224</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Manufacturer : Commodore International</text>
+		</text>
+		<text name="info2" extra="true">
+			<text>Year of Release : 1991</text>
+		</text>
+		<text name="info3" extra="true">
+			<text>OS : CDTV / AmigaOS 1.3</text>
+		</text>
+		<text name="info4" extra="true">
+			<text>CPU : Motorola 68000 @ 7.16 MHz (NTSC) or 7.09 (PAL)</text>
+		</text>
+		<text name="info5" extra="true">
+			<text>RAM : 1 MB (upgradable)</text>
+		</text>
+		<text name="info6" extra="true">
+			<text>ROM : 256 KB Kickstart 2.5 and 256 KB CDTV firmware</text>
+		</text>
+		<text name="info7" extra="true">
+			<text>GPU : Commodore's Enhanced Chip Set</text>
+		</text>
+		<text name="info8" extra="true">
+			<text>Sound chip : Four 8-bit PCM channels (two stereo channels)</text>
+		</text>
+		<text name="info9" extra="true">
+			<text>Resolution : 320 x 200 (32 colors) / 640 x 240 (16 colors)</text>
+		</text>
+	</view>
+
+	<image name="band1" extra="true">
+		<image name="band1" extra="true">
+			<color>C86388</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>6F62E8</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>1CA6F1</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>F62717</color>
+		</image>
+	</view>
+
+</theme>

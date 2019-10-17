@@ -1,0 +1,279 @@
+Code Changes in Raine
+---------------------
+10-05-99:
+- Merged old sound system.
+- Added select of update mode. (raine.c ingame.c)
+  please change "sound" directory files again. (It became the same as the old-system thing this time.)
+  notice:
+        SOUND_STREAM_WAIT    : value = 0, Voice data are saved, and it is changed at a stretch.
+        SOUND_STREAM_OLDTYPE : value = 1, It is reset when voice data were always written down and
+                               a regenerated position deviated.
+        SOUND_STREAM_TIMER   : value = 2, Install sound timer. How to renew it is the same as SOUND_STREAM_WAIT.
+                               but, not use in Raine, because It is not sing a voice of YM2610 games.
+- Changed DEF_MODEB_UPDATE_COUNT. It size is 4. (old:3)
+
+28-04-99:
+- Changed priority of Object and BG1 of Darius.
+- Small changed of sa-sound system.
+
+
+24-04-99:
+Restart new sound system.
+- Merged new raine sources. (0.2x)
+- Changed new sound system. (sa-sound system version 0.15) please change "sound" directory files.
+
+
+08-03-99:
+I came back.
+-Changed sample.[ch] -> sasound.[ch].
+-Changed fm.[ch]. (version 0.35d)
+
+
+17-01-99:
+- Get a new source. and changed.
+- Replaced object and BG position and screen size of Darius2 and NinjaWarriors.
+
+
+15-01-99:
+- Fixed object and BG position and screen size of Darius2 and NinjaWarriors.
+
+
+14-01-99:
+- Removed ADPCM sample mode in darius.c (use stream mode only.)
+- Changed ADPCM making routine in MSM5205.C.
+- Removed some flags. BufferMaxB, DariusADPCMMode, DariusADPCMDelay and DariusADPCMStereo.
+  Please remove it in RAINE.CFG.
+- Added color port initial in F2System.C (use 2/3screen games)
+  Init_F2_Colour_PortAdd, Init_F2_Colour_PortAdd_2 and Init_F2_Colour_PortAdd_3.
+
+
+13-01-99:
+- notice
+ Growl     object screen : shift 3dot right.
+           fix screen    : shift 1dot left.
+- Added pan port in SpaceGun. (not perfect.)
+- Added Pan control.(volume shift type. use SpaceGun and WarriorBlade.)
+
+
+12-01-99:
+- Changed clock of sound CPU in cameltry.c (taitosnd.c:Taito2610_FrameCameltry()) but not perfect.
+
+
+10-01-99:
+- Get a new source. and changed.
+- Changed AddMS1SoundCPU. (add rom offset)
+- Fixed sound in AvengingSpirit and EDF.
+- Changed Allegro 3.1 official release.
+- Replaced AddGames.c
+  When "HACK" disappears, it can't be compiled any more with Japanese Win98:(
+
+
+09-01-99:
+- Replaced bank change in m6295.c (select my bank change routine and richard call(M6295_bankswitch()))
+- Fixed new decode routine in m6295.c
+- Removed AddGames.c (compiled is ok in Japanese-Win98(DOS):).)
+- Added button 3 in astyanax. (button 3 is Masic.)
+
+
+08-01-99:
+- Get a new source. and changed.
+
+
+06-01-99:
+- Added new decode routine in m6295.c.
+- Added bank change in m6295.c.
+- Changed new ADPCM routine in tchnosnd.c
+- Changed ROM -> PCMROM in ctribebl.c, wwfsstar.c
+
+
+04-01-99:
+- A happy new year!
+- Get a new source. and changed.
+- Removed and Added MakeGameList routine.
+  remove: Driver header & AddGame() & Use lines in raine.c
+  add:AddGames.c
+  This change was done because compilation couldn't be done any more in Japanese-Win98(DOS).
+
+
+20-12-98:
+- Get a new source. and changed.
+- Changed M6295 address range in megasys1.c. (0x0a0001 -> 0x0affff, 0x0c0001 -> 0x0cffff)
+- Added "AddMS1SoundCPUHachoo" in megasys1.c. (use hachoo)
+- Changed sound speed of Hachoo and Astyanax. (Japanese name is "Load of king")
+- about new decode of m6295.c.
+  I felt improper in this method. But, this was very helpful.
+  I want to begin to take it in the method which is new at once.
+
+
+16-12-98:
+- Changed fm.c (0.34L)
+- Added check volume limit. (saSetVolume/saSetVolumeMulti)
+- Changed YM2610' pan control. (Pan2610WriteZ80)
+- Changed volume & pan control in darius.c.
+
+
+15-12-98:
+- Changed object(sprite) write control in 3Screen games.(darius2/ninja warriors)
+- Changed M6295 mode in Phantasm.
+
+
+13-12-98:
+- Get a new source. and changed.
+- Changed M6295 mode in P47J.
+- Replaced ExecuteSoundFrame in MegaSystem.
+  (not replaced ExecuteSoundFrame in pause routine.)
+
+
+12-12-98:
+- Replaced normal speed in PlusAlpha.
+- Deleted MS1SoundFrameRodLand()in megasys1.c
+- Added Sound clock control. (see MS1SoundFrame())
+- Changed fm.c (0.34m'4)
+
+
+10-12-98:
+- Changed fm.c (0.34m'3)
+- Rename same routines.(taitosnd.c)
+- Added and modified sound call in megasys1.c.
+  single call buffer -> 32 call buffers.  
+
+
+09-12-98:
+- Changed fm.c (0.34m'2)
+- Changed many sound source from MAME.
+- Added "FreeMem(PCMROM)" in many YM2610's system.
+- Changed "newmem.c" source.
+  It tries to liberate pointer again though FreeMem does freely in everywhere in the source.
+  I tried to re-write it.
+
+
+06-12-98:
+- Get a new source. and changed.
+- Rename same routines.
+  Taito2610_FrameWB -> Taito2610_FrameWarriorB.
+  Taito2610_FrameSlow -> Taito2610_FrameNinjaW.
+- Added Taito2610_FrameRastan2 in taitosnd.c.
+- Removed ExecuteSoundFrame routine.
+  Sound was made to stop ringing instead of it at the pause.
+- Changed stream check timing.
+- Fixed missing free vpan[] pointer.
+- Fixed missing PCMROM in nightstr.c.
+
+
+05-12-98:
+- Fixed sound stop bug.
+- Changed fm.[ch]
+
+
+01-12-98:
+- Added OKI M6295 control routine. (m6295.[ch]).
+- Changed Jaleco sound system. (use m6295.c, and sound clock. (RodLand, SaintDragon, and etc...))
+
+
+30-11-98:
+- Replaced sound counter. (It can't avoid an error when it is the way of doing it.)
+- Added samplerate control of okiadpcm.c
+
+
+29-11-98:
+- Get a new source.
+- Changed Jaleco YM2151 base clock.
+
+
+23-11-98:
+- Added stereo mode of YM2610.
+- Fixed silent of Darius2.
+- Changed FM.C (ver.0.34L)
+
+
+15-11-98:
+- SoundSystem was included into the latest source. Please replace all sound sources.
+- Returned stereo mode. (Darius/EX)
+- Removed "TaitoSoundCommWrite68k2" in rainbow.c.
+- Rename this files.
+  starpro.o -> starpro.oa
+  mZ80pro.o -> mZ80pro.oa
+  sound/ishm2203.o -> sound/ishm2203.oa
+  eagle.o -> eagle.oa
+
+  It is from the following reason that I did this change.
+  I introduced the file control tool of CVS.
+  This doesn't recognize a *.O file properly.
+  It was made to change *.o to *.oa because of that and to make it recognize it properly.  
+
+
+14-11-98:
+- Added stream mode in Sound System.(like a MAME.) but delete Stereo mode.
+- Removed file. 2151jedi.[ch], 2610jedi.[ch], my2610.c psg.c
+- YM2610.C was involved by FM.C.
+
+
+05-11-98:
+- Fixed don't sound music of RainbowIsland/EX.
+- Fixed don't sound music of Darius EX.
+- Replaced YM2151's system banking routine. (I didn't notice a program of richard. I'm sorry.)
+- Added stereo mode.(Satoh's YM2151, but no use.)
+
+
+04-11-98:
+- Changed taito_volFM(AY) -> SampleVol, taito_panFM(AY) -> SamplePan.
+
+
+03-11-98:
+- Added ModeBErrorWaitMax in raine.cfg.
+
+
+02-11-98:
+- Fixed stream-wait mode bug.
+- Added "HACKS_SOUND" in raine.h. (use sound debug.)
+- The source which I changed at an existing stage.
+  raine.[ch]
+  sample.[ch]
+  games/darius.c
+  games/ninjaw.c
+  games/pulirula.c
+  games/taitosnd.[ch]
+  games/warriorb.c
+  sound/2151intf.c
+  sound/2610jedi.[ch]
+  sound/msm5205.[ch]
+  sound/my2610.[ch]
+  sound/psgintf.c
+  sound/support.c
+
+
+01-11-98:
+- Added stereo mode (Darius, WarriorBlade.)
+- Added DariusStereo, and DariusADPCMStereo in raine.cfg.
+  (I intend to support it all finally.)
+
+
+30-10-98:
+- Added SampleRate in raine.cfg. 22050 is a default this parameter.
+  A sound improves when turns this into 44100, but it becomes late.
+  A sound becomes bad when turns this into 11025, but becomes fast.
+- Fixed YM2610 ADPCM (6ch).
+
+
+30-10-98:
+- Fixed YM2151's System Banking. (RainbowIsland isn't Music yet:(. Hmm... )
+  I ask to satoh & MAME team(Jarek?) add this routine. (OPMSetCTWHandler and etc...)
+- Delete BufferMaxB in raine.cfg.
+- Added ModeBFrameSize, ModeBUpdateCount, DariusADPCMMode, and DariusADPCMDelay in raine.cfg.
+- Added MSM5205 sound code. sound/msm5205.[ch] (use ADPCM stream mode of Darius.)
+- Added Darius delay ADPCM. (In order to take music and the same period with a drum.)
+
+
+29-10-98:
+- Get Raine 0.16a sources.
+- Fixed missing Darius YM2203A port.
+- Fixed PuLiRuLa ADPCM rom load.
+- Fixed WarriorBlade ADPCM rom load.
+- Added YM2610's System execute mode.
+  Normal speed is 4000000/60*2. (Darius2, WarriorBlade F2-System...)
+  Low speed is 4000000/60. (NinjaWarriors only.)
+
+
+26-10-98:
+- Change sound control mode. old:SOUND_STREAM_NORMAL, new:SOUND_STREAM_WAIT
+- re-make Stream-Wait mode. thanks Nao!(System16 emulator)

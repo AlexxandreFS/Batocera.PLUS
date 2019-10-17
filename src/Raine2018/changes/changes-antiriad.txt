@@ -1,0 +1,3231 @@
+--------------------------------------------------------------------------------
+Code Changes in Raine
+--------------------------------------------------------------------------------
+
+21-11-00:
+
+- Partial 15/16/24/32bpp and rotation support in opwolf3 and some others.
+
+18-11-00:
+
+- Updated makefile.dj so it compiles again (added emmanuel's mame support files).
+- Converted wrestlef to use 8bpp tile data (more ram), but it allowed some unique
+  routines to be removed, and also allowed it use rotation and hicolour modes.
+- Put some more stuff in video/c but it's kinda boring until there is a use for
+  it.
+
+12-11-00:
+
+- WinCVS test!!! Second try... :).
+
+11-11-00:
+
+- Converted video/palette2.c into video/i386/blit_x2.s. should compile on both
+  linux and dos versions.
+- Added colour mapper name in gui game info.
+- Readded some 16/24/32bpp colour mappers that were lost in the 24sept release.
+- Added 15/16/24/32bpp support to wwf superstars, combatribes.
+
+[YEAR OF SILENCE]
+
+31-01-00:
+
+- Added 15bpp support to jaleco ms-1 games.
+
+30-01-00:
+
+- Added Uo Poko.
+- Added Esprade.
+- Fixed some 15bpp bugs (Exzisus is the only 15bpp game).
+- Added 15bpp and rotation support to cave games.
+- Added 15bpp support to toaplan2 and raizing games.
+
+29-01-00:
+
+- Added Batsugun.
+- Added Grind Stormer.
+- Added Battle Garegga.
+
+22-01-00:
+
+- Added V-Five.
+- Added Hat Trick Hero.
+- Added Light Bringer.
+- Added Camel Try (alternate). The romswitches work in this one.
+- Added Darius Gaiden Extra.
+- Added Dankuga.
+- Added Omega Fighter Japanese.
+- Renamed Omega Fighter -> Omega Fighter Special.
+- Renamed Omega Fighter Japanese -> Omega Fighter.
+- Added Atomic Robokid Japanese.
+
+09-01-00:
+
+- Fixed Rainbow Islands (alternate).
+- Added rotation support to Armed Formation.
+
+08-01-00:
+
+- Made Armed Police Batrider playable.
+- Added Katarsis Ufo Robo Dangar driver.
+
+01-01-00:
+
+- Removed sun sprite from Metal Black level 1.
+- Removed grey sprite line from Chuka Taisen.
+- Fixed object clipping in toaplan1.
+- Fixed Hellfire rotation.
+- Fixed object colours in Hellfire, Outzone.
+
+31-12-99:
+
+- Improved definable emulator controls (pause + scroll screen now work 100%).
+- Added rotation support to Jaleco games. 107 games have rotation support in the
+  beta now.
+
+30-12-99:
+
+- Added Soldam.
+- Jaleco priority prom support. My thanks go to mamedev.
+
+28-12-99:
+
+- Fixed Camel Try priorities?
+
+27-12-99:
+
+- htmlized the documentation a bit.
+- Actual emulator controls can be redefined in the gui. Joystick can also be
+  defined for emulator control.
+
+26-12-99:
+
+- Fixed a bit Operation Wolf 3.
+- Added Pixel Double option to gui.
+- Fixed up Dead Connection priorities (I think). Also Football Champ (a bit).
+- Fixed Metal Black bg priorities a bit.
+
+24-12-99:
+
+- Fixed up Rambo 3 (release 2). Yes, it does have extra levels and cut scenes!
+- Fixed a recent dsw bug.
+- Fixed Terra Cresta rotation.
+
+23-12-99:
+
+- Fixed some bugs in the gui (msvc version).
+- Added Aqua Jack (alternate).
+- Removed gui title font. Now uses the same font as the rest of the gui.
+- Added font_datafile line to raine.cfg and moved the Japanese font into
+  an external file.
+
+18-12-99:
+
+- Better GFX_FG0 cache in some f2 system games.
+- Better object in Continental Circus.
+- Better things in WGP.
+- Fixed screen size in Air Inferno, Top Landing.
+- Better controls in Air Inferno, Top Landing.
+- Better sound in Air Inferno - the 64kb roms are bad, they should be 128kb each.
+
+10-12-99:
+
+- Add some Japanese text support (shift-jis format).
+- Improved Japanese support.
+- Can now save gui screenshots too (press '0').
+
+05-12-99:
+
+- Fix some stuff on World Grand Prix.
+
+04-12-99:
+
+- Added mahoudai. Fixed sound.
+- Increase music tempo in raizing games.
+- Fixed keypad input.
+- Fixed non-removed dsw problem when changing games.
+- Fixed %ebp trashing caused by gcc 2.95.2 (fixes several games).
+- Added [General] no_cpu_check to raine.cfg (disable check_cpu in about window).
+- Release.
+
+28-11-99:
+
+- Fixed pbobble2 missing sprites.
+
+27-11-99:
+
+- Quiz Chikyu Bouei Gun...
+- Improved Koshien object bank...
+- Suprise/untested alpha release...
+
+22-11-99:
+
+- Added Koshien...
+
+20-11-99:
+
+- Added Quiz Show By...
+
+19-11-99:
+
+- Now compiled with gcc 2.95.2. Some of the inline asm had to be changed,
+  and it will be unstable on gcc 2.8.x (old gcc allowed 'register spilling',
+  new one does not).
+- PrintDebug -> print_debug
+- PrintIngame -> print_ingame
+- Fixed up allegro3927 sidewinder driver (checks the second port, sidewinder
+  alt no longer needed).
+
+06-11-99:
+
+- Finally added zooming sprites in Ninja Kids, Growl (should of done it
+  ages ago when I did the other games...).
+- Added Shippu Mahou Daisakusen.
+
+30-10-99:
+
+- Added Solitary Fighter (Violence Fight 2).
+- No more time for daily updates in changes.txt :(.
+
+26-10-99:
+
+- Added flipping support. All rotatable games are now flippable too.
+- Added rotation/flipping support to l-system.
+
+25-10-99:
+
+- Added long_file_names switch (disable for shrtflnm screenshots).
+- Optimized/minimized rotation support checking.
+- Added rotation support to Zero Zone.
+
+24-10-99:
+
+- Added rotation support to Kiki Kai Kai system.
+- Added rotation support to Bubble Bobble.
+- Added rotation support to Exzisus.
+- Added rotation support to Terra Cresta.
+- Added some UPL and Technos board numbers.
+- Added rotation support to Grand Cross Pinball.
+
+23-10-99:
+
+22-10-99:
+
+21-10-99:
+
+20-10-99:
+
+19-10-99:
+
+- Added Makai Densetsu.
+- Merged blood bros and west story, added rotation support.
+- Added good Chuka Taisen roms.
+- Added arkanoid 2 japanese, not sure what gfx roms it should have because
+  they weren't included (ark2us or arkanoi2)?
+
+18-10-99:
+
+17-10-99:
+
+16-10-99:
+
+15-10-99:
+
+14-10-99:
+
+13-10-99:
+
+12-10-99:
+
+- Added Land Maker (r0x j00).
+- Added Snow Bros (Japanese).
+- Added Prime Time Fighter (it's the same game as top ranking stars, you can
+  already play it via romswitch, but this incomplete dump has different code
+  roms, not sure why - maybe taito made some bug fixes. btw, there should be
+  no 's' after 'fighter').
+- Renamed Legend of Makaj -> Legend of Makai.
+
+11-10-99:
+
+- Added rotation support to NMK games.
+- Added rotation support to UPL games.
+- Added rotation support to Snow Bros and clones.
+- Added rotation options to gui:
+
+  -rotate [angle] (angle is 0,90,180,270)
+  -r [angle]      (angle is 0,90,180,270)
+  -ror            (mame - means rotate 90 (ie. right))
+  -rol            (mame - means rotate 270 (ie. left))
+
+- Added -norotate. In mame, it disables game default rotations, so I guess it
+  is useful for some people? 48 games are rotatable now...
+
+10-10-99:
+
+- Added Snow Bros (alternate 2). Malcor's set, differences in the 68k roms, and
+  single gfx rom but no noticable game changes...
+- Added rotation support to tnzs-system games.
+- Added rotation support to x-system games.
+
+09-10-99:
+
+08-10-99:
+
+- Fixed Exzisus (the other bits).
+- Fixed Chase HQ sound? (well, it has an engine noise anyway).
+- Added some rotation support. Only available for toaplan 1 games, and I'm not
+  going to allow *all* games to be rotated because:
+
+  a) it means everything that touches the game bitmap has to check for
+     rotation, this is slow
+  b) the above also means you need 4 routines - one for each rotation,
+     this makes the exe bigger, and the code longer
+  c) why would anyone want to rotate horizontal games?
+  d) only a minority of people need this option
+
+  So, I'll occasionally increase the rotatable games, but it's low priority :).
+- Added rotation support to toaplan 2 games.
+
+07-10-99:
+
+- Yaaay!! Exzisus works (a bit). It's a tough one because it has 4 z80s... :).
+- Fixed Exzisus (a bit).
+
+06-10-99:
+
+05-10-99:
+
+- Replaced roms/ziprom paths, now there are 4 paths, which are used for *both*
+  roms and ziproms (instead of 3 for zipped, 3 for unzipped).
+- Changed screenshot names. Now they are gamename_nnn.pcx. Yes, they are 'long'
+  file names, if this is *really* a problem, let me know and I will shorten them.
+
+04-10-99:
+
+- Some road fixes.
+
+03-10-99:
+
+- Cleaned some code, added current_game (pointer to current game, oddly enough).
+- Added Continental Circus (alternate). This is Al's set, the (c) date is 1987
+  and that is the only difference I saw. I think Al's set is correct, because
+  1987 matches with "B33". The dump.it set says 1989 and is possibly an early
+  release with a mistake :). If not, maybe they delayed the release 2 years??
+
+02-10-99:
+
+- Added cloneof support (it's kinda misplaced, cos it's just a variation of romof,
+  which goes in the dir lists - should move them somewhere else some day). Cloneof
+  is only useful for rom merge tools, and startraine wants it... it has no use in
+  raine though "_".
+- Added all the known toaplan and taito board numbers (probably).
+
+01-10-99:
+
+- Added board numbers to some games, made some [g]awk programs to help.
+
+30-09-99:
+
+29-09-99:
+
+28-09-99:
+
+27-09-99:
+
+- The other thing Ghox has is protected hiscore code (code read from sound cpu
+  and executed in ram). Works without it, but the hiscore table is messed up.
+- Fixed sprites on Ghox game end.
+
+26-09-99:
+
+- Added Ghox. Protected sound, which is like whoopee/teki paki. Maybe we can
+  find a Ghox bootleg (dump.it?). The protection does other things, dont know
+  what, but it works without it so far... The game kicks arkanoid returns ass!
+  What's a paddle controller? It looks like it moves only in one axis, and a
+  joystick controls vertical movement? This seems like a silly idea, so I made
+  some hacks to use mouse y for vertical movement...
+
+25-09-99:
+
+24-09-99:
+
+23-09-99:
+
+- Added an option to save individual game display settings, but I don't like it
+  (use save_game_screen_settings in raine.cfg).
+
+22-09-99:
+
+- Added Chase HQ 2 (alternate). Al Kossow's set, 3 different roms.
+- Added Kuri Kinton (alternate). This appears to be an update because it has
+  a better title screen and a test mode. The other set is possibly from a
+  preview or prototype board.
+
+21-09-99:
+
+- Fixed f3 games loadgame bug (actually an object layer toggle bug).
+- Since people are going to play gun lock and grid seeker, we better release
+  a bugfix for the above problem (which crashes your pc).
+
+20-09-99:
+
+19-09-99:
+
+18-09-99:
+
+17-09-99:
+
+16-09-99:
+
+15-09-99:
+
+14-09-99:
+
+13-09-99:
+
+- Added Nastar. I think it's really a bad dump, because the code is identical,
+  there is only 3 bytes changed and the rom switch byte :(.
+- Added Darius alternate. It's got a few extra sprites and some more code roms.
+
+12-09-99:
+
+11-09-99:
+
+- Fixed up Kuri Kinton. Improved gfx fg0 cache since tile#0 is not blank in this
+  game.
+- Fixed up priorities in toaplan#2 games (er, hopefully they are right).
+- Recompile a least 10 times, followed by release, followed by bugfix release!
+
+10-09-99:
+
+- Added GUI bg_image option to raine.cfg.
+- Fixed some things in Daisenpu (and other games).
+
+09-09-99:
+
+- Added Chuka Taisen. Looks like Insector X. B44.01 - B44.08 are probably bad,
+  look like they are dumped too small (should be 128kb roms).
+
+08-09-99:
+
+- Fixed Kiki Kai Kai monks picking up boat, speed hacks and interrupt problem.
+
+07-09-99:
+
+- Added Ark Area. Ripped the better UPL logo for use in game info.
+- Oops, still need the roms for snowbroj (Snow Bros Japanese).
+- Started Quiz Crayon 2. "Dum de dum de dum, dum de dum de dum...".
+
+06-09-99:
+
+- Some NGPC experiments.
+- Added Daisenpu.
+
+05-09-99:
+
+- Added Cadash French. Fixed something I forgot when changing cadashit rom names.
+- Fixed something I forgot when changing rastsaga rom names.
+- Added Rastan American (rastanu) and Rastan American (alternate) (rastanu2).
+
+04-09-99:
+
+03-09-99:
+
+- Changed a few rom names in cadashit and rastsaga to simplify single-zip merging.
+- Changed romcheck output and added a -verbose option to the command line.
+
+02-09-99:
+
+01-09-99:
+
+- Added Richard Mitton's ksystem.c update with knight boy! Only two roms are diff
+  and they are both gfx, so I expect the only difference is in the title screen.
+- Added Richard Mitton's 320x256 mode-x mode.
+- Added Kageki. It's very average, there is a adpcm chip, which I didn't add yet.
+
+-------------------------------------------------------------------------------
+Win32/Direct-X Main Bugs
+--------------------------------------------------------------------------------
+
+- Set palette is being slow/forces vsync (problem with windows gfx drivers/d-x?)
+- Direct-X Accelerated is not safe (problem with windows gfx drivers/direct-x?)
+- Sound is slower and worse than dos (problem with seal? change to direct-x?)
+- Various asm gfx routines are missing (eg. f3-system pixel layer)
+- Rotation code is only in c, while the dos version has asm routines
+- Triple Buffer is not available
+- 68020 games don't work
+
+--------------------------------------------------------------------------------
+TOAPLAN
+--------------------------------------------------------------------------------
+
+-------+----------------+-----------------+------+-------
+ Board | Name (japan)   | Name (export)   | Year | System
+-------+----------------+-----------------+------+-------
+ TP00x | Tiger Heli·····|                 | 19xx | .     
+ TP007 | Hishou Zame····| Flying Shark    | 19xx | .
+ TP011 | Kyukyoku Tiger·| Twin Cobra      | 19xx | .
+ TP012 | Dash Yarou·····| Rally Bike      | 19xx | 1 a
+ TP013 | Tatsujin·······| Truxton         | 19xx | 1 b
+ TP015 | Zero Wing······|                 | 19xx | 1 b
+ TP016 | Horror Story···| Demon's World   | 19xx | 1 b
+ TP017 | Same Same Same | Fire Shark      | 19xx | 1 b
+ TP018 | Outzone        |                 | 19xx | 1 b
+ TP019 | Vimana         |                 | 1991 | 1 b
+ TP020 | Teki Paki      | Teki Paki       | 1991 | 2 a
+ TP021 | Ghox······     | Ghox            | 1991 | 2 a   | M6100649A
+ TP022 | Dogyuun        | Dogyuun         | 1992 | 2 c
+ TP023 | Knuckle Bash   | Knuckle Bash    | 1993 | 2 b
+ TP024 | Tatsujin 2     | Truxton 2       | 1992 | 2 b
+ TP025?| Whoopee        | Pipi & Bibi's   | 1991 | 2 a
+ TP026 | Fix Eight      | Fix Eight       | 1992 | 2 b   | M6100701A
+ TP027 | V-V            |                 | 199x | ?
+ TP0?? | Batsugun       |                 | 199x | ?
+ TP0?? | Snow Bros 2    | Snow Bros 2     | 1994 | 2 b
+-------+----------------+-----------------+------+-------
+
+Chuka Taisen     = K1100332A
+Heavy Unit       = M6100391A
+World Grand Prix = K1100537A [cpu] K1100535A [video]
+
+--------------------------------------------------------------------------------
+Code Changes in Raine
+--------------------------------------------------------------------------------
+
+09-10-99:
+
+- Added Snow Bros (alternate 2). Malcor's set, differences in the 68k roms, but
+  no noticable game changes...
+
+08-10-99:
+
+- Fixed Exzisus (the other bits).
+- Fixed Chase HQ sound? (well, it has an engine noise anyway).
+- Added some rotation support. Only available for toaplan 1 games, and I'm not
+  going to allow *all* games to be rotated because:
+
+  a) it means everything that touches the game bitmap has to check for
+     rotation, this is slow
+  b) the above also means you need 4 routines - one for each rotation,
+     this makes the exe bigger, and the code longer
+  c) why would anyone want to rotate horizontal games?
+  d) only a minority of people need this option
+
+  So, I'll occasionally increase the rotatable games, but it's low priority :).
+- Added rotation support to toaplan 2 games.
+
+07-10-99:
+
+- Yaaay!! Exzisus works (a bit). It's a tough one because it has 4 z80s... :).
+- Fixed Exzisus (a bit).
+
+06-10-99:
+
+05-10-99:
+
+- Replaced roms/ziprom paths, now there are 4 paths, which are used for *both*
+  roms and ziproms (instead of 3 for zipped, 3 for unzipped).
+- Changed screenshot names. Now they are gamename_nnn.pcx. Yes, they are 'long'
+  file names, if this is *really* a problem, let me know and I will shorten them.
+
+04-10-99:
+
+- Some road fixes.
+
+03-10-99:
+
+- Cleaned some code, added current_game (pointer to current game, oddly enough).
+- Added Continental Circus (alternate). This is Al's set, the (c) date is 1987
+  and that is the only real difference. I think Al's set is correct, because
+  1987 matches with "B33". The dump.it set says 1989 and is pssibly an early
+  release with a mistake :). If not, maybe they delayed the release 2 years??
+
+02-10-99:
+
+- Added cloneof support (it's kinda misplaced, cos it's just a variation of romof,
+  which goes in the dir lists - should move them somewhere else some day). Cloneof
+  is only useful for rom merge tools, and startraine wants it... it has no use in
+  raine though "_".
+- Added all the known toaplan and taito board numbers (probably).
+
+01-10-99:
+
+- Added board numbers to some games, made some [g]awk programs to help.
+
+30-09-99:
+
+29-09-99:
+
+28-09-99:
+
+27-09-99:
+
+- The other thing Ghox has is protected hiscore code (code read from sound cpu
+  and executed in ram). Works without it, but the hiscore table is messed up.
+- Fixed sprites on Ghox game end.
+
+26-09-99:
+
+- Added Ghox. Protected sound, which is like whoopee/teki paki. Maybe we can
+  find a Ghox bootleg (dump.it?). The protection does other things, dont know
+  what, but it works without it so far... The game kicks arkanoid returns ass!
+  What's a paddle controller? It looks like it moves only in one axis, and a
+  joystick controls vertical movement? This seems like a silly idea, so I made
+  some hacks to use mouse y for vertical movement...
+
+25-09-99:
+
+24-09-99:
+
+23-09-99:
+
+- Added an option to save individual game display settings, but I don't like it
+  (use save_game_screen_settings in raine.cfg).
+
+22-09-99:
+
+- Added Chase HQ 2 (alternate). Al Kossow's set, 3 different roms.
+- Added Kuri Kinton (alternate). This appears to be an update because it has
+  a better title screen and a test mode. The other set is possibly from a
+  preview or prototype board.
+
+21-09-99:
+
+- Fixed f3 games loadgame bug (actually an object layer toggle bug).
+- Since people are going to play gun lock and grid seeker, we better release
+  a bugfix for the above problem (which crashes your pc).
+
+20-09-99:
+
+19-09-99:
+
+18-09-99:
+
+17-09-99:
+
+16-09-99:
+
+15-09-99:
+
+14-09-99:
+
+13-09-99:
+
+- Added Nastar. I think it's really a bad dump, because the code is identical,
+  there is only 3 bytes changed and the rom switch byte :(.
+- Added Darius alternate. It's got a few extra sprites and some more code roms.
+
+12-09-99:
+
+11-09-99:
+
+- Fixed up Kuri Kinton. Improved gfx fg0 cache since tile#0 is not blank in this
+  game.
+- Fixed up priorities in toaplan#2 games (er, hopefully they are right).
+- Recompile a least 10 times, followed by release, followed by bugfix release!
+
+10-09-99:
+
+- Added GUI bg_image option to raine.cfg.
+- Fixed some things in Daisenpu (and other seta-x1 games).
+
+09-09-99:
+
+- Added Chuka Taisen. Looks like Insector X. B44.01 - B44.08 are probably bad,
+  look like they are dumped too small (should be 128kb roms).
+
+08-09-99:
+
+- Fixed Kiki Kai Kai monks picking up boat, speed hacks and interrupt problem.
+
+07-09-99:
+
+- Added Ark Area. Ripped the better UPL logo for use in game info.
+- Oops, still need the roms for snowbroj (Snow Bros Japanese).
+- Started Quiz Crayon 2. "Dum de dum de dum, dum de dum de dum...".
+
+06-09-99:
+
+- Some NGPC experiments.
+- Added Daisenpu. x-system is Balloon Bros, Superman and Daisenpu. You could it
+  as the 68000 x-system, while tnzs-system is the z80 based x-system.
+
+05-09-99:
+
+- Added Cadash French. Fixed something I forgot when changing cadashit rom names.
+- Fixed something I forgot when changing rastsaga rom names.
+- Added Rastan American (rastanu) and Rastan American (alternate) (rastanu2).
+
+04-09-99:
+
+03-09-99:
+
+- Changed a few rom names in cadashit and rastsaga to simplify single-zip merging.
+- Changed romcheck output and added a -verbose option to the command line.
+
+02-09-99:
+
+01-09-99:
+
+- Added Richard Mitton's ksystem.c update with knight boy! Only two roms are diff
+  and they are both gfx, so I expect the only difference is in the title screen.
+- Added Richard Mitton's 320x256 mode-x mode.
+- Waddayaknow, Kageki is tnzs hardware (i suspected when it said seta-x1 in the
+  readme).
+- Added Kageki. It's very average, there is a adpcm chip, which I didn't add yet.
+
+31-08-99:
+
+- Added remaining toaplan1 games (truxton, hell fire, fire shark, same same same).
+- Intel asm files like emitted s68000/mz80 are now compiled by the makefile. The
+  source is only 900kb rar now and the compiled dir is gone :).
+
+30-08-99:
+
+29-08-99:
+
+28-08-99:
+
+27-08-99:
+
+- Added some more toaplan games, none are really playable yet, but the game count
+  is now 200, and it's kinda funny :).
+
+26-08-99:
+
+- Added Spindizzy's Kiki Kai Kai driver, this game kicks ass now!! It's also very
+  tough, so I had to make some cheats :).
+- Added Bobble Bobble and Super Bobble Bobble (both bootlegs). There is also one
+  called 'bublbobr' in mame, but I need the roms.
+- Moved Viamana into toaplan1.c and made it work a bit (no controls).
+- Added Vimana alternate set and Outzone (too bored to finish).
+
+25-08-99:
+
+- Changes to Quiz priorities.
+
+24-08-99:
+
+23-08-99:
+
+22-08-99:
+
+21-08-99:
+
+- Updated raine.txt. Despite my attempts to quit/take a break, we have got a lot
+  of new games ready, and it's only 3 weeks since the last version... :).
+- Fixed American Horseshoes gfx banking.
+- Added suport for using any pen for the white ingame messages. A few direct
+  mapped games like American Horseshoes need it when pen 255 is already used.
+- Tried to improve American Horseshoes controls. Very strange.
+
+20-08-99:
+
+- Removed some unused lines from makefile.
+- Added c versions of most tile drawing (mac port requires them).
+
+19-08-99:
+
+- Fixed? Sound click at 44100Hz (seal? shit more like).
+- Removed no longer used data from sasound and drivers (rec.sync was always 60,
+  rec.count was always 2, rec.update was always NULL).
+- Removed rec.stop. Added sound_chip_list[] in sasound.c.
+- Start adding SOUND_INFO into game structs. Done YM2610 games.
+- Changed all other games, removed old sasetsound/addsound() calls.
+- Add sound chip data to listinfo output.
+
+18-08-99:
+
+17-08-99:
+
+16-08-99:
+
+- Added The Lord of King.
+- Added Iga Ninjyutsuden.
+
+15-08-99:
+
+- Changed the html design a bit.
+
+14-08-99:
+
+13-08-99:
+
+- I came back. Added the two new quiz games (not finished).
+- Fixed stuff in quiz games. Still priorities to fix in the last three.
+
+12-08-99:
+
+11-08-99:
+
+10-08-99:
+
+09-08-99:
+
+08-08-99:
+
+- Change Cachat crc32 data (new roms work fine).
+- Added Yuyu no quiz de gogo. Not finished yet, the text doesn't show up.
+- accept 'raine <gamename>' on the command line (preferred use is 'raine -game
+  <gamename>').
+
+07-08-99:
+
+- Fixed bug in new cpumain.c context switching.
+- Made pixel double much faster for linear display modes.
+- Same thing for eagle.
+- Made pixel double and eagle mode only used in linear modes.
+
+06-08-99:
+
+- Fixed up tnzsb.
+- Made cheats per game limit 256.
+- Ripped config file routines from allegro, because the standard allegro ones
+  are getting too slow for the big cheat files.
+
+05-08-99:
+
+04-08-99:
+
+03-08-99:
+
+- Made Snow Bros compatible with mame roms and added the other set.
+- Added Teki Paki. Hardware like Whoopee, but no sound cpu dumped (remember,
+  Whoopee uses the bootleg z80 rom for sound...).
+- Fixed sound problem with some dual YM2203 games.
+
+02-08-99:
+
+- Made dogyuun run. This game looks kickass, like fix eight... yikes!
+- Changed toaplan YM2151 to 3.58MHz.
+- Made Dogyuun playable, no sound.
+
+01-08-99:
+
+- Added bombjack twin dipswitches, thx mirko.
+- Argh, starscream 0.26 breaks music looping in bombjack twin.
+- Fixed immediate interrupt calling, so it should work like the old starscream.
+- Added cachat. heh, there are 2 bad gfx roms: cac8, cac10. but it's playable
+  anyway.
+- Yikes, dogyuun has the same protected subcpu as fixeight. Custom toaplan
+  ts-001-turbo :(.
+- Replaced a lot of s68000 and mz80 calls with calls to generic cpu routines.
+- Fixed a bug that could cause darius2d to crash on startup.
+
+31-07-99:
+
+- yikes, what to put in the release? i'm not sure about gekirindan (emulation
+  is too lousy for my liking), chimera beast (i think j-rom wants it released
+  in raine first, or does he?). So, I'm going to hide these three in the exe.
+
+Add these to raine.cfg:
+
+[arcade_roms_from_japan]
+#enable chimera beast
+jrom_rules = 12345
+
+[romlist]
+#enable gekirindan
+aracorn_rox_j00 = 67890
+
+- Release!
+
+30-07-99:
+
+- found starscream 0.25+ bug that makes you get stuck in the castle in cadash.
+- added starscream 0.26a. Seems to work, but I feel the new interrupt system
+  might break some games... Didn't find any yet though.
+- improved the way starscream cpu's are saved, so it can be expanded for future
+  versions.
+- bubble bobble mcu registers are saved. hmm, we could do with changing this
+  a bit, so there is an mcu 'emulator' which can run other mcu recompiliations.
+- fixed snow bros 2 and tatsujin 2 with no sound selected.
+- changed bubble bobble bankswitching.
+- in knuckle bash, the sound cpu is probably a protected z80 (kbash02.bin).
+- improved some bits of chase hq.
+- fixed some of the chimera beast priorities.
+
+29-07-99:
+
+- added chimera beast.
+
+28-07-99:
+
+- Added Super Cup Final. The D34-xx roms are not used (part of riding fight).
+  The 256kb roms should all be 128kb (just cut the end off).
+- Added better support for rom sharing/merging.
+- If a rom is not found, it will search for it in the parent game, and if a rom
+  is not found in the parent game, it will check the parent game to see if the
+  rom is merged with a different filename (by searching for matching crc32 and
+  size data).
+
+27-07-99:
+
+- Fixed operation Wolf 3 a bit.
+- Cut Darius 2 Dual Screen roms that were too large. The crc32 data also changes.
+- Cut Operation Wolf 3 roms that were too large. The crc32 data also changes.
+- Added Hat Trick Hero 95. It is a differnt football game, also the gfx and sample
+  roms are all corrupt!!
+- Removed D49-xx roms from Puzzle Bobble 2, these are part of Cup Final.
+- Updated board list. Puzzle Bobble is not D94, it's E10, like Puzzle Bobble 2x.
+- Updated board list. 'Hat Trick Hero 95' has a romswitch for 'Taito Power Goal'.
+- Just realised I have an aracorn dump of Power Goal here! WTF?? When did I get
+  that??!? Duh... :).
+- Replaced Hat Trick Hero 95 roms with power goal. But I left the default switch
+  to hat trick hero 95 (probably more well known under this name).
+
+26-07-99:
+
+- Yep, Exzisus has an MCU (which is undumped, btw).
+
+25-07-99:
+
+24-07-99:
+
+- Fixed Cadash Japanese. Removed Japanese romswitches from other versions, since
+  they are bad (only Japanese version has the japanese text data).
+- Possibly fixed Cadash sometimes missing music.
+
+23-07-99:
+
+- Added Quiz HQ. Made some screenshots while testing.
+- Added Dynamite League adpcm rom. Now there is some speech, drums, etc... :).
+- Added 64th Street Japanese.
+- Added Darius 2 dual screen version.
+- Added Spindizzy's Bubble Bobble driver, and fixed it so it runs... :).
+- It was a good day for adding games!
+
+22-07-99:
+
+- Added led emulation to Darius, Warrior Blade.
+- Fixed rotational games, due to previous changed messing it up. I think the are
+  the last messed up games...
+- Added the arcade monitor settings to raine.cfg.
+
+21-07-99:
+
+- Merged Darius 2 with Ninja Warriors. Fixed screen size and scroll offsets due
+  to previous change messing it up.
+
+20-07-99:
+
+- Added screen size in VIDEO_INFO struct, and removed SetScreenBitmap(). Now the
+  screen size can be dumped, but some games are messed up by this change.
+- Fixed MS-1, due to above change.
+- Fixed Terra Cresta, Armed Formation.
+- Some extra colours in gui. Also made the default colours a bit less washed out.
+- tripple_buffer became triple_buffer (oops).
+
+19-07-99:
+
+- A bad, bad day...
+
+18-07-99:
+
+- Fixed up Quiz Torimonochou (gfx, dsw, inputs, everything else). Screenshots &
+  html.
+- Exzisus looks like it has an mcu... Unfortunately there is no readme with the
+  romset :(.
+
+17-07-99:
+
+- Made some zip/rar archives for Richard Mitton and maybe Richard Bannister
+  (it's not in a state to port to mac os, so I dunno...).
+- Hmm, Liquid Kids joystick is fine for me... Mario, check your config files.
+
+16-07-99:
+
+- Cheat info lines can be edited in the gui like the other cheat data.
+- Moved [General] -> LanguageFile is now [Directories] -> language_file.
+- Added [Directories] -> cheat_file.
+- Added Cheat patch type, but it has no functionality yet.
+- Added different cheat patch types, but I haven't tested them.
+- Fixed some possible gui crashes with listboxes.
+- Tested some of the new cheat types.
+
+15-07-99:
+
+- Balloon Bros looks really crap. Sound hardware by taito, video hardware by
+  Seta. Also a c-chip!! Now what do they need a c-chip for?
+- Balloon Bros is basically a Tetris clone, but with the blocks moving *up*
+  the screen... So, it's just about worth adding :).
+- Yikes! Guess what?... Part of the Seta video hardware is basically the same as
+  the tnzs-system and superman video hardware... Hmmm...
+- Thanks to Glenn Hagon, I now have another 2 16mb simms. Now my pc has 64mb! =).
+- Merged Superman and Balloon Bros.
+- Changed something in tc0140syt emulation, to fix Balloon Bros. However, it is
+  possible this breaks other games, so now they need play testing.
+- Added Object and BG double buffer to tnzs-system, balloon bros & Superman. Now
+  the sprites move a lot better in Insector X, Extermination and Balloon Bros.
+- Moved all the gfx emulation for Tnzs-System, Balloon Bros and Superman into
+  setax1.c/h. I am going to call it seta x1, because there are 3 seta x1-00??
+  chips listed in the balloon bros readme.
+
+14-07-99:
+
+13-07-99:
+
+- Added the 320x240 arcade monitor mode from brian lewis... It should work fine,
+  maybe he has some more resolutions for it too...
+- Changed the screen selector, so that the list of resolutions changes depending
+  on what gfx driver is highlighted. For example, it only shows 320x200 for VGA,
+  only shows possible resolutions for mode-x, only shows 320x240 for arcade
+  monitor... Now it is easy to see which resolutions are possible for each
+  driver :).
+
+12-07-99:
+
+- Readd better key names, since I lost the source by accident!!
+- Yikes! Many games use a 'table' mode for 2 players, so I need to check a lot
+  of game dsw, and make sure they are set to 'upright' by default. For example,
+  try running raimais or puzznic in 2 player mode.
+
+11-07-99:
+
+- Added Palamedes :).
+- Fixed something I forgot to change in 8x8 tile flipping. It was causing some
+  sprite problems in L-System games (Champion Wrestler, Palamedes, and probably
+  all the others too).
+- Added rom versions and leds to Palamedes.
+- Added year info to the remaining games.
+- Removed a crashing problem in RaineX. It seems translation file routines are
+  bugged in allegro, so it might cause some other gui crashing in the port.
+- Added more buttons to the allegro direct-x joystick driver... There was a bug,
+  and pressing buttons over 8, would freeze up the game. If they don't notice it,
+  I better point it out to them...
+
+10-07-99:
+
+- Added year info to about 40 more games. Boring.
+- Added rom loading by crc32 (zipped only, but mame is the same).
+
+09-07-99:
+
+- Yikes, need to write an M6585 emulator for Grand Cross music (not even mame has
+  one).
+- Made an M6585 emulator :). It's a sucky adpcm playback chip.
+- Replaced 'strcasecmp' with the portable name 'stricmp'.
+- Added year info to about 50 games.
+
+08-07-99:
+
+- Added Objects to Grand Cross emulation. Added priority. Added new control
+  defaults for pinball games (but I doubt we will get many more in raine):
+
+ { KEY_LCONTROL,0x00,		"Def Flipper 1 Left",	},
+ { KEY_RCONTROL,0x00,		"Def Flipper 1 Right",	},
+ { KEY_LSHIFT,	0x00,		"Def Flipper 2 Left",	},
+ { KEY_RSHIFT,	0x00,		"Def Flipper 2 Right",	},
+ { 86,		0x00,		"Def Tilt Left",	},
+ { KEY_SLASH,	0x00,		"Def Tilt Right",	},
+ { KEY_Z,	0x00,		"Def Button 1 Left",	},
+ { KEY_STOP,	0x00,		"Def Button 1 Right",	},
+
+  I did not choose any default joystick settings yet, not sure what will work
+  best...
+
+- Improved key names a bit (eg. 'minus' becomes '-', 'stop' becomes '.').
+
+07-07-99:
+
+- Played Gameboy Color (Pokemon Pinball), and I remembered how cool pinball games
+  can be, so I tried adding Grand Cross Pinball to raine.
+- Fixed some stuff on Grand Cross.
+
+06-07-99:
+
+- Removed some no longer used tile routines.
+- I'm too bored with everything, including this emulator.
+- Added -gameinfo option, prints info for games in a shark/mame syntax useful for
+  frontend authors.
+
+05-07-99:
+
+- Added LED emulation to Tatsujin 2, Snow Bros 2, Whoopee, Knuckle Bash.
+
+04-07-99:
+
+- Added Cadash Japanese, since the code roms are very slightly different. The
+  Japanese text looks just like in the normal version with romswitch, and I think
+  there is a problem to fix here (eg. the name select is missing characters).
+- Added an mmx tile routine, for stuff like l-system... But it did not give any
+  speed increase, so I commented it out.
+- Removed some unnecessary push %ebp lines in direct mapped tiles.
+
+03-07-99:
+
+- M72 is almost 60fps on my new pc, but it was not even playable before... Must
+  be something to do with mmx...
+
+02-07-99:
+
+- Hello! After 5 hours of work, I got all the stuff from my old pc inserted into
+  the atx case, yipee!!! =)). madmax1 & nemesis1 r0x j0o!!. At first it didn't
+  work, because the jumpers were set for a p2-266, doh. Another mistake, I made
+  was to plug the floppy cable in the wrong way (on the floppy end).. oops! One
+  more mistake - I plugged the led cables in the wrong way round, but there was
+  no info on which way was right :).
+- Tested some emus, the frameskip on p47 in mame, is *only* 7-8 now, lol, I was
+  expecting it to run at 60fps :). Anyway, stuff like neorage runs about 60fps,
+  and zsnes too (zsnes seems like a totally new emulator when playing some of
+  the games).
+- Possibly made Toaplan gfx emulation faster, hard to tell when I just changed
+  cpu's... Playing Tatsujin 2 at 60fps rules!
+- Flashed a new bios for the mainboard, which I downloaded a while ago, when I
+  received the package from nemesis1.
+
+01-07-99:
+
+- Fixed a bit Fix Eight.
+- I don't think I can do any more on fix eight without a bootleg, or unprotected
+  set. Shame we have zero active rom dumpers left :(.
+- Backed up Raine source, incase I destroy my pc when upgrading it (heh, I'm not
+  very confident).
+
+30-06-99:
+
+- Order an aopen midi atx case... ˙40, but ˙50 with vat+postage... Things are
+  more expensive in the UK... :(.
+- Downloaded Allegro 3920, which claims to add joystick support for the direct-x
+  port.
+- Compiled Allegro 3920, updated raine joystick list, joysticks work in rainex,
+  atleast my sidewinder does... :).
+
+29-06-99:
+
+28-06-99:
+
+- Fixed unzipped games appearing as missing in gui with msvc.
+- Replace ADSAMPLE in m6295.c/h with smaller struct called M6295_SAMPLE.
+- Added 16 bit streamed sample replay, changes nichibutsu & cabal, so the play
+  sample routines are not used now (everything uses sound streaming).
+
+27-06-99:
+
+- Added Extermination, quite easy, just combine bits from tnzs and arkanoid 2.
+- Romcheck and gamelist are output to the screen instead of in files now...
+  Well, it's probably more useful like that for most people, and I guess most
+  people also know how to redirect output to a file.
+- It seems you can also add dejap.dat to the end of rainex.exe (good) :).
+- Rearranged some code, moved main emulation loops from raine.c into emumain.c.
+- In no gui mode, the tab key will reactivate the gui (req. by Bubble).
+
+26-06-99:
+
+- Fixed Puchi Carat running too fast.
+- Added Trackball control to Arkanoid Returns and Puchi Carat. Enter the test
+  mode to enable it (or delete the eeprom images in savedata).
+- Made Fix Eight run more. The protection handles input, sound and much of the
+  game gfx.
+
+25-06-99:
+
+- Coin Inputs are now only active for 250ms when you press them. This should fix
+  most 'Coin Error' problems in Taito games (caused by holding the coin buttons
+  too long).
+- Moved a bunch of stuff into GAME_MAIN. Also moved everything from GAME into
+  GAME_MAIN. Boring, horrible task, when it had to be done for all 168 games...
+- Changed rainex main config file to rainex.cfg. So there should be no problems
+  running raine and rainex in the same dir(s).
+
+24-06-99:
+
+- Tried 2 sidewinders, and it works on my brother's pc and on my pc...
+- Tried to improve rdtsc profile, because the percentages did not add up to 100%
+  on my brother's pc. didn't get a chance to see if I fixed it yet.
+- Fixed 8x8 and 16x16 direct mapped tile drawing to work on rainex. Now L-System
+  games have correct gfx. Actually, they also became a bit faster for the dos
+  version too :).
+- Fixed Ingame text drawing to work in rainex.
+- Removed audio update calls in rainex, since seal says they are not needed for
+  windows.
+
+23-06-99:
+
+- Argh, DirectX 6.1 is working very badly on my pc...
+  1) 320x200/320x240 8-bit resolutions do not work (corrupt display)
+  2) The DirectX setpalette function seems to force vsync, but it's not supposed
+     to do that
+  3) The same problems are shown also when I run system16dx and neoragex in 8bit
+     modes. don't know how to fix.
+- Downloaded proper Diamond gfx driver for my card. Now 320x? works, but 400x300
+  is not allowed anymore... And the palette is still forcing a vsync :(.
+- Changed 68020 core, so all the opcodes are single filed (a020core.c/o/oa).
+  It is included precompiled in the compiled dir, so that msvc can use it. 
+
+22-06-99:
+
+- Added lots of warning/error fixes and #ifdef RAINE_DOS, some of raine compiles
+  ok in msvc. It's using the msvc/win32 versions of allegro and seal for now...
+- 'Fixed' all compiling errors, so it now gets to the linking stage in msvc...
+  But there are 3000 link errors to 'fix' now... heh.
+- Yikes! Now all the errors are fixed and it actually compiles, links and runs!!
+  Amazing!!! Ok, I only ran it once, and didn't manage to load a game, but the
+  gui was usable =).
+- Just played Bomb Jack Twin in Raine-X... :)... It didn't crash, I even turned
+  the sound on, and that worked too!! lol.
+
+21-06-99:
+
+- Got another copy of mscv5.0 from Mario, also direct-x 6.1 sdk, and I only had
+  5.0 before... :). Thanks man!. Btw, these cd's take a lot of attempts before
+  they are recognized, someone told me the problem might be solved if you burn
+  them at a lower speed? Maybe the colour is not the real cause?...
+- Compiled Allegro 3918 for msvc... Maybe the port will use allegro, maybe not.
+  I will start using it, since it should be less work. Then maybe remove allegro
+  from the port later on. Or maybe not... heh. Or.. maybe.. possibly.. not sure.
+- Started making changes to raine source, to make it compile with msvc. Ofcourse
+  it just comes up with 1000's of error and warning messages, mostly due to
+  inline asm, which all has to be changed in msvc.
+
+20-06-99:
+
+- Amuse source is *very* interesting:
+
+  These look like being TNZS-System:
+
+     B19 = DR.TOPPEL TANKENTAI (c)KANEKO / TAITO 1987
+     ??? = THE NEW ZEALAND STORY (c)TAITO 1988
+     ??? = ARKANOID2 Revenge of Doh (c)TAITO 1987
+     ??? = PLUMP POP (c)TAITO 1987
+     B06 = EXTERMINATION (c)TAITO 1987-1988
+     B97 = INSECTOR X (c)TAITO
+
+  These look like being the same system:
+
+     ??? = FAIRY LAND STORY (c)TAITO 1985
+     A34 = METAL SOLDIER ISAAC II (c)TAITO 1985
+     ??? = THE ATHLETE (c)TAITO 1984
+     A39 = WYVERN F-0 (c)TAITO 1985
+     A67 = BIG EVENT GOLF (c)TAITO 1986
+     A50 = N.Y. CAPTOR (c)TAITO 1985
+
+  Looks like a Taito hardware game:
+
+     ??? = GIGANDES (c)EAST TECHNOLOGY 
+     ??? = RYUJIN (c)EAST TECHNOLOGY / TAITO
+     B58 = ENFORCE (c)TAITO
+     C32 = WGP 2 (c)TAITO
+
+
+  'System FX1' and 'System other' (all z80+ym2610b):
+
+     E22 = PSYCHIC FORCE (c)TAITO 1995
+     D24 = WARRIOR BLADE (c)TAITO 1992
+     D72 = ‚N‚C‚Y…ÛËEÈÕSHOW BY‚V‚Á¸[‚o‚C!! (c)TAITO
+     E32 = ÈöÈÈ©ÈÇÈè¸`Èí (MAGICAL DATE) (c)TAITO 1996
+     E32 = ÈöÈÈ©ÈÇÈè¸`Èí EX (MAGICAL DATE EX) (c)TAITO 1996
+
+   In F2-System:
+
+     C92 = ‚N‚C‚Y‚N‚G‚X‚g(QUIZ QUEST) (c)TAITO
+     C77 = ‚}¸[‚W‚‚‚Ù‚N‚G‚X‚g (c)TAITO
+     C41 = ÔàÍ›Ù¨ÚòÚø∆· (c)TAITO
+     C53 = QUIZ H.Q. (c)TAITO
+     C80 = HAT TRICK HERO (c)TAITO
+     C83 = ÈÑÈÒÈÑÈÃ‚N‚C‚YÈèGO!GO! (c)TAITO
+     D19 = ‚N‚C‚Y∆nÔ‡˚hÎqÓR (c)TAITO
+     D20 = Yes.No…S˘•‚g‚L‚¸‚L‚`‚‚¸[‚g (c)TAITO
+     D48 = ‚N‚C‚Y…l…Ó«≈à (c)TAITO
+     D55 = ‚N‚C‚Y¸E‚N‚Ó‚Í‚ÙÈëÈ±È®ÈﬂÈ± (c)TAITO
+     D63 = ‚N‚Ó‚Í‚ÙÈëÈ±È®ÈﬂÈ±¸E‚I‚ÎÈí˘VÈ⁄ (c)TAITO
+     C81 = ‹jÓéÎhÓıÈÃÏbƒqÎ« (c)TAITO
+     D15 = ARCANUM (c)TAITO
+
+   Psykyo          - …≠ÏÊ‚G¸[‚X (SENGOKU ACE) (c)Ï Ôû 1993
+   Dynamite League - Has version with adpcm sample rom dumped!
+   Camel Try       - Has English and Japanese versions!
+
+- All these have deen dumped for the sound part!!! Where did vixen go??? HELP!!!
+
+19-06-99:
+
+- Made Super Chase start running.
+- Heh, I can only compile simple stuff with msvc, it's a bit wierd to use at
+  the moment, so I probably need some time to understand it better :).
+
+18-06-99:
+
+- 4 cd-r's arrived from Pincushion Man (Chuck). Now I am attempting to compile
+  some simple code with msvc5.0 :)...
+
+17-06-99:
+
+- Super Chase is almost certainly Chase HQ 3. It's not normal F3-System, it's
+  more advanced, like Under Fire. 68020+68000+OTIS+68000.
+- I am unable to install monyons' RCEdit Beta. One of the .ocx files won't
+  register, I don't know much about windows, so I don't know how to solve it.
+- Added a couple more Combatribes dsw (thx mayuga).
+- Added a bit Super Chase.
+
+16-06-99:
+
+- Moved all the road layer code into tc150rod.c/h.
+- Found some dsw for Chase HQ 2.
+- Found some dsw for Continental Circus.
+- Finished Conintental Circus controls, now it's playable, and more fun that I
+  was expecting ;).
+- Added PSX pad driver. Added #define's around all joystick driver references, so
+  raine can be compiled when some joystick drivers are missing from allegro.
+
+15-06-99:
+
+- Fixed stuff in Chase HQ 2, actually it's not protected, it just has annoying
+  interrupts and where it communicates with the motorized chair looked like
+  an mcu (but it's not protection) :).
+
+14-06-99:
+
+- Added Strahl, works fine (protected sound, like bio ship paladin?).
+
+13-06-99:
+
+- Added Combatribes player 3 controls and dsw to activate them (thx mayuga).
+- Changed TNZS guide url in cheats.txt (thx chris).
+- Release again!
+
+12-06-99:
+
+- Changed Frame Skip option in gui.
+- Replaced Tripple Buffer scroll routines, so they (should) work with vbe/af.
+
+11-06-99:
+
+- Updated translation template.cfg (oops, forgot).
+
+10-06-99:
+
+- Fixed most sprite sync in Tatsujin 2.
+- Fixed most priorities in Master of Weapons, Ashura Blaster.
+- FG0 banking in B-System (eg. screen clear in Rambo 3, FBI logo in Violence Fight),
+
+09-06-99:
+
+- Fix some WGP stuff, it still isn't playing the actual game yet.
+- Fix Taito Tetris romlist (some of the Rastan 2 roms are unused).
+- Think we better make a 'sidewinder release' this weekend. Lots of mail about
+  this, and it's fixed now I think.
+- Added coin setting dsw to Violence Fight and fixed FBI logo.
+- Fixed tripple buffer interfering with frame skip radio buttons in gui.
+
+08-06-99:
+
+- Time to test my sidewinder :).
+
+07-06-99:
+
+- Yay! I now have a Sidewinder Gamepad, thanks to Paul G. :))).
+- Fixed Sidewinder in allegro (added a second copy of the code as sidewinder b).
+  I only had to change one number to fix it, but I left the original sidewinder
+  in allegro incase it's needed. From what I can tell, the 'sidewinder b' should
+  function the same as the system16 driver...
+- Fixed properly the password decode problem with datafile (last night was a hack
+  to fix it).
+- Added support for 12 buttons on each joystick. This is the current allegro max,
+  my sidewinder has 10.
+- Added new default joystick settings - button 9 = player start (this button is
+  labelled 'start' on a sidewinder). button 10 = player coin slot (this button is
+  the 'M' button below 'start' on a sidewinder). It's great, I can play on raine
+  without leaning over the keyboard now =).
+- Added Player 3 and 4 Controls in Snow Bros 2, Hit the Ice.
+- Inproved Hit the Ice dsw info.
+- Added WGP.
+
+06-06-99:
+
+- Changed Pulirula crc32 to aracorn's set.
+- Changed bits of romcheck.txt to lower case (guru-choc).
+- Hej, the final cd-r now worked :) Mame+Neogeo+Raine/Mario :). Slowly copying to
+  my HD.
+- Played a bunch of games in mame, hehe :).
+- Tried to merge cheat files as best I can.
+- Fixed some rom crc32 stuff from razoola.
+- Fixed alignment of rom sizes in game info window.
+- Fixed Sprite:BG0 Scroll Sync in Thunder Dragon.
+- Release!!
+
+05-06-99:
+
+- Fixed Pop n Pop gfx in some ways.
+- Fixed Chase HQ Tunnels in some ways.
+
+04-06-99:
+
+- Fixed Insector X collision on level 2.
+- Renamed InsectrX to InsectX, since mame renamed the romset.
+- Fixed buttons in Arkanoid 2.
+- Fixed Reset Game in TNZS-System games.
+- Renamed ninjakd2.c to upl.c.
+- Fixed some bugs (Maze of Flott, Cleopatra's Fortune)...
+- Fixed Don Doko Don crashing bug (bad romsw pointer).
+- Replaced Year: 1988 in game info, until the data is added to the drivers.
+- Resized Cheat list and DSW list to fit the text better.
+- Resized new Cheat stuff, added extra edit boxes for cheat search byte:
+  hex, decimal, signed decimal, ascii char.
+- Fixed Silent Dragon running too fast. Fixed Silent Dragon FG0 tile banking.
+- Fixed Silent Dragon scroll sync. Got rid of trash, but there is some on the
+  last level.
+
+03-06-99:
+
+- Now one of Mario's cd-r's is recongized... Since the cd has no name, it is hard
+  to tell when it is recognized by windoze (always says D:). I don't know why they
+  work now, maybe my cd drive had some dust inside and it is gone now? Stange how
+  this 'dust' only effected cd-r's though... Maybe it likes hot weather? :).
+- Only one of Mario's cd-r's is recognized (the 100% neogeo one).
+- Completed Puzzle De Pon-R, always wanted to do that :).
+
+02-06-99:
+
+- Found some cheats for bomb jack twin (testing the cheat search).
+- Fixed Hex view *'s around matching bytes.
+
+01-06-99:
+
+- Hey! I inserted one of those cd-r's that my cd-rom won't recognize and it
+  actually got recognized! :)). Console Roms/Razoola, copied to my HD.
+- Also worked: N64-CPS2/Razoola, copied to my HD.
+- Still not recognized: mario's cd-r's... :(.
+- Play console games ;).
+
+31-05-99:
+
+- Added different cheat search methods. I tested them on Bubble Symphony and
+  got some nice cheats, but then I lost them cos I managed to crash the game :).
+  Anyway:
+
+   SEARCH_MODE_ABSOLUTE - Searches for absolute byte values
+ (old method, works)
+
+   SEARCH_MODE_RELATIVE - Searches for differences between all bytes at the start
+ (found tunder dragon lives correctly, should work ok)
+
+ SEARCH_MODE_SINGLE_BIT - Searches for a single bit value
+ (should work, but i didn't find much with it)
+
+       SEARCH_MODE_SLOW - Searches for greater, less or equal values
+ (works great for finding flags, found player bubble effects and stuff)
+
+30-05-99:
+
+- Added malcor's new Chase HQ Japanese sample rom :). Now both sets are 100%.
+- Added full Thunder Dragon set (and fixed a crashing bug).
+- Fixed a nasty bug that was causing fake eeproms to get saved for lots of games.
+
+29-05-99:
+
+- Fixed a bit chase hq road layer.
+- Fixed a bit chase hq sprite priorites when they are hidden by a hill.
+- Add hiroshi sasound, new mode still crashes ingame (eg. tnzs). Old mode seems
+  to be ok...
+- Fixed bug in scroll macros, was causing a missing tile in the top left corner
+  of chase hq tile fades.
+
+28-05-99:
+
+27-05-99:
+
+- Changed Rainbow Islands to 'mapped' mapping, screen draw takes about 10% more
+  time on a p120, but it's ok, since vsync is never called.
+- Converted all the other games.
+- Fixed sprites in converted Mega Blast.
+- Removed vsync autodetect option.
+- Removed 80x80 and 160x120 from gfx mode select. Also removed Xteneded mode, I
+  don't know what it is good for, it can only do 640x400.
+- Removed any listed resolutions where Y < 200. You can still select these from
+  raine.cfg, but it's probably not worth mentioning them, since no game will fit.
+- Added tripple buffer as an option.
+
+26-05-99:
+
+- Made Thunder Dragon playable, using code hacks from bootleg.
+- Fixed Thunder Dragon Title screen/hiscore screen/nmk logo, which are hacked
+  to be disabled in the bootleg version.
+- Made some fixes to Task Force Harrier and Hacha Mecha Fighter. It would probably
+  be easy to fix HMF by burning some new roms and dumping the protection data
+  onscreen.
+- Made 'mapped' mapped games keep colours locked for 3 frames instead of 2, I
+  think this is necessary for tripple buffer on some slow gfx cards. I noticed
+  there is only 15 'direct' mapped games in raine now, so maybe I will convert
+  them and then tripple bufferring will be ok in every game... They are only
+  faster without vsync anyway, and I think many people use vsync on or autodetect
+  in raine.
+  Reasons to convert these games:
+
+  1) can remove vysnc autodetect
+  2) can remove about 50kb of code
+  3) can support tripple buffer in all games
+
+  Reasons to not convert them:
+
+  1) lazy
+  2) faster drawing, but this is wasted since they require vsync on or autodetect
+
+25-05-99:
+
+- Fixed input and dsw, so the they work again.
+- Changed rom switches in a similar way to the input/dsw data.
+- Keys now move around the load game list (eg. 's' to jump to saint dragon).
+- Added Thunder Dragon (code protected, gfx missing).
+- Added Thunder Dragon bootleg (gfx protected or corrupt).
+- Fixed up Thunder Dragon bootleg. I'm pretty sure td_05.bin does not belong
+  in this romset! It looks like gfx from West Story.
+
+24-05-99:
+
+- Examine how mame merged roms are loaded... It doesn't work when you unzip a
+  merged romset(!) Unless you manually split up the merged set into seperate game
+  dirs again :). Also, the zip dirnames (set1/ set2/ etc...) are not used, so I
+  think they are using crc32's mainly to load the roms, otherwize it would fall
+  over when set2 and set1 contain roms with the same name.
+- Fixed P47 rom sharing for american version.
+- Fixed Toki continue dsw.
+- Changed how dsw and input data is stored in *every* game, very horrible and
+  boring, but raine.exe became about 64kb smaller :).
+
+23-05-99:
+
+- Changed and moved rom check option, now you can type raine -romcheck to check all
+  games, and raine -romcheck <gamename> to check a single game.
+- Added crc32 info to task force harrier, fixed crc32 for final blow sample roms.
+- Added mame tripple buffer scroll routine, but it's not going to work with the
+  direct mapped code in raine...
+- Rezipped all my raine roms...
+
+22-05-99:
+
+- Fixed rom checking to work with ziproms and all dir paths. Currently the rom
+  check is stuck on the end of gamelist and it checks all roms, which takes a
+  few mintues... Use raine -gamelist and then look at gamelist.txt.
+- Added Sega ISA joystick driver. Does it work? Nobody knows... Hiroshi will
+  need the segaisa.zip file to update allegro...
+- Put directory strings into dir_cfg struct (see raine.h).
+- Added Task Force Harrier, protected like HMF and BSP.
+
+21-05-99:
+
+- Fixed a bit Hacha Mecha Fighter, it's protected tho.
+- Fixed Peek a Boo. No sound, no sound rom(s) dumped!(?).
+- P47 Alpha contains some NMK copyrights, heh.
+
+20-05-99:
+
+- Add new Hiroshi sound sources:
+  new update - still crashes on slow pc's (buffer write not clipped and trashes memory) :(.
+  old update - sound is 'de-synced' a lot more than the old source?!
+- In sound dir, placed new sources in new??????.zip and old sources in old??????.zip.
+  It is easy to swap between them, just recompile everything in sound/*.o.
+- Added memory view window when you double click on search results.
+- Changed M6295 interface, now there is no limit on the number of rom banks,
+  since Bomb Jack Twin has many rom banks.
+- Added Bomb Jack Twin sound.
+
+19-05-99:
+
+- Fixed some file access stuff for the new dir accessing.
+- 100% decoded the Bomb Jack Twin BG0 gfx! /me rox joo! :).
+- Fixed stuff in Bomb Jack Twin, just needs sound now. Made screenshots and html.
+
+18-05-99:
+
+- Unzipped all my roms and dumped a list of all the file name/size/crc32 data.
+- Put extra dir names and rom size/crc data in all the game drivers. That was
+  so annoying and boring to do... Now the data is in there, but not being used
+  yet.
+- Fixed Chase HQ checksums (took checksum from the bad sample roms by accident).
+- Changed rom load and game gist so they check the new multiple rom directory
+  names.
+- Expanded Load Error messages, they are in a scrollable text area and can be
+  up to 64kb long.
+- Fixed Darius Extra and Whoopee (can load roms from Darius and Pipi Bibi dirs).
+
+17-05-99:
+
+- 100% decoded the Bomb Jack Twin Sprite gfx! /me rox joo! :).
+- Fixed some bits of Bomb Jack, moved NMK games out of megasys1.c, since the
+  file was getting huge.
+- Fixed Grid Seeker calling an illegal interrupt (stops crashing).
+- Added Gekirindan.
+- Changed Toki screen draw from asm to c. Now it is nice without vsync. Also:
+  Added P2 Joystick (enable with dsw), added bg priority (toki logo), made
+  bg scrolling in sync with sprites.
+- Changed Snow Bros screen draw from asm to c. Now there are no more gamename.S
+  files, which is probably a good thing. Made Snow Bros music 50% faster rate.
+- Removed some stuff no longer needed now the asm screen drawing is gone.
+
+16-05-99:
+
+- Added good Chase HQ english sample roms, thanks Jim! :). All the roms are mapped
+  correctly, but there is still the sample looping bug (press turbo and it goes
+  "Woah Woah Woah Woah Woah etc......" heh).
+- Fixed a recently added bug in applying action replay cheats.
+- Stopped sample looping problem in Chase HQ. Z80 sends data back to 68000 when it
+  finishes playing a voice, but the 68000 never reads it, so the Z80 re-reads it
+  and re-plays the sample etc...
+- Changed 68000 speeds to 16MHz in Chase HQ. The main cpu seemed like it was choking
+  a bit on just 12Mhz...
+
+15-05-99:
+
+- Game list mode is saved in raine.cfg (requested by some ppl).
+- Placed gui config data in a struct (rgui_cfg - defined in gui.h).
+- Placed some display config data in a struct (display_cfg - defined in raine.h).
+- Added fast_set_pal in raine.cfg. 1 = Use faster colour loading (raine 0.20).
+  0 = Use slower colour loading (raine 0.18; compatible with more cards). Default
+  is 1.
+- Fixed a bit Bomb Jack Twin, infact the gfx roms may not be bad, they might be
+  protected. Need to get my l33t ms-1 decoder source from Richard Mitton.
+- Added Autofire setup in gui. It works well, try using a test mode (eg. mega blast)
+  to test it out :). Autofire settings are not saved, should they be?
+- Made raine look for dejap.dat in raine dir *before* looking for it appended to
+  raine.exe. The reasons are:
+  1) _iceball_ can test new gfx even when there is already an appended datafile.
+  2) If we ever have the need, we can release an updated dejap.dat. Unlikely.
+- Added an NMK logo to dejap.dat/game info screen.
+
+14-05-99:
+
+- Add 6 buttons in Kaiser Knuckle. Also, there is a 'blood mode' available in the
+  eeprom config in the test mode :).
+- Messed with the fonts and stuff, now gui uses 3 fonts:
+  1) font for window titlebars (chars can be variable width)
+  2) main gui font for everything (chars can be variable width)
+  3) font for listboxes (chars must all be same width to keep columns in line)
+
+13-05-99:
+
+- I was (re)playing the Tales of Phantasia translation for the last few days.
+  I've completed it now anyway :).
+- Renamed dir omegaf to omega_fighter, to see if long file names work (they do).
+  Also, checked to make sure long file names work with zips (they do too).
+- Important note: if you have djgpp installed, you have to set LFN=y in djgpp.env
+  to use long file names, same as with HVSids update tool...
+- Hacked libc.a so LFN setting is ignored (replace 3C6E7513 with 3C6EEB13), should
+  save a few 'bug' emails about long filename problems.
+
+12-05-99:
+
+11-05-99:
+
+10-05-99:
+
+09-05-99:
+
+- Added Omega Fighter dsw settings. Also, set the defaults, so they are the factory
+  recommended settings (as detailed on the dsw info).
+- Examine Run & Gun 2. It's a basketball game I think (big shame)... The hardware
+  is interesting though, except I customized the 68020 core so much for f3-system,
+  and this makes it hard to debug any other 68020 hardware... hmm, what should I do?
+  Maybe add a debug-020 core for it, dunno.
+
+08-05-99:
+
+- Examine Puzznic set2. All roms are 100% identical to the first set. Also, the
+  MCU is not dumped right (all bytes are either 00 or FE). Good news I guess :).
+- Listen to Rotor amiga music, it's quite nice. I have the game, but didn't play
+  it much...
+- Addition of Omega Fighter. The arcade screenshot looked so nice :).
+
+07-05-99:
+
+- Put some config things in a raine_cfg struct.
+- Added Joystick button editing and load/save... but it's not tested.
+- Fixed Joystick edit bug (from mario's test in irc).
+
+06-05-99:
+
+- Temporarily replaced new sasound.c with old one. There are some problems with
+  the new one where it uses memcpy() to copy sample data, it often trashes memory
+  on my pc beacause the data overwrites the end of the dest buffer.
+  All the other new sound files are up to date anyway, just need to fix the buffer
+  looping memcpy() bits in the new 'sasound.c'...
+- Scanlines are now black in Rainbow Islands. Any more games with discoloured
+  scanlines? (it's a feature of the fast colour mapping mode that some games use).
+
+05-05-99:
+
+- New sound system is still not stable :(.
+- Add Hiroshi other changes (YM3012_xxx macro, Darius priority change etc).
+
+04-05-99:
+
+- Improved Object and Road in Chase HQ and Night Striker.
+- Added hardware triple buffer, but my gfx card does not support it, so I had
+  to comment it out for now, because I cannot test it.
+- Rearranged eeprom load/save. Datafile is no longer accessed in the drivers.
+- (: Add Hiroshi new sound system!! :).
+- Sound is causing crashes for me, even with 100% of hiroshi files...
+
+03-05-99:
+
+- Added Top Speed. The code roms are modified, but I expect the game will be
+  almost identical to Full Throttle :).
+- Added leds to Top Speed, Full Throttle and Continental Circus.
+- Continental Circus has a dsw setting that allows the 3d glasses type effect
+  to be disabled, phew :).
+- Cleaned Chase HQ 2 and Continental Circus a bit and added Road Scrolling chip.
+
+02-05-99:
+
+- Tried Mutant Night on Mame, speed was terrible (autoframeskip 11), it also had
+  the sprites sticking to screen bug!! The bug which made us decide to not include
+  in raine0.20... lol :).
+- Fixed Cheat engine for Z80 games. Tested with TNZS, Raimais, Fighting Hawk.
+
+01-05-99:
+
+- Impossible Joystick positions are now prevented. So, you can press up or down,
+  but you cannot press up and down simultaneously, etc... Fixes some bugs, like
+  on Ninja Warriors, pressing left, right and up all together caused bad stuff
+  to happen to the main player.
+- Removed about 5 custom joystick position fixes from the drivers, since it is
+  now automatically checked.
+- Added Joystick editingin gui, but you cannot edit them yet.
+- Space baron my keyboard is breaking!It's so annoying...
+
+30-04-99:
+
+- Default keys are saved in raine.cfg [Controls].
+- In games.cfg, use_custom_keys setting is saved for each game. Custom keys saved
+  in games.cfg (only when use_custom_keys==1).
+- Made some changes to add_input() to make raine.exe a bit smaller.
+- Added tc0220ioc to Darius 2 and Ninja Warriors (coin led emulation).
+
+29-04-99:
+
+- Renamed Top Speed to Full Throttle for now.
+- Fixed wrong joystick for player 2 in space gun, op wolf 3, silent dragon,
+  op thunder.
+- Started to add default key settings. However I am not sure the best way to do
+  it:
+
+  1 - one set of default keys, which apply to all games. this is a problem for
+      keyboard, as the default keys for a 2 button game are prefably different
+      in a 6 button game. annoys me.
+  2 - different set of defaults for 1, 2, 4, 6 button games. this is annoying,
+      as it makes changing the defaults more complicated and confusing if you
+      don't pay attention. might get a lot of emails having problems with it.
+
+  For an example of what I mean, look at the default mame keys for a 6 button
+  game. A game would be hard to play on those keys, I think.
+
+- The best fitting keys I can think of are:
+
+     G[4] H[5] J[6] K[8]
+    V[1] B[2] N[3] M[7]
+  [      Space Bar      ]
+
+  This will fit ok for most games I suppose. The reason 4-5-6 are g-h-j is
+  because fighting games expect to have buttons 1-3 in one row (punches) and 
+  buttons 4-6 in another row (kicks). Most games have 2 or 3 buttons.
+- Added default keys and a default keys editor. Changed all game drivers.
+
+28-04-99:
+
+- Today, Jess (one of our cats) died, due to old age. I will miss her :(((.
+- Added a guessed up road layer in Chase HQ/Night Striker.
+- Fixed Dinorex bg colours (interrupt timing).
+- Fixed Dinorex crashes/freezes (maybe). Caused by bad programming in the rom,
+  leaving trash in some bits of the address registers.
+
+27-04-99:
+
+- Fixed Colour bug in Chase HQ.
+- aracorn ChaseHQ set seems to have incomplete/bad sample roms.
+- malcor ChaseHQ set has japanese sample roms (aracorn set is english).
+- Added ChaseHQ Japanese (malcor set, renamed to ChaseHQJ).
+- aracorn chasehq set: b52-m38.rom is bad. This was causing a lot of bad
+  sprites in the game. Place b52-38 from malcor's set into aracorn's,
+  and rename it to: b52-m38.fix. Delete the old b52-m38.rom if you like.
+- Converted ChaseHQ to tc0220ioc. Coin LEDs are mapped.
+- Fixed ChaseHQ a bit.
+- Fixed Night Striker a bit too.
+
+26-04-99:
+
+25-04-99:
+
+- Seta games look really lame, gfx look really low quality...
+- Need to add extra opcodes to Neil's 6502 emu for 65c02:(. 
+- Caliber 50 is a bad dump. Bad 68k code roms (odd bytes FF), missing 65c02 rom etc...
+- Thunder Cade is a bad dump. Missing 80% of the 68k code roms.
+- Seta games are crappy, wasting my time with these...
+- Made Action Replay cheat names max 256 chars.
+- Added file selector option when setting zip/rom dirs.
+
+24-04-99:
+
+- Added some game info, with some company logos.
+- Added button#3 in Violence Fight.
+- Emulation of Seta games requires a 6502/65c02 emulator to be added, and also
+  I need a 6502 disasm.
+- Ouch, 6502 code is ugliest mess to read. Reminds me of snes roms. 
+- Need a better 6502 disasm than Marat's (need one with 6510 opcodes).
+- I hope make6502 has less bugs than makez80 :).
+- Added multiple M6502/6510 support. Does it work? Nobody knows...
+
+23-04-99:
+
+- I'm bored, really bored! :(.
+- Added some dsw from Thomas Pitt...
+- Got a new fan from madmax1, and fitted it to the p2-233 and fitted it to the mb.
+  Just need the case :).
+
+22-04-99:
+
+- Fix Under Fire a bit. This is the most demanding Taito hardware I have roms for,
+  it's like F3 System + F2 System + Z System, all in one! ;).
+
+21-04-99:
+
+- Split newgui.c into rgui.c and rguiproc.c.
+- Started adding multiple window support in the gui, then got bored and realised
+  it's not very useful anyway :).
+- Tried Kiki Kai Kai and it has sound. I wonder what happened, since I seemed to
+  fix itself (probably a Mz80 I/O ports bug I found the other day).
+
+20-04-99:
+
+- Fixed Tetris2+ Colour mapping.
+- Added Sprite zooming in Taito Cup Final, International Cup 94, Cleopatra's Fortune.
+
+19-04-99:
+
+- Fixed Load Game when the game list selection is empty and you click load game.
+- Fixed Snow Bros 2 missing sound.
+
+18-04-99: Release
+
+- Fixed a crashing bug with new loadgame on games with 1 68k and/or 1 z80.
+- Made M6295 decode with a higher volume, this makes it louder in all games,
+  possibly some games could have too loud samples now, most seemed acceptable
+  for now (hopefully).
+- Fixed Space Invaders DX (pixel clear, bg2 colours, added bg1 layer, changed
+  screen size to 320x224 == b-system default, default language switch set to
+  american). Looks much better now.
+- Fixed Cybattler Priorities on level 4 and some other places.
+- Fixed ARPro on 2x68000 games, like Cybattler.
+
+17-04-99:
+
+- Fixed Kaiser Knuckle and Arabain Magic Scroll Offset.
+- Added the mouse pointer with a rainbow under it, I added it for when a game is
+  loading (ie. the equivalent of the 'busy' hour glass in Win9x). Looks nice.
+- Made updates to Raine.txt, I think I did enough of that, but I still have to write
+  about my pc/hd/ppl who sent stuff...
+- Made the vsync Automatic option work in raine config and added to gui. This option
+  will use vsync only on games which need it (games which use direct mapper).
+- Made vsync automatic even better, direct mapped games will only vsync when a
+  colour change is found (eg. Arkanoid 2 will vsync during screen fades only).
+- Fixed Twin Qix Illegal Interrupt.
+
+16-04-99:
+
+- Converted DD3 screen draw from x86 asm to C. C is easier to manage, and the
+  colour mapping is better now. Also, fixed X high bit, used for stuff like TIME.
+- Converted WF screen draw from x86 asm to C. C is easier to manage, and the
+  colour mapping is better now.
+- Fixed Cybattler level 4 and over gfx (second sprite bank wasn't rotated).
+
+15-04-99:
+
+- Tried to fix Mustang (not playable).
+- Tried to Fix Insector X collision disappearing.
+
+14-04-99:
+
+- Fixed Zero Zone music looping, and also fixed the colour interference with the
+  ingame messages in this game.
+- Tried P47J in Mame, hmmmmm, autoframeskip goes to 11 (max?) and then the game is
+  still only running at 50% speed... it's basically impossible to play it on a p120
+  then =). lol.
+- Changed P47J and EDF FG0 layer size.
+- Increased MS-1 palette to 15-bit instead of 12-bit.
+- Fixed a bug in using 2x68000.
+- Added Mustang.
+
+13-04-99:
+
+- Still no luck with the cd-r's :(.
+- Fixed Sprite offset in Puzzle Bobble 2 and 3. It is likely to be the same in
+  Arkanoid Returns, so I fixed that too (but I cannot test, roms not on my hd
+  and cd-r not available)...
+- Made 'Loading Game' window look like all the other windows.
+- Fixed Load/Save for if/when save data areas have changed size or been removed.
+- Added Sprite-BG1 priority in Armed Formation, from calb.
+- Added Zooming Sprites to Kaiser Knuckle and Arabian Magic.
+- Got some roms from the cd-r's using my brothers pc and xfer to 1.44mb disks...
+  But in return I have to let his friend borrow the n64/cps-2 roms cd... Argh, I
+  wonder if I'll ever get that cd back :).
+- Arkanoid Returns is ok now.
+- Fixed About window saying MSDOS when it should say Windows 98.
+- Made the gui scrollbars look nicer.
+
+12-04-99:
+
+- Argh, cd-r's are not getting recognized today atall :(.
+- Rad Action is Ninja Kid 2, also Rad Action has some corrupt gfx roms.
+- Added Ninja Kid 2 and Rad Action, currently using Robokid sound rom.
+- Added Mutant Night.
+- Improved Save/load, so it has less hacks for the cpu saving.
+
+11-04-99:
+
+- Renamed Robo Kid to Atomic Robo Kid.
+
+10-04-99:
+
+- Fix some bugs in new savegame format.
+- Map some Atomic Robokid BG0-2 gfx roms, it seems there is not much order in the
+  rom names in this dump, so I have to get them correct with trial and error :(.
+- Got 2 cd's from mario =). Raine, mame, neogeo!!  Thanks :).
+
+09-04-99:
+
+- Added a better savegame format. Loading of the old format is fully supported.
+- Got 2 cd's from razoola :). N64, CPS-2 and some consoles!
+
+08-04-99:
+
+- Inside Atomic Robokid roms:
+
+  "MY NAME IS TOSHIO ARAI."
+  "I AM A PROGRAMER OF THIS GAME."
+  "I WANT TO HEAR FROM YOU."
+  "ADDRESS:"
+  "TAGUCHI BLDG. 3F"
+  "3-16-3,UENO,TAITOU-KU,"
+  "TOKYO,JAPAN 110"
+
+- Added Atomic Robokid.
+
+07-04-99:
+
+- Merged Sprite code for Dead Connection and Football Champ/Euro Champ 92.
+- Dodgy BG layer zooming in Football Champ.
+
+06-04-99:
+
+- Readd Hiroshi adpcm sources, cannot test on many games yet.
+- Changed Operation Wolf to hiroshi MSM5205, but something is wrong... Changed
+  to slower colour mapping to fix scanline colours. slower, but everyone says raine
+  is fast enough anyway.
+- Fixed memory leak and mulitple chip support bugs in msm5205.c.
+- Fixed? Football Champ sprite banking (doubt it's the correct solution).
+- Added Sprite Zooming to Football Champ.
+- Added FG0 scrolling to Football Champ.
+
+05-04-99:
+
+- Mario, retry Raimais big monsters, it seems fine here (you must start a new
+  game, don't load an old one from an old beta).
+- Readd Puzznic.
+- Readd Sound Pause/Unpause in savegame and loadgame.
+- Refixed up Puzznic and hacked mcu. If you select the 'Animation 20' rom version,
+  you uncover pictures of nice Japanese girls when you complete a level! :).
+- Added Popnpop.
+- Fixed Puchi Carat sprite problem, possibly this breaks arkanoid returns, or the
+  Puzzle Bobble games, but I can't check them yet.
+
+04-04-99:
+
+- Redid some gui fixes, redid 'press a key' window.
+- Oops, I need DZ80 again.
+- Added Game count information to game select window (tells you how many games
+  are full/available/missing).
+- Mario, you sent me the wrong/incomplete roms for kuri kinton.
+
+03-04-99:
+
+02-04-99:
+
+01-04-99:
+
+31-03-99:
+
+30-03-99:
+
+29-03-99:
+
+28-03-99:
+
+27-03-99:
+
+- Lost too many files, and win95 bacame unusable... Reinstalled win95...
+- Reinstalled some programs...
+- Crashed HD (corrupt some more files).
+- Some roms are lost (kaiser knuckle, puchi carat etc).
+- Reinstall internet explorer, get virus scanners, find no viruses! :((.
+- Crashed HD (corrupt some more files).
+- Reinstall other essential things (winzip etc).
+- Reinstall parts of djgpp.
+- Compile raine.
+
+26-03-99:
+
+- Improved saving on L-System games.
+- My hard drive is constantly messing up!! Many files are corrupting when I use
+  it :(. I think, unless it is a virus, my hard drive is dying, which means I
+  have no way to work on raine... I can't afford a new hard drive or a new pc :(.
+- Changed a bit release games (we have some spare games).
+- Hard drive crashed again! What happens is this:
+
+1) Working fine
+2) Hard drive starts making the normal sound it makes when reading/writing
+3) Hard drive continues to make the sounds, but the hd led on my pc box has
+   gone out!
+4) It just continues making the sound of accessing data... no matter what I do.
+5) I try ctrl-alt-delete or win95 restart computer, but even after resetting,
+   the sound continues. Also, everything I try to run crashes, and win95 cannot
+   reload (crashes).
+6) I turn the power off...
+7) Now when I turn the power back on, it works again... But when I check my hd
+   for errors, I find a lot of files have been corrupted.
+8) After a while, the problem occurs again and another load of files are lost!!
+   SHIT!!!
+
+- Unable to compile raine without crashes (file corruption in djgpp I expect).
+- Maybe if I hit my pc hard enough, it will work again... =).
+- It's getting worse, windows is messed up badly now. Many roms etc... are dead.
+
+25-03-99:
+
+24-03-99:
+
+- Messed with the allegro-based gui code... Added support for movable windows,
+  you will see a title bar on the windows, and you can drag the windows around
+  like zsnes/callus :). This code is really slow, it's just a hack, but it seems
+  faster already than bgui (bgui is used in snes9x dos, many crashes on my pc!).
+- Removed the Raine logo from the background... But kept the back part... I am
+  stuck as where to place the new raine logo! It's too big, maybe we can have
+  some smaller, less colourful versions rendered???
+
+23-03-99:
+
+- Fixed a sprite chain problem in WWF Superstars, some guy pointed it out to
+  me in irc.
+- Put some sound in Toki.
+- Added Kuri Kinton (it's not a custom cpu like the readme says, it's another
+  L-System game).
+- Examine Dark Mist. This looks nothing like Taito, and vixen listed it as
+  Seibu, however there is a (c) Taito message in the roms. The custom cpu is a
+  protected z80, but it looks very simple... The gfx roms look like garbage
+  (protected or corrput). Most likely it is made by Seibu, licensed to Taito.
+  Possibly Raiden hardware.
+
+22-03-99:
+
+- Wrote a set palette replacement that skips unmodified colours. This gives
+  a nice speed increase, for my pc 5% more cpu time available :).
+- Fixed Sprite-BG1 priorities in Fighting Hawk.
+- Changed a bit hardware ym3812 emulation.
+- Took out ym2203.c and ishm2203.oa, since it is currently not in use.
+- Change the way sound is paused in pause mode.
+- Added sound pause for hardware ym3812 emulation (thx cgfm for adlib info).
+
+21-03-99:
+
+- Added Volfied dipswitches.
+- Used rdtsc to profile set_palette_range(). It's really slow! Takes 5% of
+  the cpu time each frame!! PC's are so lame!!!... Now I have to work on
+  trying to avoid calling set_palette_range() when possible. It's worth it
+  for the extra speed.
+
+20-03-99:
+
+- Added trackball to American Horseshoes, but it needs changing. It's very
+  hard to play properly with keyboard or mouse.
+
+19-03-99:
+
+- Fixed most of American Horseshoes gfx, also changed to vixen romset, since it is named
+  better :).
+
+18-03-99:
+
+- Changed 16x16 mapped tile drawing to be very slightly faster (hard to notice any change).
+- Made Puzzle Bobble 2 colours a bit better, also found and fixed some problems with colour
+  mapping, which should improve the other games which use a lot of colours onscreen.
+- Fixed Space Invaders 95 bases (sprites on level 1).
+
+17-03-99:
+
+- Changed YM2203/2610 fm part to be a bit faster.
+- Re-add YM2151 Jarek version. I did this to try to fix Rastan 'noisy bits', but they are
+  still there. Maybe it was correct to have the 'noisy bits'...
+- Changed streams code (re-add from mame35b2 and seperate to streams.c/h).
+- Fixed some things in Kiki Kai Kai.
+- Fixed memory leak in sound (streams_sh_stop was not always called).
+- Fixed streams.c trying to free() unallocated memory. This is a bug of mame code I think,
+  on the latest versions of djgpp, bad use of free() can crash the pc.
+
+16-03-99:
+
+- Fixed Fighting Hawk speed (was running half speed).
+- Added Colours to Kiki Kai Kai.
+
+15-03-99:
+
+- Added Fighting Hawk.
+
+14-03-99:
+
+- Fixed a bug that made rainbow islands occasionally crash.
+
+13-03-99:
+
+- Doubled 68020 cycles for some F3-System games (Puzzle Bobble series). This
+  makes them play better. Puzzle Bobble 2 no longer gets stuck in the attract mode
+  and the controls are always responsive now :).
+- Tried to fix Insector-X collision... It used to work fine (more MZ80 bugs?).
+
+12-03-99:
+
+- Started adding Kiki Kai Kai, since it has an MCU, don't expect to see it reach
+  completion. Also, I need a diff romset to the one I have.
+
+11-03-99:
+
+- Moved rotation stuff to a file (tc0005rot: don't have the correct chip name!).
+- Camel Try and Don Doko Don colour mapper changed for vsync compatability.
+- Now f2system.c only contains port colour ram routines, so I renamed it to
+  tc110pcr.c (this is possibly the correct chip name).
+- Added delete button in action replay gui.
+- Fixed some bugs in MZ80 (I expect there will be more).
+- Fixed some more MZ80 bugs... Certain MZ80 functions trash registers without
+  push/pop'ing them (mz80int and mz80nmi for example).
+- Fixed Snow Bros sound/Cabal Sound
+- Fixed Cabal coin input.
+
+10-03-99:
+
+- Fix Battle Shark bg layers (add flip y code to tc0100scn).
+- Changed Spce Gun and Operation Thunderbolt to use tc0100scn/flip y code.
+
+09-03-99:
+
+- Added some zooming to H/AIR-System (not quite correct).
+- Prevented F3-System games from being able to write to rom (not that they were,
+  but in a 68020 crash it might happen).
+- Changed Terra Cresta colour mapping..
+
+08-03-99:
+
+- dejap.dat no longer needs to be appended to raine.exe, this is useful since
+  it compiles faster now. However, I must try to remember to append dejap.dat
+  for beta/release versions...
+- Existing Raine screenshots will no longer be overwritten each time you reload
+  Raine.
+- Merge some H-System code. Since I do not know the tc chip names for H-System,
+  I had to make one up (tc0004vcu)...
+- Added LEDs to some H-System games, increased port range for tc0220ioc with
+  Syvalion.
+- Fixed Sprite Chain sizes in H-System (eg. Japanese text in Syvalion).
+- Fixed Syvalion missing dragon's nose. It was caused by dodgy code in the rom
+  (leaving garbage in top byte of a0-a7).
+- Fix some Dynamite League and Record Breaker stuff.
+- Change Air Inferno and Top Landing to tc0004vcu.
+- Fixed small colour mapping problem after changing screenmodes.
+
+07-03-99:
+
+- Added Space Invaders 95. Nice game.
+- Play lots of great amiga and sid music :).
+- Added FG0 pixel scrolling to Galmedes.
+
+06-03-99:
+
+- Added Super Space Invaders 91 alt version (extra version maybe?).
+- Fixed sprite offset in SSI/MJ12. This was due to Drift Out code merging.
+- I guess the best name for SSI alt is Majestic Twelve, since the default
+  rom setting is this :).
+
+05-03-99:
+
+- Fix Arkanoid Returns sprites on hiscores.
+- Fix Drift Out sprites. Add FG0 layer, only used one time (test hatch).
+- Made Drift Out have nice colours w/out vsync.
+- Status of Bomb Jack Twin roms (hardware is similar to Bio Ship Paladin):
+
+  --------+----------------------+-----
+  BJT.100 | OBJECT tiles         | BAD
+  BJT.127 | Sample data (M6295)  | OK
+  BJT.130 | Sample data (M6295)  | OK
+  BJT.32  | BG0-BG1 tiles        | BAD
+  BJT.35  | BG2 (FG0) tiles      | OK
+  BJT.76  | 68000 (odd)          | OK
+  BJT.77  | 68000 (even)         | OK
+  bjt.nfo | Comments of Metalman | OK
+  --------+----------------------+-----
+
+04-03-99:
+
+- Added sprite zooming to Puzzle Bobble series.
+- Fixed (hopefully) Hit the Ice freezing up.
+- Added Hit the Ice controls for 2 players.
+- Some more F3-System games have sprite zooming.
+- Removed Final Blow sprite glitch.
+- Made Twin Qix BG3 disable (green bg problem gone?).
+
+03-03-99:
+
+- Added zooming sprites to Twin Qix and Darius Gaiden.
+- Added zooming sprites to Ring Rage.
+- Started tc003vcu.c, this is supposed to be F3-System, but I don't know the
+  correct tc chip name(s)...
+- Added sprite zooming to Elevator Action 2.
+- Fixed gfx roms in Kyukyoku Tiger 2. It seems the 1MB roms are all supposed
+  to be just 512kb (E15-01/03/07/09.bin). It still takes ages to load on my
+  16mb machine, which is why I didn't work on it for some weeks... Also added
+  sprite zooming to Kyukyoku Tiger 2.
+- Fix sprites and add zooming to Grid Seeker.
+
+02-03-99: 'Zooooooom'
+
+- B-System zooming completed, Rambo 3 is very nice, also stuff like Master of
+  Weapons and Ashura Blaster.
+- Add Zooming on Metal Black (it has zooming bg layers too, so don't expect
+  everything to zoom yet).
+- Added zooming on several other games (Gun Frontier, Liquid Kids, Don Doko Don
+  etc...).
+- Fixed sprites not getting disabled on Don Doko Don when you complete a level.
+- Changed SSI to slower colour mapping (so it looks nice w/out vsync). Maybe I
+  should change all games to the 'slower' code now?
+- Added zooming sprites to Pulirula.
+- Added zooming sprites to Bubble Symphony and Bubble Memories :).
+
+01-03-99:
+
+- Added Sprite zooming in tc0180vcu. Not finished coding it yet, but it makes
+  Rambo 3 look cool.
+- Garmedes is renamed to Galmedes.
+- Removed a load of pointless inline settings from game drivers (DrawGame() and
+  ExecuteGameFrame() cannot be inlined by the compiler).
+- Fixed SSI sprite glitch (finally). Added partial zooming support (eg. Ship in
+  tunnel when you start game, butterfly wings).
+- Added partial zooming to some other F2-System games, but I didn't test to see
+  if it works yet.
+
+28-02-99:
+
+- Start merging tc0180vcu emulation, so far Rastan 2, Silent Dragon, Space DX.
+- Added LEDs to Rastan 2.
+- Changed all other B-System games to use tc0180vcu.
+- Fixed a bug when expanding directory names to full path.
+- Fixed a bug with showing the wrong avail/missing games, it was caused since we
+  had more than 128 games in raine ;). Now it will work no matter how many games.
+
+27-02-99:
+
+- mz80 sucks...
+- Added fixed Garmedes rom, works great first time. Mario: delete gm-m30.bin
+  and keep new rom named gm-m30.fix. Also I think the correct name might be
+  'Galmedes', check the title screen.
+
+26-02-99:
+
+- Spent forever trying to make fucking shit mz80 work anghhghghghghnhgnhg....
+
+25-02-99:
+
+- Time flies...
+- Reduced Tatsujin 2 memory requirements (gfx roms should only be 1MB, second
+  half is a repeat...).
+- Add Fix eight (not playable, also sound part is protected (z80)).
+- Change to Allegro 3.11 (joystick bug fixes, and a new joystick supported:
+  Wingman Warrior).
+
+24-02-99:
+
+23-02-99:
+
+22-02-99:
+
+21-02-99:
+
+- Bio Ship Paladin contains some interesting messages:
+  "STOP ANALIZEING THIS SOFTWARE !!"
+  "Space Battle Ship "GOMORRAH"(TM). Copyright(C)1990 UPL COMPANY LIMITED. "
+  "Under the copyright laws,this The hardware or The software may not be "
+  "copied,in whole or part. Understand?? Programmed by Itsam Matarca. "
+  "Message(JAPANESE SHIFT JIS): "
+  "ÈøÈÛ¸AÈØÈ§ÈÃ‚q‚}È»¸A‚R‚s¸[Î´ÈÃÈ·È»ÈáÈÛÈ∏‚‰‚Ï¸[È›ÈéÈ±È¿ÈﬂÈÀÈ—Èµ¸I"
+  "‚R‚s¸[Ëåˆ¬ÏçÈ¡ÈéÈÛÈÇÙz¸A˚{Ù˚ÈêÙ¨ÈêÈ°ÈÇÈ±ÈæÈµÈ»¸BÙ¡ÈêËÿÏÊ¸AÊÑˇp¸A"
+  "Ï¸Ï`¸AÈøÈò¸[ÈæÈµÙ∑˚{…lÈ‘È¡ÈéÈ§È±È»‚¸‚b‚Z¸[‚WÙÄÈ›ÈÉÈ¨È¡Èé¸AÈöÈüÈÛÈÛÈÉ¸A"
+  "È§ÈÃÈmÈlÈj…ØÈÕ‚N‚\ÈæÈ©Èá¸BÈ®È»È›ÈêÈrÈmÈjÈÃÈÀÈøÈ¿ÈøÈÖ‚N‚\Ëåˆ¬Èæ¸iÈáÈëÈÛ¸j¸B"
+  "ÈhÈsÈrÈ`Èl¸EÈlÈ`ÈsÈ`ÈqÈbÈ`¸i‚C‚b‚c‚A‚«¸E‚}‚^¸[‚JÈíÙÄÈﬁ¸jÈ§Èí˚˜Ùc¸@˘EÈµÈä"
+- What is the connection between UPL/SNK/NMK?!?
+- Sound messges:
+  "Space Battle Ship "GOMORRAH"(TM). Copyright(C)1990 UPL COMPANY LIMITED. "
+  "Under the copyright laws,this The hardware or The software may not be "
+  "copied,in whole or part. Understand?? Music & Effect by Yoshio Nagashima.  "
+- Added Bio Ship Paladin. Playable, no sound, not sure about one of the bg layers.
+- Drive Out == Drift Out bootleg
+- Blomby Car == ?? bootleg ?? (driving)
+- Magix == ?? bootleg ?? (puzzle)
+
+20-02-99:
+
+- Added good Ashura Blaster 68k roms. Easy.
+- Rotated Ashura Blaster screen.
+- Added Garmedes, easy, but one rom is partially corrupt :(.
+
+19-02-99:
+
+18-02-99:
+
+- Improved the 'mapped' colour mappers so they look (always) correct without vsync.
+  Most emus do this, which is a good thing (vsync is slow). For an example, try
+  blood bros without vsync on raine 0.18 and now on the new raine... Or try F3-system
+  games or many other games...
+  eg. On Blood Bros, the screen fades don't look so nice with raine 0.18 + no vsync,
+      but now they don't flicker anymore, so vsync can be turned off!
+
+17-02-99:
+
+- Changed some things in Top Speed (still not very good).
+- Changed Rastan to use Hiroshi's MSM5205 emulator. Reduced volume of YM2151 in
+  Taito games.
+- Tried to change Operation Wolf to MSM5205, but there is a problem, because the
+  code does not support more than 1xMSM5205... I will ask Hiroshi (if I see him).
+- Added Saint Dragon dsw.
+
+16-02-99:
+
+- Changed Rainbow Islands and Rastan from single asm code to the generic asm
+  stuff. I expected them to get slow but they actually got a few frames faster!! :).
+  rainasm.S and rastasm.S are now removed...
+- Changed Jumping Islands to generic taito asm, jumpasm.S is now removed too...
+- Added Top Speed/Full Throttle (not playable). The roms are complete, it's just
+  there is a lot of garbage code left in them. Usually, space is filled with 0xFF,
+  but Taito have been sloppy this time!! :).
+
+15-02-99:
+
+- Added Legend of Makaj dipswitches from Udirnel. Also added end of game spell
+  in cheats.txt. Nice game.
+- Changed sample.c and also removed some now unused stuff. I mainly did this to
+  work out what the code is doing! :).
+
+14-02-99:
+
+- Problem: Ashura Blaster and Battle Shark are both given the same board
+  number (C43) !!... I'm sure one of these games is a different number !!
+- Removed dategen.c and compdate.h. I found the correct method for getting
+  a datestamp: use special compiler __DATE__ and __TIME__ defines.
+- Ported IRA from Amiga to pc. I think I will release it on the weekend :).
+- I didn't hear from Hiroshi for several weeks... I'm worried :(
+
+13-02-99:
+
+- Examine new roms:
+  Wise Guy - Bootleg of Jaleco's Psycho Pigs UXB/Bombs Away(?)
+  R-Shark  - Bootleg of ???
+  Last Day - Bootleg of ???
+  Jal Myst - Jaleco's Alien Command (might be Earth Defence Force 2, I see
+             an EDF logo in the roms...)
+
+- Fix Z80 roms (mz80 changes):
+  Pipi Bibi/Whoopee - fixed
+  Zero Zone         - fixed
+  Operation Wolf    - untested
+  Jumping Islands   - untested
+  Chack n Pop       - fixed
+  Tecmo Games       - untested
+  Taito Games       - fixed
+  Cabal             - untested
+  Darius            - untested
+  L-System Games    - fixed
+  TNZS-System Games - fixed
+  Nichibutsu Games  - fixed
+  Technos Games     - fixed
+  Volfied           - untested
+  Legend of Makaj   - fixed
+  Snow Bros         - silent [some bugs in mz80 as usual I hate mz80!]
+
+- Remake ym3812.c and 3812intf.c, frequency is now supported for hardware
+  emulation.
+- Fixed Zero Zone crash.
+- Made Energy Cheat for Legend of Makaj.
+- Added movement in Arkanoid 2 (no mouse yet).
+
+12-02-99:
+
+- Changed starscream a bit (3-4% faster). starhelp.c is changed too.
+- Speed up tc0100scn (start asm version).
+- Add Growl and Dinorex dipswitches.
+
+11-02-99:
+
+- Converted about more 10 games to use tc220ioc (now they have leds).
+- Fixed a Taito z80 nmi bug in ym2151 games. WantNMI and NMIEnabled *must* be init
+  to 0, so I added tc0140syt_reset().
+- Added tc0140syt_reset() to darius.c (since it uses z80 NMI too).
+- Fixed Silent Dragon a bit (add YM2610, sprites).
+- Added UseLEDS option to raine.cfg.
+- Change liquid Kids to fix(?) missing sounds.
+
+10-02-99:
+
+- Started some generic tc0200obj emulation, this chip changes in many games, so it
+  it hard to make one routine for all games... (without making it very slow)...
+- Fixed layer offsets in Gun Frontier and added scrolling for FG0 layer.
+- Added keyboard leds again and changed the way they are updated, so it is faster.
+- Added coin leds to F3-System games (only tested bubble symphony, but they should
+  all work; something for beta testers to test... heh).
+- Made some generic tc0220ioc (input output controller) emulation. This includes
+  leds for each game I convert (so far: Camel Try, Liquid Kids, Don Doko Don and
+  Taito Tetris) See, these chip numbers are useful, must collect them all :).
+
+09-02-99:
+
+- Speed up apply_volume_16(), apply_volume_8(): Volume does not need adjusting
+  when it is 255.
+- Made Tatsujin 2 sprites a bit more in sync with scrolling (not 100%).
+
+08-02-99:
+
+- Fixed Cybattler and 64th Street missing sound (oops).
+
+07-02-99:
+
+- Removed debug numbers from Mega Blast screen (oops).
+- Fixed background gfx in Rodland extra levels.
+- Started Cheats.txt: List of Cheats and secrets in Raine games.
+- Added good TNZS original romset.
+
+06-02-99:
+
+- Changed some things in lsystem.c, champion wrestler is playable (gfx not perfect
+  and not optimized).
+- Removed coff2exe line from makefile.
+
+05-02-99:
+
+- Fixed some MZ80 problems, changed bank switching in tc140syc.c.
+- Hmm... Raine seems to have fast TNZS emulation now :).
+
+04-02-99:
+
+- MZ80 fixed, so TNZS now works with *fast* bankswitching (no more memcpy!).
+
+03-02-99:
+
+- Added Insector X, TNZS, Arkanoid 2.
+- TNZS spends over 50% of the time just bankswitching (I think I have to make some
+  changes to MZ80...).
+
+02-02-99:
+
+- Changed Operation Wolf to use tc100scn.c.
+- Make tc002obj.c, old-taito object layer chip (Operation Wolf, Cadash, Bonze Adventure
+  etc...). This is not the correct chip name, I just made it up until I have it.
+- Add rotated 270 degrees code to tc002obj.c. Changed Earth Joker, Maze of Flott.
+- Changed Asuka & Asuka.
+- Added Action Replay search (some bugs) and made some new cheats.
+
+01-02-99:
+
+- Added fixed Don Doko Don rom.
+- Added rotated 180 degrees code to tc100scn.c.
+- Change Don Doko Don and Liquid Kids to use tc100scn.c (rotated 180 degrees).
+- Fixed up Knuckle Bash a bit (sound not playing yet).
+- Added rdtsc timer (sys16), more accurate timing, no more dropping to 59fps :).
+
+31-01-99:
+
+- Last minute fixes:
+- Replaced Darius dipswitches (they were missing from Hiroshi source)
+- Change toaplan YM2151 frequency to 3.5 MHz (Jim H told me last night).
+- Readd safety checks in psgintf.c (they got removed by accident when I included
+  Hiroshi source).
+- I got the YM2151 timers to work correctly in snow bros 2 and truxton 2 now!!
+  They sound a *LOT* better now =).
+- Add option to disable rdtsc usage in raine.cfg (since not all x86 clones support
+  it).
+- Cleaned up the timing stuff and fps code.
+- Mario: Please release the new version I send... (just need to add the new .exe).
+- Play on Shark... [Rally Bike *is* supported, but I just got a blank screen and
+  a sfx when I insert coins. New Zealand Story also *is* supported, although I don't
+  have the right romset].
+
+30-01-99:
+
+- Added default epproms in dejap.dat (puchi carat, pb2x, bubble symphony).
+- Move language files to config/language/ dir.
+- Roms should load now, when not running from the raine dir (eg. raine\raine.exe).
+  Removed case 7 from faq (loading from directory...), also changed some lines...
+- Fixed up Raine.cfg.
+- Fixed up new user messages.
+
+29-01-99:
+
+- Repaired Rodland English gfx roms, remind me to send the working set!
+- Rodland Japanese will try to load samples (rl_10.rom rl_08.rom, from either rodland
+  or rodlande archive).
+- Added all Mame cheat codes (JCK from The Ultimate Patchers sent me them, plus a
+  mame-raine cheat converter!).
+- Fix command line for joystick/screenmode.
+- Fix up raine.txt...
+- ...more fixing raine.txt (seems to take forever!).
+
+28-01-99:
+
+- Small speed increase to MS1 Layer drawing.
+- Replace YM2151 timer in ym2151.c (it was removed for mame, but I found it still
+  alive in system-16 sources).
+- Fix some things in mario bug list.
+- Remove some aracorn games: Metal Black, Hit the Ice.
+- Make a list of aracorn games, the unannounced ones are:
+
+  Earth Joker		= Release 2/3 weeks later: 'aracorn pack#2: vertical shootemup games'
+  Gun Frontier		= Release 2/3 weeks later: 'aracorn pack#2: vertical shootemup games'
+  Gun Lock		= Release 2/3 weeks later: 'aracorn pack#2: vertical shootemup games'
+  Kaiser Knuckle	= Release 1/2 weeks later: 'aracorn pack#1: fighting games'
+  Legend of Makaj	= Relese now: It's small and will bring the gamecount to 85
+  Rodland English	= Release now: Rodland Japanese is using the sample roms
+  Violence Fight	= Release 1/2 weeks later: 'aracorn pack#1: fighting games'
+
+- Ok, so we can make 2 releases new with the aracorn games, and there are plenty of
+  aracorn games to finish emulating (metal black, hit the ice, z80 games, z-system games,
+  f3-system games...).
+- I'm annoyed to have to remove these games just a few days before releasing them, esp.
+  Kaiser Knuckle, which has been ready for so long :(. "They *must* be released soon!!$^%˙˙"
+- Did some html changes when checking announced games and moved the advert banner to the
+  top of the page (it seemed in the way) :).
+
+27-01-99:
+
+- Added Eagle 0.41.
+- Added MZ80 2.6, and Plotting is broken.
+- Replace old MZ80 2.4, Plotting works again.
+- Re-fix Pipi Bibi sprites.
+
+26-01-99:
+
+- Add Sample Rate and YM3812 switch in gui (sound setup).
+- Modified sample.c/h, so sample rate can be modified ingame (all sound emulators must
+  be removed and restated to accept the new sample rate).
+- Removed saGetSoundCard(), and a similar part in saInitSoundCard(), because it is never
+  used.
+- Fixed Pipi Bibi bootleg sprite bug.
+- Added Safty checks to: YM2203,YM2610,YM2151 in fm.c. This is a big bug with no soundcard.
+  YMxxxxRead/Write() are called when YMxxxxInit() has not set up (many crashes in pure dos).
+- Added Hiroshi changes (Darius 2 and Ninja Warriors screen fix).
+- Moved safety checks to psgintf/3812intf/2610intf/2151intf... (so fm.c does not need to be
+  modified).
+- Rename CPU_FRAME_KHz to CPU_FRAME_MHz Doh! :).
+- Fixed Tecmo sound, it was just a typing error stopping it working! (F8FF instead of F7FF).
+- Why does the YM2203 emulation seem so slow?...
+
+25-01-99:
+
+- Fixed Interrupt Vectors in Taito L-System. Fixes Plotting test mode, improves Raimais
+  colour fades. Champion Wrestler and American Horseshoes run a bit better too.
+- Added Scrolling to Taito L-System (BG0/BG1).
+- Increase VRAM access range (C000-FDFF).
+- Fixed American Horseshoes colours.
+
+24-01-99:
+
+- Added Rodland English. Some gfx roms are corrupt, so I will fix them using Rodland
+  Japanese... Changed a bit MS1SetSoundCPU().
+- Added Final Blow good sample roms.
+- Change some Cabal, Astyanax dipswitches.
+- Hacha Mecha Fighter looks like the is some kind of protection.
+
+23-01-99:
+
+- Fix priorities in vertical toaplan 2 games (it was a typing error).
+- Increase MC68000 speed to 20MHz in toaplan 2 games.
+- Added (hopefully all) Hiroshi changes up to 17-Jan-98. replaced F2 Port Colour RAM
+  with Hiroshi version (more compact) :). I will check layer offsets in Growl soon...
+  Note the new files for tc0100scn and tc0140syt emulation, many game drivers have
+  changed now to use tc100scn.c... Thanks! :).
+
+22-01-99:
+
+- Add M6295 bankswitch for toaplan 2 (only needed for Snow Bros 2, Knuckle Bash
+  has only 1 bank, Truxton 2 has 2 banks, but second bank is all empty).
+- Changed Dipswitch code to support more than 2 dipswitches (current max is 3, for
+  toaplan 2 games).
+- Compile release test version (remove HACKS, HACKS_SOUND, BGAMES).
+
+21-01-99:
+
+- Merged Snow Bros 2, Tatsujin 2, Pipi Bibi and Whoopee into toaplan2.c/h.
+- Fixed up stuff on toaplan2 games. This file is getting as large as megasys1.c...
+- Started to add Knuckle Bash.
+- More toaplan2 fixes.
+
+20-01-99:
+
+- Mario needs to resend pgoal_22.rom :(.
+- Mario needs to resend kbash06.bin :(.
+- Added Tatsujin 2...
+
+19-01-99:
+
+- Changed some more games to tc100scn.c, improved tc100scn.c.
+
+18-01-99:
+
+- Place taito sound comm code in tc140syt.c/h.
+- Start to place screen layer code in tc100scn.c/h.
+- Add multiple tc0100scn chip support for F1-System (Thunder Fox). Priorities are wrong.
+- Added some other games to use tc100scn.c. Some games should be better now (eg. game
+  end in Cadash).
+
+17-01-99:
+
+- Added Earth Joker. Hardware is by Taito, game is by Visco. Please look for more Visco
+  games! :). The Amuse emulator already plays music from Earth Joker and Garmedes, so
+  I am looking for Garmedes roms...
+- Merged Maze of Flott with Earth Joker.
+- Added P47USA, uses some roms from P47J folder/ziprom.
+- Work on Grid Seeker, sprite roms are strange, but they seem ok.
+- Work on Kyukyoku Tiger 2. The 1MB gfx roms might be corrupt (second 512kb), the 2MB ones
+  seem fine.
+
+16-01-99:
+
+- Add new ym3812 source from Carl. Add ym3812 sample loading (roms/ym3812, ziproms/ym3812.zip
+  etc... just like another game romset).
+- Ugh! Is it my modem or...? I cannot connect at all, error: no dial tone... but the telephone
+  is working normally, so where is the problem... :(.
+- Add J-Rom information to Taito Chip List.
+- Disassemble some roms ready to emulate (Earth Joker, Grid Seeker, Kyukyoku Tiger 2, P47 USA).
+
+15-01-99:
+
+- Added Shingen fixed rom.
+- Increase Shingen music speed (8 ints/frame to 24 ints/frame).
+  Jaleco music speeds are done by YM2151 timerA, but timers don't work yet... :(.
+- Added third button to Shingen (buttons are attack left, attack right, jump).
+- Test more games...
+- Fix Warrior Blade colour ram port access.
+- Fix Darius2, Ninja Warriors colour ram port access.
+- Add more stuff to translation file.
+
+14-01-99:
+
+- Add addgames.c from Hiroshi, I renamed it to games.c and placed it in source/games/
+  What is the error with Japanese Win98/DOS? Djgpp error??...
+- Remade gamelist, remove AddGame() calls.
+- Add Company ID to gamelist.
+- Add sorting to gamelist.
+- Add new Hiroshi sources (M6295, Jaleco sound etc...).
+- Add Jim H. Jaleco sound fixes.
+- Repair Final Blow sprite colour mapping.
+- Fixed Operation Wolf bootleg crash, also changed screen size to 320x240.
+- Fixed Chack'n Pop crash. Game is protected, so I'm not looking at it now.
+- Add option to dump gamelist.txt (raine -gamelist).
+- Did some testing, see release.txt.
+
+13-01-99:
+
+- Fix sprite colours in Battle Shark.
+- Get Hiroshi source.
+- Add Whoopee (not playable yet). J-Rom's dump is an original, dump.it's version is a
+  bootleg (Ryoutou Kikaku is a bootleg company).
+
+12-01-99:
+
+- Compile Allegro 3.1 release version. No changes in raine code.
+- Added Snow Bros 2, the video hardware is actually quite similar to Pipi Bibi! :).
+
+11-01-99:
+
+10-01-99:
+
+- Added Ashura Blaster, everything is working, except the broken rom is causing problems!! :(.
+- Added Maze Of Elott.
+- Fix up gfx in Maze of Elott, change to correct name: Maze of Flott.
+- Worked out stuff about Volfied C-Chip. It is used for colour operations, and holds 90%
+  of the sprite colours... :(.
+
+09-01-99:
+
+- Ashura has a bad rom, ashura31.bin should be 128kb, the info.txt even says it should
+  be 128kb, so how come it is only dumped 64kb long?!?!??? Doh.
+- Added American Horseshoes, merged L-System code. See lsystem.c/h for Raimais, American
+  Horseshoes and Plotting.
+- Added Champion Wrestler to L-System. Have some gfx (tile banking) problems, same as
+  American Horseshoes (this is why I *hate* Z80 and 8-bit hardware!)... :).
+
+08-01-99:
+
+- Changed back to old Starscream (cadash works again... hmm...).
+- Fixed Cadash, changed to new Starscream again, but with some old code i made (I'm not
+  sure what the exact problem is, just that writelong is not 100% working in starscream
+  0.25, I've wasted too much time on this bug for now).
+- Add 32 byte buffer to Technos Sound Comm.
+
+07-01-99:
+
+- Added layer disable for camel try rotation layer.
+- Added coin leds to camel try, but it seems set_led() is really slow... So I
+  removed it for now. The keyboard controller wastes too much time responding. PC's suck!!
+- Added YM2610 for Space Gun.
+- Changed some more colour mappers.
+
+06-01-99:
+
+- Add Hiroshi code (old: fm.c; new: megasys1.c sound etc...).
+- Send source and beta, Mario: Don't release this beta, release the one from Saturday plz :).
+- Added Cadash Italian.
+- Put some other colour mappers in palette.c.
+- Put generic routines for taito colour ports in f2system.c.
+- Some code cleaning in some taito games, increased final blow screen height to 224,
+  speed up camel try drawing.
+
+05-01-99:
+
+04-01-99:
+
+- Add rtdsc profiling code (press F11 some times). Probably crashes mario's pc! :).
+- Add faster code for ingame 6x8 text (was allegro textout).
+- Removed ssiasm.s (since it was only clearing screen).
+
+03-01-99:
+
+- Added rom banking support in m6295.c/h, removed okiadpcm.c/h.
+- Please note changes in m6295 and m6295 interface (has 2 rom bank entries). Is this
+  ok?
+- Added Tecmo sound (currently silence, hmm...).
+- Did some asm for Zoop (meka emulator).
+
+02-01-99:
+
+- Added Seal 1.06 (release version?).
+- Fixed Snow Bros missing sound with software ym3812.
+- Very strange bug, I can't seem to leave the castle in Cadash anymore!?!!!? :(.
+
+01-01-99:
+
+- Change YM3812 games (add Dead Serious Clan engine and opl/software switch in
+  raine.cfg).
+
+31-12-98:
+
+30-12-98:
+
+29-12-98:
+
+- Added Raimais.
+- Fixed 64th Street sprites (it was a typing error). Also fixed 64th Street samples.
+- Add Cheat code for Camel Try (I need it!) :).
+- Start Tetris 2 Plus (MegaSystem-32? 68000 or 68020?).
+- Made some scrolling macros.
+
+28-12-98:
+
+- Added new z80 sound rom to Thunder Fox.
+- Added Don Doko Don, this game uses a zooming and rotating layer, like Camel Try and
+  Drift Out. Needs some work. Also, one gfx rom is *corrupt* all odd bytes are 00 in
+  b95-03.bin :(.
+- Fixed a bug in Screenshot saving (oops, Mario wont be able to make screenshots).
+- Fixed rotation colours in Don Doko Don.
+- Fixed rotation colours in Camel Try.
+
+27-12-98:
+
+- Added most Hiroshi changes. Volume+Panning changes, Darius2+NinjaW sprite fix etc...
+  Did not have time to change fm.c or other files yet (sorry).
+- Changed Joysticks to new Allegro id's (they were probably broken in the last beta).
+
+26-12-98:
+
+- Fixed some gfx on Camel Try. Playable now, use mouse or keyboard (I prefer keyboard).
+- Changed some games that have to clear screen each frame (ssi, camel try, superman etc).
+
+25-12-98:
+
+24-12-98:
+
+- Added Battle Shark.
+- Fixed some gfx on Dead Connection.
+- Fixed some gfx on Metal Black, Gun Frontier.
+
+23-12-98:
+
+- Change sprite order in Asytanax.
+- Another small change to colour mapping code.
+
+22-12-98:
+
+- Small change to colour mapping code.
+
+21-12-98:
+
+20-12-98:
+
+- Changed to Allegro 3.1 alpha.
+- Remade Screen Selector and Config File for new Allegro display mode id's. Now
+  use MODX/VB30/VBAF etc... instead of 0,1,2,3 etc...
+
+19-12-98:
+
+- Added Astyanax, there seems something strange with the M6295 roms, maybe the
+  hardware can swap the M6295 roms around?
+- Added Puzzle Bobble 4 new romset. BG priorities are not right ingame.
+- Changed MS1 Sprite Chain cache a bit.
+- Ugh! My Battle Shark archive is corrupt... Mario needs to resend: BShark04.rom.
+
+18-12-98:
+
+- Arghh!! My birthday sucks!! :(
+- Changed Zero Zone to Hiroshi's M6295 emulator. Not sure about M6295 frequency.
+- Added M6295 to Taito YM2203. Also not sure about frequency, ask Hiroshi...
+
+17-12-98:
+
+- Add all new sources from Hiroshi: sound changes, streaming oki/m6295 emulator, many
+  sound improvements (see: changes-hiro-shi.txt)!
+- Added pcmrom loading to all games in megasys1.c. Not all tested yet.
+- Added romsize to m6295 interface, and different rom decode routine, some roms
+  like kick off had problems decoding samples...
+- Moved sample.c/h to sound dir.
+- Cleaned some gfx code in MS1.
+- Reset PCMROM to NULL in default.c (PCMROM is freed with resetmemorypool() in
+  default.c, so not needed in every cleargame(). Ok?
+- Updated raine.cfg template, added darius sound settings, sorry for delay.
+- Merged MS1 sound68000 memory map add.
+
+16-12-98:
+
+- Keeps crashing all the time (ziproms keep failing, keeps crashing on exit).
+  DJDev202 and Allegro problems, it seems:
+
+  * calling free() with NULL, or already free memory is not safe in new djgpp.
+  * using push/pop_config_state() in allegro is not completely safe.
+
+- Ziproms still fail...
+
+- Added new internal Zip support using the zLib extension MiniZip:
+  http://www.winimage.com/zLibDll/unzip.html
+  This is NOT ripped from mame ;).
+
+- Fixed Cup Final freeze.
+- Added music for Violence Fight and moved to generic routine in taitosnd.c
+  (B System YM2203=Hit the Ice, Master of Weapons, Violence Fight).
+- Added bank switch for B System YM2203.
+- Converted Jumping Islands sound to software YM2203 (sound better and support
+  both ym2203's). Currently, Ishmair's ym2203.oa is not in use, but I didn't
+  remove it yet.
+
+15-12-98:
+
+- Started translation files support with new allegro routines.
+
+14-12-98:
+
+- Added Volfied, not very playable yet.
+- Added DJDev202 and Allegro beta 15th Nov.
+- Removed duplicate Avenging Spirit in gamelist, oops.
+
+13-12-98:
+
+- Added Camel Try, not playable yet.
+- Added Chack'n Pop.
+
+12-12-98:
+
+- Added Puzzle Bobble 2x, works first time :).
+- Volfied has a C-Chip!! :(.
+
+11-12-98:
+
+- Various Jaleco fixes.
+
+10-12-98:
+
+- Fixed BG0-BG1 Priority (Phantasm/Avenging Spirit).
+- Doubled Cybattler music speed (correct?).
+- Changed some palette mappers to generic, single filed Ninja Gaiden and Tecmo Knight.
+
+09-12-98:
+
+- Fixed up Bubble Bobble Symphony gfx and stuff.
+- Fixed Bubble Memories to run at correct speed (it was too slow).
+
+08-12-98:
+
+- Added Legend of Makaj, with sound (Z80, YM2203). Hardware is a primitive MS-1.
+- Fixed up Cybattler and 64th Street gfx a bit. Added Sound.
+
+07-12-98:
+
+- Jaleco improvements:
+  Fixed Gfx rom mapping on Kick Off sprites and P47 BG0/1 layers (big ship appears).
+  Added BG0 colour bank swap. For Earth Defence Force and bits of Phantasm. Not 100%.
+  Added Sprite:BG1 Priority, for many games. Saint Dragon (dragon goes behind trees),
+  EDF (sprites 'flicker' behind clouds), P47 (bullets go behind hills).
+
+06-12-98:
+
+- Fixed Sprite Banking in Growl and Ninja Kids. Info from Brad Oliver.
+- Added Bubble Bobble Symphony!! (Taito F3-System).
+- Added Earth Defence Force (Jaleco MS1-Hybrid).
+- Added Shingen (Jaleco Protected MS1, Saint Dragon protection).
+- Examined Top Speed, looks like a 3 screens chase hq style game, 2x68000 with
+  z80 ym2151 adpcm. Unfortunately, the main 68k roms are dumped too small...
+  B14-23 and B14-24 should both be 128kb :(.
+
+05-12-98:
+
+- ym2203 sounds different in Plotting with new sound system. Is this correct?!
+  Hiro-shi: Is new ym2203 more accurate than old one?
+- Tried to slow down Plus Alpha. Now some parts are too slow... :(.
+
+04-12-98:
+
+- Added Hiro-Shi game changes: Darius, Darius 2, Rainbow Islands, Warrior Blade...
+  Test new sound system, Mega Blast sound dropped from 71fps->62fps... Hmm...
+- Replaced ym2151.c with faster version (sounds the same anyway).
+- Changed all YM2610 games to set sample rom sizes and buffers. Moved setym2610buffers()
+  out of fm.c and into taitosnd.c.
+- Changed rom size safety checks in ym2610 (now fm.c). Do the checks before playing
+  adpcm, for speed.
+
+03-12-98:
+
+- Changed all BG0 Solid tile buffers to single routines MakeSolidTileMap8x8(),
+  MakeSolidTileMap16x16() (less code, smaller exe).
+- Added Hiro-Shi new sound system :).
+
+02-12-98:
+
+- Changed more games to generic palette code.
+- Made some minor changes to Chase HQ and similar hardware.
+
+01-12-98:
+
+- Xmas is coming!
+
+30-11-98:
+
+29-11-98:
+
+- Moved gfx related files to a seperate dir (video).
+- Fixed some F3 System eeprom hacks. Kaiser Knuckle rom version switch to Gloabl
+  Champion.
+- Moved pre-compiled object files to seperate dir (compiled). Also changed file
+  names: xxx.o -> xxx.oa (Hiro-Shi).
+- Changed most F3-System games to be more generic. Made generic routine for solid
+  tile checking, as nearly all games use this code.
+
+28-11-98:
+
+- Some Jaleco changes.
+
+27-11-98:
+
+- Finished fixing Gun Lock, added romswtiches (different title screen: Ray Force).
+
+26-11-98:
+
+- Tales of Phantasia.
+- Put some colour mappers in palette.c, instead of having them in the game files.
+- Started to change raine.txt for another release...
+- Added Sound only frame for some games, this allows music to continue playing when
+  a game is paused! :).
+
+25-11-98:
+
+- Changed 68020 code a bit, no speed change?
+
+24-11-98:
+
+- Made Rainbow Islands Extra have some correct sprites. Unfortunately the c-chip
+  data is not all the same as Jumping Islands/Rainbow Original.
+
+23-11-98:
+
+- Finished Comba Tribes. It seems to be missing an end sequence (because it's
+  a bootleg?).
+- Cut Comba Tribes roms to correct sizes.
+
+22-11-98:
+
+- Added corrupt puzzle bobble 4 sprite roms. It's playable, but it looks messy.
+  Also there are 1 (or 2) pb4 roms totally undumped! :(.
+- Fixed bug causing Rainbow Islands to crash. A typing error, made by me :(
+  sorry...
+- Started gfx emulation for Comba Tribes.
+- Added more Darius dipswitches (from mutewitness).
+
+21-11-98:
+
+20-11-98:
+
+19-11-98:
+
+18-11-98:
+
+- Mario RPG on zsnes beta =)...
+- Some more optimizations to YM2610. (Mega Blast sound test, song $0C:
+  62fps -> 71fps).
+
+17-11-98:
+
+- Fixed up Pipi Bibi/Whoopee and added Z80+YM3812. Every 4 levels, you get
+  to see a 'naked' girl! But press F7 to disable sprites and you find they
+  seem to be missing their pussies (not drawn in)!! hehe :).
+
+16-11-98:
+
+- Added support for oki rom banking (Double Dragon 3, WrestleFest).
+- Added support for multiple oki chips (MegaSystem-1, will need it).
+- Removed Atomic Point, it's Sega hardware (System 16 emu).
+
+15-11-98:
+
+- Added Puchi Carat, works very well.
+- Fixed up most of Gun Lock.
+- Compiled in new Allegro and Seal betas. Changed SNESPad support, beacuse
+  it's now provided in Allegro :).
+- Doubled music speed in Terra Force and Armed Formation, Jim Hernandez said
+  it should be twice what it was in 0.16a.
+
+14-11-98:
+
+- Added Cabal roll buttons.
+- Fixed up most of Gun Front, quite a cool game.
+- All the Jaleco roms are 100% deprotected now, btw :).
+
+13-11-98:
+
+- Fixed YM2203 missing channels (Problem with SetVolume[] and SetPanning[]
+  being uninitialised...).
+- Fixed some things in Plotting (more fg0 gfx, hack for palette, speed hack).
+- Pulirula fixed itself somehow :).
+- Moved all saUpdateSound(60). saUpdateSound(60) is called now for every game
+  after executegameframe().
+- Corrected P47j BG1 tiles.
+
+12-11-98:
+
+- Added all Hiro-shi code, some problems:
+ . Pulirula has some wrong adpcm (fixed by recompiling)
+ . YM2203 missing channels (Plotting, Hit the Ice etc...) (fixed)
+
+11-11-98:
+
+- Started the remaining Jaleco games: Cybattler, 64th Street (MegaSystem-2?).
+- Started Jaleco Samples (Saint Dragon). Rodland might be missing sample roms?
+- Added Pulirula and Warrior Blade sample fixes from Hiro-shi :). Will try to add
+  all Hiro-shi code tomorrow...
+
+10-11-98:
+
+- Improved Jaleco emulation, most games are playable and look good.
+
+09-11-98:
+
+- Added Starscream 0.25.
+- Added part-deprotected Plus Alpha and Hachoo.
+- Added Avenging Spirit... It's the English version of Phantasm!
+
+08-11-98:
+
+- Found FG0 gfx in Plotting and added a gfx cache for them.
+- Began decoding Hachoo and Plus Alpha... Also improved Phantasm a bit
+  (no crashes, but not yet playable).
+- Added some Darius DSW settings.
+- Added some extra lines to the stretched 256x240 code for safety.
+- Examined CPS-2 SF2A, it has encrypted 68k opcodes and immediate data,
+  but other data is unprotected... Looks like more than bitswapping though.
+- Added 12 new vesa modes: 640x100/120/150/160/200/240 800x150/200/300
+  1024x192/256/384. Some useful modes for 2/3 Screen games! :). Thanks to
+  Dark Force.
+
+07-11-98:
+
+- Added Richard Mitton's excellent Plotting driver :).
+- Changed Plotting to software YM2203 engine.
+
+06-11-98:
+
+- Added some Jaleco games:
+  Saint Dragon (playable; not fully deprotected yet)
+  Phantasm (not playable; not fully deprotected yet)
+  P47J (playable, some bg gfx wrong)
+  Kick Off (nearly playable)
+
+- Rodland sound comm fixed, proper music speeds and sound effects.
+
+05-11-98:
+
+- Damn!! There is some more protection on the Jaleco roms (some parts switch to a
+  different bitpattern, so I have to work out this other combination and also how
+  it decides where to use the different pattern. Also, there could be many more
+  combinations, this is getting very nasty!) :(...
+- 100% deprotected the other bitpattern in Saint Dragon and Phantasm. Worked out
+  how it switches between patterns (I think). It looks 100%, I really hope it is.
+- Arghh!!! It's got more patterns, another 2, and quite possibly another 4 on top
+  of that :(. They are also a lot harder to work out, because of the position in the
+  rom :(.
+
+04-11-98:
+
+- Progress in Tales of Phantasia again...
+- 100% deprotected 2 of the Jaleco roms (Saint Dragon and Phantasm)!! Yeah!! I'm
+  so cool :) hehe. There are 2,004,189,184 possible combinations for the protection
+  in these games, maybe I should look at those cps-2 games :).
+
+03-11-98:
+
+- Compiled with new Allegro beta. No major changes, but joysticks should be fixed
+  (eg. zsknight's gamepad problem).
+- Changed Double Dragon 3, Wrestle Fest, WWF Super Stars sound emulation. Added
+  YM2151, Z80 and more accurate samples. Also for Comba Tribes.
+- Wrote quick OKI ADPCM emulator. An easy chip to emulate.
+- Started Comba Tribes, I guess it was 'Technos Tuesday' today :).
+
+02-11-98:
+
+- Changed the way Zero Zone samples are emulated. OKI ADPCM.
+
+01-11-98:
+
+- Rotated Gun Front, but it still needs more fixing.
+- Added Puzzle bobble 4, seems to be working fully, except the missing gfx and
+  sound roms... sigh...
+
+31-10-98:
+
+30-10-98:
+
+- YM2610 about is 8 fps faster (Mega Blast sound test, song $0C: 54fps -> 62fps).
+
+29-10-98:
+
+- Ripped the Fullscreen 256x240 mode from FWNES98.exe :).
+
+28-10-98:
+
+- Fixed up Asuka.
+- Optimized YM2151 code. Also took out the multiple YM2151 support, because we
+  have no dual YM2151 games. Test on Rainbow Islands showed increase of 8 fps
+  (78fps -> 86fps).
+
+27-10-98:
+
+- Fixed up Gun Lock (not completely). Rotated the screen.
+- Added Rambo 3; playable with sound, but need to add sprite zooming.
+- Looked at Under Fire, it's not F3-System compatible, different gfx hw.
+- Added Asuka & Asuka; playable with sound, but need to tidy it and add samples.
+
+26-10-98:
+
+25-10-98:
+
+24-10-98:
+
+- Fixed Puzzle Bobble 2, oops!
+- Fixed SnowBros/Winter Bobble sound (hopefully for good).
+- Added sample support to Nichibutsu games (Armed Formation, Terra Cresta, Terra Force).
+- Made some .txt changes/config file changes for the release.
+- Looked at Jaleco roms (Mega-System and others), and half of them have protection! :(.
+
+23-10-98:
+
+- Changed Bonze Adventure/Jigoku to YM2610. J-Rom's readme said it was YM2203, but
+  it's actually YM2610...
+- Added Banking in Hit the Ice Z80, done via the YM2203, like the weird YM2151 ones.
+- Fixed missing cars on Crime City Level 2.
+- Fixed Rodland Scrolling (really annonying, but obvious).
+- Fixed lots of things not worth mentioning.
+
+22-10-98:
+
+- Finished the 68020 optimizations (for now) and fixed some bugs. Better test every
+  game, so far I've tried:
+  Bubble Memories, Puzzle Bobble 2, Puzzle Bobble 3, Cleopatra's Fortune, Arkanoid
+  Returns.
+- Merged Taito YM2151 into generic routines (like the YM2610 routines), also added
+  the weird bank switching (very weird, it goes via $1B on the YM2151, I wonder how
+  Hiro-Shi found it...). I changed it slightly to Hiro-Shi's version, as I don't like
+  to add it in the YM2151 source, or it will get hard to implement new versions of
+  the YM2151 files (ym2151.c/fm.c), so I put it in taitosnd.c.
+
+21-10-98:
+
+- Tried Puzzle Bobble 2, the semi-asm 68020 core really is an improvement! :)
+- Added improvements to the DSW dialog: shows the dipswitch bits, an idea that I
+  got from tnzs-final :). Also, an option to reset the dipswitches to the 'factory
+  settings'.
+- Added MZ80 2.4, nothing seems better or worse at the moment (Liquid Kids still
+  crashes).
+
+20-10-98:
+
+- Some hacking on the Ensoniq OTIS and 68000 rom...
+- Joystick in gui (untestable by me)...
+- Gun Front, Gun Lock, Under Fire and Riding Fight added (probably not playable yet).
+
+19-10-98:
+
+- Lots of hacking with the UAE68020 core, it's much faster now and in asm. Can never
+  be as good as writing an asm core from scratch (or based on Starscream), but it's
+  quite a lot faster than it was. Must make some speed tests to compare it, but I'm
+  getting 90fps on arkanoid returns intro screen (on a p120, with vsync and limit speed
+  off).
+
+18-10-98:
+
+- Added Arkanoid Returns (playable, but have to go to test mode to switch to joystick
+  control first).
+- Removed Prefetch buffer macro from 68020 core (waste of space, unused in our version).
+
+17-10-98:
+
+- Changed back part of YM2610 (adpcm channel 6).
+- Fixed Missing Sprites in Kaiser Knuckle (dumb error, also found it in 5 other
+  F3-system games).
+
+16-10-98:
+
+- Fixed Starscream bug/missing feature with 24-bit pc getting used as 32-bit, some
+  games leave junk in the top byte (Fixes Pulirula).
+- Tidied Thunder Fox a bit (need to find bg priorities and needs line-line scroll).
+- Fixed Pulirula gfx (changed to the compressed palette code), removed masking sprite
+  (title screen fix).
+
+15-10-98:
+
+- Renamed West Side to West Story.
+- Fixed West Story Sprites (old gfx are ok, just the format is weird! oops).
+- Added West Story Controls, Dipswitches (assume DSW are the same as Blood Bros).
+- Fixed the Sound Clicking problem (increased number of sound buffers). It seems
+  fixed, I really hope it is :).
+- Started sound options in gui.
+
+14-10-98:
+
+- Added Dipswitch information to Terra Cresta and Terra Force.
+- Added Layer disable on Armed Formation (BG0,BG1,SPR,FG0).
+- Changed Armed Formation screen size (seemed too wide).
+- Rewrote Command Line code and put it in a seperate file (config.c). Still
+  lots of missing options.
+- Added missing BG1 layer in Terra Force, layer disable (BG0,BG1,SPR,FG1) and
+  Sprite-BG1 Priorities.
+- Fixed Armed Formation BG0,BG1 colours and gfx.
+
+13-10-98:
+
+- Lots of progress in Tales of Pantasia on zsnes, I've been lazy and done no
+  coding tonight!
+- Added 512x386 resolution in Screen Selector.
+
+12-10-98:
+
+- Added YM2151 and samples in Cabal.
+- Changed the memory handling in 'newmem.c', now it keeps track of all.
+  memory resources allocated using 'AllocateMem' and frees them automatically,
+  so there is no need to put 'FreeMem(ROM/RAM/GFX/SMP/PCMROM/etc)' in ClearGame()
+  Should make the .exe smaller and the drivers are simpler...
+- Added good version of Dynamite League gfx roms.
+
+--------------------------------------------------------------------------------

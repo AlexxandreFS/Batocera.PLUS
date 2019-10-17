@@ -1,0 +1,63 @@
+## SYSTEM OPENBOR ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted: ".pak .PAK"
+-------------------------------------------------------------------------------
+﻿OPENBOR FOR BATOCERA
+
+O que é o OpenBOR? É um mecanismo de jogos “engine” baseado no jogo Beats Of
+Rage. Com ele é possível executar diversos jogos distribuídos livremente
+pela internet.
+
+Basicamente com ele você vai poder executar jogos que utilizam esta engine no
+Batocera.PLUS para rodar jogos 2D no estilo “Tretinha”.
+-------------------------------------------------------------------------------
+ROMS, SAVES, SCREENSHOTS E LOGS
+
+Local dos arquivos usados pelo OpemBOR
+
+ROMS:        share/roms/openbor
+SAVES:       share/saves/pc/openbor.
+SCREENSHOTS: share/screenshots
+LOGS:        system/logs
+-------------------------------------------------------------------------------
+JOGOS (ROMS)
+
+São aceitos jogos com extensão .pak
+O formato pak é um arquivo compactado no formato pak. Se se você baixar algum
+jogo descompactado utilize o programa BorPak para compactar o jogo.
+
+Existe uma versão deste programa nesta pasta feito para funcionar no
+Batocera.PLUS, mas você também pode encontrar uma versão para windows
+pesquisando pela internet.
+-------------------------------------------------------------------------------
+CONFIGURAÇÕES DE JOYSTICK
+
+Não exite uma configuração padrão para todos os jogos haja visto que cada
+desenvolvedor de jogo para o OpenBOR cria seu padrão de configuração, mas os
+controles são configurados facilmente no memu do jogo que está em execução,
+depois que entrar pela segunda vez no jogo tudo já estará configurado.
+-------------------------------------------------------------------------------
+AGRADECIMENTO
+
+Este projeto aconteceu devido a uma conversa com um membro do grupo
+“Batocera linux (recalbox x86)” do facebook “Adriano de Souza” foi por meio dele
+que percebi o potencial desta fantástica engine para o Batocera.PLUS
+
+Algum tempo depois comecei fazendo diversas tentativas até que em uma delas obtive
+êxito, logo em seguida foram testes e mais testes até chegar em uma versão estável
+do programa.
+
+Deixo os meus sinceros agradecimentos a este brilhante criador de compilações do
+Batocera por sua dedicação para que este projeto fosse possível.
+-------------------------------------------------------------------------------
+SOBRE
+
+Integrado ao Batocera.PLUS por:
+Alexandre Freire dos Santos (alexxandre.freire@gmail.com)
+
+Agradescimentos Especiais:
+José Adriano de Souza (joseadrianotec@gmail.com)
+
+Esta compilação foi criada baseada no código fonte do projeto disponível em:
+https://github.com/DCurrent/openbor
+-------------------------------------------------------------------------------

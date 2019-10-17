@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Raine : NeoRaine</title>
+<link rel="STYLESHEET" type="text/css" href="/html/css/default.css"><link rel="SHORTCUT ICON" href="/html/gfx/favicon/grapes.ico">
+</head>
+<body>
+<!-- logo table -->
+<div align="center">
+<table cellpadding="0" cellspacing="0" class="maintable" width="100%" summary="">
+<tr>
+<td width="10%" valign="bottom">
+</td>
+<td width="80%" valign="bottom">
+<!-- raine logo and banner -->
+<p align="center">
+<br>
+<br>
+<a href="/" target="_top"><img src="/html/css/default/gfx/logo.gif" width="357" height="138" border="0" alt=""></a><br>
+<br>
+<br>
+</p>
+</td>
+<td width="10%" valign="bottom">
+</td>
+</tr>
+</table>
+</div>
+<!-- main table -->
+<div align="center">
+<table cellpadding="0" cellspacing="0" class="maintable" width="100%" summary="">
+<tr>
+<!-- link bar left -->
+<td width="10%" valign="top" align="center">
+<small>
+<a class="flashlink" href="/html/download/latest.html" target="_top"><img onMouseOver="this.src='/html/css/default/gfx/icon32/downloads_select.png'; return true;" onMouseOut="this.src='/html/css/default/gfx/icon32/downloads.png'; return true;" src="/html/css/default/gfx/icon32/downloads.png" width="40" height="40" border="0" alt=""><br>Downloads<br></a><br>
+<a class="flashlink" href="/games/" target="_top"><img onMouseOver="this.src='/html/css/default/gfx/icon32/games_select.png'; return true;" onMouseOut="this.src='/html/css/default/gfx/icon32/games.png'; return true;" src="/html/css/default/gfx/icon32/games.png" width="40" height="40" border="0" alt=""><br>Games<br></a><br>
+<a class="flashlink" href="/rainedoc/" target="_top"><img onMouseOver="this.src='/html/css/default/gfx/icon32/docs_select.png'; return true;" onMouseOut="this.src='/html/css/default/gfx/icon32/docs.png'; return true;" src="/html/css/default/gfx/icon32/docs.png" width="40" height="40" border="0" alt=""><br>Docs<br></a><br>
+<a class="flashlink" href="/msgboard/yabbse/index.php" target="_top"><img onMouseOver="this.src='/html/css/default/gfx/icon32/forum_select.png'; return true;" onMouseOut="this.src='/html/css/default/gfx/icon32/forum.png'; return true;" src="/html/css/default/gfx/icon32/forum.png" width="40" height="40" border="0" alt=""><br>Forum<br></a><br>
+<a class="flashlink" href="/zzapraine/" target="_top"><img onMouseOver="this.src='/html/css/default/gfx/icon32/zzapraine_select.png'; return true;" onMouseOut="this.src='/html/css/default/gfx/icon32/zzapraine.png'; return true;" src="/html/css/default/gfx/icon32/zzapraine.png" width="40" height="40" border="0" alt=""><br>Zzap! Raine<br></a><br>
+</small>
+</td><td>
+<table width="100%" border="0" cellspacing="10" summary="interface"><tr align="center"><td><a href="latest.html">Latest version</a></td>
+<td><a href="extras.html">Extras</a></td>
+<td><a href="old-versions.html">Old versions</a></td>
+</tr></table>
+<p align="center"><font class="date">Why a neocd emulator using the raine engine ?</font></p>
+<ol>
+<li>A few years ago, I worked on neocdpsp, a neocd emulator for the psp. And
+after a while I wanted to run this in linux, and by the way finish the
+emulation which was never completely finished at that time...
+<li>There is no decent neocd emulator for linux (and don't tell me to run it in
+wine !)
+<li>Neocd is about running some of the best neogeo games, with cd-quality
+music. I noticed last summer that a few neogeo games were running very badly on
+a 1 Ghz computer pluged to a tv, so it could be interesting to have a fast one
+for a change...
+</ol>
+<p align="center"><font class="date">Status</font></p>
+The emulator had to support the format supported by the psp for the games, that
+is a zip for the game files, and some mp3s for the music. Neoraine also
+supports a few other formats listed further in this doc, but if you try to use
+an original neocd cd, it will run the game without music ! That's because I
+don't support cd music, mainly because I have no easy way to play an audio cd
+in linux with sdl and hear something (the cdrom drive has no cable to the sound
+card), and there is no way to play it digitaly. So you'll have to rip the cd in
+this case, more about this later.<br>
+<br>
+The emulation is fast, but it doesn't try to emulate the raster effects. As a
+result, "riding hero" is unplayable because they simulate 3d effects using
+raster interrupts in this game. There might be a way to emulate this without
+slowing down too much, but sorry I don't have the motivation for this now (and
+ridhero is not a very good game anyway, which doesn't help the motivation at
+all !). This is the only known neocd game which can't be played.
+<p align="center"><font class="date">Differences with raine</font></p>
+I made a separate executable, and a separate makefile (makefile.neocd), but
+finally there are very little differences :
+<br><br>
+<item>
+<li>There is no game list. When you try to load a game, you just browse files,
+and select a file to load, there are no known crcs to be checked
+<li>If you change the sample frequency, you'll have to restart neoraine to
+apply the change. It's to avoid to restart the cd track everytime you call the
+gui from neoraine. Anyway you should always play at 44 Khz since the audio
+tracks are at 44 Khz.
+<li>In "Sound options" you can choose music volume and sfx volume now. It's
+because depending on the game, music can be too low or too loud so it can be
+usefull to make adjustements. Notice that if you put these 2 to 10 (maximum),
+you will probably get some distortion...
+</item><br>
+That's all ! At the begining there were no cheats and no hiscores but finally I
+noticed that a few neogeo cheats/hiscores work also for the neocd version. Not
+all of them are working, but quite a few do. The neocd cheat file is named
+"neocheats.cfg" instead of "cheats.cfg" to allow to have raine and neoraine in
+the same directory, but they have the same format.
+<p align="center"><font class="date">Formats supported for the games</font></p>
+The games are all in cd format, so neoraine accepts one of these :
+<item>
+<li>If you have copied the cd files somewhere, there is an ipl.txt in these
+files, so neoraine accepts the ipl.txt file directly, this is the most basic
+format (direct file access).
+<li>You can also zip the contents of the cd, and pass the zip file to neoraine.
+The zip file must contain an ipl.txt file in its root directory to be accepted.
+<li>Cds in a ripped form will have a cue file, an iso/bin file, and some wav or
+mp3 files for the audio. So the cue file is supported.
+<li>For the audio files they can be in mp3, ogg, or wav files for the hysterics
+of the "accurate" audio ! I recommend mp3 for the tracks.
+</item>
+So basically you should have 1 directory / game, with game files + audio files
+in this directory. Then when you load a game, you browse to this directory and
+pass the required file (zip or cue usually).<br>
+For compatibility with neocdpsp, audio files can also be placed in a neocd.mp3
+directory in the game directory. So for example you would have :<br>
+<pre>
+Directory: Metal Slug
+|- mslug.zip or mslug.cue
+|+
+ |-neocd.mp3
+ |+ track01.mp3
+  |-track02.mp3...
+</pre>
+<br>
+If you don't use a cue file with the exact file names of the audio tracks in
+it, then you must have the track number on 2 digits in the filenames. So
+track1.mp3 won't be accepted, but "Metal Slug - 01 - Opening.mp3" will be
+accepted. If you use a cue file then audio filenames can have any format.
+<p align="center"><font class="date">links</font></p>
+<a href="http://www.egameaddiction.com/neogeocd/masterlist.html">List of
+games</a>.
+There are also a few reviews, and some FAQs<br>
+<a href="http://en.wikipedia.org/wiki/Neo_Geo_CD">Wikipedia page about neocd</a><br>
+<a href="http://pagesperso-orange.fr/neogeoCDworld/Nouvelles.htm">French site
+about neocd</a>. The interesting point is that there is a section about non
+official neocd games...</a>
+<p align="center"><font class="date">Thanks</font></p>
+Thanks go for this version to : the neocdpsp community, for the motivation at
+that time, Yoyo for the original neocdpsp version 0.5, Stephh for his very good
+beta testing job.
+</td>
+<!-- link bar right -->
+<td width="10%" valign="top" align="center">
+<small>
+<a class="flashlink" href="/html/wip.html" target="_top"><img onMouseOver="this.src='/html/css/default/gfx/icon32/wip_select.png'; return true;" onMouseOut="this.src='/html/css/default/gfx/icon32/wip.png'; return true;" src="/html/css/default/gfx/icon32/wip.png" width="40" height="40" border="0" alt=""><br>Raine WIP<br></a><br>
+<a class="flashlink" href="/html/php/hosting.php" target="_top"><img onMouseOver="this.src='/html/css/default/gfx/icon32/hosting_select.png'; return true;" onMouseOut="this.src='/html/css/default/gfx/icon32/hosting.png'; return true;" src="/html/css/default/gfx/icon32/hosting.png" width="40" height="40" border="0" alt=""><br>Hosting<br></a><br>
+<a class="flashlink" href="/html/php/links.php" target="_top"><img onMouseOver="this.src='/html/css/default/gfx/icon32/links_select.png'; return true;" onMouseOut="this.src='/html/css/default/gfx/icon32/links.png'; return true;" src="/html/css/default/gfx/icon32/links.png" width="40" height="40" border="0" alt=""><br>Links<br></a><br>
+<a class="flashlink" href="/html/php/credits.php" target="_top"><img onMouseOver="this.src='/html/css/default/gfx/icon32/credits_select.png'; return true;" onMouseOut="this.src='/html/css/default/gfx/icon32/credits.png'; return true;" src="/html/css/default/gfx/icon32/credits.png" width="40" height="40" border="0" alt=""><br>Credits<br></a><br>
+</small>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

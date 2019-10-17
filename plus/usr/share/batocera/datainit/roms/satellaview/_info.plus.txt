@@ -1,0 +1,14 @@
+## SYSTEM SATELLAVIEW ##
+-------------------------------------------------------------------------------
+BIOS: STBIOS.bin (md5sum) d3a44ba7d42a74d3ac58cb9c14c6a5ca
+-------------------------------------------------------------------------------
+Também conhecido no Brasil como a PSN ou a Live do Super Nintendo.
+-------------------------------------------------------------------------------
+catsfc: O jogo carrega direto.
+
+snes9x: Ao carregar o jogo será iniciado a bios do SatellaView (ela parece um
+        jogo) controlando o personagem volte ao seu Home (local de início)
+        abrindo o menu de sua conta o jogo escolhido pelo batocera aparecerá,
+        na lista então basta carregar o jogo. Ele demora alguns segundos para ser
+        carregado. A emulação do snes9x parece ser mais precisa.
+-------------------------------------------------------------------------------

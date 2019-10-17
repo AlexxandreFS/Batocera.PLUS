@@ -1,0 +1,75 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>C1C3C2</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>3e649f</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>030303</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>E4E5E4</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Manufacturer : Sega</text>
+			<pos>0.38 0.72</pos>
+		</text>
+		<text name="info2" extra="true">
+			<text>Year of Release : 1998</text>
+			<pos>0.38 0.74</pos>
+		</text>
+		<text name="info3" extra="true">
+			<text>Units sold : 9.13 million</text>
+			<pos>0.38 0.76</pos>
+		</text>
+		<text name="info4" extra="true">
+			<text>Best-selling game : Sonic Adventure</text>
+			<pos>0.38 0.78</pos>
+		</text>
+		<text name="info5" extra="true">
+			<text>CPU : Hitachi SH-4 32-bit RISC clocked @ 200 MHz</text>
+			<pos>0.38 0.82</pos>
+		</text>
+		<text name="info6" extra="true">
+			<text>RAM : 16MB / VRAM : 8MB</text>
+			<pos>0.38 0.84</pos>
+		</text>
+		<text name="info7" extra="true">
+			<text>Video : 100 MHz PowerVR2 (integrated with the system's ASIC)</text>
+			<pos>0.38 0.86</pos>
+		</text>
+		<text name="info8" extra="true">
+			<text>Resolution : 640×480 pixels</text>
+			<pos>0.38 0.88</pos>
+		</text>
+		<text name="info9" extra="true">
+			<text>Sound : Yamaha AICA[139] sound processor @ 67 MHz</text>
+			<pos>0.38 0.90</pos>
+		</text>
+		<text name="info10" extra="true">
+			<text>VMU size : 128kB</text>
+			<pos>0.38 0.92</pos>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>C1C3C2</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>3e649f</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>030303</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>E4E5E4</color>
+		</image>
+	</view>
+</theme>

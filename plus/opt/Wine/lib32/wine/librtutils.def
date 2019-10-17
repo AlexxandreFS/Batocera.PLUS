@@ -1,0 +1,61 @@
+; File generated automatically from dlls/rtutils/rtutils.spec; do not edit!
+
+LIBRARY rtutils.dll
+
+EXPORTS
+  CreateWaitEvent@0 @1 PRIVATE
+  CreateWaitEventBinding@0 @2 PRIVATE
+  CreateWaitTimer@0 @3 PRIVATE
+  DeRegisterWaitEventBinding@0 @4 PRIVATE
+  DeRegisterWaitEventBindingSelf@0 @5 PRIVATE
+  DeRegisterWaitEventsTimers@0 @6 PRIVATE
+  DeRegisterWaitEventsTimersSelf@0 @7 PRIVATE
+  DebugPrintWaitWorkerThreads@0 @8 PRIVATE
+  LogErrorA@0 @9 PRIVATE
+  LogErrorW@0 @10 PRIVATE
+  LogEventA@0 @11 PRIVATE
+  LogEventW@0 @12 PRIVATE
+  MprSetupProtocolEnum@0 @13 PRIVATE
+  MprSetupProtocolFree@0 @14 PRIVATE
+  QueueWorkItem@0 @15 PRIVATE
+  RegisterWaitEventBinding@0 @16 PRIVATE
+  RegisterWaitEventsTimers@0 @17 PRIVATE
+  RouterAssert@0 @18 PRIVATE
+  RouterGetErrorStringA@0 @19 PRIVATE
+  RouterGetErrorStringW@0 @20 PRIVATE
+  RouterLogDeregisterA@0 @21 PRIVATE
+  RouterLogDeregisterW@0 @22 PRIVATE
+  RouterLogEventA@0 @23 PRIVATE
+  RouterLogEventDataA@0 @24 PRIVATE
+  RouterLogEventDataW@0 @25 PRIVATE
+  RouterLogEventExA@0 @26 PRIVATE
+  RouterLogEventExW@0 @27 PRIVATE
+  RouterLogEventStringA@0 @28 PRIVATE
+  RouterLogEventStringW@0 @29 PRIVATE
+  RouterLogEventValistExA@0 @30 PRIVATE
+  RouterLogEventValistExW@0 @31 PRIVATE
+  RouterLogEventW@0 @32 PRIVATE
+  RouterLogRegisterA@0 @33 PRIVATE
+  RouterLogRegisterW@0 @34 PRIVATE
+  SetIoCompletionProc@0 @35 PRIVATE
+  TraceDeregisterA@0 @36 PRIVATE
+  TraceDeregisterExA@0 @37 PRIVATE
+  TraceDeregisterExW@0 @38 PRIVATE
+  TraceDeregisterW@0 @39 PRIVATE
+  TraceDumpExA@0 @40 PRIVATE
+  TraceDumpExW@0 @41 PRIVATE
+  TraceGetConsoleA@0 @42 PRIVATE
+  TraceGetConsoleW@0 @43 PRIVATE
+  TracePrintfA@0 @44 PRIVATE
+  TracePrintfExA@0 @45 PRIVATE
+  TracePrintfExW@0 @46 PRIVATE
+  TracePrintfW@0 @47 PRIVATE
+  TracePutsExA@0 @48 PRIVATE
+  TracePutsExW@0 @49 PRIVATE
+  TraceRegisterExA@8 @50
+  TraceRegisterExW@8 @51
+  TraceVprintfExA@0 @52 PRIVATE
+  TraceVprintfExW@0 @53 PRIVATE
+  UpdateWaitTimer@0 @54 PRIVATE
+  WTFreeEvent@0 @55 PRIVATE
+  WTFreeTimer@0 @56 PRIVATE

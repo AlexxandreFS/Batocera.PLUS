@@ -1,0 +1,26 @@
+; File generated automatically from dlls/dciman32/dciman32.spec; do not edit!
+
+LIBRARY dciman32.dll
+
+EXPORTS
+  DCIBeginAccess@0 @1 PRIVATE
+  DCICloseProvider@4 @2
+  DCICreateOffscreen@0 @3 PRIVATE
+  DCICreateOverlay@0 @4 PRIVATE
+  DCICreatePrimary@8 @5
+  DCIDestroy@0 @6 PRIVATE
+  DCIDraw@0 @7 PRIVATE
+  DCIEndAccess@0 @8 PRIVATE
+  DCIEnum@0 @9 PRIVATE
+  DCIOpenProvider@0 @10
+  DCISetClipList@0 @11 PRIVATE
+  DCISetDestination@0 @12 PRIVATE
+  DCISetSrcDestClip@0 @13 PRIVATE
+  DllEntryPoint@12=DllMain @14 PRIVATE
+  GetDCRegionData@0 @15 PRIVATE
+  GetWindowRegionData@0 @16 PRIVATE
+  WinWatchClose@0 @17 PRIVATE
+  WinWatchDidStatusChange@0 @18 PRIVATE
+  WinWatchGetClipList@0 @19 PRIVATE
+  WinWatchNotify@0 @20 PRIVATE
+  WinWatchOpen@0 @21 PRIVATE

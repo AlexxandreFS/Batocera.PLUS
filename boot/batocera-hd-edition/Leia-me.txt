@@ -1,0 +1,208 @@
+O que é o BATOCERA-HD-EDITION?
+--------------------------------------------------------------------------------
+Trata-se de um adicional que permite rodar o Batocera diretamente do HD do PC
+sem usar Pendrive, sem adicionar um HD extra, sem particionar ou formatar o HD.
+É uma maneira alternativa de instalar o Batocera, muito mais prática, fácil e sem
+risco de ferrar com tudo.
+
+
+Como instalar o BATOCERA-HD-EDITION?
+--------------------------------------------------------------------------------
+Baixe a ultima versão do Batocera no site oficial:
+https://batocera-linux.xorhub.com
+
+Descompacte o arquivo baixado (batocera-5.15-x86_64-20180501.img.gz) com o programa
+de sua preferência,  recomendo o 7zip:
+https://www.7-zip.org para um diretório qualquer, recomendo que crie uma pasta
+direto na unidade raiz, sem usar espaços e caracteres especiais para evitar
+aborrecimentos futuros
+
+Baixe o BATOCERA-HD-EDITION (arquivo modificado)
+https://drive.google.com/drive/folders/13yz3XHSbs2dmbqRTYawLDr7T_sTLS9rw?usp=sharing
+descompacte na mesma pasta que você descompactou o Batocera.
+Este arquivo foi testado na versão do 5.15 do Batocera, em ambas versões de 32 e 64bits,
+mas pode funcionar em outras versões.
+
+Exemplo Windows:
+C:\batocera\batocera-hd-edition.gz
+C:\batocera\batocera-5.15-x86_64-20180501.img
+
+Exemplo Linux:
+/opt/batocera/batocera-hd-edition.gz
+/opt/batocera/batocera-5.15-x86_64-20180501.img
+
+Windows: Se você usa somente o Windows você vai precisar baixar um programa para
+inicializar o Batocera, eu recomendo que use o Grub2Win que pode ser baixado
+gratuitamente em: https://sourceforge.net/projects/grub2win
+Depois de baixar instale o programa em sua configuração padrão.
+
+Este programa vai adicionar um menu na inicialização do computador, ele usa o próprio
+BCD do Windows e não altera em nada o boot do Windows. Depois de instalado ele vai
+abrir um utilitário que permite customilizar e enfeitar a inicialização do Windows,
+não customize nada.
+
+O Grub2Win por padrão vai ser instalado direto na unidade C:\grub2 e suas configurações
+vão dentro do arquivo grub.cfg, para adicionar sistemas operacionais na inicialização
+do Windows basta editar este arquivo com o bloco de notas.
+
+Linux : Se você usa Linux em seu PC, parabém, você é um cara esperto ;-) e não precisa
+de mais nada, pois o Linux normalmente já vem com o Grub2 instalado por padrão.
+
+Junto com o pacote do BATOCERA-HD-EDITION estou mandando o arquivo de configuração
+grub.cfg que inicializa o Batocera, este arquivo deve ser alterado de acordo com o
+local onde você descompactou o Batocera.
+
+Para configurar este arquivo você deve descobrir os números das unidades em que você
+descompactou o Batocera.
+
+Para descobrir estas informações digite o seguinte comando:
+
+Windows: Tecla Windos+R e digite DISKMGMT.MSC Ele vai mostrar o número do disco e suas
+partições. Se você só tem um HD no PC ele será o disco 0 e se você instalou o Windows
+em suas configurações padrões a partição será a 2.
+
+Linux: Abra o terminal e digite df –h Verifique o número do disco onde você colocou o
+Batocera se você colocou em sda1 o disco será 0 e a partição será 1.
+
+De posse destas informações basta editar o arquivo grub.cfg
+set DISC=0                                     (Numero do HD)
+set PART=2                                     (Número da partição)
+set DIR=/batocera                              (Diretório onde você descompactou o Batocera)
+set FILE=batocera-5.15-x86_64-20180501.img     (Nome do arquivo descompactado)
+
+Windows: Copie o arquivo modificado para a pasta de instalação do Grub2Win substituindo
+o arquivo que já existe lá. Se você seguiu exatamente o que foi explicado, basta reiniciar
+o computador e escolher o Grub2Win na inicialização e se divertir.
+
+Linux Debian e derivados: Remova as seguintes linhas do arquivo grub.cfg set default="0"
+e set timeout="0", renomei o arquivo para custom.cfg, copie o arquivo para /boot/grub
+
+cp grub.cfg /boot/grub/custom.cfg
+
+Atualize o grub para reconhecer o Batocera
+
+update-grub
+
+Linux Outros: Remova as seguintes linhas do arquivo grub.cfg set default="0"
+e set timeout="0" adicione as demais linhas do arquivo grub.cfg no final do arquivo
+/boot/grub/grub.cfg
+
+
+Conclusões
+--------------------------------------------------------------------------------
+Embora possa parece complicado o processo de instalação é bem simples.
+Criei esta modificação para poder instalar o Batocera em meu PC sem modificar as
+minhas configurações e para não ficar somente em meu computador resolvi compartilhar.
+
+
+=================================================================================
+=================================================================================
+=================================================================================
+
+TUTORIAL PARA USUÁRIOS UBUNTU E DERIVADOS
+
+Baixe o Batocera do site oficial:
+https://batocera-linux.xorhub.com/
+
+Baixe o batocera-hd-edition
+https://drive.google.com/drive/folders/13yz3XHSbs2dmbqRTYawLDr7T_sTLS9rw
+
+Abra um terminal e siga a receita de bolo.
+
+Faça login como root
+
+	sudo su [Digite sua senha]
+
+Entre na pasta onde você baixou os arquivos.
+	
+	cd Downloads
+	
+Instale o 7zip para poder descompactar o arquivo.
+	
+	apt-get update
+	apt-get install p7zip
+
+Descompacte o batocera-hd-edition.
+	
+	p7zip -d "batocera-hd-edition v1.0.7z"
+
+Descompacte o batocera oficial.
+	
+	gunzip batocera-5.16-x86_64-20180622.img.gz
+
+Crie uma pasta para colocar o Batocera.
+	
+	mkdir /opt/batocera
+
+Mova os arquivos descompactados para a pasta que você criou.
+
+	mv batocera-hd-edition.gz /opt/batocera
+	mv batocera-5.16-x86_64-20180622.img /opt/batocera
+
+Veja qual é o número da partição onde você colocou o batocera.
+neste exemplo ele mostra que o Batocera está em /dev/sda1
+ou seja Disco 0 e partição 1
+
+	fdisk -l | grep sd
+	Disco /dev/sda: 10 GiB, 10737418240 bytes, 20971520 setores
+	/dev/sda1   *             2048 20969471 20967424     10G 83 Linux
+
+Edite o arquivo grub.cfg que você baixou com um editor de texto de sua preferência.
+	
+	nano grub.cfg
+	
+	ou
+
+	gedit grub.cfg
+
+Configure os números das partições e o local onde você baixou o Batocera.
+
+	set DISC=0
+	set PART=1
+	set DIR=/opt/batocera
+	set FILE=batocera-5.16-x86_64-20180622.img
+	
+Remova as duas primeiras linhas do arquivo ou comente com # no início da linha.
+Não se esqueça de salvar o arquivo.
+
+	#set default="0"
+	#set timeout="0"
+
+Mova o arquivo grub.cfg para o diretório de boot do Grub.
+	
+	mv grub.cfg /boot/grub/custom.cfg
+
+O Ubuntu por padrão não mostra o menu de inicialização do Grub para poder escolher
+qual sistema você quer inicializar (Ubuntu ou Batocera)
+Para ter acesso a este menu você tem duas opções:
+
+1 - Ligar o computador segurando a tecla Shift da esquerda até o menu aparecer.
+
+2 - Editar o arquivo de preferências do Grub para o menu sempre aparecer.
+	
+	nano /etc/default/grub
+	
+	ou
+	
+	gedit /etc/default/grub
+
+Procure pela seguinte linha e remova ou comente com um # no início da linha.
+
+	#GRUB_HIDDEN_TIMEOUT=0
+	
+Aproveite que você já está aqui e aumente o tempo para poder selecionar qual sistema você pretende carregar.
+Neste caso 60 segundos = 1 Minuto
+
+	GRUB_TIMEOUT=60
+
+Por fim atualize as configurações do Grub e reinicie o PC
+
+	update-grub
+
+
+
+SOBRE
+--------------------------------------------------------------------------------
+Autor:  Alexandre Freire dos Santos
+E-Mail: alexxandre.freire@gmail.com
+

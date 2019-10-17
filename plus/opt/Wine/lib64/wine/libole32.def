@@ -1,0 +1,301 @@
+; File generated automatically from dlls/ole32/ole32.spec; do not edit!
+
+LIBRARY ole32.dll
+
+EXPORTS
+  BindMoniker @1
+  CLIPFORMAT_UserFree @2
+  CLIPFORMAT_UserMarshal @3
+  CLIPFORMAT_UserSize @4
+  CLIPFORMAT_UserUnmarshal @5
+  CLSIDFromProgID @6
+  CLSIDFromProgIDEx @7
+  CLSIDFromString @8
+  CoAddRefServerProcess @9
+  CoAllowSetForegroundWindow @10
+  CoBuildVersion @11
+  CoCopyProxy @12
+  CoCreateFreeThreadedMarshaler @13
+  CoCreateGuid @14
+  CoCreateInstance @15
+  CoCreateInstanceEx @16
+  CoDisableCallCancellation @17
+  CoDisconnectObject @18
+  CoDosDateTimeToFileTime=kernel32.DosDateTimeToFileTime @19
+  CoEnableCallCancellation @20
+  CoFileTimeNow @21
+  CoFileTimeToDosDateTime=kernel32.FileTimeToDosDateTime @22
+  CoFreeAllLibraries @23
+  CoFreeLibrary @24
+  CoFreeUnusedLibraries @25
+  CoFreeUnusedLibrariesEx @26
+  CoGetActivationState @27
+  CoGetApartmentType @28
+  CoGetCallContext @29
+  CoGetCallState @30
+  CoGetCallerTID @31
+  CoGetClassObject @32
+  CoGetContextToken @33
+  CoGetCurrentLogicalThreadId @34
+  CoGetCurrentProcess @35
+  CoGetDefaultContext @36
+  CoGetInstanceFromFile @37
+  CoGetInstanceFromIStorage @38
+  CoGetInterfaceAndReleaseStream @39
+  CoGetMalloc @40
+  CoGetMarshalSizeMax @41
+  CoGetObject @42
+  CoGetObjectContext @43
+  CoGetPSClsid @44
+  CoGetStandardMarshal @45
+  CoGetState @46
+  CoGetTIDFromIPID @47 PRIVATE
+  CoGetTreatAsClass @48
+  CoImpersonateClient @49
+  CoInitialize @50
+  CoInitializeEx @51
+  CoInitializeSecurity @52
+  CoInitializeWOW @53
+  CoIsHandlerConnected @54
+  CoIsOle1Class @55
+  CoLoadLibrary @56
+  CoLockObjectExternal @57
+  CoMarshalHresult @58
+  CoMarshalInterThreadInterfaceInStream @59
+  CoMarshalInterface @60
+  CoQueryAuthenticationServices @61 PRIVATE
+  CoQueryClientBlanket @62
+  CoQueryProxyBlanket @63
+  CoQueryReleaseObject @64 PRIVATE
+  CoRegisterChannelHook @65
+  CoRegisterClassObject @66
+  CoRegisterInitializeSpy @67
+  CoRegisterMallocSpy @68
+  CoRegisterMessageFilter @69
+  CoRegisterPSClsid @70
+  CoRegisterSurrogate @71
+  CoRegisterSurrogateEx @72
+  CoReleaseMarshalData @73
+  CoReleaseServerProcess @74
+  CoResumeClassObjects @75
+  CoRevertToSelf @76
+  CoRevokeClassObject @77
+  CoRevokeInitializeSpy @78
+  CoRevokeMallocSpy @79
+  CoSetProxyBlanket @80
+  CoSetState @81
+  CoSuspendClassObjects @82
+  CoSwitchCallContext @83
+  CoTaskMemAlloc @84
+  CoTaskMemFree @85
+  CoTaskMemRealloc @86
+  CoTreatAsClass @87
+  CoUninitialize @88
+  CoUnloadingWOW @89 PRIVATE
+  CoUnmarshalHresult @90
+  CoUnmarshalInterface @91
+  CoWaitForMultipleHandles @92
+  CreateAntiMoniker @93
+  CreateBindCtx @94
+  CreateClassMoniker @95
+  CreateDataAdviseHolder @96
+  CreateDataCache @97
+  CreateErrorInfo @98
+  CreateFileMoniker @99
+  CreateGenericComposite @100
+  CreateILockBytesOnHGlobal @101
+  CreateItemMoniker @102
+  CreateObjrefMoniker @103 PRIVATE
+  CreateOleAdviseHolder @104
+  CreatePointerMoniker @105
+  CreateStreamOnHGlobal @106
+  DllDebugObjectRPCHook @107
+  DllGetClassObject @108 PRIVATE
+  DllGetClassObjectWOW @109 PRIVATE
+  DllRegisterServer @110 PRIVATE
+  DllUnregisterServer @111 PRIVATE
+  DoDragDrop @112
+  EnableHookObject @113 PRIVATE
+  FmtIdToPropStgName @114
+  FreePropVariantArray @115
+  GetClassFile @116
+  GetConvertStg @117
+  GetDocumentBitStg @118 PRIVATE
+  GetErrorInfo @119
+  GetHGlobalFromILockBytes @120
+  GetHGlobalFromStream @121
+  GetHookInterface @122 PRIVATE
+  GetRunningObjectTable @123
+  HACCEL_UserFree @124
+  HACCEL_UserMarshal @125
+  HACCEL_UserSize @126
+  HACCEL_UserUnmarshal @127
+  HBITMAP_UserFree @128
+  HBITMAP_UserMarshal @129
+  HBITMAP_UserSize @130
+  HBITMAP_UserUnmarshal @131
+  HBRUSH_UserFree @132
+  HBRUSH_UserMarshal @133
+  HBRUSH_UserSize @134
+  HBRUSH_UserUnmarshal @135
+  HDC_UserFree @136
+  HDC_UserMarshal @137
+  HDC_UserSize @138
+  HDC_UserUnmarshal @139
+  HENHMETAFILE_UserFree @140
+  HENHMETAFILE_UserMarshal @141
+  HENHMETAFILE_UserSize @142
+  HENHMETAFILE_UserUnmarshal @143
+  HGLOBAL_UserFree @144
+  HGLOBAL_UserMarshal @145
+  HGLOBAL_UserSize @146
+  HGLOBAL_UserUnmarshal @147
+  HICON_UserFree @148
+  HICON_UserMarshal @149
+  HICON_UserSize @150
+  HICON_UserUnmarshal @151
+  HMENU_UserFree @152
+  HMENU_UserMarshal @153
+  HMENU_UserSize @154
+  HMENU_UserUnmarshal @155
+  HMETAFILEPICT_UserFree @156
+  HMETAFILEPICT_UserMarshal @157
+  HMETAFILEPICT_UserSize @158
+  HMETAFILEPICT_UserUnmarshal @159
+  HMETAFILE_UserFree @160
+  HMETAFILE_UserMarshal @161
+  HMETAFILE_UserSize @162
+  HMETAFILE_UserUnmarshal @163
+  HPALETTE_UserFree @164
+  HPALETTE_UserMarshal @165
+  HPALETTE_UserSize @166
+  HPALETTE_UserUnmarshal @167
+  HWND_UserFree @168
+  HWND_UserMarshal @169
+  HWND_UserSize @170
+  HWND_UserUnmarshal @171
+  IIDFromString @172
+  I_RemoteMain @173 PRIVATE
+  IsAccelerator @174
+  IsEqualGUID @175
+  IsValidIid @176 PRIVATE
+  IsValidInterface @177
+  IsValidPtrIn @178 PRIVATE
+  IsValidPtrOut @179 PRIVATE
+  MkParseDisplayName @180
+  MonikerCommonPrefixWith @181
+  MonikerRelativePathTo @182 PRIVATE
+  OleBuildVersion @183
+  OleConvertIStorageToOLESTREAM @184
+  OleConvertIStorageToOLESTREAMEx @185 PRIVATE
+  OleConvertOLESTREAMToIStorage @186
+  OleConvertOLESTREAMToIStorageEx @187 PRIVATE
+  OleCreate @188
+  OleCreateDefaultHandler @189
+  OleCreateEmbeddingHelper @190
+  OleCreateEx @191 PRIVATE
+  OleCreateFromData @192
+  OleCreateFromDataEx @193
+  OleCreateFromFile @194
+  OleCreateFromFileEx @195
+  OleCreateLink @196
+  OleCreateLinkEx @197 PRIVATE
+  OleCreateLinkFromData @198
+  OleCreateLinkFromDataEx @199 PRIVATE
+  OleCreateLinkToFile @200
+  OleCreateLinkToFileEx @201 PRIVATE
+  OleCreateMenuDescriptor @202
+  OleCreateStaticFromData @203
+  OleDestroyMenuDescriptor @204
+  OleDoAutoConvert @205
+  OleDraw @206
+  OleDuplicateData @207
+  OleFlushClipboard @208
+  OleGetAutoConvert @209
+  OleGetClipboard @210
+  OleGetIconOfClass @211
+  OleGetIconOfFile @212
+  OleInitialize @213
+  OleInitializeWOW @214
+  OleIsCurrentClipboard @215
+  OleIsRunning @216
+  OleLoad @217
+  OleLoadFromStream @218
+  OleLockRunning @219
+  OleMetafilePictFromIconAndLabel @220
+  OleNoteObjectVisible @221
+  OleQueryCreateFromData @222
+  OleQueryLinkFromData @223
+  OleRegEnumFormatEtc @224
+  OleRegEnumVerbs @225
+  OleRegGetMiscStatus @226
+  OleRegGetUserType @227
+  OleRun @228
+  OleSave @229
+  OleSaveToStream @230
+  OleSetAutoConvert @231
+  OleSetClipboard @232
+  OleSetContainedObject @233
+  OleSetMenuDescriptor @234
+  OleTranslateAccelerator @235
+  OleUninitialize @236
+  OpenOrCreateStream @237 PRIVATE
+  ProgIDFromCLSID @238
+  PropStgNameToFmtId @239
+  PropSysAllocString @240
+  PropSysFreeString @241
+  PropVariantClear @242
+  PropVariantCopy @243
+  ReadClassStg @244
+  ReadClassStm @245
+  ReadFmtUserTypeStg @246
+  ReadOleStg @247 PRIVATE
+  ReadStringStream @248 PRIVATE
+  RegisterDragDrop @249
+  ReleaseStgMedium @250
+  RevokeDragDrop @251
+  SNB_UserFree @252
+  SNB_UserMarshal @253
+  SNB_UserSize @254
+  SNB_UserUnmarshal @255
+  STGMEDIUM_UserFree @256
+  STGMEDIUM_UserMarshal @257
+  STGMEDIUM_UserSize @258
+  STGMEDIUM_UserUnmarshal @259
+  SetConvertStg @260
+  SetDocumentBitStg @261 PRIVATE
+  SetErrorInfo @262
+  StgConvertPropertyToVariant @263
+  StgConvertVariantToProperty @264
+  StgCreateDocfile @265
+  StgCreateDocfileOnILockBytes @266
+  StgCreatePropSetStg @267
+  StgCreatePropStg @268
+  StgCreateStorageEx @269
+  StgGetIFillLockBytesOnFile @270 PRIVATE
+  StgGetIFillLockBytesOnILockBytes @271 PRIVATE
+  StgIsStorageFile @272
+  StgIsStorageILockBytes @273
+  StgOpenAsyncDocfileOnIFillLockBytes @274 PRIVATE
+  StgOpenPropStg @275
+  StgOpenStorage @276
+  StgOpenStorageEx @277
+  StgOpenStorageOnILockBytes @278
+  StgSetTimes @279
+  StringFromCLSID @280
+  StringFromGUID2 @281
+  StringFromIID=StringFromCLSID @282
+  UpdateDCOMSettings @283 PRIVATE
+  UtConvertDvtd16toDvtd32 @284 PRIVATE
+  UtConvertDvtd32toDvtd16 @285 PRIVATE
+  UtGetDvtd16Info @286 PRIVATE
+  UtGetDvtd32Info @287 PRIVATE
+  WdtpInterfacePointer_UserFree @288
+  WdtpInterfacePointer_UserMarshal @289
+  WdtpInterfacePointer_UserSize @290
+  WdtpInterfacePointer_UserUnmarshal @291
+  WriteClassStg @292
+  WriteClassStm @293
+  WriteFmtUserTypeStg @294
+  WriteOleStg @295 PRIVATE
+  WriteStringStream @296 PRIVATE

@@ -1,0 +1,98 @@
+## SYSTEM NEO-GEO-CD ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted (Batocera.PLUS): ".ngcd .NGCD .7z .7Z"
+-------------------------------------------------------------------------------
+Raine (NeoGeo CD) Portado para o Batocera.PLUS por:
+Alexandre freire dos Santos (alexxandre.freire@gmail.com).
+
+Baseado no código fonte do emulador disponível em:
+https://github.com/zelurker/raine
+Raine 2018 = 0.64.16
+Raine 2015 = 0.64.10
+
+OBS 1: Foi usado outro nome para a versão do Raine porque foi obrigado a fazer
+       algumas alterações no código do emulador para torná-lo compatível com o
+       Batocera.PLUS.
+
+OBS 2: O Raine 2015 usa o mesmo código do Raine 2018 porém o núcleo de emulação
+       do NeoGeo CD foi substituído para a versão 0.64.10 onde alguns jogos são
+       melhor emulados (Double Dragon, Voltage Fighter Gowcaizer, etc...)
+
+OBS 3: Aproveitei que já estava com a mão na massa e também fiz a tradução do
+       emulador para Português Brazil.
+
+--------------------------------------------------------------------------
+| BIOS:                    | Detalhes | md5sum                           |
+--------------------------------------------------------------------------
+| neocd-cdz.bin            | Oficial  | f39572af7584cb5b3f70ae8cc848aba2 |
+| neocd-front-load.bin     | Oficial  | 5c2366f25ff92d71788468ca492ebeca |
+| neocd-top-load.bin       | Oficial  | 122aee210324c72e8a11116e6ef9c0d0 |
+| neocd-unibios.bin        | Hack     | a147aeab5edeb1a9b652e7fb640f5bb3 |
+--------------------------------------------------------------------------
+Bios Recomendada: neocd-cdz.zip
+
+Se estiver usando a unibios pressione start + select durante o jogo para acessar
+o menu de configuração com os cheats. Nem todos os jogos não compatíveis com a
+unibios. Bugs conhecidos, defeitos gráficos nas telas de load.
+-------------------------------------------------------------------------------
+Nas configurações de controle do emulador (teclas Tab) configure a tecla Hotkey
+para abrir o menu, assim todas as opções do emulador podem ser controladas pelo
+joystick (futuramente isto será automático?!?!)
+-------------------------------------------------------------------------------
+Como rodar roms em uma pasta?
+
+Descompacte as roms em uma pasta e coloque a extensão .ngcd na pasta.
+O nome da pasta deve ter o mesmo nome do arquivo .cue
+
+Aceita trilhas de áudio em .wav e .mp3 (recomendado .wav melhor qualidade)
+
+Exemplo:
+
+My Game.ngcd            (folder)
+|---- My Game.cue       (file)
+|---- My Game.bin       (file)
+|---- My Game.wav       (file) (if exist)
+|---- ....              (file) (if exist)
+
+My Game.NGCD            (folder)
+|---- My Game.cue       (file)
+|---- My Game.bin       (file)
+|---- My Game.mp3       (file) (if exist)
+|---- ....              (file) (if exist)
+-------------------------------------------------------------------------------
+Como rodar roms compactadas no formato 7zip?
+
+1 - Crie uma pasta com o mesmo nome do arquivo principal da rom, sem extensão.
+2 - Coloque todos os arquivos descompactados da rom dentro da pasta.
+3 - Compacte a pasta no formato 7z.
+4 - O nome do arquivo compactado em .7z deve ter o mesmo nome da pasta.
+
+Respeite as letras maiúsculas e mínúsculas nos nomes dos arquivos.
+
+Roms no formato 7z precisam ser descompactadas antes de serem executadas, o
+sistema faz isso automáticamente, mas pode demorar um pouco dependendo da
+capacidade do computador, mais recomendado para sistemas instalados em HD's.
+
+Example: My Game.7z
+
+My Game                 (folder)
+|---- My Game.cue       (file)
+|---- My Game.bin       (file)
+|---- My Game.wav       (file) (if exist)
+|---- ....              (file) (if exist)
+
+My Game                 (folder)
+|---- My Game.cue       (file)
+|---- My Game.bin       (file)
+|---- My Game.mp3       (file) (if exist)
+|---- ....              (file) (if exist)
+
+My Game                 (folder)
+|---- My Game.cue       (file)
+|---- GameABC.bin       (file)
+|---- Music GameXYZ.mp3 (file) (if exist)
+|---- ....              (file) (if exist)
+
+My Game                 (folder)
+|---- My Game.iso       (file)
+-------------------------------------------------------------------------------

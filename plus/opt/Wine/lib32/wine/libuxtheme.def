@@ -1,0 +1,113 @@
+; File generated automatically from dlls/uxtheme/uxtheme.spec; do not edit!
+
+LIBRARY uxtheme.dll
+
+EXPORTS
+  QueryThemeServices@0 @1 NONAME
+  OpenThemeFile@20 @2 NONAME
+  CloseThemeFile@4 @3 NONAME
+  ApplyTheme@12 @4 NONAME
+  GetThemeDefaults@20 @7 NONAME
+  EnumThemes@12 @8 NONAME
+  EnumThemeColors@16 @9 NONAME
+  EnumThemeSizes@16 @10 NONAME
+  ParseThemeIniFile@16 @11 NONAME
+  DrawNCPreview@0 @13 NONAME PRIVATE
+  RegisterDefaultTheme@0 @14 NONAME PRIVATE
+  DumpLoadedThemeToTextFile@0 @15 NONAME PRIVATE
+  OpenThemeDataFromFile@0 @16 NONAME PRIVATE
+  OpenThemeFileFromData@0 @17 NONAME PRIVATE
+  GetThemeSysSize96@0 @18 NONAME PRIVATE
+  GetThemeSysFont96@0 @19 NONAME PRIVATE
+  SessionAllocate@0 @20 NONAME PRIVATE
+  SessionFree@0 @21 NONAME PRIVATE
+  ThemeHooksOn@0 @22 NONAME PRIVATE
+  ThemeHooksOff@0 @23 NONAME PRIVATE
+  AreThemeHooksActive@0 @24 NONAME PRIVATE
+  GetCurrentChangeNumber@0 @25 NONAME PRIVATE
+  GetNewChangeNumber@0 @26 NONAME PRIVATE
+  SetGlobalTheme@0 @27 NONAME PRIVATE
+  GetGlobalTheme@0 @28 NONAME PRIVATE
+  CheckThemeSignature@4 @29 NONAME
+  LoadTheme@0 @30 NONAME PRIVATE
+  InitUserTheme@0 @31 NONAME PRIVATE
+  InitUserRegistry@0 @32 NONAME PRIVATE
+  ReestablishServerConnection@0 @33 NONAME PRIVATE
+  ThemeHooksInstall@0 @34 NONAME PRIVATE
+  ThemeHooksRemove@0 @35 NONAME PRIVATE
+  RefreshThemeForTS@0 @36 NONAME PRIVATE
+  ClassicGetSystemMetrics@0 @43 NONAME PRIVATE
+  ClassicSystemParametersInfoA@0 @44 NONAME PRIVATE
+  ClassicSystemParametersInfoW@0 @45 NONAME PRIVATE
+  ClassicAdjustWindowRectEx@0 @46 NONAME PRIVATE
+  GetThemeParseErrorInfo@0 @48 NONAME PRIVATE
+  CreateThemeDataFromObjects@0 @60 NONAME PRIVATE
+  OpenThemeDataEx@12 @61
+  ServerClearStockObjects@0 @62 NONAME PRIVATE
+  MarkSelection@0 @63 NONAME PRIVATE
+  BeginBufferedAnimation@32 @5
+  BeginBufferedPaint@20 @6
+  BufferedPaintClear@8 @12
+  BufferedPaintInit@0 @37
+  BufferedPaintRenderAnimation@8 @38
+  BufferedPaintSetAlpha@12 @39
+  BufferedPaintStopAllAnimations@4 @40
+  BufferedPaintUnInit@0 @41
+  CloseThemeData@4 @42
+  DrawThemeBackground@24 @47
+  DrawThemeBackgroundEx@24 @49
+  DrawThemeEdge@32 @50
+  DrawThemeIcon@28 @51
+  DrawThemeParentBackground@12 @52
+  DrawThemeText@36 @53
+  DrawThemeTextEx@36 @54
+  EnableThemeDialogTexture@8 @55
+  EnableTheming@4 @56
+  EndBufferedAnimation@8 @57
+  EndBufferedPaint@8 @58
+  GetBufferedPaintBits@12 @59
+  GetBufferedPaintDC@4 @64
+  GetBufferedPaintTargetDC@4 @65
+  GetBufferedPaintTargetRect@8 @66
+  GetCurrentThemeName@24 @67
+  GetThemeAppProperties@0 @68
+  GetThemeBackgroundContentRect@24 @69
+  GetThemeBackgroundExtent@24 @70
+  GetThemeBackgroundRegion@24 @71
+  GetThemeBool@20 @72
+  GetThemeColor@20 @73
+  GetThemeDocumentationProperty@16 @74
+  GetThemeEnumValue@20 @75
+  GetThemeFilename@24 @76
+  GetThemeFont@24 @77
+  GetThemeInt@20 @78
+  GetThemeIntList@20 @79
+  GetThemeMargins@28 @80
+  GetThemeMetric@24 @81
+  GetThemePartSize@28 @82
+  GetThemePosition@20 @83
+  GetThemePropertyOrigin@20 @84
+  GetThemeRect@20 @85
+  GetThemeString@24 @86
+  GetThemeSysBool@8 @87
+  GetThemeSysColor@8 @88
+  GetThemeSysColorBrush@8 @89
+  GetThemeSysFont@12 @90
+  GetThemeSysInt@12 @91
+  GetThemeSysSize@8 @92
+  GetThemeSysString@16 @93
+  GetThemeTextExtent@36 @94
+  GetThemeTextMetrics@20 @95
+  GetThemeTransitionDuration@24 @96
+  GetWindowTheme@4 @97
+  HitTestThemeBackground@40 @98
+  IsAppThemed@0 @99
+  IsCompositionActive@0 @100
+  IsThemeActive@0 @101
+  IsThemeBackgroundPartiallyTransparent@12 @102
+  IsThemeDialogTextureEnabled@4 @103
+  IsThemePartDefined@12 @104
+  OpenThemeData@8 @105
+  SetThemeAppProperties@4 @106
+  SetWindowTheme@12 @107
+  SetWindowThemeAttribute@16 @108

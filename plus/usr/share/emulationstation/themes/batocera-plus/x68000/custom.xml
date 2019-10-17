@@ -1,0 +1,71 @@
+﻿<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>3B3B3B</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>838582</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>C25F7F</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>41BC83</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Manufacturer : Sharp</text>
+			<pos>0.38 0.72</pos>
+		</text>
+		<text name="info2" extra="true">
+			<text>Year of Release : 1987</text>
+			<pos>0.38 0.74</pos>
+		</text>
+		<text name="info3" extra="true">
+			<text>OS : Human68k</text>
+			<pos>0.38 0.76</pos>
+		</text>
+		<text name="info4" extra="true">
+			<text>CPU : Motorola 68000 running @ 10 MHz</text>
+			<pos>0.38 0.80</pos>
+		</text>
+		<text name="info5" extra="true">
+			<text>RAM : 1-4 MB (expandable up to 12 MB) / VRAM 1056 KB</text>
+			<pos>0.38 0.82</pos>
+		</text>
+		<text name="info6" extra="true">
+			<text>ROM : 1 MB (128 KB BIOS, 768 KB Character Generator)</text>
+			<pos>0.38 0.84</pos>
+		</text>
+		<text name="info7" extra="true">
+			<text>GPU : Sharp-Hudson Custom Chipset</text>
+			<pos>0.38 0.86</pos>
+		</text>
+		<text name="info8" extra="true">
+			<text>Sound chip : Yamaha YM2151</text>
+			<pos>0.38 0.88</pos>
+		</text>
+		<text name="info9" extra="true">
+			<text>Resolution : 512x512 (65536 colours)</text>
+			<pos>0.38 0.90</pos>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>3B3B3B</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>838582</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>C25F7F</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>41BC83</color>
+		</image>
+	</view>
+</theme>

@@ -1,0 +1,14 @@
+; File generated automatically from dlls/mfreadwrite/mfreadwrite.spec; do not edit!
+
+LIBRARY mfreadwrite.dll
+
+EXPORTS
+  DllCanUnloadNow@0 @1 PRIVATE
+  DllGetClassObject@12 @2 PRIVATE
+  DllRegisterServer@0 @3 PRIVATE
+  DllUnregisterServer@0 @4 PRIVATE
+  MFCreateSinkWriterFromMediaSink@12 @5
+  MFCreateSinkWriterFromURL@16 @6
+  MFCreateSourceReaderFromByteStream@12 @7
+  MFCreateSourceReaderFromMediaSource@12 @8
+  MFCreateSourceReaderFromURL@12 @9

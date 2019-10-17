@@ -1,0 +1,6 @@
+script "p1 set life to maximum"
+  poke $10027d 3
+
+script "p1 invulnerability" always
+  poke $10027d 3
+

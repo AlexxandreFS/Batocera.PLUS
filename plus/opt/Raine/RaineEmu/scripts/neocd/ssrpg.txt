@@ -1,0 +1,143 @@
+script "set hp = max hp now" 
+  base=lpeek($10cd2c)
+  if base!=0
+    maxhp=dpeek(base+$3a)
+    base_fight=lpeek($10f2d4)
+    dpoke base+$3c maxhp
+    base2=lpeek($10cd30)
+    if base2
+      maxhp2=dpeek(base2+$3a)
+      dpoke base2+$3c maxhp2
+      base3=lpeek($10cd34)
+      if base3
+        maxhp3=dpeek(base3+$3a)
+        dpoke base3+$3c maxhp3
+      endif
+    endif
+    if base_fight!=$ffff0000
+      # base_fight changes after the player takes hits
+      # careful : using this cheat on loop is dangerous while the fight
+      # is loading : at the beg of the game this adress contains $2c and
+      # after the 1st fight it starts with the adress of the previous fight.
+      # it might be possible to find a test which works all the time, but it's
+      # much easier to use a one-time cheat, to be used at the right moment.
+      fight1=lpeek($10d89c)
+      dpoke fight1+$2c maxhp
+      if base2
+        fight2=lpeek($10d8a0)
+	dpoke fight2+$2c maxhp2
+        if base3
+          fight3=lpeek($10d8a4)
+	  dpoke fight3+$2c maxhp3
+        endif
+      endif
+    endif
+  endif
+
+script "set mana = max mana now"
+  base=lpeek($10cd2c)
+  if base!=0
+    maxmana=dpeek(base+$3e)
+    base_fight=lpeek($10f2d4)
+    base2=lpeek($10cd30)
+    dpoke base+$40 maxmana
+    if base2
+      maxmana2=dpeek(base2+$3e)
+      dpoke base2+$40 maxmana2
+      base3=lpeek($10cd34)
+      if base3
+        maxmana3=dpeek(base3+$3e)
+        dpoke base3+$40 maxmana3
+      endif
+    endif
+    if base_fight!=$ffff0000
+      dpoke lpeek($10d89c)+$2e maxmana
+      if base2
+        fight2=lpeek($10d8a0)
+	dpoke fight2+$2e maxmana2
+        if base3
+          fight3=lpeek($10d8a4)
+	  dpoke fight3+$2e maxmana3
+        endif
+      endif
+    endif
+  endif
+
+script "fight: set max rage after taking next hit"
+  base=lpeek($10cd2c)
+  if base!=0
+    base_fight=lpeek($10f2d4)
+    if base_fight!=$ffff0000
+      poke lpeek($10d89c)+$37 100
+      fight2=lpeek($10d8a0)
+      if fight2
+        poke fight2+$37 100
+        fight3=lpeek($10d8a4)
+        if fight3
+          poke fight3+$37 100
+	endif
+      endif
+    endif
+  endif
+
+script "map: set max rage for next fight"
+  base=lpeek($10cd2c)
+  if base!=0
+    dpoke base+$5c 100
+    base2=lpeek($10cd30)
+    if base2
+      dpoke base2+$5c 100
+      base3=lpeek($10cd34)
+      if base3
+        dpoke base3+$5c 100
+      endif
+    endif
+  endif
+
+script "max hp += 300"
+  base=lpeek($10cd2c)
+  if base!=0
+    maxhp=dpeek(base+$3a)
+    dpoke base+$3a maxhp+300
+    base2=lpeek($10cd30)
+    if base2
+      maxhp2=dpeek(base2+$3a)
+      dpoke base2+$3a maxhp2+300
+      base3=lpeek($10cd34)
+      if base3
+        maxhp3=dpeek(base3+$3a)
+        dpoke base3+$3a maxhp3+300
+      endif
+    endif
+  endif
+
+script "max mana += 200"
+  base=lpeek($10cd2c)
+  if base!=0
+    maxmana=dpeek(base+$3e)
+    dpoke base+$3e maxmana+200
+    base2=lpeek($10cd30)
+    if base2
+      maxmana2=dpeek(base2+$3e)
+      dpoke base2+$3e maxmana2+200
+      base3=lpeek($10cd34)
+      if base3
+        maxmana3=dpeek(base3+$3e)
+        dpoke base3+$3e maxmana3+200
+      endif
+    endif
+  endif
+
+script "9999 gold"
+  dpoke $10ce6a 9999
+
+script "10 potions of cure (50gp each)"
+  poke $10cd66 10
+
+script "disable random encounters"
+  dpoke $1d29e $4e75
+
+script "re-enable random encounters"
+  dpoke $1d29e $422d
+
+

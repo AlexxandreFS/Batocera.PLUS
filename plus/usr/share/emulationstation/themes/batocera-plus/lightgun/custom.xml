@@ -1,0 +1,47 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>00ADEF</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>84849C</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>231F20</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>FFFFFF</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Developers : Nicola Salmoria and the MAME Team
+Initial release : February 5, 1997
+Website : http://mamedev.org/
+Written in : C++
+
+M.A.M.E is an emulator application designed to recreate the hardware of arcade game systems in software on modern personal computers and other platforms.
+The intention is to preserve gaming history by preventing vintage games from being lost or forgotten.</text>
+			<pos>0.38 0.745</pos>
+			<size>0.40 0.20</size>
+			<lineSpacing>1.1</lineSpacing>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>00ADEF</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>84849C</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>231F20</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>FFFFFF</color>
+		</image>
+	</view>
+</theme>

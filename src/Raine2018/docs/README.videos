@@ -1,0 +1,61 @@
+In version 0.43.0, there is a new feature to record a set of frames + an audio
+file which can be used to encode a video. This is more a feature to see what
+can be done easily rather than an magical end-user thing which does everything.
+So this is intended for users who are not afraid about converting by hand a few
+thousands frames + a wav file into a video.
+
+The bigest problem is that it eats LOTS of cpu power.
+The other problem is that you need some tool to encode the frames and the audio
+file in a video file.
+
+If you are still here, then here is how to do it, and a few tips :
+There are 3 options important for that in the raine config file :
+
+[Display]
+# Save screenshots in png format ?
+screenshot_png = 1
+
+# png_compression : from libpng, level 9 is much slower for almost no noticeble
+# difference compared to level 6, so level 6 is the default.
+# If you want to record a video use a level < 3 preferably.
+png_compression = 6
+
+# If you record a video, controls how many screenshots are saved / second
+video_fps = 15
+
+I recommend to use png files for this, png is much more standard than pcx and
+much easier to convert in a video, so leave screenshot_png = 1. About the
+compression : compression is very efficient in png files, but you are going to
+save at least 15 png by second, so you want this to be fast, so you will
+probably not want a compression level > 3 when recording a video. 2 is good. 0
+creates very big files, so you need to be sure that the disc activity is not
+going to interrupt raine if you use that !
+About video_fps : 15 is the absolute minimum if you want this to look like a
+video ! You should probably not try something higher than 30 fps, and this
+parameter will eat your cpu power extremely fast !
+
+After seting these parameters, load a game, and press Ctrl-V (can be changed in
+the gui) when you want to start to record. You can pause the game, press Ctrl-V
+and then unpause and the recording will begin if you prefer. You can have the
+frames / seconds displayed at the top of the screen, it won't be recorded in
+the pictures. The recording will end if you pause the game or if you call the
+gui.
+
+Now to convert all this, you can use what you want. I did it with
+mplayer/mencoder, available here :
+http://www.mplayerhq.hu/homepage/design7/news.html
+That's a reference for the video encoding/decoding now, and I recommend it.
+There is a window version, but I use it in linux.
+
+If you decide to use it, I will include a script to automatically convert these
+frames + the audio file into a video : conv_png_mpg. It encodes an mpeg4 divx
+with an mp3 vbr audio track in 2 passes. Just edit it to put the video bitrate
+you want at the begining, and the fps you chose in the raine config file.
+Also change the path of the audio file : it is ~/raine/raine_sound.wav for me
+in linux.
+
+I should probably try other formats one day, because these frames really eat
+too much cpu power... but the ultimate goal of raine is not to encode videos !
+
+Anyway if you create interesting things with that or have any interesting
+ideas, come to the forum to share them !

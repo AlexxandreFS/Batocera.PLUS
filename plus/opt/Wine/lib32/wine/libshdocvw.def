@@ -1,0 +1,129 @@
+; File generated automatically from dlls/shdocvw/shdocvw.spec; do not edit!
+
+LIBRARY shdocvw.dll
+
+EXPORTS
+  IEWinMain@8 @101 NONAME
+  CreateShortcutInDirA@0 @102 NONAME PRIVATE
+  CreateShortcutInDirW@0 @103 NONAME PRIVATE
+  WhichPlatformFORWARD@0 @104 NONAME
+  CreateShortcutInDirEx@0 @105 NONAME PRIVATE
+  HlinkFindFrame@0 @106 PRIVATE
+  SetShellOfflineState@0 @107 PRIVATE
+  AddUrlToFavorites@0 @108 PRIVATE
+  WinList_Init@0 @110 NONAME
+  WinList_Terminate@0 @111 NONAME PRIVATE
+  CreateFromDesktop@0 @115 NONAME PRIVATE
+  DDECreatePostNotify@0 @116 NONAME PRIVATE
+  DDEHandleViewFolderNotify@0 @117 NONAME PRIVATE
+  ShellDDEInit@4 @118 NONAME
+  SHCreateDesktop@0 @119 NONAME PRIVATE
+  SHDesktopMessageLoop@0 @120 NONAME PRIVATE
+  StopWatchModeFORWARD@0 @121 NONAME
+  StopWatchFlushFORWARD@0 @122 NONAME
+  StopWatchAFORWARD@20 @123 NONAME
+  StopWatchWFORWARD@20 @124 NONAME
+  RunInstallUninstallStubs@0 @125 NONAME
+  RunInstallUninstallStubs2@4 @130 NONAME
+  SHCreateSplashScreen@0 @131 NONAME PRIVATE
+  IsFileUrl@0 @135 NONAME PRIVATE
+  IsFileUrlW@0 @136 NONAME PRIVATE
+  PathIsFilePath@0 @137 NONAME PRIVATE
+  URLSubLoadString@0 @138 NONAME PRIVATE
+  OpenPidlOrderStream@0 @139 NONAME PRIVATE
+  DragDrop@0 @140 NONAME PRIVATE
+  IEInvalidateImageList@0 @141 NONAME PRIVATE
+  IEMapPIDLToSystemImageListIndex@0 @142 NONAME PRIVATE
+  ILIsWeb@0 @143 NONAME PRIVATE
+  IEGetAttributesOf@0 @145 NONAME PRIVATE
+  IEBindToObject@0 @146 NONAME PRIVATE
+  IEGetNameAndFlags@0 @147 NONAME PRIVATE
+  IEGetDisplayName@0 @148 NONAME PRIVATE
+  IEBindToObjectEx@0 @149 NONAME PRIVATE
+  _GetStdLocation@0 @150 NONAME PRIVATE
+  URLSubRegQueryA@24 @151 NONAME
+  CShellUIHelper_CreateInstance2@0 @152 NONAME PRIVATE
+  IsURLChild@0 @153 NONAME PRIVATE
+  SHRestricted2A@12 @158 NONAME
+  SHRestricted2W@12 @159 NONAME
+  SHIsRestricted2W@0 @160 NONAME PRIVATE
+  CDDEAuto_Navigate@0 @162 NONAME PRIVATE
+  SHAddSubscribeFavorite@0 @163 PRIVATE
+  ResetProfileSharing@4 @164 NONAME
+  URLSubstitution@0 @165 NONAME PRIVATE
+  IsIEDefaultBrowser@0 @167 NONAME PRIVATE
+  ParseURLFromOutsideSourceA@16 @169 NONAME
+  ParseURLFromOutsideSourceW@16 @170 NONAME
+  _DeletePidlDPA@0 @171 NONAME PRIVATE
+  IURLQualify@0 @172 NONAME PRIVATE
+  SHIsRestricted@0 @173 NONAME PRIVATE
+  SHIsGlobalOffline@0 @174 NONAME PRIVATE
+  DetectAndFixAssociations@0 @175 NONAME PRIVATE
+  EnsureWebViewRegSettings@0 @176 NONAME PRIVATE
+  WinList_NotifyNewLocation@0 @177 NONAME PRIVATE
+  WinList_FindFolderWindow@0 @178 NONAME PRIVATE
+  WinList_GetShellWindows@0 @179 NONAME PRIVATE
+  WinList_RegisterPending@0 @180 NONAME PRIVATE
+  WinList_Revoke@0 @181 NONAME PRIVATE
+  SHMapNbspToSp@0 @183 NONAME PRIVATE
+  FireEvent_Quit@0 @185 NONAME PRIVATE
+  SHDGetPageLocation@0 @187 NONAME PRIVATE
+  SHIEErrorMsgBox@0 @188 NONAME PRIVATE
+  SHRunIndirectRegClientCommandForward@0 @190 NONAME PRIVATE
+  SHIsRegisteredClient@0 @191 NONAME PRIVATE
+  SHGetHistoryPIDL@0 @192 NONAME PRIVATE
+  IECleanUpAutomationObject@0 @194 NONAME PRIVATE
+  IEOnFirstBrowserCreation@0 @195 NONAME PRIVATE
+  IEDDE_WindowDestroyed@0 @196 NONAME PRIVATE
+  IEDDE_NewWindow@0 @197 NONAME PRIVATE
+  IsErrorUrl@0 @198 NONAME PRIVATE
+  SHGetViewStream@0 @200 NONAME PRIVATE
+  NavToUrlUsingIEA@0 @203 NONAME PRIVATE
+  NavToUrlUsingIEW@0 @204 NONAME PRIVATE
+  SearchForElementInHead@0 @208 NONAME PRIVATE
+  JITCoCreateInstance@0 @209 NONAME PRIVATE
+  UrlHitsNetW@0 @210 NONAME PRIVATE
+  ClearAutoSuggestForForms@0 @211 NONAME PRIVATE
+  GetLinkInfo@0 @212 NONAME PRIVATE
+  UseCustomInternetSearch@0 @213 NONAME PRIVATE
+  GetSearchAssistantUrlW@0 @214 NONAME PRIVATE
+  GetSearchAssistantUrlA@0 @215 NONAME PRIVATE
+  GetDefaultInternetSearchUrlW@0 @216 NONAME PRIVATE
+  GetDefaultInternetSearchUrlA@0 @217 NONAME PRIVATE
+  IEParseDisplayNameWithBCW@16 @218 NONAME
+  IEILIsEqual@0 @219 NONAME PRIVATE
+  IECreateFromPathCPWithBCA@0 @221 NONAME PRIVATE
+  IECreateFromPathCPWithBCW@0 @222 NONAME PRIVATE
+  ResetWebSettings@0 @223 NONAME PRIVATE
+  IsResetWebSettingsRequired@0 @224 NONAME PRIVATE
+  PrepareURLForDisplayUTF8W@0 @225 NONAME PRIVATE
+  IEIsLinkSafe@0 @226 NONAME PRIVATE
+  SHUseClassicToolbarGlyphs@0 @227 NONAME PRIVATE
+  SafeOpenPromptForShellExec@0 @228 NONAME PRIVATE
+  SafeOpenPromptForPackager@0 @229 NONAME PRIVATE
+  DllCanUnloadNow@0 @109 PRIVATE
+  DllGetClassObject@12 @112 PRIVATE
+  DllGetVersion@4 @113 PRIVATE
+  DllInstall@8 @114 PRIVATE
+  DllRegisterServer@0 @126 PRIVATE
+  DllRegisterWindowClasses@0 @127 PRIVATE
+  DllUnregisterServer@0 @128 PRIVATE
+  DoAddToFavDlg@0 @129 PRIVATE
+  DoAddToFavDlgW@0 @132 PRIVATE
+  DoFileDownload@4 @133
+  DoFileDownloadEx@0 @134 PRIVATE
+  DoOrganizeFavDlg@8 @144
+  DoOrganizeFavDlgW@8 @154
+  DoPrivacyDlg@0 @155 PRIVATE
+  HlinkFrameNavigate@0 @156 PRIVATE
+  HlinkFrameNavigateNHL@0 @157 PRIVATE
+  IEAboutBox@0 @166 PRIVATE
+  IEWriteErrorLog@0 @168 PRIVATE
+  ImportPrivacySettings@12 @182
+  InstallReg_RunDLL@16 @184
+  OpenURL@16=ieframe.OpenURL @186
+  SHGetIDispatchForFolder@0 @193 PRIVATE
+  SetQueryNetSessionCount@4 @201
+  SoftwareUpdateMessageBox@0 @202 PRIVATE
+  URLQualifyA@0 @205 PRIVATE
+  URLQualifyW@0 @206 PRIVATE

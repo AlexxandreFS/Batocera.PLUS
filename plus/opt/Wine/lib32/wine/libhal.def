@@ -1,0 +1,97 @@
+; File generated automatically from dlls/hal/hal.spec; do not edit!
+
+LIBRARY hal.dll
+
+EXPORTS
+  ExAcquireFastMutex@4 @1
+  ExReleaseFastMutex@4 @2
+  ExTryToAcquireFastMutex@4 @3
+  HalClearSoftwareInterrupt@0 @4 PRIVATE
+  HalRequestSoftwareInterrupt@0 @5 PRIVATE
+  HalSystemVectorDispatchEntry@0 @6 PRIVATE
+  KeAcquireInStackQueuedSpinLock@8 @7
+  KeAcquireInStackQueuedSpinLockRaiseToSynch@0 @8 PRIVATE
+  KeAcquireQueuedSpinLock@0 @9 PRIVATE
+  KeAcquireQueuedSpinLockRaiseToSynch@0 @10 PRIVATE
+  KeAcquireSpinLockRaiseToSynch@0 @11 PRIVATE
+  KeReleaseInStackQueuedSpinLock@4 @12
+  KeReleaseQueuedSpinLock@0 @13 PRIVATE
+  KeTryToAcquireQueuedSpinLock@0 @14 PRIVATE
+  KeTryToAcquireQueuedSpinLockRaiseToSynch@0 @15 PRIVATE
+  KfAcquireSpinLock@4 @16
+  KfLowerIrql@4 @17
+  KfRaiseIrql@4 @18
+  KfReleaseSpinLock@8 @19
+  HalAcquireDisplayOwnership@0 @20 PRIVATE
+  HalAdjustResourceList@0 @21 PRIVATE
+  HalAllProcessorsStarted@0 @22 PRIVATE
+  HalAllocateAdapterChannel@0 @23 PRIVATE
+  HalAllocateCommonBuffer@0 @24 PRIVATE
+  HalAllocateCrashDumpRegisters@0 @25 PRIVATE
+  HalAssignSlotResources@0 @26 PRIVATE
+  HalBeginSystemInterrupt@0 @27 PRIVATE
+  HalCalibratePerformanceCounter@0 @28 PRIVATE
+  HalDisableSystemInterrupt@0 @29 PRIVATE
+  HalDisplayString@0 @30 PRIVATE
+  HalEnableSystemInterrupt@0 @31 PRIVATE
+  HalEndSystemInterrupt@0 @32 PRIVATE
+  HalFlushCommonBuffer@0 @33 PRIVATE
+  HalFreeCommonBuffer@0 @34 PRIVATE
+  HalGetAdapter@0 @35 PRIVATE
+  HalGetBusData@20 @36
+  HalGetBusDataByOffset@24 @37
+  HalGetEnvironmentVariable@0 @38 PRIVATE
+  HalGetInterruptVector@0 @39 PRIVATE
+  HalHandleNMI@0 @40 PRIVATE
+  HalInitSystem@0 @41 PRIVATE
+  HalInitializeProcessor@0 @42 PRIVATE
+  HalMakeBeep@0 @43 PRIVATE
+  HalProcessorIdle@0 @44 PRIVATE
+  HalQueryDisplayParameters@0 @45 PRIVATE
+  HalQueryRealTimeClock@0 @46 PRIVATE
+  HalReadDmaCounter@0 @47 PRIVATE
+  HalReportResourceUsage@0 @48 PRIVATE
+  HalRequestIpi@0 @49 PRIVATE
+  HalReturnToFirmware@0 @50 PRIVATE
+  HalSetBusData@0 @51 PRIVATE
+  HalSetBusDataByOffset@0 @52 PRIVATE
+  HalSetDisplayParameters@0 @53 PRIVATE
+  HalSetEnvironmentVariable@0 @54 PRIVATE
+  HalSetProfileInterval@0 @55 PRIVATE
+  HalSetRealTimeClock@0 @56 PRIVATE
+  HalSetTimeIncrement@0 @57 PRIVATE
+  HalStartNextProcessor@0 @58 PRIVATE
+  HalStartProfileInterrupt@0 @59 PRIVATE
+  HalStopProfileInterrupt@0 @60 PRIVATE
+  HalTranslateBusAddress@24 @61
+  IoAssignDriveLetters@0 @62 PRIVATE
+  IoFlushAdapterBuffers@0 @63 PRIVATE
+  IoFreeAdapterChannel@0 @64 PRIVATE
+  IoFreeMapRegisters@0 @65 PRIVATE
+  IoMapTransfer@0 @66 PRIVATE
+  IoReadPartitionTable@0 @67 PRIVATE
+  IoSetPartitionInformation@0 @68 PRIVATE
+  IoWritePartitionTable@0 @69 PRIVATE
+  KdComPortInUse@0 @70 PRIVATE
+  KeAcquireSpinLock@8 @71
+  KeFlushWriteBuffer@0 @72 PRIVATE
+  KeGetCurrentIrql@0 @73
+  KeLowerIrql@0 @74 PRIVATE
+  KeQueryPerformanceCounter@4 @75
+  KeRaiseIrql@0 @76 PRIVATE
+  KeRaiseIrqlToDpcLevel@0 @77 PRIVATE
+  KeRaiseIrqlToSynchLevel@0 @78 PRIVATE
+  KeReleaseSpinLock@8 @79
+  KeStallExecutionProcessor@0 @80 PRIVATE
+  READ_PORT_BUFFER_UCHAR@0 @81 PRIVATE
+  READ_PORT_BUFFER_ULONG@0 @82 PRIVATE
+  READ_PORT_BUFFER_USHORT@0 @83 PRIVATE
+  READ_PORT_UCHAR@4 @84
+  READ_PORT_ULONG@4 @85
+  READ_PORT_USHORT@0 @86 PRIVATE
+  WRITE_PORT_BUFFER_UCHAR@0 @87 PRIVATE
+  WRITE_PORT_BUFFER_ULONG@0 @88 PRIVATE
+  WRITE_PORT_BUFFER_USHORT@0 @89 PRIVATE
+  WRITE_PORT_UCHAR@8 @90
+  WRITE_PORT_ULONG@8 @91
+  WRITE_PORT_USHORT@0 @92 PRIVATE

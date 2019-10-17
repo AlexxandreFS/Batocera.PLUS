@@ -1,0 +1,49 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>FFEB32</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>F17C3E</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>EFEDE3</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>95C93E</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Original author : Ludvig Strigeus</text>
+			<pos>0.38 0.72</pos>
+		</text>
+		<text name="info2" extra="true">
+			<text>Year of Release : 2001</text>
+			<pos>0.38 0.74</pos>
+		</text>
+		<text name="info3" extra="true">
+			<text>Scummvm is a collection of game engine recreations. Originally designed to play LucasArts adventure games that use the SCUMMM system, it also supports a variety of non-SCUMM games by companies like Revolution Software and Adventure Soft. It was originally written by Ludvig Strigeus. Released under the terms of the GNU General Public License, ScummVM is a free software.</text>
+			<pos>0.38 0.76</pos>
+			<size>0.40 0.20</size>
+			<lineSpacing>1.1</lineSpacing>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>FFEB32</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>F17C3E</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>EFEDE3</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>95C93E</color>
+		</image>
+	</view>
+</theme>

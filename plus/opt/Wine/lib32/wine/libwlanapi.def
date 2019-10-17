@@ -1,0 +1,41 @@
+; File generated automatically from dlls/wlanapi/wlanapi.spec; do not edit!
+
+LIBRARY wlanapi.dll
+
+EXPORTS
+  WlanAllocateMemory@4 @1
+  WlanCloseHandle@8 @2
+  WlanConnect@0 @3 PRIVATE
+  WlanDeleteProfile@0 @4 PRIVATE
+  WlanDisconnect@0 @5 PRIVATE
+  WlanEnumInterfaces@12 @6
+  WlanExtractPsdIEDataList@0 @7 PRIVATE
+  WlanFreeMemory@4 @8
+  WlanGetAvailableNetworkList@20 @9
+  WlanGetFilterList@0 @10 PRIVATE
+  WlanGetInterfaceCapability@0 @11 PRIVATE
+  WlanGetNetworkBssList@0 @12 PRIVATE
+  WlanGetProfile@0 @13 PRIVATE
+  WlanGetProfileCustomUserData@0 @14 PRIVATE
+  WlanGetProfileList@0 @15 PRIVATE
+  WlanGetSecuritySettings@0 @16 PRIVATE
+  WlanIhvControl@0 @17 PRIVATE
+  WlanOpenHandle@16 @18
+  WlanQueryAutoConfigParameter@0 @19 PRIVATE
+  WlanQueryInterface@0 @20 PRIVATE
+  WlanReasonCodeToString@0 @21 PRIVATE
+  WlanRegisterNotification@28 @22
+  WlanRenameProfile@0 @23 PRIVATE
+  WlanSaveTemporaryProfile@0 @24 PRIVATE
+  WlanScan@20 @25
+  WlanSetAutoConfigParameter@0 @26 PRIVATE
+  WlanSetFilterList@0 @27 PRIVATE
+  WlanSetInterface@0 @28 PRIVATE
+  WlanSetProfile@0 @29 PRIVATE
+  WlanSetProfileCustomUserData@0 @30 PRIVATE
+  WlanSetProfileEapUserData@0 @31 PRIVATE
+  WlanSetProfileEapXmlUserData@0 @32 PRIVATE
+  WlanSetProfileList@0 @33 PRIVATE
+  WlanSetProfilePosition@0 @34 PRIVATE
+  WlanSetPsdIEDataList@0 @35 PRIVATE
+  WlanSetSecuritySettings@0 @36 PRIVATE

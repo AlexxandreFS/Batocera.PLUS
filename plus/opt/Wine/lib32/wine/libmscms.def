@@ -1,0 +1,108 @@
+; File generated automatically from dlls/mscms/mscms.spec; do not edit!
+
+LIBRARY mscms.dll
+
+EXPORTS
+  AssociateColorProfileWithDeviceA@12 @1
+  AssociateColorProfileWithDeviceW@12 @2
+  CheckBitmapBits@36 @3
+  CheckColors@20 @4
+  CloseColorProfile@4 @5
+  CloseDisplay@0 @6 PRIVATE
+  ColorCplGetDefaultProfileScope@0 @7 PRIVATE
+  ColorCplGetDefaultRenderingIntentScope@0 @8 PRIVATE
+  ColorCplGetProfileProperties@0 @9 PRIVATE
+  ColorCplHasSystemWideAssociationListChanged@0 @10 PRIVATE
+  ColorCplInitialize@0 @11 PRIVATE
+  ColorCplLoadAssociationList@0 @12 PRIVATE
+  ColorCplMergeAssociationLists@0 @13 PRIVATE
+  ColorCplOverwritePerUserAssociationList@0 @14 PRIVATE
+  ColorCplReleaseProfileProperties@0 @15 PRIVATE
+  ColorCplResetSystemWideAssociationListChangedWarning@0 @16 PRIVATE
+  ColorCplSaveAssociationList@0 @17 PRIVATE
+  ColorCplSetUsePerUserProfiles@0 @18 PRIVATE
+  ColorCplUninitialize@0 @19 PRIVATE
+  ConvertColorNameToIndex@16 @20
+  ConvertIndexToColorName@16 @21
+  CreateColorTransformA@16 @22
+  CreateColorTransformW@16 @23
+  CreateDeviceLinkProfile@28 @24
+  CreateMultiProfileTransform@24 @25
+  CreateProfileFromLogColorSpaceA@8 @26
+  CreateProfileFromLogColorSpaceW@8 @27
+  DccwCreateDisplayProfileAssociationList@0 @28 PRIVATE
+  DccwGetDisplayProfileAssociationList@0 @29 PRIVATE
+  DccwGetGamutSize@0 @30 PRIVATE
+  DccwReleaseDisplayProfileAssociationList@0 @31 PRIVATE
+  DccwSetDisplayProfileAssociationList@0 @32 PRIVATE
+  DeleteColorTransform@4 @33
+  DeviceRenameEvent@0 @34 PRIVATE
+  DisassociateColorProfileFromDeviceA@12 @35
+  DisassociateColorProfileFromDeviceW@12 @36
+  EnumColorProfilesA@20 @37
+  EnumColorProfilesW@20 @38
+  GenerateCopyFilePaths@36 @39
+  GetCMMInfo@8 @40
+  GetColorDirectoryA@12 @41
+  GetColorDirectoryW@12 @42
+  GetColorProfileElement@24 @43
+  GetColorProfileElementTag@12 @44
+  GetColorProfileFromHandle@12 @45
+  GetColorProfileHeader@8 @46
+  GetCountColorProfileElements@8 @47
+  GetNamedProfileInfo@8 @48
+  GetPS2ColorRenderingDictionary@20 @49
+  GetPS2ColorRenderingIntent@16 @50
+  GetPS2ColorSpaceArray@24 @51
+  GetStandardColorSpaceProfileA@16 @52
+  GetStandardColorSpaceProfileW@16 @53
+  InstallColorProfileA@8 @54
+  InstallColorProfileW@8 @55
+  InternalGetDeviceConfig@0 @56 PRIVATE
+  InternalGetPS2CSAFromLCS@0 @57 PRIVATE
+  InternalGetPS2ColorRenderingDictionary@0 @58 PRIVATE
+  InternalGetPS2ColorSpaceArray@0 @59 PRIVATE
+  InternalGetPS2PreviewCRD@0 @60 PRIVATE
+  InternalRefreshCalibration@0 @61 PRIVATE
+  InternalSetDeviceConfig@0 @62 PRIVATE
+  InternalWcsAssociateColorProfileWithDevice@0 @63 PRIVATE
+  IsColorProfileTagPresent@12 @64
+  IsColorProfileValid@8 @65
+  OpenColorProfileA@16 @66
+  OpenColorProfileW@16 @67
+  OpenDisplay@0 @68 PRIVATE
+  RegisterCMMA@12 @69
+  RegisterCMMW@12 @70
+  SelectCMM@4 @71
+  SetColorProfileElement@20 @72
+  SetColorProfileElementReference@12 @73
+  SetColorProfileElementSize@12 @74
+  SetColorProfileHeader@8 @75
+  SetStandardColorSpaceProfileA@12 @76
+  SetStandardColorSpaceProfileW@12 @77
+  SpoolerCopyFileEvent@12 @78
+  TranslateBitmapBits@44 @79
+  TranslateColors@24 @80
+  UninstallColorProfileA@12 @81
+  UninstallColorProfileW@12 @82
+  UnregisterCMMA@8 @83
+  UnregisterCMMW@8 @84
+  WcsAssociateColorProfileWithDevice@0 @85 PRIVATE
+  WcsCheckColors@0 @86 PRIVATE
+  WcsCreateIccProfile@0 @87 PRIVATE
+  WcsDisassociateColorProfileFromDevice@0 @88 PRIVATE
+  WcsEnumColorProfiles@0 @89 PRIVATE
+  WcsEnumColorProfilesSize@12 @90
+  WcsGetCalibrationManagementState@0 @91 PRIVATE
+  WcsGetDefaultColorProfile@0 @92 PRIVATE
+  WcsGetDefaultColorProfileSize@0 @93 PRIVATE
+  WcsGetDefaultRenderingIntent@0 @94 PRIVATE
+  WcsGetUsePerUserProfiles@12 @95
+  WcsGpCanInstallOrUninstallProfiles@0 @96 PRIVATE
+  WcsOpenColorProfileA@28 @97
+  WcsOpenColorProfileW@28 @98
+  WcsSetCalibrationManagementState@0 @99 PRIVATE
+  WcsSetDefaultColorProfile@0 @100 PRIVATE
+  WcsSetDefaultRenderingIntent@0 @101 PRIVATE
+  WcsSetUsePerUserProfiles@0 @102 PRIVATE
+  WcsTranslateColors@0 @103 PRIVATE

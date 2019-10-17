@@ -1,0 +1,36 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>DC0029</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>F1C002</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>00A79B</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>326BB1</color>
+		</image>
+		
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>DC0029</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>F1C002</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>00A79B</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>326BB1</color>
+		</image>
+	</view>
+</theme>

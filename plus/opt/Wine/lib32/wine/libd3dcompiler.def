@@ -1,0 +1,34 @@
+; File generated automatically from dlls/d3dcompiler_47/d3dcompiler_47.spec; do not edit!
+
+LIBRARY d3dcompiler_47.dll
+
+EXPORTS
+  D3DAssemble@32 @1
+  D3DCompile@44 @2
+  D3DCompile2@56 @3
+  D3DCompileFromFile@36 @4
+  D3DCompressShaders@0 @5 PRIVATE
+  D3DCreateBlob@8 @6
+  D3DCreateFunctionLinkingGraph@0 @7 PRIVATE
+  D3DCreateLinker@0 @8 PRIVATE
+  D3DDecompressShaders@0 @9 PRIVATE
+  D3DDisassemble@20 @10
+  D3DDisassemble10Effect@12 @11 PRIVATE
+  D3DDisassemble11Trace@0 @12 PRIVATE
+  D3DDisassembleRegion@0 @13 PRIVATE
+  D3DGetBlobPart@20 @14
+  D3DGetDebugInfo@12 @15
+  D3DGetInputAndOutputSignatureBlob@12 @16
+  D3DGetInputSignatureBlob@12 @17
+  D3DGetOutputSignatureBlob@12 @18
+  D3DGetTraceInstructionOffsets@0 @19 PRIVATE
+  D3DLoadModule@12 @20
+  D3DPreprocess@28 @21
+  D3DReadFileToBlob@8 @22
+  D3DReflect@16 @23
+  D3DReflectLibrary@0 @24 PRIVATE
+  D3DReturnFailure1@0 @25 PRIVATE
+  D3DSetBlobPart@0 @26 PRIVATE
+  D3DStripShader@16 @27
+  D3DWriteBlobToFile@12 @28
+  DebugSetMute@0 @29 PRIVATE

@@ -1,0 +1,5 @@
+## SYSTEM MGT SAM Coupé ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted: ".fd .FD .sap .SAP .k7 .K7 .m7 .M7 .rom .ROM .zip .ZIP .7z .7Z"
+-------------------------------------------------------------------------------
+Extensions des fichiers ROMs permises: ".fd .FD .sap .SAP .k7 .K7 .m7 .M7 .rom .ROM .zip .ZIP .7z .7Z"

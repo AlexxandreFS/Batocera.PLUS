@@ -1,0 +1,48 @@
+#!/bin/bash
+
+### Batocera.PLUS
+
+if test "$1" != "start"
+then
+  exit 0
+fi
+
+SHARE='/userdata'
+SHARE_INIT='/usr/share/batocera/datainit'
+
+
+### Cria pastas adicionais
+mkdir -p "$SHARE/downloads"
+mkdir -p "$SHARE/system/.local/share/Trash/files"
+mkdir -p "$SHARE/system/configs/wine"
+
+### Arquivo de auto execução personalizado pelo usuário.
+if ! [ -f "$SHARE/system/custom.sh" ]; then
+    cp "$SHARE_INIT/system/custom.sh" "$SHARE/system/custom.sh"
+fi
+
+### Fonts extras para o ppsspp
+if ! [ -d "$SHARE/system/configs/ppsspp/PSP/flash0/font" ]; then
+    mkdir -p "$SHARE/system/configs/ppsspp/PSP/flash0"
+    cp -r "$SHARE_INIT/system/configs/ppsspp/PSP/flash0/font" "$SHARE/system/configs/ppsspp/PSP/flash0"
+fi
+
+### Configurações personalizadas para o xterm
+if ! [ -f "$SHARE/system/.Xdefaults" ]; then
+    cp "$SHARE_INIT/system/.Xdefaults" "$SHARE/system/.Xdefaults"
+fi
+
+### Configuração personalizada do genciador de arquivos.
+if ! [ -f "$SHARE/system/.gtk-bookmarks" ]; then
+    cp "$SHARE_INIT/system/.gtk-bookmarks" "$SHARE/system/.gtk-bookmarks"
+fi
+if ! [ -f "$SHARE/system/.config/pcmanfm/default/pcmanfm.conf" ]; then
+    mkdir -p "$SHARE/system/.config/pcmanfm/default"
+    cp "$SHARE_INIT/system/.config/pcmanfm/default/pcmanfm.conf" "$SHARE/system/.config/pcmanfm/default/pcmanfm.conf"
+fi
+if ! [ -f "$SHARE/system/.config/libfm/libfm.conf" ]; then
+    mkdir -p "$SHARE/system/.config/libfm"
+    cp  "$SHARE_INIT/system/.config/libfm/libfm.conf" "$SHARE/system/.config/libfm/libfm.conf"
+fi
+
+exit 0

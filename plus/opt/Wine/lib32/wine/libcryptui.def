@@ -1,0 +1,53 @@
+; File generated automatically from dlls/cryptui/cryptui.spec; do not edit!
+
+LIBRARY cryptui.dll
+
+EXPORTS
+  ACUIProviderInvokeUI@0 @1 PRIVATE
+  CryptUIDlgCertMgr@4 @2
+  CryptUIDlgFreeCAContext@0 @3 PRIVATE
+  CryptUIDlgSelectCA@0 @4 PRIVATE
+  CryptUIDlgSelectCertificateA@4 @5
+  CryptUIDlgSelectCertificateFromStore@28 @6
+  CryptUIDlgSelectCertificateW@4 @7
+  CryptUIDlgSelectStoreA@4 @8
+  CryptUIDlgSelectStoreW@4 @9
+  CryptUIDlgViewCRLA@0 @10 PRIVATE
+  CryptUIDlgViewCRLW@0 @11 PRIVATE
+  CryptUIDlgViewCTLA@0 @12 PRIVATE
+  CryptUIDlgViewCTLW@0 @13 PRIVATE
+  CryptUIDlgViewCertificateA@8 @14
+  CryptUIDlgViewCertificatePropertiesA@0 @15 PRIVATE
+  CryptUIDlgViewCertificatePropertiesW@0 @16 PRIVATE
+  CryptUIDlgViewCertificateW@8 @17
+  CryptUIDlgViewContext@24 @18
+  CryptUIDlgViewSignerInfoA@4 @19
+  CryptUIDlgViewSignerInfoW@0 @20 PRIVATE
+  CryptUIFreeCertificatePropertiesPagesA@0 @21 PRIVATE
+  CryptUIFreeCertificatePropertiesPagesW@0 @22 PRIVATE
+  CryptUIFreeViewSignaturesPagesA@0 @23 PRIVATE
+  CryptUIFreeViewSignaturesPagesW@0 @24 PRIVATE
+  CryptUIGetCertificatePropertiesPagesA@0 @25 PRIVATE
+  CryptUIGetCertificatePropertiesPagesW@0 @26 PRIVATE
+  CryptUIGetViewSignaturesPagesA@0 @27 PRIVATE
+  CryptUIGetViewSignaturesPagesW@0 @28 PRIVATE
+  CryptUIStartCertMgr@0 @29 PRIVATE
+  CryptUIWizBuildCTL@0 @30 PRIVATE
+  CryptUIWizCertRequest@0 @31 PRIVATE
+  CryptUIWizCreateCertRequestNoDS@0 @32 PRIVATE
+  CryptUIWizDigitalSign@20 @33
+  CryptUIWizExport@20 @34
+  CryptUIWizFreeCertRequestNoDS@0 @35 PRIVATE
+  CryptUIWizFreeDigitalSignContext@0 @36 PRIVATE
+  CryptUIWizImport@20 @37
+  CryptUIWizQueryCertRequestNoDS@0 @38 PRIVATE
+  CryptUIWizSubmitCertRequestNoDS@0 @39 PRIVATE
+  DllRegisterServer@0 @40 PRIVATE
+  DllUnregisterServer@0 @41 PRIVATE
+  EnrollmentCOMObjectFactory_getInstance@0 @42 PRIVATE
+  I_CryptUIProtect@0 @43 PRIVATE
+  I_CryptUIProtectFailure@0 @44 PRIVATE
+  LocalEnroll@0 @45 PRIVATE
+  LocalEnrollNoDS@0 @46 PRIVATE
+  RetrievePKCS7FromCA@0 @47 PRIVATE
+  WizardFree@0 @48 PRIVATE

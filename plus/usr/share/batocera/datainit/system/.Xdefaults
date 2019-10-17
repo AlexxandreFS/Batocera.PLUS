@@ -1,0 +1,8 @@
+# Perfumaria
+xterm*faceName: DejaVu Sans Mono Book
+xterm*faceSize: 13
+xterm*background: #0A122A
+xterm*foreground: #EEEEEE
+
+#Ativa a leitura do arquivo de profile
+XTerm*.LoginShell: True

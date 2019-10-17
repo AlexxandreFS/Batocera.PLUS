@@ -1,0 +1,4689 @@
+# Raine Translation (base file).
+# Copyright (C) 2015
+# This file is distributed under the same license as the raine package.
+# Emmanuel Anne.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-11 21:52-0300\n"
+"PO-Revision-Date: 2015-08-12 20:38-0300\n"
+"Last-Translator: Emmanuel Anne <emmanuel.anne@gmail.com>\n"
+"Language-Team: -\n"
+"Language: es_419\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.4\n"
+
+msgid " 2  Minutes"
+msgstr "2 Minutos"
+
+msgid " 3  Minutes"
+msgstr "3 Minutos"
+
+#, c-format
+msgid "%d - Free savegame slot"
+msgstr "%d - Ranura para salvar libre"
+
+#, c-format
+msgid "%s is not recognised"
+msgstr "%s no es reconocido"
+
+#, c-format
+msgid "%s is too ancient!"
+msgstr "%s es muy antiguo!"
+
+msgid "+1 Min"
+msgstr ""
+
+msgid "+10 Yards"
+msgstr "+10 Yardas"
+
+msgid "+20 Yards"
+msgstr "+20 Yardas"
+
+msgid "+30 Yards"
+msgstr "+30 Yardas"
+
+msgid "+40 Yards"
+msgstr "+40 Yardas"
+
+msgid "+50 Yards"
+msgstr "+50 Yardas"
+
+msgid "+60 Yards"
+msgstr "+60 Yardas"
+
+msgid "-- Options --"
+msgstr "-- Opciones --"
+
+msgid "-- Path... "
+msgstr "-- Directorio..."
+
+msgid "-1 Min"
+msgstr ""
+
+msgid "-2 Mins"
+msgstr ""
+
+msgid "-30 Yards"
+msgstr "-30 Yardas"
+
+msgid "1 (Easiest)"
+msgstr "1 (Facilísimo)"
+
+msgid "1 Coin"
+msgstr "1 Moneda"
+
+msgid "1 Coin to Continue"
+msgstr "1 Moneda para continuar"
+
+msgid "1 Coin/1 Credit"
+msgstr "1 Moneda/1 Credito"
+
+msgid "1 Coin/1 Credit 2/3"
+msgstr "1 Moneda/1 Credito 2/3"
+
+msgid "1 Coin/1 Credit 4/5"
+msgstr "1 Moneda/1 Credito 4/5"
+
+msgid "1 Coin/1 Credit 5/6"
+msgstr "1 Moneda/1 Credito 5/6"
+
+msgid "1 Coin/2 Credits"
+msgstr "1 Moneda/2 Creditos"
+
+msgid "1 Coin/2 Credits 4/9"
+msgstr "1 Moneda/2 Creditos 4/9"
+
+msgid "1 Coin/2 Credits 5/11"
+msgstr "1 Moneda/2 Creditos 5/11"
+
+msgid "1 Coin/3 Credits"
+msgstr "1 Moneda/3 Creditos"
+
+msgid "1 Coin/4 Credits"
+msgstr "1 Moneda/4 Creditos"
+
+msgid "1 Coin/5 Credits"
+msgstr "1 Moneda/5 Creditos"
+
+msgid "1 Coin/6 Credits"
+msgstr "1 Moneda/6 Creditos"
+
+msgid "1 Coin/7 Credits"
+msgstr "1 Moneda/7 Creditos"
+
+msgid "1 Coin/8 Credits"
+msgstr "1 Moneda/8 Creditos"
+
+msgid "1 Coin/9 Credits"
+msgstr "1 Moneda/9 Creditos"
+
+msgid "1 Credit"
+msgstr "1 Credito"
+
+msgid "1 Credit/2P"
+msgstr "1 Credito/2P"
+
+msgid "1 Credit/4P"
+msgstr "1 Credito/4P"
+
+msgid "1 Credit/No Continue"
+msgstr "1 Credito/No Continuar"
+
+msgid "1 Game Match"
+msgstr "1 Partida"
+
+msgid "1 Medal 1 Credit"
+msgstr "1 Medalla 1 Credito"
+
+msgid "1 Minute Lenght"
+msgstr "1 Minuto de Duración"
+
+msgid "1 Player"
+msgstr "1 Jugador"
+
+msgid "1 extra coin"
+msgstr "1 moneda extra"
+
+msgid "1 of 4 Scenes"
+msgstr "1 de 4 escenas"
+
+msgid "1 of 8 Scenes"
+msgstr "1 de 8 escenas"
+
+msgid "1.200k 3.500k"
+msgstr ""
+
+msgid "1.5 Minutes"
+msgstr "1.5 Minutos"
+
+msgid "10 Yen"
+msgstr "10 Yenes"
+
+msgid "10 Yen Setup"
+msgstr "10 Yenes Configuración"
+
+msgid "10 fps"
+msgstr "10 CPS"
+
+msgid "10 seconds"
+msgstr "10 segundos"
+
+msgid "100 (Cheat)"
+msgstr "100 (Truco)"
+
+msgid "100 Yen"
+msgstr "100 Yenes"
+
+msgid "1000K"
+msgstr ""
+
+msgid "1000K Only"
+msgstr "1000K Solamente"
+
+msgid "1000K only"
+msgstr "1000K solamente"
+
+msgid "1000k 2000k"
+msgstr ""
+
+msgid "1000k Only"
+msgstr "1000K Solamente"
+
+msgid "1000k and 2000k"
+msgstr "1000k y 2000k"
+
+msgid "100K"
+msgstr ""
+
+msgid "100K Only"
+msgstr "1000K Solamente"
+
+msgid "100K and 250K"
+msgstr "100K y 250K"
+
+msgid "100K only"
+msgstr "1000K solamente"
+
+msgid "100k"
+msgstr ""
+
+msgid "100k 200k"
+msgstr ""
+
+msgid "100k 300k"
+msgstr ""
+
+msgid "100k 500k"
+msgstr ""
+
+msgid "100k and 100k"
+msgstr "100k y 100k"
+
+msgid "100k and 200k"
+msgstr "100k y 200k"
+
+msgid "100k and 300k"
+msgstr "100k y 300k"
+
+msgid "100k and 500k"
+msgstr "100k y 500k"
+
+msgid "100k and every 150k"
+msgstr "100k y cada 150k"
+
+msgid "100k and every 200k"
+msgstr "100k y cada 200k"
+
+msgid "100k and every 450k"
+msgstr "100k y cada 450k"
+
+msgid "100k only"
+msgstr "100k solamente"
+
+msgid "100k then every 200k"
+msgstr "100k después cada 200k"
+
+msgid "100k then every 250k"
+msgstr "100k después cada 250k"
+
+msgid "100k then every 300k"
+msgstr "100k después cada 300k"
+
+msgid "100k then every 400k"
+msgstr "100k después cada 400k"
+
+msgid "100k, 250k"
+msgstr ""
+
+msgid "100k, 300k and 600k"
+msgstr "100k, 300k y  600k"
+
+msgid "100k, 300k and 800k"
+msgstr "100k, 300k y  800k"
+
+msgid "100k, every 200k"
+msgstr "100k, cada  200k"
+
+msgid "100k/1000k"
+msgstr ""
+
+msgid "10K 30K and every 30K"
+msgstr "10K 30K y cada 30K"
+
+msgid "10k and 100k"
+msgstr "10k y  100k"
+
+msgid "10k and 150k"
+msgstr "10k y  150k"
+
+msgid "10k and 250k"
+msgstr "10k y  250k"
+
+msgid "10k and 350k"
+msgstr "10k y  350k"
+
+msgid "10k, 110K, 210K, 310K"
+msgstr ""
+
+msgid "120 Seconds"
+msgstr "120 Segundos"
+
+msgid "15 fps"
+msgstr "15 CPS"
+
+msgid "15 seconds"
+msgstr "15 segundos"
+
+msgid "150 Seconds"
+msgstr "150 Segundos"
+
+msgid "1500k only"
+msgstr "1500k solamente"
+
+msgid "150K Every 300K"
+msgstr "150K Cada  300K"
+
+msgid "150k"
+msgstr ""
+
+msgid "150k and every 200k"
+msgstr "150k y cada 200k"
+
+msgid "150k only"
+msgstr "150k solamente"
+
+msgid "150k then every 200k"
+msgstr "150k y cada 200k"
+
+msgid "150k, 350k"
+msgstr ""
+
+msgid "15K, 145K, 365K, 515K"
+msgstr ""
+
+msgid "160k and every 450k"
+msgstr "160k y cada 450k"
+
+msgid "160k only"
+msgstr "160k solamente"
+
+msgid "16x"
+msgstr ""
+
+msgid "1P/2P Control Flip"
+msgstr "1P/2P Control de Giro"
+
+msgid "1Up"
+msgstr "1 Vida"
+
+msgid "2 Coins to Start,1 to Continue"
+msgstr "2 Monendas para Comenzar, 1 para Continuar"
+
+msgid "2 Coins to Start1 to Continue"
+msgstr "2 Monendas para Comenzar, 1 para Continuar"
+
+msgid "2 Coins/1 Credit"
+msgstr "2 Monedas/1 Credito"
+
+msgid "2 Coins/1 Credit 3/2 4/3 6/5"
+msgstr "2 Monedas/1 Credito 3/2 4/3 6/5"
+
+msgid "2 Coins/1 Credit 4/3"
+msgstr "2 Monedas/1 Credito 4/3"
+
+msgid "2 Coins/1 Credit 5/3"
+msgstr "2 Monedas/1 Credito 5/3"
+
+msgid "2 Coins/2 Credits"
+msgstr "2 Monedas/2 Creditos"
+
+msgid "2 Coins/3 Credits"
+msgstr "2 Monedas/3 Creditos"
+
+msgid "2 Coins/4 Credits"
+msgstr "2 Monedas/4 Creditos"
+
+msgid "2 Coins/5 Credits"
+msgstr "2 Monedas/5 Creditos"
+
+msgid "2 Coins/6 Credits"
+msgstr "2 Monedas/6 Creditos"
+
+msgid "2 Coins/7 Credits"
+msgstr "2 Monedas/7 Creditos"
+
+msgid "2 Coins/8 Credits"
+msgstr "2 Monedas/8 Creditos"
+
+msgid "2 Credits"
+msgstr "2 Creditos"
+
+msgid "2 Credits/4P"
+msgstr "2 Creditos/4P"
+
+msgid "2 Credits/Winner Continue"
+msgstr "2 Creditos/Ganador Continua"
+
+msgid "2 Minutes"
+msgstr "2 Minutos"
+
+msgid "2 Player Game"
+msgstr "Juego de 2 Player"
+
+msgid "2 Player Mode"
+msgstr "Modo 2 Player"
+
+msgid "2 Players"
+msgstr "2 Jugadores"
+
+msgid "2 Players Game"
+msgstr "Juego de 2 Players"
+
+msgid "2 Players Mode"
+msgstr "Modo 2 Players"
+
+msgid "2 extra coins"
+msgstr "2 monedas extras"
+
+msgid "2.5 Minutes"
+msgstr "2.5 Minutos"
+
+msgid "20 sec"
+msgstr "20 seg"
+
+msgid "20 seconds"
+msgstr "20 segundos"
+
+msgid "20000, every 60000"
+msgstr "20000, cada  60000"
+
+msgid "20000, every 80000"
+msgstr "20000, cada  80000"
+
+msgid "20000, every 90000"
+msgstr "20000, cada 90000"
+
+msgid "2000k only"
+msgstr "2000k solamente"
+
+msgid "200K"
+msgstr ""
+
+msgid "200K Every 200K"
+msgstr "200K Cada 200K"
+
+msgid "200K Every 400K"
+msgstr "200K Cada 400K"
+
+msgid "200K and 500K"
+msgstr "200K y 500K"
+
+msgid "200Kevery 500K"
+msgstr "200Kcada 500K"
+
+msgid "200k"
+msgstr ""
+
+msgid "200k and 500k"
+msgstr "200k y 500k"
+
+msgid "200k and every 200k"
+msgstr "200k y cada 200k"
+
+msgid "200k and every 450k"
+msgstr "200k y cada 450k"
+
+msgid "200k only"
+msgstr "200k solamente"
+
+msgid "200k then every 300k"
+msgstr "200k después cada 300k"
+
+msgid "200k, 300k"
+msgstr ""
+
+msgid "200k, 400k and 600k"
+msgstr "200k, 400k y 600k"
+
+msgid "200k, 500k"
+msgstr ""
+
+msgid "200k, every 300k"
+msgstr "200k, cada 300k"
+
+msgid "20K & 60K only"
+msgstr "20K y 60K solamente"
+
+msgid "20K 40K then every 60K"
+msgstr "20K 40K después cada 60K"
+
+msgid "20K 50K and every 70K"
+msgstr "20K 50K y cada 70K"
+
+msgid "20K 60K and every 60K"
+msgstr "20K 60K y cada 60K"
+
+msgid "20K Every 100K"
+msgstr "20K Cada 100K"
+
+msgid "20K only"
+msgstr "20K solamente"
+
+msgid "20K60K and every 60K"
+msgstr "20K60K y cada 60K"
+
+msgid "20k"
+msgstr ""
+
+msgid "20k 40k"
+msgstr ""
+
+msgid "20k 80k"
+msgstr ""
+
+msgid "20k and 50k"
+msgstr "20k y 50k"
+
+msgid "20k and 80k"
+msgstr "20k y 80k"
+
+msgid "20k and every 50k"
+msgstr "20k y cada 50k"
+
+msgid "20k, 220K, 420K, 620K"
+msgstr ""
+
+msgid "25 sec"
+msgstr "25 seg"
+
+msgid "250k"
+msgstr ""
+
+msgid "250k only"
+msgstr "250k solamente"
+
+msgid "256 (Cheat)"
+msgstr "256 (Truco)"
+
+msgid "2P Start Anytime"
+msgstr "2P Comienza en Cualquier Momento"
+
+msgid "2x"
+msgstr ""
+
+msgid "2x Speed Cheat"
+msgstr "2x Truco de Velocidad"
+
+msgid "3 (2 when continue)"
+msgstr "3 (2 cuando continua)"
+
+msgid "3 Bars"
+msgstr "3 Barras"
+
+msgid "3 Chain Reactions"
+msgstr "3 Reacciones en Cadena"
+
+msgid "3 Coins/1 Credit"
+msgstr "3 Monedas/1 Credito"
+
+msgid "3 Coins/2 Credits"
+msgstr "3 Monedas/2 Creditos"
+
+msgid "3 Coins/3 Credits"
+msgstr "3 Monedas/3 Creditos"
+
+msgid "3 Coins/4 Credits"
+msgstr "3 Monedas/4 Creditos"
+
+msgid "3 Coins/5 Credits"
+msgstr "3 Monedas/5 Creditos"
+
+msgid "3 Coins/6 Credits"
+msgstr "3 Monedas/6 Creditos"
+
+msgid "3 Coins/7 Credit"
+msgstr "3 Monedas/7 Credito"
+
+msgid "3 Coins/7 Credits"
+msgstr "3 Monedas/7 Creditos"
+
+msgid "3 Coins/8 Credits"
+msgstr "3 Monedas/8 Creditos"
+
+msgid "3 Games Match"
+msgstr "Juego de 3 Partidos"
+
+msgid "3 Minutes"
+msgstr "3 Minutos"
+
+msgid "3 Players"
+msgstr "3 Jugadores"
+
+msgid "3 Times"
+msgstr "3 veces"
+
+msgid "3 characters"
+msgstr "3 personajes"
+
+msgid "3 extra coins"
+msgstr "3 monedas extras"
+
+msgid "3 per Credit"
+msgstr "3 por Credito"
+
+msgid "30 fps"
+msgstr "30 cps"
+
+msgid "30 sec"
+msgstr "30 seg"
+
+msgid "30 seconds"
+msgstr "30 segundos"
+
+msgid "30% (MMX)"
+msgstr ""
+
+msgid "30000 and 100000"
+msgstr "30000 y  100000"
+
+msgid "30000 only"
+msgstr "30000 solamente"
+
+msgid "30000, every 100000"
+msgstr "30000, cada 100000"
+
+msgid "300K"
+msgstr ""
+
+msgid "300K Every 500K"
+msgstr "300K Cada 500K"
+
+msgid "300K only"
+msgstr "300K solamente"
+
+msgid "300k & 600k"
+msgstr "300k Y 600k"
+
+msgid "300k Only"
+msgstr "300k solamente"
+
+msgid "300k and 800k"
+msgstr "300k y  800k"
+
+msgid "300k and every 300k"
+msgstr "300k y cada 300k"
+
+msgid "300k and every 800k"
+msgstr "300k y cada 800k"
+
+msgid "300k only"
+msgstr "300k solamente"
+
+msgid "300k then every 800k"
+msgstr "300k después cada 800k"
+
+msgid "300k, 600k"
+msgstr ""
+
+msgid "30K & 60K only"
+msgstr "30K Y 60K solamente"
+
+msgid "30K 50K then every 70K"
+msgstr "30K 50K después cada 70K"
+
+msgid "30K 60K and every 70K"
+msgstr "30K 60K y cada 70K"
+
+msgid "30Kevery 100K"
+msgstr "30Kcada 100K"
+
+msgid "30k"
+msgstr ""
+
+msgid "30k 100k"
+msgstr ""
+
+msgid "30k 70k.."
+msgstr ""
+
+msgid "30k and 100k"
+msgstr "30k y 100k"
+
+msgid "30k and 150k"
+msgstr "30k y 150k"
+
+msgid "30k and 50k"
+msgstr "30k y 50k"
+
+msgid "30k and every 50k"
+msgstr "30k y cada 50k"
+
+msgid "32x"
+msgstr ""
+
+msgid "35 sec"
+msgstr "35 seg"
+
+msgid "4 (3 when continue)"
+msgstr "4 (3 cuando continua)"
+
+msgid "4 (Normal)"
+msgstr ""
+
+msgid "4 Bars"
+msgstr "4 Barras"
+
+msgid "4 Chain Reactions"
+msgstr "4 Reacciones en Cadena"
+
+msgid "4 Clips"
+msgstr ""
+
+msgid "4 Coins/1 Credit"
+msgstr "4 Monedas/1 Credito"
+
+msgid "4 Coins/2 Credits"
+msgstr "4 Monedas/2 Creditos"
+
+msgid "4 Coins/3 Credits"
+msgstr "4 Monedas/3 Creditos"
+
+msgid "4 Coins/4 Credits"
+msgstr "4 Monedas/4 Creditos"
+
+msgid "4 Coins/5 Credits"
+msgstr "4 Monedas/5 Creditos"
+
+msgid "4 Coins/6 Credits"
+msgstr "4 Monedas/6 Creditos"
+
+msgid "4 Coins/7 Credits"
+msgstr "4 Monedas/7 Creditos"
+
+msgid "4 Coins/8 Credits"
+msgstr "4 Monedas/8 Creditos"
+
+msgid "4 Credits/4P"
+msgstr "4 Creditos/4P"
+
+msgid "4 Minutes"
+msgstr "4 Minutos"
+
+msgid "4 Player/2 Cabinets"
+msgstr "4 Jugadores/2 Gabinetes"
+
+msgid "4 Player/2 Coin Slot"
+msgstr "4 Jugadores/2 Ranuras"
+
+msgid "4 Player/4 Coin Slot"
+msgstr "4 Jugadores/4 Ranuras"
+
+msgid "4 Players"
+msgstr "4 Jugadores"
+
+msgid "4 Players / 1 Cab"
+msgstr "4 Jugadores / 1 Gab"
+
+msgid "4 Players / 2 Cabs"
+msgstr "4 Jugadores / 2 Gabs"
+
+msgid "40 Seconds"
+msgstr "40 Segundos"
+
+msgid "40 sec"
+msgstr "40 seg"
+
+msgid "40 seconds"
+msgstr "40 segundos"
+
+msgid "40000, every 60000"
+msgstr "40000, cada 60000"
+
+msgid "40000, every 80000"
+msgstr "40000, cada 80000"
+
+msgid "400K"
+msgstr ""
+
+msgid "400K Only"
+msgstr "400K Solamente"
+
+msgid "400k"
+msgstr ""
+
+msgid "400k only"
+msgstr "400k solamente"
+
+msgid "40K 70K and every 80K"
+msgstr "40K 70K y cada 80K"
+
+msgid "40k"
+msgstr ""
+
+msgid "40k 200k"
+msgstr ""
+
+msgid "40k and 100k"
+msgstr "40k y 100k"
+
+msgid "40k and 200k"
+msgstr "40k y 200k"
+
+msgid "48x"
+msgstr ""
+
+msgid "4x"
+msgstr ""
+
+msgid "5 Clips"
+msgstr ""
+
+msgid "5 Coins/1 Credit"
+msgstr "5 Moneda/1 Credito"
+
+msgid "5 Coins/2 Credits"
+msgstr "5 Monedas/2 Creditos"
+
+msgid "5 Coins/3 Credits"
+msgstr "5 Monedas/3 Creditos"
+
+msgid "5 Coins/4 Credits"
+msgstr "5 Monedas/4 Creditos"
+
+msgid "5 Games Match"
+msgstr "Juego de 5 Partidos"
+
+msgid "5 Mins"
+msgstr ""
+
+msgid "5 Minutes"
+msgstr "5 Minutos"
+
+msgid "5 Times"
+msgstr "5 Veces"
+
+msgid "5 seconds"
+msgstr "5 segundos"
+
+msgid "50 Seconds"
+msgstr "50 Segundos"
+
+msgid "50 sec"
+msgstr "50 seg"
+
+msgid "50 seconds"
+msgstr "50 segundos"
+
+msgid "50000 only"
+msgstr "50000 solamente"
+
+msgid "50000, every 60000"
+msgstr "50000, cada 60000"
+
+msgid "50000, every 90000"
+msgstr "50000, cada 90000"
+
+msgid "500K"
+msgstr ""
+
+msgid "500K Every 1500K"
+msgstr "500K cada 1500K"
+
+msgid "500K Only"
+msgstr "500K Solamente"
+
+msgid "500Kevery 1M"
+msgstr "500Kcada 1M"
+
+msgid "500k 1000k"
+msgstr ""
+
+msgid "500k and every 1000k"
+msgstr "500k y cada 1000k"
+
+msgid "500k and every 600k"
+msgstr "500k y cada 600k"
+
+msgid "500k only"
+msgstr "500k solamente"
+
+msgid "50K  Only"
+msgstr "500k Solamente"
+
+msgid "50K Every 150K"
+msgstr "50K Cada 150K"
+
+msgid "50K Every 200K"
+msgstr "50K Cada 200K"
+
+msgid "50K Only"
+msgstr "50K Solamente"
+
+msgid "50K and 100K"
+msgstr "50K y 100K"
+
+msgid "50K, every 150K"
+msgstr "50K, cada 150K"
+
+msgid "50K, every 200K"
+msgstr "50K, cada 200K"
+
+msgid "50K, every 250K"
+msgstr "50K, cada 250K"
+
+msgid "50Kevery 150K"
+msgstr "50Kcada 150K"
+
+msgid "50k"
+msgstr ""
+
+msgid "50k 100k"
+msgstr ""
+
+msgid "50k 100k.."
+msgstr ""
+
+msgid "50k 150k"
+msgstr ""
+
+msgid "50k 250k"
+msgstr ""
+
+msgid "50k and 100k"
+msgstr "50k y 100k"
+
+msgid "50k and 150k"
+msgstr "50k y 150k"
+
+msgid "50k and 200k"
+msgstr "50k y 200k"
+
+msgid "50k and 250k"
+msgstr "50k y 250k"
+
+msgid "50k and 300k"
+msgstr "50k y 300k"
+
+msgid "50k and 350k"
+msgstr "50k y 350k"
+
+msgid "50k and every 100k"
+msgstr "50k y cada 100k"
+
+msgid "50k and every 150k"
+msgstr "50k y cada 150k"
+
+msgid "50k and every 80k"
+msgstr "50k y cada 80k"
+
+msgid "50k only"
+msgstr "50k solamente"
+
+msgid "50k, 150k"
+msgstr ""
+
+msgid "50k, 200k and 500k"
+msgstr "50k, 200k y  500k"
+
+msgid "5k 20k 15k+"
+msgstr ""
+
+msgid "6 Clips"
+msgstr ""
+
+msgid "6 Coins/1 Credit"
+msgstr "6 Monedas/1 Credito"
+
+msgid "6 Coins/2 Credits"
+msgstr "6 Monedas/2 Creditos"
+
+msgid "6 Coins/3 Credits"
+msgstr "6 Monedas/3 Creditos"
+
+msgid "6 Coins/4 Credits"
+msgstr "6 Monedas/4 Creditos"
+
+msgid "6 Mins"
+msgstr ""
+
+msgid "6 fps"
+msgstr "6 cps"
+
+msgid "60 Seconds"
+msgstr "60 Segundos"
+
+msgid "60 sec"
+msgstr "60 seg"
+
+msgid "60 seconds"
+msgstr "60 segundos"
+
+msgid "60000 and 130000"
+msgstr "60000 y 130000"
+
+msgid "60000 only"
+msgstr "60000 solamente"
+
+msgid "600k"
+msgstr ""
+
+msgid "600k 2.000k and 4500k"
+msgstr "600k 2.000k y 4500k"
+
+msgid "600k Only"
+msgstr "600k Solamente"
+
+msgid "600k and every 1.400k"
+msgstr "600k y cada 1.400k"
+
+msgid "60K only"
+msgstr "60K solamente"
+
+msgid "60K100K and every 60K"
+msgstr "60K100K y cada 60K"
+
+msgid "60k and 200k"
+msgstr "60k y 200k"
+
+msgid "7 Clips"
+msgstr ""
+
+msgid "7 Coins/1 Credit"
+msgstr "7 Monedas/1 Credito"
+
+msgid "7 Coins/2 Credits"
+msgstr "7 Monedas/2 Creditos"
+
+msgid "7 Coins/3 Credits"
+msgstr "7 Monedas/3 Creditos"
+
+msgid "7 Coins/4 Credits"
+msgstr "7 Monedas/4 Creditos"
+
+msgid "7 Games Match"
+msgstr "Juego de 7 Partidos"
+
+msgid "7 Mins"
+msgstr ""
+
+msgid "7 fps"
+msgstr "7 fps"
+
+msgid "70 Seconds"
+msgstr "70 Segundos"
+
+msgid "70K 200K Only"
+msgstr "70K 200K Solamente"
+
+msgid "70K Every 200K"
+msgstr "70K Cada 200K"
+
+msgid "70K and 200K"
+msgstr "70K y 200K"
+
+msgid "70K, every 150K"
+msgstr "70K, cada 150K"
+
+msgid "70K, every 200K"
+msgstr "70K, cada 200K"
+
+msgid "70Kevery 200K"
+msgstr "70Kcada 200K"
+
+msgid "70k"
+msgstr ""
+
+msgid "70k 14k 21k"
+msgstr ""
+
+msgid "70k 150k"
+msgstr ""
+
+msgid "70k 200k"
+msgstr ""
+
+msgid "70k 280k"
+msgstr ""
+
+msgid "70k and every 130k"
+msgstr "70k y cada 130k"
+
+msgid "70k and every 200k"
+msgstr "70k y cada 200k"
+
+msgid "70k then every 200k"
+msgstr "70k y cada 200k"
+
+msgid "70k, 200k"
+msgstr ""
+
+msgid "8 (Hardest)"
+msgstr "8 (Dificilísimo)"
+
+msgid "8 Coins/1 Credit"
+msgstr "8 Monedas/1 Credito"
+
+msgid "8 Coins/2 Credits"
+msgstr "8 Monedas/2 Creditos"
+
+msgid "8 Coins/3 Credits"
+msgstr "8 Monedas/3 Creditos"
+
+msgid "8 Coins/4 Credits"
+msgstr "8 Monedas/4 Creditos"
+
+msgid "8 Mins"
+msgstr ""
+
+msgid "8 Times"
+msgstr "8 Veces"
+
+msgid "800k 1500k"
+msgstr ""
+
+msgid "800k and 2000k only"
+msgstr "800k y 2000k solamente"
+
+msgid "80k"
+msgstr ""
+
+msgid "80k and 160k"
+msgstr "80k y 160k"
+
+msgid "80k and 250k"
+msgstr "80k y 250k"
+
+msgid "80k and every 400k"
+msgstr "80k y cada 400k"
+
+msgid "80k only"
+msgstr "80k solamente"
+
+msgid "8k 23k 15k+"
+msgstr ""
+
+msgid "8x (default)"
+msgstr "8x (por defecto)"
+
+msgid "9 Coins/1 Credit"
+msgstr "9 Monedas/1 Credito"
+
+msgid "9 per Credit"
+msgstr "9 por Credito"
+
+msgid "90 Seconds"
+msgstr "90 Segundos"
+
+msgid "A"
+msgstr ""
+
+msgid "A 1/1 B 1/1 C 1/1"
+msgstr ""
+
+msgid "A 1/1 B 1/2"
+msgstr ""
+
+msgid "A 1/1 B 1/6 C 1/1"
+msgstr ""
+
+msgid "A 2/1 B 1/3"
+msgstr ""
+
+msgid "A 2/1 B 1/3 C 2/1"
+msgstr ""
+
+msgid "A 2/1 B 2/1 C 2/1"
+msgstr ""
+
+msgid "A 3/1 B 1/5"
+msgstr ""
+
+msgid "A 5/1 B 1/6"
+msgstr ""
+
+msgid "A+B/A,B"
+msgstr ""
+
+msgid "A,B/A"
+msgstr ""
+
+msgid "About this game"
+msgstr "Sobre este juego"
+
+msgid "About..."
+msgstr "Sobre..."
+
+msgid "Acceleration"
+msgstr "Aceleración"
+
+msgid "Accelerator"
+msgstr "acelerador"
+
+msgid "Action replay cheats"
+msgstr "Trucos Action replay"
+
+msgid "Add rom dir..."
+msgstr "Agregar carpeta de roms..."
+
+msgid "All"
+msgstr "Todas"
+
+msgid "All Rights Reserved"
+msgstr "Todos los Derechos Reservados"
+
+msgid "All companies"
+msgstr "Todas las compañías"
+
+msgid "All drivers"
+msgstr "Todos los drivers"
+
+msgid "All games"
+msgstr "Todos los juegos"
+
+msgid "All status"
+msgstr "Todos los estados"
+
+msgid "Allow Continue"
+msgstr "Permitir Continuar"
+
+msgid "Allow speed hacks"
+msgstr "Permitir hacks de velocidad"
+
+msgid "Alt License"
+msgstr "Licencia Alternativa"
+
+msgid "Alternate"
+msgstr "Alternativo"
+
+msgid "AlternateDual"
+msgstr "DualAlternativo"
+
+msgid "AlternateSingle"
+msgstr "AlternativoSimple"
+
+msgid "Always stop CD music while loading"
+msgstr "Siempre detener música de CD mientras se carga"
+
+msgid "America"
+msgstr ""
+
+msgid "America (Romstar)"
+msgstr ""
+
+msgid "America - Atari"
+msgstr ""
+
+msgid "America - Romstar"
+msgstr ""
+
+msgid "America/English"
+msgstr "America/Inglés"
+
+msgid "America/PipiBibi"
+msgstr ""
+
+msgid "Analog Joystick"
+msgstr "Joystick Analogo"
+
+msgid "Analog controls..."
+msgstr "Controles analogos..."
+
+#, c-format
+msgid "Applied speed hack %d at %x"
+msgstr "Hack de velocidad aplicado %d en %x"
+
+msgid "Applied speed hack at %x:%s"
+msgstr "Hack de velocidad aplicado %ax en %s"
+
+msgid "Applying GFX Layouts and stuff..."
+msgstr "Aplicando diseño y cosas GFX..."
+
+msgid "Artwork dir"
+msgstr "Dir de ilustraciones"
+
+msgid "As Start Price"
+msgstr "Como Precio Para Comenzar"
+
+msgid "Asia"
+msgstr ""
+
+msgid "Asia (Taito)"
+msgstr ""
+
+msgid "Asia/Japanese"
+msgstr "Asia/Japonés"
+
+msgid "Asia/PipiBibi"
+msgstr ""
+
+msgid "Associate..."
+msgstr "Asociar..."
+
+msgid "Athena (Japan Only)"
+msgstr "Athena (Japón Solamente)"
+
+msgid "Athena (Japan)"
+msgstr "Athena (Japón)"
+
+msgid "Athena / Taito (Japan)"
+msgstr "Athena / Taito (Japón)"
+
+msgid "Attract Mode"
+msgstr "Modo Atraer"
+
+msgid "Audio track unreadable"
+msgstr "Pista de audio ilegíble"
+
+msgid "Audio tracks format"
+msgstr "Formato de pistas de audio"
+
+msgid "Auto"
+msgstr ""
+
+msgid "Auto Shot"
+msgstr "Auto Disparo"
+
+msgid "Auto Turbo Fire"
+msgstr "Auto Fuego Turbo"
+
+msgid "Autofire (in some games)"
+msgstr "Autodisparo (en algunos juegos)"
+
+msgid "Autofire controls"
+msgstr "Controles de autodisparo"
+
+msgid "Autofire..."
+msgstr "Autodisparo..."
+
+msgid "Avail"
+msgstr "Disponible"
+
+msgid "Available games"
+msgstr "Juegos disponibles"
+
+msgid "Average FPS"
+msgstr "CPS promedio"
+
+msgid "Average FPS Counter Enabled"
+msgstr "Contador de CPS promedio Habilitado"
+
+msgid "B"
+msgstr ""
+
+msgid "BG"
+msgstr "Fondo"
+
+msgid "BG Type"
+msgstr "Tipo de BG"
+
+msgid "BG0"
+msgstr ""
+
+msgid "BG1"
+msgstr ""
+
+msgid "BG2"
+msgstr ""
+
+msgid "BG3"
+msgstr ""
+
+msgid "Bad soft dips"
+msgstr "Soft dips malos"
+
+msgid "Best of 3"
+msgstr "Mejor de 3"
+
+msgid "Big"
+msgstr "Grande"
+
+msgid "Biggest"
+msgstr "Grandísimo"
+
+msgid "Blend file options..."
+msgstr "Opciones de archivos blend..."
+
+msgid "Blits Options"
+msgstr "Opciones de Blits"
+
+msgid "Blue"
+msgstr "Azul"
+
+msgid "Bobble Bobble"
+msgstr ""
+
+msgid "Bombs"
+msgstr "Bombas"
+
+msgid "Bonus"
+msgstr "Extra"
+
+msgid "Bonus / K=10,000"
+msgstr "Extra / K=10,000"
+
+msgid "Bonus Life"
+msgstr "Vida Extra"
+
+msgid "Bonus Power (Bomb)"
+msgstr "Extra Poder (Bomba)"
+
+msgid "Bonus Power (Points)"
+msgstr "Bonus Power (Puntos)"
+
+msgid "Bonus life"
+msgstr "Vida Extra"
+
+msgid "Borderless"
+msgstr "Sin bordes"
+
+msgid "Both Teams"
+msgstr "Ambos Equipos"
+
+msgid "Brake"
+msgstr "Freno"
+
+msgid "Bullet Mags / Rockets"
+msgstr "Balas Cargadores / Misíles"
+
+msgid "Bullet's Speed"
+msgstr "Velocidad de Balas"
+
+msgid "Bullets per Magazine"
+msgstr "Balas por Cargador"
+
+msgid "Button 1 Left"
+msgstr "Botón 1 Izquierda"
+
+msgid "Button 1 Right"
+msgstr "Botón 1 Derecha"
+
+msgid "Button 2 Left"
+msgstr "Botón 2 Izquierda"
+
+msgid "Button 2 Right"
+msgstr "Botón 2 Derecha"
+
+msgid "Buttons"
+msgstr "Botones"
+
+msgid "Buy In Price"
+msgstr "Comprar en Precio"
+
+msgid "Buy in Final Round"
+msgstr "Comprar Round Final"
+
+msgid "C"
+msgstr ""
+
+msgid "CD 1x (150 Kb/s)"
+msgstr "CD 1x (150 Kb/s)"
+
+msgid "CD Interface"
+msgstr "Interfaz de CD"
+
+msgid "COMM Setting (Cabinet No.)"
+msgstr "Ajustes COMM (Gabinete Num.)"
+
+msgid "COMM Setting (Link Enable)"
+msgstr "Ajustes COMM (Enlace Habilitado)"
+
+msgid "CPU M6502#0 Reset"
+msgstr "Reset CPU M6502#0"
+
+msgid "CPU M6502#1 Reset"
+msgstr "Reset CPU M6502#1"
+
+msgid "CPU M6502#2 Reset"
+msgstr "Reset CPU M6502#2"
+
+msgid "CPU M68000#0 Reset"
+msgstr "Reset CPU M68000#0"
+
+msgid "CPU M68000#1 Reset"
+msgstr "Reset CPU M68000#1"
+
+msgid "CPU M68020#0 Reset"
+msgstr "Reset CPU M68020#0"
+
+msgid "CPU Z80#0 Reset"
+msgstr "Reset CPU Z80#0"
+
+msgid "CPU Z80#1 Reset"
+msgstr "Reset CPU Z80#1"
+
+msgid "CPU Z80#2 Reset"
+msgstr "Reset CPU Z80#2"
+
+msgid "CPU Z80#3 Reset"
+msgstr "Reset CPU Z80#3"
+
+msgid "CPU emulators:"
+msgstr "Emuladores de CPU:"
+
+msgid "CPU frame skip (1=no skip) "
+msgstr "Saltos de  cuadro de CPU (1=ningún salto)"
+
+msgid "Cabinet"
+msgstr "Gabinete"
+
+msgid "Cabinet Moves"
+msgstr "Gabinete Moviendose"
+
+msgid "Cabinet Type"
+msgstr "Tipo de Gabinete"
+
+msgid "Calibration"
+msgstr "Calibración"
+
+#, c-format
+msgid "Can't create %s"
+msgstr "No se puede crear %s"
+
+msgid "Capcom CPS1"
+msgstr ""
+
+msgid "Capcom CPS2"
+msgstr ""
+
+msgid "Capture block"
+msgstr "Capturar bloque"
+
+msgid "Capture mode"
+msgstr "Modo captura"
+
+msgid "Castle of Dragon"
+msgstr ""
+
+msgid "Category"
+msgstr "Categoria"
+
+#, c-format
+msgid "Category : "
+msgstr "Categoría :"
+
+#, c-format
+msgid "Category : %s"
+msgstr "Categoría : %s"
+
+#, c-format
+msgid "Category : -"
+msgstr "Categoría : -"
+
+msgid "Cave"
+msgstr ""
+
+msgid "Championship Games"
+msgstr "Juegos de Campeonato"
+
+msgid "Change Setup"
+msgstr "Cambio de Configuración"
+
+msgid "Change dir|Remove dir"
+msgstr "Cambiar directorio|Quitar directorio"
+
+msgid "Change video mode"
+msgstr "Cambiar modo de video"
+
+msgid "Change/Load ROM"
+msgstr "Cargar/Cambiar ROM"
+
+msgid "Changed to High Gear"
+msgstr "Cambiado a Marcha Alta"
+
+msgid "Changed to Low Gear"
+msgstr "Cambiado a Marcha Baja"
+
+msgid "Character Test"
+msgstr "Prueba de Personaje"
+
+msgid "Cheat"
+msgstr "Truco"
+
+msgid "Cheats"
+msgstr "Trucos"
+
+msgid "China"
+msgstr ""
+
+msgid "Choice"
+msgstr "Elegir"
+
+msgid "Clear Damage on Cont."
+msgstr "Limpiar Daño en Cont."
+
+msgid "Clear RAM"
+msgstr "Limpiar RAM"
+
+msgid "Clones"
+msgstr ""
+
+msgid "Close this dialog to stop playback (Return, ESC or mouse button)"
+msgstr "Cierra este dialogo para detener reproducción (Enter, ESC o botón de mouse)"
+
+msgid "Cockpit"
+msgstr "Cabina"
+
+msgid "Cocktail"
+msgstr ""
+
+msgid "Coin A"
+msgstr "Moneda A"
+
+msgid "Coin B"
+msgstr "Moneda B"
+
+msgid "Coin C"
+msgstr "Moneda C"
+
+msgid "Coin Chutes?"
+msgstr "Ranuras Para Monedas?"
+
+msgid "Coin D"
+msgstr "Moneda D"
+
+msgid "Coin Mode"
+msgstr "Modo de Monedas"
+
+msgid "Coin Setup"
+msgstr "Configuracion de Moneda"
+
+msgid "Coin Slot A"
+msgstr "Ranura de Monedas A"
+
+msgid "Coin Slot B"
+msgstr "Ranura de Monedas B"
+
+msgid "Coin Slots"
+msgstr "Ranura de Monedas"
+
+msgid "Coin Start"
+msgstr "Moneda Comenzar"
+
+msgid "Coin Statistics"
+msgstr "Estadisticas de Monedas"
+
+msgid "Coin Type"
+msgstr "Tipo de Moneda"
+
+msgid "Coin slots"
+msgstr "Ranuras de moneda"
+
+msgid "Coinage"
+msgstr "Sistema de Monedas"
+
+msgid "Coinage A"
+msgstr "Sistema de Monedas A"
+
+msgid "Coinage B"
+msgstr "Sistema de Monedas B"
+
+msgid "Coinage Mode 1"
+msgstr "Sistema de Monedas Modo 1"
+
+msgid "Coinage Type"
+msgstr "Tipo de Sistema de Monedas"
+
+msgid "Colors"
+msgstr "Colores"
+
+msgid "Colors..."
+msgstr "Colores..."
+
+msgid "Colour Test"
+msgstr "prueba de Colores"
+
+msgid "Combined"
+msgstr "Combinado"
+
+msgid "Command"
+msgstr "Comando"
+
+msgid "Common"
+msgstr "Común"
+
+msgid "Communication"
+msgstr "Comunicacion"
+
+msgid "Company"
+msgstr "Compañía"
+
+#, c-format
+msgid "Company : %s"
+msgstr "Compañía : %s"
+
+msgid "Complete Bonus"
+msgstr "Completar Bonus"
+
+msgid "Config mode"
+msgstr "Modo configuración"
+
+msgid "Confirmation"
+msgstr "Confirmación"
+
+msgid "Console"
+msgstr "Consola"
+
+msgid "Constant"
+msgstr "Constante"
+
+msgid "Cont Discount"
+msgstr "Descuento de Contador"
+
+msgid "Continue"
+msgstr "Continuar"
+
+msgid "Continue Mode"
+msgstr "Modo Continuar"
+
+msgid "Continue Play"
+msgstr "Continuar Juego"
+
+msgid "Continue Price"
+msgstr "Precio de Continuar"
+
+msgid "Continue Time Add"
+msgstr "continuar Adición de Tiempo"
+
+msgid "Continue cost"
+msgstr "Costo para Continuar"
+
+msgid "Continuous Fire"
+msgstr "Fuego Continuo"
+
+msgid "Control"
+msgstr ""
+
+msgid "Control Panel"
+msgstr "Panel de Control"
+
+msgid "Controls"
+msgstr "Controles"
+
+msgid "Copyright"
+msgstr "Derechos de Autor"
+
+msgid ""
+"Could not determine sector size from\n"
+"the cue file"
+msgstr "Sin poder determinar tamaño de sector desde archivo cue"
+
+#, c-format
+msgid "Could not find audio track %d"
+msgstr "Sin poder encontrar pista de audio %d"
+
+#, c-format
+msgid "Couldn't open iso file:|%s"
+msgstr "Sin poder abrir archivo iso:|%s"
+
+msgid "Country"
+msgstr "País"
+
+msgid "Cred. Continue (Vs)"
+msgstr "Creditos para Continuar (Vs)"
+
+msgid "Cred. to Start (Vs)"
+msgstr "Creditos para Comenzar (Vs)"
+
+msgid "Credit Mode"
+msgstr "Modo Credito"
+
+msgid "Credit Service"
+msgstr "Servicio Credito"
+
+msgid "Credits For 9-Hole"
+msgstr "Creditos para Agujero-9"
+
+msgid "Credits To Start"
+msgstr "Creditos para Comenzar"
+
+msgid "Credits to Start"
+msgstr "Creditos para Comenzar"
+
+msgid "Credits/Coinage"
+msgstr "Credits/Sistema de Moneda"
+
+msgid "Current display"
+msgstr "Pantalla actual"
+
+msgid "Currently using hardware accelerated YUY2 overlay"
+msgstr "Actualmente usando superposición acelerada por hardware YUY2"
+
+msgid "Currently using hardware accelerated YV12 overlay"
+msgstr "Actualmente usando superposición acelerada por hardware YV12"
+
+msgid "Currently using scale2x"
+msgstr "Actualmente usando scale2x"
+
+msgid "Currently using scale3x"
+msgstr "Actualmente usando scale3x"
+
+msgid "D"
+msgstr ""
+
+msgid "DOWN"
+msgstr "ABAJO"
+
+msgid "DSW A Bit 1"
+msgstr ""
+
+msgid "DSW A Bit 2"
+msgstr ""
+
+msgid "DSW A Bit 3"
+msgstr ""
+
+msgid "DSW A Bit 4"
+msgstr ""
+
+msgid "DSW A Bit 5"
+msgstr ""
+
+msgid "DSW A Bit 6"
+msgstr ""
+
+msgid "DSW A Bit 7"
+msgstr ""
+
+msgid "DSW A Bit 8"
+msgstr ""
+
+msgid "DSW B Bit 1"
+msgstr ""
+
+msgid "DSW B Bit 2"
+msgstr ""
+
+msgid "DSW B Bit 3"
+msgstr ""
+
+msgid "DSW B Bit 4"
+msgstr ""
+
+msgid "DSW B Bit 5"
+msgstr ""
+
+msgid "DSW B Bit 6"
+msgstr ""
+
+msgid "DSW B Bit 7"
+msgstr ""
+
+msgid "DSW B Bit 8"
+msgstr ""
+
+msgid "DSW C Bit 1"
+msgstr ""
+
+msgid "DSW C Bit 2"
+msgstr ""
+
+msgid "DSW C Bit 3"
+msgstr ""
+
+msgid "DSW C Bit 4"
+msgstr ""
+
+msgid "DSW C Bit 5"
+msgstr ""
+
+msgid "DSW C Bit 6"
+msgstr ""
+
+msgid "DSW C Bit 7"
+msgstr ""
+
+msgid "DSW C Bit 8"
+msgstr ""
+
+msgid "DX alpha blending"
+msgstr ""
+
+msgid "Damage"
+msgstr "Daño"
+
+msgid "Debug dips"
+msgstr "Dips de depuración"
+
+msgid "Decrease cpu skip"
+msgstr "Disminuir saltos de cpu"
+
+msgid "Decrease frameskip"
+msgstr "Aumentar saltos de cpu"
+
+msgid "Default"
+msgstr "Por defecto"
+
+msgid "Default Episode"
+msgstr "Episodios por Defecto"
+
+msgid "Default volumes"
+msgstr "Volúmenes por defecto"
+
+msgid "Delete the key"
+msgstr "Remover la tecla"
+
+msgid "Delete the key|Delete the joystick ctrl|Del the mouse button"
+msgstr "Remover la tecla|Remover el joystick control|Remover boton de mouse"
+
+msgid "Delete the key|Delete the joystick ctrl|Really use ESC here"
+msgstr "Remover la tecla|Remover el joystick control|Usa realmente ESC aquí"
+
+msgid "Demo Game"
+msgstr "Juego en Demo"
+
+msgid "Demo Sound"
+msgstr "Sonido en Demo"
+
+msgid "Denmark"
+msgstr "dinamarca"
+
+msgid "Developper mode"
+msgstr "Modo desarrollador"
+
+msgid "Difficulty"
+msgstr "Dificultad"
+
+msgid "Difficulty (Chariot)"
+msgstr "Dificultad (Chariot)"
+
+msgid "Difficulty (Don't Pull)"
+msgstr "Dificultad (Don't Pull)"
+
+msgid "Difficulty (Midnight Wanderers)"
+msgstr "Dificultad (Midnight Wanderers)"
+
+msgid "Difficulty 1"
+msgstr "Dificultad 1"
+
+msgid "Difficulty 1 (time/speed)"
+msgstr "Dificultad 1 (tiempo/velocidad)"
+
+msgid "Difficulty 2"
+msgstr "Dificultad 2"
+
+msgid "Difficulty 2 (other cars)"
+msgstr "Dificultad 2 (otros autos)"
+
+msgid "Difficulty Level (Enemy's Strength)"
+msgstr "Nivel de Dificultad (Fuerza de Enemigo)"
+
+msgid "Difficulty Level (Player's Strength)"
+msgstr "Nivel de Dificultad (Fuerza de Jugador)"
+
+msgid "Difficulty Level 1"
+msgstr "Nivel de Dificultad"
+
+msgid "Difficulty Level 2"
+msgstr "Nivel de Dificultad"
+
+msgid "Digital"
+msgstr ""
+
+msgid "Digital Input Speed"
+msgstr "Velocidad de Entrada Digital"
+
+msgid "Dipsw display"
+msgstr "Ver Dipsw"
+
+msgid "Dipswitches"
+msgstr ""
+
+msgid "Directories"
+msgstr "Directorios"
+
+msgid "Directories..."
+msgstr "Directorios..."
+
+msgid "Directory options"
+msgstr "Opciones de directorio"
+
+msgid "Disable associations"
+msgstr "Deshabilitar asociaciones"
+
+msgid "Disable shaders ?"
+msgstr "Deshabilitar shaders ?"
+
+msgid "Disabled"
+msgstr "Deshabilitado"
+
+msgid "Discount"
+msgstr "Descuento"
+
+msgid "Display"
+msgstr "Ver"
+
+msgid "Display Copyright"
+msgstr "Ver Derechos de Autor"
+
+msgid "Display Score"
+msgstr "Ver Puntuación"
+
+msgid "Display short names too"
+msgstr "Ver nombre corto también"
+
+msgid "Domestic"
+msgstr "Domestico"
+
+msgid "Don't use"
+msgstr "No usar"
+
+msgid "Double"
+msgstr "Doble"
+
+msgid "Double buffer"
+msgstr "Doble buffer"
+
+msgid "Double buffer enabled"
+msgstr "Doble buffer habilitado"
+
+msgid "Dragon Unit"
+msgstr ""
+
+msgid "Draw Objects"
+msgstr "Dibujar Objetos"
+
+msgid "Draw SF."
+msgstr "Dibujar SF."
+
+msgid "DrawPixels (no shaders)"
+msgstr "Dibujar Pixeles (sin shaders)"
+
+msgid "Drawing All Frames"
+msgstr "Dinujar Todos los Cuadros"
+
+#, c-format
+msgid "Drawing Every %1d Frames"
+msgstr "Dibujando Cuadros Cada %1d"
+
+msgid "Dream Land"
+msgstr ""
+
+msgid "Driver"
+msgstr ""
+
+msgid "Dual"
+msgstr ""
+
+msgid "E"
+msgstr ""
+
+#, c-format
+msgid "ERROR: Unable to load gfx rom: %s"
+msgstr "ERROR: No se puede cargar rom gfx: %s"
+
+msgid "ES5506 voice filters"
+msgstr "Filtro de voz ES5506"
+
+msgid "Easier"
+msgstr "Más Fácil"
+
+msgid "Easiest"
+msgstr "Facilísimo"
+
+msgid "Easy"
+msgstr "Fácil"
+
+msgid "Edit custom game inputs"
+msgstr "Editar entradas de juego personalizadas"
+
+msgid "Edit default game inputs"
+msgstr "Editar entradas de juego personalizadas por defecto"
+
+msgid "Edit msg"
+msgstr "Editar msg"
+
+msgid "Edit screen"
+msgstr "Pantalla de edición"
+
+msgid "Edition"
+msgstr "Edición"
+
+msgid "EmuDX"
+msgstr ""
+
+msgid "EmuDX support ?"
+msgstr "Soporte EmuDX?"
+
+msgid "Emudx dir"
+msgstr "Dir de Emudx"
+
+msgid "Emulate sound"
+msgstr "Emular sonido"
+
+msgid "Enable 3d alternate frames"
+msgstr "Habilitar cuadros 3d alternativos"
+
+msgid "Enabled"
+msgstr "Habilitar"
+
+msgid "Enabled Always"
+msgstr "Siempre Habilitado"
+
+msgid "Enabled with Button"
+msgstr "Habilitado con Botón"
+
+msgid "Enemy's attack frequency"
+msgstr "Frecuencia de ataque enemigo"
+
+msgid "Enemy's attack power"
+msgstr "Poder de ataque enemigo"
+
+msgid "Enemy's vitality and attacking power"
+msgstr "Vital y poder del ataque enemigo"
+
+msgid "Energy"
+msgstr "Energia"
+
+msgid "England"
+msgstr "Inglaterra"
+
+msgid "English"
+msgstr "Inglés"
+
+msgid "Erase Backup Ram"
+msgstr "Borrar Ram de Respaldo"
+
+msgid "Error"
+msgstr ""
+
+msgid "Error linking shader"
+msgstr "Error enlazando shader"
+
+msgid "Errors compiling fragment shader"
+msgstr "Error compilando fragmentos de shader"
+
+msgid "Euro Version"
+msgstr "Version Europea"
+
+msgid "Europe"
+msgstr "Europea"
+
+msgid "Europe (Nova)"
+msgstr "Europea (Nova)"
+
+msgid "Europe (Nova)/PipiBibi"
+msgstr "Europea (Nova)/PipiBibi"
+
+msgid "Europe (Taito Japan)"
+msgstr "Europea (Taito Japan)"
+
+msgid "Europe (Taito)"
+msgstr "Europea (Taito)"
+
+msgid "Europe, USA (Atari)"
+msgstr "Europea, USA (Atari)"
+
+msgid "Europe/English"
+msgstr "Europea/Inglés"
+
+msgid "Europe/PipiBibi"
+msgstr "Europea/PipiBibi"
+
+msgid "Europe/Truxton2"
+msgstr "Europea/Truxton2"
+
+msgid "Even with overlays"
+msgstr "Incluso con superposiciones"
+
+msgid "Every 1000k"
+msgstr "Cada 1000k"
+
+msgid "Every 100k"
+msgstr "Cada 100k"
+
+msgid "Every 150k"
+msgstr "Cada 150k"
+
+msgid "Every 2000k"
+msgstr "Cada 2000k"
+
+msgid "Every 200k"
+msgstr "Cada 200k"
+
+msgid "Every 250k"
+msgstr "Cada 250k"
+
+msgid "Every 300K"
+msgstr "Cada 300K"
+
+msgid "Every 300k"
+msgstr "Cada 300k"
+
+msgid "Every 500k"
+msgstr "Cada 500k"
+
+msgid "Every 50k"
+msgstr "Cada 50k"
+
+msgid "Every 60000"
+msgstr "Cada 60000"
+
+msgid "Every 700k"
+msgstr "Cada 700k"
+
+msgid "Every 800k"
+msgstr "Cada 800k"
+
+msgid "Every 90000"
+msgstr "Cada 90000"
+
+msgid "Every 900k"
+msgstr "Cada  900k"
+
+msgid "Exit to"
+msgstr "Salir a"
+
+msgid "Extend"
+msgstr "Extender"
+
+msgid "Extended Test Mode"
+msgstr "Modo Prueba Extendido"
+
+msgid "Extra Balls per Move"
+msgstr "Extra Bolas por Movimiento"
+
+msgid "Extra Clear Time"
+msgstr "Tiempo Extra para Terminar"
+
+msgid "Extra Life"
+msgstr "Vida Extra"
+
+msgid "Extra Life at"
+msgstr "Vida Extra en"
+
+msgid "Extra Ship"
+msgstr "Nave Extra"
+
+msgid "F"
+msgstr ""
+
+msgid "F. Round Continue"
+msgstr "F. Round Continuar"
+
+msgid "FBI Logo"
+msgstr "Logo del FBI"
+
+msgid "FG"
+msgstr "PRIMER PLANO"
+
+msgid "FG0"
+msgstr "PRIMER PLANO 0"
+
+msgid "FPS"
+msgstr "CPS"
+
+msgid "FPS Counter Disabled"
+msgstr "Contador de CPS Deshabilitado"
+
+msgid "FPS Counter Enabled"
+msgstr "Contador de CPS Habilitado"
+
+msgid "FPS counter"
+msgstr "Contador de CPS"
+
+msgid "FSAA (multisampling)"
+msgstr "FSAA (muestreo multiple)"
+
+msgid "Fast"
+msgstr "Rapido"
+
+msgid "Fatal error"
+msgstr "Error fatal"
+
+msgid "Female & Male"
+msgstr "Mujer y Hombre"
+
+msgid "Female & Male (Full)"
+msgstr "Mujer y Hombre (Completo)"
+
+msgid "Female (Full)"
+msgstr "Mujer (completo)"
+
+msgid "File"
+msgstr "Archivo"
+
+msgid "Final Stage Cont"
+msgstr "Cont Escena Final"
+
+msgid ""
+"Find the NeoCD bios (neocd.bin).\n"
+"Ask Google if you can't find it !"
+msgstr ""
+"Encuentra la bios de NeoCD (neocd.bin).\n"
+"Pregunta a Google si no la puedes encontrar"
+
+msgid "Fix aspect ratio to 4:3"
+msgstr "Fijar relación de aspecto a 4:3"
+
+msgid "Fixed layer"
+msgstr "Capa fija"
+
+msgid "Flight Distance"
+msgstr "Distancia de Lucha"
+
+msgid "Flip Screen"
+msgstr "Girar Pantallla"
+
+msgid "Flip X"
+msgstr "Girar X"
+
+msgid "Flip XY"
+msgstr "Girar XY"
+
+msgid "Flip Y"
+msgstr "Girar Y"
+
+msgid "Flip screen"
+msgstr "Girar pantalla"
+
+msgid "Flipper 1 Left"
+msgstr "Flipper 1 Izquierda"
+
+msgid "Flipper 1 Right"
+msgstr "Flipper 1 Derecha"
+
+msgid "Flipper 2 Left"
+msgstr "Flipper 2 Izquierda"
+
+msgid "Flipper 2 Right"
+msgstr "Flipper 2 Derecha"
+
+msgid "Force 1 Life"
+msgstr "Forzar 1 Vida"
+
+msgid "Foreign"
+msgstr "Extranjero"
+
+msgid "Frame skip"
+msgstr "Saltar cuadros"
+
+msgid "Free"
+msgstr "Libre"
+
+msgid "Free Play"
+msgstr "Juego Libre"
+
+msgid "Freeze"
+msgstr "Congelar"
+
+msgid "Full Throttle Convrt"
+msgstr "Convertir a Toda Marcha"
+
+msgid "Fullheight"
+msgstr "Alto completo"
+
+msgid "Fullheight + Double width"
+msgstr "Alto completo + Doble ancho"
+
+msgid "Fullscreen"
+msgstr "Pantalla completa"
+
+msgid "Fully-auto"
+msgstr "Completamente-auto"
+
+msgid "Fwd 1 frame in pause"
+msgstr "Adelantar 1 cuadro en pausa"
+
+msgid "GUI transparency"
+msgstr "Interfaz transparente"
+
+msgid "Game"
+msgstr "Juego"
+
+#, c-format
+msgid "Game : %s"
+msgstr "Juego : %s"
+
+msgid "Game Mode"
+msgstr "Modo de Juego"
+
+msgid "Game Over For"
+msgstr "Terminar el Juego Por"
+
+msgid "Game Style"
+msgstr "Estilo de Juego"
+
+msgid "Game Time"
+msgstr "Tiempo de Juego"
+
+msgid "Game Title Language"
+msgstr "Lenguaje del Titulo del Juego"
+
+msgid "Game Type"
+msgstr "Tipo de Juego"
+
+msgid "Game does not support Loading."
+msgstr "Juego no soporta Cargar."
+
+msgid "Game does not support Saving."
+msgstr "Juego no soporta Salvar."
+
+msgid "Game options"
+msgstr "Opciones de juego"
+
+msgid "Game selection"
+msgstr "Seleccion de juego"
+
+msgid "Games to Play (Vs)"
+msgstr "Partidas a Jugar (Vs)"
+
+msgid "Gear Mode"
+msgstr "Modo de Marcha"
+
+msgid "General options:"
+msgstr "Opciones generales:"
+
+msgid "Germany"
+msgstr "Alemania"
+
+msgid "Get inputs from another game"
+msgstr "Obtener entradas desde otro juego"
+
+msgid "Ghost Names"
+msgstr "Nombres Fantasmas"
+
+msgid "Girls"
+msgstr "Muchachas"
+
+msgid "God Mode"
+msgstr "Modo Dios"
+
+msgid "Graphical layers..."
+msgstr "Capas gráficas..."
+
+msgid "Green"
+msgstr "Verde"
+
+msgid "Guest Player"
+msgstr "Jugador Invitado"
+
+msgid "Half Price Continue"
+msgstr "Continuar a Mitad de Precio"
+
+msgid "Halfheight"
+msgstr "Media altura"
+
+msgid "Hard"
+msgstr "Difícil"
+
+msgid "Harder"
+msgstr "Más Difícil"
+
+msgid "Hardest"
+msgstr "Dificilísimo"
+
+msgid "Health For Winning"
+msgstr "Salud Por Ganar"
+
+msgid "Help Penalty (Heuk Sun)"
+msgstr "Penal de Ayuda (Heuk Sun)"
+
+msgid "High"
+msgstr "Alto"
+
+msgid "High, but censored"
+msgstr "Alto, pero censurado"
+
+msgid "Hiscores"
+msgstr "Puntuación"
+
+msgid "History..."
+msgstr "Historia..."
+
+msgid "Hong Kong"
+msgstr ""
+
+msgid "Hong Kong (Honest)"
+msgstr ""
+
+msgid "Hong Kong (Taito)"
+msgstr ""
+
+msgid "Hong Kong - Honest"
+msgstr ""
+
+msgid "Hong Kong, Charterfield"
+msgstr ""
+
+msgid "HongKong/Japanese"
+msgstr "HongKong/Japonés"
+
+msgid "HongKong/PipiBibi"
+msgstr ""
+
+msgid "HongKong/Tatsujin2"
+msgstr ""
+
+msgid "IC52=256kb, IC53=256kb"
+msgstr ""
+
+msgid "IC52=512kb, IC53=none"
+msgstr "IC52=512kb, IC53=ninguno"
+
+msgid "Immediate FPS"
+msgstr "CPS inmediatos"
+
+msgid "Increase cpu skip"
+msgstr "Aumentar saltos de cpu"
+
+msgid "Increase frameskip"
+msgstr "Aumentar saltos de cuadros"
+
+msgid "Individual"
+msgstr ""
+
+msgid "Infinite"
+msgstr "Infinito"
+
+msgid "Infinite Lives"
+msgstr "Vidas Infinitas"
+
+msgid "Ingame Controls"
+msgstr "Controles durante juego"
+
+msgid "Initial Vitality"
+msgstr "Vital Inicial"
+
+msgid "Innings"
+msgstr "Turnos"
+
+msgid "Input"
+msgstr "Entrada"
+
+msgid "Inputs"
+msgstr "Entradas"
+
+msgid "Insert special code..."
+msgstr "Introducir código especial..."
+
+msgid "Instructions"
+msgstr "Instrucciones"
+
+msgid "Internal Diff. on Life Loss"
+msgstr "Diferencia Interna en Perdida de Vida"
+
+msgid "Internal Test"
+msgstr "Prueba Interna"
+
+msgid "Invert"
+msgstr "Invertir"
+
+msgid "Invincibility"
+msgstr "invincibilidad"
+
+msgid "Invulnerability"
+msgstr "Invulneravilidad"
+
+msgid "Italy (Star Elect)"
+msgstr "Italia (Star Elect)"
+
+msgid "Japan"
+msgstr "Japón"
+
+msgid "Japan (2 buttons)"
+msgstr "Japón (2 botones)"
+
+msgid "Japan (Ryouta)/Whoopee"
+msgstr "Japón (Ryouta)/Whoopee"
+
+msgid "Japan (Taito Corp)"
+msgstr "Japón (Taito Corp)"
+
+msgid "Japan (Taito)"
+msgstr "Japón (Taito)"
+
+msgid "Japan (null)"
+msgstr "Japón (nulo)"
+
+msgid "Japan (taito license)"
+msgstr "Japón (taito license)"
+
+msgid "Japan - Taito"
+msgstr "Japón - Taito"
+
+msgid "Japan - Tecmo"
+msgstr "Japón - Tecmo"
+
+msgid "Japan Only"
+msgstr "Japón Solamente"
+
+msgid "Japan/Japanese"
+msgstr "Japón/Japonés"
+
+msgid "Japan/Taito Corp"
+msgstr "Japón/Taito Corp"
+
+msgid "Japan/Tatsujin2"
+msgstr "Japón/Tatsujin2"
+
+msgid "Japan/Whoopee"
+msgstr "Japón/Whoopee"
+
+msgid "Japanese"
+msgstr "Japonés"
+
+msgid "Japanese (Taito)"
+msgstr "Japonés (Taito)"
+
+msgid "Japanese (Toaplan)"
+msgstr "Japonés (Toaplan)"
+
+msgid "Japenese"
+msgstr "Japonés"
+
+msgid "Jordan"
+msgstr ""
+
+msgid "Joystick"
+msgstr ""
+
+msgid "Joysticks"
+msgstr ""
+
+msgid "Keep aspect ratio"
+msgstr "Mantener relación de aspecto"
+
+msgid "Key repeat delay"
+msgstr "Retraso de repetición de tecla"
+
+msgid "Key repeat interval"
+msgstr "Intervalo de repetición de tecla"
+
+msgid "Keyboard/Digital"
+msgstr "Teclado/Digital"
+
+msgid "Korea"
+msgstr ""
+
+msgid "Korea (Taito)"
+msgstr ""
+
+msgid "Korea (Unite Trading)"
+msgstr ""
+
+msgid "Korea (Unite license)"
+msgstr ""
+
+msgid "Korea, Unite Trading"
+msgstr ""
+
+msgid "Korea/Japanese"
+msgstr "Korea/Japonés"
+
+msgid "Korea/Tatsujin2"
+msgstr ""
+
+msgid "LEFT"
+msgstr "IZQUIERDA"
+
+msgid "Language"
+msgstr "Lenguaje"
+
+msgid "Large"
+msgstr "grande"
+
+msgid "Layers"
+msgstr "Capas"
+
+msgid "Level 1"
+msgstr "Nivel 1"
+
+msgid "Level 2"
+msgstr "Nivel 2"
+
+msgid "Level 3"
+msgstr "Nivel 3"
+
+msgid "Level 4"
+msgstr "Nivel 4"
+
+msgid "Level 5"
+msgstr "Nivel 5"
+
+msgid "Level 6"
+msgstr "Nivel 6"
+
+msgid "Level 7"
+msgstr "Nivel 7"
+
+msgid "Level 8"
+msgstr "Nivel 8"
+
+msgid "Level test"
+msgstr "Nivel de Prueba"
+
+msgid "Lever"
+msgstr "Palanca"
+
+msgid "License"
+msgstr "Licencia"
+
+msgid "Licensed To"
+msgstr "Con Licencia Para"
+
+msgid "Life"
+msgstr "Vida"
+
+msgid "Life Bar"
+msgstr "Barra de Vida"
+
+msgid "Limit framerate <= 60fps"
+msgstr "Limitar velocidad de fotogramas <= 60cps"
+
+msgid "Linear"
+msgstr ""
+
+msgid "Lives"
+msgstr "Vidas"
+
+msgid "Lives (Chariot)"
+msgstr "Vidas (Chariot)"
+
+msgid "Lives (Don't Pull)"
+msgstr "Vidas (Don't Pull)"
+
+msgid "Lives (Midnight Wanderers)"
+msgstr "Vidas (Midnight Wanderers)"
+
+msgid "Load NeoCD game"
+msgstr "Cargar juego de NeoCD"
+
+msgid "Load demo"
+msgstr "Cargar demo"
+
+msgid "Load from which ?"
+msgstr "Cargar desde que ?"
+
+msgid "Load game"
+msgstr "Cargar juego"
+
+msgid "Load game with name"
+msgstr "Cargar juego con nombre"
+
+msgid "Load inputs from..."
+msgstr "Cargar entradas desde..."
+
+msgid "Loading Game"
+msgstr "Cargando Juego"
+
+msgid "Loading animations speed"
+msgstr "Velocidad de animación de carga"
+
+msgid "Loading error"
+msgstr "Error cargando"
+
+msgid "Loading problem"
+msgstr "problema cargando"
+
+msgid "Locked"
+msgstr "Bloqueado"
+
+#, c-format
+msgid "Long hack jump at %x..."
+msgstr "Hack de salto largo en %x..."
+
+msgid "Loop"
+msgstr "Bucle"
+
+msgid "Loser Team Only"
+msgstr "Equipo Perdedor Solamente"
+
+msgid "Low"
+msgstr "Bajo"
+
+msgid "Low while pressed"
+msgstr "Bajo mientras se presiona"
+
+msgid "M6502 1.6raine2 by Neill Bradley"
+msgstr "M6502 1.6raine2 por Neill Bradley"
+
+#, c-format
+msgid "M68705: Invalid jump address (0x%x)\n"
+msgstr "M68705: Direccion de salto invalida (0x%x)\n"
+
+msgid "MCU 68705: statically recompiled code by Richard Mitton"
+msgstr "MCU 68705: código recompilado estáticamente por Richard Mitton"
+
+msgid "MZ80 3.4raine3 by Neill Bradley"
+msgstr "MZ80 3.4raine3 por Neill Bradley"
+
+msgid "Magic"
+msgstr "Magia"
+
+msgid "Magician"
+msgstr "Mago"
+
+msgid "Main menu"
+msgstr "Menú principal"
+
+msgid "Manage associations"
+msgstr "Administrar asociaciones"
+
+msgid "Master"
+msgstr "Maestro"
+
+msgid "Match Type"
+msgstr "Tipo de partida"
+
+msgid "Max Players"
+msgstr "Jugadores Máximos"
+
+msgid "Max font size"
+msgstr "Tamaño máximo de fuente"
+
+msgid "Medal Setup"
+msgstr "Configurar Medalla"
+
+msgid "Medium"
+msgstr "Medio"
+
+msgid "Memory Check"
+msgstr "Comprobar Memoria"
+
+msgid "Min font size"
+msgstr "Tamaño mínimo de fuente"
+
+msgid "Minimum Balls per Row"
+msgstr "Mínimo de Bolas por Fila"
+
+msgid "Minimum GUI resolution = VGA"
+msgstr "Mínima resolución de interfaz = VGA"
+
+msgid "Minimun"
+msgstr "mínimo"
+
+msgid "Mirror"
+msgstr "Espejo"
+
+msgid "Missing"
+msgstr "Faltante"
+
+msgid "Missing games"
+msgstr "Juegos faltantes"
+
+msgid "Mode"
+msgstr "Modo"
+
+msgid "Mode 1"
+msgstr "Modo 1"
+
+msgid "Mode 2"
+msgstr "Modo 2"
+
+msgid "Mono"
+msgstr ""
+
+msgid "Monster Speed"
+msgstr "Velocidad de Monstruo"
+
+msgid "More Quickly"
+msgstr "más Rápido"
+
+msgid "More Slowly"
+msgstr "Más Despacio"
+
+msgid "Motor"
+msgstr ""
+
+msgid "Mouse"
+msgstr ""
+
+msgid "Mouse Speed"
+msgstr "Velocidad de Mouse"
+
+msgid "Move the stick to all the extreme positions"
+msgstr "Mueve la palanca a todas las posiciones extremas"
+
+msgid "Movement"
+msgstr "Movimiento"
+
+msgid "Multiplayer"
+msgstr "Multijugador"
+
+#, c-format
+msgid "Music error: %s"
+msgstr "Error de Música: %s"
+
+msgid "Music volume"
+msgstr "Volúmen de música"
+
+msgid "Mute CD"
+msgstr "Silenciar CD"
+
+msgid "Mute SFX"
+msgstr "Silenciar FX"
+
+msgid "N"
+msgstr ""
+
+msgid "NMK"
+msgstr ""
+
+msgid "Nando Speed"
+msgstr "Velocidad Nando"
+
+msgid "Nearest"
+msgstr "Más cercano"
+
+msgid "Neo-Geo"
+msgstr ""
+
+msgid "Neo-Geo bios"
+msgstr "Bios Neo-Geo"
+
+#, c-format
+msgid "Neo-Geo bios : %s"
+msgstr "Bios Neo-Geo : %s"
+
+msgid "NeoCD bios"
+msgstr "Bios NeoCD"
+
+#, c-format
+msgid "NeoCD bios : %s"
+msgstr "Bios NeoCD : %s"
+
+msgid "NeoCD/Neo-Geo options"
+msgstr "Opciones NeoCD/Neo-Geo"
+
+msgid "NeoGeo Logo"
+msgstr "Logo de NeoGeo"
+
+msgid "Nevada"
+msgstr ""
+
+msgid "Never"
+msgstr "Nunca"
+
+msgid "New file"
+msgstr "Archivo nuevo"
+
+msgid "New pictures"
+msgstr "Nueva imagen"
+
+msgid "Next sprite block"
+msgstr "Proximo bloque de sprite"
+
+msgid "Nitros per Stage"
+msgstr "Nitros por Pantalla"
+
+msgid "No"
+msgstr ""
+
+msgid "No Bonus Lives"
+msgstr "Sin Vidas Extras"
+
+#, c-format
+msgid "No NeoCD bios"
+msgstr "Ninguna bios NeoCD"
+
+msgid "No Save"
+msgstr "Sin Salvar"
+
+msgid "No Use"
+msgstr "Sin Uso"
+
+msgid "No analog device"
+msgstr "Ningún dispositivo análogo"
+
+msgid "No associations yet"
+msgstr "Sin asociaciones todavia"
+
+msgid "No buttons mapped by this game for autofire, sorry !"
+msgstr "Sin botones autodisparo asignados para este juego, perdón !"
+
+msgid "No change"
+msgstr "Sin cambiar"
+
+msgid "No game loaded"
+msgstr "Ningún juego cargado"
+
+msgid "No game loaded yet"
+msgstr "Ningún juego cargado todavia"
+
+msgid "No game uses custom inputs in your config file yet"
+msgstr ""
+"Ningún juego usa entradas personalizadas\n"
+"en tu archivo de configuración todavia"
+
+msgid "No hardware support for overlays"
+msgstr "Sin soporte de hardware para superposiciones"
+
+msgid "No opengl info yet, run something first"
+msgstr "Nada de info opengl todavia, carga algo primero"
+
+msgid "No options for this renderer ? Strange !"
+msgstr "Sin opciones para este renderizador ? Extraño !"
+
+msgid "No raine logo, or it's a true color bitmap"
+msgstr "Sin logo de Raine, o es un bitmap de color verdadero"
+
+msgid "No savegames loadable for this game"
+msgstr "Ningún juego salvado cargable para este juego"
+
+msgid "No shader support on your hardware"
+msgstr "Sin soporte para shaders en tu hardware"
+
+msgid "No speed limit !"
+msgstr "Sin limite de velocidad !"
+
+msgid "None"
+msgstr "Ninguna"
+
+msgid "None (Japan)"
+msgstr "Ninguno (japón)"
+
+msgid "Normal"
+msgstr ""
+
+msgid "Normal blits"
+msgstr "Blits normales"
+
+msgid "Not Allowed"
+msgstr "No permitido"
+
+#, c-format
+msgid "Not enough memory for layer bitmap %d"
+msgstr "Sin memoria suficiente para la capa de bitmap %d"
+
+msgid "Nothing"
+msgstr "Nada"
+
+msgid "Nudity"
+msgstr "Desnudez"
+
+msgid "Number Match"
+msgstr "Número de Partida"
+
+msgid "Number of Powers"
+msgstr "Números de Poderes"
+
+msgid "OBJ"
+msgstr ""
+
+msgid "OBJ 2"
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Off"
+msgstr "Apagado"
+
+msgid "Ok"
+msgstr ""
+
+msgid "On"
+msgstr "Encendido"
+
+msgid "One step back/Time Cnt"
+msgstr "Un paso atrás/Contador de Tiempo"
+
+msgid "Only not working games"
+msgstr "Solo juegos sin funcionar"
+
+msgid "Only partially working games"
+msgstr "Solo juegos parcialmente funcionando"
+
+msgid "Only working games"
+msgstr "Solo juegos funcionando"
+
+msgid "Opaque HUD"
+msgstr "HUD opaco"
+
+msgid "Open this page now !|Later maybe..."
+msgstr "Abrir esta página ahora !|Tal vez luego..."
+
+msgid "OpenGL"
+msgstr ""
+
+msgid "OpenGL Options"
+msgstr "Opciones OpenGL"
+
+msgid "OpenGL VBL (force sync)"
+msgstr "OpenGL VBL (forzar sincronia)"
+
+msgid "OpenGL double buffer"
+msgstr "Doble buffer OpenGL"
+
+msgid "OpenGL error"
+msgstr "Error OpenGL"
+
+msgid "OpenGL filtering"
+msgstr "Filtrado OpenGL"
+
+msgid "OpenGL overlay interface"
+msgstr "Interfaz superpuesta OpenGL"
+
+msgid "OpenGL vendor"
+msgstr "Proveedor OpenGL"
+
+msgid "Options"
+msgstr "Opciones"
+
+msgid "Overlays Options"
+msgstr "Opciones de superposición"
+
+msgid "Overlays workarounds"
+msgstr "Soluciones de superposición"
+
+msgid "Overwrite"
+msgstr "Sobrescribir"
+
+msgid "P1 A"
+msgstr ""
+
+msgid "P1 B"
+msgstr ""
+
+msgid "P1 C"
+msgstr ""
+
+msgid "P1 Chi"
+msgstr ""
+
+msgid "P1 D"
+msgstr ""
+
+msgid "P1 E"
+msgstr ""
+
+msgid "P1 F"
+msgstr ""
+
+msgid "P1 G"
+msgstr ""
+
+msgid "P1 H"
+msgstr ""
+
+msgid "P1 I"
+msgstr ""
+
+msgid "P1 Input Control"
+msgstr "P1 Control de Entradas"
+
+msgid "P1 Invulnerability"
+msgstr "P1 Invulneravilidad"
+
+msgid "P1 J"
+msgstr ""
+
+msgid "P1 K"
+msgstr ""
+
+msgid "P1 Kan"
+msgstr ""
+
+msgid "P1 L"
+msgstr ""
+
+msgid "P1 M"
+msgstr ""
+
+msgid "P1 N"
+msgstr ""
+
+msgid "P1 Pon"
+msgstr ""
+
+msgid "P1 Reach"
+msgstr ""
+
+msgid "P1 Ron"
+msgstr ""
+
+msgid "P2 Invulnerability"
+msgstr "P2 Invulneravilidad"
+
+msgid "PC Pedal (analog)"
+msgstr "Pedal de PC (analogo)"
+
+msgid "PC Steering Wheel"
+msgstr "Volante de PC"
+
+msgid "Paddle A"
+msgstr ""
+
+msgid "Paddle B"
+msgstr ""
+
+msgid "Paddles"
+msgstr ""
+
+msgid "Path selection"
+msgstr "Seleccionar Directorio"
+
+msgid "Pause game"
+msgstr "Pausar Juego"
+
+msgid "Pause when focus lost"
+msgstr "Pausar al perder foco"
+
+msgid "Payout Mode"
+msgstr "Modo de Pago"
+
+msgid "Payout Rate Setup"
+msgstr "Configurar Tarifa de Modo de Pago"
+
+msgid "Payout Setup"
+msgstr "Configurar Modo de Pago"
+
+msgid "Picture Viewer"
+msgstr "Visor de Imágenes"
+
+msgid "Pixel"
+msgstr ""
+
+msgid "Pixel double"
+msgstr "Doblar pixeles"
+
+msgid "Play game"
+msgstr "Jugar"
+
+msgid "Play track|Test command|Silence track|Change track|Remove association"
+msgstr "Rep. pista|Probar comando|Silenciar pista|Cambiar pista|Quitar asociación"
+
+msgid "Playback"
+msgstr "Reproducción"
+
+msgid "Player 1 Only"
+msgstr "Jugador 1 Solamente"
+
+msgid "Player 2 Only"
+msgstr "Jugador 2 Solamente"
+
+msgid "Player Hurt Player"
+msgstr "Jugador Lastima Jugador"
+
+msgid "Player Select"
+msgstr "Elegir Jugador"
+
+msgid "Player's vitality consumption"
+msgstr "Consumo de vital de Jugador"
+
+msgid "Player1 Button1"
+msgstr "Jugador1 Botón1"
+
+msgid "Player1 Button2"
+msgstr "Jugador1 Botón2"
+
+msgid "Player1 Button3"
+msgstr "Jugador1 Botón3"
+
+msgid "Player1 Button4"
+msgstr "Jugador1 Botón4"
+
+msgid "Player1 Button5"
+msgstr "Jugador1 Botón5"
+
+msgid "Player1 Button6"
+msgstr "Jugador1 Botón6"
+
+msgid "Player1 Button7"
+msgstr "Jugador1 Botón7"
+
+msgid "Player1 Button8"
+msgstr "Jugador1 Botón8"
+
+msgid "Player1 Down"
+msgstr "Jugador1 Abajo"
+
+msgid "Player1 Left"
+msgstr "Jugador1 Izquierda"
+
+msgid "Player1 Right"
+msgstr "Jugador1 Derecha"
+
+msgid "Player1 Start"
+msgstr "Jugador1 Comenzar"
+
+msgid "Player1 Up"
+msgstr "Jugador1 Arriba"
+
+msgid "Player2 Button1"
+msgstr "Jugador2 Botón1"
+
+msgid "Player2 Button2"
+msgstr "Jugador2 Botón2"
+
+msgid "Player2 Button3"
+msgstr "Jugador2 Botón3"
+
+msgid "Player2 Button4"
+msgstr "Jugador2 Botón4"
+
+msgid "Player2 Button5"
+msgstr "Jugador2 Botón5"
+
+msgid "Player2 Button6"
+msgstr "Jugador2 Botón6"
+
+msgid "Player2 Button7"
+msgstr "Jugador2 Botón7"
+
+msgid "Player2 Button8"
+msgstr "Jugador2 Botón8"
+
+msgid "Player2 Down"
+msgstr "Jugador2 Abajo"
+
+msgid "Player2 Left"
+msgstr "Jugador2 Izquierda"
+
+msgid "Player2 Right"
+msgstr "Jugador2 Derecha"
+
+msgid "Player2 Start"
+msgstr "Jugador2 Comenzar"
+
+msgid "Player2 Up"
+msgstr "Jugador2 Arriba"
+
+msgid "Player3 Button1"
+msgstr "Jugador3 Botón1"
+
+msgid "Player3 Button2"
+msgstr "Jugador3 Botón2"
+
+msgid "Player3 Button3"
+msgstr "Jugador3 Botón3"
+
+msgid "Player3 Button4"
+msgstr "Jugador3 Botón4"
+
+msgid "Player3 Button5"
+msgstr "Jugador3 Botón5"
+
+msgid "Player3 Button6"
+msgstr "Jugador3 Botón6"
+
+msgid "Player3 Button7"
+msgstr "Jugador3 Botón7"
+
+msgid "Player3 Button8"
+msgstr "Jugador3 Botón8"
+
+msgid "Player3 Down"
+msgstr "Jugador3 Abajo"
+
+msgid "Player3 Left"
+msgstr "Jugador3 izquierda"
+
+msgid "Player3 Right"
+msgstr "Jugador3 Derecha"
+
+msgid "Player3 Start"
+msgstr "Jugador3 Comenzar"
+
+msgid "Player3 Up"
+msgstr "Jugador3 Arriba"
+
+msgid "Player4 Button1"
+msgstr "Jugador4 Botón1"
+
+msgid "Player4 Button2"
+msgstr "Jugador4 Botón2"
+
+msgid "Player4 Button3"
+msgstr "Jugador4 Botón3"
+
+msgid "Player4 Button4"
+msgstr "Jugador4 Botón4"
+
+msgid "Player4 Button5"
+msgstr "Jugador4 Botón5"
+
+msgid "Player4 Button6"
+msgstr "Jugador4 Botón6"
+
+msgid "Player4 Button7"
+msgstr "Jugador4 Botón7"
+
+msgid "Player4 Button8"
+msgstr "Jugador4 Botón8"
+
+msgid "Player4 Down"
+msgstr "Jugador4 Abajo"
+
+msgid "Player4 Left"
+msgstr "Jugador4 Izquierda"
+
+msgid "Player4 Right"
+msgstr "Jugador4 Derecha"
+
+msgid "Player4 Start"
+msgstr "Jugador4 Comenzar"
+
+msgid "Player4 Up"
+msgstr "Jugador4 Arriba"
+
+#, c-format
+msgid "Playing from: %s"
+msgstr "Jugar desde:  %s"
+
+msgid "Power Ups"
+msgstr "Poderes"
+
+msgid "Prefered YUV format"
+msgstr "Formato YUV preferido"
+
+msgid "Press a key, a button, or move a joystick..."
+msgstr "Presiona una tecla, un botón, o mueve un joystick..."
+
+msgid "Press a key..."
+msgstr "Presiona una tecla..."
+
+msgid "Prev sprite block"
+msgstr "Previo bloque de sprite"
+
+msgid "Profiler"
+msgstr "Perfilador"
+
+msgid "Progress"
+msgstr "Progreso"
+
+msgid "Psikyo (gunbird)"
+msgstr ""
+
+msgid "Question"
+msgstr "Pregunta"
+
+msgid "Quickly"
+msgstr "Rapido"
+
+msgid "Quit"
+msgstr "Salir"
+
+msgid "Quit w/o saving"
+msgstr "Quitar sin salvar"
+
+msgid "RDTSC Timing Enabled (cycles)"
+msgstr "Temporización RDTSC Habilitada (ciclos)"
+
+msgid "RDTSC Timing Enabled (percentages)"
+msgstr "Temporización RDTSC Habilitada (Porcentajes)"
+
+msgid "RIGHT"
+msgstr "DERECHA"
+
+msgid "ROM type"
+msgstr "Tipo de ROM"
+
+msgid "Rack Test"
+msgstr "Probar Rack"
+
+msgid "Rack Test (Cheat)"
+msgstr "Probar Rack (Truco)"
+
+msgid "Raine Controls"
+msgstr "Controles de Raine"
+
+msgid "Raine controls"
+msgstr "Controles de raine"
+
+msgid "Raster effects"
+msgstr "Efectos de tramado"
+
+msgid "Rdtsc Cycles"
+msgstr "Ciclos Rdtsc"
+
+msgid "Record to raine_sound.wav"
+msgstr "Grabar a raine_sound.wav"
+
+#, c-format
+msgid "Recording demo to: %s"
+msgstr "Grabando demo a: %s"
+
+msgid "Recording to wav..."
+msgstr "Grabando a wav..."
+
+msgid "Regain Power Price"
+msgstr "Recuperar Poder de Precio"
+
+msgid "Region"
+msgstr "Región"
+
+msgid "Renderer"
+msgstr "Renderizador"
+
+msgid "Renderer options"
+msgstr "Opciones de renderización"
+
+msgid "Rendering"
+msgstr "Renderizado"
+
+msgid "Reset fps to driver's default value"
+msgstr "Reiniciar CPS a valor por defecto del driver"
+
+msgid "Reset game"
+msgstr "Reiniciar juego"
+
+msgid "Reset game hardware"
+msgstr "Reiniciar hardware de juego"
+
+msgid "Reset transparency values to default"
+msgstr "Reiniciar transparencias a valores por defecto"
+
+msgid "Responds to Controls"
+msgstr "Responder a Controles"
+
+msgid "Retries"
+msgstr "Reintentos"
+
+msgid "Return mandatory"
+msgstr "Retorno obligatorio"
+
+msgid "Return to gui"
+msgstr "Volver a interfaz"
+
+msgid "Revert to default game controls"
+msgstr "Revertir a controles de juego por defecto"
+
+msgid "Revert to..."
+msgstr "Revertir a..."
+
+msgid "Roadscroll"
+msgstr "Desplazamiento"
+
+msgid "Rom Option"
+msgstr "Opcion de Rom"
+
+msgid "Rom directories..."
+msgstr "Directorios con roms..."
+
+msgid "Romstar"
+msgstr ""
+
+msgid "Romstar License"
+msgstr "Licensia Romstar"
+
+msgid "Round 6"
+msgstr ""
+
+msgid "Round 7"
+msgstr ""
+
+msgid "Running CPU All Frames"
+msgstr "Corriendo Todos los Cuadros de CPU"
+
+#, c-format
+msgid "Running CPU Every %01d Frames"
+msgstr "Corriendo CPU Cada %01d Cuadros"
+
+msgid "SDL default (windib since 1.2.10)"
+msgstr "SDL por defecto (windib desde 1.2.10)"
+
+msgid "SDL video driver"
+msgstr "Driver de video SDL"
+
+msgid "SE Asia"
+msgstr ""
+
+msgid "SE Asia, Charterfield"
+msgstr ""
+
+msgid "SE Asia/Tatsujin2"
+msgstr ""
+
+msgid "SPRITES"
+msgstr ""
+
+msgid "SPRITES BG"
+msgstr "SPRITES FONDO"
+
+msgid "SPRITES FG"
+msgstr "SPRITES PRIMER PLANO"
+
+msgid "Sales"
+msgstr "Ventas"
+
+msgid "Same as play"
+msgstr "Igual como el juego"
+
+msgid "Sample rate"
+msgstr "Frecuencia de muestreo"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid ""
+"Save 1st some custom inputs using\n"
+"Save inputs as"
+msgstr ""
+"Salva primero algunas entradas usando\n"
+"Salvar entradas como"
+
+msgid "Save Screenshot"
+msgstr "Tomar Captura de Pantalla"
+
+msgid "Save demo"
+msgstr "Salvar demo"
+
+msgid "Save game"
+msgstr "Salvar juego"
+
+msgid "Save game with name"
+msgstr "Salvar juego con nombre"
+
+msgid "Save inputs as..."
+msgstr "Salvar entradas como..."
+
+msgid "Save opengl screenshots"
+msgstr "Salvar captura de pantalla opengl"
+
+msgid "Scale2x/3x"
+msgstr "Escalar 2x/3x"
+
+msgid "Scaler"
+msgstr "Escalado"
+
+msgid "Scanlines"
+msgstr "Interlineado"
+
+msgid "Score Digits"
+msgstr "Digitos de Puntuación"
+
+msgid "Score Ranking"
+msgstr "Ranking de Puntuación"
+
+#, c-format
+msgid "Screen Saved to %s"
+msgstr "Captura de Pantalla Salvada a %s"
+
+msgid "Screen rotation"
+msgstr "Rotación de pantalla"
+
+msgid "Screenshot dir"
+msgstr "Dir de capturas"
+
+msgid "Scribble"
+msgstr "Garabato"
+
+msgid "Second Life at"
+msgstr "Segunda Vida en"
+
+msgid "Select analog device"
+msgstr "Elegir dispositivo análogo"
+
+msgid "Select the stick to use..."
+msgstr "Elegir palanca a usar..."
+
+msgid "Selectable Games"
+msgstr "Juegos Elegibles"
+
+msgid "Semi-auto"
+msgstr ""
+
+msgid "Seperate"
+msgstr "Separar"
+
+#, c-format
+msgid "Serious cue format error on line %s"
+msgstr "Error serio en el formato cue en la linea %s"
+
+msgid "Service"
+msgstr "Servicio"
+
+msgid "Service A"
+msgstr "Servicio A"
+
+msgid "Service B"
+msgstr "Servicio B"
+
+msgid "Service C"
+msgstr "Servicio C"
+
+msgid "Seta"
+msgstr ""
+
+msgid "Seta (Romstar License)"
+msgstr "Seta (Licencia Romstar)"
+
+msgid "Seta (Visco License)"
+msgstr "Seta (Licencia Visco)"
+
+msgid "Seta U.S.A"
+msgstr ""
+
+msgid "Seta USA / Romstar"
+msgstr ""
+
+msgid "Seta USA / Taito America"
+msgstr ""
+
+msgid "Sfx volume"
+msgstr "Volúmen de Sfx"
+
+msgid "Shader"
+msgstr ""
+
+msgid "Shared Credits"
+msgstr "Creditos Compartidos"
+
+msgid "Shields"
+msgstr "Escudos"
+
+msgid "Ships"
+msgstr "Naves"
+
+msgid "Shooting Style"
+msgstr "Estilo de Disparo"
+
+msgid "Show Correct Answer"
+msgstr "Mostrar Respuesta Correcta"
+
+msgid "Show Crosshair"
+msgstr "Mostrar Mira"
+
+msgid "Show command.dat info"
+msgstr "Mostrar info de command.dat"
+
+msgid "Silence"
+msgstr "Silenciar"
+
+msgid "Simultaneous"
+msgstr "Simultaneo"
+
+msgid "Simultaneous Play"
+msgstr "Juego Simultaneo"
+
+msgid "Single"
+msgstr "Simple"
+
+msgid "Slave"
+msgstr "Esclavo"
+
+msgid "Slow"
+msgstr "Lento"
+
+msgid "Slowly"
+msgstr "Más Lento"
+
+msgid "Small"
+msgstr "Pequeño"
+
+msgid "Soft dips"
+msgstr ""
+
+msgid "Soft dipswitches"
+msgstr ""
+
+msgid "Sound"
+msgstr "Sonido"
+
+msgid "Sound Test"
+msgstr "Prueba de Sonido"
+
+msgid "Sound associations"
+msgstr "Asociacion de sonidos"
+
+msgid "Sound commands"
+msgstr "Comandos de sonido"
+
+msgid "Sound commands..."
+msgstr "Comandos de sonido..."
+
+msgid "Sound options"
+msgstr "Opciones de sonido"
+
+msgid "Sound type"
+msgstr "Tipo de Sonido"
+
+msgid "South East Asia"
+msgstr "Sudeste de Asia"
+
+msgid "South East Asia (Charterfield License)"
+msgstr "Sudeste de Asia (Licensia de Charterfield)"
+
+msgid "South East Asia(Taito)"
+msgstr "Sudeste de Asia(Taito)"
+
+msgid "Spain & Portugal (APM)"
+msgstr "España y Portugal (APM)"
+
+msgid "Spain&Portugal/PipiBibi"
+msgstr "España y Portugal/PipiBibi"
+
+msgid "Special Course"
+msgstr "Trayecto Especial"
+
+msgid "Special moves..."
+msgstr "Movimientos especiales..."
+
+msgid "Speed hack not found, slowing down..."
+msgstr "Hack de velocidad no encontrado, desacelerando..."
+
+#, c-format
+msgid "Speed limit %d fps"
+msgstr "Límite de velocidad %d cps"
+
+msgid "Sprite viewer"
+msgstr "Visor de sprite"
+
+msgid "Sprites layer"
+msgstr "Capa de sprites"
+
+msgid "Sprites viewer"
+msgstr "Visor de sprites"
+
+msgid "Stage & Timer Start"
+msgstr "Escenario y Comienzo de Tiempo"
+
+msgid "Stage & Weapon Select"
+msgstr "Escenario y Seleccion de Arma"
+
+msgid "Stage Clear Life"
+msgstr "Escenario Limpiar Vida"
+
+msgid "Stage Edit"
+msgstr "Editar Escenario"
+
+msgid "Stage Magic Continue"
+msgstr "Magia de Escenario Continua"
+
+msgid "Stage Select"
+msgstr "Seleccionar Escenario"
+
+msgid "Stage Skip"
+msgstr "omitir Escenario"
+
+msgid "Stage Start/Timer Cont"
+msgstr "Escenario/Contador de Tiempo al Comenzar"
+
+msgid "Starscream 0.26r4 by Neill Corlett"
+msgstr "Starscream 0.26r4 por Neill Corlett"
+
+msgid "Start Ammo"
+msgstr "Munición al Comenzar"
+
+msgid "Start Level"
+msgstr "Nivel al Comenzar"
+
+msgid "Start Time"
+msgstr "Tiempi a Comenzar"
+
+msgid "Start Turbos"
+msgstr "Turbos al Comenzar"
+
+msgid "Starting Balls"
+msgstr "Bolas al Comenzar"
+
+msgid "Starting Life"
+msgstr "Vidas al Comenzar"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Status for Comm"
+msgstr "Estado para Comm"
+
+msgid "Steering wheel"
+msgstr "Volante"
+
+msgid "Stereo"
+msgstr "Estéreo"
+
+msgid "Stop"
+msgstr "Detener"
+
+msgid "Stop emulation"
+msgstr "Detener emulación"
+
+msgid "Super Bobble Bobble"
+msgstr ""
+
+msgid "Super Dream Land"
+msgstr ""
+
+msgid "Super Techniques"
+msgstr ""
+
+msgid "Switch fps display"
+msgstr "Cambiar visor de cps"
+
+msgid "Switch save slot"
+msgstr "Cambiar ranura de salvado"
+
+msgid "Switch to custom game controls"
+msgstr "Cambiar a entradas de juego personalizadas"
+
+msgid "TEST MODE"
+msgstr "MODO PRUEBA"
+
+msgid "TEXT"
+msgstr "TEXTO"
+
+msgid "Table"
+msgstr "De mesa"
+
+msgid "Taito"
+msgstr ""
+
+msgid "Taito America"
+msgstr ""
+
+msgid "Taito America Corp."
+msgstr ""
+
+msgid "Taito Corp. Japan"
+msgstr "Taito Corp. Japón"
+
+msgid "Taito F2"
+msgstr ""
+
+msgid "Taito L-System"
+msgstr ""
+
+msgid "Taito X-System 2"
+msgstr ""
+
+msgid "Taiwan"
+msgstr ""
+
+msgid "Taiwan (Taito)"
+msgstr ""
+
+msgid "Taiwan - Spacy"
+msgstr ""
+
+msgid "Taiwan, Anomoto Int."
+msgstr ""
+
+msgid "Taiwan/Japanese"
+msgstr "Taiwan/Japonés"
+
+msgid "Taiwan/PipiBibi"
+msgstr ""
+
+msgid "Taiwan/Tatsujin2"
+msgstr ""
+
+msgid "Terms of Replay"
+msgstr "Terminos de Replay"
+
+msgid "Territory"
+msgstr "Territorio"
+
+msgid "Territory/Copyright"
+msgstr "Territorio/Derechos de Autor"
+
+msgid "Tes Mode Display"
+msgstr ""
+
+msgid "Test"
+msgstr "Probar"
+
+msgid "Test (grid and input)"
+msgstr "Probar (cuadricula y entrada)"
+
+msgid "Test (ram and sound)/pause"
+msgstr "Probar (ram y sonido)/pausa"
+
+msgid "Test Mode"
+msgstr "Modo Prueba"
+
+msgid "Test mode"
+msgstr "Modo prueba"
+
+msgid "Test this"
+msgstr "Probar esto"
+
+msgid "Text"
+msgstr "Texto"
+
+msgid "Texture (possible shaders)"
+msgstr "Textura (posibles shaders)"
+
+msgid "Thailand"
+msgstr "Tailandia"
+
+#, c-format
+msgid "The field %d must have a value between %d and %d"
+msgstr "El campo %d debe tener un valor entre %d y %d"
+
+#, c-format
+msgid "The field %g must have a value between %g and %g"
+msgstr "El campo %g debe tener un valor entre %g y %g"
+
+#, c-format
+msgid "The field %x must have a value between %x and %x"
+msgstr "El campo %x debe tener un valor entre %x y %x"
+
+#, c-format
+msgid "The file '%s' can't be loaded"
+msgstr "El archivo '%s' no puede ser cargado"
+
+msgid "This picture isn't 8bpp"
+msgstr "Esta imagen no es 8bpp"
+
+msgid "Throttle Game Speed"
+msgstr "Velocidad de Juego a Toda Marcha"
+
+msgid "Thundercade"
+msgstr ""
+
+msgid "Tilt"
+msgstr "Tildar"
+
+msgid "Tilt Left"
+msgstr "Tildar Izquierda"
+
+msgid "Tilt Right"
+msgstr "Tildar Derecha"
+
+msgid "Time"
+msgstr "Tiempo"
+
+msgid "Time Limit"
+msgstr "Limite de Tiempo"
+
+msgid "Timer"
+msgstr "Temporizador"
+
+msgid "Timer Speed"
+msgstr "Velocidad de Temporizador"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "To match 2x game resolution"
+msgstr "Coincidir 2x resolución de juego"
+
+msgid "To match game resolution (low res most of the time)"
+msgstr "Coincidir con resolución de juego (baja resolución la mayoria del tiempo)"
+
+msgid "Toaplan"
+msgstr ""
+
+msgid "Toaplan 1"
+msgstr ""
+
+msgid "Toaplan 2"
+msgstr ""
+
+msgid "Together"
+msgstr "Juntos"
+
+msgid "Toggle"
+msgstr "Cambiar"
+
+msgid "Toggle capture mode"
+msgstr "Cambiar a Modo Captura"
+
+msgid "Toggle limit speed"
+msgstr "Cambiar limite de velocidad"
+
+msgid "Too many controls have been defined for this game, sorry !"
+msgstr "Demasiados controles fueron configurados para este juego, lo siento !"
+
+msgid "Track"
+msgstr "Pista"
+
+#, c-format
+msgid "Track format unknown '%s'"
+msgstr "Formato de pista desconocido '%s'"
+
+msgid "Track options"
+msgstr "Opciones de pista"
+
+msgid "Trackball"
+msgstr ""
+
+msgid "Translator"
+msgstr "Traductor"
+
+#, fuzzy, c-format
+msgid "Transparency for 1 (25% default)"
+msgstr "Transparencia para 1 (25% por defecto)"
+
+#, fuzzy, c-format
+msgid "Transparency for 2 (50% default)"
+msgstr "Transparencia para 2 (50% por defecto)"
+
+msgid "Turbo Mode"
+msgstr "Modo Turbo"
+
+msgid "Twin Formation"
+msgstr ""
+
+msgid "Type 1"
+msgstr "Tipo 1"
+
+msgid "Type 2"
+msgstr "Tipo 2"
+
+msgid "UAE 68020 Emulator : old hacked asm version from UAE"
+msgstr "Emulador UAE 68020 : antigua version hackeada asm de UAE"
+
+msgid "UK (JP Leisure)"
+msgstr ""
+
+msgid "UP"
+msgstr "ARRIBA"
+
+msgid "US"
+msgstr ""
+
+msgid "USA"
+msgstr ""
+
+msgid "USA (6 buttons)"
+msgstr "USA (6 botones)"
+
+msgid "USA (Romstar)/PipiBibi"
+msgstr ""
+
+msgid "USA (Taito America)"
+msgstr ""
+
+msgid "USA (Taito Japan)"
+msgstr "USA (Taito Japón)"
+
+msgid "USA (Taito)"
+msgstr ""
+
+msgid "USA, Europe (Atari)"
+msgstr ""
+
+msgid "USA, Sammy Corp."
+msgstr ""
+
+msgid "USA/PipiBibi"
+msgstr ""
+
+msgid "USA/Taito America"
+msgstr ""
+
+msgid "USA/Taito America (Romstar)"
+msgstr ""
+
+msgid "USA/Truxton2"
+msgstr ""
+
+#, c-format
+msgid "Unable to load: %s"
+msgstr "No se puede cargar: %s"
+
+#, c-format
+msgid "Unable to save: %s"
+msgstr "No se puede salvar: %s"
+
+msgid "Unknown"
+msgstr "Desconocido"
+
+msgid "Unknown 1-1*"
+msgstr "Desconocido 1-1*"
+
+msgid "Unknown 1-2"
+msgstr "Desconocido 1-2"
+
+msgid "Unknown 1-2*"
+msgstr "Desconocido 1-2*"
+
+msgid "Unknown 1-3"
+msgstr "Desconocido 1-3"
+
+msgid "Unknown 1-4"
+msgstr "Desconocido 1-4"
+
+msgid "Unknown 1-5"
+msgstr "Desconocido 1-5"
+
+msgid "Unknown 1-6"
+msgstr "Desconocido 1-6"
+
+msgid "Unknown 1-7"
+msgstr "Desconocido 1-7"
+
+msgid "Unknown 1-7*"
+msgstr "Desconocido 1-7*"
+
+msgid "Unknown 2-0"
+msgstr "Desconocido 2-0"
+
+msgid "Unknown 2-0&1"
+msgstr "Desconocido 2-0y1"
+
+msgid "Unknown 2-2"
+msgstr "Desconocido 2-2"
+
+msgid "Unknown 2-2&3"
+msgstr "Desconocido 2-2y3"
+
+msgid "Unknown 2-2*"
+msgstr "Desconocido 2-2*"
+
+msgid "Unknown 2-3"
+msgstr "Desconocido 2-3"
+
+msgid "Unknown 2-4"
+msgstr "Desconocido 2-4"
+
+msgid "Unknown 2-5"
+msgstr "Desconocido 2-5"
+
+msgid "Unknown 2-6"
+msgstr "Desconocido 2-6"
+
+msgid "Unknown 2-7"
+msgstr "Desconocido 2-7"
+
+msgid "Unknown 3-4*"
+msgstr "Desconocido 3-4*"
+
+msgid "Unknown 3-5*"
+msgstr "Desconocido 3-5*"
+
+msgid "Unlimited"
+msgstr "Ilimitado"
+
+msgid "Unused"
+msgstr "Sin uso"
+
+msgid "Unused 2-4"
+msgstr "Sin uso 2-4"
+
+msgid "Up to Level 2"
+msgstr "Hasta el Nivel 2"
+
+msgid "Up to Level 3"
+msgstr "Hasta el Nivel 3"
+
+msgid "Update neocd sprite block"
+msgstr "Actualizar bloque de sprites de neocd"
+
+msgid "Upright"
+msgstr "Vertical"
+
+msgid "Upright 1 Controller"
+msgstr "Vertical 1 Control"
+
+msgid "Upright 1 Player"
+msgstr "Vertical 1 Jugador"
+
+msgid "Upright 2 Controllers"
+msgstr "Vertical 2 Controles"
+
+msgid "Upright 2 Players"
+msgstr "Vertical 2 Jugadores"
+
+msgid "Upright Controls"
+msgstr "Controles Verticales"
+
+msgid "Use blending files (.bld)"
+msgstr "Usar archivos de blending (.bld)"
+
+msgid "Use custom mouse cursor"
+msgstr "Usar puntero de mouse personalizado"
+
+msgid "Use double buffer (ignored by opengl)"
+msgstr "Usar doble buffer (ignorado por opengl)"
+
+msgid "Using unscaled blits"
+msgstr "Usar blits sin escalar"
+
+msgid "VS Round"
+msgstr "Round en VS"
+
+msgid "Variable"
+msgstr ""
+
+msgid "Variable (MMX)"
+msgstr ""
+
+msgid "Version"
+msgstr "Versión"
+
+msgid "Versus Mode"
+msgstr "Modo Versus"
+
+msgid "Very Easy"
+msgstr "Muy Fácil"
+
+msgid "Very Fast"
+msgstr "Muy Rápido"
+
+msgid "Very Hard"
+msgstr "Muy Difícil"
+
+msgid "Very High"
+msgstr "Muy Alto"
+
+msgid "Very Slow"
+msgstr "Muy Lento"
+
+msgid "Video driver name"
+msgstr "Nombre de driver de video"
+
+msgid "Video info"
+msgstr "Info de video"
+
+msgid "Video info..."
+msgstr "Info de video..."
+
+msgid "Video layers"
+msgstr "Capas de video"
+
+msgid "Video options"
+msgstr "Opciones de video"
+
+msgid "Video renderer"
+msgstr "Renderizado de video"
+
+msgid "Visco"
+msgstr ""
+
+msgid "Visco (Japan Only)"
+msgstr "Visco (Japón Solamente)"
+
+msgid "Vitality"
+msgstr "Vitalidad"
+
+msgid "Vitality Packs"
+msgstr "Packs de Vitalidad"
+
+msgid "Voice"
+msgstr "Voz"
+
+msgid "Volume of Siren"
+msgstr "Volumen de Sirena"
+
+msgid "Vs Mode Rounds"
+msgstr "Rounds en Modo Vs"
+
+msgid "Vs Play Mode"
+msgstr "Modo de Juego Vs"
+
+msgid "WALTZ0"
+msgstr ""
+
+msgid "Warning"
+msgstr "Advertencia"
+
+msgid "What do you want to do ?"
+msgstr "Que quieres hacer?"
+
+msgid "Wheel"
+msgstr "Rueda"
+
+msgid "When possible"
+msgstr "Cuando sea posible"
+
+msgid "Wild blocks"
+msgstr "Bloques salvajes"
+
+msgid "Wisdom"
+msgstr "Saviduria"
+
+msgid "With"
+msgstr "Con"
+
+msgid "With monitoring"
+msgstr "Con monitoreo"
+
+msgid "Without"
+msgstr "Sin"
+
+msgid "Without monitoring"
+msgstr "Sin monitoreo"
+
+msgid "World"
+msgstr "Mundo"
+
+msgid "World (Ryouta)/PipiBibi"
+msgstr "Mundo (Ryouta)/PipiBibi"
+
+msgid "World License"
+msgstr "Licensia Mundial"
+
+msgid "World/PipiBibi"
+msgstr "Mundo/PipiBibi"
+
+msgid "World/Taito Corp Japan"
+msgstr "Mundo/Taito Corp Japan"
+
+msgid "X"
+msgstr ""
+
+msgid "YUV overlays"
+msgstr "Superposición YUV"
+
+msgid "YUY2"
+msgstr ""
+
+msgid "YV12 (mpeg)"
+msgstr ""
+
+#, c-format
+msgid "Year : %d"
+msgstr "Año : %d"
+
+#, c-format
+msgid "Year : -"
+msgstr "Año : -"
+
+msgid "Year : 2006"
+msgstr "Año : 2006"
+
+msgid "Yes"
+msgstr "Si"
+
+msgid "Yes|No"
+msgstr "Si|No"
+
+msgid ""
+"You can't have at the same time a scaler + scanlines,\n"
+"Choose 1"
+msgstr ""
+"No puedes tener al mismo tiempo un escalador + tramado,\n"
+"Elige uno"
+
+msgid "Z80: applied HALT speed hack"
+msgstr "Z80: aplicó hack de velocidad HALT"
+
+msgid "Z80: speed hack applied"
+msgstr "Z80: aplicado hack de velocidad"
+
+msgid "Zooming Object"
+msgstr "Acercandose al Objeto"
+
+msgid "accelerated color fills"
+msgstr "relleno de color acelerado"
+
+msgid "accelerated hardware->hardware alpha blits"
+msgstr "hardware acelerado->blits alpha por hardware"
+
+msgid "accelerated hardware->hardware blits"
+msgstr "hardware acelerado->blits por hardware"
+
+msgid "accelerated hardware->hardware colorkey blits"
+msgstr "hardware acelerado->blits de claves de color por hardware"
+
+msgid "accelerated software->hardware alpha blits"
+msgstr "hardware acelerado->blits alpha por hardware"
+
+msgid "accelerated software->hardware blits"
+msgstr "hardware acelerado->blits por hardware"
+
+msgid "accelerated software->hardware colorkey blits"
+msgstr "hardware acelerado->claves de color por hardware"
+
+msgid "alloc error"
+msgstr "error de asignación"
+
+msgid "alpha"
+msgstr ""
+
+#, c-format
+msgid ""
+"bad screen format, report this to rainemu.com:\n"
+"bpp : %d rshift %d gshift %d bshift %d"
+msgstr ""
+"mal formato de pantalla, reporta esto a rainemu.swishparty.co.uk\n"
+"bpp : %d rshift %d gshift %d bshift %d"
+
+msgid "bg"
+msgstr "fondo"
+
+msgid "bg color"
+msgstr "color de fondo"
+
+msgid "bg dialog bar color"
+msgstr "color de la barra de dialogo del fondo"
+
+msgid "bg frame color"
+msgstr "color de recuadro de fondo"
+
+msgid "bld options"
+msgstr "opciones bld"
+
+msgid "blue"
+msgstr "azul"
+
+msgid "can't find iso file"
+msgstr "no se puede encontrar archivo iso"
+
+msgid "color"
+msgstr ""
+
+msgid "cps2"
+msgstr ""
+
+#, c-format
+msgid "cpusldn:Running CPU Every %01d Frames"
+msgstr "cpusldn:Corriendo CPU cada  %01d cuadros"
+
+#, c-format
+msgid "cue format error on line : %s"
+msgstr "error de formato cue en linea  : %s"
+
+msgid "directx (good for hw overlays/blits)"
+msgstr "directx (bueno para superposicion/blits por hardware)"
+
+msgid "disabling row select (agallet)"
+msgstr "deshabilitando selección de fila (agallet)"
+
+msgid "dkongg.dx2"
+msgstr ""
+
+msgid "dsw"
+msgstr ""
+
+msgid "each pedal separately"
+msgstr "cada pedal por separado"
+
+msgid "error while attaching fragment shader"
+msgstr "error mientras se fijaba fragmento de shader"
+
+msgid "error while attaching vertex shader"
+msgstr "error mientras se fijaba vértice de shader"
+
+msgid "every 1000k"
+msgstr "cada 1000k"
+
+msgid "every 1500k"
+msgstr "cada 1500k"
+
+msgid "every 2000k"
+msgstr "cada 2000k"
+
+msgid "every 3000k"
+msgstr "cada 3000k"
+
+msgid "every 4000k"
+msgstr "cada 4000k"
+
+msgid "fb"
+msgstr "primer plano"
+
+msgid "fg color"
+msgstr "color de primer plano"
+
+msgid "fg frame color"
+msgstr "color del recuadro del primer plano"
+
+msgid "froggerg.dx2"
+msgstr ""
+
+msgid "galdxg.dx2"
+msgstr ""
+
+msgid "green"
+msgstr "verde"
+
+msgid "hardware surface available"
+msgstr "superficies por hardware disponible"
+
+msgid "hidden"
+msgstr "oculto"
+
+msgid ""
+"history.dat not found\n"
+"Download it from http://www.arcade-history.com/index.php?page=download\n"
+"and install it in your raine directory\n"
+"in linux ~/.raine or /usr/share/games/raine\n"
+msgstr ""
+"no se encuentra history.dat\n"
+"Descárgalo de http://www.arcade-history.com/index.php?page=download\n"
+"e instalalo en tu directorio de raine\n"
+"en linux ~/.raine o /usr/share/games/raine\n"
+
+msgid "hq2x/3x"
+msgstr ""
+
+msgid "indexes alloc error"
+msgstr "error de asignación de índices"
+
+msgid "label"
+msgstr "etiqueta"
+
+msgid "layer"
+msgstr "capa"
+
+#, c-format
+msgid "layer %d disabled\n"
+msgstr "capa %d deshabilitada\n"
+
+msgid "layer 1 disabled"
+msgstr "capa 1 deshabilitada"
+
+msgid "left and right positions, and press then release"
+msgstr "posicion izquierda y derecha, presiona luego suelta"
+
+#, c-format
+msgid "line scroll %d"
+msgstr "línea de desplazamiento %d"
+
+#, c-format
+msgid "line scroll bg0 %d %d size %d"
+msgstr "línea de desplazamiento fondo0 %d %d tamaño %d"
+
+#, c-format
+msgid "line scroll bg1 %d %d size %d"
+msgstr "línea de desplazamiento fondo1 %d %d tamaño %d"
+
+msgid "lsb"
+msgstr ""
+
+msgid "msb"
+msgstr ""
+
+msgid "msg to edit"
+msgstr "msg a editar"
+
+msgid "mspacmang.dx2"
+msgstr ""
+
+#, c-format
+msgid "no line scroll %d"
+msgstr "sin línea de desplazamiento %d"
+
+msgid "no mixer yet"
+msgstr "sin mixer todavia"
+
+msgid "none"
+msgstr "ninguno"
+
+msgid "ok"
+msgstr ""
+
+msgid "or escape to delete this control"
+msgstr "o escape para eliminar este control"
+
+msgid "pacmang.dx2"
+msgstr ""
+
+msgid "path format error"
+msgstr "error en formato de ruta"
+
+msgid "png"
+msgstr ""
+
+msgid ""
+"raine_logo.png must have the 1st color of the palette\n"
+"(color 0) as transparent"
+msgstr ""
+"raine_logo.png debe tener el primer color de\n"
+"la paleta (color 0) como transparente"
+
+msgid "red"
+msgstr "rojo"
+
+msgid "rom dirs"
+msgstr "directorios de roms"
+
+#, c-format
+msgid "row scroll %d"
+msgstr "fila de desplazamiento %d"
+
+msgid "row scroll on 8x8 layer unemulated"
+msgstr "fila de desplazamiento en capa 8x8 no emulada"
+
+#, c-format
+msgid "row select layer %d size %d"
+msgstr "fila de desplazamiento seleccionada %d tamaño %d"
+
+msgid "s8 not supported"
+msgstr "s8 no soportado"
+
+msgid "sprites"
+msgstr ""
+
+msgid "sprites disabled"
+msgstr "sprites deshabilitados"
+
+msgid "switch to 16bpp color depth and reload"
+msgstr "cambiar a profundidad de color de 16bpp y recargar"
+
+msgid "text"
+msgstr "texto"
+
+msgid "tilemap0"
+msgstr ""
+
+msgid "tilemap1"
+msgstr ""
+
+msgid "u16lsb not supported"
+msgstr "u16lsb no soportado"
+
+msgid "u16msb not supported"
+msgstr "u16msb no soportado"
+
+msgid "u8 not supported"
+msgstr "u8 no soportado"
+
+#, c-format
+msgid "used override for %s"
+msgstr "usada anulación para %s"
+
+msgid "windib (good for ogl)"
+msgstr "windib (bueno para OpenGL)"
+
+msgid "window manager available"
+msgstr "administrador de ventanas disponible"

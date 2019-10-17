@@ -1,0 +1,50 @@
+; File generated automatically from dlls/snmpapi/snmpapi.spec; do not edit!
+
+LIBRARY snmpapi.dll
+
+EXPORTS
+  SnmpSvcAddrIsIpx@0 @1 PRIVATE
+  SnmpSvcAddrToSocket@0 @2 PRIVATE
+  SnmpSvcBufRevAndCpy@0 @3 PRIVATE
+  SnmpSvcBufRevInPlace@0 @4 PRIVATE
+  SnmpSvcDecodeMessage@0 @5 PRIVATE
+  SnmpSvcEncodeMessage@0 @6 PRIVATE
+  SnmpSvcGenerateAuthFailTrap@0 @7 PRIVATE
+  SnmpSvcGenerateColdStartTrap@0 @8 PRIVATE
+  SnmpSvcGenerateLinkDownTrap@0 @9 PRIVATE
+  SnmpSvcGenerateLinkUpTrap@0 @10 PRIVATE
+  SnmpSvcGenerateTrap@0 @11 PRIVATE
+  SnmpSvcGenerateWarmStartTrap@0 @12 PRIVATE
+  SnmpSvcGetEnterpriseOID@0 @13 PRIVATE
+  SnmpSvcGetUptime@0 @14
+  SnmpSvcInitUptime@0 @15 PRIVATE
+  SnmpSvcReleaseMessage@0 @16 PRIVATE
+  SnmpSvcReportEvent@0 @17 PRIVATE
+  SnmpSvcSetLogLevel@0 @18 PRIVATE
+  SnmpSvcSetLogType@0 @19 PRIVATE
+  SnmpUtilAnsiToUnicode@0 @20 PRIVATE
+  SnmpUtilAsnAnyCpy@8 @21
+  SnmpUtilAsnAnyFree@4 @22
+  SnmpUtilDbgPrint @23
+  SnmpUtilIdsToA@8 @24
+  SnmpUtilMemAlloc@4 @25
+  SnmpUtilMemFree@4 @26
+  SnmpUtilMemReAlloc@8 @27
+  SnmpUtilOctetsCmp@8 @28
+  SnmpUtilOctetsCpy@8 @29
+  SnmpUtilOctetsFree@4 @30
+  SnmpUtilOctetsNCmp@12 @31
+  SnmpUtilOidAppend@8 @32
+  SnmpUtilOidCmp@8 @33
+  SnmpUtilOidCpy@8 @34
+  SnmpUtilOidFree@4 @35
+  SnmpUtilOidNCmp@12 @36
+  SnmpUtilOidToA@4 @37
+  SnmpUtilPrintAsnAny@4 @38
+  SnmpUtilPrintOid@4 @39
+  SnmpUtilStrlenW@0 @40 PRIVATE
+  SnmpUtilUnicodeToAnsi@0 @41 PRIVATE
+  SnmpUtilVarBindCpy@8 @42
+  SnmpUtilVarBindFree@4 @43
+  SnmpUtilVarBindListCpy@8 @44
+  SnmpUtilVarBindListFree@4 @45

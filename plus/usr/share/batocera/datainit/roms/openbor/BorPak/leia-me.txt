@@ -1,0 +1,18 @@
+Instruções básica
+=================================================================================
+
+Alguns jogos do OpenBOR vem descompactados.
+
+Para compactar copie a pasta com os arquivos do jogo dentro desta pasta.
+
+A pasta obrigatóriamente deve ter o nome de data (tudo em minúsculo).
+Em seguida execute o script e aguarde ele compactar o jogo.
+
+Depois do terminado a compressão, será gerado um arquivo com o nome de data.pak
+Renomei o arquivo data.pak para o nome do jogo original.
+
+Mova o jogo compactado para a pasta share/roms/openbor.
+
+Você também pode descompactar um jogo compactado, para fazer modificações no jogo
+ou para poder pegar uma imagem para usar como capa no menu de escolha de jogo do
+Batocera.

@@ -1,0 +1,59 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>E91C23</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>00A651</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>1C75BC</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>3E3E3E</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Manufacturer : Amstrad</text>
+			<pos>0.38 0.72</pos>
+		</text>
+		<text name="info2" extra="true">
+			<text>Year of Release : 1984</text>
+			<pos>0.38 0.74</pos>
+		</text>
+		<text name="info3" extra="true">
+			<text>OS : AMSDOS with Locomotive BASIC </text>
+			<pos>0.38 0.76</pos>
+		</text>
+		<text name="info4" extra="true">
+			<text>CPU : Zilog Z80A @ 4 MHz</text>
+			<pos>0.38 0.80</pos>
+		</text>
+		<text name="info5" extra="true">
+			<text>RAM : 64KB</text>
+			<pos>0.38 0.82</pos>
+		</text>
+		<text name="info6" extra="true">
+			<text>Sound Chip : General Instrument AY-3-8910</text>
+			<pos>0.38 0.84</pos>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>E91C23</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>00A651</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>1C75BC</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>3E3E3E</color>
+		</image>
+	</view>
+</theme>

@@ -1,0 +1,23 @@
+script "P1 invulnerability" always
+  poke $101517 2
+
+script "P1 infinite lives"
+  poke $101276 $99
+
+script "P1 50 bombs"
+  poke $10c350 50
+
+script "P1 infinite amo"
+	dpoke $10c354 $ffff
+
+script "P1 shotgun"
+	poke $10c34e 0
+
+script "P1 rocket launcher"
+	poke $10c34e 1
+
+script "P1 flame thrower"
+	poke $10c34e 2
+
+script "P1 machine gun"
+	poke $10c34e 3

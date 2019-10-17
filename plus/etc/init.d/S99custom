@@ -1,0 +1,18 @@
+#!/bin/bash
+
+### Batocera.PLUS
+
+SHARE='/userdata'
+
+### Ativa o carregamento de scripts de identificação de hardware criado pelo usuário.
+#udevadm control -R &
+
+### Desativa atualizações automáticas.
+if [ -f "$SHARE/system/batocera.conf" ]; then
+    sed -i s/'^updates.enabled=1/updates.enabled=0/' "$SHARE/system/batocera.conf"
+fi
+
+### Carrega scripts de inicialização criado pelo usuário.
+if [ -f "$SHARE/system/custom.sh" ]; then
+    exec "$SHARE/system/custom.sh" $1
+fi

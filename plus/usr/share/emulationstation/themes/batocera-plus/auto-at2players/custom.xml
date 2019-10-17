@@ -1,0 +1,39 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>FEE94B</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>7EEE80</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>FF7961</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>0098DF</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Manufacturer : 2 Players</text>
+			<pos>0.38 0.72</pos>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>FEE94B</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>7EEE80</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>FF7961</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>0098DF</color>
+		</image>
+	</view>
+</theme>

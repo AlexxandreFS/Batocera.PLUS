@@ -1,0 +1,57 @@
+; File generated automatically from dlls/wtsapi32/wtsapi32.spec; do not edit!
+
+LIBRARY wtsapi32.dll
+
+EXPORTS
+  WTSCloseServer@4 @1
+  WTSConnectSessionA@16 @2
+  WTSConnectSessionW@16 @3
+  WTSDisconnectSession@12 @4
+  WTSEnableChildSessions@4 @5
+  WTSEnumerateProcessesA@20 @6
+  WTSEnumerateProcessesExA@20 @7
+  WTSEnumerateProcessesExW@20 @8
+  WTSEnumerateProcessesW@20 @9
+  WTSEnumerateServersA@20 @10
+  WTSEnumerateServersW@20 @11
+  WTSEnumerateSessionsA@20 @12
+  WTSEnumerateSessionsExA@20 @13
+  WTSEnumerateSessionsExW@20 @14
+  WTSEnumerateSessionsW@20 @15
+  WTSFreeMemory@4 @16
+  WTSFreeMemoryExA@12 @17
+  WTSFreeMemoryExW@12 @18
+  WTSLogoffSession@12 @19
+  WTSOpenServerA@4 @20
+  WTSOpenServerExA@4 @21
+  WTSOpenServerExW@4 @22
+  WTSOpenServerW@4 @23
+  WTSQuerySessionInformationA@20 @24
+  WTSQuerySessionInformationW@20 @25
+  WTSQueryUserConfigA@20 @26
+  WTSQueryUserConfigW@20 @27
+  WTSQueryUserToken@8 @28
+  WTSRegisterSessionNotification@8 @29
+  WTSRegisterSessionNotificationEx@12 @30
+  WTSSendMessageA@40 @31
+  WTSSendMessageW@40 @32
+  WTSSetSessionInformationA@0 @33 PRIVATE
+  WTSSetSessionInformationW@0 @34 PRIVATE
+  WTSSetUserConfigA@20 @35
+  WTSSetUserConfigW@20 @36
+  WTSShutdownSystem@8 @37
+  WTSStartRemoteControlSessionA@16 @38
+  WTSStartRemoteControlSessionW@16 @39
+  WTSStopRemoteControlSession@4 @40
+  WTSTerminateProcess@12 @41
+  WTSUnRegisterSessionNotification@4 @42
+  WTSUnRegisterSessionNotificationEx@8 @43
+  WTSVirtualChannelClose@4 @44
+  WTSVirtualChannelOpen@12 @45
+  WTSVirtualChannelOpenEx@12 @46
+  WTSVirtualChannelPurgeInput@4 @47
+  WTSVirtualChannelPurgeOutput@4 @48
+  WTSVirtualChannelQuery@16 @49
+  WTSVirtualChannelRead@20 @50
+  WTSVirtualChannelWrite@16 @51
+  WTSWaitSystemEvent@12 @52

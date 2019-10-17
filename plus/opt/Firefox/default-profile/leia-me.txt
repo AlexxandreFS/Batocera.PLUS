@@ -1,0 +1,28 @@
+PORQUE UM PERFIL
+================
+Os perfis permitem customizar o navegador definindo padrões inicias de contiguracao.
+Sao úteis para criar versões customizadas do Batocera.
+Voce pode definir a pagina inicial com o site de seu projeto.
+Colocar sites nos favoritos.
+Deixar abas abertas com alguns sites iniciais, etc...
+
+COMO CRIAR UM PERFIL
+=====================
+Configure o firefox de acordo com seu gosto.
+Remova todos os dados de navegação do navegador.
+
+Entre na pasta do save do firefox share/save/pc/Mozilla-Firefox. 
+
+Exclua a pasta startupCache
+Exclua o arquivo xulstore.json
+
+Compacte todos os arquivos que estão dentro da pasta do save Mozilla-Firefox
+no formato 7z (7zip)
+Copie o arquivo compactado para a pasta default-profile com o nome default-profile.7z
+
+Agora sempre que o usuario excluir o save o firefox restaura estas configuracoes.
+
+INICIAR COM UM PERFIL VAZIO
+===========================
+Exclua todos arquivos da pasta do save.
+Deixe a pasta Mozilla-Firefox vazia nas nao exclua esta pasta.

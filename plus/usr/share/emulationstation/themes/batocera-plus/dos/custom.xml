@@ -1,0 +1,49 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>1F70C1</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>FFFFFF</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>666870</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>201D1D</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Manufacturer: IBM</text>
+			<pos>0.38 0.72</pos>
+		</text>
+		<text name="info2" extra="true">
+			<text>Year of Release : 1981</text>
+			<pos>0.38 0.74</pos>
+		</text>
+		<text name="info3" extra="true">
+			<text>The IBM Personal Computer, commonly known as the IBM PC, is the original version and progenitor of the IBM PC compatible hardware platform. It is IBM model number 5150, and was introduced on August 12, 1981. It was created by a team of engineers and designers under the direction of Don Estridge of the IBM Entry Systems Division in Boca Raton, Florida.</text>
+			<pos>0.38 0.76</pos>
+			<size>0.40 0.20</size>
+			<lineSpacing>1.1</lineSpacing>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>1F70C1</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>FFFFFF</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>666870</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>201D1D</color>
+		</image>
+	</view>
+</theme>

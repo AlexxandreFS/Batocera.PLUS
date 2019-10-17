@@ -1,0 +1,82 @@
+; File generated automatically from dlls/wer/wer.spec; do not edit!
+
+LIBRARY wer.dll
+
+EXPORTS
+  WerSysprepCleanup@0 @1 PRIVATE
+  WerSysprepGeneralize@0 @2 PRIVATE
+  WerSysprepSpecialize@0 @3 PRIVATE
+  WerUnattendedSetup@0 @4 PRIVATE
+  WerpAddAppCompatData@0 @5 PRIVATE
+  WerpAddFile@0 @6 PRIVATE
+  WerpAddMemoryBlock@0 @7 PRIVATE
+  WerpAddRegisteredDataToReport@0 @8 PRIVATE
+  WerpAddSecondaryParameter@0 @9 PRIVATE
+  WerpAddTextToReport@0 @10 PRIVATE
+  WerpArchiveReport@0 @11 PRIVATE
+  WerpCancelResponseDownload@0 @12 PRIVATE
+  WerpCancelUpload@0 @13 PRIVATE
+  WerpCloseStore@0 @14 PRIVATE
+  WerpCreateMachineStore@0 @15 PRIVATE
+  WerpDeleteReport@0 @16 PRIVATE
+  WerpDestroyWerString@0 @17 PRIVATE
+  WerpDownloadResponse@0 @18 PRIVATE
+  WerpDownloadResponseTemplate@0 @19 PRIVATE
+  WerpEnumerateStoreNext@0 @20 PRIVATE
+  WerpEnumerateStoreStart@0 @21 PRIVATE
+  WerpExtractReportFiles@0 @22 PRIVATE
+  WerpGetBucketId@0 @23 PRIVATE
+  WerpGetDynamicParameter@0 @24 PRIVATE
+  WerpGetEventType@0 @25 PRIVATE
+  WerpGetFileByIndex@0 @26 PRIVATE
+  WerpGetFilePathByIndex@0 @27 PRIVATE
+  WerpGetNumFiles@0 @28 PRIVATE
+  WerpGetNumSecParams@0 @29 PRIVATE
+  WerpGetNumSigParams@0 @30 PRIVATE
+  WerpGetReportFinalConsent@0 @31 PRIVATE
+  WerpGetReportFlags@0 @32 PRIVATE
+  WerpGetReportInformation@0 @33 PRIVATE
+  WerpGetReportTime@0 @34 PRIVATE
+  WerpGetReportType@0 @35 PRIVATE
+  WerpGetResponseId@0 @36 PRIVATE
+  WerpGetResponseUrl@0 @37 PRIVATE
+  WerpGetSecParamByIndex@0 @38 PRIVATE
+  WerpGetSigParamByIndex@0 @39 PRIVATE
+  WerpGetStoreLocation@0 @40 PRIVATE
+  WerpGetStoreType@0 @41 PRIVATE
+  WerpGetTextFromReport@0 @42 PRIVATE
+  WerpGetUIParamByIndex@0 @43 PRIVATE
+  WerpGetUploadTime@0 @44 PRIVATE
+  WerpGetWerStringData@0 @45 PRIVATE
+  WerpIsTransportAvailable@0 @46 PRIVATE
+  WerpLoadReport@0 @47 PRIVATE
+  WerpOpenMachineArchive@0 @48 PRIVATE
+  WerpOpenMachineQueue@0 @49 PRIVATE
+  WerpOpenUserArchive@0 @50 PRIVATE
+  WerpReportCancel@0 @51 PRIVATE
+  WerpRestartApplication@0 @52 PRIVATE
+  WerpSetDynamicParameter@0 @53 PRIVATE
+  WerpSetEventName@0 @54 PRIVATE
+  WerpSetReportFlags@0 @55 PRIVATE
+  WerpSetReportInformation@0 @56 PRIVATE
+  WerpSetReportTime@0 @57 PRIVATE
+  WerpSetReportUploadContextToken@0 @58 PRIVATE
+  WerpShowNXNotification@0 @59 PRIVATE
+  WerpShowSecondLevelConsent@0 @60 PRIVATE
+  WerpShowUpsellUI@0 @61 PRIVATE
+  WerpSubmitReportFromStore@0 @62 PRIVATE
+  WerpSvcReportFromMachineQueue@0 @63 PRIVATE
+  WerAddExcludedApplication@8 @64
+  WerRemoveExcludedApplication@8 @65
+  WerReportAddDump@28 @66
+  WerReportAddFile@16 @67
+  WerReportCloseHandle@4 @68
+  WerReportCreate@16 @69
+  WerReportSetParameter@16 @70
+  WerReportSetUIOption@12 @71
+  WerReportSubmit@16 @72
+  WerpGetReportConsent@0 @73 PRIVATE
+  WerpIsDisabled@0 @74 PRIVATE
+  WerpOpenUserQueue@0 @75 PRIVATE
+  WerpPromtUser@0 @76 PRIVATE
+  WerpSetCallBack@0 @77 PRIVATE

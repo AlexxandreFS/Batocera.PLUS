@@ -1,0 +1,27 @@
+20-11 :
+ - gunbird.c : fast bankswitch with a pointer instead of a memcpy
+ - fm.c : make sure v value passed to YM2610Write is in the good range.
+
+19-11 :
+ - alsound : added the dump channel option for debugging the sound in
+   dfeveron. The dumping works, but I could not debug that sound yet !!!
+ - mz280.* : new mame z280 support (cave games)
+ - cave.c : added sound for all games. Added mame eprom support. Added
+   preliminary support for ddonpach, but video does not work (yet) !!!
+ - gunbird.c : added btlkrodj, thanks go to mame's driver author for his help! 
+   changing though.
+ - mame/* : added eprom support. Changed whole structure to allow including of
+   only the handlers (for sound).
+
+12-11-2001 :
+
+ - Succeeded to push antiriad to add his touch to the code !!!
+ - Started a preliminary compatibility layer with mame. See gunbird.c for
+   the first steps. For now not much is done, and it creates warnings, but
+   it works !
+ - Added 16/24/32 bpp compat to warriorb
+ - readded sengoku ace. The sound does not work and I don't know why for now.
+ - s/DEADBEEF/0xDEADBEEF/ in the new asm routines. It broke compilation on
+  linux.
+
+

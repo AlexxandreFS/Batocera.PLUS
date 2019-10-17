@@ -1,0 +1,9 @@
+; File generated automatically from dlls/atlthunk/atlthunk.spec; do not edit!
+
+LIBRARY atlthunk.dll
+
+EXPORTS
+  AtlThunk_AllocateData@0 @1
+  AtlThunk_DataToCode@4 @2
+  AtlThunk_FreeData@4 @3
+  AtlThunk_InitData@12 @4

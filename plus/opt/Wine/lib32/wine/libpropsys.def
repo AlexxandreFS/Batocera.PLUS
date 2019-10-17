@@ -1,0 +1,192 @@
+; File generated automatically from dlls/propsys/propsys.spec; do not edit!
+
+LIBRARY propsys.dll
+
+EXPORTS
+  GetProxyDllInfo@0 @3 PRIVATE
+  ClearPropVariantArray@0 @4 PRIVATE
+  ClearVariantArray@0 @5 PRIVATE
+  DllCanUnloadNow@0 @6 PRIVATE
+  DllGetClassObject@12 @7 PRIVATE
+  DllRegisterServer@0 @8 PRIVATE
+  DllUnregisterServer@0 @9 PRIVATE
+  InitPropVariantFromBooleanVector@0 @10 PRIVATE
+  InitPropVariantFromBuffer@12 @11
+  InitPropVariantFromCLSID@8 @12
+  InitPropVariantFromDoubleVector@0 @13 PRIVATE
+  InitPropVariantFromFileTime@0 @14 PRIVATE
+  InitPropVariantFromFileTimeVector@0 @15 PRIVATE
+  InitPropVariantFromGUIDAsString@8 @16
+  InitPropVariantFromInt16Vector@0 @17 PRIVATE
+  InitPropVariantFromInt32Vector@0 @18 PRIVATE
+  InitPropVariantFromInt64Vector@0 @19 PRIVATE
+  InitPropVariantFromPropVariantVectorElem@0 @20 PRIVATE
+  InitPropVariantFromResource@0 @21 PRIVATE
+  InitPropVariantFromStrRet@0 @22 PRIVATE
+  InitPropVariantFromStringAsVector@0 @23 PRIVATE
+  InitPropVariantFromStringVector@0 @24 PRIVATE
+  InitPropVariantFromUInt16Vector@0 @25 PRIVATE
+  InitPropVariantFromUInt32Vector@0 @26 PRIVATE
+  InitPropVariantFromUInt64Vector@0 @27 PRIVATE
+  InitPropVariantVectorFromPropVariant@0 @28 PRIVATE
+  InitVariantFromBooleanArray@0 @29 PRIVATE
+  InitVariantFromBuffer@12 @30
+  InitVariantFromDoubleArray@0 @31 PRIVATE
+  InitVariantFromFileTime@0 @32 PRIVATE
+  InitVariantFromFileTimeArray@0 @33 PRIVATE
+  InitVariantFromGUIDAsString@8 @34
+  InitVariantFromInt16Array@0 @35 PRIVATE
+  InitVariantFromInt32Array@0 @36 PRIVATE
+  InitVariantFromInt64Array@0 @37 PRIVATE
+  InitVariantFromResource@0 @38 PRIVATE
+  InitVariantFromStrRet@0 @39 PRIVATE
+  InitVariantFromStringArray@0 @40 PRIVATE
+  InitVariantFromUInt16Array@0 @41 PRIVATE
+  InitVariantFromUInt32Array@0 @42 PRIVATE
+  InitVariantFromUInt64Array@0 @43 PRIVATE
+  InitVariantFromVariantArrayElem@0 @44 PRIVATE
+  PSCoerceToCanonicalValue@0 @45 PRIVATE
+  PSCreateAdapterFromPropertyStore@0 @46 PRIVATE
+  PSCreateDelayedMultiplexPropertyStore@0 @47 PRIVATE
+  PSCreateMemoryPropertyStore@8 @48
+  PSCreateMultiplexPropertyStore@0 @49 PRIVATE
+  PSCreatePropertyChangeArray@0 @50 PRIVATE
+  PSCreatePropertyStoreFromObject@0 @51 PRIVATE
+  PSCreatePropertyStoreFromPropertySetStorage@0 @52 PRIVATE
+  PSCreateSimplePropertyChange@0 @53 PRIVATE
+  PSEnumeratePropertyDescriptions@0 @54 PRIVATE
+  PSFormatForDisplay@0 @55 PRIVATE
+  PSFormatForDisplayAlloc@0 @56 PRIVATE
+  PSFormatPropertyValue@0 @57 PRIVATE
+  PSGetItemPropertyHandler@0 @58 PRIVATE
+  PSGetItemPropertyHandlerWithCreateObject@0 @59 PRIVATE
+  PSGetNameFromPropertyKey@0 @60 PRIVATE
+  PSGetNamedPropertyFromPropertyStorage@0 @61 PRIVATE
+  PSGetPropertyDescription@12 @62
+  PSGetPropertyDescriptionByName@0 @63 PRIVATE
+  PSGetPropertyDescriptionListFromString@12 @64
+  PSGetPropertyFromPropertyStorage@0 @65 PRIVATE
+  PSGetPropertyKeyFromName@8 @66
+  PSGetPropertySystem@8 @67
+  PSGetPropertyValue@0 @68 PRIVATE
+  PSLookupPropertyHandlerCLSID@0 @69 PRIVATE
+  PSPropertyKeyFromString@8 @70
+  PSRefreshPropertySchema@0 @71
+  PSRegisterPropertySchema@4 @72
+  PSSetPropertyValue@0 @73 PRIVATE
+  PSStringFromPropertyKey@12 @74
+  PSUnregisterPropertySchema@4 @75
+  PropVariantChangeType@16 @76
+  PropVariantCompareEx@16 @77
+  PropVariantGetBooleanElem@0 @78 PRIVATE
+  PropVariantGetDoubleElem@0 @79 PRIVATE
+  PropVariantGetElementCount@0 @80 PRIVATE
+  PropVariantGetFileTimeElem@0 @81 PRIVATE
+  PropVariantGetInt16Elem@0 @82 PRIVATE
+  PropVariantGetInt32Elem@0 @83 PRIVATE
+  PropVariantGetInt64Elem@0 @84 PRIVATE
+  PropVariantGetStringElem@0 @85 PRIVATE
+  PropVariantGetUInt16Elem@0 @86 PRIVATE
+  PropVariantGetUInt32Elem@0 @87 PRIVATE
+  PropVariantGetUInt64Elem@0 @88 PRIVATE
+  PropVariantToBSTR@0 @89 PRIVATE
+  PropVariantToBoolean@8 @90
+  PropVariantToBooleanVector@0 @91 PRIVATE
+  PropVariantToBooleanVectorAlloc@0 @92 PRIVATE
+  PropVariantToBooleanWithDefault@0 @93 PRIVATE
+  PropVariantToBuffer@12 @94
+  PropVariantToDouble@8 @95
+  PropVariantToDoubleVector@0 @96 PRIVATE
+  PropVariantToDoubleVectorAlloc@0 @97 PRIVATE
+  PropVariantToDoubleWithDefault@0 @98 PRIVATE
+  PropVariantToFileTime@0 @99 PRIVATE
+  PropVariantToFileTimeVector@0 @100 PRIVATE
+  PropVariantToFileTimeVectorAlloc@0 @101 PRIVATE
+  PropVariantToGUID@8 @102
+  PropVariantToInt16@8 @103
+  PropVariantToInt16Vector@0 @104 PRIVATE
+  PropVariantToInt16VectorAlloc@0 @105 PRIVATE
+  PropVariantToInt16WithDefault@0 @106 PRIVATE
+  PropVariantToInt32@8 @107
+  PropVariantToInt32Vector@0 @108 PRIVATE
+  PropVariantToInt32VectorAlloc@0 @109 PRIVATE
+  PropVariantToInt32WithDefault@0 @110 PRIVATE
+  PropVariantToInt64@8 @111
+  PropVariantToInt64Vector@0 @112 PRIVATE
+  PropVariantToInt64VectorAlloc@0 @113 PRIVATE
+  PropVariantToInt64WithDefault@0 @114 PRIVATE
+  PropVariantToStrRet@0 @115 PRIVATE
+  PropVariantToString@12 @116
+  PropVariantToStringAlloc@8 @117
+  PropVariantToStringVector@0 @118 PRIVATE
+  PropVariantToStringVectorAlloc@0 @119 PRIVATE
+  PropVariantToStringWithDefault@8 @120
+  PropVariantToUInt16@8 @121
+  PropVariantToUInt16Vector@0 @122 PRIVATE
+  PropVariantToUInt16VectorAlloc@0 @123 PRIVATE
+  PropVariantToUInt16WithDefault@0 @124 PRIVATE
+  PropVariantToUInt32@8 @125
+  PropVariantToUInt32Vector@0 @126 PRIVATE
+  PropVariantToUInt32VectorAlloc@0 @127 PRIVATE
+  PropVariantToUInt32WithDefault@0 @128 PRIVATE
+  PropVariantToUInt64@8 @129
+  PropVariantToUInt64Vector@0 @130 PRIVATE
+  PropVariantToUInt64VectorAlloc@0 @131 PRIVATE
+  PropVariantToUInt64WithDefault@0 @132 PRIVATE
+  PropVariantToVariant@0 @133 PRIVATE
+  StgDeserializePropVariant@0 @134 PRIVATE
+  StgSerializePropVariant@0 @135 PRIVATE
+  VariantCompare@0 @136 PRIVATE
+  VariantGetBooleanElem@0 @137 PRIVATE
+  VariantGetDoubleElem@0 @138 PRIVATE
+  VariantGetElementCount@0 @139 PRIVATE
+  VariantGetInt16Elem@0 @140 PRIVATE
+  VariantGetInt32Elem@0 @141 PRIVATE
+  VariantGetInt64Elem@0 @142 PRIVATE
+  VariantGetStringElem@0 @143 PRIVATE
+  VariantGetUInt16Elem@0 @144 PRIVATE
+  VariantGetUInt32Elem@0 @145 PRIVATE
+  VariantGetUInt64Elem@0 @146 PRIVATE
+  VariantToBoolean@0 @147 PRIVATE
+  VariantToBooleanArray@0 @148 PRIVATE
+  VariantToBooleanArrayAlloc@0 @149 PRIVATE
+  VariantToBooleanWithDefault@0 @150 PRIVATE
+  VariantToBuffer@0 @151 PRIVATE
+  VariantToDosDateTime@0 @152 PRIVATE
+  VariantToDouble@0 @153 PRIVATE
+  VariantToDoubleArray@0 @154 PRIVATE
+  VariantToDoubleArrayAlloc@0 @155 PRIVATE
+  VariantToDoubleWithDefault@0 @156 PRIVATE
+  VariantToFileTime@0 @157 PRIVATE
+  VariantToGUID@8 @158
+  VariantToInt16@0 @159 PRIVATE
+  VariantToInt16Array@0 @160 PRIVATE
+  VariantToInt16ArrayAlloc@0 @161 PRIVATE
+  VariantToInt16WithDefault@0 @162 PRIVATE
+  VariantToInt32@0 @163 PRIVATE
+  VariantToInt32Array@0 @164 PRIVATE
+  VariantToInt32ArrayAlloc@0 @165 PRIVATE
+  VariantToInt32WithDefault@0 @166 PRIVATE
+  VariantToInt64@0 @167 PRIVATE
+  VariantToInt64Array@0 @168 PRIVATE
+  VariantToInt64ArrayAlloc@0 @169 PRIVATE
+  VariantToInt64WithDefault@0 @170 PRIVATE
+  VariantToPropVariant@0 @171 PRIVATE
+  VariantToStrRet@0 @172 PRIVATE
+  VariantToString@0 @173 PRIVATE
+  VariantToStringAlloc@0 @174 PRIVATE
+  VariantToStringArray@0 @175 PRIVATE
+  VariantToStringArrayAlloc@0 @176 PRIVATE
+  VariantToStringWithDefault@0 @177 PRIVATE
+  VariantToUInt16@0 @178 PRIVATE
+  VariantToUInt16Array@0 @179 PRIVATE
+  VariantToUInt16ArrayAlloc@0 @180 PRIVATE
+  VariantToUInt16WithDefault@0 @181 PRIVATE
+  VariantToUInt32@0 @182 PRIVATE
+  VariantToUInt32Array@0 @183 PRIVATE
+  VariantToUInt32ArrayAlloc@0 @184 PRIVATE
+  VariantToUInt32WithDefault@0 @185 PRIVATE
+  VariantToUInt64@0 @186 PRIVATE
+  VariantToUInt64Array@0 @187 PRIVATE
+  VariantToUInt64ArrayAlloc@0 @188 PRIVATE
+  VariantToUInt64WithDefault@0 @189 PRIVATE

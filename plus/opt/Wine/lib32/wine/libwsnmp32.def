@@ -1,0 +1,53 @@
+; File generated automatically from dlls/wsnmp32/wsnmp32.spec; do not edit!
+
+LIBRARY wsnmp32.dll
+
+EXPORTS
+  SnmpGetTranslateMode@0 @100 PRIVATE
+  SnmpSetTranslateMode@4 @101
+  SnmpGetRetransmitMode@0 @102 PRIVATE
+  SnmpSetRetransmitMode@4 @103
+  SnmpGetTimeout@0 @104 PRIVATE
+  SnmpSetTimeout@0 @105 PRIVATE
+  SnmpSetRetry@0 @106 PRIVATE
+  SnmpGetRetry@0 @107 PRIVATE
+  _SnmpConveyAgentAddress@4@0 @108 PRIVATE
+  _SnmpSetAgentAddress@4@0 @109 PRIVATE
+  SnmpGetVendorInfo@0 @120 PRIVATE
+  SnmpStartup@20 @200
+  SnmpCleanup@0 @201
+  SnmpOpen@8 @202
+  SnmpClose@0 @203 PRIVATE
+  SnmpSendMsg@0 @204 PRIVATE
+  SnmpRecvMsg@0 @205 PRIVATE
+  SnmpRegister@0 @206 PRIVATE
+  SnmpCreateSession@0 @220 PRIVATE
+  SnmpListen@0 @221 PRIVATE
+  SnmpCancelMsg@0 @222 PRIVATE
+  SnmpStrToEntity@0 @300 PRIVATE
+  SnmpEntityToStr@0 @301 PRIVATE
+  SnmpFreeEntity@0 @302 PRIVATE
+  SnmpSetPort@0 @320 PRIVATE
+  SnmpStrToContext@0 @400 PRIVATE
+  SnmpContextToStr@0 @401 PRIVATE
+  SnmpFreeContext@0 @402 PRIVATE
+  SnmpCreatePdu@0 @500 PRIVATE
+  SnmpGetPduData@0 @501 PRIVATE
+  SnmpSetPduData@0 @502 PRIVATE
+  SnmpDuplicatePdu@0 @503 PRIVATE
+  SnmpFreePdu@0 @504 PRIVATE
+  SnmpCreateVbl@0 @600 PRIVATE
+  SnmpDuplicateVbl@0 @601 PRIVATE
+  SnmpFreeVbl@0 @602 PRIVATE
+  SnmpCountVbl@0 @603 PRIVATE
+  SnmpGetVb@0 @604 PRIVATE
+  SnmpSetVb@0 @605 PRIVATE
+  SnmpDeleteVb@0 @606 PRIVATE
+  SnmpFreeDescriptor@0 @900 PRIVATE
+  SnmpEncodeMsg@0 @901 PRIVATE
+  SnmpDecodeMsg@0 @902 PRIVATE
+  SnmpStrToOid@0 @903 PRIVATE
+  SnmpOidToStr@0 @904 PRIVATE
+  SnmpOidCopy@0 @905 PRIVATE
+  SnmpOidCompare@0 @906 PRIVATE
+  SnmpGetLastError@0 @999 PRIVATE

@@ -1,0 +1,79 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>5C67A9</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>280FBE</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>BCBCBC</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>212121</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Manufacturer : Nintendo</text>
+			<pos>0.38 0.72</pos>
+		</text>
+		<text name="info2" extra="true">
+			<text>Year of Release : 2001</text>
+			<pos>0.38 0.74</pos>
+		</text>
+		<text name="info3" extra="true">
+			<text>Units sold : 82 million</text>
+			<pos>0.38 0.76</pos>
+		</text>
+		<text name="info4" extra="true">
+			<text>Best-selling game : Pokémon Ruby</text>
+			<pos>0.38 0.78</pos>
+		</text>
+		<text name="info5" extra="true">
+			<text>CPU : 16 MHz 32bit RISC-CPU + 8bit CISC-CPU</text>
+			<pos>0.38 0.82</pos>
+		</text>
+		<text name="info6" extra="true">
+			<text>RAM : 32KB WRAM + 256KB WRAM</text>
+			<pos>0.38 0.84</pos>
+		</text>
+		<text name="info7" extra="true">
+			<text>Screen : Reflective TFT Colour LCD</text>
+			<pos>0.38 0.86</pos>
+		</text>
+		<text name="info8" extra="true">
+			<text>Resolution : 240 x 160 pixels</text>
+			<pos>0.38 0.88</pos>
+		</text>
+		<text name="info9" extra="true">
+			<text>Video RAM : 256KB</text>
+			<pos>0.38 0.90</pos>
+		</text>
+		<text name="info10" extra="true">
+			<text>Display Ability : 32 000 colours</text>
+			<pos>0.38 0.92</pos>
+		</text>
+		<text name="info11" extra="true">
+			<text>Sound : Mono speakers, stereo headphones</text>
+			<pos>0.38 0.94</pos>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>5C67A9</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>280FBE</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>BCBCBC</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>212121</color>
+		</image>
+	</view>
+</theme>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <desktops>
+        <number>1</number>
+        <firstdesk>1</firstdesk>
+    </desktops>
+
+    <applications>
+        <application type="normal">
+            <maximized>true</maximized>
+            <fullscreen>yes</fullscreen>
+        </application>
+
+        <application name="pcmanfm">
+            <decor>yes</decor>
+            <fullscreen>no</fullscreen>
+        </application>
+        <application name="xterm">
+            <decor>yes</decor>
+            <fullscreen>no</fullscreen>
+        </application>
+        <application name="leafpad">
+            <decor>yes</decor>
+            <fullscreen>no</fullscreen>
+        </application>
+        <application class="Firefox">
+            <decor>yes</decor>
+            <fullscreen>no</fullscreen>
+        </application>
+    </applications>
+
+    <theme>
+        <name>Plastik Blue Crystal Box V2</name>
+        <titleLayout>NLMC</titleLayout>
+        <keepBorder>yes</keepBorder>
+        <animateIconify>yes</animateIconify>
+        <font place="ActiveWindow">
+            <size>10</size>
+            <slant>Italic</slant>
+        </font>
+        <font place="InactiveWindow">
+            <size>10</size>
+            <slant>Italic</slant>
+        </font>
+        <font place="MenuHeader">
+            <size>10</size>
+            <slant>Italic</slant>
+        </font>
+        <font place="MenuItem">
+            <name>Terminus</name>
+            <size>10</size>
+            <slant>Italic</slant>
+        </font>
+        <font place="OnScreenDisplay">
+            <size>11</size>
+            <slant>Italic</slant>
+        </font>
+    </theme>
+</openbox_config>

@@ -1,0 +1,120 @@
+; File generated automatically from dlls/clusapi/clusapi.spec; do not edit!
+
+LIBRARY clusapi.dll
+
+EXPORTS
+  AddClusterResourceDependency@0 @1 PRIVATE
+  AddClusterResourceNode@0 @2 PRIVATE
+  BackupClusterDatabase@0 @3 PRIVATE
+  CanResourceBeDependent@0 @4 PRIVATE
+  ChangeClusterResourceGroup@0 @5 PRIVATE
+  CloseCluster@4 @6
+  CloseClusterGroup@0 @7 PRIVATE
+  CloseClusterNetInterface@0 @8 PRIVATE
+  CloseClusterNetwork@0 @9 PRIVATE
+  CloseClusterNode@0 @10 PRIVATE
+  CloseClusterNotifyPort@0 @11 PRIVATE
+  CloseClusterResource@0 @12 PRIVATE
+  ClusterCloseEnum@4 @13
+  ClusterControl@0 @14 PRIVATE
+  ClusterEnum@20 @15
+  ClusterGetEnumCount@0 @16 PRIVATE
+  ClusterGroupCloseEnum@0 @17 PRIVATE
+  ClusterGroupControl@0 @18 PRIVATE
+  ClusterGroupEnum@0 @19 PRIVATE
+  ClusterGroupGetEnumCount@0 @20 PRIVATE
+  ClusterGroupOpenEnum@0 @21 PRIVATE
+  ClusterNetInterfaceControl@0 @22 PRIVATE
+  ClusterNetworkCloseEnum@0 @23 PRIVATE
+  ClusterNetworkControl@0 @24 PRIVATE
+  ClusterNetworkEnum@0 @25 PRIVATE
+  ClusterNetworkGetEnumCount@0 @26 PRIVATE
+  ClusterNetworkOpenEnum@0 @27 PRIVATE
+  ClusterNodeCloseEnum@0 @28 PRIVATE
+  ClusterNodeControl@0 @29 PRIVATE
+  ClusterNodeEnum@0 @30 PRIVATE
+  ClusterNodeGetEnumCount@0 @31 PRIVATE
+  ClusterNodeOpenEnum@0 @32 PRIVATE
+  ClusterOpenEnum@8 @33
+  ClusterRegCloseKey@0 @34 PRIVATE
+  ClusterRegCreateKey@0 @35 PRIVATE
+  ClusterRegDeleteKey@0 @36 PRIVATE
+  ClusterRegDeleteValue@0 @37 PRIVATE
+  ClusterRegEnumKey@0 @38 PRIVATE
+  ClusterRegEnumValue@0 @39 PRIVATE
+  ClusterRegGetKeySecurity@0 @40 PRIVATE
+  ClusterRegOpenKey@0 @41 PRIVATE
+  ClusterRegQueryInfoKey@0 @42 PRIVATE
+  ClusterRegQueryValue@0 @43 PRIVATE
+  ClusterRegSetKeySecurity@0 @44 PRIVATE
+  ClusterRegSetValue@0 @45 PRIVATE
+  ClusterResourceCloseEnum@0 @46 PRIVATE
+  ClusterResourceControl@0 @47 PRIVATE
+  ClusterResourceEnum@0 @48 PRIVATE
+  ClusterResourceGetEnumCount@0 @49 PRIVATE
+  ClusterResourceOpenEnum@0 @50 PRIVATE
+  ClusterResourceTypeCloseEnum@0 @51 PRIVATE
+  ClusterResourceTypeControl@0 @52 PRIVATE
+  ClusterResourceTypeEnum@0 @53 PRIVATE
+  ClusterResourceTypeGetEnumCount@0 @54 PRIVATE
+  ClusterResourceTypeOpenEnum@0 @55 PRIVATE
+  CreateClusterGroup@0 @56 PRIVATE
+  CreateClusterNotifyPort@0 @57 PRIVATE
+  CreateClusterResource@0 @58 PRIVATE
+  CreateClusterResourceType@0 @59 PRIVATE
+  DeleteClusterGroup@0 @60 PRIVATE
+  DeleteClusterResource@0 @61 PRIVATE
+  DeleteClusterResourceType@0 @62 PRIVATE
+  EvictClusterNode@0 @63 PRIVATE
+  EvictClusterNodeEx@0 @64 PRIVATE
+  FailClusterResource@0 @65 PRIVATE
+  GetClusterFromGroup@0 @66 PRIVATE
+  GetClusterFromNetInterface@0 @67 PRIVATE
+  GetClusterFromNetwork@0 @68 PRIVATE
+  GetClusterFromNode@0 @69 PRIVATE
+  GetClusterFromResource@0 @70 PRIVATE
+  GetClusterGroupKey@0 @71 PRIVATE
+  GetClusterGroupState@0 @72 PRIVATE
+  GetClusterInformation@16 @73
+  GetClusterKey@0 @74 PRIVATE
+  GetClusterNetInterface@0 @75 PRIVATE
+  GetClusterNetInterfaceKey@0 @76 PRIVATE
+  GetClusterNetInterfaceState@0 @77 PRIVATE
+  GetClusterNetworkId@0 @78 PRIVATE
+  GetClusterNetworkKey@0 @79 PRIVATE
+  GetClusterNetworkState@0 @80 PRIVATE
+  GetClusterNodeId@0 @81 PRIVATE
+  GetClusterNodeKey@0 @82 PRIVATE
+  GetClusterNodeState@0 @83 PRIVATE
+  GetClusterNotify@0 @84 PRIVATE
+  GetClusterQuorumResource@0 @85 PRIVATE
+  GetClusterResourceKey@0 @86 PRIVATE
+  GetClusterResourceNetworkName@0 @87 PRIVATE
+  GetClusterResourceState@0 @88 PRIVATE
+  GetClusterResourceTypeKey@0 @89 PRIVATE
+  GetNodeClusterState@8 @90
+  MoveClusterGroup@0 @91 PRIVATE
+  OfflineClusterGroup@0 @92 PRIVATE
+  OfflineClusterResource@0 @93 PRIVATE
+  OnlineClusterGroup@0 @94 PRIVATE
+  OnlineClusterResource@0 @95 PRIVATE
+  OpenCluster@4 @96
+  OpenClusterGroup@0 @97 PRIVATE
+  OpenClusterNetInterface@0 @98 PRIVATE
+  OpenClusterNetwork@0 @99 PRIVATE
+  OpenClusterNode@0 @100 PRIVATE
+  OpenClusterResource@0 @101 PRIVATE
+  PauseClusterNode@0 @102 PRIVATE
+  RegisterClusterNotify@0 @103 PRIVATE
+  RemoveClusterResourceDependency@0 @104 PRIVATE
+  RemoveClusterResourceNode@0 @105 PRIVATE
+  RestoreClusterDatabase@0 @106 PRIVATE
+  ResumeClusterNode@0 @107 PRIVATE
+  SetClusterGroupName@0 @108 PRIVATE
+  SetClusterGroupNodeList@0 @109 PRIVATE
+  SetClusterName@0 @110 PRIVATE
+  SetClusterNetworkName@0 @111 PRIVATE
+  SetClusterNetworkPriorityOrder@0 @112 PRIVATE
+  SetClusterQuorumResource@0 @113 PRIVATE
+  SetClusterResourceName@0 @114 PRIVATE
+  SetClusterServiceAccountPassword@0 @115 PRIVATE

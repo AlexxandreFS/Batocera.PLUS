@@ -1,0 +1,4 @@
+?package(raine):needs="X11" section="Apps/Emulators" \
+  title="raine" command="/usr/games/raine" \
+  icon="/usr/share/pixmaps/raine.png"
+

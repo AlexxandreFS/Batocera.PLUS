@@ -1,0 +1,10 @@
+#!/bin/sh
+
+BITRATE=900
+FPS=25
+
+mencoder -nosound \
+ -mf fps=$FPS mf://$1 -ovc lavc -lavcopts vcodec=mpeg4:vpass=1:vbitrate=$BITRATE:vhq -o video.mpg
+mencoder -audiofile ~/raine/raine_sound.wav -oac mp3lame -lameopts br=96:mode=1 \
+  -mf fps=$FPS mf://$1 -ovc lavc -lavcopts vcodec=mpeg4:vpass=2:vbitrate=$BITRATE:vhq -o video.mpg
+# 

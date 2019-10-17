@@ -1,0 +1,41 @@
+; File generated automatically from dlls/rasdlg/rasdlg.spec; do not edit!
+
+LIBRARY rasdlg.dll
+
+EXPORTS
+  DwTerminalDlg@0 @1 PRIVATE
+  GetRasDialOutProtocols@0 @2 PRIVATE
+  RasAutodialDisableDlgA@0 @3 PRIVATE
+  RasAutodialDisableDlgW@0 @4 PRIVATE
+  RasAutodialQueryDlgA@0 @5 PRIVATE
+  RasAutodialQueryDlgW@0 @6 PRIVATE
+  RasDialDlgA@0 @7 PRIVATE
+  RasDialDlgW@0 @8 PRIVATE
+  RasEntryDlgA@0 @9 PRIVATE
+  RasEntryDlgW@12 @10
+  RasMonitorDlgA@0 @11 PRIVATE
+  RasMonitorDlgW@0 @12 PRIVATE
+  RasPhonebookDlgA@0 @13 PRIVATE
+  RasPhonebookDlgW@0 @14 PRIVATE
+  RasSrvAddPropPages@0 @15 PRIVATE
+  RasSrvAddWizPages@0 @16 PRIVATE
+  RasSrvAllowConnectionsConfig@0 @17 PRIVATE
+  RasSrvCleanupService@0 @18 PRIVATE
+  RasSrvEnumConnections@0 @19 PRIVATE
+  RasSrvHangupConnection@0 @20 PRIVATE
+  RasSrvInitializeService@0 @21 PRIVATE
+  RasSrvIsConnectionConnected@0 @22 PRIVATE
+  RasSrvIsServiceRunning@0 @23 PRIVATE
+  RasSrvQueryShowIcon@0 @24 PRIVATE
+  RasUserEnableManualDial@0 @25 PRIVATE
+  RasUserGetManualDial@0 @26 PRIVATE
+  RasUserPrefsDlg@0 @27 PRIVATE
+  RasWizCreateNewEntry@0 @28 PRIVATE
+  RasWizGetNCCFlags@0 @29 PRIVATE
+  RasWizGetSuggestedEntryName@0 @30 PRIVATE
+  RasWizGetUserInputConnectionName@0 @31 PRIVATE
+  RasWizIsEntryRenamable@0 @32 PRIVATE
+  RasWizQueryMaxPageCount@0 @33 PRIVATE
+  RasWizSetEntryName@0 @34 PRIVATE
+  RouterEntryDlgA@0 @35 PRIVATE
+  RouterEntryDlgW@0 @36 PRIVATE

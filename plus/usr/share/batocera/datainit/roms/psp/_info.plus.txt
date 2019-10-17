@@ -1,0 +1,30 @@
+## SYSTEM SONY PLAYSTATION PORTABLE ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted (Batocera.PLUS): ".7z .7Z"
+-------------------------------------------------------------------------------
+Como rodar ISO's  compactadas no formato 7zip?
+
+Compacte a iso no formato 7z.
+O nome do arquivo compactado em .7z deve ter o mesmo nome da iso.
+Respeite as letras maiúsculas e mínúsculas nos nomes dos arquivos.
+
+Roms no formato 7z precisam ser descompactadas antes de serem executadas, o
+sistema faz isso automáticamente, mas pode demorar um pouco dependendo da
+capacidade do computador, mais recomendado para sistemas instalados em HD's.
+
+Example 1:
+Arquivo compactado: My Game.7z
+Arquivo descompactado: My Game.iso
+
+Example 2:
+Arquivo compactado: My Game.7z
+Arquivo descompactado: My Game.ciso
+
+Example 3:
+Arquivo compactado: My Game.7z
+Arquivo descompactado: My Game.GCZ
+
+Example 4:
+Arquivo compactado: My Game.7Z
+Arquivo descompactado: My Game.gc
+-------------------------------------------------------------------------------

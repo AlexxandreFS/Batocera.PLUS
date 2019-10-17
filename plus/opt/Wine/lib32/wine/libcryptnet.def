@@ -1,0 +1,23 @@
+; File generated automatically from dlls/cryptnet/cryptnet.spec; do not edit!
+
+LIBRARY cryptnet.dll
+
+EXPORTS
+  CertDllVerifyCTLUsage@0 @1 PRIVATE
+  CertDllVerifyRevocation@28 @2
+  CryptnetWlxLogoffEvent@0 @3 PRIVATE
+  LdapProvOpenStore@0 @4 PRIVATE
+  CryptCancelAsyncRetrieval@0 @5 PRIVATE
+  CryptFlushTimeValidObject@0 @6 PRIVATE
+  CryptGetObjectUrl@32 @7
+  CryptGetTimeValidObject@0 @8 PRIVATE
+  CryptInstallCancelRetrieval@0 @9 PRIVATE
+  CryptRetrieveObjectByUrlA@36 @10
+  CryptRetrieveObjectByUrlW@36 @11
+  CryptUninstallCancelRetrieval@0 @12 PRIVATE
+  DllRegisterServer@0 @13 PRIVATE
+  DllUnregisterServer@0 @14 PRIVATE
+  I_CryptNetEnumUrlCacheEntry@0 @15 PRIVATE
+  I_CryptNetGetHostNameFromUrl@0 @16 PRIVATE
+  I_CryptNetGetUserDsStoreUrl@0 @17 PRIVATE
+  I_CryptNetIsConnected@0 @18 PRIVATE

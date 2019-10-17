@@ -1,0 +1,189 @@
+; File generated automatically from dlls/winspool.drv/winspool.drv.spec; do not edit!
+
+LIBRARY winspool.drv
+
+EXPORTS
+  EnumPrinterPropertySheets@0 @100 NONAME PRIVATE
+  ClusterSplOpen@0 @101 NONAME PRIVATE
+  ClusterSplClose@0 @102 NONAME PRIVATE
+  ClusterSplIsAlive@0 @103 NONAME PRIVATE
+  GetDefaultPrinterA@8 @201
+  SetDefaultPrinterA@4 @202
+  GetDefaultPrinterW@8 @203
+  SetDefaultPrinterW@4 @204
+  SplReadPrinter@0 @205 NONAME PRIVATE
+  AddPerMachineConnectionA@0 @206 NONAME PRIVATE
+  AddPerMachineConnectionW@0 @207 NONAME PRIVATE
+  DeletePerMachineConnectionA@0 @208 NONAME PRIVATE
+  DeletePerMachineConnectionW@0 @209 NONAME PRIVATE
+  EnumPerMachineConnectionsA@0 @210 NONAME PRIVATE
+  EnumPerMachineConnectionsW@0 @211 NONAME PRIVATE
+  LoadPrinterDriver@0 @212 NONAME PRIVATE
+  RefCntLoadDriver@0 @213 NONAME PRIVATE
+  RefCntUnloadDriver@0 @214 NONAME PRIVATE
+  ForceUnloadDriver@0 @215 NONAME PRIVATE
+  PublishPrinterA@0 @216 NONAME PRIVATE
+  PublishPrinterW@0 @217 NONAME PRIVATE
+  CallCommonPropertySheetUI@0 @218 NONAME PRIVATE
+  PrintUIQueueCreate@0 @219 NONAME PRIVATE
+  PrintUIPrinterPropPages@0 @220 NONAME PRIVATE
+  PrintUIDocumentDefaults@0 @221 NONAME PRIVATE
+  SendRecvBidiData@0 @222 NONAME PRIVATE
+  RouterFreeBidiResponseContainer@0 @223 NONAME PRIVATE
+  ExternalConnectToLd64In32Server@0 @224 NONAME PRIVATE
+  PrintUIWebPnpEntry@0 @226 NONAME PRIVATE
+  PrintUIWebPnpPostEntry@0 @227 NONAME PRIVATE
+  PrintUICreateInstance@0 @228 NONAME PRIVATE
+  PrintUIDocumentPropertiesWrap@0 @229 NONAME PRIVATE
+  PrintUIPrinterSetup@0 @230 NONAME PRIVATE
+  PrintUIServerPropPages@0 @231 NONAME PRIVATE
+  AddDriverCatalog@0 @232 NONAME PRIVATE
+  ADVANCEDSETUPDIALOG@0 @104 PRIVATE
+  AbortPrinter@4 @105
+  AddFormA@12 @106
+  AddFormW@12 @107
+  AddJobA@20 @108
+  AddJobW@20 @109
+  AddMonitorA@12 @110
+  AddMonitorW@12 @111
+  AddPortA@12 @112
+  AddPortExA@16 @113
+  AddPortExW@16 @114
+  AddPortW@12 @115
+  AddPrintProcessorA@16 @116
+  AddPrintProcessorW@16 @117
+  AddPrintProvidorA@12 @118
+  AddPrintProvidorW@12 @119
+  AddPrinterA@12 @120
+  AddPrinterConnectionA@4 @121
+  AddPrinterConnectionW@4 @122
+  AddPrinterDriverA@12 @123
+  AddPrinterDriverExA@16 @124
+  AddPrinterDriverExW@16 @125
+  AddPrinterDriverW@12 @126
+  AddPrinterW@12 @127
+  AdvancedDocumentPropertiesA@20 @128
+  AdvancedDocumentPropertiesW@20 @129
+  AdvancedSetupDialog@0 @130 PRIVATE
+  ClosePrinter@4 @131
+  ConfigurePortA@12 @132
+  ConfigurePortW@12 @133
+  ConnectToPrinterDlg@8 @134
+  ConvertAnsiDevModeToUnicodeDevMode@0 @135 PRIVATE
+  ConvertUnicodeDevModeToAnsiDevMode@0 @136 PRIVATE
+  CreatePrinterIC@0 @137 PRIVATE
+  DEVICECAPABILITIES@0 @138 PRIVATE
+  DEVICEMODE@0 @139 PRIVATE
+  DeleteFormA@8 @140
+  DeleteFormW@8 @141
+  DeleteMonitorA@12 @142
+  DeleteMonitorW@12 @143
+  DeletePortA@12 @144
+  DeletePortW@12 @145
+  DeletePrintProcessorA@12 @146
+  DeletePrintProcessorW@12 @147
+  DeletePrintProvidorA@12 @148
+  DeletePrintProvidorW@12 @149
+  DeletePrinter@4 @150
+  DeletePrinterConnectionA@4 @151
+  DeletePrinterConnectionW@4 @152
+  DeletePrinterDataExA@12 @153
+  DeletePrinterDataExW@12 @154
+  DeletePrinterDriverA@12 @155
+  DeletePrinterDriverExA@20 @156
+  DeletePrinterDriverExW@20 @157
+  DeletePrinterDriverW@12 @158
+  DeletePrinterIC@0 @159 PRIVATE
+  DevQueryPrint@0 @160 PRIVATE
+  DeviceCapabilities@20=DeviceCapabilitiesA @161
+  DeviceCapabilitiesA@20 @162
+  DeviceCapabilitiesW@20 @163
+  DeviceMode@0 @164 PRIVATE
+  DocumentEvent@0 @165 PRIVATE
+  DocumentPropertiesA@24 @166
+  DocumentPropertiesW@24 @167
+  EXTDEVICEMODE@0 @168 PRIVATE
+  EndDocPrinter@4 @169
+  EndPagePrinter@4 @170
+  EnumFormsA@24 @171
+  EnumFormsW@24 @172
+  EnumJobsA@32 @173
+  EnumJobsW@32 @174
+  EnumMonitorsA@24 @175
+  EnumMonitorsW@24 @176
+  EnumPortsA@24 @177
+  EnumPortsW@24 @178
+  EnumPrintProcessorDatatypesA@28 @179
+  EnumPrintProcessorDatatypesW@28 @180
+  EnumPrintProcessorsA@28 @181
+  EnumPrintProcessorsW@28 @182
+  EnumPrinterDataA@36 @183
+  EnumPrinterDataExA@24 @184
+  EnumPrinterDataExW@24 @185
+  EnumPrinterDataW@36 @186
+  EnumPrinterDriversA@28 @187
+  EnumPrinterDriversW@28 @188
+  EnumPrintersA@28 @189
+  EnumPrintersW@28 @190
+  EnumPrinterKeyA@20 @191
+  EnumPrinterKeyW@20 @192
+  ExtDeviceMode@32 @193
+  FindClosePrinterChangeNotification@4 @194
+  FindFirstPrinterChangeNotification@16 @195
+  FindNextPrinterChangeNotification@16 @196
+  FreePrinterNotifyInfo@4 @197
+  GetFormA@24 @198
+  GetFormW@24 @199
+  GetJobA@24 @200
+  GetJobW@24 @225
+  GetPrintProcessorDirectoryA@24 @233
+  GetPrintProcessorDirectoryW@24 @234
+  GetPrinterA@20 @235
+  GetPrinterDataA@24 @236
+  GetPrinterDataExA@28 @237
+  GetPrinterDataExW@28 @238
+  GetPrinterDataW@24 @239
+  GetPrinterDriverA@24 @240
+  GetPrinterDriverDirectoryA@24 @241
+  GetPrinterDriverDirectoryW@24 @242
+  GetPrinterDriverW@24 @243
+  GetPrinterW@20 @244
+  IsValidDevmodeA@8 @245
+  IsValidDevmodeW@8 @246
+  OpenPrinterA@12 @247
+  OpenPrinterW@12 @248
+  PerfClose@0 @249
+  PerfCollect@16 @250
+  PerfOpen@4 @251
+  PlayGdiScriptOnPrinterIC@0 @252 PRIVATE
+  PrinterMessageBoxA@0 @253 PRIVATE
+  PrinterMessageBoxW@0 @254 PRIVATE
+  PrinterProperties@8 @255
+  ReadPrinter@16 @256
+  ResetPrinterA@8 @257
+  ResetPrinterW@8 @258
+  ScheduleJob@8 @259
+  SetAllocFailCount@0 @260 PRIVATE
+  SetFormA@16 @261
+  SetFormW@16 @262
+  SetJobA@20 @263
+  SetJobW@20 @264
+  SetPrinterA@16 @265
+  SetPrinterDataA@20 @266
+  SetPrinterDataExA@24 @267
+  SetPrinterDataExW@24 @268
+  SetPrinterDataW@20 @269
+  SetPrinterW@16 @270
+  SpoolerDevQueryPrintW@0 @271 PRIVATE
+  SpoolerInit@0 @272
+  SpoolerPrinterEvent@0 @273 PRIVATE
+  StartDocDlgA@8 @274
+  StartDocDlgW@8 @275
+  StartDocPrinterA@12 @276
+  StartDocPrinterW@12 @277
+  StartPagePrinter@4 @278
+  UploadPrinterDriverPackageA@28 @279
+  UploadPrinterDriverPackageW@28 @280
+  WaitForPrinterChange@0 @281 PRIVATE
+  WritePrinter@16 @282
+  XcvDataW@32 @283

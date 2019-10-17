@@ -1,0 +1,131 @@
+
+                 JEGalleg: JPG Decoding Routines for Allegro
+
+
+                 version 1.1 by Angelo Mottola, May/June 2000
+
+
+Thanks for downloading the JPGalleg! This package contains source code to
+decode standard jpg image files, into normal Allegro bitmaps.
+In order to make it working, you'll need a platform and a C compiler actually
+supported by the Allegro game programming library; to code it, I've used
+Allegro WIP 3.9.32 under Linux, and it works both under X and console
+(tested with fbcon).
+
+The zip file holds the following files:
+
+File:              Description:
+ jpeg.c             Core of the jpeg loader. Link this to your own programs!
+ jpgalleg.h         Header for the JPGalleg
+ jpegdemo.c         Small jpeg viewer program
+ ex1.c              Example on how to load JPG images from files on disk
+ ex2.c              Example on how to laod JPG images from an Allegro datafile
+ README             This file
+ makefile           A simple makefile to compile the library
+ jpgalleg.jpg       JPGalleg logo (made with Gimp, 100% quality, optimized)
+ example1.jpg       An example (made with Gimp, 75% quality, optimized)
+ example2.jpg       Another example (made with Gimp, 90% quality, optimized)
+ jpegdata.dat       Allegro datafile holding the three JPG images above
+ jpegdata.h         Datafile definitions (made by Allegro Grabber)
+
+ 
+Now, if your platform supports the "make" tool, all you have to do to compile
+the library and its examples, is to run "make" from the program directory.
+Beware of the executables, as the makefile by default outputs them in
+Linux/Unix format, i.e. without extension; if you're under DOS/Windows, you
+should modify the makefile file to generate the right filenames for your
+platform...
+
+
+FEATURES ____________________________________________________________________
+
+The jpeg loading routines are able to load any JPG image file, as long as they
+are JFIF compliant; arithmetic coding is not yet supported, but most of the
+JFIF images don't use it, so this shouldn't be a problem.
+You can decode jpeg images from standard JPG files on disk, as well as from
+chunks of memory; this last option allows to store JPG images onto Allegro
+datafiles, and decode them on the fly as needed.
+
+
+USAGE _______________________________________________________________________
+
+Once you compile the library, to use it your programs you should do:
+- add a #include "jpgalleg.h" in your program code
+- link the jpeg.o file to your program when compiling
+
+The jpgalleg.h file holds the JPGalleg library function prototypes; actually
+there are only two functions available to the user: load_jpg() and
+load_memory_jpg(). Here are their prototypes:
+
+BITMAP *load_jpg(char *filename, RGB *pal);
+BITMAP *load_memory_jpg(void *data, RGB *pal);
+
+load_jpg() works exactly like the standard load_*() Allegro image loading
+functions, so take a look at the Allegro help for details on how to use them.
+load_memory_jpg() works the same as load_jpg(), but it requires a void
+pointer instead of the file name; this should point to the raw data of a
+standard JPG image, loaded in memory.
+You can use load_memory_jpg() to easily load JPGs from Allegro datafiles,
+as explained into example ex2.c; see also the section below for details.
+Both functions return NULL on error.
+
+Also, remember that you can register the JPG format into the internal Allegro
+image handling table, by simply adding this line to your program startup:
+
+register_bitmap_file_type("jpg", load_jpg, NULL);
+
+After this, you'll be able to use the load_bitmap() Allegro function to load
+also jpeg images. See the Allegro docs about register_bitmap_file_type() and
+load_bitmap() for details. The jpegdemo.c program uses this method to load
+the JPG images, so take a look at it!
+
+
+USING JPEGS INTO ALLEGRO DATAFILES __________________________________________
+
+In order to use JPGs into your Allegro datafiles, you'll have to follow these
+steps. First, you'll have to grab your JPG images into a datafile:
+
+1) Run the grabber, and create a new object by clicking object->new->other.
+2) Insert "DATA" as the new object type, and choose a name for your JPG image.
+3) Grab your JPG image file into the object just created.
+
+Now you have the datafile. To load the images from within a program, do this:
+
+bmp = load_memory_jpg(data[JPG_DATA].dat, NULL);
+
+Here I suppose "bmp" is a pointer to a BITMAP, "data" is an already loaded
+datafile, and "JPG_DATA" is the name of your JPG object into the datafile.
+If all goes ok, you should now have your JPG image decoded into bmp.
+
+
+HISTORY _____________________________________________________________________
+
+Version 1.1 (June, the 2nd 2000):
+                 Added support to load JPG from memory; new examples have been
+                 written, and the package now contains better image examples.
+
+Version 1.0 (May, the 24th 2000):
+                 First program release. No support to load JPGs from memory.
+
+
+CREDITS AND LEGAL ISSUES ____________________________________________________
+
+JPGalleg is freeware; this means you are allowed (and encouraged) to share it
+with anyone. You are also allowed to modify the source, as long as you let me
+know about it, and you give me credits where they are due.
+
+JPGalleg was made by
+
+ Angelo Mottola
+ a.mottola@libero.it
+
+Feel free to drop me a message if you have hints/comments on this package.
+
+A big thanks go to:
+
+Shawn Hargreaves and the many others who made the excellent Allegro library;
+   keep on rockin'!
+The Independent JPEG Group: the fast IDCT algorithm used here comes from their
+   great jpeg codec package.
+Cristi Cuturicu for his JPEG compression and file format FAQ. Without your
+   document, my work would have never been possible.

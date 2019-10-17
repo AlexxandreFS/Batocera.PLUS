@@ -1,0 +1,19 @@
+## SYSTEM LINUX GAMES ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted (Batocera.PLUS): ".plus .PLUS"
+-------------------------------------------------------------------------------
+Apesar do batocera ser uma espécie de filmware é possivel rodar alguns jogos
+de computador como o SuperTux e outros.
+
+Os jogos podem vir com um arquivo (.plus) ou uma pasta com arquivos.
+
+Exemplo:
+
+My Game.plus        (pasta)
+|---- batocera.plus (arquivo)
+|---- game.sh       (arquivo) (se existir)
+|---- game.dat      (arquivo) (se existir)
+|---- game.bin      (arquivo) (se existir)
+|---- ...                     (se existir)
+
+-------------------------------------------------------------------------------

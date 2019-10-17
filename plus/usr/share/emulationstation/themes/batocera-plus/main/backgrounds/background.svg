@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 1920 1080"
+   preserveAspectRatio="none"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="background-TB.svg">
+  <title
+     id="title815">Batocera PLUS</title>
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient823">
+      <stop
+         style="stop-color:#04082a;stop-opacity:1"
+         offset="0"
+         id="stop819" />
+      <stop
+         style="stop-color:#1c2051;stop-opacity:1"
+         offset="0.40000001"
+         id="stop833" />
+      <stop
+         style="stop-color:#a55357;stop-opacity:1"
+         offset="0.5"
+         id="stop829" />
+      <stop
+         id="stop831"
+         offset="0.60000002"
+         style="stop-color:#0764a1;stop-opacity:1" />
+      <stop
+         style="stop-color:#0764a1;stop-opacity:1"
+         offset="1"
+         id="stop821" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient823"
+       id="linearGradient844"
+       x1="520.90588"
+       y1="969.03845"
+       x2="520.90588"
+       y2="426.59573"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.6777549,0,0,2.0425183,-364.61546,-849.72743)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35078125"
+     inkscape:cx="534.76069"
+     inkscape:cy="907.99536"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     showguides="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Batocera PLUS</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Criado por: Wesley Costa (ThE BosS BR)</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:description>Background criado para o tema Batocera PLUS.</dc:description>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="ThE BosS BR"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-42.519645)">
+    <path
+       style="fill:url(#linearGradient844);fill-opacity:1;stroke:none;stroke-width:2.33866692px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M -25.657031,1142.4751 H 1945.657 V 22.564188 H -24.551976 L -25.657031,1142.4751"
+       id="path836"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+  </g>
+</svg>

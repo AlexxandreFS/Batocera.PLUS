@@ -1,0 +1,57 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>C4353D</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>C2904A</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>853641</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>4C301C</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Manufacturer : Nintendo</text>
+			<pos>0.38 0.72</pos>
+		</text>
+		<text name="info2" extra="true">
+			<text>Year of Release : 1980</text>
+			<pos>0.38 0.74</pos>
+		</text>
+		<text name="info3" extra="true">
+			<text>Units sold : 43.4 million</text>
+			<pos>0.38 0.76</pos>
+		</text>
+		<text name="info4" extra="true">
+			<text>Best-selling game : Donkey Kong</text>
+			<pos>0.38 0.78</pos>
+		</text>
+		<text name="info5" extra="true">
+			<text>Created by game designer Gunpei Yokoi, each Game and Watch (GW) features a single to be played on an LCD screen in addition to a clock, an alarm, or both. It was the earliest Nintendo product to gamer major succes. There were 59 different GW games producted for sale and one that was only available as a contest prize. Mr GW is a character often considered as the mascot of the GW series.</text>
+			<pos>0.38 0.81</pos>
+			<size>0.40 0.20</size>
+			<lineSpacing>1.1</lineSpacing>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>C4353D</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>C2904A</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>853641</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>4C301C</color>
+		</image>
+	</view>
+</theme>

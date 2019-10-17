@@ -1,0 +1,34 @@
+## SYSTEM SONY PLAYSTATION 1 ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted (Batocera.PLUS): ".7z .7Z"
+-------------------------------------------------------------------------------
+Como rodar roms compactadas no formato 7zip?
+
+1 - Crie uma pasta com o mesmo nome do arquivo principal da rom, sem extensão.
+2 - Coloque todos os arquivos descompactados da rom dentro da pasta.
+3 - Compacte a pasta no formato 7z.
+4 - O nome do arquivo compactado em .7z deve ter o mesmo nome da pasta.
+
+Respeite as letras maiúsculas e mínúsculas nos nomes dos arquivos.
+
+Roms no formato 7z precisam ser descompactadas antes de serem executadas, o
+sistema faz isso automáticamente, mas pode demorar um pouco dependendo da
+capacidade do computador, mais recomendado para sistemas instalados em HD's.
+
+Example: My Game.7z
+
+My Game                 (folder)
+|---- My Game.cue       (file)
+|---- My Game.bin       (file)
+|---- ....              (file) (if exist)
+
+My Game                 (folder)
+|---- My Game.cue       (file)
+|---- My Game.ccd       (file)
+|---- My Game.img       (file)
+|---- My Game.sub       (file) (if exist)
+
+My Game                 (folder)
+|---- My Game.iso       (file)
+-------------------------------------------------------------------------------
+

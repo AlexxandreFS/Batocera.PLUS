@@ -1,0 +1,156 @@
+; File generated automatically from dlls/spoolss/spoolss.spec; do not edit!
+
+LIBRARY spoolss.dll
+
+EXPORTS
+  AbortPrinter@0 @1 PRIVATE
+  AddFormW@0 @2 PRIVATE
+  AddJobW@0 @3 PRIVATE
+  AddMonitorW@12 @4
+  AddPerMachineConnectionW@0 @5 PRIVATE
+  AddPortExW@0 @6 PRIVATE
+  AddPortW@0 @7 PRIVATE
+  AddPrintProcessorW@0 @8 PRIVATE
+  AddPrintProvidorW@0 @9 PRIVATE
+  AddPrinterConnectionW@0 @10 PRIVATE
+  AddPrinterDriverExW@16 @11
+  AddPrinterDriverW@0 @12 PRIVATE
+  AddPrinterExW@0 @13 PRIVATE
+  AddPrinterW@0 @14 PRIVATE
+  AllocSplStr@4 @15
+  AppendPrinterNotifyInfoData@0 @16 PRIVATE
+  BuildOtherNamesFromMachineName@8 @17
+  CallDrvDevModeConversion@0 @18 PRIVATE
+  CallRouterFindFirstPrinterChangeNotification@0 @19 PRIVATE
+  ClosePrinter@0 @20 PRIVATE
+  ClusterSplClose@0 @21 PRIVATE
+  ClusterSplIsAlive@0 @22 PRIVATE
+  ClusterSplOpen@0 @23 PRIVATE
+  ConfigurePortW@0 @24 PRIVATE
+  CreatePrinterIC@0 @25 PRIVATE
+  DbgGetPointers@0 @26 PRIVATE
+  DeleteFormW@0 @27 PRIVATE
+  DeleteMonitorW@12 @28
+  DeletePerMachineConnectionW@0 @29 PRIVATE
+  DeletePortW@0 @30 PRIVATE
+  DeletePrintProcessorW@0 @31 PRIVATE
+  DeletePrintProvidorW@0 @32 PRIVATE
+  DeletePrinter@0 @33 PRIVATE
+  DeletePrinterConnectionW@0 @34 PRIVATE
+  DeletePrinterDataExW@0 @35 PRIVATE
+  DeletePrinterDataW@0 @36 PRIVATE
+  DeletePrinterDriverExW@0 @37 PRIVATE
+  DeletePrinterDriverW@0 @38 PRIVATE
+  DeletePrinterIC@0 @39 PRIVATE
+  DeletePrinterKeyW@0 @40 PRIVATE
+  DllAllocSplMem@4 @41
+  DllFreeSplMem@4 @42
+  DllFreeSplStr@4 @43
+  EndDocPrinter@0 @44 PRIVATE
+  EndPagePrinter@0 @45 PRIVATE
+  EnumFormsW@0 @46 PRIVATE
+  EnumJobsW@0 @47 PRIVATE
+  EnumMonitorsW@24 @48
+  EnumPerMachineConnectionsW@0 @49 PRIVATE
+  EnumPortsW@24 @50
+  EnumPrintProcessorDatatypesW@0 @51 PRIVATE
+  EnumPrintProcessorsW@0 @52 PRIVATE
+  EnumPrinterDataExW@0 @53 PRIVATE
+  EnumPrinterDataW@0 @54 PRIVATE
+  EnumPrinterDriversW@0 @55 PRIVATE
+  EnumPrinterKeyW@0 @56 PRIVATE
+  EnumPrintersW@0 @57 PRIVATE
+  FindClosePrinterChangeNotification@0 @58 PRIVATE
+  FlushPrinter@0 @59 PRIVATE
+  FormatPrinterForRegistryKey@0 @60 PRIVATE
+  FormatRegistryKeyForPrinter@0 @61 PRIVATE
+  FreeOtherNames@0 @62 PRIVATE
+  GetClientUserHandle@0 @63 PRIVATE
+  GetFormW@0 @64 PRIVATE
+  GetJobAttributes@0 @65 PRIVATE
+  GetJobW@0 @66 PRIVATE
+  GetNetworkId@0 @67 PRIVATE
+  GetPrintProcessorDirectoryW@0 @68 PRIVATE
+  GetPrinterDataExW@0 @69 PRIVATE
+  GetPrinterDataW@0 @70 PRIVATE
+  GetPrinterDriverDirectoryW@24 @71
+  GetPrinterDriverExW@0 @72 PRIVATE
+  GetPrinterDriverW@0 @73 PRIVATE
+  GetPrinterW@0 @74 PRIVATE
+  ImpersonatePrinterClient@4 @75
+  InitializeRouter@0 @76
+  IsLocalCall@0 @77
+  IsNamedPipeRpcCall@0 @78 PRIVATE
+  LoadDriver@0 @79 PRIVATE
+  LoadDriverFiletoConvertDevmode@0 @80 PRIVATE
+  MIDL_user_allocate1@0 @81 PRIVATE
+  MIDL_user_free1@0 @82 PRIVATE
+  MarshallDownStructure@0 @83 PRIVATE
+  MarshallUpStructure@0 @84 PRIVATE
+  OldGetPrinterDriverW@0 @85 PRIVATE
+  OpenPrinterExW@0 @86 PRIVATE
+  OpenPrinterPortW@0 @87 PRIVATE
+  OpenPrinterW@0 @88 PRIVATE
+  PackStrings@0 @89 PRIVATE
+  PartialReplyPrinterChangeNotification@0 @90 PRIVATE
+  PlayGdiScriptOnPrinterIC@0 @91 PRIVATE
+  PrinterHandleRundown@0 @92 PRIVATE
+  PrinterMessageBoxW@0 @93 PRIVATE
+  ProvidorFindClosePrinterChangeNotification@0 @94 PRIVATE
+  ProvidorFindFirstPrinterChangeNotification@0 @95 PRIVATE
+  ReadPrinter@0 @96 PRIVATE
+  ReallocSplMem@0 @97 PRIVATE
+  ReallocSplStr@0 @98 PRIVATE
+  RemoteFindFirstPrinterChangeNotification@0 @99 PRIVATE
+  ReplyClosePrinter@0 @100 PRIVATE
+  ReplyOpenPrinter@0 @101 PRIVATE
+  ReplyPrinterChangeNotification@0 @102 PRIVATE
+  ResetPrinterW@0 @103 PRIVATE
+  RevertToPrinterSelf@0 @104
+  RouterAllocPrinterNotifyInfo@0 @105 PRIVATE
+  RouterFindFirstPrinterChangeNotification@0 @106 PRIVATE
+  RouterFindNextPrinterChangeNotification@0 @107 PRIVATE
+  RouterFreePrinterNotifyInfo@0 @108 PRIVATE
+  RouterRefreshPrinterChangeNotification@0 @109 PRIVATE
+  RouterReplyPrinter@0 @110 PRIVATE
+  ScheduleJob@0 @111 PRIVATE
+  SeekPrinter@0 @112 PRIVATE
+  SetAllocFailCount@0 @113 PRIVATE
+  SetFormW@0 @114 PRIVATE
+  SetJobW@0 @115 PRIVATE
+  SetPortW@0 @116 PRIVATE
+  SetPrinterDataExW@0 @117 PRIVATE
+  SetPrinterDataW@0 @118 PRIVATE
+  SetPrinterW@0 @119 PRIVATE
+  SplCloseSpoolFileHandle@0 @120 PRIVATE
+  SplCommitSpoolData@0 @121 PRIVATE
+  SplDriverUnloadComplete@0 @122 PRIVATE
+  SplGetSpoolFileInfo@0 @123 PRIVATE
+  SplInitializeWinSpoolDrv@4 @124
+  SplIsUpgrade@0 @125
+  SplProcessPnPEvent@0 @126 PRIVATE
+  SplReadPrinter@0 @127 PRIVATE
+  SplRegisterForDeviceEvents@0 @128 PRIVATE
+  SplStartPhase2Init@0 @129 PRIVATE
+  SplUnregisterForDeviceEvents@0 @130 PRIVATE
+  SpoolerFindClosePrinterChangeNotification@0 @131 PRIVATE
+  SpoolerFindFirstPrinterChangeNotification@0 @132 PRIVATE
+  SpoolerFindNextPrinterChangeNotification@0 @133 PRIVATE
+  SpoolerFreePrinterNotifyInfo@0 @134 PRIVATE
+  SpoolerHasInitialized@0 @135
+  SpoolerInit@0 @136
+  StartDocPrinterW@0 @137 PRIVATE
+  StartPagePrinter@0 @138 PRIVATE
+  UnloadDriver@0 @139 PRIVATE
+  UnloadDriverFile@0 @140 PRIVATE
+  UpdateBufferSize@0 @141 PRIVATE
+  UpdatePrinterRegAll@0 @142 PRIVATE
+  UpdatePrinterRegUser@0 @143 PRIVATE
+  WaitForPrinterChange@0 @144 PRIVATE
+  WaitForSpoolerInitialization@0 @145
+  WritePrinter@0 @146 PRIVATE
+  XcvDataW@0 @147 PRIVATE
+  bGetDevModePerUser@0 @148 PRIVATE
+  bSetDevModePerUser@0 @149 PRIVATE
+  pszDbgAllocMsgA@0 @150 PRIVATE
+  vDbgLogError@0 @151 PRIVATE

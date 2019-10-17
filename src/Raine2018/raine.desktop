@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Raine
+GenericName=Arcade Emulator
+Comment=Play arcade games
+Exec=raine
+Icon=raine
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=Game;Emulator;

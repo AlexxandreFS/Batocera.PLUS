@@ -1,0 +1,49 @@
+; File generated automatically from dlls/d3dx11_43/d3dx11_43.spec; do not edit!
+
+LIBRARY d3dx11_43.dll
+
+EXPORTS
+  D3DX11CheckVersion@8 @1
+  D3DX11CompileFromFileA@44 @2
+  D3DX11CompileFromFileW@44 @3
+  D3DX11CompileFromMemory@52 @4
+  D3DX11CompileFromResourceA@0 @5 PRIVATE
+  D3DX11CompileFromResourceW@0 @6 PRIVATE
+  D3DX11ComputeNormalMap@0 @7 PRIVATE
+  D3DX11CreateAsyncCompilerProcessor@0 @8 PRIVATE
+  D3DX11CreateAsyncFileLoaderA@8 @9
+  D3DX11CreateAsyncFileLoaderW@8 @10
+  D3DX11CreateAsyncMemoryLoader@12 @11
+  D3DX11CreateAsyncResourceLoaderA@12 @12
+  D3DX11CreateAsyncResourceLoaderW@12 @13
+  D3DX11CreateAsyncShaderPreprocessProcessor@0 @14 PRIVATE
+  D3DX11CreateAsyncShaderResourceViewProcessor@0 @15 PRIVATE
+  D3DX11CreateAsyncTextureInfoProcessor@0 @16 PRIVATE
+  D3DX11CreateAsyncTextureProcessor@0 @17 PRIVATE
+  D3DX11CreateShaderResourceViewFromFileA@0 @18 PRIVATE
+  D3DX11CreateShaderResourceViewFromFileW@0 @19 PRIVATE
+  D3DX11CreateShaderResourceViewFromMemory@28 @20
+  D3DX11CreateShaderResourceViewFromResourceA@0 @21 PRIVATE
+  D3DX11CreateShaderResourceViewFromResourceW@0 @22 PRIVATE
+  D3DX11CreateTextureFromFileA@24 @23
+  D3DX11CreateTextureFromFileW@24 @24
+  D3DX11CreateTextureFromMemory@28 @25
+  D3DX11CreateTextureFromResourceA@0 @26 PRIVATE
+  D3DX11CreateTextureFromResourceW@0 @27 PRIVATE
+  D3DX11CreateThreadPump@0 @28 PRIVATE
+  D3DX11FilterTexture@16 @29
+  D3DX11GetImageInfoFromFileA@0 @30 PRIVATE
+  D3DX11GetImageInfoFromFileW@0 @31 PRIVATE
+  D3DX11GetImageInfoFromMemory@20 @32
+  D3DX11GetImageInfoFromResourceA@0 @33 PRIVATE
+  D3DX11GetImageInfoFromResourceW@0 @34 PRIVATE
+  D3DX11LoadTextureFromTexture@0 @35 PRIVATE
+  D3DX11PreprocessShaderFromFileA@0 @36 PRIVATE
+  D3DX11PreprocessShaderFromFileW@0 @37 PRIVATE
+  D3DX11PreprocessShaderFromMemory@0 @38 PRIVATE
+  D3DX11PreprocessShaderFromResourceA@0 @39 PRIVATE
+  D3DX11PreprocessShaderFromResourceW@0 @40 PRIVATE
+  D3DX11SHProjectCubeMap@0 @41 PRIVATE
+  D3DX11SaveTextureToFileA@0 @42 PRIVATE
+  D3DX11SaveTextureToFileW@0 @43 PRIVATE
+  D3DX11SaveTextureToMemory@20 @44

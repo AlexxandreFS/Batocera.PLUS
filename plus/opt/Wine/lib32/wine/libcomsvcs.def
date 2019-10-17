@@ -1,0 +1,25 @@
+; File generated automatically from dlls/comsvcs/comsvcs.spec; do not edit!
+
+LIBRARY comsvcs.dll
+
+EXPORTS
+  CosGetCallContext@0 @5 PRIVATE
+  CoCreateActivity@0 @6 PRIVATE
+  CoEnterServiceDomain@0 @7 PRIVATE
+  CoLeaveServiceDomain@0 @8 PRIVATE
+  CoLoadServices@0 @9 PRIVATE
+  ComSvcsExceptionFilter@0 @10 PRIVATE
+  ComSvcsLogError@0 @11 PRIVATE
+  DispManGetContext@0 @12 PRIVATE
+  DllCanUnloadNow@0 @13 PRIVATE
+  DllGetClassObject@12 @14 PRIVATE
+  DllRegisterServer@0 @15 PRIVATE
+  DllUnregisterServer@0 @16 PRIVATE
+  GetMTAThreadPoolMetrics@0 @17 PRIVATE
+  GetManagedExtensions@0 @18 PRIVATE
+  GetObjectContext@0 @19 PRIVATE
+  GetTrkSvrObject@0 @20 PRIVATE
+  MTSCreateActivity@0 @21 PRIVATE
+  MiniDumpW@0 @22 PRIVATE
+  RecycleSurrogate@0 @23 PRIVATE
+  SafeRef@0 @24 PRIVATE

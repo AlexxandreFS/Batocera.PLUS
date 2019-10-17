@@ -1,0 +1,37 @@
+; File generated automatically from dlls/hlink/hlink.spec; do not edit!
+
+LIBRARY hlink.dll
+
+EXPORTS
+  HlinkCreateFromMoniker@32 @3
+  HlinkCreateFromString@32 @4
+  HlinkCreateFromData@24 @5
+  HlinkCreateBrowseContext@12 @6
+  HlinkClone@20 @7
+  HlinkNavigateToStringReference@36 @8
+  HlinkOnNavigate@28 @9
+  HlinkNavigate@24 @10
+  HlinkUpdateStackItem@24 @11
+  HlinkOnRenameDocument@0 @12 PRIVATE
+  HlinkResolveMonikerForData@28 @14
+  HlinkResolveStringForData@0 @15 PRIVATE
+  OleSaveToStreamEx@0 @16 PRIVATE
+  HlinkParseDisplayName@20 @18
+  HlinkQueryCreateFromData@4 @20
+  HlinkSetSpecialReference@0 @21 PRIVATE
+  HlinkGetSpecialReference@8 @22
+  HlinkCreateShortcut@0 @23 PRIVATE
+  HlinkResolveShortcut@0 @24 PRIVATE
+  HlinkIsShortcut@4 @25
+  HlinkResolveShortcutToString@0 @26 PRIVATE
+  HlinkCreateShortcutFromString@0 @27 PRIVATE
+  HlinkGetValueFromParams@0 @28 PRIVATE
+  HlinkCreateShortcutFromMoniker@0 @29 PRIVATE
+  HlinkResolveShortcutToMoniker@0 @30 PRIVATE
+  HlinkTranslateURL@12 @31
+  HlinkCreateExtensionServices@28 @32
+  HlinkPreprocessMoniker@0 @33 PRIVATE
+  DllCanUnloadNow@0 @13 PRIVATE
+  DllGetClassObject@12 @17 PRIVATE
+  DllRegisterServer@0 @19 PRIVATE
+  DllUnregisterServer@0 @34 PRIVATE

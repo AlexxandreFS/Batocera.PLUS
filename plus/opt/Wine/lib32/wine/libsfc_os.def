@@ -1,0 +1,23 @@
+; File generated automatically from dlls/sfc_os/sfc_os.spec; do not edit!
+
+LIBRARY sfc_os.dll
+
+EXPORTS
+  BeginFileMapEnumeration@0 @1 PRIVATE
+  CloseFileMapEnumeration@0 @2 PRIVATE
+  GetNextFileMapContent@0 @3 PRIVATE
+  SRSetRestorePointA@8 @4
+  SRSetRestorePointW@8 @5
+  SfcClose@0 @6 PRIVATE
+  SfcConnectToServer@4 @7
+  SfcFileException@0 @8 PRIVATE
+  SfcGetNextProtectedFile@8 @9
+  SfcInitProt@0 @10 PRIVATE
+  SfcInitiateScan@0 @11 PRIVATE
+  SfcInstallProtectedFiles@0 @12 PRIVATE
+  SfcIsFileProtected@8 @13
+  SfcIsKeyProtected@12 @14
+  SfcTerminateWatcherThread@0 @15 PRIVATE
+  SfpDeleteCatalog@0 @16 PRIVATE
+  SfpInstallCatalog@0 @17 PRIVATE
+  SfpVerifyFile@0 @18 PRIVATE

@@ -1,0 +1,120 @@
+; File generated automatically from dlls/imm32/imm32.spec; do not edit!
+
+LIBRARY imm32.dll
+
+EXPORTS
+  ImmActivateLayout@0 @1 PRIVATE
+  ImmAssociateContext@8 @2
+  ImmAssociateContextEx@12 @3
+  ImmConfigureIMEA@16 @4
+  ImmConfigureIMEW@16 @5
+  ImmCreateContext@0 @6
+  ImmCreateIMCC@4 @7
+  ImmCreateSoftKeyboard@16 @8
+  ImmDestroyContext@4 @9
+  ImmDestroyIMCC@4 @10
+  ImmDestroySoftKeyboard@4 @11
+  ImmDisableIME@4 @12
+  ImmDisableIme@4=ImmDisableIME @13
+  ImmDisableLegacyIME@0 @14
+  ImmDisableTextFrameService@4 @15
+  ImmEnumInputContext@12 @16
+  ImmEnumRegisterWordA@24 @17
+  ImmEnumRegisterWordW@24 @18
+  ImmEscapeA@16 @19
+  ImmEscapeW@16 @20
+  ImmFreeLayout@0 @21 PRIVATE
+  ImmGenerateMessage@4 @22
+  ImmGetCandidateListA@16 @23
+  ImmGetCandidateListCountA@8 @24
+  ImmGetCandidateListCountW@8 @25
+  ImmGetCandidateListW@16 @26
+  ImmGetCandidateWindow@12 @27
+  ImmGetCompositionFontA@8 @28
+  ImmGetCompositionFontW@8 @29
+  ImmGetCompositionString@16=ImmGetCompositionStringA @30
+  ImmGetCompositionStringA@16 @31
+  ImmGetCompositionStringW@16 @32
+  ImmGetCompositionWindow@8 @33
+  ImmGetContext@4 @34
+  ImmGetConversionListA@24 @35
+  ImmGetConversionListW@24 @36
+  ImmGetConversionStatus@12 @37
+  ImmGetDefaultIMEWnd@4 @38
+  ImmGetDescriptionA@12 @39
+  ImmGetDescriptionW@12 @40
+  ImmGetGuideLineA@16 @41
+  ImmGetGuideLineW@16 @42
+  ImmGetHotKey@16 @43
+  ImmGetIMCCLockCount@4 @44
+  ImmGetIMCCSize@4 @45
+  ImmGetIMCLockCount@4 @46
+  ImmGetIMEFileNameA@12 @47
+  ImmGetIMEFileNameW@12 @48
+  ImmGetImeInfoEx@0 @49 PRIVATE
+  ImmGetImeMenuItemsA@24 @50
+  ImmGetImeMenuItemsW@24 @51
+  ImmGetOpenStatus@4 @52
+  ImmGetProperty@8 @53
+  ImmGetRegisterWordStyleA@12 @54
+  ImmGetRegisterWordStyleW@12 @55
+  ImmGetStatusWindowPos@8 @56
+  ImmGetVirtualKey@4 @57
+  ImmIMPGetIMEA@0 @58 PRIVATE
+  ImmIMPGetIMEW@0 @59 PRIVATE
+  ImmIMPQueryIMEA@0 @60 PRIVATE
+  ImmIMPQueryIMEW@0 @61 PRIVATE
+  ImmIMPSetIMEA@0 @62 PRIVATE
+  ImmIMPSetIMEW@0 @63 PRIVATE
+  ImmInstallIMEA@8 @64
+  ImmInstallIMEW@8 @65
+  ImmIsIME@4 @66
+  ImmIsUIMessageA@16 @67
+  ImmIsUIMessageW@16 @68
+  ImmLoadIME@0 @69 PRIVATE
+  ImmLoadLayout@0 @70 PRIVATE
+  ImmLockClientImc@0 @71 PRIVATE
+  ImmLockIMC@4 @72
+  ImmLockIMCC@4 @73
+  ImmLockImeDpi@0 @74 PRIVATE
+  ImmNotifyIME@16 @75
+  ImmPenAuxInput@0 @76 PRIVATE
+  ImmProcessKey@20 @77
+  ImmPutImeMenuItemsIntoMappedFile@0 @78 PRIVATE
+  ImmReSizeIMCC@8 @79
+  ImmRegisterClient@0 @80 PRIVATE
+  ImmRegisterWordA@16 @81
+  ImmRegisterWordW@16 @82
+  ImmReleaseContext@8 @83
+  ImmRequestMessageA@12 @84
+  ImmRequestMessageW@12 @85
+  ImmSendIMEMessageExA@0 @86 PRIVATE
+  ImmSendIMEMessageExW@0 @87 PRIVATE
+  ImmSendMessageToActiveDefImeWndW@0 @88 PRIVATE
+  ImmSetActiveContext@0 @89 PRIVATE
+  ImmSetActiveContextConsoleIME@0 @90 PRIVATE
+  ImmSetCandidateWindow@8 @91
+  ImmSetCompositionFontA@8 @92
+  ImmSetCompositionFontW@8 @93
+  ImmSetCompositionStringA@24 @94
+  ImmSetCompositionStringW@24 @95
+  ImmSetCompositionWindow@8 @96
+  ImmSetConversionStatus@12 @97
+  ImmSetOpenStatus@8 @98
+  ImmSetStatusWindowPos@8 @99
+  ImmShowSoftKeyboard@8 @100
+  ImmSimulateHotKey@8 @101
+  ImmSystemHandler@0 @102 PRIVATE
+  ImmTranslateMessage@16 @103
+  ImmUnlockClientImc@0 @104 PRIVATE
+  ImmUnlockIMC@4 @105
+  ImmUnlockIMCC@4 @106
+  ImmUnlockImeDpi@0 @107 PRIVATE
+  ImmUnregisterWordA@16 @108
+  ImmUnregisterWordW@16 @109
+  ImmWINNLSEnableIME@0 @110 PRIVATE
+  ImmWINNLSGetEnableStatus@0 @111 PRIVATE
+  ImmWINNLSGetIMEHotkey@0 @112 PRIVATE
+  __wine_get_ui_window@4 @113
+  __wine_register_window@4 @114
+  __wine_unregister_window@4 @115

@@ -1,0 +1,65 @@
+; File generated automatically from dlls/dwmapi/dwmapi.spec; do not edit!
+
+LIBRARY dwmapi.dll
+
+EXPORTS
+  DwmpDxGetWindowSharedSurface@0 @100 PRIVATE
+  DwmpDxUpdateWindowSharedSurface@0 @101 PRIVATE
+  DwmEnableComposition@4 @102
+  DwmpRestartComposition@0 @103 NONAME PRIVATE
+  DwmpSetColorizationColor@0 @104 NONAME PRIVATE
+  DwmpStartOrStopFlip3D@0 @105 NONAME PRIVATE
+  DwmpIsCompositionCapable@0 @106 NONAME PRIVATE
+  DwmpGetGlobalState@0 @107 NONAME PRIVATE
+  DwmpEnableRedirection@0 @108 NONAME PRIVATE
+  DwmpOpenGraphicsStream@0 @109 NONAME PRIVATE
+  DwmpCloseGraphicsStream@0 @110 NONAME PRIVATE
+  DwmpSetGraphicsStreamTransformHint@0 @112 NONAME PRIVATE
+  DwmpActivateLivePreview@0 @113 NONAME PRIVATE
+  DwmpQueryThumbnailType@0 @114 NONAME PRIVATE
+  DwmpStartupViaUserInit@0 @115 NONAME PRIVATE
+  DwmpGetAssessment@0 @118 NONAME PRIVATE
+  DwmpGetAssessmentUsage@0 @119 NONAME PRIVATE
+  DwmpSetAssessmentUsage@0 @120 NONAME PRIVATE
+  DwmpIsSessionDWM@0 @121 NONAME PRIVATE
+  DwmpRegisterThumbnail@0 @124 NONAME PRIVATE
+  DwmpDxBindSwapChain@0 @125 PRIVATE
+  DwmpDxUnbindSwapChain@0 @126 PRIVATE
+  DwmpGetColorizationParameters@4 @127 NONAME
+  DwmpDxgiIsThreadDesktopComposited@0 @128 PRIVATE
+  DwmpDxgiDisableRedirection@0 @129 NONAME PRIVATE
+  DwmpDxgiEnableRedirection@0 @130 NONAME PRIVATE
+  DwmpSetColorizationParameters@0 @131 NONAME PRIVATE
+  DwmpGetCompositionTimingInfoEx@0 @132 NONAME PRIVATE
+  DwmpDxUpdateWindowRedirectionBltSurface@0 @133 PRIVATE
+  DwmpDxSetContentHostingInformation@0 @134 NONAME PRIVATE
+  DwmpRenderFlick@0 @135 PRIVATE
+  DwmpAllocateSecurityDescriptor@0 @136 PRIVATE
+  DwmpFreeSecurityDescriptor@0 @137 PRIVATE
+  DwmpEnableDDASupport@0 @143 PRIVATE
+  DwmTetherTextContact@0 @156 PRIVATE
+  DwmAttachMilContent@4 @111
+  DwmDefWindowProc@20 @116
+  DwmDetachMilContent@4 @117
+  DwmEnableBlurBehindWindow@8 @122
+  DwmEnableMMCSS@4 @123
+  DwmExtendFrameIntoClientArea@8 @149
+  DwmFlush@0 @165
+  DwmGetColorizationColor@8 @166
+  DwmGetCompositionTimingInfo@8 @167
+  DwmGetGraphicsStreamClient@8 @168
+  DwmGetGraphicsStreamTransformHint@8 @169
+  DwmGetTransportAttributes@12 @170
+  DwmGetWindowAttribute@16 @171
+  DwmInvalidateIconicBitmaps@4 @172
+  DwmIsCompositionEnabled@4 @173
+  DwmModifyPreviousDxFrameDuration@0 @174 PRIVATE
+  DwmQueryThumbnailSourceSize@0 @175 PRIVATE
+  DwmRegisterThumbnail@12 @176
+  DwmSetDxFrameDuration@0 @177 PRIVATE
+  DwmSetIconicLivePreviewBitmap@16 @178
+  DwmSetIconicThumbnail@12 @179
+  DwmSetPresentParameters@8 @180
+  DwmSetWindowAttribute@16 @181
+  DwmUnregisterThumbnail@4 @182
+  DwmUpdateThumbnailProperties@8 @183

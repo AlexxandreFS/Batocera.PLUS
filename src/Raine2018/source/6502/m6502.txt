@@ -1,0 +1,604 @@
+Modifications for raine :
+ - I allowed direct memory handlers but for now they are mapped to the
+   memory base ie :
+
+AddM6502ABase(base);
+AddM6502ARead(0x100,0x200,NULL,buffer);
+will read adresses 0x100 and after from &base[0x100]
+
+- I started to support the 65ce02. For now I just added the zero page indirect
+adressing mode and the instructions going with it. It's necessary for metafox
+(seta driver).
+
+Multi-6502 32 Bit emulator 
+Copyright 1996, 1997, 1998, Neil Bradley, All rights reserved
+
+			    M6502 License agreement
+			    -----------------------
+
+(M6502 Refers to both the assembly code emitted by make6502.c and make6502.c
+itself)
+
+M6502 May be distributed in unmodified form to any medium.
+
+M6502 May not be sold, or sold as a part of a commercial package without
+the express written permission of Neil Bradley (neil@synthcom.com). This
+includes shareware.
+
+Modified versions of M6502 may not be publicly redistributed without author
+approval (neil@synthcom.com). This includes distributing via a publicly
+accessible LAN. You may make your own source modifications and distribute
+M6502 in source or object form, but if you make modifications to M6502
+then it should be noted in the top as a comment in make6502.c.
+
+M6502 Licensing for commercial applications is available. Please email
+neil@synthcom.com for details.
+
+Synthcom Systems, Inc, and Neil Bradley will not be held responsible for
+any damage done by the use of M6502. It is purely "as-is".
+
+If you use M6502 in a freeware application, credit in the following text:
+
+"Multi-6502 CPU emulator by Neil Bradley (neil@synthcom.com)"
+
+must accompany the freeware application within the application itself or
+in the documentation.
+
+Legal stuff aside:
+
+If you find problems with M6502, please email the author so they can get
+resolved. If you find a bug and fix it, please also email the author so
+that those bug fixes can be propogated to the installed base of M6502
+users. If you find performance improvements or problems with M6502, please
+email the author with your changes/suggestions and they will be rolled in
+with subsequent releases of M6502.
+
+The whole idea of this emulator is to have the fastest available 32 bit
+Multi-6502 emulator for the x86, giving maximum performance.
+ 
+                         M6502 Contact information
+			  -------------------------
+
+Author      : Neil Bradley (neil@synthcom.com)
+Distribution: ftp://ftp.synthcom.com/pub/emulators/cpu/make6502.zip (latest)
+
+You can join the cpuemu mailing list on Synthcom for discussion of Neil
+Bradley's 6502 (and other) CPU emulators. Send a message to 
+"cpuemu-request@synthcom.com" with "subscribe" in the message body. The
+traffic is fairly low, and is used as a general discussion and announcement
+for aforementioned emulators.
+
+
+			     M6502 Documentation
+			     -------------------
+
+This supercedes the old M6502.ASM program that has been freeware for about
+a year. Many feature enhancements, speed improvements, architectural 
+improvements, and bug fixes have been made to this code. This emulator
+also includes 6510 instructions (STZ, PHY, PHX, etc...), which are a superset
+of the 6502 emulation.
+
+M6502 Contains a make6502.c program that must be compiled. It is the program
+that emits the assembly code that NASM will compile. This minimizes the
+possibility of bugs creeping in to M6502 for the different addressing modes
+for each instruction. It requires NASM 0.95 or greater.
+
+The goal of M6502 is to have a high performance 6502 emulator that is capable
+of running multiple emulations concurrently at full speed, even on lower-end
+machines (486/33). In the CPUBENCH.C example, it will run the Atari Asteroids
+code at 9-10 times the normal speed (14-15MHZ) on a Pentium 60 under DOS. This
+leaves plenty of room for your application to do other things (such as
+graphics, peripheral I/O, etc...), and hopefully after everything is added in
+there is enough power left over to run it even on the lowest end machines.
+
+M6502 Is designed exclusively for use with NASM, the Netwide Assembler. This
+gives the ultimate in flexibility, as NASM can emit object files that work
+with Watcom, Microsoft Visual C++ (4.0-current), DJGPP, Borland C++, and
+gcc under FreeBSD or Linux. M6502 Has been tested with each one of these
+compilers and is known to work properly on each.
+
+
+			    What's in the package
+			    ---------------------
+
+M6502.TXT               - This text file
+
+MAKE6502.C              - Multi 6502 32 Bit emulator emitter program
+
+M6502.H                 - C Header file for M6502 functions
+
+CPUBENCH.C              - CPU Emulator benchmarking program. Runs Atari
+                          Asteroids ROMs as its test bench
+
+MAKECPUB.BAT            - Batch file for Watcom that will compile and assemble
+                          CPUBENCH.C. *REQUIRES NASM*! This file can be
+                          easily adapted for use with other compilers.
+
+MAKE6502.EXE		 - 16 bit executable of make6502 (by request)
+
+
+			  What's new in this release
+			  --------------------------
+
+Revision 1.6:
+	* Added -6510 option to enable 6510 emulated instructions
+	* Added -i option so that invalid instructions will be treated as NOPs
+	* Added -d option to disable decimal mode. The SED/CLD instructions
+	  and flag will operate as normal, but decimal mode will not happen
+	  when ADC and SBC are used (for NES crowd)
+	* Details added about m6502bs (in the documentation below)
+
+Revision 1.5:
+
+	* Streamlined some instructions so the emulator is slightly smaller
+	* Added bank switching functionality
+	* Removed requirement of cyclesRemaining and dwElapsedTicks from
+	  having to be defined elsewhere. Now use GetElapsedTicks() (see
+	  docs below for more info)
+
+Revision 1.3:
+
+	* Fixed a nasty bug in BRK and in IndirectX(). BRK Was pushing the
+	  wrong value of PC one byte too low in the stack, and IndirectX()
+	  is supposed to add X before the indirection lookup - not after!
+	* Removed some unneeded long jump code causing about a 6K shrinkage
+	  of m6502 (and zp)
+
+Revision 1.2:
+
+       * Removed "byte ptr" and "word ptr" and replaced them with their
+         respective "byte" and "word" counterparts
+       * Removed m6502zpcontext and folded it into m6502context. m6502zpBase
+	  no longer exists. Just use m6502Base - both cpu cores use the same
+	  context structure.
+	* Modified documentation stupidity regarding read/write bytes
+	* Added protectors around MemoryReadByte/WriteByte structures so they
+	  don't collide with mz80.h (and other future cpu emulators ;-) )
+	* Slight optimizations to m6502.
+	* Added a 16 bit make6502.exe to the archive (per request)
+	* Changed alignment from 16 bytes to 4 bytes. Made no difference in
+	  performance and made the code smaller.
+	* Changed archive name to make6502.zip on Synthcom - This will always
+	  be the most current release.
+	* Changed CPUBENCH.C to conform to the documentation ( ;-) )
+
+
+Revision 1.1:
+
+	* Corrected typos in documentation and in make6502.c
+	* Fixed case problem in CPUBENCH.C
+	* m6502.h Is now C++ friendly
+	* Added "-ss" option for creating a m6502 that can single step
+	  (for debugging purposes)
+
+
+Revision 1.0:
+
+	* First release! The whole thing is new!
+
+
+COMMAND LINE OPTIONS FOR MAKE6502.EXE
+-------------------------------------
+
+-ss   - Create m6502(zp) to execute one instruction per m6502exec(). Single
+	 step - for debugging.
+
+-s    - Stack calling conventions (DJGPP, MSVC, Borland)
+
+-z    - Create zero page version of m6502 (see documentation)
+
+-bs   - Create boundary bank switched version (8K page default). Details on
+	 bank switching in the documentation below.
+
+-l    - Create 'plain' function names with no leading or trailing _'s
+
+-#    - -2=2K bank switch, -4=4K Banks, -8=8K Banks, -16=16K Banks (only
+	 valid with -bs)
+
+-d    - Eliminate decimal mode. Causes the decimal flag to be ignored when
+	 SBC/ADC instructions are used - they will use the normal binary
+	 equivalents, but the D flag will still be set and reset accordingly.
+
+-i    - Treat invalid instructions as NOPs. This will cause any unknown
+	 instruction to execute a NOP, including the timing of a NOP.
+
+-6510 - Include 6510 instructions. They are not included by default.
+
+
+ASSEMBLING FOR USE WITH WATCOM C/C++
+------------------------------------
+
+Watcom, by default, uses register calling conventions, as does M6502. To
+create a proper emulator for Watcom:
+
+	make6502 M6502.asm
+
+From here:
+
+	nasm -f win32 M6502.asm
+
+Link the M6502.obj with your Watcom linker.
+
+
+ASSEMBLING FOR USE WITH MICROSOFT VISUAL C++ AND BORLAND C++
+--------------------------------------------------------------------
+
+Visual C++ and Borland C++ use stack calling conventions by default. To
+create a proper emulator for these compilers:
+
+	make6502 M6502.asm -s
+
+For Visual C++ or Borland C++:
+
+	nasm -f win32 M6502.asm
+
+Link with your standard Visual C++ or Borland C++.
+
+
+ASSEMBLING FOR USE WITH DJGPP, GCC/FREEBSD, OR GCC/LINUX
+--------------------------------------------------------------------
+
+DJGPP Uses stack calling conventions:
+
+	make6502 M6502.asm -s
+
+To assemble:
+
+	nasm -f coff M6502.asm
+
+Link with your standard DJGPP linker. The same holds true for GCC under
+FreeBSD or Linux.
+
+
+STEPS TO EMULATION
+------------------
+
+NOTE: -ss Is the "single stepping" option that will cause a single instruction
+to be executed. It will ignore the value you pass into m6502(zp)exec(),
+execute one instruction, and return. A call to GetElapsedTicks() will return
+the time of the single instruction executed. It will slow the emulator down
+by a factor of 5 at least, but will allow you to generate tracefiles in the 
+unlikely event of a CPU emulator bug. ;-) The operation of the emulator 
+otherwise will not be affected. The CPUBENCH.C program has been updated to 
+be able to identify the different versions.
+
+NOTE: make6502 can actually emit two different emulators. If you have the
+"-z" option when you execute make6502, it will create what is called a
+"Zero page" version. This means that zero page access instructions will
+directly access the memory defined in m6502Base instead of going through
+the read/write handlers. Depending upon what you're emulating, this feature
+can be used to greatly increase performance - by as much as 50%! 
+
+If you need to trap reads & writes to the zero page region, DO NOT include
+the -z option.
+
+The zero page version of M6502 has different interface names (I.E. m6502zpexec
+instead of M6502exec) so that both versions can be linked into your program
+without conflicting with eachother.
+
+There are a few steps you want to go through to get proper emulation, and a
+few guidelines must be followed.
+
+1) Create a M6502CONTEXT
+
+2) Create your virtual 64K memory space using whatever means of obtaining
+   memory you need to do.
+
+3) Set m6502Base in your context to be the base of your 64K memory space
+
+4) Load up your image to be emulated within that 64K boundary. If your
+   hardware target only decodes the first 32K, then copy the upper 6 bytes
+   containing the reset, NMI, and interrupt vectors to FFFA-FFFF.
+
+5) Set m6502MemoryRead & m6502MemoryWrite to their appropriate structure
+   arrays. Here is an example:
+
+struct MemoryWriteByte AsteroidWrite[] =
+{
+	{0x3000, 0x3000,  BWVectorGeneratorInternal},
+	{0x3200, 0x3200,  AsteroidsSwapRam},
+	{0x4000, 0x4fff,  VectorRam},
+	{(UINT32) -1,     (UINT32) -1, NULL}
+};
+
+The above examples says that if anything writes to addresses 0x3000-0x3000,
+call the routine BWVectorGeneratorInternal. The same for AsteroidsSwapRam in
+the 0x3200-0x3200 region.
+
+It also says that if any virtual writes to 0x4000-0x4fff occur, call the
+VectorRam routine.
+
+NOTE: When your write handler is called, it is passed the address of the
+write and the data that is to be written to it. If your handler doesn't
+write the data to the virtual image, the M6502 internal code will not.
+
+NOTE: These routines will *NOT* be called when execution asks for these
+addresses. It will only call them when a particular instruction uses the
+memory at these locations. All memory accesses done with stack instructions
+(like pha/pla, etc..) directly access the stack region and bypass these
+read/write arrays altogether. Zero page accesses will *NOT* go through your
+handlers if you have used "-z" as an option to make6502.
+
+If you wish for a region to be RAM, just leave it out of your memory region
+exception list. The WriteMemoryByte routine will treat it as read/write
+RAM.
+
+If you wish to protect ROM regions (not often necessary), create a range that
+encompasses the ROM image, and have it call a routine that does nothing. This
+will prevent data from being written back onto the ROM image.
+
+Leave your last entry in the table as shown above, with a null handler and
+0xffffffff-0xffffffff as your read address. Even though the 6502 only
+addresses 64K of space, the read/write handlers are defined as 32 bit so
+the compiler won't pass junk in the upper 16 bits of the address lines.
+
+You can do a M6502GetContext() if you'd like to read the current context of
+the registers. Note that by the time your handler gets called, the program
+counter will be pointing to the *NEXT* instruction.
+
+struct MemoryReadByte AsteroidRead[] =
+{
+	{0x2000,        0x200f,         ReadHandler},
+	{(UINT32) -1,     (UINT32) -1,  NULL}
+};
+
+Same story here. If you have a special handler for an attempted read at a
+particular address, place its range in this table and create a handler
+routine for it.   
+
+If you don't define a handler for a particular region, then the ReadMemoryByte
+in M6502.ASM will actually read the value out of m6502Base + the offset 
+required to complete the instruction.
+
+6) Call m6502SetContext() on your 6502 context
+
+7) Call m6502Reset(). This will prime the program counter and cause a virtual
+   CPU-wide reset.
+
+8) During execution, call m6502(zp)GetElapsedTicks() to get the # of cycles executed
+   during the m6502(zp)exec() call. Passing TRUE to m6502(zp)GetElapsedTicks()
+   will reset the elapsed ticks counter. Passing FALSE to it will cause it to
+   count continuously. 
+
+You can track the precise # of cycles by making a call to m6502(zp)GetElapsedTicks().
+It is not required that you use it. 
+
+NOTE: Just because you tell m6502(zp)exec() to execute N # of cycles doesn't 
+mean that it necessarily will execute exactly that many cycles! The # passed
+to m6502(zp)exec() is the desired # of virtual CPU cycles to execute.
+
+cyclesRemaining Is an internal use variable, and its only purpose is so you
+can get M6502 (from within a handler) to stop executing code in case of
+something like a bank switch. Setting it to 0 will cause the currently
+executed instruction to finish execution, and exit the M6502exec() routine
+as soon as it's finished.
+
+The reason these variables are not in M6502 is because there can be multiple
+processors executing, and calling them separate names would be a bit annoying
+to track. Their duration is only for the life of a single m6502(zp)exec()
+call, and it's nice to have a common place where all speed information is
+kept.
+
+9) Once you have those defined, you're ready to begin emulation. There's some
+   sort of main loop that you'll want. Maybe something like:
+
+	while (hit == 0)
+	{
+		if (lastSec != (UINT32) time(0))
+		{
+			diff = (m6502clockticks - prior) / 1500000;
+			printf("%ld Clockticks, %ld frames, %ld Times original speed\n", m6502clockticks - prior, frames, diff);
+			frames = 0;
+			prior = m6502clockticks;
+			lastSec = time(0);
+			if (kbhit())
+			{
+				getch();
+				hit = 1;
+			}
+		}
+
+		/* 4500 Cycles per NMI (~3 milliseconds) */
+
+		dwResult = m6502zpexec(4500);
+		m6502clockticks += m6502zpGetElapsedTicks(TRUE);
+		m6502zpnmi();
+
+		/* If the result is not 0x80000000, it's an address where
+		   an invalid instruction was hit. */
+
+		if (0x80000000 != dwResult)
+		{
+			m6502zpGetContext(&sCpu1);
+			printf("Invalid instruction at %.2x\n", sCpu1.m6502pc);
+			exit(1);
+		}
+	}
+
+Call m6502(zp)exec() With the # of virtual CPU cycles you'd like M6502 to
+execute. Be sure to call the m6502(zp)GetElapsedTicks function *AFTER* 
+execution to see how many virtual CPU cycles it actually executed. For
+example, if you tell M6502 to execute 500 virtual CPU cycles, it may only
+execute 496, but it will never go over the value you pass to it. 
+
+NOTE: The bigger value you pass to m6502(zp)exec, the greater benefit you get out
+of the virtual registers persisting within the emulator, and it will run
+faster. Pass in a value that is large enough to take advantage of it, but
+not so often that you can't handle nmi or int's properly.
+
+If you wish to create a virtual NMI, call m6502(zp)nmi(), and it will be taken
+the next time you call m6502(zp)exec. Note that m6502(zp)nmi() doesn't actually
+execute any code.
+
+If you wish to create a virtual interrupt, call m6502(zp)int(), and it will be
+taken the next time you call m6502(zp)exec. m6502(zp)int() Doesn't actually execute
+any code. NOTE: m6502(zp)int() is defined with a UINT32. It does nothing. It's
+there to provide symmetry between this emulator and forthcoming processors
+that do require an IRQ # to know which IRQ to execute!
+
+NMI's can interrupt interrupts, but not the other way around. If your program
+is already in an interrupt, another one will not be taken. The same holds
+true for an NMI - Just like a real 6502.
+
+Your best examples of how to do this are in the CPUBENCH.C program.
+
+
+MUTLI-PROCESSOR NOTES
+---------------------
+
+Doing multi processor support is a bit trickier, but is still fairly straight-
+forward.
+
+For each processor to be emulated, go through steps 1-7 above - giving each
+CPU its own memory space, register storage, and read/write handlers.
+
+
+EXECUTION OF MULTI-CPU'S:
+-------------------------
+
+When you're ready to execute a given CPU, do the following:
+
+	m6502SetContext(contextPointer);
+
+This will load up all information saved before into the emulator and ready it
+for execution. Then execute step 6 above to do your virtual NMI's, interrupts,
+etc... All CPU state information is saved within a context.
+
+When the execution cycle is complete, do the following to save the updated
+context away for later:
+
+	m6502GetContext(contextPointer);
+
+Give each virtual processor a slice of time to execute. Don't make the values
+too small or it will spend its time swapping contexts. While this in itself
+isn't particularly CPU expensive, the more time you spend executing the better.
+M6502 Keeps all of the 6502 register in native x86 register (including most
+of the flags, X, Y, and A). If no context swap is needed, then you get the
+added advantage of the register storage. For example, let's say you were 
+running two 6502s - one at 1.5MHZ and one at 2.5MHZ. An example like this 
+might be desirable:
+
+	m6502SetContext(cpu1Context);	// Set CPU #1's information
+	m6502exec(1500);		// 1500 Instructions for 1.5MHZ CPU
+	m6502GetContext(cpu1Context);	// Get CPU #1's state info
+
+	m6502SetContext(cpu2Context);	// Set CPU #2's state information
+	m6502exec(2500);		// 2500 Instructions for 2.5MHZ CPU
+	m6502GetContext(cpu2Context);	// Get CPU #2's state information
+
+This isn't entirely realistic, but if you keep the instruction or timing
+ratios between the emulated CPUs even, then timing is a bit more accurate.
+
+NOTE: If you need to make a particular CPU give up its own time cycle because
+of a memory read/write, simply trap a particular address (say, a write to a
+slave processor) and set the "cyclesRemaining" variable to 0. It will not
+execute any further instructions, and will give up its timeslice. Put this
+in your read/write memory trap.
+
+NOTE: You are responsible for "holding back" the processor emulator from
+running too fast.
+
+
+BANK SWITCHING
+--------------
+
+Make6502 includes bank switching. However, if you only have 3 or 4 possible
+banks, the performance is 2X over using the bankswitching core, and it's
+much better to create as many 64K regions as you need with all possible
+bankswitching combinations. The only time you want to use the built in
+bankswitching is when you have enough banks that doing such a thing is
+impractical (some of the NES games are like this). But BE FOREWARNED! If you
+want it to run as fast it can run, DO NOT USE THE BUILT IN BANKSWITCHING! IT
+CUTS PERFORMANCE OVER 50%!
+
+Now that that has been said, here are the bankswitching details:
+
+1) Decide first of all how big the banks will need to be. 2K? 4K? 8K?
+   Use the -2, -4, -8, or -16 are all valid options.
+
+2) Emit your m6502bs.asm file by doing:
+
+   make6502 -bs -x (where x is the size of the banks you need)
+
+3) Assemble the m6502bs.asm program
+
+4) Follow the "STEPS TO EMULATION" instructions above, with the following
+   exceptions:
+
+   * Change all references to m6502 to m6502bs
+   * Instead of CONTEXTM6502, use CONTEXTM6502BS instead
+
+5) Be certain that all 32 entries in the pbBankSwitch[] array in the 
+   context are all set to NULL to start with.
+
+Now the fun part. The pbBankSwitch[] array points to the base memory address
+for various regions. For example, let's say that you made your 6502 core with
+4K bank switches. That would mean that the pbBankSwitch[] entries would be
+pointing to 4K banks each. For example:
+
+	m6502bspbBankSwitch[0] = // 6502 address $0000
+	m6502bspbBankSwitch[1] = // 6502 address $1000
+	m6502bspbBankSwitch[2] = // 6502 address $2000
+	m6502bspbBankSwitch[3] = // 6502 address $3000
+	....
+
+In this case, only the first 16 pbBankSwitch[] pointers would be used to fill
+the entire emulated 64K worth of address space. Let's say that you have
+created 16K bank switches. It would then look like this:
+
+	m6502bspbBankSwitch[0] = // 6502 Address $0000
+	m6502bspbBankSwitch[1] = // 6502 Address $4000
+	m6502bspbBankSwitch[2] = // 6502 Address $8000
+	m6502bspbBankSwitch[3] = // 6502 Address $c000
+
+In the above example, let's say that we wanted to bank in a 16K ROM into
+address $8000. Do:
+
+	m6502bspbBankSwitch[2] = pb8000Bank0;
+
+It would cause the emulator, when it came across an access to 8000-$bfff,
+it would access memory pointed to by pb8000Bank0. If you set the region
+to NULL, then it assumes the m6502bsBase + memory address.
+
+Alternately, you could do an m6502bsGetContext() call, modify the context
+itself, and do an m6502bsSetContext(), but that's slower than just modifying
+the memory addresses directly. So if you have no need to keep track of the
+banks in a context fashion, just reference m6502bspbBankSwitch[] directly.
+
+If there are any questions as to what index maps to what emulated address,
+take a look in the emitted m6502bs.asm file for _m6502bspbBankSwitch[]. All
+indexes are noted in the source.
+
+*YOU MUST STILL DEFINE AN M6502BASE!* It is needed for fetching reset, NMI,
+INT, and BRK vectors, in addition to zero page memory regions. You *DO NOT*
+want to route zero page memory accesses through handlers or through banked
+regions! It'll slow things down!
+
+
+FINAL NOTES
+-----------
+
+I have debugged M6502.ASM to the best of my abilities. There might still be
+a few bugs floating around in it, but I'm not aware of any. If you see any
+problems, please point them out to me, as I am eager to make M6502 the best
+emulator that I can. It fixes about 20 bugs over the prior M6502 emulator,
+including BCD handling for ADC/SBC, some computational problems in addressing,
+and interrupt handling.
+
+The Asteroids ROMs are *NOT* distributed with this emulator package, as it is
+the property of Atari Games. If you can find these ROMs on the internet, great,
+but please don't email me asking for their images, as I won't respond to
+requests for the location of these ROMs.
+
+But if you have questions, comments, etc... about M6502, please don't hesitate
+to send me an email. And if you use M6502 in your emulator, I'd love to take
+a look at your work. If you have special needs, or need implementation
+specific hints, feel free to email me, Neil Bradley (neil@synthcom.com). I
+will do my best to help you.
+
+Enjoy!
+
+Neil Bradley
+neil@synthcom.com
+
+

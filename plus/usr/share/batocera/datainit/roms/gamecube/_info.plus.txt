@@ -1,0 +1,49 @@
+## SYSTEM GAMECUBE ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted (Batocera.PLUS): ".7z .7Z"
+-------------------------------------------------------------------------------
+INFO: Para configurar o emulador (dolphin) durante o jogo pressione alt + tab
+      para exibir a janela de configuração do emulador.
+      Caso o ponteiro do mouse não apareça pressione win + F3.
+-------------------------------------------------------------------------------
+ROMS compactadas no formato 7zip
+
+Roms no formato 7z precisam ser descompactadas antes de serem executadas, o
+sistema faz isso automáticamente, mas pode demorar um pouco dependendo da
+capacidade do computador, mais recomendado para sistemas instalados em HD's.
+
+1 - Compacte a iso no formato 7z.
+2 - O nome do arquivo compactado em .7z deve ter o mesmo nome da iso.
+
+Example 1:
+Arquivo compactado: My Game.7z
+Arquivo descompactado: My Game.iso
+
+Example 2:
+Arquivo compactado: My Game.7z
+Arquivo descompactado: My Game.cso
+
+Example 3:
+Arquivo compactado: My Game.7Z
+Arquivo descompactado: My Game.cso
+
+Example 4:
+Arquivo compactado: My Game.7z
+Arquivo descompactado: My Game.ISO
+-------------------------------------------------------------------------------
+ROMS em pastas
+
+Por questão de organização as roms podem ser executadas dentro de pastas útil
+para sistemas com múltiplos arquivos não compactados (cue, bin, mp3, etc...)
+
+1 - Crie uma pasta com o mesmo nome do arquivo principal da rom, COM extensão.
+2 - Coloque todos os arquivos da rom dentro da pasta.
+
+Example:
+
+My Game.iso             (folder)
+|---- My Game.iso       (file)
+
+Caso o nome da pasta seja diferente do nome do arquivo principal da rom o
+sistema tentará "adivinhar" o nome do arquivo principal da rom.
+-------------------------------------------------------------------------------

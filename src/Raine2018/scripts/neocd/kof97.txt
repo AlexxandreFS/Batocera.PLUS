@@ -1,0 +1,4 @@
+script "max hp" always
+  poke $108239 100
+   
+

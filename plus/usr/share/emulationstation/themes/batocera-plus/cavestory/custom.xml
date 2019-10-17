@@ -1,0 +1,65 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>648DBD</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>B63523</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>6F1312</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>182142</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Designer : Daisuke Amaya</text>
+			<pos>0.38 0.72</pos>
+		</text>
+		<text name="info2" extra="true">
+			<text>Developer : Studio Pixel</text>
+			<pos>0.38 0.74</pos>
+		</text>
+		<text name="info3" extra="true">
+			<text>Type : Freeware platform-adventure</text>
+			<pos>0.38 0.76</pos>
+		</text>
+		<text name="info4" extra="true">
+			<text>Origin : Japan</text>
+			<pos>0.38 0.78</pos>
+		</text>
+		<text name="info5" extra="true">
+			<text>English translation : Aeon Genesis Translations</text>
+			<pos>0.38 0.80</pos>
+		</text>
+		<text name="info6" extra="true">
+			<text>Year of first release : 2004</text>
+			<pos>0.38 0.82</pos>
+		</text>
+		<text name="info7" extra="true">
+			<text>The game focuses on an amnesiac protagonist who awakens in a cave. Through his explorations, he discovers a plot by the Doctor, a megalomaniac who intends to force the inhabitants of the cave to fight for him in his bid to conquer the world. The protagonist is thrust into the position of savior as he endeavors to defeat the Doctor.</text>
+			<pos>0.38 0.82</pos>
+			<size>0.40 0.20</size>
+			<lineSpacing>1.1</lineSpacing>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>648DBD</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>B63523</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>6F1312</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>182142</color>
+		</image>
+	</view>
+</theme>

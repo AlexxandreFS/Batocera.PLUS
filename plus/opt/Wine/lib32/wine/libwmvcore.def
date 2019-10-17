@@ -1,0 +1,25 @@
+; File generated automatically from dlls/wmvcore/wmvcore.spec; do not edit!
+
+LIBRARY wmvcore.dll
+
+EXPORTS
+  WMCheckURLExtension@4 @1
+  WMCheckURLScheme@4 @2
+  WMCreateBackupRestorerPrivate@8=WMCreateBackupRestorer @3
+  WMIsAvailableOffline@0 @4 PRIVATE
+  WMValidateData@0 @5 PRIVATE
+  DllRegisterServer@0 @6 PRIVATE
+  WMCreateBackupRestorer@8 @7
+  WMCreateEditor@4 @8
+  WMCreateIndexer@0 @9 PRIVATE
+  WMCreateProfileManager@4 @10
+  WMCreateReader@12 @11
+  WMCreateReaderPriv@4 @12
+  WMCreateSyncReader@12 @13
+  WMCreateSyncReaderPriv@4 @14
+  WMCreateWriter@8 @15
+  WMCreateWriterFileSink@0 @16 PRIVATE
+  WMCreateWriterNetworkSink@0 @17 PRIVATE
+  WMCreateWriterPriv@4 @18
+  WMCreateWriterPushSink@0 @19 PRIVATE
+  WMIsContentProtected@0 @20 PRIVATE

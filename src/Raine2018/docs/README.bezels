@@ -1,0 +1,20 @@
+Version 0.43.0 adds a very basic bezel support : no transparency effect, and
+the bezel can't be on top of the game picture. The goal is just to fill the
+black borders with something better than all this black, not to hide the game
+screen !
+And transparency can only be rendered without loosing speed with a 3d renderer,
+and I have no 3d renderer for now in raine.
+
+So if you want these bezels, grab a few of them in rainemu, see the new
+download section, and put the zip files in your artwork directory. Then the
+bezels will appear next time you load the game.
+
+TIP : for those of you who do not have many video resolutions available, then
+use Scale2x effect in "Video Settings". It helps a lot for those who want to
+play fullscreen. The other option is to use linux or to wait the sdl version
+which can already scale fullscreen to any resolution without loosing speed,
+but it's really not ready for a release now !!!
+
+There is no command line option to disable the bezels : if you don't want them,
+just remove the bezel file !
+

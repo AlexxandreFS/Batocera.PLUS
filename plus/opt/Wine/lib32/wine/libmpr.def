@@ -1,0 +1,93 @@
+; File generated automatically from dlls/mpr/mpr.spec; do not edit!
+
+LIBRARY mpr.dll
+
+EXPORTS
+  MultinetGetConnectionPerformanceA@8 @10
+  MultinetGetConnectionPerformanceW@8 @11
+  MultinetGetErrorTextA@12 @26
+  MultinetGetErrorTextW@12 @27
+  NPSAuthenticationDialogA@4 @28
+  NPSCopyStringA@12 @29
+  NPSDeviceGetNumberA@12 @30
+  NPSDeviceGetStringA@16 @31
+  NPSGetProviderHandleA@4 @32
+  NPSGetProviderNameA@8 @33
+  NPSGetSectionNameA@8 @34
+  NPSNotifyGetContextA@4 @35
+  NPSNotifyRegisterA@8 @36
+  NPSSetCustomTextA@4 @37
+  NPSSetExtendedErrorA@8 @38
+  PwdChangePasswordA@16 @39
+  PwdChangePasswordW@16 @40
+  PwdGetPasswordStatusA@12 @41
+  PwdGetPasswordStatusW@12 @42
+  PwdSetPasswordStatusA@12 @43
+  PwdSetPasswordStatusW@12 @44
+  WNetAddConnection2A@16 @45
+  WNetAddConnection2W@16 @46
+  WNetAddConnection3A@20 @47
+  WNetAddConnection3W@20 @48
+  WNetAddConnectionA@12 @49
+  WNetAddConnectionW@12 @50
+  WNetCachePassword@24 @51
+  WNetCancelConnection2A@12 @52
+  WNetCancelConnection2W@12 @53
+  WNetCancelConnectionA@8 @54
+  WNetCancelConnectionW@8 @55
+  WNetClearConnections@4 @56
+  WNetCloseEnum@4 @57
+  WNetConnectionDialog1A@4 @58
+  WNetConnectionDialog1W@4 @59
+  WNetConnectionDialog@8 @60
+  WNetDisconnectDialog1A@4 @61
+  WNetDisconnectDialog1W@4 @62
+  WNetDisconnectDialog@8 @63
+  WNetEnumCachedPasswords@20 @64
+  WNetEnumResourceA@16 @65
+  WNetEnumResourceW@16 @66
+  WNetFMXEditPerm@0 @67 PRIVATE
+  WNetFMXGetPermCaps@0 @68 PRIVATE
+  WNetFMXGetPermHelp@0 @69 PRIVATE
+  WNetFormatNetworkNameA@0 @70 PRIVATE
+  WNetFormatNetworkNameW@0 @71 PRIVATE
+  WNetGetCachedPassword@20 @72
+  WNetGetConnectionA@12 @73
+  WNetGetConnectionW@12 @74
+  WNetGetDirectoryTypeA@0 @75 PRIVATE
+  WNetGetHomeDirectoryA@0 @76 PRIVATE
+  WNetGetHomeDirectoryW@0 @77 PRIVATE
+  WNetGetLastErrorA@20 @78
+  WNetGetLastErrorW@20 @79
+  WNetGetNetworkInformationA@8 @80
+  WNetGetNetworkInformationW@8 @81
+  WNetGetPropertyTextA@0 @82 PRIVATE
+  WNetGetProviderNameA@12 @83
+  WNetGetProviderNameW@12 @84
+  WNetGetResourceInformationA@16 @85
+  WNetGetResourceInformationW@16 @86
+  WNetGetResourceParentA@12 @87
+  WNetGetResourceParentW@12 @88
+  WNetGetUniversalNameA@16 @89
+  WNetGetUniversalNameW@16 @90
+  WNetGetUserA@12 @91
+  WNetGetUserW@12 @92
+  WNetLogoffA@8 @93
+  WNetLogoffW@8 @94
+  WNetLogonA@8 @95
+  WNetLogonNotify@0 @96 PRIVATE
+  WNetLogonW@8 @97
+  WNetOpenEnumA@20 @98
+  WNetOpenEnumW@20 @99
+  WNetPasswordChangeNotify@0 @100 PRIVATE
+  WNetPropertyDialogA@0 @101 PRIVATE
+  WNetRemoveCachedPassword@12 @102
+  WNetRestoreConnection@0 @103 PRIVATE
+  WNetRestoreConnectionA@8 @104
+  WNetRestoreConnectionW@8 @105
+  WNetSetConnectionA@12 @106
+  WNetSetConnectionW@12 @107
+  WNetUseConnectionA@32 @108
+  WNetUseConnectionW@32 @109
+  WNetVerifyPasswordA@8 @110
+  WNetVerifyPasswordW@8 @111

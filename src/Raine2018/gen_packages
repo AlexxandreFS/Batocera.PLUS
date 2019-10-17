@@ -1,0 +1,22 @@
+#!/bin/bash
+
+arch=i386
+dpkg-scanpackages . /dev/null dists/unstable/main/binary-$arch/ | tee Packages | gzip -9 > Packages.gz
+# rpl "Filename: ." "Filename: dists/unstable/main/binary-i386" Packages
+rm -rf unstable
+# rsync -av . jojo:raine/html/archive/debian/dists/unstable/main/binary-$arch/
+echo "cd archive/debian/dists/unstable/main/binary-$arch
+mirror -R ."|lftp 1emulation
+mkdir -p unstable/main/
+ln -s ~/dist unstable/main/binary-i386
+apt-ftparchive -o APT::FTPArchive::Release::Suite=unstable -o APT::FTPArchive::Release::Label="Unofficial rainemu packages" -o APT::FTPArchive::Release::Architectures=i386 release unstable > ../Release
+gpg --pinentry-mode loopback --default-key 6DCD5D36 --sign -ba -o ../Release.gpg ../Release
+echo "cd archive/debian/dists/unstable
+mput ../Release*
+lcd ~/raine/debian
+cd /archive
+put changelog -o changelog-raine"|lftp 1emulation
+# rsync -av ../Release* jojo:raine/html/archive/debian/dists/unstable/
+#cd ~/raine
+# rsync -av debian/changelog jojo:raine/html/archive/changelog-raine
+

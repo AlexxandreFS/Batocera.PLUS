@@ -1,0 +1,46 @@
+; File generated automatically from dlls/slc/slc.spec; do not edit!
+
+LIBRARY slc.dll
+
+EXPORTS
+  SLpAuthenticateGenuineTicketResponse@0 @1 PRIVATE
+  SLpBeginGenuineTicketTransaction@0 @2 PRIVATE
+  SLpCheckProductKey@0 @3 PRIVATE
+  SLpGetGenuineBlob@0 @4 PRIVATE
+  SLpGetGenuineLocal@0 @5 PRIVATE
+  SLpGetLicenseAcquisitionInfo@0 @6 PRIVATE
+  SLpGetMachineUGUID@0 @7 PRIVATE
+  SLpVLActivateProduct@0 @8 PRIVATE
+  SLClose@0 @9 PRIVATE
+  SLConsumeRight@0 @10 PRIVATE
+  SLConsumeWindowsRight@0 @11 PRIVATE
+  SLDepositOfflineConfirmationId@0 @12 PRIVATE
+  SLFireEvent@0 @13 PRIVATE
+  SLGenerateOfflineInstallationId@0 @14 PRIVATE
+  SLGetInstalledSAMLicenseApplications@0 @15 PRIVATE
+  SLGetLicense@0 @16 PRIVATE
+  SLGetLicenseFileId@0 @17 PRIVATE
+  SLGetLicenseInformation@0 @18 PRIVATE
+  SLGetLicensingStatusInformation@24 @19
+  SLGetPKeyId@0 @20 PRIVATE
+  SLGetPKeyInformation@0 @21 PRIVATE
+  SLGetPolicyInformation@0 @22 PRIVATE
+  SLGetPolicyInformationDWORD@0 @23 PRIVATE
+  SLGetProductSkuInformation@0 @24 PRIVATE
+  SLGetSAMLicense@0 @25 PRIVATE
+  SLGetSLIDList@0 @26 PRIVATE
+  SLGetServiceInformation@0 @27 PRIVATE
+  SLGetWindowsInformation@16 @28
+  SLGetWindowsInformationDWORD@8 @29
+  SLInstallLicense@0 @30 PRIVATE
+  SLInstallProofOfPurchase@0 @31 PRIVATE
+  SLInstallSAMLicense@0 @32 PRIVATE
+  SLOpen@4 @33
+  SLReArmWindows@0 @34 PRIVATE
+  SLRegisterEvent@0 @35 PRIVATE
+  SLRegisterWindowsEvent@0 @36 PRIVATE
+  SLUninstallLicense@0 @37 PRIVATE
+  SLUninstallProofOfPurchase@0 @38 PRIVATE
+  SLUninstallSAMLicense@0 @39 PRIVATE
+  SLUnregisterEvent@0 @40 PRIVATE
+  SLUnregisterWindowsEvent@0 @41 PRIVATE

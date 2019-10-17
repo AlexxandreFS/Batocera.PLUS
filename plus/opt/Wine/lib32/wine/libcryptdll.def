@@ -1,0 +1,19 @@
+; File generated automatically from dlls/cryptdll/cryptdll.spec; do not edit!
+
+LIBRARY cryptdll.dll
+
+EXPORTS
+  CDBuildIntegrityVect@0 @1 PRIVATE
+  CDBuildVect@0 @2 PRIVATE
+  CDFindCommonCSystem@0 @3 PRIVATE
+  CDFindCommonCSystemWithKey@0 @4 PRIVATE
+  CDGenerateRandomBits@0 @5 PRIVATE
+  CDLocateCSystem@0 @6 PRIVATE
+  CDLocateCheckSum@0 @7 PRIVATE
+  CDLocateRng@0 @8 PRIVATE
+  CDRegisterCSystem@0 @9 PRIVATE
+  CDRegisterCheckSum@0 @10 PRIVATE
+  CDRegisterRng@0 @11 PRIVATE
+  MD5Final@4=advapi32.MD5Final @12
+  MD5Init@4=advapi32.MD5Init @13
+  MD5Update@12=advapi32.MD5Update @14

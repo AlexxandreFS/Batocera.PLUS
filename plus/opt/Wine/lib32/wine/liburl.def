@@ -1,0 +1,26 @@
+; File generated automatically from dlls/url/url.spec; do not edit!
+
+LIBRARY url.dll
+
+EXPORTS
+  AddMIMEFileTypesPS@8 @1
+  AutodialHookCallback@0 @2 PRIVATE
+  DummyEntryPoint@0 @3 PRIVATE
+  DummyEntryPointA@0 @4 PRIVATE
+  FileProtocolHandler@16=FileProtocolHandlerA @5
+  FileProtocolHandlerA@16 @6
+  InetIsOffline@4 @7
+  MIMEAssociationDialogA@0 @8 PRIVATE
+  MIMEAssociationDialogW@0 @9 PRIVATE
+  MailToProtocolHandler@0 @10 PRIVATE
+  MailToProtocolHandlerA@0 @11 PRIVATE
+  NewsProtocolHandler@0 @12 PRIVATE
+  NewsProtocolHandlerA@0 @13 PRIVATE
+  OpenURL@16=OpenURLA @14
+  OpenURLA@16 @15
+  TelnetProtocolHandler@8=TelnetProtocolHandlerA @16
+  TelnetProtocolHandlerA@8 @17
+  TranslateURLA@0 @18 PRIVATE
+  TranslateURLW@0 @19 PRIVATE
+  URLAssociationDialogA@0 @20 PRIVATE
+  URLAssociationDialogW@0 @21 PRIVATE

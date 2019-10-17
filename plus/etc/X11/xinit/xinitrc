@@ -1,0 +1,166 @@
+#!/bin/sh
+################################################################################
+
+### Resolve o bug, de não carregar os arquivos de configuração da pasta
+### /etc/triggerhappy/triggers.d necessário para ativar os atalhos de teclado.
+
+/etc/init.d/K10triggerhappy restart
+
+################################################################################
+
+# hide mouse cursor
+unclutter --noevents -b
+
+systemsetting="python /usr/lib/python2.7/site-packages/configgen/settings/batoceraSettings.py"
+
+# set the keyboard
+settings_lang="`$systemsetting -command load -key system.language`"
+
+# not always true (en_US for us), but it's really better than always english
+map_name=$(echo $settings_lang | cut -c 1-2)
+setxkbmap "${map_name}"
+
+# disable dpms to prevent screen from blanking
+xset -dpms
+xset s off
+
+# environment
+export HOME=/userdata/system
+export LC_ALL="${settings_lang}.UTF-8"
+export LANG=${LC_ALL}
+
+# because of xinerama breaking es, enable only one screen at a time
+settings_output="`$systemsetting -command load -key global.videooutput`"
+batocera-resolution setOutput "${settings_output}" # empty or invalid values defaults to the first valid
+
+# dpi override for nvidia gpus
+settings_output="`$systemsetting -command load -key global.dpi`"
+[ ! -z "${settings_output}" ] && batocera-resolution setDPI "${settings_output}"
+
+#####################
+## CUSTOMISATIONS ###
+# to customize your display, you can copy this file to ~/.xinitrc and then modify it
+
+# rotate the screen
+# xrandr -o left
+# xrandr -o right
+# xrandr -o inverted
+
+### Resolution VGA 4x3
+#xrandr -r 60 -s 160x120
+#xrandr -r 60 -s 360x640
+#xrandr -r 60 -s 640x480
+#xrandr -r 60 -s 720x480
+#xrandr -r 60 -s 800x600
+#xrandr -r 60 -s 1024x768
+
+### ResolutionHD 16x9
+#xrandr -r 60 -s 1280x720
+#xrandr -r 60 -s 1920x1080
+
+### Resolution OUTRAS 16x9
+#xrandr -r 60 -s 1152x864
+#xrandr -r 60 -s 1280x800
+#xrandr -r 60 -s 1440x900
+#xrandr -r 60 -s 1600x900
+
+#####################
+#####################
+
+################################################################################
+
+### Forces resolution
+
+# set user desired resolution
+# nice workaround for displays which tell X11 to use strange resolutions
+if [ "$(grep ^global.videomode /boot/batocera-boot.conf)" ]; then
+    settings_output="$(grep ^global.videomode /boot/batocera-boot.conf | cut -d '=' -f 2)"
+else
+    settings_output="$($systemsetting -command load -key global.videomode)"
+fi
+
+[ ! -z "${settings_output}" ] && batocera-resolution setMode "${settings_output}"
+
+batocera-resolution minTomaxResolution
+
+################################################################################
+
+### Force vsync
+
+xset -dpms
+xset s off
+
+################################################################################
+
+### Resolve o bug de não identificar o teclado PT-BR ABNT2
+
+if [ "$(cat $HOME/batocera.conf | grep system.language=pt_BR)" ]; then
+    setxkbmap -model abnt2 -layout br -variant ,abnt2 &
+fi
+
+################################################################################
+
+### Imagem de carregamento alternativa.
+
+# Observação1:
+# Neste código eu esqueci que o o kodi pode iniciar automáticamente.
+# Este é um exemplo de código que pode resolver o problema a ser implatado
+# while [[ ! -f "/tmp/emulationstation.ready" && ! -e "/var/run/kodi.msg" && $count -lt 200 ]]; do
+
+if [ -f "$HOME/configs/emulationstation/es_settings.cfg" ]; then
+    THEME_NAME="$(cat "$HOME/configs/emulationstation/es_settings.cfg" | grep '<string name="ThemeSet" value=' | cut -d '"' -f 4)"
+    if ! [ "$THEME_NAME" ]; then
+        THEME_NAME='batocera-plus'
+    fi
+else
+    THEME_NAME='batocera-plus'
+fi
+
+if [ -d "$HOME/themes/$THEME_NAME" ]; then
+    THEME_DIR="$HOME/themes/$THEME_NAME"
+elif [ -d "/etc/emulationstation/themes/$THEME_NAME" ]; then
+    THEME_DIR="/etc/emulationstation/themes/$THEME_NAME"
+else
+    THEME_DIR='/etc/emulationstation/themes/batocera-plus'
+fi
+
+if [ -f "$THEME_DIR/loadscreen/startscreen.png" ]; then
+    START_SCREEN="$THEME_DIR/loadscreen/startscreen.png"
+elif [ -f "$THEME_DIR/loadscreen/startscreen.jpg" ]; then
+    START_SCREEN="$THEME_DIR/loadscreen/startscreen.jpg"
+elif [ "/etc/emulationstation/themes/batocera-plus/loadscreen/startscreen.png" ]; then
+    START_SCREEN='/etc/emulationstation/themes/batocera-plus/loadscreen/startscreen.png'
+elif [ "/etc/emulationstation/themes/batocera-plus/loadscreen/startscreen.jpg" ]; then
+    START_SCREEN='/etc/emulationstation/themes/batocera-plus/loadscreen/startscreen.jpg'
+fi
+
+while [ true ]; do
+
+    # Aguarda o emulationstation entrar em execução para exibir a tela de carregamento.
+    if [ "$(pidof emulationstation)" ]; then
+        sleep 1
+        nice -n +19 retroarch -L '/usr/lib/libretro/imageviewer_libretro.so' \
+                    --config '/usr/share/batocera/datainit/system/configs/retroarch/retroarchcustom.cfg' \
+                    "$START_SCREEN" &
+        sleep 3
+        # Interrompe a tela de carregamento quando o emulationstation terminar o loading.
+        while [ true ]; do
+            sleep 1
+            if [ -f '/tmp/emulationstation.ready' ]; then
+                killall retroarch
+                break
+            fi
+        done
+        break
+    fi
+    sleep 0.2
+done &
+
+################################################################################
+
+# allow coredumps for ES
+ulimit -H -c unlimited
+ulimit -S -c unlimited emulationstation
+
+cd /userdata # es needs a PWD
+openbox --config-file /etc/openbox/rc.xml --startup "emulationstation --windowed --no-splash"

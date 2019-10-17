@@ -1,0 +1,18 @@
+Atualizar e/ou traduzir o firefox
+
+Baixe o firefox do site oficial da mozilla para Linux 64-bit no seu idioma:
+https://www.mozilla.org/en-US/firefox/organizations/all/
+
+1 - Descompacte o arquivo baixado
+2 - Mova os arquivos do firefox que acabam de ser descompactados para a pasta
+    roms/internet/firefox.linux64.
+
+
+Receita de bolo:
+
+Vá até a pasta de downloads /datainit/downloads (tecla F1) e abra o terminal (tecla F4)
+no terminal execute estes comandos:
+
+    bunzip2 nome-do-arquivo-baixado.tar.bz2
+    tar xvf nome-do-arquivo-baixado.tar
+    mv -r   firefox/* /datainit/roms/internet/firefox.linux64

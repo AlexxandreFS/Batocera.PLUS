@@ -1,0 +1,71 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>FD6420</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>404040</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>F38900</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>262626</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Manufacturer : Epyx / Atari</text>
+			<pos>0.38 0.72</pos>
+		</text>
+		<text name="info2" extra="true">
+			<text>Year of Release : 1989</text>
+			<pos>0.38 0.74</pos>
+		</text>
+		<text name="info3" extra="true">
+			<text>Units sold : 1 million</text>
+			<pos>0.38 0.76</pos>
+		</text>
+		<text name="info4" extra="true">
+			<text>CPU : 8-bit with 16-bit address space</text>
+			<pos>0.38 0.8</pos>
+		</text>
+		<text name="info5" extra="true">
+			<text>Co-Processors : Mikey and Suzy 2 x 16-bit</text>
+			<pos>0.38 0.82</pos>
+		</text>
+		<text name="info6" extra="true">
+			<text>RAM : 64K 120 ns DRAM</text>
+			<pos>0.38 0.84</pos>
+		</text>
+		<text name="info7" extra="true">
+			<text>ROM : 512 bytes</text>
+			<pos>0.38 0.86</pos>
+		</text>
+		<text name="info8" extra="true">
+			<text>Resolution : 160 x 102 pixels</text>
+			<pos>0.38 0.88</pos>
+		</text>
+		<text name="info9" extra="true">
+			<text>Sound :  4 channels, 8-bit DAC</text>
+			<pos>0.38 0.90</pos>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>FD6420</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>404040</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>F38900</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>262626</color>
+		</image>
+	</view>
+</theme>

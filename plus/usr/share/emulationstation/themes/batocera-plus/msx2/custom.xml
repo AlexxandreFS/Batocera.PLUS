@@ -1,0 +1,71 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>d6d4d4</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>b7b7b7</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>515050</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>2323dc</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Manufacturer : Various</text>
+			<pos>0.38 0.72</pos>
+		</text>
+		<text name="info2" extra="true">
+			<text>Year of Release : 1985</text>
+			<pos>0.38 0.74</pos>
+		</text>
+		<text name="info3" extra="true">
+			<text>OS : MSX BASIC V3.0 (16 kB)</text>
+			<pos>0.38 0.76</pos>
+		</text>
+		<text name="info4" extra="true">
+			<text>CPU : Zilog Z80 compatible @ 3.58 MHz</text>
+			<pos>0.38 0.80</pos>
+		</text>
+		<text name="info5" extra="true">
+			<text>RAM : 64KB / VRAM 128KB</text>
+			<pos>0.38 0.82</pos>
+		</text>
+		<text name="info6" extra="true">
+			<text>ROM : 64KB</text>
+			<pos>0.38 0.84</pos>
+		</text>
+		<text name="info7" extra="true">
+			<text>GPU : Yamaha V9958 (aka MSX-Video)</text>
+			<pos>0.38 0.86</pos>
+		</text>
+		<text name="info8" extra="true">
+			<text>Sound chip : Yamaha YM2149 (PSG)</text>
+			<pos>0.38 0.88</pos>
+		</text>
+		<text name="info9" extra="true">
+			<text>Resolution : 256×212 (19268 simultaneous colors)</text>
+			<pos>0.38 0.90</pos>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>d6d4d4</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>b7b7b7</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>515050</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>2323dc</color>
+		</image>
+	</view>
+</theme>

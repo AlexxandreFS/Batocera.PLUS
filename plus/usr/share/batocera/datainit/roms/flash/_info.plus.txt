@@ -1,0 +1,13 @@
+## SYSTEM FLASH GAMES ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted: ".swf .SWF"
+-------------------------------------------------------------------------------
+INFO: É possível baixar os jogos diretamente do navegar web para o diretório de
+      roms do flash, porém alguns jogos são protegidos e somente podem rodar na
+      página do desenvolvedor ou do site autorizado.
+-------------------------------------------------------------------------------
+Integrado ao Batocera.PLUS por:
+Alexandre Freire dos Santos (alexxandre.freire@gmail.com)
+Agradescimentos Especiais:
+José Adriano de Souza (joseadrianotec@gmail.com)
+-------------------------------------------------------------------------------

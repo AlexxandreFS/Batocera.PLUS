@@ -1,0 +1,3610 @@
+
+
+R A I N E
+M680x0 Arcade Emulation
+(c)1998-2002 Antiriad & Raine Team
+v0.36: MS-DOS/LINUX/WIN32
+
+Table des Matières
+
+1 What is Raine?
+2 Requirements
+3 Specific versions
+    3.1 Introduction : which one is the fastest ???
+    3.2 Building a mini-raine
+    3.3 DOS
+    3.4 Linux
+        3.4.1 General description
+        3.4.2 Compiling sources
+        3.4.3 Going further
+    3.5 Windows
+        3.5.1 General description
+        3.5.2 Installing from sources
+4 Installing roms
+    4.1 Zip Support
+    4.2 Rom directories
+5 Command Line Usage
+6 Performance tips
+    6.1 Video
+    6.2 Sound
+    6.3 The Free number
+    6.4 Windows version
+    6.5 Dos version
+    6.6 Linux
+7 GUI Usage
+    7.1 Snapshots
+    7.2 Screen Setup
+        7.2.1 General settings
+        7.2.2 Video Effects
+        7.2.3 Scanlines
+    7.3 Sound Setup
+    7.4 Game Setup Options
+8 'Action Replay' Cheating
+    8.1 Cheat Editing
+    8.2 Cheat Searching
+9 Cheats and gameplay tips
+    9.1 Raizing driver (toaplan2)
+    9.2 Cave driver
+    9.3 Battle Garegga
+    9.4 Batrider
+    9.5 Bomb Jack Twin
+    9.6 Thunder Dragon
+    9.7 Bubble Memories, Bubble Symphony
+    9.8 Legend of Makaj
+    9.9 New Zealand Story
+    9.10 Rainbow Islands Extra
+    9.11 Rodland Japanese
+    9.12 Rodland English
+10 Sound options
+    10.1 Mixer
+    10.2 Saving sound to a WAV file
+11 Hiscore support
+12 Continuous playing
+13 Demos
+14 General Controls
+    14.1 General ingame keys:
+    14.2 Keys in Pause mode:
+    14.3 Default Player keys:
+    14.4 Misc:
+    14.5 Analog Controls in Chase HQ
+    14.6 Gun controls in Spacegun
+    14.7 Extra controls for the Taito F3-System games:
+15 Config Files
+16 Game Information
+    16.1 Some of the emulated Systems
+17 Raine Team
+    17.1 Special Thanks
+    17.2 Rom Dumps
+    17.3 Thanks
+    17.4 Stuff
+18 History
+    18.1 Raine v0.36
+    18.2 Raine v0.35b
+    18.3 RAINE v0.35a
+    18.4 RAINE v0.35 : QSound
+    18.5 Raine v0.34b
+    18.6 Raine v0.34a
+    18.7 RAINE v0.34 : Speed !
+    18.8 RAINE 0.33 : Rush
+    18.9 RAINE v0.32a : bugfixes and new cheat system
+    18.10 RAINE v0.32 : Capcom, and the return of windows ! - DOS/Linux/Windows.
+    18.11 RAINE v0.31a: Bug fix release
+    18.12 v0.31: New Fundations - Dos/Linux
+    18.13 RAINE v0.30a: "Soundfix" - DOS/Linux/Windows
+    18.14 RAINE v0.30: "Rebirth" - DOS/Linux/Windows
+    18.15 RAINE v20000819 (Open Source)
+    18.16 RAINE v20000809 (Open Source)
+    18.17 RAINE v20000725 (Open Source)
+    18.18 RAINE v0.28h
+    18.19 RAINE v0.28g
+    18.20 RAINE v0.28f
+    18.21 RAINE v0.28a
+    18.22 v0.27ezel: "Irritiations"
+    18.23 v0.27beta: "Buggs/Defect"
+    18.24 v0.27alpha: "Better release something, or it will never get done"
+    18.25 v0.24a: "Bub and Bob are my heroes...."
+    18.26 v0.23: "Sidewinder release"
+    18.27 v0.22: "Chase HQ release"
+    18.28 v0.20: "101 games release"
+    18.29 v0.18: "Jaleco release; dedicated to AraCorn"
+19 Lists of boards
+    19.1 TAITO BOARD LIST - Vixen, Antiriad & Raine Team
+    19.2 NMK LIST - Antiriad & Raine Team
+20 List of supported games
+21 Disclaimer
+    21.1 Distribution
+    21.2 Rom Ownership
+22 HTTP
+
+
+
+1 What is Raine?
+
+Raine is an emulator, it emulates some M68000 and M68020
+arcade games and is mainly focused on Taito and Jaleco games
+hardware. It started as an experiment with the Rainbow Islands
+romset, dumped by Aracorn/Romlist. Raine can emulate many
+nice games now, including new additions from Cave and other
+companies. Sound was improved thanks to the work of Hiromitsu
+Shioya. More recently, 
+
+Several new programmers have joined Raine Team, adding drivers
+& making improvements.
+
+Emulating cpu's and sound chips takes quite a lot of coding
+time, so, like most of the current emulators, Raine uses
+emulation engines already available when possible. Raine
+uses the following:
+
+
+CPU:
+
+M68000: Neill Corlett's Starscream 68000 emulator.
+
+M68020: Based on Bernd Schmidt's UAE 68020 emulator.
+
+Z80: Neil Bradley's MZ80 emulator.
+
+M68705 Richard Mitton's static recompiler. 
+
+SOUND:
+
+YM2151: Jarek Burczynski.
+
+YM2203 Tatsuyuki Satoh.
+
+YM2610: Tatsuyuki Satoh and Hiromitsu Shioya.
+
+YM3526: Carl-Henrik Skaarstedt.
+
+YM3812: Carl-Henrik Skaarstedt.
+
+YMZ280B: Aaron Giles (from MAME source)
+
+ES5506: Aaron Giles (from MAME source)
+
+M6295: Hiromitsu Shioya.
+
+M6585: Richard Bush.
+
+MSM5205: Hiromitsu Shioya.
+
+2 Requirements
+
+[These are rough estimates, based only on the DOS version
+of raine, full speed means running at 60fps with no frameskipping]
+
+Abundant requirements:
+
+* Pentium II Processor with MMX (Minimum 300Mhz for Taito
+  F3 Sound)
+
+* 64Mb of ram (128Mb for Cave games)
+
+* Win9x/Win2k/WinXP/MSDOS/Linux
+
+* A sound card.
+
+* Graphics card (VESA2 or better support recommended for
+  dos)
+
+=> You should get full speed in nearly all games with sound
+at a high rate (my current pc).
+=> You can vastly improve the emulation speed in the Taito
+F3 games on slower computers by completely disabling sound!
+
+Average requirements (MSDOS):
+
+* Pentium Processor
+
+* 16Mb of ram
+
+* Win9x/MS-DOS
+
+* 'DOS friendly' sound card
+
+* Graphics card (VESA2 or better support recommended)
+
+=> You should get good speed in most games with sound at
+an average rate. Many games should be full speed (my old
+pc). Note that some newly added large games will need more
+RAM though.
+
+Minimal requirements:
+
+* 486 SX-25
+
+* Win3.1/MS-DOS
+
+* 12Mb of ram
+
+* 'DOS friendly' sound card
+
+* Graphics card (VESA2 or better support recommended)
+
+=> You should find many games playable if you disable sound
+and set a manual frameskip of about 4 (JCK's pc).
+
+3 Specific versions
+
+3.1 Introduction : which one is the fastest ???
+
+I would say :
+
+1. Dos version with VBE driver
+
+2. Linux version with SVGA driver
+
+3. Linux with DGA, and Windows with DirectX accelerated (fullscreen)
+
+4. Windowed modes
+
+Dos is still the fastest version because it has direct access
+to the hardware, with no multi-tasking to slow it down.
+
+SVGA comes 2 because it's almost the same kind of access
+as VESA in dos...
+
+The so-called accelerated drivers in windows and DGA in linux,
+and last the windowed modes.
+
+3.2 Building a mini-raine
+
+Starting with version 0.32, you can build a CPS only raine.
+Just type "make RAINECPS=1"
+instead of "make" when you build
+raine.
+
+3.3 DOS
+
+Nothing special to say here. Raine dos has always existed
+! It is still probably the fastest version available, because
+it has not the restrictions of the other versions which
+are running in multi-tasking environements...
+
+If you want to compile it, see [http://www.logiqx.com/HowTo/HowTo.shtml||Logiqx site].
+It should be as easy as typing "make"
+once you have installed everything needed !
+
+3.4 Linux
+
+3.4.1 General description
+
+This version supports an incredible amount of video drivers.
+Here they are :
+
+* VGA : not very usefull, but since it's available...
+
+* ModeX : (by direct access to the ports, you have to be
+  root to use it). Note : the port access is safe, you can
+  even switch from or to X while using raine in ModeX in
+  the console !!! This mode is not very fast though.
+
+* SVGALib, It gives faster results than modeX. You also need
+  to be root to use it (well, starting with the 1.9 dev
+  branch, certain video cards can be used by normal users
+  in svga, but it is still very experimental...). Note also
+  that SVGAlib can be dangerous, and you might finish with
+  a black screen if you use it too much (then if you really
+  can't get your screen back to normal, then Ctrl+Alt+Del
+  should do : a nice reboot). More about SVGAlib : this
+  is the fastest driver available for 8bpp games if a driver
+  exists for your video card, especially if you use an agp
+  card, and you can configure your agp port for full speed
+  (SVGAlib does not do it yet, but X does...). 
+  You can build your list of custom modes for svgalib. For
+  that use the newmode command in the libvga.config file.
+  The deduced syntax for newmode (since it is not documented
+  !) is :
+  newmode width height colours width*(bytes_per_pixel) bytes_per_pixel
+  Yes I know, it can look redundant, but that's what the
+  config file expect...
+
+* Example :
+
+# Here is a mode for a ZX Spectrum emulator:
+
+Modeline "256x192@73" 12.588 256 269 312 360 192 208 212
+240 doublescan
+
+newmode 256 192 256 256 1
+
+newmode 256 192 65536 512 2
+
+Modeline "320x224" 12.75 320 340 388 400 224 228 230 240
+doublescan
+
+newmode 320 224 256 320 1
+
+newmode 320 224 65536 640 2
+
+Modeline "384x240" 20.00 384 392 440 480 240 244 246 262
+doublescan
+
+newmode 384 240 256 384 1
+
+newmode 384 240 65536 768 2
+
+Modeline "360x288" 20.00 360 368 416 448 288 292 298 310
+doublescan
+
+newmode 360 288 65536 720 2 # 8bpp does not work for me here...
+
+Modeline "360x256" 18.00 360 368 416 448 256 260 266 278
+doublescan
+
+newmode 360 256 65536 720 2
+
+* X, which allows raine to run in a little X Window. For
+  this one, no prviledges are needed, any user can run it.
+  Of course it is not very fast, but with a fast X server
+  on a fast computer, everything runs fine ! And it can
+  even be run remotely ! Then it is much slower, but it
+  is fun !!!
+
+* Xwindows fullscreen : New in 0.32a, this driver allows
+  a normal user (not root) to have raine in fullscreen in
+  X11. However DGA is faster, so use DGA if you can !
+
+* X with DGA. You have to be root to use it. It looks like
+  the directX modes of windows (full screen). Very nice,
+  especially with the customized graphics mode (see below).
+  Very fast too, especially in 16bpp or higher. New in 0.31
+  : the list of available modes is built from your XF86Config
+  file.
+
+* Frame Buffer : if your kernel is configured to use frame
+  buffer, then raine will use it in the console. You don't
+  need to be root to use it, and it is very fast. I did
+  not tried customized modes yet and the list of cards supporting
+  it well is very little. Moreover, in 8bpp you are stuck
+  with the slow palette functions from Allegro, which makes
+  it slower than SVGA (normally). The list of modes is red
+  directly from /etc/fb.modes.
+
+3.4.2 Compiling sources
+
+This version has the exact same requirements as the dos version.
+You should be able to just type "make"
+once you have installed everything needed. See [http://www.logiqx.com/HowTo/HowTo.shtml||Logiqx site]
+for more details.
+
+3.4.3 Going further
+
+One of the nicest features of this new release is the addition
+of a DGA2 driver. To access this driver, you must be root,
+and run raine in a DGA-enabled XFree server. DGA is enabled
+by default if your X server supports it.
+
+In short, DGA is the equivalent of DirectDraw for linux.
+But since it is based on XFree, it can access any graphical
+mode that you can define in X, and that makes it VERY interesting
+!!!
+
+Enabling arcade video modes in your X server
+
+This should enable you to enjoy full screen DGA for almost
+any raine game. Especially now that raine knows how the
+change the resolution (and the depth) for each game loaded.
+
+If everything goes fine, you should find :
+
+modelines : this is a file distributed with xmame generally,
+and containing the definitions of these most usefull modes.
+
+XF86Config-4.sample : my config file for my X server.
+
+Basically, my XF86Config file shows you how I adapted this
+file from mame to my configuration. You should especially
+be carefull to have right values in your HorizSync and VertRefresh
+(capabilities of your monitor). Note also that I was obliged
+to remove all the modes with a width < 320 pixels and those
+with a width = 400 pixels, since my configuration could
+not support them. The next steps is to add the modes you
+want in the Modes lines of your "Screen" section. Then you
+should use xvidtune to center theses modes on screen, and
+you are done.
+
+International keyboards in XFree :
+
+Just rename the allegro-fr.cfg included with raine to have
+support for french keyboard in X11. For other keyboards,
+see xkeymap in allegro... (sorry I know it's convinient,
+but it's the way allegro works for now). Without it, some
+keys won't work in X ! (3 key for french keyboards for example...).
+
+3.5 Windows
+
+3.5.1 General description
+
+Graphics drivers : this version uses 3 full screen drivers
+(Accelerated, safe and software), and one windowed driver.
+The overlay driver is a hacked windowed driver based on
+a fullscreen one to be even faster, but it works only on
+very few video cards... All the video effects do not work
+with the accelerated driver. Try them, and choose the one
+you prefer, depending on your preferences... If you just
+use standard video, with no special effects, then the accelerated
+driver should do.
+
+The windows version is heavily dependant on the version of
+the graphics drivers you are using for your video card.
+For example a few drivers render distorted palettes while
+raine is making fade-ins or fade-outs, and the gui palette
+is distorted sometimes in 8bpp. If you experiment this try
+to update your graphics driver version and/or directx.
+
+For sound, we left all the drivers available in allegro for
+now, but the only driver really working is the AllegMix
+driver. 2 settings for this one : Default, or specific to
+a soundcard. Try them... Also we found lately that the AllegMix
+drivers require your soundcard to support hardware acceleration
+in directx. You can find out if yours does by running dxdiag.exe.
+If your soundcard does not support this, you will just hear
+silence !
+
+3.5.2 Installing from sources
+
+In recent versions of allegro (4.0.0) and gcc, raine can
+now be either be linked staticaly or dynamicaly with allegro.
+The default is now dynamic, like linux.
+To compile raine using mingw32, just define MINGDIR in your
+environement :
+
+set mingdir=c:\mingw (for example)
+
+Then go to the raine directory and type make.
+
+For djgpp, djdir must be defined.
+
+Linux, cygwin and Freebsd are using the OSTYPE environement
+variable.
+
+Nothing specific to say. You can build allegro from sources
+or install the binary library plus the include files. Raine
+can now be linked with the allegro dll built by MSVC.
+
+For more detailed instructions on how to build raine (not
+allegro), refer to [http://www.logiqx.com/HowTo/HowTo.shtml||Logiqx site].
+
+4 Installing roms
+
+Before playing any game, you need to find the correct romset.
+Try the links at the end of this text or a search engine.
+If you can't find them, too bad. When you have downloaded
+some games you can either:
+
+
+a) Put the zipped rom in the raine\roms\ directory
+
+b) Unzip the roms to raine\roms\<gamename>\
+
+
+* Note that you don't need to unzip your roms, it's just
+  an option. See below.
+
+* If you get stuck, learn about directories first (also read
+  rainefaq.txt - err, well raine faq has been lost recently,
+  but now we have a forum... !)
+
+4.1 Zip Support
+
+You also can place zipped copies of the romsets in the 'roms'
+subdirectory (eg. raine\roms). Raine will then access the
+zip to load the roms, saving a lot of diskspace. Zip support
+is now internal to Raine (using zlib+minizip), this should
+be faster than before.
+
+4.2 Rom directories
+
+You can now configure three different rom paths via the gui
+or config file (very useful if you have some roms on CD).
+Also, you can configure three different ziprom paths. To
+do this, click on 'change game', then on 'dirs'. Either
+type in the paths, or use the file selector (click the small
+square buttons).
+
+5 Command Line Usage
+
+USE: Raine <commands> <options>
+
+Commands:
+
+  -game/-g [gamename]               Select a game to load (see game list)         
+  -help/-?/-h/--help                Show command line options and list games      
+  -joystick/-j [type]               Select joystick type (see list in raine.cfg)  
+  -limitspeed/-l                    Limit emulation speed to 60fps                
+  -gamelist/-gl                     Quick list of all games                       
+  -gameinfo/-listinfo <gamename>    List info for a game, or all games            
+  -romcheck/rc <gamename>           Check roms are valid for a game, or allgames  
+  -nogui                            Disable GUI (useful for frontends)            
+  -leds                             Enable keyboard LED usage                     
+  -noleds                           Disable keyboard LED usage                    
+  -screenx/sx [width]               Select screen width                           
+  -screeny/sy [height]              Select screen height                          
+  -screenmode/sm [type]             Select screen type (see list in raine.cfg)    
+  -bpp/-depth [number]              Select screen colour depth                    
+  -rotate/-r [angle]                Rotate screen 0,90,180 or 270 degrees         
+  -ror                              Rotate screen 90 degrees                      
+  -rol                              Rotate screen 270 degrees                     
+  -norotate/-nor                    Ignore default rotation in game drivers       
+  -flip/-f                          [0-3] Flip screen on none, x, y or x+y axis   
+  -flipx/-fx                        Flip screen on x axis                         
+  -flipy/-fy                        Flip screen on y axis                         
+  -noflip                           Ignore default flipping in game drivers       
+  -hide                             Hide the gui (play at work)                   
+  -listdsw <gamename>               List dipswitches for a game, or all games     
+  -cont                             Enable continuous playing                     
+  -nocont                           Disable continuous playing                    
+               
+
+Options:
+
+  -verbose    Show extra information for some options  
+
+
+
+Other options are available only from the GUI/config file
+for now.
+
+For example, to load Wrestle Fest: raine -game wrestlef
+If you get VESA errors, get Scitech Display Doctor from www.scitechsoft.com.
+You can also use shorter command line options like -n (-nogui),
+-g (-game), -sx (-screenx) etc...
+See the gui for more screen resolutions from 80x80 to 1600x1200.
+
+6 Performance tips
+
+Usually raine is already very fast "out
+of the box", but these tips might help you to
+make it run even faster. If you want to be able to tune
+performance settings, you must display the rdtsc timers
+: press F11 3 times, and you should get a few % displays
+on the top right corner of the screen : CPU, Sound, Video,
+Pal, Misc, and Free.
+
+6.1 Video
+
+Games will usually run much faster in 8bpp than in any higher
+color depth, except if the game really uses more than 256
+colors. This is because if you choose 16bpp, then raine
+must write 2 bytes for 1 pixel, and it writes only 1 byte/pixel
+for 8bpp.
+
+Games known to actually use more than 256 colors are Atlus
+Cave games (Esprade, dodonpachi, Guwange...), and maybe
+one or 2 others.
+
+If you are in 8bpp and the game uses more than 256 colors,
+then you will see the number in front of "Pal"
+in the rdtsc display going high. Normally the palette number
+should stay at 0 or 1% (or maybe a little higher on very
+slow machines). In any case it should be constant. If you
+see it raising, then you have a palette problem. First check
+"fast_set_pal[fast_set_pal]",
+and if fast_set_pal is ok and you still have the problem,
+then switch to 16bpp.
+
+Video effects should not slow down very much the game play
+except the stretch functions which are still in software
+mode.
+
+6.2 Sound
+
+In Sound Options, you can choose the sound bitrate. 22Khz
+is the good average value. I don't know any game which actually
+uses 44Khz, so the difference should not be possible to
+hear. 11025 Hz is for the very slow machines : the quality
+gets lower, but you still have sound, and the sound creation
+is faster.
+
+You can also choose "Silence",
+to turn off sound, which should greatly improve speed, especially
+in taito-f3 games.
+
+6.3 The Free number
+
+It shows how much free cpu power you have. If it is > 0,
+then your game runs at 60fps.
+
+If you see it jumping very quickly all the time, then it
+most probably means that you are running another program
+in the background which is eating your cpu power. Raine
+is very sensitive to this in multitasking environements
+because it synchronises with the rdtsc counter of the cpu
+which will never slow down, no matter how loaded your cpu
+is. A java applet in the browser can eat a lot of cpu power
+for example !
+
+6.4 Windows version
+
+This version has not many things you can change for performance.
+Just be sure to run in full screen, which is much faster
+than in windowed modes, and prefer 8bpp color depth than
+16bpp or more.
+
+6.5 Dos version
+
+Be sure to use a fast video driver : VESA 3.0 or VBE/AF.
+To use these, you will very likely be obliged to use Scitech
+display doctor. Grab it from our archives page if you don't
+have it.
+
+6.6 Linux
+
+If you can be root on your machine, use DGA or svga modes,
+and prefer 8bpp. If you can't, then well, the standard X11
+modes should do. Frame buffer modes are quite fast too,
+but it's very hard to have custom video modes in fbcon.
+
+7 GUI Usage
+
+Just type raine in DOS or in linux, or double-click raine.exe/raine32.exe
+in Windows, and the gui should appear:
+
+Play Game: Play the currently loaded game.
+
+Change Game: Load a different game.
+
+Control Setup: Change key settings/joystick type.
+
+Screen Setup: Change screenmode/scanlines/vsync/frame
+  skip etc...
+
+Sound Setup: Change soundcard/sample rate.
+
+Game Setup: Reset game/dipswitches/rom switches/cheat
+  codes (see below).
+
+About Raine\Game Info: Information
+  about the loaded game.
+
+Quit Raine: Back to Win9x/DOS.
+
+7.1 <Snapshot>Snapshots
+
+Starting with version 0.32a, raine can now display some little
+snapshots of the games in the game selection dialog. For
+that, you must download a snapshots pack from the raine
+site, and unpack it in your raine directory. It will create
+a snapshot directory, filled with pcx files.
+
+For info, the snapshots are 130x76 for horizontal games,
+and 70x120 for vertical games.
+
+7.2 Screen Setup
+
+This dialog requires some descriptions, but I'll avoid the
+obvious and describe only the most obscure parts... 
+
+7.2.1 General settings
+
+Frame skip : normally should stay on "Automatic".
+  It can allow you to have a fine tune if you are running
+  raine on a very slow computer which drops frames all the
+  time, and you want a constant frame rate anyway.
+
+Triple Buffer : it's to try to improve display quality,
+  but it deos not work with all video drivers and requires
+  some more cpu power. With most modern monitors, you should
+  be able to leave this off.
+
+Limit Speed : except if you want to run some kind
+  of benchmark, you should leave this on. If you turn it
+  off, raine will try to run the game as fast as it can,
+  making it totally unplayable most of the time !
+
+Vsync Palette : This option is for despearate cases :
+  when your colors flicker you can try to turn this on,
+  but it might be slow. Some better things to try : in windows,
+  upgrade your video driver. Try to run the game in 16bpp.
+  In DGA 8bpp, if you use the default allegro library it
+  will automatically synchronize the palette whatever is
+  your setting. So the palette cpu time should be around
+  10-20%. If you use the patched allegro version, or if
+  you use a raine binary from an official distribution,
+  then the palette WILL NOT be synchronized by default.
+  It's usefull because most games don't change very much
+  their palette during game play, so colors don't usually
+  flicker at all. If they flicker too much for you anyway,
+  then turn this setting on.
+  You can also try the fast_set_pal setting in raine.cfg :
+  
+  fast_set_pal<fast_set_pal> = 1 is the default.
+  In Windows if all your colors are bad in full screen with
+  this setting (for 8bpp games) try fast_set_pal = 2. This
+  setting will have no effect in windows 2000 and windows
+  xp, because these OS forbid direct access to the palette.
+  For the same reason it won't work in linux DGA or X11
+  drivers, but it will work in linux svga and fbcon drivers
+  ! In dos, it should work everywhere.
+
+Auto mode change : When raine knows for sure
+  which video modes are supported by your video hardware,
+  it tries by default to choose the best mode for the game
+  you are loading. It does not change the color depth though,
+  so if you see the palette cpu time rising (F11 key by
+  default), then it's time to switch to a higher color depth...
+  There are rare cases though when you might want raine not
+  to change the video mode. That's when you are running
+  with a crapy monitor which does not like mode changes
+  for example, or when you want to run the raine debuger
+  (which requires a large screen of course). In these cases
+  you can turn this "Off".
+  The setting is automatically saved by raine.
+
+7.2.2 Video Effects
+
+Eagle : doubles the rendered picture size with some dithering
+  effect to avoid square pixels. This effect only works
+  in 8bpp, and does not work often in the accelerated win32
+  driver.
+
+Pixel double : Same as eagle but without the dithering
+  effect. You will get square pixels but it will work in
+  any color depth.
+
+Double width<Double width> : can be useful
+  with scanlines.
+
+Stretch Max : Stretch the rendered bitmap so that
+  it will take the largest area on screen while still keeping
+  its aspect ratio. Warning : this option as well as "Stretch
+  FS" is using software blits until now so they take
+  some considerable cpu power !
+
+Stretch FS : FS is for Fullscreen. Stretch the rendered
+  bitmap to display it in the whole screen (no black border).
+  Of course, you might loose aspect ratio here, and in this
+  case your picture will look weird.
+
+7.2.3 Scanlines
+
+The scanlines don't work in any windowed mode (in linux and
+win32). It's because they are rendered by a hack on allegro
+bitmaps and this hack does not work in windows. Also they
+usually don't work with the accelerated driver of the win32
+version.
+
+If you allow raine to select the best video mode when you
+load a game, then it will keep your scanlines setting when
+selecting its video mode.
+
+Fullheight : Requires a mode with double height to be available.
+  I mean if you want to have 320x240 with fullheight scanlines,
+  then the 320x480 mode must be available with your current
+  video drivers. In recent raine versions (0.34 and up),
+  only the supported video modes will be listed when you
+  select fullheight scanlines (with most video drivers).
+  The result is just the mode yuo selected plus a nice scanline
+  effect :) !
+
+Halfheight : This one has no special requirement. It divides
+  the current height of the screen by 2. That is if you
+  are in 400x300 and then you select halfheight scanlines,
+  you get a 400x150 mode with scanlines effect. Of course
+  the aspect ratio is changed and that is where the double
+  width[Double width] effect comes usefull !
+
+7.3 Sound Setup
+
+This dialog allows you to choose your current sound driver,
+the frequency to use, and whether to max mixer or not (only
+in allegro, not with the seal version - dos and win32 use
+seal by default for the audio). Notice that if you choose
+a high frequency then it will require more cpu time to be
+rendered. The default of 22050Hz is probably the best for
+most games (I don't know any game with samples higher than
+22050 Hz, so 44100 Hz can make a difference only with FM
+music).
+
+In 0.35 you also have a new checkbox "Max
+mixer volume". This checkbox not only makes
+the mixer volume maximum, it also disable an allegro feature
+which tries to remove any distorsion in sound by making
+voice volumes lower. If your sound is really too quiet you
+can try to check this box. It is very efficient at making
+sound louder !
+
+7.4 Game Setup Options
+
+From the Game Setup menu, you can change some things related
+to the games functions, but you need to know the consequences
+before altering these options, so:
+
+Reset Game:
+
+Reset the game emulation, you'll lose your current game progress
+unless you've saved it first.
+
+Also, if you are using "Continuous
+playing" from version 0.31, this really resets the
+game, losing any saved data like hiscores...
+
+Dipswitches:
+
+This option allows you to alter the dip switch settings for
+the current game. This feature is also present somewhere
+on the arcade originals, but any changes you make are not
+guaranteed to work until the game is reset, so you should
+click on reset game after any changes. This is the nature
+of Dipswitches.
+
+Action Replay:
+
+This is a cheat system, see 'Action Replay' Cheating[6 'Action Replay' Cheating]
+below.
+
+ROM Version:
+
+This is Taito specific. With most of Taito's roms after 1987,
+they use a byte of the rom to define which continent/language
+the arcade board is for use in. Usually there are two main
+variants:
+
+* Japanese version: Usually with a 'this game is for use
+  in Japan only' copyright message at the start. The game
+  will not necessarily have Japanese text, sometimes it
+  will (eg. Cadash, Liquid Kids).
+
+* American version: Usually with a 'this game is for use
+  in America only' copyright message at the start. Also
+  the American version nearly always has a 'winners don't
+  use drugs' logo (or sometimes 'recycle it, don't trash
+  it' logo) at the start.
+
+For some games there are more interesting/useful version
+settings too:
+
++--------------------------+--------------------------+-------------------------+
+|        Original          |         Switch           |      Main Changes       |
++--------------------------+--------------------------+-------------------------+
++--------------------------+--------------------------+-------------------------+
+|     Bonze Adventure      |         Jigoku           |    new title screen     |
++--------------------------+--------------------------+-------------------------+
+|        Darius 2          |         Sagaia           |    new title screen     |
++--------------------------+--------------------------+-------------------------+
+|    Elevator Action 2     | Elevator Action Returns  |    new title screen     |
++--------------------------+--------------------------+-------------------------+
+|          Growl           |         Runark           |    new title screen     |
++--------------------------+--------------------------+-------------------------+
+|         Jigoku           |     Bonze Adventure      |    new title screen     |
++--------------------------+--------------------------+-------------------------+
+|     Kaiser Knuckle       |     Global Champion      | some diff gfx and stuff |
++--------------------------+--------------------------+-------------------------+
+|        Plotting          |         Flipull          |    new title screen     |
++--------------------------+--------------------------+-------------------------+
+|     Puzzle Bobble 2      |    Bust-a-Move Again     |    all new game gfx     |
++--------------------------+--------------------------+-------------------------+
+|      Rastan Saga 2       |     Nastar Warrior       |    new title screen     |
++--------------------------+--------------------------+-------------------------+
+| Super Space Invaders 91  |       Majestic 12        |    new title screen     |
++--------------------------+--------------------------+-------------------------+
+|        Twin Qix          |     Twin Qix Japan       |    all new game gfx     |
++--------------------------+--------------------------+-------------------------+
+
+
+This option is sometimes risky to switch between (it's not
+possible for arcade owners to switch it at all, unless they
+get a new set of 68k roms). You should always reset the
+game after changing the setting. Also, with the F3-System
+games, changing this setting will void the game's eeprom.
+When this happens press the test mode key (default is 'u')
+to reset your eeprom. You might also need to click on 'reset
+game' again to achieve a clean reset with F3-System. 
+
+Possibly we should force a reset when the rom version changes,
+but for now it's your choice.
+
+8 'Action Replay' Cheating<6 'Action Replay' Cheating>
+
+There is a simple implementation of an Action Replay type
+cheat system. Many console emulators have the option to
+apply 'action replay/game genie' type cheat codes, although
+they usually don't have a search option, which is a shame.
+The cheat stuff in raine is split in two windows. One for
+editing cheat data and one for searching for cheats.
+
+8.1 Cheat Editing
+
+In this window you can do the following:
+
+* Enable/disable cheats
+
+* Edit cheat data
+
+* Delete cheats
+
+* Add new cheats
+
+If you get messages like 'work ram error' appearing, wait
+for the title screen before enabling cheats. This is the
+nature of Action Replay cheats.
+
+8.2 Cheat Searching<Cheat Searching>
+
+In this window you can find new cheat data. To start a search,
+click new search, then choose a search mode. When you are
+ready to continue the search, click continue search. There
+are four search modes:
+
+Absolute search:
+
+* Searches for absolute byte values.
+
+* Most useful for lives and other data.
+
+Relative search:
+
+* Searches for the difference between byte values.
+
+* Useful when absolute search fails, like if the game stores
+  lives starting with ascii 0x30 or stores lives +/- 1 from
+  the value shown ingame. Remember that if the difference
+  is positive you should enter something like 0x01 (+1),
+  if it is negative, then you should be searching for 0xFF
+  (-1).
+
+Single Bit search:
+
+* Searches for single bit values.
+
+* Useful for status flags, and stuff like 'extend' in bubble
+  symphony, which is stored in 6 bits of one byte.
+
+Slow deep search:
+
+* Searches for the following changes in byte values:
+  new byte == old byte, new byte != old byte,
+  new byte >  old byte, new byte >= old byte,
+  new byte <  old byte, new byte <= old byte
+
+* Useful for timers and anything not found with the other
+  modes. A nice cheat to have is invulnerability, use this
+  mode to find the invulnerability timer.
+
+The search results are shown in a listbox, when there are
+more than 512 results, only the first 512 will be in the
+listbox. You can double click on the search results to open
+a scrollable hex/ascii view of the memory area where the
+result lies. Any bytes that are in the search results will
+have *..* around them, so you can easily spot them.
+
+9 Cheats and gameplay tips
+
+This is a small collection of known cheat modes, secrets
+and hidden features found in the arcade games supported
+by Raine. The list is maintained by Mario Silva, please
+send any new information to [mailto:taito@rainemu.com||taito@rainemu.com].
+Thanks to all contributors.
+
+9.1 Raizing driver (toaplan2)
+
+Check [http://www.vsa-ag.ch/r8zing/||http://www.vsa-ag.ch/r8zing/]
+
+9.2 Cave driver
+
+Check [http://www.vsa-ag.ch/cave/||http://www.vsa-ag.ch/cave/]
+
+9.3 Battle Garegga
+
+Source: MAME driver
+
+To activate the secret characters input the following commands:
+
+After inserting a coin (pushing a credit button), input UP
+UP DOWN DOWN LEFT RIGHT LEFT RIGHT A B C START then you
+can use Mahou Daisakusen characters.
+
+9.4 Batrider
+
+Source: MAME driver
+
+To activate the secret characters input the following commands:
+After inserting a coin (pushing a credit button), input
+UP UP DOWN DOWN LEFT RIGHT LEFT RIGHT A B START
+then you can use Mahou Daisakusen and Battle Garegga characters.
+
+9.5 Bomb Jack Twin
+
+Source: Antiriad
+
+The test mode is quite hard to access: 
+
+1. Reset Game and hold down Player 2 buttons 1 and 2. If you
+  did it fast enough, you will see the message 'Ready?'.
+  If not try again.
+
+2. Press the following Player 1 buttons: 2, 2, 2, 1, 1, 1,
+  2, 2, 2, 1, 1, 1. If you did this correctly, you should
+  see another message '9th Mar. 1992'. Now you are in the
+  test mode.
+
+9.6 Thunder Dragon
+
+Source: Antiriad
+
+The test mode is quite hard to access:
+
+1. Reset Game and hold down Player 2 buttons 1 and 2. If you
+  did it fast enough, you will see the message 'Ready?'.
+  If not try again.
+
+2. Press Player 1 Button 2 14 times. If you did this correctly,
+  you should see another message '4th June. 1991'. Now you
+  are in the test mode.
+
+9.7 Bubble Memories, Bubble Symphony
+
+Source: Carl Chavez
+
+There is a very detailed guide/faq to Bubble Memories and
+Bubble Symphony available at [http://www.bubandbob.com/||http://www.bubandbob.com/],
+including cheats and secrets.
+
+9.8 Legend of Makaj
+
+Source: Udirnel
+
+The correct spell at the end of the game is 'GIXGARD'.
+
+9.9 New Zealand Story
+
+Source: Victor Epitropou
+
+There is a very detailed guide/faq to New Zealand Story that
+should be online at the following url, including cheats
+and secrets or where to find the secret warps (thanks Chris
+? for the new url).
+
+[http://194.177.201.73/members/andrew/nzs/newzeal.txt||http://194.177.201.73/members/andrew/nzs/newzeal.txt]
+
+9.10 Rainbow Islands Extra
+
+Source: Dominic Holmes
+
+There is a web page about Rainbow Islands located here:
+
+
+[ http://www.cs.uct.ac.za/~stjasink/ri/|| http://www.cs.uct.ac.za/~stjasink/ri/]
+
+
+The pages are by Stephen Tjasink and contain a lot of information
+about the game.
+
+Source: ?????
+
+Make sure the second to last 2 digits of your score are the
+same when you reach 'goal in', this will make the chest
+contain a better bonus item.eg. reach goal in with a score
+of xxxx11x to get a chest full of ?????.
+
+9.11 Rodland Japanese
+
+Source: Norimitsu Kaiho
+
+After inserting a coin, press the player 1 'up' button 3
+times. This will activate the extra mode, so you can play
+with all new levels, gfx and music.
+
+9.12 Rodland English
+
+Source: Norimitsu Kaiho
+
+After inserting a coin, press the player 1 'down' button
+3 times. This will activate the extra mode, so you can play
+with all new levels, gfx and music.
+
+10 Sound options
+
+10.1 Mixer
+
+Start the mixer by pressing "Tilde"
+(this is the key just below escape on most keyboards) after
+starting a game to display every audio stream allocated
+by each sound chip of the current game. The game continues
+while the mixer is on screen so you can still hear the sound
+and you can now adjust the volume of each channel, either
+with the mouse or with the keyboard (TAB and arrow keys).
+
+Keep in mind that the game continues while adjusting volume,
+but you can always reset the game or restart after eg. loosing
+a life. The mixer can't work while the game is paused or
+while the gui is displayed.
+In linux at least (but probably with the other ports as well),
+moving the sliders by keeping the mouse button pressed on
+it makes the sound to loop. It is because of allegro - nothing
+to do about it for now. So you should probably adjust the
+sound with little clicks rather than big ones.
+Press "~" again to return to the game or click on Exit.
+
+10.2 Saving sound to a WAV file<Saving sound>
+
+You can now save sound to a wave file from the sound options.
+You can choose to have a graphical monitor of what is being
+saved over the game screen.
+
+This function is mixing the different sound channels to be
+saved in software mode. As a result, the sound might not
+be exactly like what you hear during gameplay. In some games,
+it might also be saved too loud (in this game you can hear
+distorsions). If it happens, just adjust sound volume with
+the mixer before starting to save to a wav file.
+
+The wav file is named raine_sound.wav and is saved in the
+raine directory.
+
+11 Hiscore support
+
+The hiscore.dat file which should be in your raine directory
+allows raine to save the hiscore of some games in the savedata
+dir. The hiscore files have the name of the game, with extension
+".hi".
+
+Starting in 0.32, the hiscore.dat is fully compatible with
+mame. It means you can safety use the last unofficial hiscore.dat
+file for mame. 
+
+12 Continuous playing<Continuous playing>
+
+This option allows you to automatically save a game when
+you quit, and automatically load it when you load the rom.
+It allows to keep high scores for any game without the hiscore.dat
+file, can be used as an emergency save function !
+
+Enable it by running raine with the "-cont" option. Disable
+it with the "-nocont" option. You can also edit the raine
+configuration file. In this case, change "auto_save" option
+in [General] options.
+
+Of course, it eats lots of disk space, so it is off by default.
+
+13 Demos
+
+With Shift-F2 you can save a demo. With that you can save
+everything you are doing in a game. To stop the saving,
+just press P (for pause) or ESC to call the GUI. To read
+a demo, press Shift-F4. 
+
+14 General Controls
+
+Here are the default controls for raine. 
+
+14.1 General ingame keys:
+
+0 Save screen shot (named raine???.pcx)
+
+F2 Save game state
+
+Ctrl-F2 Save game state by name
+
+F3 Switch save state slot (10 different slots)
+
+F4 Load game state
+
+Ctrl-F4 Load game state by name
+
+Shift-F2 Save demo
+
+Shift-F4 Load demo
+
+F11 Toggle the fps/profile display (5 different modes)
+
+~ Display/Remove the sound mixer
+
+PGUP Increase manual frame skip (no effect with auto frame
+  skip)
+
+PGDN Decrease manual frame skip (no effect with auto frame
+  skip)
+
+HOME Increase cpu execution (useful debug - slows motion
+  and music)
+
+END Reduce cpu execution (useful debug - slows motion and
+  music)
+
+ESC Return to GUI (exit to host os when the gui is disabled)
+
+TAB Return to GUI (will active gui even if it is disabled)
+
+P Pause the game
+
+14.2 Keys in Pause mode:
+
+UP Scroll display up (if the gamescreen does not fit)
+
+DOWN Scroll display down (if the gamescreen does not fit)
+
+LEFT Scroll display left (if the gamescreen does not fit)
+
+RIGHT Scroll display right (if the gamescreen does not
+  fit)
+
+ESC Return to GUI (exit to host os when the gui is disabled)
+
+TAB Return to GUI (will active gui even if it is disabled)
+
+P Unpause the game
+
+14.3 Default Player keys:
+
+3 - Coin A
+
+4 - Coin B
+
+T - Tilt
+
+Y - Service
+
+1 - Player 1 Start
+
+2 - Player 2 Start
+
+UP - Player 1 Up
+
+S - Player 2 Up
+
+DOWN - Player 1 Down
+
+X - Player 2 Down
+
+LEFT - Player 1 Left
+
+Z - Player 2 Left
+
+RIGHT - Player 1 Right 
+
+C - Player 2 Right
+
+V..M - Player 1 Buttons 
+
+Q..E - Player 2 Buttons
+
+See the GUI to redefine these keys.
+
+14.4 Misc:
+
+CTRL+ALT+END Emergency exit to DOS (works at anytime, but
+ugly). The default game buttons are not ctrl and alt, this
+is due to the intrusion of windows keys between ctrl-alt
+on many keyboards (lame).
+
+Ctrl+Alt+Del does the same thing in windows at least.
+
+14.5 Analog Controls in Chase HQ<Analog Controls in Chase HQ>
+
+Raine now emulates the analog behaviour in the Chase H.Q.
+controls. You can use a standard PC steering wheel and pedals
+setup in analog mode. :)
+The input behaviour is selectable in the dip switches menu,
+there is also a new option to change how the gear works.
+
+Important: If you are upgrading from a previous version of
+RAINE, you MUST reset the dip switches to the new factory
+defaults. Dip switch settings stored from older RAINE versions
+will cause the game to malfunction. 
+
+14.6 Gun controls in Spacegun
+
+The following options are available in the game dipswitches
+menu:
+
+Mouse Speed Allows to change the mouse speed
+
+Digital Input Speed Changes the speed
+  of the crosshair when using the keyboard or a DIGITAL
+  joystick/gamepad.
+
+P1 Input Control Select what device you want
+  to control the Player 1 gun, choose from mouse, analog
+  joystick or digital (keyboard and gamepad).
+
+Show Crosshair An option to hide the crosshair (not
+  part of the original game, added for ). This option is
+  usefull for taking faithfull screenshots or disabling
+  the second player crosshair if you're only using one player.
+
+14.7 Extra controls for the Taito F3-System games:
+
+F5 Toggle BG0 Layer
+
+F6 Toggle BG1 Layer
+
+F7 Toggle BG2 Layer
+
+F8 Toggle BG3 Layer
+
+F9 Toggle Sprite Layer
+
+F10 Toggle FG0 Layer
+
+F12 Toggle Pixel Layer (if used)
+
+There are occasions in F3-System games where things look
+better if you disable a BG layer, for vaious reasons. Reasons
+like bg zooms, 'snes-like' transparencies, misc line-line
+effects including scrolling, priority swapping, enable-disable,
+also zooming on a line-line basis. These things are not
+emulated currently. F3-System is a full 32-bit system, and
+it's no fun trying to add all that on a p120.
+
+15 Config Files
+
+raine.cfg (rainex.cfg for linux, and raine32.cfg for windows):
+  Contains general raine settings and comments
+
+games.cfg Contains input, dipswitch and rom version settings
+  for each game
+
+cheats.cfg Contains game cheat codes
+
+raine.cfg and games.cfg are automatically generated, so they
+are not supplied in raine.zip. raine.cfg is also automatically
+commented, you should read it. cheats.cfg is also updated
+when you make changed in within gui.
+
+16 Game Information
+
+Please take a look at the seperate gamelist.txt/gamelist.lyx
+file for the complete list of supported games and any information
+on the rom-merging relationships.
+
+16.1 Some of the emulated Systems
+
++-----------+------------+---------------------------+---------------------------------------------+
+|  System   | Main CPUs  |        Sound CPUs         |                    Info                     |
++-----------+------------+---------------------------+---------------------------------------------+
+|  Tecmo1   |   68000    |     Z80; YM2203 x 2       |              Some Tecmo System              |
++-----------+------------+---------------------------+---------------------------------------------+
+|  Tch-1    |   68000    |    Z80; YM2151; M6295     |            Various Technos games            |
++-----------+------------+---------------------------+---------------------------------------------+
+|   MS-1    |   68000    | 68000; YM2151; M6295 x 2  |            Jaleco Mega System-1             |
++-----------+------------+---------------------------+---------------------------------------------+
+| AIR-Sys   |   68000    |       Z80; YM2610         |     Taito AIR system (3d flying games)      |
++-----------+------------+---------------------------+---------------------------------------------+
+|  B-Sys    |   68000    |    Z80; YM2203/YM2610     |               Taito B System                |
++-----------+------------+---------------------------+---------------------------------------------+
+|  H-Sys    |   68000    |       Z80; YM2610         |               Taito H System                |
++-----------+------------+---------------------------+---------------------------------------------+
+|  X-Sys    |   68000    |       Z80; YM2610         |               Taito X System                |
++-----------+------------+---------------------------+---------------------------------------------+
+| NZS-Sys|  |  Z80 x 2   |          YM2203           |             Taito 'TNZS' System             |
++-----------+------------+---------------------------+---------------------------------------------+
+|  L-Sys    |  Z80 x 2   |    Z80; YM2203/YM2610     |      Taito L System (hw varies a lot)       |
++-----------+------------+---------------------------+---------------------------------------------+
+|  F1-Sys   |   68000    |       Z80; YM2610         | Taito F1 System (F2 with extra video chips) |
++-----------+------------+---------------------------+---------------------------------------------+
+|  F2-Sys   |   68000    |       Z80; YM2610         |               Taito F2 System               |
++-----------+------------+---------------------------+---------------------------------------------+
+|  Z-Sys    | 68000 x 2  |       Z80; YM2610         |  Taito Z System (3d sprite zooming games)   |
++-----------+------------+---------------------------+---------------------------------------------+
+|  Dual68   | 68000 x 2  |    Z80; YM2203/YM2610     |   Dual 68000 Systems (mostly 2/3 screens)   |
++-----------+------------+---------------------------+---------------------------------------------+
+|  F3-Sys   |   68020    |   68000; Misc Ensoniq     |               Taito F3 System               |
++-----------+------------+---------------------------+---------------------------------------------+
+
+
+17 Raine Team
+
+Antiriad (Richard Bush) <antiriad@rainemu.com>
+  Main coding from the start.
+
+Emmanuel Anne Current main programmer and Linux
+  port ([http://www.rainemu.com/linux/||http://www.rainemu.com/linux/])
+
+Atani previous win32 port ([http://www.atani-software.net/||http://www.atani-software.net/])
+
+Hiromitsu Shioya (Hiro-Shi) Main
+  sound coding, implementation of sound playback and emulators,
+  emulation of M6295, MSM5205 and YM2610. plus many other
+  improvements.
+
+Cedrick Collomb (Nitch) For knowing
+  everything about x86 asm optimization :).
+
+Mário Silva (Taito) <taito@rainemu.com>
+  Organisation, coordination, rom finding, www updating
+  and a lot of other stuff.
+
+Richard Mitton (Spindizzy) Emulation
+  of Plotting, Bubble Bobble and maybe a few other z80 games
+  (wait and see!). Sound help, cool MCU static recompiler,
+  and more nice things. ([http://etc.home.dhs.org/])
+
+17.1 Special Thanks
+
+Many thanks to the following kind people who have donated
+hardware to help when my old HD died. Not only did I get
+a new HD, but I actually got half the components of my pc
+updated!! Certainly, there would not be any raine in the
+last 4 months without them, because I could not afford to
+buy a new HD.
+NaMcO for sending 2x16mb simms and a 6GB HD when my old HD
+gave up on me 
+MadMax1, Nemesis1 & Sigurdur H. Olafsson for collectively
+sending me a p2-233 and mainboard and also a non-ps/2 keyboard
+adapter
+Prophet of Retrogames for the Sidewinder Gamepad
+Malcolm Laurie for the generous donation towards buying arcade
+boards and an ATX case
+Glenn Hagon for another 2x16mb simms
+Mario Silva, Razoola & Pincushion Man for the cd's to help
+restore what I lost
+
+And many other people that helped us getting some donations
+so we could buy boards like Strahl:
+
+Harald, Till, Jason S., Kobayashi, Tormod, Estranged, Empyre,
+Mario Lowang...hope I didn't forget anyone. ;)
+
+If you would like to send a contribution to help with the
+development of raine, maybe some old hardware or some money
+or anything else, please email us. How does money help?
+Well, It can go towards upgrading my pc, which allows me
+to be more ambitious in what I try to emulate (for example
+f3 system with more gfx features). Or, it will go on my
+phone bills, which are caused by time online doing raine
+related things. Or it can be used to buy new boards for
+the rom dumpers. We can't offer much in return, but you
+can of course beta test new games in the emulator.
+
+17.2 Rom Dumps
+
+The supported romsets were dumped by the following people,
+many thanks:
+Any, araCORN, C.Hardy, Coy, D.Winter, dump.it, Freewing,
+G.Hall, J-Rom, Jim H, malcor, Metalman, nnap, NAZ!, Noel
+Miruru, P Swann, ShinobiZ, SpainDumps, Tatsuhiko, Team Japump,
+Tormod, vixen, VSA and to everybody else who chose to stay
+anonymous.
+
+17.3 Thanks
+
+_iceball_ for some nice gfx for raine, also the bg image
+in 0.25.
+Anders and Janne for being cool and their very fast emulators,
+yay! NeoRAGE is back!! 
+araCORN+ORG/Romlist for all the great roms, hope everything
+works out for you!
+Atila for support and hosting our site a while ago
+Bouchiki for adding Play Girls 1 & 2
+Calb for nice chats and helpful technos/nichibutsu fixes
+from Phil S.
+Carl-Henrik Skårstedt/DSC for the software ym3812 emulator
+and sb 2/truxton 2 info
+Cedrick Collomb for the optimized asm, very cool
+Cgfm for the adlib help and stuff
+Conjurer for supporting raine when it was v0.06
+DaemoN for all your help
+Dark Force for many nice things
+David Winter for Toki info
+Dev for the nice raine logo
+Dirk Stevens for Eagle engine
+Eugenio Derenzi for adding support for Gunbird, Sengoku Ace
+and Biomechanical Toy
+Fox for the cdrom
+Hiro-shi for all the work on raine sound!
+JoseQ for maintaining a top quality site
+Mário Silva for all the organization and rom finding for
+raine
+MAME team for their sound drivers, especially to Aaron Giles
+for the ymz280b and the es5506!
+Metalman for dumping the first F3-System roms and Arkanoid
+Returns
+Michael Kleps for the direct-x offer
+Mirko Buffoni for mame, nice emails and memory leak help
+Mutewitness for the Darius dipswitches
+Neil Bradley for MZ80 and Retrocade
+Neill Corlett for the Starscream 68000 core and the sd3 translation
+Nicola Salmoria for MAME, and Terra Cresta sprite colour
+information
+Paolo for adding preliminary support for Saboten Bombers
+Paul G. for the sidewinder and many useful bug reports
+Richard Mitton for tnzs emu, plotting emulation and other
+help
+The Ultimate Patchers for the cheat converter
+Titan for the background image used without permission, hope
+you don't mind. ;)
+Zoop for support, url and meka betas
+zsKnight & _Demo_ for the greatest snes emulator
+
+<Anyone who beta tests raine, or I know from my occasional
+icq/irc accesses>
+
+17.4 Stuff
+
+DJGPP 2.02 (GCC up to 2.95.3 for now) by DJ Delorie
+Starscream 68000 Engine 0.26r by Neill Corlett (0.26a patched
+for raine)
+UAE 68020 Engine by Bernd Schmidt (Unix Amiga Emulator)
+MZ80 Engine 2.8 by Neil Bradley
+Allegro 3.9.37 Wip by Shawn Hargreaves
+Nasm 0.97 by Nasm Team
+IRApc 2.00 port and SearchR2 by Antiriad
+6x8 font based on one by Xen for Amiga
+Eagle 0.41 by Dirk Stevens
+zLib by 1.13 by Jean-loup Gailly, minizip by Gilles Vollant
+dZ80 v1.31 by Mark Incley
+
+18 History
+
+18.1 Raine v0.36
+
+New games :
+Strikers 1945, Tengai (alias Sengoku Blade). Both are nice
+shooters from Psikyo.
+New clones :
+Gunbird (replaces the old broken world set), Esprade (newer
+international and japenese versions), Samurai Aces (international
+version of Sengoku Ace)
+
+* Added the ability to save sound to a wav file (in sound
+  options[Saving sound])
+
+* Added adpcm sound in toki and silkworm
+
+* Fixed sprites priorities in the cps1 driver, and in double
+  dragon 3.
+
+* Made the psikyo driver a little faster
+
+* Fixed the sound mixer
+
+* Stephane HUMBERT fixed the dipswitches for Grand Cross
+  Pinball
+
+* Added the ability to edit registers and to manually generate
+  irqs or nmis to the z80 debuger included in the debug
+  version of raine.
+
+* Added eeprom support and sound for Battle Bakraid. The
+  ymz280b emulator was also improved, and the sound in uopoko
+  is much better now.
+
+* Stephane Humbert updated our cheats database.
+
+Fixes in the WIP release, before 0.36 :
+
+* demos were unreadable in 0.35b
+
+* a segmentation fault in the nmk driver "sometimes"
+
+18.2 Raine v0.35b
+
+* Fixed crashes in -gamelist and in the games using the YM2610b
+  sound emulation
+
+* Fixed some more default eeproms for taito f3 games
+
+* Elevator action 2, dariusg and dariusgx were patched so
+  that they start faster and automatically reset when needed
+  (when you exit service mode, or when the eeprom is regenerated).
+
+* Elevator action 2 can now be run in 16bpp
+
+* Removed more debug messages from bakraid (!)
+
+* Mustang is not a clone of raiden, sorry !
+
+* Stephane HUMBERT updated our cheats database.
+
+18.3 RAINE v0.35a
+
+Bug fixes :
+
+* Logiqx fixed the bgaregc rom I had broken (sorry !)
+
+* Stephane Humbert fixed the controls and the dipswitches
+  of WWF Superstars.
+
+* Air Gallet is now fully playable (finally !).
+
+* Removed forgotten debuging messages from bakraid (!)
+
+* Fixed Toki crashing at startup
+
+* Fixed missing sound in truxton 2
+
+* Buble Boble's screen is now correctly flashing when you
+  get certain bonuses (well, let's say it's more like the
+  original...).
+
+* samesame/fire shark is now playable (without sound).
+
+* Fixed a bug when choosing the video resolution for screens
+  rotated by 270°.
+
+* Fixed default eeproms for most cave games.
+
+* Fixed sprites overlaping text in the end of pang3. It might
+  affect other cps1 games too, but I couldn't find any other
+  problem...
+
+* Fixed a weird bug in scroll3 rendering for cps1 games when
+  in 8bpp for transparant tiles.
+
+18.4 RAINE v0.35 : QSound
+
+This version includes a major rewrite of the z80 emulation.
+As a consequence, savegames written by this version will
+not be readable by older versions. The biggest changes are
+for sound of course, hence the name of this version. But
+first the contributors (in alphabetical order) :
+
+* Stephane HUMBERT from the Ultimate Patchers updated the
+  raine cheats database. It includes new cheats for Bakraid,
+  for example...
+
+* Stephane also fixed most of the dip switches in the toaplan2
+  driver, and he found lots of bugs that I fixed later in
+  this driver...
+
+* Thanks to Liliana for the background picture of this version
+  ! Also thanks to Zaxxon1 and Liliana for their help with
+  the docs...
+
+* Logiqx made many ROM changes, significantly improving compatibility
+  with the MAME sets. All game names now match MAME, as
+  do the ROM names and CRCs inside them. Some bad dumps
+  were also identified and corrected during this task which
+  should mean improved emulation. Backward ROM compatibility
+  has been retained wherever possible but to clean up your
+  ROM collection you should use something like ClrMamePro
+  or RomCenter. (Battle Shark has much more sound now...)
+
+* We also used the source of dz80 from Mark Incley for the
+  debuger integrated in the debug version of raine (for
+  developers only !)
+  
+
+Major changes :
+
+* Added qsound support for the cps1 games which can use it.
+
+* Fixed music tempo with a good timer emulation in batrider,
+  battle garega, gunbird, sengoku ace, battle kroadj, and
+  every cps1 game. This replaces the dirty hack of "fast_tp2_sound"
+  of previous versions. Also, music now goes faster in Buble
+  boble when you run out of time...
+
+* Reverted to Seal for the sound emulation in the dos version,
+  so pci soundcards should work better now. (Seal was used
+  for the dos version in raine before 0.30). Seal is also
+  the default for the win32 version now, so that soundcards
+  having problems with the accelerated directx driver can
+  work with raine.
+
+* Added priorities emulation in the cps1 video emulation,
+  so you don't pass through trees anymore in games like
+  Cadillacs and dinosaurs... The code is not extremely fast
+  yet, but it's working well. Also fixed sf2rb2 protection,
+  a stupid rendering bug in the scroll3 layer, and slammasters
+  is finally fully playable. Added speed hacks to most cps1
+  games, and added keyboard controls to Forgotten worlds
+  (Buttons 2 and 3 can be used instead of the mouse to move
+  the gun - your choice. But the mouse gives better precision,
+  of course).
+  
+
+Except this there are numerous fixes :
+
+* The snapshots were not displayed correctly in resolutions
+  > 640x80 or when you moved the game selection dialog.
+
+* The mouse pointer was moving very slowly when you ran raine
+  in 8bpp in a window on a 16bpp desktop (in Linux, and
+  probably in windows).
+
+* All the region codes for the xsystem2 drivers were broken
+  (in games like The new zealand story, Extermination, doctor
+  Toppel, Plump Pop...
+
+* In Battle Garrega, after a few seconds in the game, there
+  was a little pause. If you reset the game after this pause,
+  you had a sound error.
+
+* Music volume adjustement in Insector X (Thanks, Liliana...)
+
+* Slight improvement of the graphics mode selection (mainly
+  for linux) : when 2 modes seem equaly interesting for
+  a game, choose the one with the aspect ratio closest to
+  640x480.
+
+* With Allegro sound support, add the check box "Max
+  mixer volume" in sound setup. Allegro sound
+  support is only used in linux now.
+
+* Fixed the svgalib support for linux (allegro-4.0.0 broke
+  it !)
+
+* Added the coin sound to Arkanoid 2 (and clones), and the
+  bug where coins were not decreasing when continuing the
+  game was fixed by Stephane Humbert.
+
+* Fixed blue sky in silkworm
+
+* Fixed some restart positions in Bonze Adventures. The old
+  file bonzchip.cfg is not necessary anymore...
+
+* Buble boble was freezing after 20-30 minutes if left alone.
+
+* Fixed color problems/graphics glitches in snowbros2, whoopee,
+  pipibibi, and ghox, and fixed left/right keyboard controls
+  in ghox.
+
+18.5 Raine v0.34b
+
+Added new games :
+
+* Black Heart (nmk driver) - no sound
+
+* Air Gallet (playable, but partial emulation only)
+
+Fixes :
+
+* Mustang is now playable without sound
+
+* Fixed black screen in f3 games when changing the rom version
+  code and reseting.
+
+* Fixed bug in hiscores saving for win32 and dos.
+
+* Fixed auto-fire... Now working again !
+
+* Enlarged pcm buffer in pbobble3 to try to fix a weird bug
+  in some win95 versions...
+
+* Added dynamic mode lists in vbe/af (dos).
+
+* The triple buffer hacks are back ! (for dos and linux at
+  least. They are still troublesome in win32 !)
+
+18.6 Raine v0.34a
+
+Fixes :
+
+* Up direction too slow in cave games
+
+* Joystick settings not properly restored in win32 and dos
+
+* Bad CRC for sailor moon original version (Logiqx)
+
+* Bad romcheck for hotdogst, sailormn, sailormo, mainger
+
+* Made music a little faster for cps1 games like ghosts and
+  ghouls
+
+* Added "fast_set_pal = 2"
+  setting in raine.cfg.
+
+18.7 RAINE v0.34 : Speed !
+
+* Added new game : Sailor Moon.
+
+* Added new clones : Gunbird korean version, Donpachi korean
+  version, Sailor Moon original version, and battle garrega
+  chinese version. All these clones are not just international
+  versions : the software is really different.
+
+* Added dynamic graphics list modes for most graphics drivers
+  : vga, modex, vesa (1 to 3), svgalib, fbcon, dga2, directx
+  (all fullscreen drivers). This give you every available
+  mode in the Screen Setup dialog when you change the depth
+  or the scanlines. This also select for you the best video
+  mode available keeping your options (scanlines, pixel
+  double...) for every game you load.
+
+* Fixed music tempo and sound effects in psykio games (gunbird,
+  sengoku ace, and battle k road).
+
+* Made the music acceleration in toaplan2 games optional
+  (Set fast_tp2_sound to 0 in raine.cfg if you don't like
+  it)
+
+* Added a cache for solid sprite to get a 20-30% increase
+  in speed for mazinger and most toaplan2 games (batrider...).
+
+* Added speed hacks to every cave games : a little faster
+  on slow machines, and animations smoother on fast machines !
+
+* New palette update function for 8bpp modes for Windows
+  9x fullscreen modes, and linux fbcon. This function reduces
+  the cpu time for palette update to 0% !
+
+* Fixed a last bug in hiscores (hopefully !) : when loading
+  a 2nd game in the gui, the hiscores of the 2nd game were
+  erased !!!
+
+* Added region codes to drtopel.
+
+18.8 RAINE 0.33 : Rush
+
+* New game added : Battle Bakraid, Mazinger Z.
+
+* New clone : Kingdom Grand Prix - See Neil Corlett's site
+
+* Added demo support, load/save by name, and compression
+  in savegames (optional - see UseCompression in raine.cfg).
+
+* Usual bugfixes...
+
+18.9 RAINE v0.32a : bugfixes and new cheat system
+
+What's new :
+
+* New optional snapshots for the games. See [Snapshot]
+
+* New cheats.cfg file format, with plenty of new cheats inside
+  (thanks a lot to Steph and Pugsy). See the cheats.cfg
+  file itself for an explanation of its new format.
+
+* New cheat type : watches (usefull for puzzles)
+
+* New linux video driver : Xwindows fullscreen.
+
+And loads of bugfixes. Qsound games still have no sound though,
+and priorities are not fixed in every cps1 game...
+
+18.10 RAINE v0.32 : "Capcom, and the return
+  of windows !" - DOS/Linux/Windows.
+
+* Added more than 85 cps1 games and clones. Qsound games
+  have no sound for now (wof, dino, punisher, slam masters,
+  and mbomber).
+
+* Full mame compatibility for the hiscore.dat file. You can
+  now grab a hiscore.dat from mame, and put it directly
+  in the raine directory !
+
+* Made the gui "16bpp friendly"
+  : it is now much faster in 16bpp. And added a new file
+  selector...
+
+* The windows version of raine is now much more stable !!!
+
+18.11 RAINE v0.31a: Bug fix release
+
+Thanks to WonderBoy (from the raine forum) for his amzing
+tests !
+
+Here is a list (maybe incomplete) of what was fixed :
+
+* Palette problems in f3 games fixed
+
+* Many fixes in f3 sound
+
+* Guwange : music was stopping at the begining of game
+
+* cave games : crash fixed for zoomed sprites out of screen
+
+* Crash fix (palette) in :
+  - Asuka And Asuka
+  - Bonze's Adventure
+  - Earth Joker
+  - Galamedes
+  - Jigoku Meguri
+  - Maze Of Lott
+  -All the Quiz Games (except Sekai Wa Show By Shobai): Quiz
+  Chikyu Bouei Gun ; Quiz Crayon Shinchan ; Quiz Crayon
+  Shinchan 2, Quiz HQ ;Quiz Jinsei Gekijoh ;Quiz Torimonochoo).
+
+* Omega Fighter/Omega Fighter Special : the game was freezing
+  after about 4s !
+
+* V Five/Grind Stormer (only black screen)
+
+* Kick And Run (only black screen
+
+* Zero Wing (only sound run and black screen
+
+* Drive Out (problem to load Rom, bad Crc message but Roms
+  are OK)
+
+* Automatically saved games had various bugs.
+
+* Palette fix in raine gui when in 16bpp and loading a game
+  from the gui
+
+* added automatic loading of bigfont.dat when needed (640x480
+  or over)
+
+* New bonzchip.cfg allowing to finish the last level (thanks
+  Stephh)
+
+18.12 v0.31: "New Fundations"
+  - Dos/Linux
+
+This release adds mostly new graphic functions to allow almost
+every driver to support 16bpp/rotation. It was done mainly
+to see if f3 games would benefit from it. Apparently : not
+that much, except maybe for popnpop ?
+
+Anyway with this, and automatic rom loading, adding new drivers
+should be easier now.
+
+Since it's quiet now, and we have also included many fixes
+and improvements, time was good to make a release.
+
+New games:
+
++----------------+----------------+---------+------+
+|   Game Name    | Coamny/System  | Dumper  | Info |
++----------------+----------------+---------+------+
+|   Donpachi     |     Cave       |         |      |
++----------------+----------------+---------+------+
+| Hot Dog Storm  |     Cave       |         |      |
++----------------+----------------+---------+------+
+
+
+Fixes / improvements :
+
+* Finally fixed the bad looping sounds in the F3 drivers
+  (especially in puzzle buble 3 & 4)
+
+* Added linescrolling to uopoko, and zooming effects to most
+  games.
+
+* Added 16bpp support and rotation to 90% of the games.
+
+* Added bpp selection to the gui (you can now change the
+  bpp without quiting raine...)
+
+* Added continuous playing[Continuous playing]
+
+* Changed the game selection dialog : options can be chosen
+  with the new button "Selection", and added selection by
+  company.
+
+* Fixed Battle Shark : it works again !
+
+* Fixed music rate in toaplan2 games (batrider...), thanks
+  to a patch on the net. See [http://www.emucamp.com/boukichi||http://www.emucamp.com/boukichi]
+
+* Fixed sample rate not being saved in 0.30a.
+
+* Fixed bad samples in wrestlefest
+
+* Some assembler optimisations on the basic drawing functions
+  (from Karma)
+
+* Fixed light bringer (broken in 0.30a).
+
+Changes for linux :
+
+* New fbcon driver for linux (frame buffer console)
+
+* svga, fbcon and dga drivers are now generating their list
+  of supported modes on the fly.
+
+18.13 RAINE v0.30a: "Soundfix" - DOS/Linux/Windows
+
++-----------------------+-----------------+---------+---------------------------------------+
+|      Game name        | Company/System  | Dumper  |                 Info                  |
++-----------------------+-----------------+---------+---------------------------------------+
+|       Cuby Bop        |     Taito       |         |           Added by Antiriad           |
++-----------------------+-----------------+---------+---------------------------------------+
+|       Tube It         |     Taito       |         |     variant of Cachat) [Antiriad]     |
++-----------------------+-----------------+---------+---------------------------------------+
+| Bubble Symphony (US)  |     Taito       |         | Clone, added by Gerardo Oporto Jorrin |
++-----------------------+-----------------+---------+---------------------------------------+
+
+
+* Fixed music speed in Bubble Memories and Bubble Symphony.
+
+* Big improvements on F3 sound.
+
+* Added the ability to save sound chip status in savegames
+  to F3 games.
+
+* Fixed sound problems in Cave games (Dodonpachi especially)
+
+* Saving games now also saves sound status for cave games.
+
+* Fixed sound bankswitch in Battle Garegga. [Emmanuel Anne]
+
+* Fixed Hachoo music tempo. [Emmanuel Anne]
+
+* Fixed sound on the Technos games (eg. Wrestlefest). [Emmanuel
+  Anne]
+
+* Added analog control support to Chase HQ[Analog Controls in Chase HQ]
+  [Warlock]
+
+* Added many dipswitches to the Toaplan1 driver. [Emmanuel
+  Anne]
+
+* Added many dipswitches to the Toaplan2 driver. [Gerardo
+  Oporto Jorrin]
+
+* Various fixes to some old drivers. [Emmanuel Anne]
+
+* Changed the autoswitch resolution code to accept any resolution
+  wanted by the driver when in windowed mode in linux. [Emmanuel
+  Anne]
+
+* Asm optimizations in the spr8x8_8.s gfx routines. [Karma]
+
+* Fixed a a segfault in ClearPalette of Omega Fighter. [Emmanuel
+  Anne]
+
+* Fixed Thunder Dragon Bootleg. [Emmanuel Anne]
+
+* Combined the Linux and DOS makefiles. [Logiqx]. See the
+  page "How to compile Raine"
+  in the HTTP [HTTP] section.
+
+18.14 RAINE v0.30: "Rebirth" - DOS/Linux/Windows
+
+Release notes:
+
+1. Special thanks to the M.A.M.E. Team, in particular Aaron
+  Giles for the ES5506 and YMZ280B sound drivers.
+
+2. We set up the open source development site on SourceForge
+  [http://sourceforge.net/projects/raine/]:
+  Grab the latest sources and feel free to contribute. :)
+
++--------------------+---------------+---------+----------------------------------+
+|     Game Name      | Company Name  | Dumper  |               Info               |
++--------------------+---------------+---------+----------------------------------+
+|   Battle K-Road    |    Psikyo     |   ?     |         [Emmanuel Anne]          |
++--------------------+---------------+---------+----------------------------------+
+| Biomechanical Toy  |     Zeus      |         |        [Eugenio Derenzi]         |
++--------------------+---------------+---------+----------------------------------+
+|    Dodonpachi      |     Cave      |         |    [Emmanuel Anne, Antiriad]     |
++--------------------+---------------+---------+----------------------------------+
+|    Gals Panic      |    KANEKO     |         |              [Lag]               |
++--------------------+---------------+---------+----------------------------------+
+|     Gun Bird       |    Psikyo     |         | [Eugenio Derenzi, Emmanuel Anne] |
++--------------------+---------------+---------+----------------------------------+
+|      Guwange       |     Cave      |         |         [Emmanuel Anne]          |
++--------------------+---------------+---------+----------------------------------+
+|  Saboten Bombers   |     NMK       |         |             [Paolo]              |
++--------------------+---------------+---------+----------------------------------+
+|   Sengoku Ace      |    Psikyo     |         | [Eugenio Derenzi, Emmanuel Anne] |
++--------------------+---------------+---------+----------------------------------+
+|     Silkworm       |    TECMO      |         |              [Lag]               |
++--------------------+---------------+---------+----------------------------------+
+
+
+* Full sound support in the Cave games [Emmanuel Anne]: Dangun
+  Feveron, Dodonpachi, Esprade, Guwange, Uo Poko.
+
+* Preliminary F3 sound support [Emmanuel Anne] in: Akkanvader
+  (space invaders 95), Arabian Magic, Arkanoid Returns,
+  Bubble Memories, Bubble Bobble 2 / Bubble Symphony, Cleopatra
+  Fortune, Darius Gaiden, Elevator Action Returns, Gekirindan,
+  Global Champion / Kaiser Knuckle / Dankuga, Grid Seeker,
+  Gun Lock, Kyukyoku Tiger II / Twin Cobra II, Land Maker,
+  Light Bringer, Pop 'n Pop, Power Goal, Prime Time Fighter
+  / Top Ranking Stars, Puchi Carat, Puzzle Bobble 2, 2x,
+  3, & 4, Ray Force/Gun Lock, Riding Fight, Ring Rage, Super
+  Cup Final, Taito Cup Final, Twin Qix.
+
+* Mapped the mouse buttons in Plump Pop [Emmanuel Anne]
+
+* Fixed the controls in Special Criminal Investigation [Warlock]
+
+* Emulated the controls in Top Speed. You need to reset the
+  Dip Switches to factory default because the old settings
+  are no longer valid. [Warlock]
+
+* Lots of Dip Switches mapped. [Gerardo Jorrin]
+
+* Fixed the coin bug in Dangun Feveron. [Emmanuel Anne]
+
+* Major improvements to the GUI. [Antiriad, Emmanuel Anne]
+
+* Support for the MAME highscore format. [Emmanuel Anne]
+
+* Correct emulation speed in Light Bringer [Haze]
+
+* Correct emulation speed in Zero Zone [Emmanuel Anne]
+
+* Lots of improvements to the source code. [Antiriad, Atani,
+  E. Anne]
+
+* Lots of fixes and overall improvements, that include romset
+  fixes, clean-ups and renaming, game title corrections,
+  updating the RAINE documentation... [Eugenio Derenzi,
+  Logiqx, Till, Tormod]
+
+The RAINE romsets should match the MAME sets very closely
+now. It might be a good idea to use one of the various rom-management
+tools (links at the end of raine.txt) to fix any existing
+sets.
+
+18.15 RAINE v20000819 (Open Source)
+
+* Kiki Kai Kai and Knight Boy fixed [Kayamon]
+
+* Play Girls 1 & 2 added [Boukichi]
+
+* Grind Stormer uses MAME rom now [Thomas Schmidt & Brian
+  A. Troha]
+
+* Added rom-version switch (Japanese/American) to Soldam
+  [Thomas Schmidt]
+
+* Added Bubble Bobble 2 (clone of Bubble Symphony) [Tormod]
+
+* Misc. bugfixes [katharsis]
+
+18.16 RAINE v20000809 (Open Source)
+
+* Battle Garegga sound added [Boukichi]
+
+* Puzzle Bobble 4 backgound layers fixed [Thomas Schmidt]
+
+* Removed redundant roms of Warrior Blade and Darius 2 [Brian
+  A. Troha]
+
+* Added dipswitch settings to all games in the Football Champ
+  driver [Brian A. Troha]
+
+* Migrated Antiriad's Allegro hacks to Allegro WIP 32 [katharsis]
+
+* Misc. bugs in the source fixed [katharsis]
+
+18.17 RAINE v20000725 (Open Source)
+
+* New dipswitch settings for lots of games [Brian A. Troha]
+
+* Fixed SDF Macross video decoding [Haze]
+
+* A few misc. bugs in the source fixed [Katharsis]
+
+18.18 RAINE v0.28h
+
+* Added support for Puzzle Bobble and SDF Macross
+
+* Miscelaneous bug fixes.
+
+18.19 RAINE v0.28g
+
+* Added support for Batsugan, Battle Garegga, Dangun Feveron,
+  Esprade, Plump Pop and Uo Poko
+
+* Improvements to Dr. Toppel's Adventure, Kick And Run, Kiki
+  Kaikai and Twin Cobra II
+
+* Horizontal pixel doubling added to the screen options.
+
+18.20 RAINE v0.28f
+
+This version enabled all 54 (unique) W.I.P. games.
+
+18.21 RAINE v0.28a
+
+No documentation available
+
+18.22 v0.27ezel: "Irritiations"
+
+Changes from Antiriad:
+
+* Added alternate archive names, for ezel and his mame sets
+  (amhorse -> horshoes, ctribebl -> ctribeb,
+  doubled3 -> ddragon3).
+
+18.23 v0.27beta: "Buggs/Defect"
+
+Added the following playable game:
+
++-------------------+-----------------+---------+------+
+|    Game Name      | Company/System  | Dumper  | Info |
++-------------------+-----------------+---------+------+
+| Mahou Daisakusen  |    Raizing      | J-Rom   |      |
++-------------------+-----------------+---------+------+
+
+
+Changes from Antiriad:
+
+* Added mahoudai. Fixed sound.
+
+* Increase music tempo in raizing games.
+
+* Fixed keypad input.
+
+* Fixed non-removed dsw problem when changing games.
+
+* Fixed %ebp trashing caused by gcc 2.95.2 (fixes several
+  games).
+
+* Added [General] no_cpu_check to raine.cfg (disable check_cpu
+  in about window).
+
+* Fixed pbobble2 missing sprites.
+
+* listdsw option (hi ne7).
+
+18.24 v0.27alpha: "Better release something, or it will never
+  get done"
+
+Added the following 16 playable games:
+
++--------------------------+------------------+--------------+-----------------------------+
+|        Game Name         | Company/System   |   Dumper     |            Info             |
++--------------------------+------------------+--------------+-----------------------------+
+|   Darius (alternate)     |      Taito       | Spain Dumps  |     an updated version      |
++--------------------------+------------------+--------------+-----------------------------+
+|     Nastar Warrior       |      Taito       | Spain Dumps  |        just a clone         |
++--------------------------+------------------+--------------+-----------------------------+
+|        Gun Lock          | Taito F3-System  |   araCORN    |      some gfx problems      |
++--------------------------+------------------+--------------+-----------------------------+
+|       Grid Seeker        | Taito F3-System  |   araCORN    |      some gfx problems      |
++--------------------------+------------------+--------------+-----------------------------+
+| Kuri Kinton (alternate)  | Taito L-System   |              |     an updated version      |
++--------------------------+------------------+--------------+-----------------------------+
+|          Ghox            |     Toaplan      |    J-Rom     | no sound (turbo protection) |
++--------------------------+------------------+--------------+-----------------------------+
+|         Exzisus          |      Taito       | Noel Miruru  |    single screen version    |
++--------------------------+------------------+--------------+-----------------------------+
+|  Snow Bros (japanese)    |     Toaplan      |              |        just a clone         |
++--------------------------+------------------+--------------+-----------------------------+
+|    Snow Bros (alt 2)     |     Toaplan      |              |        just a clone         |
++--------------------------+------------------+--------------+-----------------------------+
+|  Arkanoid 2 (japanese)   |      Taito       |              |        just a clone         |
++--------------------------+------------------+--------------+-----------------------------+
+|     Makai Densetsu       |     Jaleco       | Noel Miruru  | legend of makai (japanese)  |
++--------------------------+------------------+--------------+-----------------------------+
+|    Solitary Fighter      | Taito F2-System  | Noel Miruru  |                             |
++--------------------------+------------------+--------------+-----------------------------+
+| Shippu Mahou Daisakusen  |     Raizing      |    J-Rom     |                             |
++--------------------------+------------------+--------------+-----------------------------+
+|  Quiz sekai wa show by   | Taito F2-System  | Noel Miruru  |                             |
++--------------------------+------------------+--------------+-----------------------------+
+|  Quiz Chikyu Bouei Gun   | Taito F2-System  | Noel Miruru  |                             |
++--------------------------+------------------+--------------+-----------------------------+
+|     Football Champ       | Taito F2-System  |   araCORN    |                             |
++--------------------------+------------------+--------------+-----------------------------+
+|      Euro Champ 92       | Taito F2-System  |  araCORN     |                             |
++--------------------------+------------------+--------------+-----------------------------+
+
+
+Changes from Antiriad:
+
+* Fixed memory trashing bug in layer toggle (caused crashes
+  with f3 games).
+
+* Added an option to save individual game display settings,
+  but I don't like it (use save_game_screen_settings in
+  raine.cfg).
+
+* Added board numbers to all the games I have info for.
+
+* Added cloneof information, for the rom merge tools that
+  use it.
+
+* Replaced roms/ziprom paths, now there are 4 paths, which
+  are used for *both* roms and ziproms (instead of 3 for
+  zipped, 3 for unzipped).
+
+* Changed screenshot names. Now they are gamename_nnn.pcx.
+  Yes, they are 'long' file names, if this is a problem
+  (in real dos), see below...
+
+* Added long_file_names switch in raine.cfg (disable for
+  shrtflnm screenshots).
+
+* Added rotation and flipping support in about 40% of games.
+
+* Rotation options on command line/config file: -rotate n
+  -no_rotate -flip n -no_flip (mame compatabilities: -rol
+  -ror -flipx -flipy).
+
+* Finally added zooming sprites in Ninja Kids, Growl (should
+  of done it ages ago when I did the other games...).
+
+* Now compiled with gcc 2.95.2 and allegro3927. Merged Sidewinder
+  alt into a single driver.
+
+Rom changes:
+
+* tatsujn2: tsj2rom2.bin is cut from 512kb to 256kb.
+
+* Renamed Legend of Makaj -> Legend of Makai.
+
+18.25 v0.24a: "Bub and Bob are my heroes...."
+
+Added the following 15 playable games:
+
++-------------------------+-------------------+-----------+-------------------------------------+
+|       Game Name         |  Company/System   |  Dumper   |                Info                 |
++-------------------------+-------------------+-----------+-------------------------------------+
+|  64th Street Japanese   |   Jaleco MS-1     |  J-Rom    |                                     |
++-------------------------+-------------------+-----------+-------------------------------------+
+|    Balloon Brothers     |   Seta & Taito    |           |                                     |
++-------------------------+-------------------+-----------+-------------------------------------+
+|    Bio Ship Paladin     |   UPL & Sammy     |           |    sound cpu protected / custom?    |
++-------------------------+-------------------+-----------+-------------------------------------+
+|     Bubble Bobble       |      Taito        |           | sound missing after gameover screen |
++-------------------------+-------------------+-----------+-------------------------------------+
+|    Cadash Japanese      |      Taito        | Noel M.   |                                     |
++-------------------------+-------------------+-----------+-------------------------------------+
+|   Champion Wrestler     |  Taito L-System   | araCORN   |                                     |
++-------------------------+-------------------+-----------+-------------------------------------+
+| Darius 2 - Dual Screen  |      Taito        |  J-Rom    |                                     |
++-------------------------+-------------------+-----------+-------------------------------------+
+|     Extermination       | Taito NZ-System   |           |                                     |
++-------------------------+-------------------+-----------+-------------------------------------+
+|  Grand Cross Pinball    | Excellent System  |           |                                     |
++-------------------------+-------------------+-----------+-------------------------------------+
+|      Knuckle Bash       |     Toaplan       |  Jim H    |      sound cpu protected / z80      |
++-------------------------+-------------------+-----------+-------------------------------------+
+|      Mutant Night       |       UPL         |           |       hidden game since 0.22        |
++-------------------------+-------------------+-----------+-------------------------------------+
+|       Palamedes         |  Taito L-System   |           |                                     |
++-------------------------+-------------------+-----------+-------------------------------------+
+|        Quiz HQ          | Taito F2-System   |  J-Rom    |                                     |
++-------------------------+-------------------+-----------+-------------------------------------+
+|   Quiz Torimonochou     | Taito F2-System   |  J-Rom    |                                     |
++-------------------------+-------------------+-----------+-------------------------------------+
+|         Strahl          |    UPL & NMK      | Metalman  |    sound cpu protected / custom?    |
++-------------------------+-------------------+-----------+-------------------------------------+
+
+
+Changes from Hiroshi:
+
+* Updates to M6295/MSM5205 emulators.
+
+* Some updates to the other sound sources too.
+
+Changes from Spindizzy:
+
+* Static M68705 recompiler.
+
+* Bubble Bobble (hardware info from the mame driver by Chris
+  Moore, Oliver White, Nicola Salmoria, Marco Cassili.
+
+Changes from Antiriad:
+
+* Added PSX pad driver for Playstation pads via LPT1/2/3.
+
+* Added a couple more Combatribes dsw (thx mayuga). 
+
+* Various code changes, so it compiles with msvc5.0/direct-x
+  via allegro392x wi p.
+
+* Coin Inputs are now only active for 250ms when you press
+  them. This fixes the 'Coin Error' problems in Taito games
+  (caused by holding the coin buttons down).
+
+* Fixed Puchi Carat running too fast.
+
+* Added Trackball control to Arkanoid Returns and Puchi Carat.
+  Enter the test mode to enable it (or delete the eeprom
+  images in savedata).
+
+* In no gui mode, the tab key will reactivate the gui (req.
+  by Bubble ).
+
+* Replaced some sample backback with streamed channels (better
+  sync in a couple of games).
+
+* Added LED emulation to Tatsujin 2, Snow Bros 2, Whoopee,
+  Knuckle Bash.
+
+* Added -gameinfo option, prints info for games in a shark
+  and mame syntax especially for frontend authors.
+
+* Improved key names a bit (eg. 'minus' becomes '-', 'stop'
+  becomes '.').
+
+* Added new control defaults for pinball games (incase some
+  more get dumped)
+
+* Made an M6585 emulator needed by Grand Cross Pinball.
+
+* Added year info to all the games.
+
+* Added the 320x240 arcade monitor mode from brian lewis...
+  It should work fine .
+
+* Changed the screen selector, so that the list of resolutions
+  changes depending on what gfx driver is highlighted. For
+  example, it only shows 320x200 for VGA, only shows possible
+  resolutions for mode-x, only shows 320x240 for arcade
+  monitor... Now it is easy to see which resolutions are
+  possible for each driver :).
+
+* Added Object and BG double buffer to tnzs-system. Now the
+  sprites move a lot better in Insector X and Extermination.
+
+* Cheat info lines can be edited in the gui like the other
+  cheat data.
+
+* Moved [General] -> LanguageFile is now [Directories] ->
+  language_file.
+
+* Added [Directories] -> cheat_file.
+
+* Renamed tripple_buffer -> triple_buffer (oops).
+
+* Added Cheat patch type, read the info in cheats.cfg.
+
+* Changed screen setup, so the size can be dumped.
+
+* Fixed screen size in Darius, Ninja Warriors.
+
+* Added led emulation to Darius, Warrior Blade.
+
+* Cadash cutting music should be fixed.
+
+* Added better support for rom sharing/merging, so more mame
+  sets should work.
+
+* If a rom is not found, it will search for it in the parent
+  game, and if a rom is not found in the parent game, it
+  will check the parent game to see if the rom is merged
+  with a different filename (by searching for matching crc32
+  and size data).
+
+* Improved some bits of chase hq.
+
+* Added starscream 0.26a. Seems to work, but I feel the new
+  interrupt system might break some games... Didn't find
+  any yet though.
+
+* Fixed snow bros 2 and tatsujin 2 stalling with no sound
+  selected.
+
+18.26 v0.23: "Sidewinder release"
+
+Changes from Antiriad:
+
+* Added support for 12 buttons on each joystick.
+
+* Added new default joystick settings:
+  button 9 = player start (this button is the 'start' button
+  on a sidewinder)
+  button 10 = player coin slot (this button is the 'mode'
+  button on a sidewinder).
+  It's great, now I can play on raine without leaning over
+  the keyboard =).
+
+* Fixed sidewinder in allegro (added a second copy of the
+  code as 'sidewinder b').
+  From what I can tell, the 'sidewinder b' should function
+  the same as the system16 driver...
+
+* BIG THANKS to Paul G. for the sidewinder gamepad :).
+
+* Added Player 3 and 4 Controls in Snow Bros 2, Hit the Ice.
+
+* Fixed Taito Tetris romlist (2 of the listed roms were unused).
+
+* Fixed tripple buffer interfering with frame skip radio
+  buttons in gui.
+
+* Fixed most sprite sync in Tatsujin 2.
+
+* Fixed most priorities in Master of Weapons, Ashura Blaster.
+
+* FG0 banking in B-System (eg. screen clear in Rambo 3, FBI
+  logo in Violence Fight),
+
+* Updated translation template.cfg (oops, forgot).
+
+* Changed Frame Skip option in gui.
+
+* Replaced Tripple Buffer scroll routines, so they (should)
+  work with vbe/af.
+
+* Added Combatribes player 3 controls and dsw to activate
+  them (thx mayuga).
+
+* Changed TNZS guide url in cheats.txt (thx chris).
+
+Non Changes:
+
+* We didn't publically add any new games since 0.22.
+
+* We didn't make any modifications to the Chase HQ emulation.
+
+18.27 v0.22: "Chase HQ release"
+
+Added 11 playable games:
+
++-------------------------+------------------+------------+-------------------------------+
+|       Game Name         |  ompany/System   |  Dumper    |             Info              |
++-------------------------+------------------+------------+-------------------------------+
+|     Bomb Jack Twin      |   NMK (c)NMK     | Metalman   |                               |
++-------------------------+------------------+------------+-------------------------------+
+|     Thunder Dragon      |  NMK (c)Tecmo    |   nnap     |   no sound yet (protected)    |
++-------------------------+------------------+------------+-------------------------------+
+| Thunder Dragon Bootleg  |       --         |  dump.it   | title screens are hacked out  |
++-------------------------+------------------+------------+-------------------------------+
+|     Omega Fighter       |       UPL        |     ?      |                               |
++-------------------------+------------------+------------+-------------------------------+
+|     Atomic Robokid      |       UPL        |     ?      |        hidden in 0.20         |
++-------------------------+------------------+------------+-------------------------------+
+|        Puzznic          | Taito L-System   |    VSA     |        hidden in 0.20         |
++-------------------------+------------------+------------+-------------------------------+
+|       Insector X        | Taito TNZS-Sys   |  araCORN   |       delayed from 0.20       |
++-------------------------+------------------+------------+-------------------------------+
+|     Silent Dragon       | Taito B-System   |  araCORN   | occasional trash on end level |
++-------------------------+------------------+------------+-------------------------------+
+|       Pop'n Pop         | Taito F3-System  | MetalMan   |                               |
++-------------------------+------------------+------------+-------------------------------+
+|        Chase HQ         | Taito Z-System   | ara/Jim ?  |        preliminary ;)         |
++-------------------------+------------------+------------+-------------------------------+
+|   Chase HQ Japanese     | Taito Z-System   |  malcor    |        preliminary ;)         |
++-------------------------+------------------+------------+-------------------------------+
+
+
+Changes from Hiromitsu Shioya:
+
+* Updated all sound emulators, updated sound playback system.
+
+* Fixed Darius object - bg1 priority.
+
+Changes from Antiriad:
+
+* Fixed Maze of Flott FG0 scroll typo (maybe fixes some other
+  games too).
+
+* Fixed Arkanoid 2 buttons and reset bug on nzs-system games.
+
+* Fixed Insector X level 2 bug, renamed to insectx because
+  of mame (was insectrx).
+
+* Added a pixel double option in raine.cfg (for NaMcO's dodgy
+  monitor).
+
+* Added some alternate search modes (see the cheating section[Cheat Searching]). 
+
+* Converted about 15 games to slightly slower colour mapping/tile
+  drawing, now no games need vsync to be enabled, and the
+  vsync autodetect option is gone.
+
+* Removed any listed resolutions where Y < 200. You can still
+  select these from raine.cfg, but they aren't much use,
+  so they are undocumented.
+
+* Made palette code keep colours locked for 3 frames instead
+  of 2, I think this is necessary for tripple buffer on
+  some slow gfx cards?
+
+* Keys now move around the load game list (eg. 's' to jump
+  to saint dragon).
+
+* Fixed Toki continue dsw.
+
+* Type raine -romcheck to check all games, and raine -romcheck
+  to check a single game (output is in romcheck.txt).
+
+* Added mame tripple buffer scroll routine, which is a hack
+  of allegro's vesa_scroll, it does not behave well with
+  all gfx modes (vesa3 is good vbe/af is not always good).
+
+* Added Sega ISA joystick driver. Does it work? Nobody knows...
+
+* Added memory hex view window when you double click on cheat
+  search results.
+
+* Changed M6295 interface, since Bomb Jack Twin has many
+  rom banks.
+
+* Added crc32 and file size info for all roms (too many req's).
+
+* Added multiple rom directory names, also with long file
+  names :).
+
+* Expanded Load Error messages, they are in a scrollable
+  text box now.
+
+* 100% decoded Bomb Jack Twin gfx roms.
+
+* Game list mode is saved in raine.cfg (requested by some
+  ppl)
+
+* Added fast_set_pal in raine.cfg. 1 = Use faster colour
+  loading (raine 0.20). 0 = Use slower colour loading (raine
+  0.18; compatible with more cards). Default is 1.
+
+* Added Autofire setup in gui. Try using a test mode (eg.
+  mega blast) to test it out :). Autofire settings are not
+  saved, should they be?
+
+* Gui font is proportional, except in listboxes, where it
+  makes sense to be non -prop.
+
+* Scanlines are now black in Rainbow Islands.
+
+* Fixed Cheat engine for Z80 games. Tested with TNZS, Raimais,
+  Fighting Hawk.
+
+* Impossible Joystick positions are now prevented. So, you
+  can press up or down, but you cannot press up and down
+  simultaneously, etc... Fixes some bugs, like on Ninja
+  Warriors, pressing left, right and up all together caused
+  bad stuff to happen to the main player.
+
+* Added default joys and a default joys editor, works like
+  the keyboard stuff.
+
+* Added led emulation to Darius 2 and Ninja Warriors.
+
+* Fixed wrong joystick buttons for player 2 in space gun
+  and op thunder.
+
+* Added default keys and a default keys editor. Changed all
+  game drivers.
+
+* Fixed Dinorex lockups, caused by bad programming in the
+  rom, leaving trash in some bits of the address registers.
+
+* Made Action Replay cheat names max 256 chars.
+
+* Added file selector option when setting zip/rom dirs.
+
+* Added some game info window, with some company logos.
+
+* Added button 3 in Violence Fight, 6 buttons in Kaiser Knuckle.
+
+* Added some dsw from Thomas Pitt..
+
+* Fixed Load Game when the game list selection is empty and
+  you click load game.
+
+* Fixed Snow Bros 2 missing sound.
+
+18.28 v0.20: "101 games release"
+
+Added 18 playable games:
+
++--------------------------+------------------+-----------+-----------------------+
+|        Game Name         | Company/System   |  Dumper   |         Info          |
++--------------------------+------------------+-----------+-----------------------+
+|       Arkanoid 2         | Taito 'NZS-Sys'  |    ?      |                       |
++--------------------------+------------------+-----------+-----------------------+
+|   Arkanoid 2 American    | Taito 'NZS-Sys'  |    ?      |                       |
++--------------------------+------------------+-----------+-----------------------+
+|    New Zealand Story     | Taito 'NZS-Sys'  |    ?      |                       |
++--------------------------+------------------+-----------+-----------------------+
+| New Zealand Story Extra  | Taito 'NZS-Sys'  |    ?      |                       |
++--------------------------+------------------+-----------+-----------------------+
+|     Kaiser Knuckle       | Taito F3-System  | araCORN   |                       |
++--------------------------+------------------+-----------+-----------------------+
+|     Violence Fight       | Taito B-System   | araCORN   |                       |
++--------------------------+------------------+-----------+-----------------------+
+|      Don Doko Don        | Taito F2-System  |  J-Rom    |                       |
++--------------------------+------------------+-----------+-----------------------+
+|       Hit the Ice        | Taito B-System   | araCORN   |                       |
++--------------------------+------------------+-----------+-----------------------+
+|         Rambo 3          | Taito B-System   | araCORN   |                       |
++--------------------------+------------------+-----------+-----------------------+
+|         Raimais          | Taito L-System   | araCORN   |                       |
++--------------------------+------------------+-----------+-----------------------+
+|      Fighting Hawk       | Taito L-System   |  Vixen    |                       |
++--------------------------+------------------+-----------+-----------------------+
+|     Ashura Blaster       | Taito B-System   |  Vixen    |                       |
++--------------------------+------------------+-----------+-----------------------+
+|       Earth Joker        |      Taito       | araCORN   |                       |
++--------------------------+------------------+-----------+-----------------------+
+|        Galmedes          |      Taito       |  Vixen    |                       |
++--------------------------+------------------+-----------+-----------------------+
+|    Space Invaders 95     | Taito F3-System  | Metalman  |                       |
++--------------------------+------------------+-----------+-----------------------+
+|       Majestic 12        | Taito F2-System  |  Vixen    | enhancements to ssi91 |
++--------------------------+------------------+-----------+-----------------------+
+
+
+Note: Insector X had to be removed because we found a last
+minute bug, so it will be included on another Raine release.
+
+* Added a vsync autodetect option, which will only vsync
+  when a game uses a direct mapper and the palette is really
+  changed.
+
+* Busy mouse sprite, from _iceball_.
+
+* Added a better savegame format. Loading of the old format
+  is fully supported.
+
+* Made some visual improvements to the gui and made active
+  window draggable, added game count information to game
+  select window.
+
+* Zooming in H-System games and sprite fixes.
+
+* Fixed a sprite chain problem in WWF Superstars.
+
+* Added sound pause for hardware ym3812 emulation (thx cgfm
+  for adlib info).
+
+* Zooming in B-System games and sprite fixes.
+
+* Fixed several memory leaks, with some nice debugging routines
+  from Mirko Buffoni :).
+
+* Zooming in F2-System games and sprite fixes.
+
+* Sprite Zooming in F3-System games and fixes.
+
+* Fixed a bug when expanding directory names to full path.
+
+* Changed to Allegro 3.11 (joystick bug fixes, and a new
+  joystick supported: Wingman Warrior).
+
+* Improved the 'mapped' colour mappers so they look always
+  correct without vsync.
+
+* Added Legend of Makaj dipswitches from Udirnel.
+
+* Added cheats.txt: secrets and cheat modes for the supported
+  games.
+
+* YM3812 frequency is now supported for hardware emulation.
+  Thanks to Carl/DSC and JH.
+
+* Added keyboard leds for most taito games.
+
+* Removed debug numbers from Mega Blast screen (oops).
+
+* Fixed Cybattler and 64th Street missing sound (oops).
+
+* Fixed background gfx in Rodland 'secret' levels.
+
+* Changed the way bankswitching is handled in Z80 emulation
+  for extra speed.
+
+* Changed MZ80 memory interface to be more like Starscream's.
+
+* Lots of gfx emulation merged (no speed loss, and in most
+  cases a speed increase and improved accuracy).
+
+* Action Replay search added to gui.
+
+* rdtsc timer, more accurate timing, no more dropping to
+  59fps in Win9x-dosbox :).
+
+* Lots of small game fixes, changes, and other stuff.
+
+* Sound added on Toki
+
+Changes from Hiromitsu Shioya:
+
+* M6295 improvements.
+
+* Multiple MSM5205 support.
+
+Changes from others:
+
+* Taito Board List much improved by Vixen.
+
+* Additional Nichibutsu sound frequency fixes by Jim Hernandez.
+
+18.29 v0.18: "Jaleco release; dedicated to AraCorn"
+
+Added 26 playable games:
+
++-------------------------+------------------+-----------+----------------------------------------+
+|       Game Name         | Company/System   |  Dumper   |                  Info                  |
++-------------------------+------------------+-----------+----------------------------------------+
+|      64th Street        |  Jaleco MS1-C    | araCORN   |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|        Astyanax         |   Jaleco MS1     |           |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|    Asuka and Asuka      |      Taito       | araCORN   |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|    Avenging Spirit      |  Jaleco MS1-B    | araCORN   |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|    Bubble Symphony      | Taito F3-System  | Metalman  |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|     Cadash Italian      |      Taito       |   Any     |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|       Camel Try         | Taito F2-System  |  J-Rom    |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|      Combatribes        |     Technos      |   NAZ!    |                Bootleg                 |
++-------------------------+------------------+-----------+----------------------------------------+
+|       Cybattler         |  Jaleco MS1-C    | araCORN   |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|  Earth Defence Force    |  Jaleco MS1-B    | araCORN   |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|         Hachoo          |   Jaleco MS1     | araCORN   |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|    Legend of Makaj      |     Jaleco       | araCORN   |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|     Maze of Flott       |      Taito       |           |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|     P-47 American       |   Jaleco MS1     |           |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|     P-47 Japanese       |   Jaleco MS1     |           |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|        Phantasm         |   Jaleco MS1     |  J-Rom    |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|    Pipi and Bibi's      |  Ryouta Kikaku   | dump.it   |                Bootleg                 |
++-------------------------+------------------+-----------+----------------------------------------+
+|        Plotting         |    Taito Z80     | dump.it   |   Driver by Richard Mitton/ Tnzs emu   |
++-------------------------+------------------+-----------+----------------------------------------+
+|       Plus Alpha        |   Jaleco MS1     |  J-Rom    |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|      Puchi Carat        | Taito F3-System  | Metalman  |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|    Puzzle Bobble 2x     | Taito F3-System  | Metalman  |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|    Rodland English      |   Jaleco MS1     | araCORN   |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|      Saint Dragon       |   Jaleco MS1     |  J-Rom    |                                        |
++-------------------------+------------------+-----------+----------------------------------------+
+|      Snow Bros 2        |     Toaplan      |           | Hardware info from Carl-Henrik and ... |
++-------------------------+------------------+-----------+----------------------------------------+
+| Tatsujin 2 / Truxton 2  |     Toaplan      |           |     ... Magnus / Dead Serious Clan     |
++-------------------------+------------------+-----------+----------------------------------------+
+|        Whoopee          |     Toaplan      |  J-Rom    |     Requires Pipi & Bibis gfx roms     |
++-------------------------+------------------+-----------+----------------------------------------+
+
+
+* Zip support is now internal (using zLib/miniunzip source).
+
+* YM2151 engine optimized a bit (apx 10% faster).
+
+* YM2610 engine optimized a bit (apx 30% faster).
+
+* The 256x240 mode-x mode is now stretched to full screen.
+  Thanks to Dark Force and FanWen for the code. Thanks to
+  Interceptor for suggesting it.
+
+* Added 12 new vesa modes: 640x100/120/150/160/200/240 800x150/200/300
+  1024x192/256/384. Some useful modes for 2/3 Screen games!
+  Thanks to Dark Force.
+
+* Changed adpcm sound emulation to be more accurate in Technos
+  games and Zero Zone.
+
+* Deprotected Jaleco 68k roms. Hopefully 100%.
+
+* Added Darius Dipswitches. Thanks to mutewitness.
+
+* Fixed sprite banking in Growl/Ninja Kids, thanks to Brad
+  Oliver.
+
+* Added Starscream 0.25 (faster). Thanks as always to Neill
+  Corlett.
+
+* Doubled music speed in Terra Force and Armed Formation.
+  Thanks to Jim Hernandez for the info.
+
+* Compiled with new Seal 1.06 and Allegro 3.1. This should
+  fix some joystick problems, also the SnesPad support has
+  changed, because allegro supports SnesPads now.
+
+* Changed joystick and screen mode values in config file/command
+  line, this is due to syntax changes in allegro 3.1.
+
+* Some hacks to improve the sprites in Rainbow Islands Extra.
+  The C-Chip data is different to Jumping Islands and Rainbow
+  Islands Original...
+
+* Lots of internal code changes/improvements. This caused
+  a lot of retesting, and it was unreleasable over xmas...
+
+* Added fixed sound rom for Thunder Fox (if you want sound,
+  a new rom is required).
+
+* Added fixed sample roms for Final Blow (if you want sound,
+  2 new roms are required).
+
+* Added software YM3812 emulator, provided by Carl-Henrik
+  Skaarstedt/DSC!
+
+* Added sample rate and YM3812 switches in gui.
+
+* Added faster code to draw ingame messages.
+
+* Added quick rtdsc profiler, press ingame F11 to switch
+  to it.
+
+* Added YM2610 in Space Gun.
+
+* Added Translation file support for 90% of the text in raine.
+
+* Added support for more than 2 dipswitch banks (eg. Toaplan
+  games have 3 dsw banks).
+
+* Added Eagle 0.41, thx Dirk.
+
+* Fix for Rainbow Islands sometimes dropping music.
+
+* Added more game cheats from JCK/The Ultimate Patchers (cheats
+  from mame).
+
+* YM2151 sound in WrestleFest, WWF SuperStars, Double Dragon
+  3.
+
+* Added FG0 gfx and scrolling in Plotting.
+
+Changes from Hiromitsu Shioya:
+
+* Added much better M6295 emulator with sample bank switching
+  support.
+
+* Added much better MSM5205 emulation for Darius.
+
+* Added new versions of fm.c source, ym2610 emulator is now
+  merged in fm.c.
+
+* Switched YM2203 emulation to fm.c.
+
+* Improve sound streaming support. Added resync if it falls
+  behind.
+
+* Fixed screen size for Darius 2 and Ninja Warriors.
+
+* Fixed colour port bug in 3 screen games.
+
+* Fixed sample rom mapping and z80 speed in most Taito ym2610
+  games.
+
+* Changed some Taito games from ym2610 - ym2610b (ym2610b
+  has more fm channels).
+
+* Many fixes to Taito, Jaleco and Technos sound emulation.
+
+Changes from others:
+
+* Richard Mitton added emulation of Plotting.
+
+* Jim Hernandez improved sound frequency in Nichibutsu games.
+
+* Jim Hernandez improved sound frequency and volumes in Jaleco
+  games.
+
+19 Lists of boards
+
+19.1 TAITO BOARD LIST - Vixen, Antiriad & Raine Team
+
+This list is mainly to identify all Taito hardware, each
+Taito machine has an ordered number from 1983 onwards. It
+is not a list of dumped Taito romsets, some of these are
+undumped.
+
+Probably other Taito hardware is also numbered this way.
+
+Please send any extra info.
+
+Thanks to J-Rom, araCORN, Raven, malcor, David Jorge, Al
+Kossow, Soren Svendsen for information. This list has been
+hugely ipmroved by vixen! Thanks!! :)
+
+The change of the title that differs by country wrote to
+the same line. It distinguished it as the different game,
+in the case that there is an obvious new version.
+
+Product listing of TAITO begins from here.
+
++------+-------------------------+---------+--------+----------------------------------+
+| ---  |         Phoenix         |  Taito  |  1980  |  ....... ....... ....... ....... |
++------+-------------------------+---------+--------+----------------------------------+
+| ---  |  Space Invaders Part 2  |  Taito  |  1980  |  ....... ....... ....... ....... |
++------+-------------------------+---------+--------+----------------------------------+
+
+
+Notes :
+
+Gladiator / Great Gurianos JPN ver name "Oh-gon no Shiro(The
+Golden Castle)"
+
+Renegade JPN ver name "Kunio-Kun"
+
++------+----------------------------------+----------+--------+----------------------------------+
+| A03  |            Water Ski             |  Taito   |  1983  |  ....... ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A04  |           Chack'n Pop            |  Taito   |  1983  |  ....Z80 .M68705 .AY8910 .AY8910 |
++------+----------------------------------+----------+--------+----------------------------------+
+| A10  |           The Tin Star           |  Taito   |  1984  |  ....... ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A23  |           Rumba Ramba            |  Taito   |  1984  |  ....... ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A24  |          Birdie King 3           |  Taito   |  1984  |  ....... ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A26  |           Ben-Bero-Beh           |  Taito   |  1984  |  ....... ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A30  |        40-0 / Fourty-Love        |  Taito   |  1985  |  ....... ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A34  |      Metal Soldier Issac II      |  Taito   |  1985  |  ..Z80x2 ...... YM2149x2 MSM5232 |
++------+----------------------------------+----------+--------+----------------------------------+
+| A35  |  Samurai / Samurai Nippon-Ichi   | Kaneko   |  1985  |  ....... ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A37  |      Return of The Invaders      |    UPL   |  1985  |  ....... ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A38  |     Yuke-Yuke Yamaguchi-Kun      | Kaneko   |  1985  |  ....... ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A39  |            Wyvern F-0            |  Taito   |  1985  |  ....... ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A44  |     Space-Battleship Yamato      |  Taito   |  1985  |  ....... ....... .YM2203 ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A45  |         Fairyland Story          |  Taito   |  1985  |  ..Z80x2 .M68705 MSM5232 ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A47  |            Tiger Heli            | Toaplan  |  1985  |  ....... ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A52  |          Onna Sanshiro           |  Taito   |  1985  |  ..Z80x2 .M68705 MSM5232 ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A54  |          Legend of Kage          |  Taito   |  1985  |  ....Z80 ....... .YM2203 ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A62  |          Halley's Comet          |  Taito   |  1986  |  ....... ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A64  |        Land Sea Air Squad        |  Taito   |  1986  |  ....... ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A67  |          Big Event Golf          |  Taito   |  1986  |  ....... ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A71  |    Scramble Formation / Tokio    |  Taito   |  1986  |  ..Z80x2 ....Z80 .YM2203 ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A72  |            The 26th Z            |    WP    |  1986  |  ....... ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A75  |             Arkanoid             |  Taito   |  1986  |  ....Z80 ....... ....... ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A76  |        Alcon / Slap Fight        | Toaplan  |  1986  |  ....Z80 ....... .AY8910 .AY8910 |
++------+----------------------------------+----------+--------+----------------------------------+
+| A77  |  Alcon / Slap Fight (JAMMA PCB)  | Toaplan  |  1986  |  ....Z80 ....... .AY8910 .AY8910 |
++------+----------------------------------+----------+--------+----------------------------------+
+| A78  |          Bubble Bobble           |  Taito   |  1986  |  ..Z80x2 ....Z80 .M68705 .YM2203 |
++------+----------------------------------+----------+--------+----------------------------------+
+| A85  |           Kiki Kaikai            |  Taito   |  1986  |  ....Z80 ....Z80 .M68705 .YM2203 |
++------+----------------------------------+----------+--------+----------------------------------+
+| A87  |            Kick & Run            |  Taito   |  1986  |  ....Z80 ....Z80 .YM2203 ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+| A96  |        Darius / Darius EX        |  Taito   |  1986  |  MC68000 MC68000 ....Z80 .YM2203 |
++------+----------------------------------+----------+--------+----------------------------------+
+| A98  |            Plump Pop             |  Taito   |  1987  |  ....Z80 ....Z80 .YM2203 ....... |
++------+----------------------------------+----------+--------+----------------------------------+
+
+
++------+--------------------------------------+----------+--------+----------------------------------+
+| B02  |  Flying Shark/Hishou Zame/Sky Shark  | Toaplan  |  1987  |  MC68000 ....Z80 .YM3812 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B03  |              Super Qix               | Kaneko   |  1987  |  ....Z80 ....... ....... ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B04  |         Rastan / Rastan Saga         |  Taito   |  1987  |  MC68000 ....Z80 .YM2151 MSM5205 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B06  |            Extermination             |  Taito   |  1987  |  ....Z80 ....Z80 .YM2203 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B08  |     Arkanoid 2 / Revenge of Doh      |  Taito   |  1987  |  ....Z80 ....Z80 .YM2203 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B12  |            Exzisus (???)             |  Taito   |  1987  |  ....Z80 ....Z80 .M68705 .YM2151 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B14  |      Top Speed / Full Throttle       |  Taito   |  1987  |  MC68000 MC68000 ....Z80 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B19  |         Dr.Toppel Adventure          | Kaneko   |  1987  |  ....Z80 ....Z80 .YM2203 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B20  |            Operation Wolf            |  Taito   |  1987  |  MC68000 ....Z80 .C-CHIP .YM2151 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B22  |         Rainbow Islands / EX         |  Taito   |  1987  |  MC68000 ....Z80 .C-CHIP .YM2151 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B23  |            Exzisus (???)             |  Taito   |  1987  |  ....Z80 ....Z80 .M68705 .YM2151 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B25  |    Pyros / The Forest of Wardona     | Toaplan  |  1987  |  ....... ....... ....... ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B30  |     Twin Cobra / Kyukyoku Tiger      | Toaplan  |  1987  |  MC68000 ....Z80 .YM3812 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B31  |            Ninja Warriors            |  Taito   |  1987  |  MC68000 MC68000 ....Z80 .YM2610 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B33  |   Continental Circus / Co. Circuit   |  Taito   |  1989  |  MC68000 MC68000 ....Z80 .YM2610 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B35  |                Kageki                |  Taito   |  1988  |  ....Z80 ....Z80 .YM2203 .YM3906 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B36  |               Raimais                |  Taito   |  1988  |  ....Z80 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B41  |   Bonze Adventure / Jigoku Meguri    |  Taito   |  1988  |  MC68000 ....Z80 .C-CHIP .YM2610 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B42  |             Kuri Kinton              |  Taito   |  1988  |  ....Z80 ....Z80 .YM2203 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B44  |             Chuka Taisen             |  Taito   |  1988  |  ....Z80 ....Z80 .YM2203 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B50  |               Kabuki Z               | Kaneko   |  1988  |  ....Z80 ....Z80 .YM2203 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B51  |               Syvalion               |  Taito   |  1988  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B52  |              Chase H.Q.              |  Taito   |  1988  |  MC68000 MC68000 ....Z80 .YM2610 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B53  |        The New Zealand Story         |  Taito   |  1988  |  ....Z80 ....Z80 .YM2203 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B56  |   Record Breaker / Go for the Gold   |  Taito   |  1988  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B61  |               Superman               |  Taito   |  1988  |  MC68000 ....Z80 .C-CHIP .YM2610 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B62  |             Top Landing              |  Taito   |  1988  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B65  |          Truxton / Tatsujin          | Toaplan  |  1988  |  MC68000 ....Z80 .YM3812 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B67  |        Operation Thunderbolt         |  Taito   |  1989  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B70  |            Fighting Hawk             |  Taito   |  1989  |  ....Z80 ....Z80 .YM2203 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B72  |          Master of Weapons           |  Taito   |  1989  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B73  |              Heavy Unit              | Kaneko   |  1988  |  ....Z80 ....Z80 .YM2203 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B77  |              Aqua Jack               |  Taito   |  1989  |  MC68000 MC68000 ....Z80 .YM2610 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B81  |    Rastan Saga 2 / Nastar Warrior    |  Taito   |  1989  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B82  |              Final Blow              |  Taito   |  1989  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B87  |         Twin Hawk / Daisenpu         | Toaplan  |  1989  |  MC68000 ....Z80 .YM2151 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B90  |               Hellfire               | Toaplan  |  1989  |  MC68000 ....Z80 .YM3812 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B91  |            Night Striker             |  Taito   |  1989  |  MC68000 MC68000 ....Z80 .YM2610 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B93  |               Rambo 3                |  Taito   |  1989  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B95  |             Don Doko Don             |  Taito   |  1989  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B96  |          Plotting / Flipull          |  Taito   |  1989  |  ....Z80 .YM2203 ....... ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B97  |              Insector X              |  Taito   |  1989  |  ....Z80 ....Z80 .YM2203 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| B99  |              Crime City              |  Taito   |  1989  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+
+
++------+--------------------------------------+----------+--------+----------------------------------+
+| C01  |          Champion Wrestler           |  Taito   |  1989  |  ....Z80 ....Z80 ....Z80 .YM2203 |
++------+--------------------------------------+----------+--------+----------------------------------+
++------+--------------------------------------+----------+--------+----------------------------------+
+| C02  |           Dynamite League            |  Taito   |  1989  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C04  |               Volfied                |  Taito   |  1989  |  MC68000 ....Z80 .C-CHIP .YM2610 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C07  |   Darius 2 / Darius 2 Dual Screen    |  Taito   |  1989  |  MC68000 MC68000 ....Z80 .YM2610 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C09  |  Chase HQ 2: Special Criminal Inv.   |  Taito   |  1989  |  MC68000 MC68000 ....Z80 .YM2610 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C11  |              Mega Blast              |  Taito   |  1989  |  MC68000 ....Z80 .C-CHIP .YM2610 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C12  |             Taito Tetris             |  Taito   |  1989  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C16  |            Violence Fight            |  Taito   |  1989  |  MC68000 ....Z80 .YM2203 ..M6295 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C17  |            Maze of Flott             |  Taito   |  1989  |  MC68000 ....Z80 .YM2151 MSM5205 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C20  |               Puzznic                |  Taito   |  1989  |  ....Z80 .M68705 .YM2203 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C21  |                Cadash                |  Taito   |  1989  |  MC68000 ....Z80 .YM2151 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C28  |             Thunder Fox              |  Taito   |  1989  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C32  |           World Grand Prix           |  Taito   |  1989  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C34  |             Battle Shark             |  Taito   |  1989  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C38  |              Camel Try               |  Taito   |  1990  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C41  |     Quiz Torimonochou (JPN Quiz)     |  Taito   |  1989  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C43  |            Ashura Blaster            |  Visco   |  1990  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C45  |             Air Inferno              |  Taito   |  1990  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C47  |         American Horseshoes          |  Taito   |  1990  |  ....Z80 .YM2203 ....... ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C49  |             Liquid Kids              |  Taito   |  1990  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C53  |          Quiz HQ (JPN Quiz)          |  Taito   |  1990  |  ....... ....... ....... ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C57  |              Space Gun               |  Taito   |  1990  |  MC68000 MC68000 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C59  |             Hit the Ice              |  Bally   |  1990  |  MC68000 ....Z80 .YM2203 ..M6295 |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C63  |              Palamedes               |  Taito   |  1990  |  ....Z80 .YM2203 ....... ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C64  |  Super Space Invaders 91 / MJ12 / 4  |  Taito   |  1990  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C69  |           Sonic Blast Man            |  Taito   |  1990  |  ....... ....... ....... ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C71  |             Gun Frontier             |  Taito   |  1990  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C73  |               W.G.P.2                |  Taito   |  1990  |  ....... ....... ....... ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C74  |            Growl / Runark            |  Taito   |  1990  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C77  |            Mahjong Quest             |  Taito?  |  1990  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C80  |   Hat Trick Hero / Football Champ    |  Taito   |  1990  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C81  |         Ah Eikou no Koushien         |  Taito   |  1990  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C83  |  Yu-yu no Quiz de Go!Go! (JPN Quiz)  |  Taito   |  1990  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C85  |              Ninja Kids              |  Taito   |  1991  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C91  |           Solitary Fighter           |  Taito   |  1991  |  ....... ....... ....... ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C92  |        Quiz Quest (JPN Quiz)         |  Taito   |  1991  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+| C98  |               Pulirula               |  Taito   |  1991  |  MC68000 ....Z80 .YM2610 ....... |
++------+--------------------------------------+----------+--------+----------------------------------+
+
+
++------+----------------------------------------+---------+--------+----------------------------------+
+| D12  |      Metal Black / Gun Frontier 2      |  Taito  |  1991  |  MC68000 ....Z80 .YM2610 ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
++------+----------------------------------------+---------+--------+----------------------------------+
+| D19  |    Quiz Chikyu Bouei-Gun (JPN Quiz)    |  Taito  |  1991  |  MC68000 ....Z80 .YM2610 ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D20  |           Yes/No Mind Chart            |  Taito  |  1992  |  MC68000 ....Z80 .YM2610 ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D21  |               Ring Rage                |  Taito  |  1992  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D24  |             Warrior Blade              |  Taito  |  1992  |  MC68000 MC68000 ....Z80 .YM2610 |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D26  |        Mini Invaders (Test PCB)        |  Taito  |  1992  |  ....... ....... ....... ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D27  |               Gun Buster               |  Taito  |  1992  |  ....... ....... ....... ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D28  |            Dead Connection             |  Taito  |  1992  |  MC68000 ....Z80 .YM2610 ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D29  |             Arabian Magic              |  Taito  |  1992  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D34  |              Riding Fight              |  Taito  |  1992  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D39  |                Dinorex                 |  Taito  |  1992  |  MC68000 ....Z80 .YM2610 ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D40  |    Grid Seeker: Project Stormhammer    |  Taito  |  1992  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D46  |       Super Chase / Speed Chase        |  Taito  |  1992  |  MC68020 MC60000 MC68000 ENSONIQ |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D48  |      Quiz Life Theater (JPN Quiz)      |  Taito  |  1992  |  MC68000 ....Z80 .YM2610 ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D49  |   Hat Trick Hero 93/Taito Cup Finals   |  Taito  |  1992  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D53  |  Top Ranking Stars/Primetime Fighters  |  Taito  |  1992  |  MC68000 MC68000 MC68000 ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D55  |    Quiz Crayon Shin-Chan (JPN Quiz)    |  Taito  |  1992  |  MC68000 ....Z80 .YM2610 ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D63  |     Crayon Shin-Chan 2 (not Quiz!)     |  Taito  |  1992  |  MC68000 ....Z80 .YM2610 ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D66  |          Gun Lock / Ray Force          |  Taito  |  1993  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D67  |               Under Fire               |  Taito  |  1993  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D68  |            Super Cup Finals            |  Taito  |  1993  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D69  |             Light Bringer              |  Taito  |  1993  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D55  |    Quiz Show by Sho-bai (JPN Quiz)     |  Taito  |  1993  |  MC68000 ....Z80 .YM2610 ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D77  |          Base Board F3-System          |  Taito  |  1994  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D78  |          International Cup 94          |  Taito  |  1994  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D84  |    Kaiser Knuckle / Global Champion    |  Taito  |  1994  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D87  |             Darius Gaiden              |  Taito  |  1994  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D89  |     Space Invaders DX (Single PCB)     |  Taito  |  1994  |  MC68000 ....Z80 .YM2610 ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D90  |            Bubble Symphony             |  Taito  |  1994  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D93  |           Space Invaders DX            |  Taito  |  1994  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D94  |     Hat Trick Hero 95 / Power Goal     |  Taito  |  1995  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+| D95  |        Quiz Theater: 3 Stories         |  Taito  |  1995  |  MC68020 MC68000 ENSONIQ ....... |
++------+----------------------------------------+---------+--------+----------------------------------+
+
+
++------+-----------------------------------+---------+--------+----------------------------------+
+| E02  |      Elevator Action Returns      |  Taito  |  1995  |  MC68020 MC68000 ENSONIQ ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
++------+-----------------------------------+---------+--------+----------------------------------+
+| E06  |  Space Invaders 95 / Attkan Beda  |  Taito  |  1995  |  MC68020 MC68000 ENSONIQ ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E08  |  Moriguchi Hiroko Quiz Woo! Hoo!  |  Taito  |  1995  |  MC68020 MC68000 ENSONIQ ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E10  |      Puzzle Bobble 2 / 2 EX       |  Taito  |  1995  |  MC68020 MC68000 ENSONIQ ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E11  |            Gekirindan             |  Taito  |  1995  |  MC68020 MC68000 ENSONIQ ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E15  |  Twin Cobra 2 / Kyukyoku Tiger 2  | Takumi  |  1995  |  MC68020 MC68000 ENSONIQ ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E21  |          Bubble Memories          |  Taito  |  1995  |  MC68020 MC68000 ENSONIQ ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E22  |           Psychic Force           |  Taito  |  1996  |  .R3000? ....Z80 .YM2610 ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E22  |         Psychic Force EX          |  Taito  |  1996  |  .R3000? ....Z80 .YM2610 ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E23  |           Side By Side            |  Taito  |  1996  |  ....... ....... ....... ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E24  |             Raystorm              |  Taito  |  1996  |  .R3000? ....... ...ZOOM ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E25  |         Fighters' Impact          |  Taito  |  1996  |  .R3000? ....... ...ZOOM ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E25  |        Fighters' Impact A         |  Taito  |  1996  |  .R3000? ....... ...ZOOM ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E28  |        Cleopatra's Fortune        |  Taito  |  1996  |  MC68020 MC68000 ENSONIQ ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E29  |          Puzzle Bobble 3          |  Taito  |  1996  |  MC68020 MC68000 ENSONIQ ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E32  |           Magical Date            |  Taito  |  1996  |  .R3000? ....Z80 .YM2610 ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E32  |          Magical Date EX          |  Taito  |  1997  |  .R3000? ....Z80 .YM2610 ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E36  |         Arkanoid Returns          |  Taito  |  1997  |  MC68020 MC68000 ENSONIQ ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E39  |             G Darius              |  Taito  |  1997  |  .R3000? ....... ...ZOOM ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E39  |          G Darius ver.2           |  Taito  |  1997  |  .R3000? ....... ...ZOOM ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E40  |        Kirameki Star Road         |  Taito  |  1997  |  MC68020 MC68000 ENSONIQ ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E46  |            Puchi Carat            |  Taito  |  1997  |  MC68020 MC68000 ENSONIQ ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E49  |          Puzzle Bobble 4          |  Taito  |  1997  |  MC68020 MC68000 ENSONIQ ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E51  |             Pop'n Pop             |  Taito  |  1997  |  MC68020 MC68000 ENSONIQ ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+| E61  |             Landmaker             |  Taito  |  1998  |  MC68020 MC68000 ENSONIQ ....... |
++------+-----------------------------------+---------+--------+----------------------------------+
+
+
++------+-----------------------------------+--------+--------+----------------------------------+
+| UA0  |  Thundercade / Special Force UAG  |  Seta  |  1987  |  ....... ....... ....... ....... |
++------+-----------------------------------+--------+--------+----------------------------------+
++------+-----------------------------------+--------+--------+----------------------------------+
+| UA2  |            Twin Eagle             |  Seta  |  1988  |  ....... ....... ....... ....... |
++------+-----------------------------------+--------+--------+----------------------------------+
+| UAE  |         U.S. Classic Golf         |  Seta  |  1989  |  ....... ....... ....... ....... |
++------+-----------------------------------+--------+--------+----------------------------------+
+| UA?  |              CAL.50               |  Seta  |  1989  |  ....... ....... ....... ....... |
++------+-----------------------------------+--------+--------+----------------------------------+
+
+
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |             B-Rap Boys             | Kaneko   |  1991  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |          Challenge Hitter          |  Taito   |  19xx  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |             Chaos Heat             |  Taito   |  1998  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |           Chase Bombers            |  Taito   |  199x  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |          Dangerous Curves          |  Taito   |  199x  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |             Dark Mist              |  Seibu   |  1986  |  ..T5182 ....Z80 .YM2151 ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |           Densha de Go!            |  Taito   |  199x  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |          Densha de Go! EX          |  Taito   |  199x  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |          Densha de Go! 2           |  Taito   |  199x  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |         Densha de Go! 2 EX         |  Taito   |  199x  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |            Double Axle             |  Taito   |  19xx  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |           Electric Yo-Yo           |  Taito   |  198x  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |              Enforce               |  Taito   |  1988  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |           Galactic Storm           |  Taito   |  1992  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |              Get Star              | Toaplan  |  1986  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |              Gyrodine              | Toapla?  |  1984  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |             Hot Smash              |  Taito   |  1987  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |            Landing Gear            |  Taito   |  1995  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |          Midnight Landing          |  Taito   |  1987  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |  New York Captor / Cycle Shooting  |  Taito   |  1985  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |   Parasol Stars (Prototype TG16)   |  Taito   |  199x  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |            Power Wheels            |  Taito   |  19xx  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |            Racing Beat             |  Taito   |  19xx  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |             Rally Bike             | Toaplan  |  1988  |  MC68000 ....Z80 .YM3812 ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |        Revenge of Daikaiju         |  Taito?  |  1986  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |           S.R.D.Mission            |  Taito   |  1986  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |           Storming Party           |  Taito   |  1986  |  ....Z80 .YM2203 ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |          Super Dead Heat           |  Taito   |  1985  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |         Super Dead Heat 2          |  Taito   |  1986  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |       Super Football Champ.        |  Taito   |  1996  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |        Super Ground Effects        |  Taito   |  1992  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |      The First Funky Fighter       | East.T   |  1993  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |          Touch Down Pass           |  Taito   |  19xx  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| ???   |           Van Allen Belt           |  Taito   |  1985  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| A??   |          Buggy Challenge           |  Taito   |  1984  |  ..Z80x3 .AY8910 .AY8910 ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| A??   |     Gladiator / Great Gurianos     |  Taito   |  1986  |  ....Z80 ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| A??   |          Great Swordsman           |  Taito   |  1984  |  ....Z80 ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| A??   |              Renegade              | Technos  |  1986  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| A??   |     The Athlete / Dai Undokai      |  Taito   |  1984  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| A80?  |          Violent Shooting          |  Taito   |  1986  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| B??   |           Asuka & Asuka            |  Taito?  |  1988  |  MC68000 ....Z80 .YM2151 ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| D??   |               Cachat               |  Taito   |  1993  |  Z80.... .YM2203 ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| D??   |       Euro Football Champ 92       |  Taito   |  1992  |  MC68000 ....Z80 .YM2610 ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| D??   |          Operation Wolf 3          |  Taito   |  1994  |  MC68000 ....Z80 .YM2610 ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| E??   |              Twin Qix              |  Taito   |  1995  |  MC68020 MC68000 ENSONIQ ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| E??   |           Side By Side 2           |  Taito   |  1998  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| E??   |             Ray Crysis             |  Taito   |  1998  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| E??   |          Operation Tiger           |  Taito   |  1998  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+| E??   |         Psychic Force 2012         |  Taito   |  1998  |  ....... ....... ....... ....... |
++-------+------------------------------------+----------+--------+----------------------------------+
+
+
+19.2 NMK LIST - Antiriad & Raine Team
+
+This is a small list of NMK boards. Please send any extra
+info. 
+
+Thanks to Noel Miruru for information on the games.
+
++----------------------------------------+-------------+--------+----------------------------------+
+|            City Connection             |   Jaleco    |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|                 Argus                  |   Jaleco    |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|                Valtric                 |   Jaleco    |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|               Psychic 5                |   Jaleco    |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|                Butasan                 |   Jaleco    |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|                  P-47                  |   Jaleco    |  1988  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|            Legend of Makai             |   Jaleco    |  1988  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|           Task Force Harrier           |     UPL     |  1989  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|              Saint Dragon              |   Jaleco    |  1989  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|                Mustang                 |     UPL     |  1990  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|               Gun Dealer               |    Tecmo    |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|          Quiz Gakuen Paradise          |    Tecmo    |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|             Thunder Dragon             |    Tecmo    |  1991  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|                 Strahl                 |     UPL     |  1992  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|          Hacha Mecha Fighter           |    Tecmo    |  1991  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|  Uchuu Senkan Gomora/Bio Ship Paladin  |     UPL     |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|            Saboten Bombers             |    Tecmo    |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|                Macross                 |  Banpresto  |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|                Gun Nail                |    Tecmo    |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|         Quiz Panicuru Fantasy          |    ?????    |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|            Thunder Dragon 2            |    Tecmo    |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|             Bomb Jack Twin             |  NMK/Tecmo  |  1993  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|               Macross 2                |  Banpresto  |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|           Operation Ragnarok           |    ?????    |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|               Rapid Hero               |    ?????    |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+|                P-47 ACE                |   Jaleco    |  19xx  |  ....... ....... ....... ....... |
++----------------------------------------+-------------+--------+----------------------------------+
+
+
+20 List of supported games
+
+See section "Games" in http://www.rainemu.com/
+
+21 Disclaimer
+
+21.1 Distribution
+
+1. You may not distribute modified versions of the raine package.
+  This means you must not remove any files, or add any files
+  (especially not rom images).
+
+2. You are encouraged to spread raine as you wish. However,
+  you must not sell it in any way:
+  If you wish to put it on a www site, that is ok, as long
+  as there are not too many advert banners, misleading links,
+  or other scams.
+  If you wish to distribute it on a magnetic medium such
+  as floppy disk or cd-rom, you must not charge more than
+  the cost of the media and the packaging.
+
+21.2 Rom Ownership
+
+In most countries, it is illegal to own rom images for arcade
+games, unless you own the original arcade board too. Therefore,
+downloading roms for games you do not own is illegal and
+they should be deleted within 24 hours.
+
+22 HTTP<HTTP>
+
+RAINE OFFICIAL SITE: [http://www.rainemu.com/]
+  new releases and news appear here first. 
+
+RAINE SOURCEFORGE: [http://sourceforget.net/projects/raine]
+  get the latest sources and join the development 
+
+HOW TO COMPILE RAINE: [http://www.logiqx.com/HowTo/HowTo.shtml]
+  Logiqx also explains there how to download the latest
+  raine source...
+
+RAINE SAVEGAMES AND PICTURES: [http://www.rainemu.com/savegame/]
+  Rare things...
+
+STARSCREAM : [http://lfx.org/~corlett/index.html]
+  Neill Corlett's asm 68k emulator (and kingdom grand prix...).
+  
+  
+
+ARCADE ROMS FROM JAPAN: [http://start.at/j-rom/]
+  roms are available here 
+
+Raizing: [http://www.vsa-ag.ch/r8zing/]
+
+ARCADE ROM HEAVEN: [http://www.arcadeheaven.com/]
+  roms are available here
+  
+
+BUB AND BOB: [http://www.bubandbob.com/]
+  bubble bobble and taito games site
+
+EMUCAMP: [http://www.emucamp.com/] emulator
+  and news are available here
+
+EMULATORS UNLIMITED: [http://www.emuunlim.com/]
+  emulator and news are available here
+
+JOSEQ'S EMUVIEWS: [http://www.emuviews.com/]
+  news and forums
+
+RETROGAMES: [http://www.retrogames.com/]
+  emulator and news are available here
+
+ROMLIST: [http://www.romlist.com/] we
+  will miss you aracorn...
+
+SYS2064: [http://www.sys2064.com/] emulator
+  and news are available here
+
+TAITO JAPAN: [http://www.taito.co.jp/]
+  check the arcade history section
+
+TEAM JAPUMP: [http://www.rainemu.com/japump/]
+  busy romdumpers
+
+CLR MAME: [http://www.mameworld.com/clrmame/]
+  rom manager with raine romset support
+
+ROMBUILD: [http://www.logiqx.com/] rom rebuilder
+
+ROM CENTER: [http://www.romcenter.com/]
+  rom manager with raine romset support

@@ -1,0 +1,302 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+                <!--
+		<sound name="directory">
+			<path>./music</path>
+		</sound>
+                -->
+		<image name="background" extra="true">
+			<tile>true</tile>
+			<size>1 1</size>
+			<pos>0 0</pos>
+			<origin>0 0</origin>
+			<path>./main/background.png</path>
+		</image>
+
+		<helpsystem name="help">
+			<fontSize>0.03</fontSize>
+			<pos>0.01 0.965</pos>
+			<textColor>ececec</textColor>
+			<iconColor>ff9900</iconColor>
+		</helpsystem>
+
+		<image name="band1" extra="true">
+			<size>0.03 1</size>
+			<pos>0.80 0</pos>
+			<origin>0 0</origin>
+			<path>./main/band.png</path>
+		</image>
+
+		<image name="band2" extra="true">
+			<size>0.03 1</size>
+			<pos>0.829 0</pos>
+			<origin>0 0</origin>
+			<path>./main/band.png</path>
+		</image>
+
+		<image name="band3" extra="true">
+			<size>0.03 1</size>
+			<pos>0.858 0</pos>
+			<origin>0 0</origin>
+			<path>./main/band.png</path>
+		</image>
+
+		<image name="band4" extra="true">
+			<size>0.03 1</size>
+			<pos>0.887 0</pos>
+			<origin>0 0</origin>
+			<path>./main/band.png</path>
+		</image>
+
+		<text name="info1, info2, info3, info4, info5, info6, info7, info8, info9, info10, info11, info12" extra="true">
+			<color>ff9900</color>
+			<alignment>left</alignment>
+			<fontPath>./main/fonts/ubuntu_bold.ttf</fontPath>
+			<fontSize>0.017</fontSize>
+                        <forceUppercase>1</forceUppercase>
+			<size>0.5 0.04</size>
+		</text>
+
+		<text name="logoText">
+			<color>262626</color>
+		</text>
+
+		<image name="footer" extra="true">
+			<pos>0 1</pos>
+			<origin>0 1</origin>
+			<size>1 0.05</size>
+			<path>./main/footer.png</path>
+		</image>
+	
+	</view>
+
+	<view name="basic, detailed, video">
+
+		<image name="background" extra="true">
+			<pos>0 0</pos>
+			<size>1 1</size>
+		</image>	
+
+		<image name="back-logo" extra="true">
+			<pos>0.01 0.02</pos>
+			<size>0.35 0.15</size>
+			<path>./main/header.png</path>
+		</image>
+
+		<image name="logo">
+			<pos>0.18 0.095</pos>
+			<origin>0.5 0.5</origin>
+			<maxSize>0.3 0.12</maxSize>
+		</image>
+
+		<helpsystem name="help">
+			<fontSize>0.03</fontSize>
+			<pos>0.01 0.965</pos>
+			<textColor>ececec</textColor>
+			<iconColor>ff9900</iconColor>
+		</helpsystem>
+
+		<image name="footer" extra="true">
+			<pos>0 1</pos>
+			<origin>0 1</origin>
+			<size>1 0.05</size>
+			<path>./main/footer.png</path>
+		</image>
+	</view>
+
+	<view name="basic">
+		<image name="back-gamelist" extra="true">
+			<pos>0.01 0.19</pos>
+			<size>0.35 0.735</size>
+			<path>./main/back.png</path>
+		</image>
+
+		<textlist name="gamelist">
+			<pos>0.015 0.20</pos>
+			<size>0.34 0.710</size>
+			<selectorColor>ff9900</selectorColor> <!-- Selection bar -->
+			<selectedColor>262626</selectedColor> <!-- Selection letters -->
+			<primaryColor>ffffff</primaryColor> <!-- Letters -->
+			<secondaryColor>9F9F9F</secondaryColor>
+			<fontPath>./main/fonts/TitilliumWeb-SemiBold.ttf</fontPath>
+			<fontSize>0.025</fontSize>
+			<alignment>left</alignment>
+			<horizontalMargin>0.01</horizontalMargin>
+			<!--<scrollSound>./main/sound/scroll.wav</scrollSound>-->
+		</textlist>
+	</view>
+
+	<view name="detailed, video">
+		<text name="md_lbl_releasedate, md_lbl_developer, md_lbl_publisher, md_lbl_genre, md_lbl_players, md_lbl_lastplayed, md_lbl_playcount, md_lbl_favorite">
+			<alignment>left</alignment>
+			<fontPath>./main/fonts/TitilliumWeb-SemiBold.ttf</fontPath>
+			<fontSize>0.02</fontSize>
+			<size>0.11 0.03</size>
+		</text>
+
+		<text name="md_releasedate, md_developer, md_publisher, md_genre, md_players, md_lastplayed, md_playcount, md_favorite">
+			<alignment>left</alignment>
+			<fontPath>./main/fonts/TitilliumWeb-SemiBold.ttf</fontPath>
+			<fontSize>0.02</fontSize>
+			<size>0.12 0.02</size>
+		</text>
+
+		<image name="back-gamelist" extra="true">
+			<pos>0.01 0.19</pos>
+			<size>0.35 0.735</size>
+			<path>./main/back.png</path>
+		</image>
+
+		<textlist name="gamelist">
+			<pos>0.015 0.20</pos>
+			<size>0.34 0.710</size>
+			<selectorColor>ff9900</selectorColor> <!-- Selection bar -->
+			<selectedColor>262626</selectedColor> <!-- Selection letters -->
+			<primaryColor>ffffff</primaryColor> <!-- Letters -->
+			<secondaryColor>9F9F9F</secondaryColor>
+			<fontPath>./main/fonts/TitilliumWeb-SemiBold.ttf</fontPath>
+			<fontSize>0.025</fontSize>
+			<alignment>left</alignment>
+			<horizontalMargin>0.01</horizontalMargin>
+			<!--<scrollSound>./main/sound/scroll.wav</scrollSound>-->
+		</textlist>
+
+		<text name="md_lbl_rating, md_lbl_releasedate, md_lbl_developer, md_lbl_publisher, md_lbl_genre, md_lbl_players, md_lbl_lastplayed, md_lbl_playcount, md_lbl_favorite, md_description">
+			<color>ececec</color>
+		</text>
+
+		<text name="md_releasedate, md_lastplayed, md_developer, md_publisher, md_genre, md_players, md_playcount, md_favorite">
+			<color>ff9900</color>
+		</text>
+
+		<image name="back-image" extra="true">
+			<pos>0.37 0.05</pos>
+			<size>0.36 0.55</size>
+			<path>./main/back.png</path>
+		</image>
+
+		<text name="md_lbl_rating">
+			<pos>0.76 0.49</pos>
+			<forceUppercase>1</forceUppercase>
+			<fontPath>./main/fonts/ubuntu_medium.ttf</fontPath>
+			<fontSize>0.018</fontSize>
+			<size>0.15 0.02</size>
+		</text>
+
+		<rating name="md_rating">
+			<pos>0.76 0.520</pos>
+			<size>0.05 0.06</size>
+			<filledPath>./main/rating_filled.svg</filledPath>
+			<unfilledPath>./main/rating_empty.svg</unfilledPath>
+		</rating>
+
+		<image name="back-information" extra="true">
+			<pos>0.74 0.05</pos>
+			<size>0.25 0.55</size>
+			<path>./main/back.png</path>
+		</image>
+
+		<text name="md_lbl_releasedate">
+			<forceUppercase>1</forceUppercase>
+			<pos>0.76 0.1</pos>
+		</text>
+
+		<datetime name="md_releasedate">
+			<forceUppercase>1</forceUppercase>
+			<pos>0.865 0.105</pos>
+		</datetime>
+
+		<text name="md_lbl_developer">
+			<pos>0.76 0.16</pos>
+		</text>
+
+		<text name="md_developer">
+			<pos>0.865 0.165</pos>
+		</text>
+
+		<text name="md_lbl_publisher">
+			<pos>0.76 0.20</pos>
+		</text>
+
+		<text name="md_publisher">
+			<pos>0.865 0.205</pos>
+		</text>
+
+		<text name="md_lbl_genre">
+			<pos>0.76 0.24</pos>
+		</text>
+
+		<text name="md_genre">
+			<pos>0.865 0.245</pos>
+		</text>
+
+		<text name="md_lbl_players">
+			<pos>0.76 0.28</pos>
+		</text>
+
+		<text name="md_players">
+			<pos>0.865 0.285</pos>
+		</text>
+
+		<text name="md_lbl_lastplayed">
+			<pos>0.76 0.34</pos>
+		</text>
+
+		<datetime name="md_lastplayed">
+			<pos>0.865 0.345</pos>
+		</datetime>
+
+		<text name="md_lbl_playcount">
+			<pos>0.76 0.38</pos>
+		</text>
+
+		<text name="md_playcount">
+			<pos>0.865 0.385</pos>
+		</text>
+
+		<text name="md_lbl_favorite">
+			<pos>0.76 0.42</pos>
+		</text>
+
+		<text name="md_favorite">
+			<pos>0.865 0.425</pos>
+		</text>
+
+		<image name="back-description" extra="true">
+			<pos>0.37 0.62</pos>
+			<size>0.62 0.280</size>
+			<path>./main/back.png</path>
+		</image>
+
+		<text name="md_description">
+			<pos>0.39 0.652</pos>
+			<size>0.57 0.20</size>
+			<lineSpacing>1.5</lineSpacing>
+			<fontSize>0.023</fontSize>
+			<fontPath>./main/fonts/ubuntu_medium.ttf</fontPath>
+		</text>
+	</view>
+
+	<view name="detailed">
+		<image name="md_image">
+			<origin>0.5 0.5</origin>
+			<pos>0.55 0.33</pos>
+			<maxSize>0.33 0.454</maxSize>
+		</image>
+	</view>
+
+	<view name="video">
+		<video name="md_video">
+			<origin>0.5 0.5</origin>
+			<pos>0.55 0.33</pos>
+			<maxSize>0.33 0.454</maxSize>
+			<delay>0.2</delay>
+                        <default></default>
+			<showSnapshotNoVideo>true</showSnapshotNoVideo>
+			<showSnapshotDelay>false</showSnapshotDelay>
+		</video>
+	</view>
+
+</theme>

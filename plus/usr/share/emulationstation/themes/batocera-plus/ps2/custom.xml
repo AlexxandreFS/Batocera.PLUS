@@ -1,0 +1,55 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>DC0029</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>F1C002</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>00A79B</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>326BB1</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Manufacturer : Sony Computer Entertainment</text>
+			<pos>0.38 0.72</pos>
+		</text>
+		<text name="info2" extra="true">
+			<text>Year of Release : 2000</text>
+			<pos>0.38 0.74</pos>
+		</text>
+		<text name="info3" extra="true">
+			<text>Units sold : 157.68 million</text>
+			<pos>0.38 0.76</pos>
+		</text>
+		<text name="info4" extra="true">
+			<text>Best-selling game : Grand Theft Auto: San Andreas</text>
+			<pos>0.38 0.78</pos>
+		</text>
+		<text name="info5" extra="true">
+			<text>CPU : SIMD 128 bits running at 330 Mhz </text>
+			<pos>0.38 0.82</pos>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>DC0029</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>F1C002</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>00A79B</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>326BB1</color>
+		</image>
+	</view>
+</theme>

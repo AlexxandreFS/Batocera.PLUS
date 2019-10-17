@@ -1,0 +1,79 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>DCE3E6</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>D5202C</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>C0C1C4</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>212122</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Manufacturer : Sega</text>
+			<pos>0.38 0.72</pos>
+		</text>
+		<text name="info2" extra="true">
+			<text>Year of Release : 1988</text>
+			<pos>0.38 0.74</pos>
+		</text>
+		<text name="info3" extra="true">
+			<text>Units sold : 30 million</text>
+			<pos>0.38 0.76</pos>
+		</text>
+		<text name="info4" extra="true">
+			<text>Best-selling game : Sonic the Hedgehog</text>
+			<pos>0.38 0.78</pos>
+		</text>
+		<text name="info5" extra="true">
+			<text>CPU : 16-bit Motorola 68000 @ 7.6 MHz</text>
+			<pos>0.38 0.82</pos>
+		</text>
+		<text name="info6" extra="true">
+			<text>CPU2 : 8-bit Zilog Z80 @ 3.58 Mhz (sound CPU)</text>
+			<pos>0.38 0.84</pos>
+		</text>
+		<text name="info7" extra="true">
+			<text>RAM : 64 kB / VRAM : 64kB / sound RAM : 8kB</text>
+			<pos>0.38 0.86</pos>
+		</text>
+		<text name="info8" extra="true">
+			<text>Video : 16-bit Sega VDP</text>
+			<pos>0.38 0.88</pos>
+		</text>
+		<text name="info9" extra="true">
+			<text>Resolution : 320×224 pixels, 64 colors (512 colors palette)</text>
+			<pos>0.38 0.90</pos>
+		</text>
+		<text name="info10" extra="true">
+			<text>Sound : Yamaha YM2612 FM and TI SN76489 PSG</text>
+			<pos>0.38 0.92</pos>
+		</text>
+		<text name="info11" extra="true">
+			<text>Cart Size : 128kB - 5MB</text>
+			<pos>0.38 0.94</pos>
+		</text>		
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>DCE3E6</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>D5202C</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>C0C1C4</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>212122</color>
+		</image>
+	</view>
+</theme>

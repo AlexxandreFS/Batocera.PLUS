@@ -1,0 +1,19 @@
+; File generated automatically from dlls/qwave/qwave.spec; do not edit!
+
+LIBRARY qwave.dll
+
+EXPORTS
+  QDLHPathDiagnostics@0 @1 PRIVATE
+  QDLHStartDiagnosingPath@0 @2 PRIVATE
+  QOSAddSocketToFlow@0 @3 PRIVATE
+  QOSCancel@0 @4 PRIVATE
+  QOSCloseHandle@0 @5 PRIVATE
+  QOSCreateHandle@8 @6
+  QOSEnumerateFlows@0 @7 PRIVATE
+  QOSNotifyFlow@0 @8 PRIVATE
+  QOSQueryFlow@0 @9 PRIVATE
+  QOSRemoveSocketFromFlow@0 @10 PRIVATE
+  QOSSetFlow@0 @11 PRIVATE
+  QOSStartTrackingClient@0 @12 PRIVATE
+  QOSStopTrackingClient@0 @13 PRIVATE
+  ServiceMain@0 @14 PRIVATE

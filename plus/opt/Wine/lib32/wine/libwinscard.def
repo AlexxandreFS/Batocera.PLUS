@@ -1,0 +1,68 @@
+; File generated automatically from dlls/winscard/winscard.spec; do not edit!
+
+LIBRARY winscard.dll
+
+EXPORTS
+  ClassInstall32@0 @1 PRIVATE
+  SCardAccessNewReaderEvent@0 @2 PRIVATE
+  SCardReleaseAllEvents@0 @3 PRIVATE
+  SCardReleaseNewReaderEvent@0 @4 PRIVATE
+  SCardAccessStartedEvent@0 @5
+  SCardAddReaderToGroupA@12 @6
+  SCardAddReaderToGroupW@12 @7
+  SCardBeginTransaction@0 @8 PRIVATE
+  SCardCancel@4 @9
+  SCardConnectA@0 @10 PRIVATE
+  SCardConnectW@0 @11 PRIVATE
+  SCardControl@0 @12 PRIVATE
+  SCardDisconnect@0 @13 PRIVATE
+  SCardEndTransaction@0 @14 PRIVATE
+  SCardEstablishContext@16 @15
+  SCardForgetCardTypeA@0 @16 PRIVATE
+  SCardForgetCardTypeW@0 @17 PRIVATE
+  SCardForgetReaderA@0 @18 PRIVATE
+  SCardForgetReaderGroupA@0 @19 PRIVATE
+  SCardForgetReaderGroupW@0 @20 PRIVATE
+  SCardForgetReaderW@0 @21 PRIVATE
+  SCardFreeMemory@0 @22 PRIVATE
+  SCardGetAttrib@0 @23 PRIVATE
+  SCardGetCardTypeProviderNameA@0 @24 PRIVATE
+  SCardGetCardTypeProviderNameW@0 @25 PRIVATE
+  SCardGetProviderIdA@0 @26 PRIVATE
+  SCardGetProviderIdW@0 @27 PRIVATE
+  SCardGetStatusChangeA@0 @28 PRIVATE
+  SCardGetStatusChangeW@0 @29 PRIVATE
+  SCardIntroduceCardTypeA@0 @30 PRIVATE
+  SCardIntroduceCardTypeW@0 @31 PRIVATE
+  SCardIntroduceReaderA@0 @32 PRIVATE
+  SCardIntroduceReaderGroupA@0 @33 PRIVATE
+  SCardIntroduceReaderGroupW@0 @34 PRIVATE
+  SCardIntroduceReaderW@0 @35 PRIVATE
+  SCardIsValidContext@4 @36
+  SCardListCardsA@24 @37
+  SCardListCardsW@0 @38 PRIVATE
+  SCardListInterfacesA@0 @39 PRIVATE
+  SCardListInterfacesW@0 @40 PRIVATE
+  SCardListReaderGroupsA@0 @41 PRIVATE
+  SCardListReaderGroupsW@0 @42 PRIVATE
+  SCardListReadersA@16 @43
+  SCardListReadersW@16 @44
+  SCardLocateCardsA@0 @45 PRIVATE
+  SCardLocateCardsByATRA@0 @46 PRIVATE
+  SCardLocateCardsByATRW@0 @47 PRIVATE
+  SCardLocateCardsW@0 @48 PRIVATE
+  SCardReconnect@0 @49 PRIVATE
+  SCardReleaseContext@4 @50
+  SCardReleaseStartedEvent@0 @51
+  SCardRemoveReaderFromGroupA@0 @52 PRIVATE
+  SCardRemoveReaderFromGroupW@0 @53 PRIVATE
+  SCardSetAttrib@0 @54 PRIVATE
+  SCardSetCardTypeProviderNameA@0 @55 PRIVATE
+  SCardSetCardTypeProviderNameW@0 @56 PRIVATE
+  SCardState@0 @57 PRIVATE
+  SCardStatusA@28 @58
+  SCardStatusW@28 @59
+  SCardTransmit@0 @60 PRIVATE
+  g_rgSCardRawPci @61 DATA
+  g_rgSCardT0Pci @62 DATA
+  g_rgSCardT1Pci @63 DATA

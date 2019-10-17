@@ -1,0 +1,21 @@
+; File generated automatically from dlls/mspatcha/mspatcha.spec; do not edit!
+
+LIBRARY mspatcha.dll
+
+EXPORTS
+  ApplyPatchToFileA@16 @1
+  ApplyPatchToFileByBuffers@44 @2
+  ApplyPatchToFileByHandles@16 @3
+  ApplyPatchToFileByHandlesEx@24 @4
+  ApplyPatchToFileExA@24 @5
+  ApplyPatchToFileExW@24 @6
+  ApplyPatchToFileW@16 @7
+  GetFilePatchSignatureA@36 @8
+  GetFilePatchSignatureByBuffer@40 @9
+  GetFilePatchSignatureByHandle@36 @10
+  GetFilePatchSignatureW@36 @11
+  NormalizeFileForPatchSignature@40 @12
+  TestApplyPatchToFileA@12 @13
+  TestApplyPatchToFileByBuffers@24 @14
+  TestApplyPatchToFileByHandles@12 @15
+  TestApplyPatchToFileW@12 @16

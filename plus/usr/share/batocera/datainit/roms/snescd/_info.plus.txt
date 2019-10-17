@@ -1,0 +1,53 @@
+## SYSTEM SUPER NINTENDO CD (MSU-1) ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted: ".sfc .SFC .smc .SMC .7z .7Z"
+-------------------------------------------------------------------------------
+Também conhecido como o Super Nintendo de CD-ROM.
+Usa roms Hack com qualidade de CD.
+-------------------------------------------------------------------------------
+As roms também podem ser descompactadas diretamente dentro deste diretório ou em
+sub-diretórios. Recomendado usar roms compactadas em 7z.
+-------------------------------------------------------------------------------
+Como rodar roms compactadas no formato 7zip?
+
+Roms no formato 7z precisam ser descompactadas antes de serem executadas, o
+sistema faz isso automáticamente, mas pode demorar um pouco dependendo da
+capacidade do computador, mais recomendado para sistemas instalados em HD's.
+
+Respeite as letras maiúsculas e mínúsculas nos nomes dos arquivos.
+Se a rom principal (.sfc .smc) tem o nome de My_Game.sfc a pasta deve ter o nome
+de My_Game sem usar espaços.
+
+1 - Crie uma pasta com o mesmo nome do arquivo principal da rom, sem extensão.
+2 - Coloque todos os arquivos descompactados da rom dentro da pasta.
+3 - Compacte a pasta no formato 7z.
+4 - O nome do arquivo compactado em .7z deve ter o mesmo nome da pasta.
+
+Example: My Game.7z
+
+My Game                          (folder)
+|---- My_Game.sfc                (file)
+|---- My_Game.bml                (file)
+|---- My_Game.msu                (file)
+|---- My_Game_1.pcm              (file)
+|---- My_Game_2.pcm              (file) (if exist)
+|---- ....                       (file) (if exist)
+
+My Game                          (folder)
+|---- My_Game_(USA)_(MSU1).smc   (file)
+|---- My_Game(USA)_(MSU1).bml    (file)
+|---- My_Game(USA)_(MSU1).msu    (file)
+|---- My_Game_(USA)_(MSU1)1.pcm  (file)
+|---- My_Game_(USA)_(MSU1)2.pcm  (file) (if exist)
+|---- ....                       (file) (if exist)
+-------------------------------------------------------------------------------
+SOBRE
+
+Integrado ao batocera por:
+Alexxandre Freire dos Santos (alexxandre.freire@gmail.com)
+
+Agradescimentos especiais:
+Cleber Batista da Silva (cleberbatistarj@hotmail.com)
+-------------------------------------------------------------------------------
+
+

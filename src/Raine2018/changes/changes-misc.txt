@@ -1,0 +1,24 @@
+Raine 20000819
+~~~~~~~~~~~~~~
+- Kiki Kai Kai and Knight Boy fixed, controls finally work 100% [Kayamon]
+  (Note: Raine has to be compiled with GCC 2.8x for this)
+- Play Girls 1 & 2 added [Boukichi]
+- Grind Stormer uses MAME rom now [Thomas Schmidt & Brian A. Troha]
+- Added rom-version switch (Japanese/American) to Soldam [Thomas Schmidt]
+- Added Bubble Bobble 2 (clone of Bubble Symphony) [Tormod Tjaberg]
+- Misc. bugfixes [katharsis]
+
+Raine 20000809
+~~~~~~~~~~~~~~
+- Battle Garegga sound added [Boukichi]
+- Puzzle Bobble 4 backgound layers fixed [Thomas Schmidt]
+- Removed redundant roms of Warrior Blade and Darius 2 [Brian A. Troha]
+- Added dipswitch settings to all games in the Football Champ driver [Brian A. Troha]
+- Migrated Antiriad's Allegro hacks to Allegro WIP 32 [katharsis]
+- Misc. bugs in the source fixed [katharsis]
+
+Raine 20000725
+~~~~~~~~~~~~~~
+- New dipswitch settings for lots of games submitted by Brian A. Troha
+- Fixed SDF Macross video decoding by Haze
+- A few misc. bugs in the source fixed by me

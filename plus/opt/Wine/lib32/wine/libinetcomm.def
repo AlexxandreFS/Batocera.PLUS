@@ -1,0 +1,111 @@
+; File generated automatically from dlls/inetcomm/inetcomm.spec; do not edit!
+
+LIBRARY inetcomm.dll
+
+EXPORTS
+  CreateIMAPTransport2@0 @1 PRIVATE
+  CreateIMAPTransport@4 @2
+  CreateNNTPTransport@0 @3 PRIVATE
+  CreatePOP3Transport@4 @4
+  CreateRASTransport@0 @5 PRIVATE
+  CreateRangeList@0 @6 PRIVATE
+  CreateSMTPTransport@4 @7
+  DllCanUnloadNow@0 @8 PRIVATE
+  DllGetClassObject@12 @9 PRIVATE
+  DllRegisterServer@0 @10 PRIVATE
+  DllUnregisterServer@0 @11 PRIVATE
+  EssContentHintDecodeEx@0 @12 PRIVATE
+  EssContentHintEncodeEx@0 @13 PRIVATE
+  EssKeyExchPreferenceDecodeEx@0 @14 PRIVATE
+  EssKeyExchPreferenceEncodeEx@0 @15 PRIVATE
+  EssMLHistoryDecodeEx@0 @16 PRIVATE
+  EssMLHistoryEncodeEx@0 @17 PRIVATE
+  EssReceiptDecodeEx@0 @18 PRIVATE
+  EssReceiptEncodeEx@0 @19 PRIVATE
+  EssReceiptRequestDecodeEx@0 @20 PRIVATE
+  EssReceiptRequestEncodeEx@0 @21 PRIVATE
+  EssSecurityLabelDecodeEx@0 @22 PRIVATE
+  EssSecurityLabelEncodeEx@0 @23 PRIVATE
+  EssSignCertificateDecodeEx@0 @24 PRIVATE
+  EssSignCertificateEncodeEx@0 @25 PRIVATE
+  GetDllMajorVersion@0 @26 PRIVATE
+  HrAthGetFileName@0 @27 PRIVATE
+  HrAthGetFileNameW@0 @28 PRIVATE
+  HrAttachDataFromBodyPart@0 @29 PRIVATE
+  HrAttachDataFromFile@0 @30 PRIVATE
+  HrDoAttachmentVerb@0 @31 PRIVATE
+  HrFreeAttachData@0 @32 PRIVATE
+  HrGetAttachIcon@0 @33 PRIVATE
+  HrGetAttachIconByFile@0 @34 PRIVATE
+  HrGetDisplayNameWithSizeForFile@0 @35 PRIVATE
+  HrGetLastOpenFileDirectory@0 @36 PRIVATE
+  HrGetLastOpenFileDirectoryW@0 @37 PRIVATE
+  HrSaveAttachToFile@0 @38 PRIVATE
+  HrSaveAttachmentAs@0 @39 PRIVATE
+  MimeEditCreateMimeDocument@0 @40 PRIVATE
+  MimeEditDocumentFromStream@0 @41 PRIVATE
+  MimeEditGetBackgroundImageUrl@0 @42 PRIVATE
+  MimeEditIsSafeToRun@0 @43 PRIVATE
+  MimeEditViewSource@0 @44 PRIVATE
+  MimeGetAddressFormatW@20 @45
+  MimeOleAlgNameFromSMimeCap@0 @46 PRIVATE
+  MimeOleAlgStrengthFromSMimeCap@0 @47 PRIVATE
+  MimeOleClearDirtyTree@0 @48 PRIVATE
+  MimeOleConvertEnrichedToHTML@0 @49 PRIVATE
+  MimeOleCreateBody@0 @50 PRIVATE
+  MimeOleCreateByteStream@0 @51 PRIVATE
+  MimeOleCreateHashTable@0 @52 PRIVATE
+  MimeOleCreateHeaderTable@0 @53 PRIVATE
+  MimeOleCreateMessage@8 @54
+  MimeOleCreateMessageParts@0 @55 PRIVATE
+  MimeOleCreatePropertySet@0 @56 PRIVATE
+  MimeOleCreateSecurity@4 @57
+  MimeOleCreateVirtualStream@4 @58
+  MimeOleDecodeHeader@0 @59 PRIVATE
+  MimeOleEncodeHeader@0 @60 PRIVATE
+  MimeOleFileTimeToInetDate@0 @61 PRIVATE
+  MimeOleFindCharset@8 @62
+  MimeOleGenerateCID@0 @63 PRIVATE
+  MimeOleGenerateFileName@0 @64 PRIVATE
+  MimeOleGenerateMID@0 @65 PRIVATE
+  MimeOleGetAllocator@4 @66
+  MimeOleGetBodyPropA@0 @67 PRIVATE
+  MimeOleGetBodyPropW@0 @68 PRIVATE
+  MimeOleGetCertsFromThumbprints@0 @69 PRIVATE
+  MimeOleGetCharsetInfo@8 @70
+  MimeOleGetCodePageCharset@0 @71 PRIVATE
+  MimeOleGetCodePageInfo@0 @72 PRIVATE
+  MimeOleGetContentTypeExt@0 @73 PRIVATE
+  MimeOleGetDefaultCharset@4 @74
+  MimeOleGetExtContentType@0 @75 PRIVATE
+  MimeOleGetFileExtension@0 @76 PRIVATE
+  MimeOleGetFileInfo@0 @77 PRIVATE
+  MimeOleGetFileInfoW@0 @78 PRIVATE
+  MimeOleGetInternat@4 @79
+  MimeOleGetPropA@0 @80 PRIVATE
+  MimeOleGetPropW@0 @81 PRIVATE
+  MimeOleGetPropertySchema@4 @82
+  MimeOleGetRelatedSection@0 @83 PRIVATE
+  MimeOleInetDateToFileTime@0 @84 PRIVATE
+  MimeOleObjectFromMoniker@24 @85
+  MimeOleOpenFileStream@0 @86 PRIVATE
+  MimeOleParseMhtmlUrl@0 @87 PRIVATE
+  MimeOleParseRfc822Address@0 @88 PRIVATE
+  MimeOleParseRfc822AddressW@0 @89 PRIVATE
+  MimeOleSMimeCapAddCert@0 @90 PRIVATE
+  MimeOleSMimeCapAddSMimeCap@0 @91 PRIVATE
+  MimeOleSMimeCapGetEncAlg@0 @92 PRIVATE
+  MimeOleSMimeCapGetHashAlg@0 @93 PRIVATE
+  MimeOleSMimeCapInit@0 @94 PRIVATE
+  MimeOleSMimeCapRelease@0 @95 PRIVATE
+  MimeOleSMimeCapsFromDlg@0 @96 PRIVATE
+  MimeOleSMimeCapsFull@0 @97 PRIVATE
+  MimeOleSMimeCapsToDlg@0 @98 PRIVATE
+  MimeOleSetBodyPropA@0 @99 PRIVATE
+  MimeOleSetBodyPropW@0 @100 PRIVATE
+  MimeOleSetCompatMode@4 @101
+  MimeOleSetDefaultCharset@0 @102 PRIVATE
+  MimeOleSetPropA@0 @103 PRIVATE
+  MimeOleSetPropW@0 @104 PRIVATE
+  MimeOleStripHeaders@0 @105 PRIVATE
+  MimeOleUnEscapeStringInPlace@0 @106 PRIVATE

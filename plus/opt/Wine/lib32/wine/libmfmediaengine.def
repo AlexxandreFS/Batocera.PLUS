@@ -1,0 +1,8 @@
+; File generated automatically from dlls/mfmediaengine/mfmediaengine.spec; do not edit!
+
+LIBRARY mfmediaengine.dll
+
+EXPORTS
+  DllCanUnloadNow@0 @1 PRIVATE
+  DllGetActivationFactory@0 @2 PRIVATE
+  DllGetClassObject@12 @3 PRIVATE

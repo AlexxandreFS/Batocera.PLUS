@@ -1,0 +1,132 @@
+; File generated automatically from dlls/rasapi32/rasapi32.spec; do not edit!
+
+LIBRARY rasapi32.dll
+
+EXPORTS
+  RasAutodialAddressToNetwork@0 @538 PRIVATE
+  RasAutodialEntryToNetwork@0 @539 PRIVATE
+  RasConnectionNotificationA@12 @540
+  RasConnectionNotificationW@12 @541
+  RasCreatePhonebookEntryA@8 @542
+  RasCreatePhonebookEntryW@8 @543
+  RasDeleteEntryA@8 @544
+  RasDeleteEntryW@8 @545
+  RasDeleteSubEntryA@12 @546
+  RasDeleteSubEntryW@12 @547
+  RasDialA@24 @548
+  RasDialW@24 @549
+  RasDialWow@0 @550 PRIVATE
+  RasEditPhonebookEntryA@12 @551
+  RasEditPhonebookEntryW@12 @552
+  RasEnumAutodialAddressesA@12 @553
+  RasEnumAutodialAddressesW@12 @554
+  RasEnumConnectionsA@12 @555
+  RasEnumConnectionsW@12 @556
+  RasEnumConnectionsWow@0 @557 PRIVATE
+  RasEnumDevicesA@12 @558
+  RasEnumDevicesW@12 @559
+  RasEnumEntriesA@20 @570
+  RasEnumEntriesW@20 @571
+  RasEnumEntriesWow@0 @572 PRIVATE
+  RasGetAutodialAddressA@20 @573
+  RasGetAutodialAddressW@20 @574
+  RasGetAutodialEnableA@8 @575
+  RasGetAutodialEnableW@8 @576
+  RasGetAutodialParamA@12 @577
+  RasGetAutodialParamW@12 @578
+  RasGetConnectResponse@0 @579 PRIVATE
+  RasGetConnectStatusA@8 @580
+  RasGetConnectStatusW@8 @581
+  RasGetConnectStatusWow@0 @582 PRIVATE
+  RasGetConnectionStatistics@8 @583
+  RasGetCountryInfoA@0 @584 PRIVATE
+  RasGetCountryInfoW@0 @585 PRIVATE
+  RasGetCredentialsA@0 @586 PRIVATE
+  RasGetCredentialsW@0 @587 PRIVATE
+  RasGetEntryDialParamsA@12 @588
+  RasGetEntryDialParamsW@12 @589
+  RasGetEntryPropertiesA@24 @590
+  RasGetEntryPropertiesW@24 @591
+  RasGetErrorStringA@12 @592
+  RasGetErrorStringW@12 @593
+  RasGetErrorStringWow@0 @594 PRIVATE
+  RasGetHport@0 @595 PRIVATE
+  RasGetLinkStatistics@12 @596
+  RasGetProjectionInfoA@16 @597
+  RasGetProjectionInfoW@16 @598
+  RasGetSubEntryHandleA@0 @599 PRIVATE
+  RasGetSubEntryHandleW@0 @600 PRIVATE
+  RasGetSubEntryPropertiesA@0 @601 PRIVATE
+  RasGetSubEntryPropertiesW@0 @602 PRIVATE
+  RasHangUpA@4 @603
+  RasHangUpW@4 @604
+  RasHangUpWow@0 @605 PRIVATE
+  RasRenameEntryA@12 @606
+  RasRenameEntryW@12 @607
+  RasSetAutodialAddressA@20 @608
+  RasSetAutodialAddressW@20 @609
+  RasSetAutodialEnableA@8 @610
+  RasSetAutodialEnableW@8 @611
+  RasSetAutodialParamA@12 @612
+  RasSetAutodialParamW@12 @613
+  RasSetCredentialsA@0 @614 PRIVATE
+  RasSetCredentialsW@0 @615 PRIVATE
+  RasSetCustomAuthDataA@16 @616
+  RasSetCustomAuthDataW@16 @617
+  RasSetEntryDialParamsA@12 @618
+  RasSetEntryDialParamsW@12 @619
+  RasSetEntryPropertiesA@24 @620
+  RasSetEntryPropertiesW@24 @621
+  RasSetOldPassword@0 @622 PRIVATE
+  RasSetSubEntryPropertiesA@28 @623
+  RasSetSubEntryPropertiesW@28 @624
+  RasValidateEntryNameA@8 @625
+  RasValidateEntryNameW@8 @626
+  RnaEngineRequest@0 @500 PRIVATE
+  DialEngineRequest@0 @501 PRIVATE
+  SuprvRequest@0 @502 PRIVATE
+  DialInMessage@0 @503 PRIVATE
+  RnaEnumConnEntries@0 @504 PRIVATE
+  RnaGetConnEntry@0 @505 PRIVATE
+  RnaFreeConnEntry@0 @506 PRIVATE
+  RnaSaveConnEntry@0 @507 PRIVATE
+  RnaDeleteConnEntry@0 @508 PRIVATE
+  RnaRenameConnEntry@0 @509 PRIVATE
+  RnaValidateEntryName@0 @510 PRIVATE
+  RnaEnumDevices@0 @511 PRIVATE
+  RnaGetDeviceInfo@0 @512 PRIVATE
+  RnaGetDefaultDevConfig@0 @513 PRIVATE
+  RnaBuildDevConfig@0 @514 PRIVATE
+  RnaDevConfigDlg@0 @515 PRIVATE
+  RnaFreeDevConfig@0 @516 PRIVATE
+  RnaActivateEngine@0 @517 PRIVATE
+  RnaDeactivateEngine@0 @518 PRIVATE
+  SuprvEnumAccessInfo@0 @519 PRIVATE
+  SuprvGetAccessInfo@0 @520 PRIVATE
+  SuprvSetAccessInfo@0 @521 PRIVATE
+  SuprvGetAdminConfig@0 @522 PRIVATE
+  SuprvInitialize@0 @523 PRIVATE
+  SuprvDeInitialize@0 @524 PRIVATE
+  RnaUIDial@0 @525 PRIVATE
+  RnaImplicitDial@0 @526 PRIVATE
+  RasDial16@0 @527 PRIVATE
+  RnaSMMInfoDialog@0 @528 PRIVATE
+  RnaEnumerateMacNames@0 @529 PRIVATE
+  RnaEnumCountryInfo@0 @530 PRIVATE
+  RnaGetAreaCodeList@0 @531 PRIVATE
+  RnaFindDriver@0 @532 PRIVATE
+  RnaInstallDriver@0 @533 PRIVATE
+  RnaGetDialSettings@0 @534 PRIVATE
+  RnaSetDialSettings@0 @535 PRIVATE
+  RnaGetIPInfo@0 @536 PRIVATE
+  RnaSetIPInfo@0 @537 PRIVATE
+  RnaCloseMac@0 @560 PRIVATE
+  RnaComplete@0 @561 PRIVATE
+  RnaGetDevicePort@0 @562 PRIVATE
+  RnaGetUserProfile@0 @563 PRIVATE
+  RnaOpenMac@0 @564 PRIVATE
+  RnaSessInitialize@0 @565 PRIVATE
+  RnaStartCallback@0 @566 PRIVATE
+  RnaTerminate@0 @567 PRIVATE
+  RnaUICallbackDialog@0 @568 PRIVATE
+  RnaUIUsernamePassword@0 @569 PRIVATE

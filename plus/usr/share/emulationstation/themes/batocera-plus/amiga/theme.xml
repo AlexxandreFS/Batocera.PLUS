@@ -1,0 +1,42 @@
+<theme>
+	<formatVersion>4</formatVersion>
+	<include>./../main.xml</include>	
+	<include>./custom.xml</include>
+
+	<view name="system">	
+		<image name="logo">
+			<path>./art/logo.svg</path>
+		</image>
+		<image name="background" extra="true">
+			<path>./../main/background.png</path>
+		</image>
+		<image name="console" extra="true">
+			<path>./art/console.svg</path>
+			<pos>0.02 0.30</pos>
+			<maxSize>0.25 0.25</maxSize>
+			<origin>0 1</origin>
+		</image>
+		<image name="game" extra="true">
+			<path>./art/game.svg</path>
+			<pos>0.26 0.30</pos>
+			<maxSize>0.15 0.12</maxSize>
+			<origin>0 1</origin>
+		</image>
+		<image name="controller" extra="true">
+			<path>./art/controller.svg</path>
+			<pos>0.78 0.30</pos>
+			<maxSize>0.15 0.25</maxSize>
+			<origin>1 1</origin>
+		</image>
+	</view>
+
+	<view name="basic, detailed, video">	
+		<image name="logo">
+			<path>./art/logo.svg</path>
+		</image>
+
+		<image name="background" extra="true">
+			<path>./../main/background2.png</path>
+		</image>		
+	</view>	
+</theme>

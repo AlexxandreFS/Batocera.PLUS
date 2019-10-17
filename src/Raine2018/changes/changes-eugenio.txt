@@ -1,0 +1,58 @@
+
+Changed:
+- Footbal Champ
+    added zipfile name: footchmp
+- Kiki Kai Kai
+    added zipfile name: kikikai
+- Soldam
+    added zipfile name: soldamj
+- Driftout
+    changed checksum of rom piv
+- Ninja Kid 2
+    added zipfile name: ninjak2a
+- Tetris Taito
+    changed ROMOF -> ROMOF(nastar)
+- Cabal:
+    added zipfile name: cabalbl
+    changed set: now it's the one used by MAME. To support this: 
+       added in palette.h: #define MAP_PALETTE_2BPP(mapper,bank,cols) 
+       added in palette.c: void Map_12bit_xBGR_Rev_2BPP(int bank, int cols)
+- Crime City:
+    added world set
+- Nastar / Rastan Saga 2
+    made Nastar the parent set
+    removed bad roms in filelist
+- P47
+    made the romset mame compatible
+- Don Doko Don
+    removed unused rom in filelist
+- Arkanoid 2
+    main set and US set use the same graphics roms
+- Combatribes
+    added World set
+    removed unneeded roms
+
+
+Added games:
+
+- Biomechanical Toy
+  Added company name: ZEUS (games\games.c, games\games.h)
+  Notes: sound is added and it works but you have to wait a few seconds at startup for sound
+  banks to be decoded. If the game is run in DOS Raine crashes if sound is enabled : is it a
+  M6295 bank decoding bug ?
+  
+
+- Gunbird, Sengoku Ace
+  Added company name: Psikyo (games\games.c, games\games.h)
+  There is nosound and there is a gfx glitch in Gunbird in the train stage because 
+  sprites are not drawn in order. To support this:
+  added in video\scroll.h: 512_2048_2_16
+  video\palette.c: void Map_15bit_xRGB_Rev_68k(int bank, int cols);
+
+There is no sound in Gunbird and Sengoku Ace: can someone add it ? 
+All the informations are in the MAME source (thanks to Luca Elia who wrote the driver) :-). 
+I tried adding it but there are two things I can't figure out: 1) when I add Z80 , the M68020
+doesn't start 2) how can I add a read function for  the 68020 ? 
+
+directory bonus: gunbird with correct sprite order and slow!, gunbird with incomplete and 
+non working sound

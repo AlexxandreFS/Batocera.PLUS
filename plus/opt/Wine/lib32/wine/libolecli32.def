@@ -1,0 +1,61 @@
+; File generated automatically from dlls/olecli32/olecli32.spec; do not edit!
+
+LIBRARY olecli32.dll
+
+EXPORTS
+  WEP@0 @1 PRIVATE
+  OleDelete@0 @2 PRIVATE
+  OleSaveToStream@8=ole32.OleSaveToStream @3
+  OleLoadFromStream@12=ole32.OleLoadFromStream @4
+  OleClone@0 @6 PRIVATE
+  OleCopyFromLink@0 @7 PRIVATE
+  OleEqual@0 @8 PRIVATE
+  OleQueryLinkFromClip@12 @9
+  OleQueryCreateFromClip@12 @10
+  OleCreateLinkFromClip@28 @11
+  OleCreateFromClip@28 @12
+  OleCopyToClipboard@0 @13 PRIVATE
+  OleQueryType@8 @14
+  OleSetHostNames@12 @15
+  OleSetTargetDevice@0 @16 PRIVATE
+  OleSetBounds@0 @17 PRIVATE
+  OleQueryBounds@0 @18 PRIVATE
+  OleDraw@0 @19 PRIVATE
+  OleQueryOpen@0 @20 PRIVATE
+  OleActivate@0 @21 PRIVATE
+  OleUpdate@0 @22 PRIVATE
+  OleReconnect@0 @23 PRIVATE
+  OleGetLinkUpdateOptions@0 @24 PRIVATE
+  OleSetLinkUpdateOptions@0 @25 PRIVATE
+  OleEnumFormats@0 @26 PRIVATE
+  OleClose@0 @27 PRIVATE
+  OleGetData@0 @28 PRIVATE
+  OleSetData@0 @29 PRIVATE
+  OleQueryProtocol@0 @30 PRIVATE
+  OleQueryOutOfDate@0 @31 PRIVATE
+  OleObjectConvert@0 @32 PRIVATE
+  OleCreateFromTemplate@0 @33 PRIVATE
+  OleCreate@28=ole32.OleCreate @34
+  OleQueryReleaseStatus@0 @35 PRIVATE
+  OleQueryReleaseError@0 @36 PRIVATE
+  OleQueryReleaseMethod@0 @37 PRIVATE
+  OleCreateFromFile@32=ole32.OleCreateFromFile @38
+  OleCreateLinkFromFile@0 @39 PRIVATE
+  OleRelease@0 @40 PRIVATE
+  OleRegisterClientDoc@16 @41
+  OleRevokeClientDoc@4 @42
+  OleRenameClientDoc@8 @43
+  OleRevertClientDoc@0 @44 PRIVATE
+  OleSavedClientDoc@4 @45
+  OleRename@0 @46 PRIVATE
+  OleEnumObjects@0 @47 PRIVATE
+  OleQueryName@0 @48 PRIVATE
+  OleSetColorScheme@0 @49 PRIVATE
+  OleRequestData@0 @50 PRIVATE
+  OleLockServer@0 @54 PRIVATE
+  OleUnlockServer@0 @55 PRIVATE
+  OleQuerySize@0 @56 PRIVATE
+  OleExecute@0 @57 PRIVATE
+  OleCreateInvisible@0 @58 PRIVATE
+  OleQueryClientVersion@0 @59 PRIVATE
+  OleIsDcMeta@4 @60

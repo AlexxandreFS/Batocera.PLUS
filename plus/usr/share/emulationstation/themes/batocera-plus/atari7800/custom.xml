@@ -1,0 +1,67 @@
+<theme>
+	<formatVersion>4</formatVersion>
+
+	<view name="system">
+		<image name="background" extra="true">
+		</image>
+		<image name="band1" extra="true">
+			<color>BABBBD</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>AA2C39</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>A7B0B5</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>333333</color>
+		</image>
+		<text name="info1" extra="true">
+			<text>Manufacturer : Atari Corporation</text>
+			<pos>0.38 0.72</pos>
+		</text>
+		<text name="info2" extra="true">
+			<text>Year of Release : 1986</text>
+			<pos>0.38 0.74</pos>
+		</text>
+		<text name="info3" extra="true">
+			<text>Units sold : 3,77 million</text>
+			<pos>0.38 0.76</pos>
+		</text>
+		<text name="info4" extra="true">
+			<text>CPU : Atari SALLY 6502 ("6502C") @ 1.19-1.79MHz</text>
+			<pos>0.38 0.80</pos>
+		</text>
+		<text name="info5" extra="true">
+			<text>RAM : 4KB</text>
+			<pos>0.38 0.82</pos>
+		</text>
+		<text name="info6" extra="true">
+			<text>Cartridge ROM : 48KB</text>
+			<pos>0.38 0.84</pos>
+		</text>
+		<text name="info7" extra="true">
+			<text>Audio/Video Processor : TIA/MARIA custom graphics controller</text>
+			<pos>0.38 0.86</pos>
+		</text>
+		<text name="info8" extra="true">
+			<text>Ports : 2 joystick ports, 1 cartridge port, 1 expansion connector, power in, RF output</text>
+			<pos>0.38 0.88</pos>
+		</text>
+	</view>
+
+	<view name="basic, detailed, video">
+		<image name="band1" extra="true">
+			<color>BABBBD</color>
+		</image>
+		<image name="band2" extra="true">
+			<color>AA2C39</color>
+		</image>
+		<image name="band3" extra="true">
+			<color>A7B0B5</color>
+		</image>
+		<image name="band4" extra="true">
+			<color>333333</color>
+		</image>
+	</view>
+</theme>

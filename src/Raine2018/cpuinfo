@@ -1,0 +1,2 @@
+_MARCH=-march=pentium3 -mtune=pentium3
+CPU=pentium3

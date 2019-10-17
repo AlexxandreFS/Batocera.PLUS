@@ -1,0 +1,12 @@
+2000-12-18 - 09:22 AM - ATANI
+Final check ins required to make a Win32 build of Raine
+are complete!!  Binaries to be made available shortly.
+Only one problem still resides and that is the startup
+warnings.  These need to be converted to graphical display
+vs text.   Will work on next.
+
+2000-11-15 - 10:52 PM - ATANI
+Added Raine32 directory.  This is a placeholder directory
+which will be populated soon with the Raine32 build files.
+These files will be similar in nature to the makefiles,
+but are MSVC 6.0 specific.

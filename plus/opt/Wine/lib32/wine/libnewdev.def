@@ -1,0 +1,23 @@
+; File generated automatically from dlls/newdev/newdev.spec; do not edit!
+
+LIBRARY newdev.dll
+
+EXPORTS
+  DeviceInternetSettingUiW@0 @1 PRIVATE
+  DiInstallDevice@0 @2 PRIVATE
+  DiInstallDriverA@16 @3
+  DiInstallDriverW@16 @4
+  DiRollbackDriver@0 @5 PRIVATE
+  DiShowUpdateDevice@0 @6 PRIVATE
+  DiUninstallDevice@0 @7 PRIVATE
+  InstallNewDevice@12 @8
+  InstallSelectedDriver@20 @9
+  InstallWindowsUpdateDriver@0 @10 PRIVATE
+  SetInternetPolicies@0 @11 PRIVATE
+  UpdateDriverForPlugAndPlayDevicesA@20 @12
+  UpdateDriverForPlugAndPlayDevicesW@20 @13
+  pDiDeviceInstallActionW@0 @14 PRIVATE
+  pDiDeviceInstallNotificationW@0 @15 PRIVATE
+  pDiDoDeviceInstallAsAdmin@0 @16 PRIVATE
+  pDiDoFinishInstallAsAdmin@0 @17 PRIVATE
+  pDiDoNullDriverInstall@0 @18 PRIVATE

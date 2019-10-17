@@ -1,0 +1,19 @@
+; File generated automatically from dlls/loadperf/loadperf.spec; do not edit!
+
+LIBRARY loadperf.dll
+
+EXPORTS
+  BackupPerfRegistryToFileW@0 @1 PRIVATE
+  InstallPerfDllA@12 @2
+  InstallPerfDllW@12 @3
+  LoadMofFromInstalledServiceA@0 @4 PRIVATE
+  LoadMofFromInstalledServiceW@0 @5 PRIVATE
+  LoadPerfCounterTextStringsA@8 @6
+  LoadPerfCounterTextStringsW@8 @7
+  RestorePerfRegistryFromFileW@0 @8 PRIVATE
+  SetServiceAsTrustedA@0 @9 PRIVATE
+  SetServiceAsTrustedW@0 @10 PRIVATE
+  UnloadPerfCounterTextStringsA@8 @11
+  UnloadPerfCounterTextStringsW@8 @12
+  UpdatePerfNameFilesA@0 @13 PRIVATE
+  UpdatePerfNameFilesW@0 @14 PRIVATE

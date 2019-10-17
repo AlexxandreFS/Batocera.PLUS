@@ -1,0 +1,66 @@
+; File generated automatically from dlls/httpapi/httpapi.spec; do not edit!
+
+LIBRARY httpapi.dll
+
+EXPORTS
+  HttpAddFragmentToCache@0 @1 PRIVATE
+  HttpAddUrl@12 @2
+  HttpAddUrlToConfigGroup@0 @3 PRIVATE
+  HttpAddUrlToUrlGroup@24 @4
+  HttpCancelHttpRequest@0 @5 PRIVATE
+  HttpCreateAppPool@0 @6 PRIVATE
+  HttpCreateConfigGroup@0 @7 PRIVATE
+  HttpCreateFilter@0 @8 PRIVATE
+  HttpCreateHttpHandle@8 @9
+  HttpCreateRequestQueue@20 @10
+  HttpCreateServerSession@12 @11
+  HttpCreateUrlGroup@16 @12
+  HttpCloseRequestQueue@4 @13
+  HttpCloseServerSession@8 @14
+  HttpCloseUrlGroup@8 @15
+  HttpDeleteConfigGroup@0 @16 PRIVATE
+  HttpDeleteServiceConfiguration@20 @17
+  HttpFilterAccept@0 @18 PRIVATE
+  HttpFilterAppRead@0 @19 PRIVATE
+  HttpFilterAppWrite@0 @20 PRIVATE
+  HttpFilterAppWriteAndRawRead@0 @21 PRIVATE
+  HttpFilterClose@0 @22 PRIVATE
+  HttpFilterRawRead@0 @23 PRIVATE
+  HttpFilterRawWrite@0 @24 PRIVATE
+  HttpFilterRawWriteAndAppRead@0 @25 PRIVATE
+  HttpFlushResponseCache@0 @26 PRIVATE
+  HttpGetCounters@0 @27 PRIVATE
+  HttpInitialize@12 @28
+  HttpInitializeServerContext@0 @29 PRIVATE
+  HttpOpenAppPool@0 @30 PRIVATE
+  HttpOpenControlChannel@0 @31 PRIVATE
+  HttpOpenFilter@0 @32 PRIVATE
+  HttpQueryAppPoolInformation@0 @33 PRIVATE
+  HttpQueryConfigGroupInformation@0 @34 PRIVATE
+  HttpQueryControlChannelInformation@0 @35 PRIVATE
+  HttpQueryServerContextInformation@0 @36 PRIVATE
+  HttpQueryServiceConfiguration@32 @37
+  HttpReadFragmentFromCache@0 @38 PRIVATE
+  HttpReceiveClientCertificate@0 @39 PRIVATE
+  HttpReceiveHttpRequest@32 @40
+  HttpReceiveHttpResponse@0 @41 PRIVATE
+  HttpReceiveRequestEntityBody@0 @42 PRIVATE
+  HttpRemoveAllUrlsFromConfigGroup@0 @43 PRIVATE
+  HttpRemoveUrl@8 @44
+  HttpRemoveUrlFromConfigGroup@0 @45 PRIVATE
+  HttpRemoveUrlFromUrlGroup@16 @46
+  HttpSendHttpRequest@0 @47 PRIVATE
+  HttpSendHttpResponse@44 @48
+  HttpSendRequestEntityBody@0 @49 PRIVATE
+  HttpSendResponseEntityBody@0 @50 PRIVATE
+  HttpSetAppPoolInformation@0 @51 PRIVATE
+  HttpSetConfigGroupInformation@0 @52 PRIVATE
+  HttpSetControlChannelInformation@0 @53 PRIVATE
+  HttpSetServerContextInformation@0 @54 PRIVATE
+  HttpSetServiceConfiguration@20 @55
+  HttpSetUrlGroupProperty@20 @56
+  HttpShutdownAppPool@0 @57 PRIVATE
+  HttpShutdownFilter@0 @58 PRIVATE
+  HttpTerminate@8 @59
+  HttpWaitForDemandStart@0 @60 PRIVATE
+  HttpWaitForDisconnect@0 @61 PRIVATE

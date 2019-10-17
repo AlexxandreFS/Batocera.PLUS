@@ -1,0 +1,32 @@
+#!/bin/sh
+
+SIZE='128'
+SDCARD="$HOME/configs/dolphin-emu/Wii/sd.raw"
+MOUNT_DIR='./Wii-SDCard'
+
+set -e
+
+if ! [ -f "$SDCARD" ]; then
+    mkdir -p "$(dirname "$SDCARD")"
+
+    echo 'Creating sdcard, wait ...'
+    dd if=/dev/zero bs=1M count="$SIZE" of="$SDCARD"
+    mkfs.fat -F 32 "$SDCARD"
+fi
+
+DEVICE="$(losetup -f)"
+losetup "$DEVICE" "$SDCARD"
+
+mkdir -p "$MOUNT_DIR"
+mount -o rw "$DEVICE" "$MOUNT_DIR"
+
+echo -n 'Press any key to save...'
+read -n 1
+
+umount -f "$DEVICE"
+losetup -d "$DEVICE"
+rm -rf "$MOUNT_DIR"
+
+echo 'Save OK'
+
+exit 0
