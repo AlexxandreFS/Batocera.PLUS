@@ -2,12 +2,12 @@
 ################################################################################
 
 # Versão do Batocera.PLUS.
-VERSION='0.6'
+VERSION='0.7'
 
 # Pasta temporária em uma partição Linux.
 #TEMP_DIR='tmp'
-#TEMP_DIR='/media/NO_LABEL/tmp'
-TEMP_DIR='/media/NO_LABEL_1/tmp'
+TEMP_DIR='/media/NO_LABEL/tmp'
+#TEMP_DIR='/media/NO_LABEL_1/tmp'
 
 # Imagem oficial do batocera.linux.
 IMG_OFICIAL='img/batocera-5.23-x86_64-20190902.img.gz'
@@ -118,8 +118,16 @@ echo 'Descompactando Libretro mame0174...'
 rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame0174_libretro.so.7z"
 
 echo 'Descompactando Libretro mame0200...'
-7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame0200_libretro.so.7z.001" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
-rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame0200_libretro.so.7z."*
+7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame0200_libretro.so.7z" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
+rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame0200_libretro.so.7z"
+
+echo 'Descompactando Libretro mess...'
+7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mess_libretro.so.7z" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
+rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mess_libretro.so.7z"
+
+#echo 'Descompactando Libretro mame_mame...'
+#7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame_mame_libretro.so.7z.001" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
+#rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame_mame_libretro.so.7z."*
 
 echo 'Descompactando Firefox libxul.so...'
 7zr x "$TEMP_DIR/squashfs-root/opt/Firefox/firefox-esr/libxul.so.7z" -o"$TEMP_DIR/squashfs-root/opt/Firefox/firefox-esr" || exit $?
