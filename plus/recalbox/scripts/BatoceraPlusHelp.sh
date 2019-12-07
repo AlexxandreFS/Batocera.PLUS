@@ -51,8 +51,8 @@ cat << EOF
     KEYBOARD SHORTCURTS
     ============================================================================
 
-    F5              = BASIC INFO
-    WIN + F5        = THIS HELP
+    F2              = BASIC INFO
+    WIN + F2        = THIS HELP
 
     F1              = FILE EXPLORER
     WIN  + F4       = OPEN A TERMINAL

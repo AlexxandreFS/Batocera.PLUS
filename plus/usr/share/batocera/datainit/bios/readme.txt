@@ -89,7 +89,8 @@ Nintendo 64:
 8d3d9f294b6e174bc7b1d2fd1c727530 bios/64DD_IPL.bin
 
 Naomi:
-3bffafac42a7767d8dcecf771f5552ba bios/naomi_boot.bin
+ bios/naomi.zip
+3bffafac42a7767d8dcecf771f5552ba bios/naomi.bin
 
 Nintendo DS:
 145eaef5bd3037cbc247c213bb3da1b3 bios/firmware.bin
@@ -121,6 +122,9 @@ ff1a674273fe3540ccef576376407d1d bios/syscard3.pce
 PC-FX:
 08e36edbea28a017f79f8d4f7ff9b6d7 bios/pcfx.rom
 
+Nintendo Pokemon Mini:
+1e4fb124a3a886865acb574f388c803d bios/bios.min
+
 Doom (PrBoom):
  roms/prboom/prboom.wad
 
@@ -134,9 +138,12 @@ d5ce2c7d119f563ce04bc04dbc3a323e bios/scph39001.bin
 b406d05922dac2eaf3c2e68157b1b468 bios/ROM2.BIN
 
 PSX:
+6e3735ff4c7dc899ee98981385f6f3d0 bios/scph101.bin
+dc2b9bf8da62ec93e868cfd29f0d067d bios/scph1001.bin
 8dd7d5296a650fac7319bce665a6a53c bios/scph5500.bin
 490f666e1afb15b7362b406ed1cea246 bios/scph5501.bin
 32736f17079d0b2b7024407c39bd3050 bios/scph5502.bin
+1e68c231d0896b7eadcad1d7d8e76129 bios/scph7001.bin
 
 Satellaview:
 fed4d8242cfbed61343d53d48432aced bios/BS-X.bin
@@ -174,4 +181,3 @@ Sharp x68000:
  bios/keropi/iplromco.dat
  bios/keropi/iplromxv.dat
  bios/keropi/cgrom.dat
-

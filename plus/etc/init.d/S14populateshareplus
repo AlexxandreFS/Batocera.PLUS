@@ -13,6 +13,7 @@ SHARE_INIT='/usr/share/batocera/datainit'
 
 ### Cria pastas adicionais
 mkdir -p "$SHARE/downloads"
+mkdir -p "$SHARE/splashvideos"
 mkdir -p "$SHARE/system/.local/share/Trash/files"
 mkdir -p "$SHARE/system/configs/wine"
 

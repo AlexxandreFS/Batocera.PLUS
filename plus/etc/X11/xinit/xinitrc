@@ -100,6 +100,57 @@ fi
 
 ################################################################################
 
+### Video de abertuta
+
+VIDEO_DIR='/userdata/splashvideos'
+
+function randVideo() {
+    local TOTAL_FILES='0'
+
+    for i in "$VIDEO_DIR/"*; do
+        if [ "${i%mp4}mp4" == "$i" ]; then
+            TOTAL_FILES="$(($TOTAL_FILES + 1))"
+        fi
+    done
+
+    local RAND_NUM="$(($RANDOM % $TOTAL_FILES))"
+    local COUNT='0'
+
+    for i in "$VIDEO_DIR/"*; do
+        if [ "${i%mp4}mp4" == "$i" ]; then
+            if [ $COUNT == $RAND_NUM ]; then
+                VIDEO_FILE="$i"
+                break
+            else
+                COUNT="$(($COUNT + 1))"
+            fi
+        fi
+    done
+}
+
+function playVideo() {
+    openbox &
+    cvlc --fullscreen --play-and-exit --no-interact --no-osd "$1" 2> /dev/null &
+    for ((i = 0; i < 120; i++)); do
+        sleep 0.5
+        if ! [ "$(pidof vlc)" ]; then
+            break
+        fi
+    done
+    openbox --exit
+}
+
+if [ "$(grep ^splashvideo=true /boot/batocera-boot.conf)" ]; then
+    if [ "$(ls -A -1 /userdata/splashvideos/*.mp4 | head -n 1)" ]; then
+        randVideo
+    else
+        VIDEO_FILE='/usr/share/batocera/splash/splash.mp4'
+    fi
+    playVideo "$VIDEO_FILE"
+fi
+
+################################################################################
+
 ### Imagem de carregamento alternativa.
 
 # Observação1:
@@ -138,7 +189,7 @@ while [ true ]; do
 
     # Aguarda o emulationstation entrar em execução para exibir a tela de carregamento.
     if [ "$(pidof emulationstation)" ]; then
-        sleep 1
+        sleep 0.5
         nice -n +19 retroarch -L '/usr/lib/libretro/imageviewer_libretro.so' \
                     --config '/usr/share/batocera/datainit/system/configs/retroarch/retroarchcustom.cfg' \
                     "$START_SCREEN" &

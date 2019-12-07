@@ -112,6 +112,8 @@ systems = {
                                                                                     { "md5": "df692a80a5b1bc90728bc3dfc76cd948", "file": "bios/bios7.bin"    	},
                                                                                     { "md5": "a392174eb3e572fed6447e956bde4b25", "file": "bios/bios9.bin"    	} ] },
 
+    "pokemini":    { "name": "Nintendo Pokemon Mini", "biosFiles":                [ { "md5": "1e4fb124a3a886865acb574f388c803d", "file": "bios/bios.min"        } ] },
+
    #"satellaview": { "name": "Satellaview", "biosFiles":                          [ { "md5": "fed4d8242cfbed61343d53d48432aced", "file": "bios/BS-X.bin"        } ] },
 
    # https://project.satellaview.org/downloads.htm
@@ -165,7 +167,9 @@ systems = {
                                                              { "md5": "854b9150240a198070150e4566ae1290", "file": "bios/bios_CD_U.bin" 	  },
                                                              { "md5": "278a9397d192149e84e820ac621a8edd", "file": "bios/bios_CD_J.bin" 	  } ] },
 
-    "naomi":        { "name": "Naomi", "biosFiles":        [ { "md5": "3bffafac42a7767d8dcecf771f5552ba", "file": "bios/naomi_boot.bin"   } ] },
+    "naomi":        { "name": "Naomi", "biosFiles":        [ { "md5": "3bffafac42a7767d8dcecf771f5552ba", "file": "bios/naomi.bin"        },
+                                                             { "md5": "",                                 "file": "bios/naomi.zip"        } ] },
+
 
     ############################################################################
 
@@ -196,9 +200,12 @@ systems = {
 
     ### Sony Computer Entertainment
 
-    "psx": { "name": "PSX", "biosFiles": [ { "md5": "8dd7d5296a650fac7319bce665a6a53c", "file": "bios/scph5500.bin"   },
+    "psx": { "name": "PSX", "biosFiles": [ { "md5": "6e3735ff4c7dc899ee98981385f6f3d0", "file": "bios/scph101.bin"    },
+                                           { "md5": "dc2b9bf8da62ec93e868cfd29f0d067d", "file": "bios/scph1001.bin"   },
+                                           { "md5": "8dd7d5296a650fac7319bce665a6a53c", "file": "bios/scph5500.bin"   },
                                            { "md5": "490f666e1afb15b7362b406ed1cea246", "file": "bios/scph5501.bin"   },
-                                           { "md5": "32736f17079d0b2b7024407c39bd3050", "file": "bios/scph5502.bin"   } ] },
+                                           { "md5": "32736f17079d0b2b7024407c39bd3050", "file": "bios/scph5502.bin"   },
+                                           { "md5": "1e68c231d0896b7eadcad1d7d8e76129", "file": "bios/scph7001.bin"   } ] },
 
     "ps2": { "name": "PS2", "biosFiles": [ { "md5": "28922c703cc7d2cf856f177f2985b3a9", "file": "bios/SCPH30004R.bin" },
                                            { "md5": "3faf7c064a4984f53e2ef5e80ed543bc", "file": "bios/SCPH30004R.MEC" },

@@ -1,6 +1,6 @@
-22/09/2019 - Batocera.PLUS 0.1
+30/11/2019 - Batocera.PLUS 1.4
 
-    * Sincronizado: Batocera.PLUS com o Batocera.Linux 5.23
+    * Sincronizado: Batocera.PLUS com o Batocera.Linux 5.24
 
     * Adicionado: Todas as Bios
 
@@ -19,6 +19,9 @@
         * PSP MINIs                   /userdata/roms/pspminis
         * Neo-Geo Mini                /userdata/roms/neogeomini
         * Neo-Geo X                   /userdata/roms/neogeox
+        * NEC PC-98                   /userdata/roms/pc98
+        * Fairchild Channel F         /userdata/roms/channelf
+        * Thomson                     /userdata/roms/thomson
 
     * Mantido: Sistema MSX2 /userdata/roms/msx2
     * Mantido: Sistema FBA Libretro /userdata/roms/fba_libretro
@@ -82,6 +85,18 @@
         * Neo-Geo Mini
         * Neo-Geo X
 
+    * Adicionado: Core freechaf para:
+        * Fairchild Channel F
+
+    * Adicionado: Core np2kai para:
+        * NEC PC-98
+
+    * Adicionado: Core nekop2 para:
+        * NEC PC-98
+
+    * Adicionado: Core theodore para:
+        * Thomson
+
     * Mantido: Core mame078
     * Mantido: Core mame0174
     * Mantido: Core catsfc
@@ -92,6 +107,10 @@
     * Mantido: Core scummvm
     * Mantido: Core dosbox
     * Mantido: Core Dos x86
+
+    * Adicionado mudança de Filtros (shaders) hotkey + L R durante o jogo
+
+    * Adicionado vídeo de introdução personalizado pelo usuário
 
     * Adicionado: Fontes extras para o PPSSPP (conserta alguns jogos)
 
