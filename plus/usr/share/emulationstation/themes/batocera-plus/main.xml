@@ -1,5 +1,87 @@
 <theme>
-	<formatVersion>4</formatVersion>
+	<formatVersion>7</formatVersion>
+
+	<view name="screen">
+		<text name="clock">
+			<color>FFFFFF</color>
+			<fontSize>0.035</fontSize>
+			<pos>0.94 0.945</pos>
+			<size>0.05 0.058</size>
+			<verticalAlignment>center</verticalAlignment>
+		</text>
+
+		<controllerActivity name="controllerActivity">
+			<pos>0.925 0.96</pos>
+			<size>0.095 0.03</size>
+			<!--<horizontalAlignment>left</horizontalAlignment>-->
+			<itemSpacing>0</itemSpacing>
+			<imagePath>./main/gamepad.svg</imagePath>
+			<color>FFFFFFFF</color>
+			<activityColor>FF9900</activityColor>
+			<hotkeyColor>0764A1</hotkeyColor>
+		</controllerActivity>
+	</view>
+
+	<view name="menu">
+
+		<menuText name="menutitle">
+			<fontPath>./main/fonts/Exo2-BoldCondensed.otf</fontPath>
+			<fontSize>0.042</fontSize>
+			<color>FFFFFF</color>
+		</menuText>
+
+		<menuText name="menufooter">
+			<fontPath>./main/fonts/Exo2-BoldCondensed.otf</fontPath>
+			<fontSize>0.020</fontSize>
+			<color>AAAAAA</color>
+		</menuText>
+
+		<menuText name="menutext">
+			<fontPath>./main/fonts/Exo2-RegularCondensed.otf</fontPath>
+			<fontSize>0.036</fontSize>
+			<color>EEEEEE</color>
+			<separatorColor>FEFEFE</separatorColor>
+			<selectorColor>ff9900</selectorColor>
+			<selectorColorEnd>DD7700</selectorColorEnd>
+			<selectedColor>262626</selectedColor>
+			<selectorGradientType>vertical</selectorGradientType>
+		</menuText>
+
+		<menuTextSmall name="menutextsmall">
+			<fontPath>./main/fonts/Exo2-RegularCondensed.otf</fontPath>
+			<fontSize>0.032</fontSize>
+		</menuTextSmall>
+
+		<menuBackground name="menubg">
+			<color>0764A1</color>
+			<cornerSize>32 32</cornerSize>
+ 			<path>./main/frame.png</path>
+		</menuBackground>
+
+		<menuIcons name="menuicons">
+			<iconKodi>./main/icons/Kodi.png</iconKodi>
+			<iconSystem>./main/icons/System.png</iconSystem>
+			<iconUpdates>./main/icons/Updates.png</iconUpdates>
+			<iconGames>./main/icons/Games.png</iconGames>
+			<iconControllers>./main/icons/Controllers.png</iconControllers>
+			<iconUI>./main/icons/UI.png</iconUI>
+			<iconSound>./main/icons/Sound.png</iconSound>
+			<iconNetwork>./main/icons/Network.png</iconNetwork>
+			<iconScraper>./main/icons/Scraper.png</iconScraper>
+			<iconAdvanced>./main/icons/Advanced.png</iconAdvanced>
+			<iconQuit>./main/icons/Quit.png</iconQuit>
+			<iconRestart>./main/icons/Restart.png</iconRestart>
+			<iconShutdown>./main/icons/Shutdown.png</iconShutdown>
+			<iconFastShutdown>./main/icons/Fastshutdown.png</iconFastShutdown>
+			<iconRetroachievements>./main/icons/Contest.png</iconRetroachievements>
+		</menuIcons>
+
+		<menuTextEdit name="menutextedit">
+			<inactive>./main/textinput_ninepatch.png</inactive>
+			<active>./main/textinput_ninepatch_active.png</active>
+		</menuTextEdit>
+	</view>
+
 
 	<view name="system">
                 <!--
@@ -7,8 +89,34 @@
 			<path>./music</path>
 		</sound>
                 -->
+
+		<carousel name="systemcarousel">
+			<color>DDEEFFFF</color>
+			<colorEnd>FFFFFFDE</colorEnd>
+			<systemInfoDelay>500</systemInfoDelay>
+		</carousel>
+
+		<text name="systemInfo">
+			<pos>0 0.615</pos>
+			<size>1 0.045</size>
+			<backgroundColor>0764A1AA</backgroundColor>
+			<color>FFFFFFFF</color>
+			<glowColor>000000FF</glowColor>
+			<glowSize>1</glowSize>
+			<reflexion>0.1 0.1</reflexion>
+		</text>
+
+		<image name="carousel-shadow" extra="true">
+			<path>./main/shadow.png</path>
+			<color>FFFFFF88</color>
+			<pos>0 0.6162</pos>
+			<origin>0 0</origin>
+			<size>1 0.055</size>
+			<zIndex>11</zIndex>
+		</image>
+
 		<image name="background" extra="true">
-			<tile>true</tile>
+			<tile>false</tile>
 			<size>1 1</size>
 			<pos>0 0</pos>
 			<origin>0 0</origin>
@@ -117,14 +225,16 @@
 			<pos>0.015 0.20</pos>
 			<size>0.34 0.710</size>
 			<selectorColor>ff9900</selectorColor> <!-- Selection bar -->
+			<selectorColorEnd>DD7700</selectorColorEnd>
 			<selectedColor>262626</selectedColor> <!-- Selection letters -->
+			<selectorGradientType>vertical</selectorGradientType>
 			<primaryColor>ffffff</primaryColor> <!-- Letters -->
 			<secondaryColor>9F9F9F</secondaryColor>
 			<fontPath>./main/fonts/TitilliumWeb-SemiBold.ttf</fontPath>
 			<fontSize>0.025</fontSize>
 			<alignment>left</alignment>
 			<horizontalMargin>0.01</horizontalMargin>
-			<!--<scrollSound>./main/sound/scroll.wav</scrollSound>-->
+			<scrollSound>./main/sound/scroll.wav</scrollSound>
 		</textlist>
 	</view>
 
@@ -153,14 +263,16 @@
 			<pos>0.015 0.20</pos>
 			<size>0.34 0.710</size>
 			<selectorColor>ff9900</selectorColor> <!-- Selection bar -->
+			<selectorColorEnd>DD7700</selectorColorEnd>
 			<selectedColor>262626</selectedColor> <!-- Selection letters -->
+			<selectorGradientType>vertical</selectorGradientType>
 			<primaryColor>ffffff</primaryColor> <!-- Letters -->
 			<secondaryColor>9F9F9F</secondaryColor>
 			<fontPath>./main/fonts/TitilliumWeb-SemiBold.ttf</fontPath>
 			<fontSize>0.025</fontSize>
 			<alignment>left</alignment>
 			<horizontalMargin>0.01</horizontalMargin>
-			<!--<scrollSound>./main/sound/scroll.wav</scrollSound>-->
+			<scrollSound>./main/sound/scroll.wav</scrollSound>
 		</textlist>
 
 		<text name="md_lbl_rating, md_lbl_releasedate, md_lbl_developer, md_lbl_publisher, md_lbl_genre, md_lbl_players, md_lbl_lastplayed, md_lbl_playcount, md_lbl_favorite, md_description">

@@ -5,7 +5,7 @@
 
 	<view name="system">	
 		<image name="logo">
-			<path>./art/logo.png</path>
+			<path>./art/logo.svg</path>
 		</image>
 		<image name="background" extra="true">
 			<path>./../main/background.png</path>
@@ -32,7 +32,7 @@
 
 	<view name="basic, detailed, video">	
 		<image name="logo">
-			<path>./art/logo.png</path>
+			<path>./art/logo.svg</path>
 		</image>
 
 		<image name="background" extra="true">

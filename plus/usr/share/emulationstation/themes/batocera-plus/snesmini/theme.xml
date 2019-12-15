@@ -13,7 +13,7 @@
 		<image name="console" extra="true">
 			<path>./art/console.svg</path>
 			<pos>0.02 0.30</pos>
-			<maxSize>0.12 0.25</maxSize>
+			<maxSize>0.10 0.20</maxSize>
 			<origin>0 1</origin>
 		</image>
 		<image name="controller" extra="true">
