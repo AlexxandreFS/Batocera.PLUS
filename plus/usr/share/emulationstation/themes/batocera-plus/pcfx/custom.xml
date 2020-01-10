@@ -5,16 +5,16 @@
 		<image name="background" extra="true">
 		</image>
 		<image name="band1" extra="true">
-			<color>313131</color>
+			<color>C1942E</color>
 		</image>
 		<image name="band2" extra="true">
-			<color>0F1012</color>
+			<color>342257</color>
 		</image>
 		<image name="band3" extra="true">
-			<color>97A9BA</color>
+			<color>A4284c</color>
 		</image>
 		<image name="band4" extra="true">
-			<color>F9F7F7</color>
+			<color>271E47</color>
 		</image>
 		<text name="info1" extra="true">
 			<text>Manufacturer : NEC</text>

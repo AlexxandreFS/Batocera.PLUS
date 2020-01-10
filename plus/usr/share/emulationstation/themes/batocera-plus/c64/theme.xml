@@ -11,14 +11,14 @@
 			<path>./../main/background.png</path>
 		</image>
 		<image name="console" extra="true">
-			<path>./art/console.svg</path>
-			<pos>0.02 0.30</pos>
+			<path>./art/console.png</path>
+			<pos>0.02 0.31</pos>
 			<maxSize>0.35 0.25</maxSize>
 			<origin>0 1</origin>
 		</image>
 		<image name="game" extra="true">
 			<path>./art/game.svg</path>
-			<pos>0.38 0.30</pos>
+			<pos>0.33 0.30</pos>
 			<maxSize>0.15 0.10</maxSize>
 			<origin>0 1</origin>
 		</image>

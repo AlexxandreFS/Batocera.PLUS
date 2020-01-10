@@ -5,20 +5,20 @@
 
 	<view name="system">	
 		<image name="logo">
-			<path>./art/logo.png</path>
+			<path>./art/logo.svg</path>
 		</image>
 		<image name="background" extra="true">
 			<path>./../main/background.png</path>
 		</image>
 		<image name="console" extra="true">
-			<path>./art/console.png</path>
+			<path>./art/console.svg</path>
 			<pos>0.02 0.30</pos>
-			<maxSize>0.2 0.25</maxSize>
+			<maxSize>0.38 0.38</maxSize>
 			<origin>0 1</origin>
 		</image>
 		<image name="game" extra="true">
-			<path>./art/game.png</path>
-			<pos>0.24 0.30</pos>
+			<path>./art/game.svg</path>
+			<pos>0.42 0.30</pos>
 			<maxSize>0.10 0.10</maxSize>
 			<origin>0 1</origin>
 		</image>
@@ -32,7 +32,7 @@
 
 	<view name="basic, detailed, video">	
 		<image name="logo">
-			<path>./art/logo.png</path>
+			<path>./art/logo.svg</path>
 		</image>
 
 		<image name="background" extra="true">

@@ -146,7 +146,9 @@ if [ "$(grep ^splashvideo=true /boot/batocera-boot.conf)" ]; then
     else
         VIDEO_FILE='/usr/share/batocera/splash/splash.mp4'
     fi
+    xjoypad -display $DISPLAY -device /dev/input/js0 -buttons 39 39 39 39 39 39 39 39 39 39 39 39 39 &
     playVideo "$VIDEO_FILE"
+    killall xjoypad &
 fi
 
 ################################################################################
@@ -190,8 +192,10 @@ while [ true ]; do
     # Aguarda o emulationstation entrar em execução para exibir a tela de carregamento.
     if [ "$(pidof emulationstation)" ]; then
         sleep 0.5
+        cp '/usr/share/batocera/datainit/system/configs/retroarch/retroarchcustom.cfg' '/tmp/retroarchcustom.cfg'
+        echo 'audio_driver = "null"'       >> '/tmp/retroarchcustom.cfg'
         nice -n +19 retroarch -L '/usr/lib/libretro/imageviewer_libretro.so' \
-                    --config '/usr/share/batocera/datainit/system/configs/retroarch/retroarchcustom.cfg' \
+                    --config '/tmp/retroarchcustom.cfg' \
                     "$START_SCREEN" &
         sleep 3
         # Interrompe a tela de carregamento quando o emulationstation terminar o loading.
@@ -199,6 +203,7 @@ while [ true ]; do
             sleep 1
             if [ -f '/tmp/emulationstation.ready' ]; then
                 killall retroarch
+                rm '/tmp/retroarchcustom.cfg'
                 break
             fi
         done

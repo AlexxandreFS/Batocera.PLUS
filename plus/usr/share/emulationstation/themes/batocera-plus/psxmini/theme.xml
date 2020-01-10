@@ -17,7 +17,7 @@
 			<origin>0 1</origin>
 		</image>
 		<image name="controller" extra="true">
-			<path>./art/controller.svg</path>
+			<path>./art/controller.png</path>
 			<pos>0.78 0.30</pos>
 			<maxSize>0.15 0.25</maxSize>
 			<origin>1 1</origin>

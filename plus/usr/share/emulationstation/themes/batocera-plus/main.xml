@@ -1,6 +1,10 @@
 <theme>
 	<formatVersion>7</formatVersion>
 
+	<include subset="shader" name="None"/>
+	<include subset="shader" name="ScanLines">./main/scanlines.xml</include>
+	<include subset="shader" name="Crt">./main/crt.xml</include>
+
 	<view name="screen">
 		<text name="clock">
 			<color>FFFFFF</color>
@@ -84,11 +88,11 @@
 
 
 	<view name="system">
-                <!--
+		<!--
 		<sound name="directory">
 			<path>./music</path>
 		</sound>
-                -->
+		-->
 
 		<carousel name="systemcarousel">
 			<color>DDEEFFFF</color>
@@ -120,7 +124,7 @@
 			<size>1 1</size>
 			<pos>0 0</pos>
 			<origin>0 0</origin>
-			<path>./main/background.png</path>
+			<path>./main/background.svg</path>
 		</image>
 
 		<helpsystem name="help">

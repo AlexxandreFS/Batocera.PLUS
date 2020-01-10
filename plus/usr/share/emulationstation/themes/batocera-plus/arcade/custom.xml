@@ -5,16 +5,16 @@
 		<image name="background" extra="true">
 		</image>
 		<image name="band1" extra="true">
-			<color>00ADEF</color>
+			<color>F4B20C</color>
 		</image>
 		<image name="band2" extra="true">
-			<color>84849C</color>
+			<color>C3242D</color>
 		</image>
 		<image name="band3" extra="true">
 			<color>231F20</color>
 		</image>
 		<image name="band4" extra="true">
-			<color>FFFFFF</color>
+			<color>FD8309</color>
 		</image>
 		<text name="info1" extra="true">
 			<text>Developers : Nicola Salmoria and the MAME Team

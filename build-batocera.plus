@@ -1,10 +1,10 @@
 #!/bin/sh
 ################################################################################
 
-# Versão do Batocera.PLUS.
-VERSION='1.6'
+# Versão do Batocera.PLUS
+VERSION='1.9'
 
-# Pasta temporária em uma partição Linux.
+# Pasta temporária em uma partição Linux
 TEMP_DIR='tmp'
 #TEMP_DIR='/media/NO_LABEL/tmp'
 #TEMP_DIR='/media/NO_LABEL_1/tmp'
@@ -18,7 +18,7 @@ IMG_OFICIAL='img/batocera-5.24-x86_64-20191105.img.gz'
 IMG_ZERO='img/BatoceraZero2.5GB.7z'
 #IMG_ZERO='img/BatoceraZero3.0GB.7z'
 
-# Arquivos extras do Batocera.PLUS.
+# Arquivos extras do Batocera.PLUS
 PLUS_DIR='plus'
 BOOT_DIR='boot'
 
@@ -89,6 +89,8 @@ echo "$VERSION $(date +'%Y/%m/%d %H:%M')" >                        "$TEMP_DIR/sq
 echo 'Definindo emuladores e opções padrões...'
 sed -i s'/rewind:         true/rewind:         false/' "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml" || exit $?
 sed -i s'/core:     mame078plus/core:     mame0200/'   "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml" || exit $?
+sed -i s'/emulator: reicast/emulator: libretro/'       "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml" || exit $?
+sed -i s'/core: reicast/core:     flycast/'            "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml" || exit $?
 sed -i '/^satellaview:/!b;n;n;c\  core:     catsfc'    "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml" || exit $?
 
 echo 'n64dd:'                                       >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"

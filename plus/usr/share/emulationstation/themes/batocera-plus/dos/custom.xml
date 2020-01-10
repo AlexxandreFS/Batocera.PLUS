@@ -5,16 +5,16 @@
 		<image name="background" extra="true">
 		</image>
 		<image name="band1" extra="true">
-			<color>1F70C1</color>
+			<color>C0BFBF</color>
 		</image>
 		<image name="band2" extra="true">
-			<color>FFFFFF</color>
+			<color>DB1F26</color>
 		</image>
 		<image name="band3" extra="true">
-			<color>666870</color>
+			<color>8461A9</color>
 		</image>
 		<image name="band4" extra="true">
-			<color>201D1D</color>
+			<color>FDC20F</color>
 		</image>
 		<text name="info1" extra="true">
 			<text>Manufacturer: IBM</text>

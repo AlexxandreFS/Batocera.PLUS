@@ -1,0 +1,39 @@
+#!/bin/sh
+##
+## Batocera.PLUS
+## Alexandre Freire dos Santos
+## Email: alexandre.freire@gmail.com
+## 17/12/2019
+##
+## Este script cria uma extrutura de arquivos que simula as roms
+## para serem utilizdas nos testes e criação de temas.
+##
+
+ROM_DIR='roms'
+ES_SYSTEMS='/etc/emulationstation/es_systems.cfg'
+VERSION="$(cat /usr/share/batocera/batocera.version | cut -d ' ' -f 1)"
+
+SYSTEMS=$(grep -E '<path>/userdata/|<extension>' "${ES_SYSTEMS}" | \
+    cut -d '<' -f 2  | \
+    sed 's#extension>##' | \
+    sed 's#path>/userdata/##' | \
+    sed 's#roms/##')
+
+for i in ${SYSTEMS}; do
+    if [ "$i" != ".${i#.}" ]; then
+        mkdir -p "${ROM_DIR}/${i}"
+        SYSTEM="${i}"
+    else
+        ROM_EXTENSION="$(echo ${i} | tr A-Z a-z)"
+        ROM_NAME="${SYSTEM} (${ROM_EXTENSION#.})"
+        ROM_FILE="${ROM_DIR}/${SYSTEM}/${ROM_NAME}${ROM_EXTENSION}"
+        if ! [ -f "${ROM_FILE}" ]; then
+            echo "creating \"${ROM_NAME}${ROM_EXTENSION}"\" to ${ROM_DIR}/${SYSTEM} ...
+            echo "Batocera.PLUS Ver. ${VERSION}" > "${ROM_FILE}"
+        fi
+    fi
+done
+
+echo 'done'
+
+exit 0

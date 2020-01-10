@@ -5,13 +5,13 @@
 		<image name="background" extra="true">
 		</image>
 		<image name="band1" extra="true">
-			<color>1F70C1</color>
+			<color>CCCCCC</color>
 		</image>
 		<image name="band2" extra="true">
-			<color>FFFFFF</color>
+			<color>3465A4</color>
 		</image>
 		<image name="band3" extra="true">
-			<color>666870</color>
+			<color>107050</color>
 		</image>
 		<image name="band4" extra="true">
 			<color>201D1D</color>

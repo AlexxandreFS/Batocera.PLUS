@@ -5,16 +5,16 @@
 		<image name="background" extra="true">
 		</image>
 		<image name="band1" extra="true">
-			<color>AA2C39</color>
+			<color>1F8ABE</color>
 		</image>
 		<image name="band2" extra="true">
-			<color>A7B0B5</color>
-		</image>
-		<image name="band3" extra="true">
 			<color>333333</color>
 		</image>
+		<image name="band3" extra="true">
+			<color>DADADA</color>
+		</image>
 		<image name="band4" extra="true">
-			<color>BABBBD</color>
+			<color>AA2C39</color>
 		</image>
 		<text name="info1" extra="true">
 			<text>Manufacturer : Nintendo, Foxconn</text>

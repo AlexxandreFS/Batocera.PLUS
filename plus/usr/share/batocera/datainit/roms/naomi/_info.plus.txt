@@ -2,7 +2,7 @@
 -------------------------------------------------------------------------------
 ROM files extensions accepted (Batocera.PLUS): ".7z .7Z"
 -------------------------------------------------------------------------------
-As roms do mame não funcionam com este emulador.
+As roms e chd do mame são recomendadas para este sistema.
 -------------------------------------------------------------------------------
 Como rodar roms compactadas no formato 7zip?
 

@@ -5,16 +5,16 @@
 		<image name="background" extra="true">
 		</image>
 		<image name="band1" extra="true">
-			<color>EF8185</color>
+			<color>F8564B</color>
 		</image>
 		<image name="band2" extra="true">
-			<color>F3994B</color>
+			<color>FFFFFF</color>
 		</image>
 		<image name="band3" extra="true">
-			<color>FADD2F</color>
+			<color>2D2C2B</color>
 		</image>
 		<image name="band4" extra="true">
-			<color>A4DDF0</color>
+			<color>000000</color>
 		</image>
 		<text name="info1" extra="true">
 			<text>Manufacturer : Coleco</text>

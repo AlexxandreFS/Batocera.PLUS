@@ -14,7 +14,7 @@
 			<color>000000</color>
 		</image>
 		<image name="band4" extra="true">
-			<color>ECECEC</color>
+			<color>CCCCCC</color>
 		</image>
 		<text name="info1" extra="true">
 			<text>Manufacturer : Atari Corporation</text>

@@ -46,4 +46,7 @@ if ! [ -f "$SHARE/system/.config/libfm/libfm.conf" ]; then
     cp  "$SHARE_INIT/system/.config/libfm/libfm.conf" "$SHARE/system/.config/libfm/libfm.conf"
 fi
 
+# Limpa Arquivos temporários
+rm $SHARE/system/.serverauth.* 2> /dev/null
+
 exit 0

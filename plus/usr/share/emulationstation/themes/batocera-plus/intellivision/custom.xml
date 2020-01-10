@@ -5,16 +5,16 @@
 		<image name="background" extra="true">
 		</image>
 		<image name="band1" extra="true">
-			<color>544641</color>
+			<color>D4C1A0</color>
 		</image>
 		<image name="band2" extra="true">
-			<color>E2C4AB</color>
+			<color>4A3937</color>
 		</image>
 		<image name="band3" extra="true">
-			<color>C9BCB3</color>
+			<color>1D2026</color>
 		</image>
 		<image name="band4" extra="true">
-			<color>6F453C</color>
+			<color>F30001</color>
 		</image>
 		<text name="info1" extra="true">
 			<text>Manufacturer : Mattel</text>
