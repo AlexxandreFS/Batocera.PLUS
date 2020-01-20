@@ -1,4 +1,4 @@
-20/01/2020 - Batocera.PLUS 1.12
+20/01/2020 - Batocera.PLUS 1.13
 
     * Sincronizado: Batocera.PLUS com o Batocera.Linux 5.24
 
@@ -44,7 +44,7 @@
         * Adicionado: Atalho (WIN + F10) abre o navegador
 
     * Adicionado: OpenBOR
-        * Atualizado: OpenBOR_v6412 para o GCC-9
+        * Atualizado: OpenBOR_v7142 para o GCC-9
         * Atualizado: OpenBOR_v6330 para o GCC-9
         * Adicionado: OpenBOR_v4432 para o GCC-9
         * Adicionado: Configuração de filtro de imagem básico

@@ -2,7 +2,7 @@
 ################################################################################
 
 # Versão do Batocera.PLUS
-VERSION='1.12'
+VERSION='1.13'
 
 # Pasta temporária em uma partição Linux
 TEMP_DIR='tmp'
@@ -20,6 +20,7 @@ IMG_ZERO='img/BatoceraZero2.5GB.7z'
 
 # Arquivos extras do Batocera.PLUS
 PLUS_DIR='plus'
+UPDATE_DIR='update'
 BOOT_DIR='boot'
 
 ################################################################################
@@ -149,7 +150,8 @@ echo 'Ativando permissão de execução para arquivos copiados por rede...'
 sed -i s'/^create mask = 0644/create mask = 0744/'  "$TEMP_DIR/squashfs-root/etc/samba/smb.conf"        || exit $?
 
 echo 'Copiando arquivos do batocera.plus...'
-cp -r -f "$PLUS_DIR/"* "$TEMP_DIR/squashfs-root"  || exit $?
+cp -r -f "$PLUS_DIR/"*   "$TEMP_DIR/squashfs-root"  || exit $?
+cp -r -f "$UPDATE_DIR/"* "$TEMP_DIR/squashfs-root"  || exit $?
 
 echo 'Descompactando Libretro mame0174...'
 7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame0174_libretro.so.7z" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
