@@ -191,9 +191,9 @@ while [ true ]; do
 
     # Aguarda o emulationstation entrar em execução para exibir a tela de carregamento.
     if [ "$(pidof emulationstation)" ]; then
-        sleep 0.5
         cp '/usr/share/batocera/datainit/system/configs/retroarch/retroarchcustom.cfg' '/tmp/retroarchcustom.cfg'
-        echo 'audio_driver = "null"'       >> '/tmp/retroarchcustom.cfg'
+        echo -e '\naudio_driver = "null"' >> '/tmp/retroarchcustom.cfg'
+        sleep 0.5
         nice -n +19 retroarch -L '/usr/lib/libretro/imageviewer_libretro.so' \
                     --config '/tmp/retroarchcustom.cfg' \
                     "$START_SCREEN" &

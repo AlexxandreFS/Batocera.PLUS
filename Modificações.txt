@@ -1,4 +1,4 @@
-18/01/2020 - Batocera.PLUS 1.11
+20/01/2020 - Batocera.PLUS 1.12
 
     * Sincronizado: Batocera.PLUS com o Batocera.Linux 5.24
 
