@@ -15,8 +15,17 @@ RECALBOX_VERSION='/usr/share/batocera/recalbox.version'
 RECALBOX_ARCH='/usr/share/batocera/batocera.arch'
 
 clear
+echo '
+__________    _____ ___________________   _________  _____________________    _____             
+\______   \  /  _  \\__    ___/\_____  \  \_   ___ \ \_   _____/\______   \  /  _  \            
+ |    |  _/ /  /_\  \ |    |    /   |   \ /    \  \/  |    __)_  |       _/ /  /_\  \           
+ |    |   \/    |    \|    |   /    |    \\     \____ |        \ |    |   \/    |    \  .__     
+ |______  /\____|__  /|____|   \_______  / \______  //_______  / |____|_  /\____|__  /__|  |___ 
+        \/         \/                  \/         \/         \/         \/         \//__    __/ 
+                                                                                        |__|    
+                             BY ALEXANDRE FREIRE DOS SANTOS
+'
 echo
-echo ' BATOCERA.PLUS BY ALEXANDRE FREIRE DOS SANTOS'
 echo -n " Version: $(cat $BATOCERA_VERSION | cut -d' ' -f 1)"
 echo -n " Release: $(cat $BATOCERA_VERSION | cut -d' ' -f 2)"
 echo    " Arch: $(cat $RECALBOX_ARCH)"
