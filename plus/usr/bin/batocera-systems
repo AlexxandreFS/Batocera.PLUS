@@ -108,6 +108,10 @@ systems = {
 
     "n64":         { "name": "Nintendo 64", "biosFiles":                          [ { "md5": "8d3d9f294b6e174bc7b1d2fd1c727530", "file": "bios/64DD_IPL.bin"    } ] },
 
+    "gamecube":    { "name": "GameCube", "biosFiles":                             [ { "md5": "b17148254a5799684c7d783206504926", "file": "bios/GC/USA/IPL.bin" },
+                                                                                    { "md5": "db92574caab77a7ec99d4605fd6f2450", "file": "bios/GC/EUR/IPL.bin" },
+                                                                                    { "md5": "019e39822a9ca3029124f74dd4d55ac4", "file": "bios/GC/JAP/IPL.bin" } ] },
+
     "nds":         { "name": "Nintendo DS", "biosFiles":                          [ { "md5": "145eaef5bd3037cbc247c213bb3da1b3", "file": "bios/firmware.bin" 	},
                                                                                     { "md5": "df692a80a5b1bc90728bc3dfc76cd948", "file": "bios/bios7.bin"    	},
                                                                                     { "md5": "a392174eb3e572fed6447e956bde4b25", "file": "bios/bios9.bin"    	} ] },

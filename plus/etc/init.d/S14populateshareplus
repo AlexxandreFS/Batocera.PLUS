@@ -10,7 +10,6 @@ fi
 SHARE='/userdata'
 SHARE_INIT='/usr/share/batocera/datainit'
 
-
 ### Cria pastas adicionais
 mkdir -p "$SHARE/downloads"
 mkdir -p "$SHARE/splashvideos"
@@ -22,10 +21,18 @@ if ! [ -f "$SHARE/system/custom.sh" ]; then
     cp "$SHARE_INIT/system/custom.sh" "$SHARE/system/custom.sh"
 fi
 
+### Usa Link simbólico para as bios quando a partição share é um disco ram
+if [ "$(df | grep /userdata | grep tmpfs)" ]; then
+    rm -r "$SHARE/bios"
+    ln -s "$SHARE_INIT/bios" "$SHARE/bios"
+fi
+
 ### Fonts extras para o ppsspp
-if ! [ -d "$SHARE/system/configs/ppsspp/PSP/flash0/font" ]; then
-    mkdir -p "$SHARE/system/configs/ppsspp/PSP/flash0"
-    cp -r "$SHARE_INIT/system/configs/ppsspp/PSP/flash0/font" "$SHARE/system/configs/ppsspp/PSP/flash0"
+if ! [ -L "$SHARE/system/configs/ppsspp/PSP" ]; then
+    mkdir -p "$SHARE/system/configs/ppsspp"
+    if [ -d "$SHARE/bios/PPSSPP" ]; then
+        ln -s "$SHARE/bios/PPSSPP" "$SHARE/system/configs/ppsspp/PSP"
+    fi
 fi
 
 ### Configurações personalizadas para o xterm
@@ -44,6 +51,15 @@ fi
 if ! [ -f "$SHARE/system/.config/libfm/libfm.conf" ]; then
     mkdir -p "$SHARE/system/.config/libfm"
     cp  "$SHARE_INIT/system/.config/libfm/libfm.conf" "$SHARE/system/.config/libfm/libfm.conf"
+fi
+
+### Corrige problemas com fontes Chinesas.
+if [ "$(grep system.language=zh_TW ${SHARE}/system/batocera.conf)" ] || [ "$(grep system.language=zh_CN ${SHARE}/system/batocera.conf)" ]; then
+    ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjh.ttf'   '/usr/share/libretro/assets/xmb/monochrome/font.ttf'
+    ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjh.ttf'   '/usr/share/libretro/assets/ozone/regular.ttf'
+    ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjhbd.ttf' '/usr/share/libretro/assets/ozone/bold.ttf'
+    ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjh.ttf'   '/usr/share/fonts/truetype/nanum/NanumMyeongjo.ttf'
+    ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjhbd.ttf' '/usr/share/fonts/dejavu/DejaVuSansMono-Bold.ttf'
 fi
 
 # Limpa Arquivos temporários

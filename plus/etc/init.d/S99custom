@@ -14,5 +14,5 @@ fi
 
 ### Carrega scripts de inicialização criado pelo usuário.
 if [ -f "$SHARE/system/custom.sh" ]; then
-    exec "$SHARE/system/custom.sh" $1
+    bash "$SHARE/system/custom.sh" $1 &
 fi

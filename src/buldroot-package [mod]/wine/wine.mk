@@ -4,9 +4,9 @@
 #
 ################################################################################
 
-WINE_VERSION = 4.12.1
+WINE_VERSION = 5.0
 WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
-WINE_SITE = https://dl.winehq.org/wine/source/4.x
+WINE_SITE = https://dl.winehq.org/wine/source/5.x
 WINE_LICENSE = LGPL-2.1+
 WINE_LICENSE_FILES = COPYING.LIB LICENSE
 WINE_DEPENDENCIES = host-bison host-flex host-wine
@@ -21,12 +21,17 @@ WINE_CONF_OPTS += --datarootdir=/opt/Wine/share
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86),y)
 WINE_CONF_OPTS += --libdir=/opt/Wine/lib32
 WINE_CONF_OPTS += --with-wine64=../../../output64/build/wine-$(WINE_VERSION)
+WINE_CONF_OPTS += --without-netapi
 endif
 
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_64),y)
 WINE_CONF_OPTS += --libdir=/opt/Wine/lib64
 WINE_CONF_OPTS += --enable-win64
+WINE_CONF_OPTS += --with-netapi
 endif
+
+WINE_CONF_OPTS += --without-gtk3
+WINE_CONF_OPTS += --with-x 
 
 # Suport DXVK
 #WINE_CONF_OPTS += --with-vkd3d
@@ -34,8 +39,8 @@ endif
 #HOST_WINE_CONF_OPTS += --with-vkd3d
 #HOST_WINE_CONF_OPTS += --with-vulkan
 
-WINE_CONF_OPTS += --without-gnutls
-HOST_WINE_CONF_OPTS += --without-gnutls
+#WINE_CONF_OPTS += --without-gnutls
+#HOST_WINE_CONF_OPTS += --without-gnutls
 
 # Wine uses a wrapper around gcc, and uses the value of --host to
 # construct the filename of the gcc to call.  But for external
@@ -89,12 +94,12 @@ WINE_CONF_OPTS += --without-freetype
 HOST_WINE_CONF_OPTS += --without-freetype
 endif
 
-#ifeq ($(BR2_PACKAGE_GNUTLS),y)
-#WINE_CONF_OPTS += --with-gnutls
-#WINE_DEPENDENCIES += gnutls
-#else
+ifeq ($(BR2_PACKAGE_GNUTLS),y)
+WINE_CONF_OPTS += --with-gnutls
+WINE_DEPENDENCIES += gnutls
+else
 WINE_CONF_OPTS += --without-gnutls
-#endif
+endif
 
 ifeq ($(BR2_PACKAGE_GST1_PLUGINS_BASE),y)
 WINE_CONF_OPTS += --with-gstreamer
@@ -217,12 +222,13 @@ else
 WINE_CONF_OPTS += --without-pulse
 endif
 
-ifeq ($(BR2_PACKAGE_SAMBA4),y)
-WINE_CONF_OPTS += --with-netapi
-WINE_DEPENDENCIES += samba4
-else
-WINE_CONF_OPTS += --without-netapi
-endif
+#ifeq ($(BR2_PACKAGE_SAMBA4),y)
+#WINE_CONF_OPTS += --with-netapi
+#WINE_DEPENDENCIES += samba4
+#else
+#WINE_CONF_OPTS += --without-netapi
+#endif
+
 
 ifeq ($(BR2_PACKAGE_SANE_BACKENDS),y)
 WINE_CONF_OPTS += --with-sane

@@ -60,6 +60,7 @@ if [ -f "${WINEPREFIX}/user.reg" ]; then
     exec "${WINE_DIR}/bin/wine${WINE_ARCH}" "$@"
 fi
 
+
 ################################################################################
 ################################################################################
 
@@ -70,29 +71,35 @@ fi
 
 # Aguarda o "Windows" ser reiniciado para prosseguir.
 for (( i = 0; i <= 60; i++ )); do
-    if [ -f "${WINEPREFIX}/user.reg" ] && [ -f "${WINEPREFIX}/system.reg" ]; then
+    sleep 1
+    if ! [ "$(pidof services.exe)" ]; then
         sleep 1
         break
     fi
-    sleep 1
 done
 
 ################################################################################
 
 ### PASTAS DO USUÁRIO
 
-rm -r    "${WINEPREFIX}/drive_c/users/0/Desktop"      "${WINEPREFIX}/drive_c/users/root/Desktop"      \
-         "${WINEPREFIX}/drive_c/users/0/My Documents" "${WINEPREFIX}/drive_c/users/root/My Documents" \
-         "${WINEPREFIX}/drive_c/users/0/My Music"     "${WINEPREFIX}/drive_c/users/root/My Music"     \
-         "${WINEPREFIX}/drive_c/users/0/My Pictures"  "${WINEPREFIX}/drive_c/users/root/My Pictures"  \
-         "${WINEPREFIX}/drive_c/users/0/My Videos"    "${WINEPREFIX}/drive_c/users/root/My Videos"
+for i in "${WINEPREFIX}/drive_c/users/root/"* "${WINEPREFIX}/drive_c/users/0/"* ; do
+    if [ -L "$i" ]; then
+        rm -r "$i"
+    fi
+done
 
-mkdir -p "${WINEPREFIX}/drive_c/users/0/Desktop"      "${WINEPREFIX}/drive_c/users/root/Desktop"      \
-         "${WINEPREFIX}/drive_c/users/0/My Documents" "${WINEPREFIX}/drive_c/users/root/My Documents" \
-         "${WINEPREFIX}/drive_c/users/0/My Music"     "${WINEPREFIX}/drive_c/users/root/My Music"     \
-         "${WINEPREFIX}/drive_c/users/0/My Pictures"  "${WINEPREFIX}/drive_c/users/root/My Pictures"  \
-         "${WINEPREFIX}/drive_c/users/0/My Videos"    "${WINEPREFIX}/drive_c/users/root/My Videos"    \
-         "${WINEPREFIX}/drive_c/users/0/Personal"     "${WINEPREFIX}/drive_c/users/root/Personal"
+mkdir -p "${WINEPREFIX}/drive_c/users/0/Desktop"         \
+         "${WINEPREFIX}/drive_c/users/0/My Documents"    \
+         "${WINEPREFIX}/drive_c/users/0/My Music"        \
+         "${WINEPREFIX}/drive_c/users/0/My Pictures"     \
+         "${WINEPREFIX}/drive_c/users/0/My Videos"       \
+         "${WINEPREFIX}/drive_c/users/0/Personal"        \
+         "${WINEPREFIX}/drive_c/users/root/Desktop"      \
+         "${WINEPREFIX}/drive_c/users/root/My Documents" \
+         "${WINEPREFIX}/drive_c/users/root/My Music"     \
+         "${WINEPREFIX}/drive_c/users/root/My Pictures"  \
+         "${WINEPREFIX}/drive_c/users/root/My Videos"    \
+         "${WINEPREFIX}/drive_c/users/root/Personal"
 
 # Configura diretórios padrões para as principais pastas do usuário no registro do windows.
 sed -i s'/\"Desktop\"=\"C:\\\\users\\\\0\\\\.*/\"Desktop\"=\"C:\\\\users\\\\0\\\\Desktop\"/'                     "${WINEPREFIX}/user.reg"
@@ -106,6 +113,13 @@ sed -i s'/\"Personal\"=str(2):\"%USERPROFILE%\\\\.*/\"Personal\"=str(2):\"%USERP
 sed -i s'/\"My Music\"=str(2):\"%USERPROFILE%\\\\.*/\"My Music\"=str(2):\"%USERPROFILE%\\\\My Music\"/'          "${WINEPREFIX}/user.reg"
 sed -i s'/\"My Pictures\"=str(2):\"%USERPROFILE%\\\\.*/\"My Pictures\"=str(2):\"%USERPROFILE%\\\\My Pictures\"/' "${WINEPREFIX}/user.reg"
 sed -i s'/\"My Videos\"=str(2):\"%USERPROFILE%\\\\.*/\"My Videos\"=str(2):\"%USERPROFILE%\\\\My Videos\"/'       "${WINEPREFIX}/user.reg"
+
+################################################################################
+
+### DRIVES ADICIONAIS (D: E: Z: etc...)
+
+ln -s "/userdata/roms/windows" "${WINEPREFIX}/dosdevices/d:"
+
 
 ################################################################################
 
@@ -155,17 +169,6 @@ for (( i = 0; i <= 60; i++ )); do
     fi
     sleep 1
 done
-
-################################################################################
-
-### DESATIVA O DIRECTX 11 PARA PLACAS DE VÍDEO ANTIGAS.
-
-#OPENGL_VERSION="$(/recalbox/scripts/recalbox-info.sh | grep OpenGL | cut -d ' ' -f 2)"
-#if [ "${OPENGL_VERSION}" -lt "3.3" ]; then
-#    echo '[HKEY_CURRENT_USER\Software\Wine\DllOverrides]'       >> /tmp/wine.reg
-#    echo '"d3d11"=""'                                           >> /tmp/wine.reg
-#fi
-
 
 ################################################################################
 

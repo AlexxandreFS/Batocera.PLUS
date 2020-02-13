@@ -9,7 +9,7 @@ config BR2_PACKAGE_WINE_ARCH_SUPPORTS
 	#depends on BR2_i386
 
 config BR2_PACKAGE_WINE64
-	bool "wine64"
+	bool "wine"
 	depends on BR2_PACKAGE_WINE_ARCH_SUPPORTS
 	# Wine unconditionally builds shared libraries
 	depends on !BR2_STATIC_LIBS

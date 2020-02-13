@@ -2,11 +2,11 @@
 ################################################################################
 
 # Versão do Batocera.PLUS
-VERSION='1.13'
+VERSION='1.16'
 
 # Pasta temporária em uma partição Linux
-TEMP_DIR='tmp'
-#TEMP_DIR='/media/NO_LABEL/tmp'
+#TEMP_DIR='tmp'
+TEMP_DIR='/media/NO_LABEL/tmp'
 #TEMP_DIR='/media/NO_LABEL_1/tmp'
 #TEMP_DIR='/media/NO_LABEL_2/tmp'
 
@@ -22,6 +22,15 @@ IMG_ZERO='img/BatoceraZero2.5GB.7z'
 PLUS_DIR='plus'
 UPDATE_DIR='update'
 BOOT_DIR='boot'
+DOWNLOAD_DIR='download'
+
+# URL
+URL_THEME_A='https://github.com/BatoceraPLUS/Theme-batocera-plus/archive/master.zip'
+URL_WINE='https://github.com/BatoceraPLUS/Wine/releases/download/Wine/Wine-5.0-v1.7z'
+URL_DIRECTX='https://github.com/BatoceraPLUS/Wine/releases/download/DX9Jun2010/DX9Jun2010.7z'
+URL_MONO='http://dl.winehq.org/wine/wine-mono/4.9.4/wine-mono-bin-4.9.4.tar.gz'
+URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/68.4.2esr/linux-x86_64/en-US/firefox-68.4.2esr.tar.bz2'
+URL_FLASH='https://fpdownload.adobe.com/get/flashplayer/pdc/32.0.0.314/flash_player_npapi_linux.x86_64.tar.gz'
 
 ################################################################################
 
@@ -64,7 +73,7 @@ rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/prboom/doom1_sha
 rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/prboom/prboom.wad" || exit $?
 rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/snes/DonkeyKongClassic (Shiru).smc" || exit $?
 
-echo Desativando servicos...
+echo 'Desativando servicos...'
 mv    "$TEMP_DIR/squashfs-root/etc/init.d/S49ntp"          "$TEMP_DIR/squashfs-root/etc/init.d/K49ntp"          || exit $?
 mv    "$TEMP_DIR/squashfs-root/etc/init.d/S10triggerhappy" "$TEMP_DIR/squashfs-root/etc/init.d/K10triggerhappy" || exit $?
 
@@ -86,6 +95,8 @@ mv    "$TEMP_DIR/squashfs-root/usr/share/emulationstation/es_systems.cfg" \
 echo 'Criando arquivo de versão...'
 mv   "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" "$TEMP_DIR/squashfs-root/usr/share/batocera/recalbox.version" || exit $?
 echo "$VERSION $(date +'%Y/%m/%d %H:%M')" >                        "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" || exit $?
+
+################################################################################
 
 echo 'Definindo emuladores e opções padrões...'
 sed -i s'/rewind:         true/rewind:         false/' "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml" || exit $?
@@ -146,8 +157,12 @@ echo 'thomson:'                                     >> "$TEMP_DIR/squashfs-root/
 echo '  emulator: libretro'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
 echo '  core:     theodore'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
 
+################################################################################
+
 echo 'Ativando permissão de execução para arquivos copiados por rede...'
 sed -i s'/^create mask = 0644/create mask = 0744/'  "$TEMP_DIR/squashfs-root/etc/samba/smb.conf"        || exit $?
+
+################################################################################
 
 echo 'Copiando arquivos do batocera.plus...'
 cp -r -f "$PLUS_DIR/"*   "$TEMP_DIR/squashfs-root"  || exit $?
@@ -169,13 +184,67 @@ rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mess_libretro.so.7z"
 #7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame_mame_libretro.so.7z.001" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
 #rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame_mame_libretro.so.7z."*
 
-echo 'Descompactando Firefox libxul.so...'
-7zr x "$TEMP_DIR/squashfs-root/opt/Firefox/firefox-esr/libxul.so.7z" -o"$TEMP_DIR/squashfs-root/opt/Firefox/firefox-esr" || exit $?
-rm -f "$TEMP_DIR/squashfs-root/opt/Firefox/firefox-esr/libxul.so.7z"
+#echo 'Descompactando Firefox libxul.so...'
+#7zr x "$TEMP_DIR/squashfs-root/opt/Firefox/firefox-esr/libxul.so.7z" -o"$TEMP_DIR/squashfs-root/opt/Firefox/firefox-esr" || exit $?
+#rm -f "$TEMP_DIR/squashfs-root/opt/Firefox/firefox-esr/libxul.so.7z"
 
 echo 'Descompactando Fontes Microsoft msttcorefonts...'
 7zr x "$TEMP_DIR/squashfs-root/usr/share/fonts/truetype/msttcorefonts.7z" -o"$TEMP_DIR/squashfs-root/usr/share/fonts/truetype" || exit $?
 rm -f "$TEMP_DIR/squashfs-root/usr/share/fonts/truetype/msttcorefonts.7z"
+
+################################################################################
+
+for URL in "${URL_WINE}" "${URL_DIRECTX}" "${URL_MONO}" "${URL_FIREFOX}" "${URL_FLASH}"; do
+    PKG_NAME="$(basename "${URL}")"
+    echo "Baixando ${PKG_NAME}..."
+    if ! [ -f "${DOWNLOAD_DIR}/${PKG_NAME}" ]; then
+        curl -L -C - "${URL}" -o "${DOWNLOAD_DIR}/${PKG_NAME}"
+    fi
+done
+
+echo 'Baixando tema batocera.plus...'
+if ! [ -f "${DOWNLOAD_DIR}/Theme-batocera-plus-${VERSION}.zip" ]; then
+    curl -L -C - "$URL_THEME_A" -o "${DOWNLOAD_DIR}/Theme-batocera-plus-${VERSION}.zip"
+fi
+
+################################################################################
+
+echo 'Descompactando tema batocera.plus...'
+unzip "${DOWNLOAD_DIR}/Theme-batocera-plus-${VERSION}.zip" \
+      -d "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes" || exit $?
+mv "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/Theme-batocera-plus-master" \
+   "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus" || exit $?
+
+echo "Descompactando Wine..."
+PKG_NAME="$(basename "${URL_WINE}")"
+7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt" || exit $?
+
+echo 'Descompactando Directx...'
+PKG_NAME="$(basename "${URL_DIRECTX}")"
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
+7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
+
+echo 'Descompactando Mono...'
+PKG_NAME="$(basename "${URL_MONO}")"
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
+mv "${TEMP_DIR}/squashfs-root/opt/Wine/apps/wine-mono-"* \
+   "${TEMP_DIR}/squashfs-root/opt/Wine/apps/mono"
+
+echo 'Descompactando Firefox...'
+PKG_NAME="$(basename "${URL_FIREFOX}")"
+bunzip2 -d -k -v -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar x -v -C "${TEMP_DIR}/squashfs-root/opt/Firefox" || exit $?
+mv "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox" \
+   "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-esr"
+
+echo 'Descompactando Flash Player...'
+PKG_NAME="$(basename "${URL_FLASH}")"
+mkdir -p  "${TEMP_DIR}/squashfs-root/opt/Firefox/flash-plugin"
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/opt/Firefox/flash-plugin" || exit $?
+rm -r "${TEMP_DIR}/squashfs-root/opt/Firefox/flash-plugin/LGPL"
+rm -r "${TEMP_DIR}/squashfs-root/opt/Firefox/flash-plugin/usr"
+rm    "${TEMP_DIR}/squashfs-root/opt/Firefox/flash-plugin/license.pdf"
+
+################################################################################
 
 echo 'Compactando arquivo squashfs...'
 mksquashfs "$TEMP_DIR/squashfs-root/"* "$TEMP_DIR/batocera" || exit $?
