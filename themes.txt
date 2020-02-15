@@ -1,1 +1,2 @@
 UniFlyered https://github.com/BatoceraPLUS/Theme-UniFlyered-PLUS
+Fundamental https://github.com/BatoceraPLUS/Theme-Fundamental
