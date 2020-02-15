@@ -96,6 +96,9 @@ echo 'Criando arquivo de versão...'
 mv   "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" "$TEMP_DIR/squashfs-root/usr/share/batocera/recalbox.version" || exit $?
 echo "$VERSION $(date +'%Y/%m/%d %H:%M')" >                        "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" || exit $?
 
+echo 'Adicionando repositório de themas do Batocera.PLUS'
+sed -i 's#^THEMESLIST=.*#THEMESLIST="https://raw.githubusercontent.com/AlexxandreFS/Batocera.PLUS/master/themes.txt"#' "$TEMP_DIR/squashfs-root/usr/bin/batocera-es-theme"  || exit $?
+
 ################################################################################
 
 echo 'Definindo emuladores e opções padrões...'
