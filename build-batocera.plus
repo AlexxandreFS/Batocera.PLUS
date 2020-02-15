@@ -2,7 +2,7 @@
 ################################################################################
 
 # Versão do Batocera.PLUS
-VERSION='1.1'
+VERSION='1.16'
 
 # Pasta temporária em uma partição Linux
 TEMP_DIR='tmp'
