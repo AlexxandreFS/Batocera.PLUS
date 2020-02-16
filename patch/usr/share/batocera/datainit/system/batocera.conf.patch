@@ -1,5 +1,8 @@
+#
+# Desativa atualizações.
+#
 --- batocera.conf
-+++ batocera_mod.conf
++++ batocera.conf
 @@ -127,7 +127,7 @@
  
  # ------------ G - UPDATES ------------ #
@@ -9,6 +12,9 @@
  # default : stable ; set to beta to get the next version currently being tested. set to unstable at your own risk to get the development version.
  updates.type=stable
  
+#
+# Ativa o fullboot do GameCube.
+#
 @@ -219,6 +219,11 @@
  # Enables fast booting (skip PS2 BIOS when booting an ISO ; some games relies on BIOS to get start-up parameters and thus may not work correctly)
  # set fullboot to 0 to disable BIOS when booting an ISO
