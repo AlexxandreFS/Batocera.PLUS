@@ -1,0 +1,89 @@
+#
+# Define os cores padrões.
+# Deixa desativado o rebobinar por padrão.
+#
+--- configgen-defaults.yml.original
++++ configgen-defaults.yml.plus
+@@ -6,7 +6,7 @@
+     ratio:          auto
+     video_threaded: false
+     smooth:         true
+-    rewind:         true
++    rewind:         false
+     bezel:          default
+     forceNoBezel:   false
+ 
+@@ -81,8 +81,8 @@
+   emulator: libretro
+   core:     yabause
+ dreamcast:
+-  emulator: reicast
+-  core: reicast
++  emulator: libretro
++  core:     flycast
+ atomiswave:
+   emulator: libretro
+   core:     flycast
+@@ -97,7 +97,7 @@
+   core:     neocd
+ mame:
+   emulator: libretro
+-  core:     mame078plus
++  core:     mame0200
+ fba:
+   emulator: libretro
+   core:     fbneo
+@@ -239,7 +239,7 @@
+   core: ppsspp
+ satellaview:
+   emulator: libretro
+-  core:     snes9x
++  core:     catsfc
+ sufami:
+   emulator: libretro
+   core:     snes9x
+@@ -254,4 +254,43 @@
+   core:     daphne
+ lightgun:
+   emulator: libretro
+-  core:     mame078plus
++  core:     mame0200
++n64dd:
++  emulator: libretro
++  core:     parallel_n64
++fba_libretro:
++  emulator: libretro
++  core:     fbneo
++nesmini:
++  emulator: libretro
++  core:     fceumm
++snesmini:
++  emulator: libretro
++  core:     snes9x
++snescd:
++  emulator: libretro
++  core:     snes9x
++pspminis:
++  emulator: ppsspp
++  core:     ppsspp
++psxmini:
++  emulator: libretro
++  core:     pcsx_rearmed
++neogeomini:
++  emulator: libretro
++  core:     fbneo
++neogeox:
++  emulator: libretro
++  core:     fbneo
++msx2:
++  emulator: libretro
++  core:     fbneo
++channelf:
++  emulator: libretro
++  core:     freechaf
++pc98:
++  emulator: libretro
++  core:     np2kai
++thomson:
++  emulator: libretro
++  core:     theodore

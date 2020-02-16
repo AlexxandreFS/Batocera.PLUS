@@ -1,0 +1,51 @@
+#
+# Adiciona alguns filtros de imagem personalizados.
+#
+--- rendering-defaults.yml
++++ rendering-defaults.yml
+@@ -13,7 +13,11 @@
+ gba:
+   shader: handheld/lcd-grid-v2
+ gb:
+-  shader: handheld/lcd-grid-v2
++  shader: handheld/zfast-lcd
++  colorization: GB - DMG
++gb2players:
++  shader: handheld/zfast-lcd
++  colorization: GB - DMG
+ gbc:
+   shader: handheld/lcd-grid-v2
+ fds:
+@@ -106,3 +110,32 @@
+   shader: interpolation/sharp-bilinear-scanlines
+ x68000:
+   shader: interpolation/sharp-bilinear-scanlines
++# Batocera.PLUS
++n64dd:
++  shader: interpolation/sharp-bilinear-scanlines
++fba_libretro:
++  shader: interpolation/sharp-bilinear-scanlines
++neogeomini:
++  shader: interpolation/sharp-bilinear-scanlines
++neogeox:
++  shader: interpolation/sharp-bilinear-scanlines
++msx2:
++  shader: interpolation/sharp-bilinear-scanlines
++arcade:
++  shader: interpolation/sharp-bilinear-scanlines
++nesmini:
++  shader: crt/crt-pi
++snesmini:
++  shader: crt/crt-pi
++snescd:
++  shader: crt/crt-pi
++pspminis:
++  shader: crt/crt-pi
++psxmini:
++  shader: crt/crt-pi
++pc98:
++  shader: crt/crt-pi
++channelf:
++  shader: crt/crt-pi
++thomson:
++  shader: crt/crt-pi

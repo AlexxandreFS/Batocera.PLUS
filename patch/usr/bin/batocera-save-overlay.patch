@@ -1,0 +1,14 @@
+#
+# Aumenta o tamanho do arquivo overlay.
+#
+--- batocera-save-overlay
++++ batocera-save-overlay
+@@ -6,7 +6,7 @@
+ OVERLAYFILE="/boot/boot/overlay"
+ OVERLAYMOUNT="/overlay/saved"
+ OVERLAYRAM="/overlay/overlay"
+-OVERLAYSIZE=50 # M
++OVERLAYSIZE=128 # M
+ 
+ # fix for winscp running bash and then not sourcing /etc/profile
+ PATH=$PATH:/sbin

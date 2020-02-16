@@ -1,0 +1,39 @@
+#
+# Adiciona alguns filtros de imagem personalizados.
+#
+--- rendering-defaults.yml
++++ rendering-defaults.yml
+@@ -106,3 +106,33 @@
+   shader: interpolation/sharp-bilinear-simple
+ x68000:
+   shader: interpolation/sharp-bilinear-simple
++ # Batocera.PLUS
++n64dd:
++  shader: interpolation/sharp-bilinear-simple
++fba_libretro:
++  shader: interpolation/sharp-bilinear-simple
++neogeomini:
++  shader: interpolation/sharp-bilinear-simple
++neogeox:
++  shader: interpolation/sharp-bilinear-simple
++msx2:
++  shader: interpolation/sharp-bilinear-simple
++arcade:
++  shader: interpolation/sharp-bilinear-simple
++nesmini:
++  shader: interpolation/sharp-bilinear-simple
++snesmini:
++  shader: interpolation/sharp-bilinear-simple
++snescd:
++  shader: interpolation/sharp-bilinear-simple
++pspminis:
++  shader: interpolation/sharp-bilinear-simple
++psxmini:
++  shader: interpolation/sharp-bilinear-simple
++pc98:
++  shader: interpolation/sharp-bilinear-simple
++channelf:
++  shader: interpolation/sharp-bilinear-simple
++thomson:
++  shader: interpolation/sharp-bilinear-simple
++

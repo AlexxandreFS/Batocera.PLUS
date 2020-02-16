@@ -1,0 +1,14 @@
+#
+# Altera o repositório de themas do Batocera para o Batocera.PLUS
+#
+--- batocera-es-theme
++++ batocera-es-theme
+@@ -10,7 +10,7 @@
+ # If you don't provide a <theme>, the list of themes available online will be returned back to you
+ #
+ CONFIGDIR="/userdata/themes"
+-THEMESLIST="https://batocera.org/upgrades/themes.txt"
++THEMESLIST="https://raw.githubusercontent.com/AlexxandreFS/Batocera.PLUS/master/themes.txt"
+ LOCALTHEMESLIST="/userdata/system/themes.txt"
+ # themes.txt must be a plain file with the format 'theme_name https://githubURL' (spaces or tabs)
+ # Example of a themes.txt file: 

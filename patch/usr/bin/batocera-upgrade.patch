@@ -1,0 +1,14 @@
+#
+# Desativa Atualizações.
+#
+--- batocera-upgrade.original
++++ batocera-upgrade.plus
+@@ -28,7 +28,7 @@
+ 
+ echo "starting the upgrade..."
+ 
+-updateurl="https://batocera.org/upgrades"
++updateurl=""
+ systemsetting="python /usr/lib/python2.7/site-packages/configgen/settings/batoceraSettings.py"
+ 
+ arch=$(cat /usr/share/batocera/batocera.arch)

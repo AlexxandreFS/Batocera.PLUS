@@ -1,0 +1,14 @@
+#
+# Resolve o bug do PC não desligar / reiniciar em algumas placa mãe.
+#
+--- inittab.original
++++ inittab.plus
+@@ -23,7 +23,7 @@
+ # Stuff to do before rebooting
+ shd0:06:wait:/etc/init.d/rcK
+ shd1:06:wait:/sbin/swapoff -a
+-shd2:06:wait:/bin/umount -a -r -f
++shd2:06:wait:/bin/umount -a -r
+ 
+ # The usual halt or reboot actions
+ hlt0:0:wait:/sbin/halt -dhp

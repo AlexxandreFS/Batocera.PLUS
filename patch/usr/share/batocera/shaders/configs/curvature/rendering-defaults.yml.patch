@@ -1,0 +1,39 @@
+#
+# Adiciona alguns filtros de imagem personalizados.
+#
+--- rendering-defaults.yml
++++ rendering-defaults.yml
+@@ -106,3 +106,33 @@
+   shader: crt/crt-pi-curvature
+ x68000:
+   shader: crt/crt-pi-curvature
++# Batocera.PLUS
++n64dd:
++  shader: crt/crt-pi-curvature
++fba_libretro:
++  shader: crt/crt-pi-curvature
++neogeomini:
++  shader: crt/crt-pi-curvature
++neogeox:
++  shader: crt/crt-pi-curvature
++msx2:
++  shader: crt/crt-pi-curvature
++arcade:
++  shader: crt/crt-pi-curvature
++nesmini:
++  shader: crt/crt-pi-curvature
++snesmini:
++  shader: crt/crt-pi-curvature
++snescd:
++  shader: crt/crt-pi-curvature
++pspminis:
++  shader: crt/crt-pi-curvature
++psxmini:
++  shader: crt/crt-pi-curvature
++pc98:
++  shader: crt/crt-pi-curvature
++channelf:
++  shader: crt/crt-pi-curvature
++thomson:
++  shader: crt/crt-pi-curvature
++

@@ -1,0 +1,14 @@
+#
+# Desativa atualizações.
+#
+--- batocera.conf
++++ batocera.conf
+@@ -127,7 +127,7 @@
+ 
+ # ------------ G - UPDATES ------------ #
+ ## Automatically check for updates at start (0,1)
+-updates.enabled=1
++updates.enabled=0
+ # default : stable ; set to beta to get the next version currently being tested. set to unstable at your own risk to get the development version.
+ updates.type=stable
+ 

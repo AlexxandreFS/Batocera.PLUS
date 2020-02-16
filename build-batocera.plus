@@ -9,7 +9,7 @@ VERSION='1.16'
 #TEMP_DIR='/media/NO_LABEL/tmp'
 #TEMP_DIR='/media/NO_LABEL_1/tmp'
 #TEMP_DIR='/media/NO_LABEL_2/tmp'
-TEMP_DIR='/mnt/tmp'
+#TEMP_DIR='/mnt/tmp'
 
 # Imagem oficial do batocera.linux.
 IMG_OFICIAL='img/batocera-5.24-x86_64-20191105.img.gz'
@@ -24,6 +24,7 @@ PLUS_DIR='plus'
 UPDATE_DIR='update'
 BOOT_DIR='boot'
 DOWNLOAD_DIR='download'
+PATCH_DIR='patch'
 
 # URL
 URL_THEME_A='https://github.com/BatoceraPLUS/Theme-batocera-plus/archive/master.zip'
@@ -78,93 +79,9 @@ echo 'Desativando servicos...'
 mv    "$TEMP_DIR/squashfs-root/etc/init.d/S49ntp"          "$TEMP_DIR/squashfs-root/etc/init.d/K49ntp"          || exit $?
 mv    "$TEMP_DIR/squashfs-root/etc/init.d/S10triggerhappy" "$TEMP_DIR/squashfs-root/etc/init.d/K10triggerhappy" || exit $?
 
-echo 'Desativando atualizações automáticas...'
-sed -i s/'https:\/\/batocera.org\/upgrades//'              "$TEMP_DIR/squashfs-root/usr/bin/batocera-config"                          || exit $?
-sed -i s/'https:\/\/batocera.org\/upgrades//'              "$TEMP_DIR/squashfs-root/usr/bin/batocera-upgrade"                         || exit $?
-sed -i s/'^updates.enabled=1/updates.enabled=0/'           "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/system/batocera.conf" || exit $?
-
-echo 'Aumentando o tamanho do arquivo overlay...'
-sed -i s/'^OVERLAYSIZE=.*/OVERLAYSIZE=128 # M/'            "$TEMP_DIR/squashfs-root/usr/bin/batocera-save-overlay" || exit $?
-
-echo 'Resolvendo o bug do PC não desligar / reiniciar...'
-sed -i s/'^shd2:06:wait:\/bin\/umount -a -r -f/shd2:06:wait:\/bin\/umount -a -r/' "$TEMP_DIR/squashfs-root/etc/inittab"  || exit $?
-
-echo 'Fazendo backup do arquivo es_systems.cfg...'
-mv    "$TEMP_DIR/squashfs-root/usr/share/emulationstation/es_systems.cfg" \
-      "$TEMP_DIR/squashfs-root/usr/share/emulationstation/es_systems.cfg.original" || exit $?
-
 echo 'Criando arquivo de versão...'
 mv   "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" "$TEMP_DIR/squashfs-root/usr/share/batocera/recalbox.version" || exit $?
 echo "$VERSION $(date +'%Y/%m/%d %H:%M')" >                        "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" || exit $?
-
-echo 'Adicionando repositório de themas do Batocera.PLUS'
-sed -i 's#^THEMESLIST=.*#THEMESLIST="https://raw.githubusercontent.com/AlexxandreFS/Batocera.PLUS/master/themes.txt"#' "$TEMP_DIR/squashfs-root/usr/bin/batocera-es-theme"  || exit $?
-
-################################################################################
-
-echo 'Definindo emuladores e opções padrões...'
-sed -i s'/rewind:         true/rewind:         false/' "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml" || exit $?
-sed -i s'/core:     mame078plus/core:     mame0200/'   "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml" || exit $?
-sed -i s'/emulator: reicast/emulator: libretro/'       "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml" || exit $?
-sed -i s'/core: reicast/core:     flycast/'            "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml" || exit $?
-sed -i '/^satellaview:/!b;n;n;c\  core:     catsfc'    "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml" || exit $?
-
-echo 'n64dd:'                                       >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  emulator: libretro'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  core:     parallel_n64'                     >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-
-echo 'fba_libretro:'                                >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  emulator: libretro'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  core:     fbneo'                            >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-
-echo 'nesmini:'                                     >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  emulator: libretro'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  core:     fceumm'                           >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-
-echo 'snesmini:'                                    >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  emulator: libretro'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  core:     snes9x'                           >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-
-echo 'snescd:'                                      >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  emulator: libretro'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  core:     snes9x'                           >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-
-echo 'pspminis:'                                    >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  emulator: ppsspp'                           >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  core:     ppsspp'                           >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-
-echo 'psxmini:'                                     >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  emulator: libretro'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  core:     pcsx_rearmed'                     >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-
-echo 'neogeomini:'                                  >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  emulator: libretro'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  core:     fbneo'                            >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-
-echo 'neogeox:'                                     >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  emulator: libretro'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  core:     fbneo'                            >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-
-echo 'msx2:'                                        >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  emulator: libretro'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  core:     fbneo'                            >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-
-echo 'channelf:'                                    >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  emulator: libretro'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  core:     freechaf'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-
-echo 'pc98:'                                        >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  emulator: libretro'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  core:     np2kai'                           >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-
-echo 'thomson:'                                     >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  emulator: libretro'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-echo '  core:     theodore'                         >> "$TEMP_DIR/squashfs-root/usr/share/batocera/configgen/configgen-defaults.yml"
-
-################################################################################
-
-echo 'Ativando permissão de execução para arquivos copiados por rede...'
-sed -i s'/^create mask = 0644/create mask = 0744/'  "$TEMP_DIR/squashfs-root/etc/samba/smb.conf"        || exit $?
 
 ################################################################################
 
@@ -257,6 +174,12 @@ rm    "${TEMP_DIR}/squashfs-root/opt/Firefox/flash-plugin/license.pdf"
 
 ################################################################################
 
+for i in $(du -a "${PATCH_DIR}" | grep -F '.patch' | awk '{print $2}' | sed "s#${PATCH_DIR}/##"); do
+    patch -p1 "${TEMP_DIR}/squashfs-root/${i%.patch}" "${PATCH_DIR}/${i}" || exit $?
+done
+
+################################################################################
+
 echo 'Compactando arquivo squashfs...'
 mksquashfs "$TEMP_DIR/squashfs-root/"* "$TEMP_DIR/batocera" || exit $?
 
@@ -291,7 +214,7 @@ echo ''                                                                         
 echo '# enable the splashvideo on startup (remove the # to enable video)'        >> "$TEMP_DIR/BatoceraZero/batocera-boot.conf" || exit $?
 echo '#splashvideo=true'                                                         >> "$TEMP_DIR/BatoceraZero/batocera-boot.conf" || exit $?
 
-echo 'nvidia-driver=true'                                                        >> "$TEMP_DIR/BatoceraZero/batocera-boot.conf" || exit $?
+#echo 'nvidia-driver=true'                                                        >> "$TEMP_DIR/BatoceraZero/batocera-boot.conf" || exit $?
 
 echo 'Desmontando imagens...'
 umount /dev/loop7 || exit $?

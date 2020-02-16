@@ -1,0 +1,14 @@
+#
+# Desabilita atualizações
+#
+--- batocera-config
++++ batocera-config
+@@ -14,7 +14,7 @@
+ extra4="$6"
+ arch=`cat /usr/share/batocera/batocera.arch`
+ 
+-updateurl="https://batocera.org/upgrades"
++updateurl=""
+ 
+ preBootConfig() {
+     mount -o remount,rw /boot

@@ -1,0 +1,14 @@
+#
+# Ativa a permissão de execução para arquivos copiados por rede.
+#
+--- smb.conf
++++ smb.conf
+@@ -341,7 +341,7 @@
+ path = /userdata
+ writeable = yes
+ guest ok = yes
+-create mask = 0644
++create mask = 0744
+ directory mask = 0755
+ force user = root
+ veto files = /._*/.DS_Store/

@@ -1,0 +1,38 @@
+#
+# Adiciona alguns filtros de imagem personalizados.
+#
+--- rendering-defaults.yml
++++ rendering-defaults.yml
+@@ -106,3 +106,32 @@
+   shader: anti-aliasing/advanced-aa
+ x68000:
+   shader: anti-aliasing/advanced-aa
++# Batocera.PLUS
++n64dd:
++  shader: anti-aliasing/advanced-aa
++fba_libretro:
++  shader: anti-aliasing/advanced-aa
++neogeomini:
++  shader: anti-aliasing/advanced-aa
++neogeox:
++  shader: anti-aliasing/advanced-aa
++msx2:
++  shader: anti-aliasing/advanced-aa
++arcade:
++  shader: anti-aliasing/advanced-aa
++nesmini:
++  shader: anti-aliasing/advanced-aa
++snesmini:
++  shader: anti-aliasing/advanced-aa
++snescd:
++  shader: anti-aliasing/advanced-aa
++pspminis:
++  shader: anti-aliasing/advanced-aa
++psxmini:
++  shader: anti-aliasing/advanced-aa
++pc98:
++  shader: anti-aliasing/advanced-aa
++channelf:
++  shader: anti-aliasing/advanced-aa
++thomson:
++  shader: anti-aliasing/advanced-aa

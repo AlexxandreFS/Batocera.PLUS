@@ -1,0 +1,15 @@
+#
+# Reduz a resolução interna do PPSSPP.
+#
+--- configgen-defaults-arch.yml
++++ configgen-defaults-arch.yml
+@@ -3,7 +3,7 @@
+   core: glide64mk2
+ psp:
+   options:
+-    internalresolution: 4
++    internalresolution: 2
+ saturn:
+   emulator: libretro
+   core:     beetle-saturn
+\ No newline at end of file
