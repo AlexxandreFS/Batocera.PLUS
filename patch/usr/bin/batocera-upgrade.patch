@@ -1,8 +1,8 @@
 #
 # Desativa Atualizações.
 #
---- batocera-upgrade.original
-+++ batocera-upgrade.plus
+--- batocera-upgrade
++++ batocera-upgrade
 @@ -28,7 +28,7 @@
  
  echo "starting the upgrade..."
