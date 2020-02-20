@@ -1,2 +1,3 @@
-UniFlyered https://github.com/BatoceraPLUS/Theme-UniFlyered-PLUS
+UniFlyered  https://github.com/BatoceraPLUS/Theme-UniFlyered-PLUS
 Fundamental https://github.com/BatoceraPLUS/Theme-Fundamental
+Cosmic-Rise https://github.com/BatoceraPLUS/Theme-Cosmic-Rise
