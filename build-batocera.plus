@@ -174,6 +174,7 @@ rm    "${TEMP_DIR}/squashfs-root/opt/Firefox/flash-plugin/license.pdf"
 
 ################################################################################
 
+echo 'Aplicando Patch...'
 for i in $(du -a "${PATCH_DIR}" | grep -F '.patch' | awk '{print $2}' | sed "s#${PATCH_DIR}/##"); do
     patch -p1 "${TEMP_DIR}/squashfs-root/${i%.patch}" "${PATCH_DIR}/${i}" || exit $?
 done
