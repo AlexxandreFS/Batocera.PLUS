@@ -100,6 +100,14 @@ fi
 
 ################################################################################
 
+### Resolve o bug de não identificar o teclado US ABNT
+
+if [ "$(cat $HOME/batocera.conf | grep system.kblayout=us)" ]; then
+    setxkbmap -model abnt -layout us -variant ,abnt &
+fi
+
+################################################################################
+
 ### Video de abertura
 
 VIDEO_DIR='/userdata/splashvideos'
