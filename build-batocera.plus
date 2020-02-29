@@ -2,11 +2,11 @@
 ################################################################################
 
 # Versão do Batocera.PLUS
-VERSION='1.18'
+VERSION='2.0'
 
 # Pasta temporária em uma partição Linux
-TEMP_DIR='tmp'
-#TEMP_DIR='/media/NO_LABEL/tmp'
+#TEMP_DIR='tmp'
+TEMP_DIR='/media/NO_LABEL/tmp'
 #TEMP_DIR='/media/NO_LABEL_1/tmp'
 #TEMP_DIR='/media/NO_LABEL_2/tmp'
 #TEMP_DIR='/mnt/tmp'

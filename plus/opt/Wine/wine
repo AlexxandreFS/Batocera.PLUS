@@ -70,9 +70,9 @@ fi
 "${WINE_DIR}/bin/wine${WINE_ARCH}" wineboot
 
 # Aguarda o "Windows" ser reiniciado para prosseguir.
-for (( i = 0; i <= 60; i++ )); do
+for (( i = 0; i <= 120; i++ )); do
     sleep 1
-    if ! [ "$(pidof services.exe)" ]; then
+    if [ -f "${WINEPREFIX}/user.reg" ] && [ -f "${WINEPREFIX}/system.reg" ]; then
         sleep 1
         break
     fi
@@ -162,12 +162,12 @@ if [ "${WINEPREFIX}" == "${HOME}/configs/wine" ]; then
 fi
 
 # Aguarda o fim da instalação do directx para prosseguir.
-for (( i = 0; i <= 60; i++ )); do
+for (( i = 0; i <= 120; i++ )); do
+    sleep 1
     if ! [ "$(pidof DXSETUP.exe)" ]; then
         sleep 1
         break
     fi
-    sleep 1
 done
 
 ################################################################################

@@ -53,12 +53,6 @@ if ! [ -f "$SHARE/system/.config/libfm/libfm.conf" ]; then
     cp  "$SHARE_INIT/system/.config/libfm/libfm.conf" "$SHARE/system/.config/libfm/libfm.conf"
 fi
 
-### Copia arquivos de informações para o retroarch.
-### Verifique se estes arquivos já não vem por padrão no ao atualizar para o 5.25 ou superior.
-mkdir -p "${SHARE}/system/.config/retroarch/info"
-cp -u "${SHARE_INIT}/system/.config/retroarch/info/"* \
-      "${SHARE}/system/.config/retroarch/info"
-
 ### Corrige problemas com fontes Chinesas.
 if [ "$(grep system.language=zh_TW ${SHARE}/system/batocera.conf)" ] || [ "$(grep system.language=zh_CN ${SHARE}/system/batocera.conf)" ]; then
     ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjh.ttf'   '/usr/share/libretro/assets/xmb/monochrome/font.ttf'

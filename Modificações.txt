@@ -1,4 +1,68 @@
-20/01/2020 - Batocera.PLUS 1.18
+28/02/2020 - Batocera.PLUS 2.0
+
+Novidades
+
+    * Sincronizado: Batocera.PLUS com o Batocera.Linux 5.24 [Alexandre Freire dos Santos]
+
+    * Adicionado todas as Bios. [Alexandre Freire dos Santos e Comunidade]
+    * Adicionado bios extra para o Flycast. [Sérgio de Carvalho Júnior]
+    * Adicionado bios extra para o Dolphin e FullBoot para o sistema GameCube [Sérgio de Carvalho Júnior]
+
+    * DualBoot, batocera-hd-edition.gz não é mais necessário. [Alexandre Freire dos Santos]
+    * DualBoot, Atualizado arquivo grub.cfg (Grub2 e Grub2Win) [Alexandre Freire dos Santos]
+
+    * Por padrão a resolução do PSP vem em 2x. [Alexandre Freire dos Santos]
+    * Desativado por padrão a inicialização do Kodi pressionando o botão X [Alexandre Freire dos Santos]
+
+    * Ao iniciar a partição SHARE em modo tmpfs as bios apontam para
+      /usr/share/batocera/datainit [Alexandre Freire dos Santos]
+
+    * Atualizado ferramentas úteis para o windows (/boot/tools) [Sérgio de Carvalho Júnior]
+
+    * Atualizado Mozilla Firefox ESR e Flash Player [Alexandre Freire dos Santos]
+    * Atualizado OpenBOR para 4.0 Alpha (7142) [Alexandre Freire dos Santos]
+    * Atualizado Wine Staging 5.0 [Alexandre Freire dos Santos]
+    * Adicionado Drive D: no Wine apontando para /userdata/roms/windows [Alexandre Freire dos Santos]
+    * Atualizado core BSNES-HD [Alexandre Freire dos Santos]
+    * Corrigido falha de execução no core BSNES em alguns tipos de processadores. [Alexandre Freire dos Santos]
+    * Corrigido bug no sistema Dreamcast que impede o joystick de funcionar. [Alexandre Freire dos Santos, Sérgio de Carvalho Júnior]
+    * Adicionado core PPSSPP (PSP) para o Retroarch. [Alexandre Freire dos Santos, Sérgio de Carvalho Júnior]
+    * Adicionado suporte a DLC's no sistema PSP /
+
+
+ONLINE
+
+    * Adicionado suporte para atualizações de cores pelo retroarch
+      util para o modo online. [Alexandre Freire dos Santos]
+      Agradescimentos [Sérgio de Carvalho Júnior, Douglas Martins de Matos, Sérgio Graças, Cleber Batista]
+
+    * Adicionado script "batocera-update-core" para atualização de alguns cores do Retroarch,
+      útil para o netplay [Alexandre Freire dos Santos, Sérgio Graças]
+
+    * Adicionado arquivos de informação de núcleo para o Retroarch. [Alexandre Freire dos Santos]
+      Agradescimentos [Sérgio de Carvalho Júnior, Douglas Martins de Matos, Sérgio Graças, Cleber Batista]
+
+
+PERFUMARIA
+
+    Atualizado tema principal do Batocera.PLUS. [Alexandre Freire dos Santos]
+    Corrigido falta de som ao iniciar o Emulationstaion. [Alexandre Freire dos Santos]
+    Adicionado suporte à atualizações online para temas compatíveis com o Batocera.PLUS. [Sérgio de Carvalho Júnior]
+    Adicionado temas extras para as Atualizações Online do ES. [Cleber Batista, Caetano Ramos]
+    Adicionado script para criação de roms falsas, útil para experimentar temas "batocera-fake-roms" [Alexandre Freire dos Santos]
+
+    Adicionado suporte para vídeos de abertura, habilite no arquivo /boot/batocera-boot.conf [Alexandre Freire dos Santos]
+    Adicionado suporte para vídeos de abertura adicionados pelo usuário em /userdata/splashvideos [Alexandre Freire dos Santos]
+    
+    Adicionado Filtros de Imagem padrão para os sistemas extras do Batocera.PLUS [Sérgio de Carvalho Júnior]
+
+    Corrigido problemas com fontes Asiáticas. [Alexandre Freire dos Santos, C1724]
+
+    Adicionado Logo Batocera+ ao terminal [cyperghost]
+
+
+
+28/02/2020 - Batocera.PLUS 2.0
 
     * Sincronizado: Batocera.PLUS com o Batocera.Linux 5.24
 

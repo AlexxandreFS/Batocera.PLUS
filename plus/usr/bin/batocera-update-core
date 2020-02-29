@@ -1,0 +1,48 @@
+#!/bin/bash
+###
+### Batocera.PLUS
+### Atualiza alguns cores do Retroarch para jogatina online.
+### By: Alexxandre Freire dos Santos
+###
+
+################################################################################
+
+URL_UPDATE='http://buildbot.libretro.com/nightly/linux/x86_64/latest'
+
+DIR_CORE="/usr/lib/libretro"
+DIR_TMP="/userdata/extractions"
+
+CORES="picodrive_libretro.so.zip
+       snes9x_libretro.so.zip
+       fbalpha2012_libretro.so.zip
+       fbneo_libretro.so.zip"
+
+################################################################################
+
+mkdir -p "${DIR_CORE}" "${DIR_TMP}"
+
+for CORE in ${CORES}
+do
+    echo -e "\n\nDownloading ${CORE} ...\n"
+    rm "${DIR_TMP}/${CORE}" 2> /dev/null
+    curl -L -C - "${URL_UPDATE}/${CORE}" -o "${DIR_TMP}/${CORE}" || exit $?
+
+    if ! [ -f "${DIR_TMP}/${CORE}" ]
+    then
+        echo "Error downloading ${CORE} ..."
+        exit -5
+    fi
+
+    echo "Extrating ${CORE} ..."
+    unzip -fo "${DIR_TMP}/${CORE}" -d "${DIR_CORE}" || exit $?
+    
+    if ! [ -f "${DIR_CORE}/${CORE%.zip}" ]
+    then
+        echo "Error extrating ${CORE}"
+        exit -10
+    fi
+
+    echo "Update ${CORE%.zip} success!"
+done
+
+exit 0
