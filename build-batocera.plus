@@ -2,18 +2,18 @@
 ################################################################################
 
 # Versão do Batocera.PLUS
-VERSION='2.0'
+VERSION='2.00'
 
 # Pasta temporária em uma partição Linux
-#TEMP_DIR='tmp'
-TEMP_DIR='/media/NO_LABEL/tmp'
+TEMP_DIR='tmp'
+#TEMP_DIR='/media/NO_LABEL/tmp'
 #TEMP_DIR='/media/NO_LABEL_1/tmp'
 #TEMP_DIR='/media/NO_LABEL_2/tmp'
 #TEMP_DIR='/mnt/tmp'
 
 # Imagem oficial do batocera.linux.
-#IMG_OFICIAL='img/batocera-5.24-x86_64-20191105.img.gz'
-IMG_OFICIAL='img/batocera-5.24-x86_64-20191109.img.gz'
+IMG_OFICIAL='img/batocera-5.24-x86_64-20191105.img.gz'
+#IMG_OFICIAL='img/batocera-5.24-x86_64-20191109.img.gz'
 
 # BatoceraZero.
 IMG_ZERO='img/BatoceraZero2.5GB.7z'
@@ -31,8 +31,8 @@ URL_THEME_A='https://github.com/BatoceraPLUS/Theme-batocera-plus/archive/master.
 URL_WINE='https://github.com/BatoceraPLUS/Wine/releases/download/Wine/Wine-5.0-v1.7z'
 URL_DIRECTX='https://github.com/BatoceraPLUS/Wine/releases/download/DX9Jun2010/DX9Jun2010.7z'
 URL_MONO='http://dl.winehq.org/wine/wine-mono/4.9.4/wine-mono-bin-4.9.4.tar.gz'
-URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/68.4.2esr/linux-x86_64/en-US/firefox-68.4.2esr.tar.bz2'
-URL_FLASH='https://fpdownload.adobe.com/get/flashplayer/pdc/32.0.0.330/flash_player_npapi_linux.x86_64.tar.gz'
+URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/68.6.0esr/linux-x86_64/en-US/firefox-68.6.0esr.tar.bz2'
+URL_FLASH='https://fpdownload.adobe.com/get/flashplayer/pdc/32.0.0.344/flash_player_npapi_linux.x86_64.tar.gz'
 
 ################################################################################
 
@@ -58,6 +58,7 @@ echo 'Descompactando arquivo squashfs...'
 unsquashfs -d "$TEMP_DIR/squashfs-root" "$TEMP_DIR/BATOCERA/boot/batocera" || exit $?
 
 echo 'Removendo arquivos desnecessários...'
+rm -r "$TEMP_DIR/squashfs-root/usr/bin/assets" || exit $?
 rm -r "$TEMP_DIR/squashfs-root/usr/share/icons/Adwaita" || exit $?
 rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/music" || exit $?
 rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/c64/super_mario_bros_64_-_zeropaige.zip"  || exit $?
@@ -74,6 +75,8 @@ rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/prboom/doom1_sha
 rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/prboom/doom1_shareware_license.txt" || exit $?
 rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/prboom/prboom.wad" || exit $?
 rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/snes/DonkeyKongClassic (Shiru).smc" || exit $?
+
+
 
 echo 'Desativando servicos...'
 mv    "$TEMP_DIR/squashfs-root/etc/init.d/S49ntp"          "$TEMP_DIR/squashfs-root/etc/init.d/K49ntp"          || exit $?

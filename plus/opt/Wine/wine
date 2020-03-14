@@ -147,7 +147,8 @@ echo '"Enable"="N"' >>                                                          
 
 ### WINE-MONO
 
-ln -s "${WINE_DIR}/apps/mono" "${WINEPREFIX}/drive_c/windows/mono"
+mkdir "${WINEPREFIX}/drive_c/windows/mono"
+ln -s "${WINE_DIR}/apps/mono" "${WINEPREFIX}/drive_c/windows/mono/mono-2.0"
 
 ################################################################################
 

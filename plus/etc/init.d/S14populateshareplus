@@ -27,14 +27,6 @@ if [ "$(df | grep /userdata | grep tmpfs)" ]; then
     ln -s "$SHARE_INIT/bios" "$SHARE/bios"
 fi
 
-### Fonts extras para o ppsspp
-if ! [ -L "$SHARE/system/configs/ppsspp/PSP" ]; then
-    mkdir -p "$SHARE/system/configs/ppsspp"
-    if [ -d "$SHARE/bios/PPSSPP" ]; then
-        ln -s "$SHARE/bios/PPSSPP" "$SHARE/system/configs/ppsspp/PSP"
-    fi
-fi
-
 ### Configurações personalizadas para o xterm
 if ! [ -f "$SHARE/system/.Xdefaults" ]; then
     cp "$SHARE_INIT/system/.Xdefaults" "$SHARE/system/.Xdefaults"
@@ -59,6 +51,7 @@ if [ "$(grep system.language=zh_TW ${SHARE}/system/batocera.conf)" ] || [ "$(gre
     ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjh.ttf'   '/usr/share/libretro/assets/ozone/regular.ttf'
     ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjhbd.ttf' '/usr/share/libretro/assets/ozone/bold.ttf'
     ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjh.ttf'   '/usr/share/fonts/truetype/nanum/NanumMyeongjo.ttf'
+    ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjh.ttf'   '/usr/share/fonts/dejavu/DejaVuSansMono.ttf'
     ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjhbd.ttf' '/usr/share/fonts/dejavu/DejaVuSansMono-Bold.ttf'
 fi
 

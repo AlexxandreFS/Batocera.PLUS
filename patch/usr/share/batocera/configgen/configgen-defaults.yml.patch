@@ -1,9 +1,5 @@
-#
-# Define os cores padrões.
-# Deixa desativado o rebobinar por padrão.
-#
 --- configgen-defaults.yml.original
-+++ configgen-defaults.yml.plus
++++ configgen-defaults.yml.modificado
 @@ -6,7 +6,7 @@
      ratio:          auto
      video_threaded: false
@@ -33,7 +29,12 @@
  fba:
    emulator: libretro
    core:     fbneo
-@@ -239,7 +239,7 @@
+@@ -235,11 +235,11 @@
+   emulator: moonlight
+   core: moonlight
+ psp:
+-  emulator: ppsspp
++  emulator: libretro
    core: ppsspp
  satellaview:
    emulator: libretro
@@ -64,7 +65,7 @@
 +  emulator: libretro
 +  core:     snes9x
 +pspminis:
-+  emulator: ppsspp
++  emulator: libretro
 +  core:     ppsspp
 +psxmini:
 +  emulator: libretro

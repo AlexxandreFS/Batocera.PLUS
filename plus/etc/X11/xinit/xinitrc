@@ -94,7 +94,7 @@ xset s off
 
 ### Resolve o bug de não identificar o teclado PT-BR ABNT2
 
-if [ "$(cat $HOME/batocera.conf | grep system.language=pt_BR)" ]; then
+if [ "$(grep '^system.language=pt_BR' "$HOME/batocera.conf")" ]; then
     setxkbmap -model abnt2 -layout br -variant ,abnt2 &
 fi
 
