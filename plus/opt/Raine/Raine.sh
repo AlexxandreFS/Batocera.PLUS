@@ -160,7 +160,7 @@ if ! [ -f "$HOME/configs/raine/rainex_sdl.cfg" ]; then
     echo '[General]'                              >> "$HOME/configs/raine/rainex_sdl.cfg"
 
     if [ -f "$HOME/batocera.conf" ]; then
-        XLANG="$(cat "$HOME/batocera.conf" | grep ^system.language= | cut -d '=' -f 2)"
+        XLANG="$(grep '^system.language=' "$HOME/batocera.conf" | cut -d '=' -f 2)"
         case $XLANG in
             pt_BR|pt_PT) echo 'language = pt'     >> "$HOME/configs/raine/rainex_sdl.cfg" ;;
             es_ES)       echo 'language = es'     >> "$HOME/configs/raine/rainex_sdl.cfg" ;;
@@ -207,12 +207,12 @@ sed -i "s#^neocd_dir = .*#neocd_dir = $SHARE/roms/neogeocd/#"   "$HOME/configs/r
 
 if [ "$EMULADOR" == 'auto' ]; then
     if [ -f "$HOME/batocera.conf" ] && \
-       [ "$(cat $HOME/batocera.conf | grep neogeocd.emulator=)" ] && \
-       [ "$(cat $HOME/batocera.conf | grep neogeocd.emulator= | cut -d'=' -f 2)" != 'auto' ]; then
-        EMULADOR="$(cat $HOME/batocera.conf | grep neogeocd.emulator= | cut -d'=' -f 2)"
-        if [ "$(cat $HOME/batocera.conf | grep neogeocd.core=)" ] && \
-           [ "$(cat $HOME/batocera.conf | grep neogeocd.core= | cut -d'=' -f 2)" != 'auto' ]; then
-            CORE="$(cat $HOME/batocera.conf | grep neogeocd.core= | cut -d'=' -f 2)"
+       [ "$(grep 'neogeocd.emulator=' "$HOME/batocera.conf")" ] && \
+       [ "$(grep 'neogeocd.emulator=' "$HOME/batocera.conf" | cut -d'=' -f 2)" != 'auto' ]; then
+        EMULADOR="$(grep neogeocd.emulator= "$HOME/batocera.conf" | cut -d'=' -f 2)"
+        if [ "$(grep 'neogeocd.core=' "$HOME/batocera.conf")" ] && \
+           [ "$(grep 'neogeocd.core=' "$HOME/batocera.conf" | cut -d'=' -f 2)" != 'auto' ]; then
+            CORE="$(grep 'neogeocd.core=' "$HOME/batocera.conf" | cut -d'=' -f 2)"
         fi
     fi
 fi
@@ -236,13 +236,23 @@ fi
 ### SUAVISAR IMAGEM (SE DEFINIDO NAS OPÇÕES DO EMULATIONSTATION)
 
 if [ -f "$HOME/batocera.conf" ]; then
-    if [ "$(cat $HOME/batocera.conf | grep neogeocd.smooth= | cut -d'=' -f 2)" == '0' ]; then
+    SUAVIZACAO_GAME="$(grep -F "neogeocd[\"$(basename "${ROM}")\"].smooth=" "$HOME/batocera.conf" | cut -d '=' -f 2)"
+    SUAVIZACAO_NEOCD="$(grep '^neogeocd.smooth=' "$HOME/batocera.conf" | cut -d '=' -f 2)"
+    SUAVIZACAO_GLOBAL="$(grep '^global.smooth=' "$HOME/batocera.conf" | cut -d '=' -f 2)"
+
+    if [ "$SUAVIZACAO_GAME" ] && [ ! "$SUAVIZACAO_GAME" == 'auto' ]; then
+        SUAVIZACAO="$SUAVIZACAO_GAME"
+    elif [ "$SUAVIZACAO_NEOCD" ] && [ ! "$SUAVIZACAO_NEOCD" == 'auto' ]; then
+        SUAVIZACAO="$SUAVIZACAO_NEOCD"
+    elif [ "$SUAVIZACAO_GLOBAL" ] && [ ! "$SUAVIZACAO_GLOBAL" == 'auto' ]; then
+        SUAVIZACAO="$SUAVIZACAO_GLOBAL"
+    else
+        SUAVIZACAO='auto'
+    fi
+
+    if [ "$SUAVIZACAO" == '0' ]; then
         sed -i s/'^ogl_filter = .*/ogl_filter = 9728/' "$HOME/configs/raine/rainex_sdl.cfg"
-    elif [ "$(cat $HOME/batocera.conf | grep neogeocd.smooth= | cut -d'=' -f 2)" == '1' ]; then
-        sed -i s/'^ogl_filter = .*/ogl_filter = 9729/' "$HOME/configs/raine/rainex_sdl.cfg"
-    elif [ "$(cat $HOME/batocera.conf | grep global.smooth= | cut -d'=' -f 2)" == '0' ]; then
-        sed -i s/'^ogl_filter = .*/ogl_filter = 9728/' "$HOME/configs/raine/rainex_sdl.cfg"
-    elif [ "$(cat $HOME/batocera.conf | grep global.smooth= | cut -d'=' -f 2)" == '1' ]; then
+    else
         sed -i s/'^ogl_filter = .*/ogl_filter = 9729/' "$HOME/configs/raine/rainex_sdl.cfg"
     fi
 fi
@@ -252,18 +262,36 @@ fi
 ### SCANLINES
 
 if [ -f "$HOME/batocera.conf" ]; then
-    FILTRO_GLOBAL="$(cat $HOME/batocera.conf | grep ^global.shaderset= | cut -d'=' -f 2)"
-    FILTRO_NEOCD="$(cat $HOME/batocera.conf | grep ^neogeocd.shaderset= | cut -d'=' -f 2)"
-fi
+    FILTRO_GAME="$(grep -F "neogeocd[\"$(basename "${ROM}")\"].shaderset=" "$HOME/batocera.conf" | cut -d '=' -f 2)"
+    FILTRO_NEOCD="$(grep '^neogeocd.shaderset=' "$HOME/batocera.conf" | cut -d '=' -f 2)"
+    FILTRO_GLOBAL="$(grep '^global.shaderset=' "$HOME/batocera.conf" | cut -d '=' -f 2)"
+    
+    if [ "$FILTRO_GAME" ] && [ ! "$FILTRO_GAME" == 'auto' ]; then
+        FILTRO="$FILTRO_GAME"
+    elif [ "$FILTRO_NEOCD" ] && [ ! "$FILTRO_NEOCD" == 'auto' ]; then
+        FILTRO="$FILTRO_NEOCD"
+    elif [ "$FILTRO_GLOBAL" ] && [ ! "$FILTRO_GLOBAL" == 'auto' ]; then
+        FILTRO="$FILTRO_GLOBAL"
+    else
+        FILTRO='auto'
+    fi
 
-if [ "$FILTRO_NEOCD" == 'scanlines' ]; then
-    sed -i "s#^ogl_shader = .*#ogl_shader = $RAINE_DIR/RaineEmu/shaders/scanline-3x.shader#"           "$HOME/configs/raine/rainex_sdl.cfg"
-elif [ "$FILTRO_NEOCD" == 'retro' ]; then
-    sed -i "s#^ogl_shader = .*#ogl_shader = $RAINE_DIR/RaineEmu/shaders/Themaister-scanlines.shader#"  "$HOME/configs/raine/rainex_sdl.cfg"
-elif [ "$FILTRO_GLOBAL" == 'scanlines' ]; then
-    sed -i "s#^ogl_shader = .*#ogl_shader = $RAINE_DIR/RaineEmu/shaders/scanline-3x.shader#"           "$HOME/configs/raine/rainex_sdl.cfg"
-elif [ "$FILTRO_GLOBAL" == 'retro' ]; then
-    sed -i "s#^ogl_shader = .*#ogl_shader = $RAINE_DIR/RaineEmu/shaders/Themaister-scanlines.shader#"  "$HOME/configs/raine/rainex_sdl.cfg"
+    case "$FILTRO" in
+        scanlines) sed -i "s#^ogl_shader = .*#ogl_shader = $RAINE_DIR/RaineEmu/shaders/scanline-3x.shader#" \
+                   "$HOME/configs/raine/rainex_sdl.cfg"
+                   ;;
+        retro)     sed -i "s#^ogl_shader = .*#ogl_shader = $RAINE_DIR/RaineEmu/shaders/Themaister-scanlines.shader#" \
+                   "$HOME/configs/raine/rainex_sdl.cfg"
+                   ;;
+        enhanced)  sed -i "s#^ogl_shader = .*#ogl_shader = $RAINE_DIR/RaineEmu/shaders/5xBR-v3.7c+CRT.OpenGL(hunterk).shader#" \
+                   "$HOME/configs/raine/rainex_sdl.cfg"
+                   ;;
+        curvature) sed -i "s#^ogl_shader = .*#ogl_shader = $RAINE_DIR/RaineEmu/shaders/CRT-simple.shader#" \
+                   "$HOME/configs/raine/rainex_sdl.cfg"
+                   ;;
+        *)         sed -i "s#^ogl_shader = .*#ogl_shader = Nome#" \
+                   "$HOME/configs/raine/rainex_sdl.cfg"
+    esac
 fi
 
 ################################################################################
@@ -271,12 +299,15 @@ fi
 ### ESTICAR IMAGEM (TELA CHEIA)
 
 if [ -f "$HOME/batocera.conf" ]; then
-    RES_NEOCD="$(cat $HOME/batocera.conf | grep neogeocd.ratio= | cut -d'=' -f 2)"
-    RES_GLOBAL="$(cat $HOME/batocera.conf | grep global.ratio=   | cut -d'=' -f 2)"
+    RES_GAME="$(grep -F "neogeocd[\"$(basename "${ROM}")\"].ratio=" "$HOME/batocera.conf" | cut -d '=' -f 2)"
+    RES_NEOCD="$(grep '^neogeocd.ratio=' "$HOME/batocera.conf" | cut -d '=' -f 2)"
+    RES_GLOBAL="$(grep '^global.ratio=' "$HOME/batocera.conf" | cut -d '=' -f 2)"
 
-    if [ "$RES_NEOCD" ]; then
+    if [ "$RES_GAME" ] && [ ! "$RES_GAME" == 'auto' ]; then
+        RESOLUTION="$RES_GAME"
+    elif [ "$RES_NEOCD" ] && [ ! "$RES_NEOCD" == 'auto' ]; then
         RESOLUTION="$RES_NEOCD"
-    elif [ "$RES_GLOBAL" ]; then
+    elif [ "$RES_GLOBAL" ] && [ ! "$RES_GLOBAL" == 'auto' ]; then
         RESOLUTION="$RES_GLOBAL"
     else
         RESOLUTION='auto'
@@ -339,17 +370,3 @@ fi
 rm -r '/tmp/raine'
 
 exit 0
-
-################################################################################
-
-### REFULGO
-
-#finalburn-teste.
-#bios in rom folder[neocdz.zip, neogeo.zip]
-#retroarch -v -L /usr/lib/libretro/fba_libretro.so --subsystem neocd /recalbox/share/roms/neogeo/King\ of\ Fighters\ \'96\,\ The\ \(1996\)\(SNK\)\(Jp-US\)\[\!\]\[NGCD-214\ MT\ A01\,\ NGCD-214E\].cue
-
-#cat > /etc/profile << "EOF"
-# trololo
-#EOF
-
-################################################################################

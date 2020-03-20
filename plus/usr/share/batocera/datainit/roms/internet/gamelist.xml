@@ -72,6 +72,21 @@ OBSERVAÇÃO: O RODRIGO DIGOLA É UMA DAS PESSOAS QUE INCENTIVAM O MEU TRABALHO.
         <image>./downloaded_images/RODRIGODIGOLA-image.png</image>
         <genre>CANAL YOUTUBE</genre>
     </game>
+
+
+    <game>
+        <path>./RUIVO.txt</path>
+        <name>[CANAL YOUTUBE] RUIVO</name>
+        <desc>RUIVO GAMES - INFORMAÇÕES SOBRE RASPBERRY PI, RECALBOX, RETROPIE, RETRORANGE PI, MUGEN, OPENBOR, PLAYSTATION, XBOX, NINTENDO, PRO EVOLUTION SOCCER, FIFA SOCCER E MUITO MAIS!
+Fanpage: www.facebook.com/RuivoGameplays
+Blog do Ruivo: www.jogoretro.blogspot.com.br
+Instagram: www.instagram.com/ruivoplay</desc>
+        <image>./downloaded_images/RUIVO-image.png</image>
+        <genre>CANAL YOUTUBE</genre>
+    </game>
+	
+	
+	
     <game>
         <path>./SERGIOGRAÇAS.txt</path>
         <name>[CANAL YOUTUBE] SERGIO GRAÇAS</name>

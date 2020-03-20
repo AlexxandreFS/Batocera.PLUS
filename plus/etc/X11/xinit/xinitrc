@@ -14,10 +14,18 @@ unclutter --noevents -b
 systemsetting="python /usr/lib/python2.7/site-packages/configgen/settings/batoceraSettings.py"
 
 # set the keyboard
-settings_lang="`$systemsetting -command load -key system.language`"
+settings_lang="$(${systemsetting} -command load -key system.language)"
+settings_kblayout="$(${systemsetting} -command load -key system.kblayout)"
 
-# not always true (en_US for us), but it's really better than always english
-map_name=$(echo $settings_lang | cut -c 1-2)
+if [ "${settings_kblayout}" == '' ]; then
+    if [ "$(echo "${settings_lang}" | grep '_')" ]; then
+        map_name=$(echo ${settings_lang,,} | cut -c 4-5)
+    else
+        map_name=$(echo ${settings_lang} | cut -c 1-2)
+    fi
+else
+    map_name="${settings_kblayout}"
+fi
 setxkbmap "${map_name}"
 
 # disable dpms to prevent screen from blanking
@@ -94,9 +102,9 @@ xset s off
 
 ### Resolve o bug de não identificar o teclado PT-BR ABNT2
 
-if [ "$(grep '^system.language=pt_BR' "$HOME/batocera.conf")" ]; then
-    setxkbmap -model abnt2 -layout br -variant ,abnt2 &
-fi
+#if [ "${settings_lang}" == 'pt_BR' ]; then
+#    setxkbmap -model abnt2 -layout br -variant ,abnt2 &
+#fi
 
 ################################################################################
 
