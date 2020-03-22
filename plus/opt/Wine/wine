@@ -73,7 +73,7 @@ fi
 for (( i = 0; i <= 120; i++ )); do
     sleep 1
     if [ -f "${WINEPREFIX}/user.reg" ] && [ -f "${WINEPREFIX}/system.reg" ]; then
-        sleep 1
+        sleep 2
         break
     fi
 done
