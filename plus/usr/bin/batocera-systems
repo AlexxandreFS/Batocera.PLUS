@@ -40,7 +40,15 @@ systems = {
                                                  { "md5": "5f8924d013dd57a89cf349f4cdedc6b1", "file": "bios/Kickstart v3.1 r40.60 (1993)(Commodore)(CD32).rom"                    },
                                                  { "md5": "646773759326fbac3b2311fd8c8793ee", "file": "bios/Kickstart v3.1 r40.68 (1993)(Commodore)(A1200)[!].rom"                },
                                                  { "md5": "413590e50098a056cfec418d3df0212d", "file": "bios/Kickstart v3.1 r40.68 (1993)(Commodore)(A3000).rom"                   },
-                                                 { "md5": "9bdedde6a4f33555b4a270c8ca53297d", "file": "bios/Kickstart v3.1 r40.68 (1993)(Commodore)(A4000).rom"                   } ] },
+                                                 { "md5": "9bdedde6a4f33555b4a270c8ca53297d", "file": "bios/Kickstart v3.1 r40.68 (1993)(Commodore)(A4000).rom"                   },
+                                                 { "md5": "82a21c1890cae844b3df741f2762d48d", "file": "bios/kick34005.A500"                                                       },
+                                                 { "md5": "dc10d7bdd1b6f450773dfb558477c230", "file": "bios/kick37175.A500"                                                       },
+                                                 { "md5": "e40a5dfb3d017ba8779faba30cbd1c8e", "file": "bios/kick40063.A600"                                                       },
+                                                 { "md5": "646773759326fbac3b2311fd8c8793ee", "file": "bios/kick40068.A1200"                                                      },
+                                                 { "md5": "9bdedde6a4f33555b4a270c8ca53297d", "file": "bios/kick40068.A4000"                                                      },
+                                                 { "md5": "89da1838a24460e4b93f4f0c5d92d48d", "file": "bios/kick34005.CDTV"                                                       },
+                                                 { "md5": "5f8924d013dd57a89cf349f4cdedc6b1", "file": "bios/kick40060.CD32"                                                       },
+                                                 { "md5": "bb72565701b1b6faece07d68ea5da639", "file": "bios/kick40060.CD32.ext"                                                   } ] },
 
     ############################################################################
 
@@ -106,7 +114,8 @@ systems = {
                                                                                     { "md5": "dbfce9db9deaa2567f6a84fde55f9680", "file": "bios/gbc_bios.bin" 	},
                                                                                     { "md5": "d574d4f9c12f305074798f54c091a8b4", "file": "bios/sgb_bios.bin" 	} ] },
 
-    "n64":         { "name": "Nintendo 64", "biosFiles":                          [ { "md5": "8d3d9f294b6e174bc7b1d2fd1c727530", "file": "bios/64DD_IPL.bin"    } ] },
+    "n64dd":       { "name": "Nintendo 64", "biosFiles":                            [ { "md5": "8d3d9f294b6e174bc7b1d2fd1c727530", "file": "bios/64DD_IPL.bin"        },
+                                                                                      { "md5": "8d3d9f294b6e174bc7b1d2fd1c727530", "file": "bios/Mupen64plus/IPL.n64" } ] },
 
     "gamecube":    { "name": "GameCube", "biosFiles":                             [ { "md5": "b17148254a5799684c7d783206504926", "file": "bios/GC/USA/IPL.bin" },
                                                                                     { "md5": "db92574caab77a7ec99d4605fd6f2450", "file": "bios/GC/EUR/IPL.bin" },
@@ -172,7 +181,12 @@ systems = {
                                                              { "md5": "278a9397d192149e84e820ac621a8edd", "file": "bios/bios_CD_J.bin" 	  } ] },
 
     "naomi":        { "name": "Naomi", "biosFiles":        [ { "md5": "3bffafac42a7767d8dcecf771f5552ba", "file": "bios/naomi.bin"        },
-                                                             { "md5": "",                                 "file": "bios/naomi.zip"        } ] },
+                                                             { "md5": "",                                 "file": "bios/naomi.zip"        },
+                                                             { "md5": "",                                 "file": "bios/airlbios.zip"     },
+                                                             { "md5": "",                                 "file": "bios/awbios.zip"       },
+                                                             { "md5": "",                                 "file": "bios/f355bios.zip"     },
+                                                             { "md5": "",                                 "file": "bios/f355dlx.zip"      },
+                                                             { "md5": "",                                 "file": "bios/hod2bios.zip"     } ] },
 
 
     ############################################################################
