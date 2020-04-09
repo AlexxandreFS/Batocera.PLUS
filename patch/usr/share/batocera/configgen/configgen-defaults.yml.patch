@@ -39,12 +39,18 @@
  satellaview:
    emulator: libretro
 -  core:     snes9x
-+  core:     catsfc
++  core:     bsnes
  sufami:
    emulator: libretro
    core:     snes9x
-@@ -254,4 +254,43 @@
-   core:     daphne
+@@ -250,8 +250,50 @@
+   emulator: libretro
+   core:     cap32
+ daphne:
+-  emulator: libretro
+-  core:     daphne
++  emulator: daphne
++  core:     hypseus
  lightgun:
    emulator: libretro
 -  core:     mame078plus
@@ -88,3 +94,6 @@
 +thomson:
 +  emulator: libretro
 +  core:     theodore
++hbmame:
++  emulator: libretro
++  core:     hbmame
