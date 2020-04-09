@@ -3,21 +3,22 @@
 
 # Versão do Batocera.PLUS
 VERSION='2.00'
+RELEASE='RC2'
+NVIDIA_LEGACY='0'
 
 # Pasta temporária em uma partição Linux
-TEMP_DIR='tmp'
-#TEMP_DIR='/media/NO_LABEL/tmp'
+#TEMP_DIR='tmp'
+TEMP_DIR='/media/NO_LABEL/tmp'
 #TEMP_DIR='/media/NO_LABEL_1/tmp'
 #TEMP_DIR='/media/NO_LABEL_2/tmp'
 #TEMP_DIR='/mnt/tmp'
 
 # Imagem oficial do batocera.linux.
-IMG_OFICIAL='img/batocera-5.24-x86_64-20191105.img.gz'
-#IMG_OFICIAL='img/batocera-5.24-x86_64-20191109.img.gz'
+IMG_OFICIAL_NORMAL='img/batocera-5.24-x86_64-20191105.img.gz'
+IMG_OFICIAL_NVIDIA='img/batocera-5.24-x86_64-20191109.img.gz'
 
 # BatoceraZero.
 IMG_ZERO='img/BatoceraZero2.5GB.7z'
-#IMG_ZERO='img/BatoceraZero3.0GB.7z'
 
 # Arquivos extras do Batocera.PLUS
 PLUS_DIR='plus'
@@ -37,6 +38,21 @@ URL_FLASH='https://fpdownload.adobe.com/get/flashplayer/pdc/32.0.0.344/flash_pla
 ################################################################################
 
 echo 'Descompactando Batocera oficial...'
+
+if [ "${NVIDIA_LEGACY}" == '0' ]; then
+    echo 'ALVO: IMAGEM NORMAL'
+    IMG_OFICIAL="${IMG_OFICIAL_NORMAL}"
+elif ! [ "${NVIDIA_LEGACY}" ]; then
+    echo 'ALVO: IMAGEM NORMAL'
+    IMG_OFICIAL="${IMG_OFICIAL_NORMAL}"
+elif [ "${NVIDIA_LEGACY}" == '1' ]; then
+    echo 'ALVO: IMAGEM NVIDIA LEGACY'
+    IMG_OFICIAL="${IMG_OFICIAL_NVIDIA}"
+else
+    echo 'Erro: Valor desconhecido para NVIDIA LEGACY'
+    exit 1
+fi
+
 mkdir -p "$TEMP_DIR"
 
 if ! [ -f "$IMG_OFICIAL" ]; then
@@ -76,11 +92,10 @@ rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/prboom/doom1_sha
 rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/prboom/prboom.wad" || exit $?
 rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/snes/DonkeyKongClassic (Shiru).smc" || exit $?
 
-
-
 echo 'Desativando servicos...'
 mv    "$TEMP_DIR/squashfs-root/etc/init.d/S49ntp"          "$TEMP_DIR/squashfs-root/etc/init.d/K49ntp"          || exit $?
 mv    "$TEMP_DIR/squashfs-root/etc/init.d/S10triggerhappy" "$TEMP_DIR/squashfs-root/etc/init.d/K10triggerhappy" || exit $?
+rm    "$TEMP_DIR/squashfs-root/etc/init.d/S50triggerhappy"                                                      || exit $?
 
 echo 'Criando arquivo de versão...'
 mv   "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" "$TEMP_DIR/squashfs-root/usr/share/batocera/recalbox.version" || exit $?
@@ -100,9 +115,13 @@ echo 'Descompactando Libretro mame0200...'
 7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame0200_libretro.so.7z" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
 rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame0200_libretro.so.7z"
 
-echo 'Descompactando Libretro mess...'
-7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mess_libretro.so.7z" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
-rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mess_libretro.so.7z"
+echo 'Descompactando Libretro hbmame...'
+7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/hbmame_libretro.so.7z" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
+rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/hbmame_libretro.so.7z"
+
+#echo 'Descompactando Libretro mess...'
+#7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mess_libretro.so.7z" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
+#rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mess_libretro.so.7z"
 
 #echo 'Descompactando Libretro mame_mame...'
 #7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame_mame_libretro.so.7z.001" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
@@ -163,17 +182,18 @@ mv "${TEMP_DIR}/squashfs-root/opt/Wine/apps/wine-mono-"* \
 echo 'Descompactando Firefox...'
 PKG_NAME="$(basename "${URL_FIREFOX}")"
 bunzip2 -d -k -v -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar x -v -C "${TEMP_DIR}/squashfs-root/opt/Firefox" || exit $?
-mv "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox" \
-   "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-esr"
+mv    "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox/"* \
+      "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-esr"
+rmdir "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox"
 
 echo 'Descompactando Flash Player...'
 FLASH_VERSION="$(echo "${URL_FLASH}" | sed 's/[^0-9.a]//g' | cut -d 'a' -f 5)"
 PKG_NAME="$(basename "${URL_FLASH}" | sed "s/flash_player/flash_player_${FLASH_VERSION}/")"
-mkdir -p  "${TEMP_DIR}/squashfs-root/opt/Firefox/flash-plugin"
-gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/opt/Firefox/flash-plugin" || exit $?
-rm -r "${TEMP_DIR}/squashfs-root/opt/Firefox/flash-plugin/LGPL"
-rm -r "${TEMP_DIR}/squashfs-root/opt/Firefox/flash-plugin/usr"
-rm    "${TEMP_DIR}/squashfs-root/opt/Firefox/flash-plugin/license.pdf"
+mkdir -p  "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins"
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins" || exit $?
+rm -r "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/LGPL" \
+      "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/usr"  \
+      "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/license.pdf"
 
 ################################################################################
 
@@ -237,6 +257,15 @@ rm    "$TEMP_DIR/Batocera.PLUS.img" || exit $?
 mv    "$TEMP_DIR/BatoceraZero.img" "$TEMP_DIR/Batocera.PLUS.img" || exit $?
 
 sync
+
+if [ "${RELEASE}" ]; then
+    echo 'Compactando imagem final...'
+    if [ "${NVIDIA_LEGACY}" == '1' ]; then
+        RELEASE="${RELEASE}-Nvidia-Legacy"
+    fi
+    7zr a "${TEMP_DIR}/Batocera.PLUS-${VERSION}-${RELEASE}.7z" "${TEMP_DIR}/Batocera.PLUS.img" || exit $?
+    rm "${TEMP_DIR}/Batocera.PLUS.img"
+fi
 
 echo 'Imagem criada! Pressione qualquer tecla para concluir'
 read -n 1
