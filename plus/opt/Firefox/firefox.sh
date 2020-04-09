@@ -8,22 +8,22 @@
 ##
  # Define o local para salvar o perfil (save).
  ##
-SAVE_DIR=$HOME/../saves/internet/firefox
+SAVE_DIR="$HOME/../saves/internet/firefox"
 
 ##
  # Pasta de downloads para os arquivos baixados da internet.
  ##
-DOWNLOADS_DIR=$HOME/../downloads
+DOWNLOADS_DIR="$HOME/../downloads"
 
 ##
  # Diretório de roms (links)
  ##
-ROM_DIR=$HOME/../roms/internet
+ROM_DIR="$HOME/../roms/internet"
 
 ##
  # Local dos arquivos que fazem o firefox ser executado no Batocera.PLUS.
  ##
-APP_DIR=/opt/Firefox
+APP_DIR='/opt/Firefox'
 
 ##
  # Define o tipo de conteúdo que será executado pelo navegador.
@@ -54,8 +54,9 @@ fi
 ln -s -f $APP_DIR/extra-libs/libgtk-3-original.so.0    $APP_DIR/extra-libs/libgtk-3.so.0
 #ln -s -f $APP_DIR/extra-libs/libgtk-3-alternative.so.0 $APP_DIR/extra-libs/libgtk-3.so.0
 
-export LD_LIBRARY_PATH="$APP_DIR/extra-libs"
+export LD_LIBRARY_PATH="${APP_DIR}/extra-libs:${APP_DIR}/apulse:${LD_LIBRARY_PATH}"
 export XDG_DATA_DIRS="/usr/share:$APP_DIR/extra-libs"
+
 
 ################################################################################
 
@@ -73,18 +74,8 @@ fi
 ################################################################################
 
 ##
- # Instala o flash plugin.
- ##
-mkdir -p /usr/lib/mozilla/plugins
-ln -s -f $APP_DIR/flash-plugin/libflashplayer.so /usr/lib/mozilla/plugins
-
-################################################################################
-
-##
  # Resolve o problema com o som.
  # Usa a mesma saída de som padrão do Batocera no Firefox.
- # Agradescimentos: Adriano de Souza
- # Membro do grupo "Batocera linux (recalbox x86)" no facebook
  ##
 if [ -e $HOME/asound.state ]; then
     if ! [ -e $SAVE_DIR/asound.state ]; then
@@ -109,13 +100,11 @@ fi
  #  Quando não é passado nenhum parâmetro.
  ##
 if ! [ -f "$ROM" ]; then
-    LD_LIBRARY_PATH="$APP_DIR/apulse${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" \
     HOME="$SAVE_DIR" "$FIREFOX_DIR/firefox" --profile "$SAVE_DIR"
     exit 0
 fi
 if [ "$SYSTEM" == 'internet' ]; then
     if ! [ "$(head -n 1 "$ROM")" ]; then
-        LD_LIBRARY_PATH="$APP_DIR/apulse${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" \
         HOME="$SAVE_DIR" "$FIREFOX_DIR/firefox" --profile "$SAVE_DIR"
         exit 0
     fi
@@ -138,7 +127,6 @@ sed -i s/'^user_pref("browser.startup.page", .*/user_pref("browser.startup.page"
  ##
 if [ "$SYSTEM" == 'internet' ]; then
     ### Abre o navegador com todas as orelhas fechadas
-    LD_LIBRARY_PATH="$APP_DIR/apulse${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" \
     HOME="$SAVE_DIR" "$FIREFOX_DIR/firefox" --profile "$SAVE_DIR" "$(head -n 1 "$ROM")"
 fi
 
@@ -149,7 +137,6 @@ fi
  ##
 if [ "$SYSTEM" == 'flash' ]; then
     ### Abre o navegador com o conteúdo em flash.
-    LD_LIBRARY_PATH="$APP_DIR/apulse${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" \
     HOME="$SAVE_DIR" "$FIREFOX_DIR/firefox" --profile "$SAVE_DIR" "$ROM"
 fi
 

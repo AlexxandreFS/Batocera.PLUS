@@ -1,1 +1,0 @@
-/opt/Firefox/firefox.sh
