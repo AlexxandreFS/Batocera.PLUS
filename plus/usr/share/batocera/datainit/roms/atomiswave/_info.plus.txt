@@ -1,7 +1,43 @@
-## SYSTEM ATOMISWAVE DREAMCAST ##
+## SYSTEM ATOMISWAVE ##
 -------------------------------------------------------------------------------
 ROM files extensions accepted (Batocera.PLUS): ".7z .7Z"
 -------------------------------------------------------------------------------
+
+FLYCAST ALL BIOS
+    airlbios.zip
+        epr-21802.ic27
+        epr-21801.ic27
+    awbios.zip
+        bios0.ic23 or bios1.ic23
+    f355bios.zip
+        epr-22851.ic27
+        epr-22850.ic27
+        epr-22849.ic27
+    f355dlx.zip
+        epr-21864.ic27
+        epr-21863.ic27
+        epr-21862.ic27
+        epr-21864p.ic27
+        epr-21862p.ic27
+    hod2bios.zip
+        epr-21331.ic27
+        epr-21330.ic27
+        epr-21329.ic27
+    naomi.zip
+        epr-21576h.ic27
+        epr-21578h.ic27
+        epr-21577h.ic27
+        epr-21579d.ic27
+
+-------------------------------------------------------------------------------
+FLYCAST (Naomi, Atomiswave)
+
+Usa as mesmas roms do Mame.
+
+-------------------------------------------------------------------------------
+
+FLYCAST2019 (Naomi, Atomiswave)
+
 O flycast roda jogos da placa Naomi mas não roda jogos da placa AtomisWave por
 se tratar de um hardware diferente (parecido mas diferente) no entanto alguns
 jogos foram convertidos da placa AtomisWave para a placa Naomi (Hack) e estes
@@ -9,6 +45,7 @@ jogos convertidos rodam no flycast.
 
 As roms do mame não funcionam com este emulador!
 -------------------------------------------------------------------------------
+
 ROMS compactadas no formato 7zip
 
 Roms no formato 7z precisam ser descompactadas antes de serem executadas, o

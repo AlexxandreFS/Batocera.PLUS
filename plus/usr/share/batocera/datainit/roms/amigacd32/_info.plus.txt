@@ -1,39 +1,7 @@
-## SYSTEM NAOMI ##
+## AMIGA CD32 ##
 -------------------------------------------------------------------------------
 ROM files extensions accepted (Batocera.PLUS): ".7z .7Z"
 -------------------------------------------------------------------------------
-FLYCAST     - As roms e chd do mame são as recomendadas para este sistema.
-FLYCAST2019 - Usa o padrão antigo de roms.
--------------------------------------------------------------------------------
-
-FLYCAST ALL BIOS
-    airlbios.zip
-        epr-21802.ic27
-        epr-21801.ic27
-    awbios.zip
-        bios0.ic23 or bios1.ic23
-    f355bios.zip
-        epr-22851.ic27
-        epr-22850.ic27
-        epr-22849.ic27
-    f355dlx.zip
-        epr-21864.ic27
-        epr-21863.ic27
-        epr-21862.ic27
-        epr-21864p.ic27
-        epr-21862p.ic27
-    hod2bios.zip
-        epr-21331.ic27
-        epr-21330.ic27
-        epr-21329.ic27
-    naomi.zip
-        epr-21576h.ic27
-        epr-21578h.ic27
-        epr-21577h.ic27
-        epr-21579d.ic27
-
--------------------------------------------------------------------------------
-
 Como rodar roms compactadas no formato 7zip?
 
 1 - Crie uma pasta com o mesmo nome do arquivo principal da rom, sem extensão.
@@ -50,10 +18,17 @@ capacidade do computador, mais recomendado para sistemas instalados em HD's.
 Example: My Game.7z
 
 My Game                 (folder)
-|---- My Game.lst       (file)
-|---- My Game.dat       (file)
+|---- My Game.cue       (file)
+|---- My Game.bin       (file)
+|---- ....              (file) (if exist)
 
 My Game                 (folder)
-|---- My Game.lst       (file)
-|---- GameABC.bin       (file)
+|---- My Game.cue       (file)
+|---- My Game.ccd       (file)
+|---- My Game.img       (file)
+|---- My Game.sub       (file) (if exist)
+
+My Game                 (folder)
+|---- My Game.iso       (file)
 -------------------------------------------------------------------------------
+

@@ -1,0 +1,14 @@
+## SYSTEM HBMAME ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted: ".zip .7z"
+
+Caso use um fullset merged execute o script contido nesta pasta para
+gerar links limbólicos para as roms split (clones).
+
+./_hbmame-erase-clones.sh
+
+Atenção: Somente use este script se tiver que o seu set é merged.
+
+Para remover os clones use o script:
+
+_hbmame-erase-clones.sh
