@@ -1,0 +1,11 @@
+config BR2_PACKAGE_LIBRETRO_RACE
+        bool "libretro-race"
+	depends on BR2_PACKAGE_RETROARCH
+        help
+          A libretro Neogeo Pocket core.
+
+	  http://www.libretro.com
+
+comment "LIBRETRO_RACE needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP
+

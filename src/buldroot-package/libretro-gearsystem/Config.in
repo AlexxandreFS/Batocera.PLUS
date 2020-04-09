@@ -1,0 +1,11 @@
+config BR2_PACKAGE_LIBRETRO_GEARSYSTEM
+        bool "libretro-gearsystem"
+	depends on BR2_PACKAGE_RETROARCH
+        help
+          A libretro Game Gear Emulator core.
+
+	  http://www.libretro.com
+
+comment "LIBRETRO_GEARSYSTEM needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP
+

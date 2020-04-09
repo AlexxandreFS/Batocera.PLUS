@@ -1,0 +1,11 @@
+config BR2_PACKAGE_LIBRETRO_MESS
+        bool "libretro-mess"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_INSTALL_LIBSTDCPP
+        help
+          A libretro mame core for Mess.
+
+	  http://www.libretro.com
+
+comment "LIBRETRO_MESS needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP

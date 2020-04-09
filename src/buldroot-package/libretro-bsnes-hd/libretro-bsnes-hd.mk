@@ -1,21 +1,21 @@
 ################################################################################
 #
-# BSNES
+# BSNES_HD
 #
 ################################################################################
-# Version.: Commits on Feb 02, 2020 (v114.3)
-LIBRETRO_BSNES_VERSION = 3a74cbe0dc1d46458946a4cec5f3c1c0bbf7751e
-LIBRETRO_BSNES_SITE = $(call github,DerKoun,bsnes-hd,$(LIBRETRO_BSNES_VERSION))
-LIBRETRO_BSNES_LICENSE = GPLv3
+# Version.: Commits on Feb 19, 202
+LIBRETRO_BSNES_HD_VERSION = 87173e8ec8625ee041aa93ce98130029ef6eac43
+LIBRETRO_BSNES_HD_SITE = $(call github,DerKoun,bsnes-hd,$(LIBRETRO_BSNES_HD_VERSION))
+LIBRETRO_BSNES_HD_LICENSE = GPLv3
 
-define LIBRETRO_BSNES_BUILD_CMDS
+define LIBRETRO_BSNES_HD_BUILD_CMDS
 	CFLAGS="$(TARGET_CFLAGS)" CXXFLAGS="$(TARGET_CXXFLAGS)" $(MAKE) CXX="$(TARGET_CXX)" \
 		CC="$(TARGET_CC)" -C $(@D)/bsnes -f GNUmakefile target="libretro" platform=linux local=false
 endef
 
-define LIBRETRO_BSNES_INSTALL_TARGET_CMDS
+define LIBRETRO_BSNES_HD_INSTALL_TARGET_CMDS
 	$(INSTALL) -D $(@D)/bsnes/out/bsnes_hd_beta_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro/bsnes_libretro.so
+		$(TARGET_DIR)/usr/lib/libretro/bsnes_hd_libretro.so
 endef
 
 $(eval $(generic-package))
