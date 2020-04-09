@@ -1,5 +1,0 @@
-while (<>) {
-  next if (/^\//);
-  print;
-}
-

@@ -1,0 +1,4 @@
+script "next level = 10"
+	poke $40c23f 8
+
+

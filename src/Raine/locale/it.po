@@ -1,0 +1,5871 @@
+
+# Raine Translation (base file).
+# Copyright (C) 2015
+# This file is distributed under the same license as the raine package.
+# Emmanuel Anne.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.9\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-08 22:31+0200\n"
+"PO-Revision-Date: 2019-01-03 19:34+0100\n"
+"Last-Translator: Davide Michelini <dmichelini{AT}doconline.it>\n"
+"Language-Team: Italian lang. for RAINE 0.64.6-0.64.16\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Notepad++ 7.3.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# -------------------------------- MAIN MENU --------------------------------
+
+#: source/sdl/gui.cpp:347
+msgid "Main menu"
+msgstr "[ MENU PRINCIPALE ]"
+
+#: source/sdl/gui.cpp:292
+msgid "Play game"
+msgstr "Inizia a giocare"
+
+#: source/sdl/dialogs/game_options.cpp:279 source/sdl/gui.cpp:293
+msgid "Game options"
+msgstr "Opzioni di gioco"
+
+#: source/sdl/gui.cpp:294
+msgid "Region"
+msgstr "Versione regionale"
+
+#: source/sdl/gui.cpp:295
+msgid "Action replay cheats"
+msgstr "Trucchi per Action replay"
+
+#: source/sdl/dialogs/dlg_dsw.cpp:41 source/sdl/gui.cpp:296
+msgid "Dipswitches"
+msgstr "Microinterruttori scheda (Dips.)"
+
+#: source/sdl/gui.cpp:297
+msgid "Change/Load ROM"
+msgstr "Carica/Cambia gioco Arcade"
+
+#: source/sdl/gui.cpp:283 source/sdl/gui.cpp:299
+msgid "Load NeoCD game"
+msgstr "Carica gioco per NeoCD"
+
+#: source/sdl/gui.cpp:300
+msgid "NeoCD/Neo-Geo options"
+msgstr "Impostazioni NeoCD/Neo-Geo"
+
+#: source/sdl/dialogs/video_options.cpp:225 source/sdl/gui.cpp:302
+msgid "Video options"
+msgstr "Impostazioni Video"
+
+#: source/sdl/dialogs/sound_options.cpp:71 source/sdl/gui.cpp:303
+msgid "Sound options"
+msgstr "Impostazioni Suono"
+
+#: source/sdl/dialogs/gui_options.cpp:34
+#: source/sdl/dialogs/game_selection.cpp:62 source/sdl/gui.cpp:304
+msgid "Options"
+msgstr "Impostazioni Emulatore"
+
+#: source/sdl/gui.cpp:305
+msgid "Inputs"
+msgstr "Impostazioni Controlli"
+
+#: source/sdl/dialogs/about.cpp:796 source/sdl/gui.cpp:306
+msgid "About..."
+msgstr "Informazioni..."
+
+#: source/sdl/gui.cpp:307
+msgid "Show command.dat info"
+msgstr "Informazioni mosse speciali..."
+
+#: source/sdl/console/console.cpp:1228
+#: source/sdl/console/console.cpp:1318
+#: source/sdl/gui.cpp:309
+msgid "Console"
+msgstr "Console"
+
+#: source/sdl/gui.cpp:311
+msgid "Quit"
+msgstr "Esci"
+
+# ....................................
+
+#: source/sdl/gui/menu.cpp:424
+msgid "No game loaded"
+msgstr "Nessun gioco caricato"
+
+# ????
+#, c-format
+msgid "Region out of bounds (%d). Possible values :"
+msgstr "Regione fuori limite (%d). Valori possibili:"
+
+#: source/sdl/dialogs/about.cpp:738
+msgid "Special moves..."
+msgstr "[ Mosse speciali (caricate da command.dat) ]"
+
+# Console
+msgid "no cpu initialised yet"
+msgstr "Non e' stata inizializzata ancora nessuna CPU."
+
+# ------------------------------ GAME OPTIONS ------------------------------
+
+#: source/sdl/dialogs/game_options.cpp:234
+msgid "Reset game hardware"
+msgstr "Riavvia l'hardware del gioco"
+
+#: source/sdl/dialogs/game_options.cpp:184
+#: source/sdl/dialogs/game_options.cpp:235
+msgid "Load game"
+msgstr "Carica gioco"
+
+#: source/sdl/dialogs/game_options.cpp:194
+#: source/sdl/dialogs/game_options.cpp:236
+msgid "Save game"
+msgstr "Salva gioco"
+
+#: source/sdl/dialogs/game_options.cpp:237
+msgid "Graphical layers..."
+msgstr "Imposta livelli grafici..."
+
+#: source/sdl/dialogs/game_options.cpp:238
+msgid "Sprite viewer"
+msgstr "Visualizza elementi grafici..."
+
+msgid "CPU frame skip (1=no skip) "
+msgstr "Salta fotogrammi CPU (1=non saltare)"
+
+#: source/sdl/dialogs/game_options.cpp:244
+msgid "FPS"
+msgstr "FPS (Fotogrammi al sec.)"
+
+#: source/sdl/dialogs/game_options.cpp:245
+msgid "Reset fps to driver's default value"
+msgstr "Ripristina FPS al valore predef."
+
+#: source/sdl/dialogs/game_options.cpp:246
+msgid "FPS counter"
+msgstr "Contatore FPS"
+
+# ....................................
+
+#: source/sdl/dialogs/game_options.cpp:247
+msgid "Immediate FPS"
+msgstr "Conteggio immediato"
+
+#: source/sdl/dialogs/game_options.cpp:247
+msgid "Average FPS"
+msgstr "Conteggio sulla media"
+
+#: source/sdl/dialogs/game_options.cpp:247
+msgid "Profiler"
+msgstr "Tutti i profili"
+
+#: source/sdl/dialogs/game_options.cpp:247
+msgid "Rdtsc Cycles"
+msgstr "Cicli RDTSC"
+
+#: source/sdl/dialogs/sprite_viewer.cpp:181
+msgid "Sprites viewer"
+msgstr "[ Visualizzatore elementi grafici (Sprites) ]"
+
+#: source/sdl/dialogs/sprite_viewer.cpp:166
+msgid "layer"
+msgstr "Livello"
+
+msgid "Object"
+msgstr "Oggetti"
+
+msgid "BG"
+msgstr "Sfondo"
+msgid "BG0"
+msgstr "Sfondo #0"
+msgid "BG1"
+msgstr "Sfondo #1"
+msgid "BG2"
+msgstr "Sfondo #2"
+msgid "BG3"
+msgstr "Sfondo #3"
+
+msgid "FG"
+msgstr "Primo piano"
+msgid "FG0"
+msgstr "Primo piano #0"
+msgid "FG1"
+msgstr "Primo piano #1"
+msgid "FG2"
+msgstr "Primo piano #2"
+msgid "FG3"
+msgstr "Primo piano #3"
+
+msgid "OBJECT"
+msgstr "OGGETTI"
+
+msgid "SCROLL0"
+msgstr "SCORRIM. #0"
+msgid "SCROLL1"
+msgstr "SCORRIM. #1"
+msgid "SCROLL2"
+msgstr "SCORRIM. #2"
+msgid "SCROLL3"
+msgstr "SCORRIM. #3"
+
+msgid "SPRITES"
+msgstr "SPRITE"
+
+msgid "SPRITES BG"
+msgstr "SPRITE Sfondo"
+
+msgid "SPRITES FG"
+msgstr "SPRITE Primo piano"
+
+msgid "Pixel"
+msgstr "Pixel"
+
+#: source/sdl/dialogs/game_options.cpp:216
+msgid "Layers"
+msgstr "Livelli grafici"
+
+# ----------------------------- GAME SELECTION -----------------------------
+
+#: source/sdl/dialogs/game_selection.cpp:417
+msgid "Game selection"
+msgstr "[ Scelta del gioco ]"
+
+#: source/sdl/dialogs/game_selection.cpp:71
+msgid "-- Options --"
+msgstr "-- OPZIONI --"
+
+#: source/sdl/dialogs/fsel.cpp:226 source/sdl/dialogs/fsel.cpp:231
+msgid "-- Path... "
+msgstr "-- PERCORSO... --"
+
+#: source/sdl/dialogs/game_selection.cpp:287
+msgid "Avail"
+msgstr "Disponibili:"
+
+#: source/sdl/dialogs/game_selection.cpp:288
+msgid "Missing"
+msgstr "Mancanti:"
+
+#: source/sdl/dialogs/game_selection.cpp:317
+#, c-format
+msgid "Game : %s"
+msgstr "Gioco: %s"
+
+#: source/sdl/dialogs/game_selection.cpp:317
+#, c-format
+msgid "Game : -"
+msgstr "Gioco: -"
+
+#: source/sdl/dialogs/game_selection.cpp:322
+#, c-format
+msgid "Year : %d"
+msgstr "Anno: %d"
+
+#: source/sdl/dialogs/game_selection.cpp:332
+#, c-format
+msgid "Year : -"
+msgstr "Anno: -"
+
+# ????
+#: source/sdl/dialogs/game_selection.cpp:299
+msgid "Year : 2006"
+msgstr "Anno: 2006"
+
+#: source/sdl/dialogs/game_selection.cpp:319
+#, c-format
+msgid "Company : %s"
+msgstr "Azienda: %s"
+
+#: source/sdl/dialogs/game_selection.cpp:319
+#, c-format
+msgid "Company : -"
+msgstr "Azienda: -"
+
+#: source/sdl/dialogs/game_selection.cpp:310
+#, c-format
+msgid "Category : %s"
+msgstr "Categoria: %s"
+
+#: source/sdl/dialogs/game_selection.cpp:333
+#, c-format
+msgid "Category : -"
+msgstr "Categoria: -"
+
+#: source/sdl/dialogs/game_selection.cpp:323
+#, c-format
+msgid "Category : "
+msgstr "Categoria: "
+
+# ------------------------- GAME SELECTION: OPTIONS -------------------------
+
+#: source/sdl/dialogs/game_selection.cpp:33
+msgid "Display"
+msgstr "Mostra"
+
+#: source/sdl/dialogs/game_selection.cpp:34
+msgid "Status"
+msgstr "Condizione"
+
+#: source/sdl/dialogs/game_selection.cpp:35
+msgid "Category"
+msgstr "Categoria"
+
+#: source/sdl/dialogs/game_selection.cpp:36
+msgid "Company"
+msgstr "Azienda"
+
+#: source/sdl/dialogs/game_selection.cpp:37
+msgid "Driver"
+msgstr "Driver"
+
+#: source/sdl/dialogs/game_selection.cpp:39
+msgid "Clones"
+msgstr "Cloni"
+
+#: source/sdl/dialogs/game_selection.cpp:40
+msgid "Display short names too"
+msgstr "Con nomi ridotti"
+
+#: source/sdl/dialogs/game_selection.cpp:41
+msgid "Rom directories..."
+msgstr "Cartelle giochi..."
+
+# ....................................
+
+#: source/sdl/dialogs/game_selection.cpp:33
+msgid "All games"
+msgstr "Tutti i giochi"
+
+#: source/sdl/dialogs/game_selection.cpp:33
+msgid "Available games"
+msgstr "Solo giochi presenti in cartella"
+
+#: source/sdl/dialogs/game_selection.cpp:33
+msgid "Missing games"
+msgstr "Solo giochi assenti in cartella"
+
+#: source/sdl/dialogs/game_selection.cpp:34
+msgid "All status"
+msgstr "Tutte le condizioni"
+
+#: source/sdl/dialogs/game_selection.cpp:34
+msgid "Only working games"
+msgstr "Solo giochi funzionanti"
+
+#: source/sdl/dialogs/game_selection.cpp:34
+msgid "Only not working games"
+msgstr "Solo giochi non funzionanti"
+
+#: source/sdl/dialogs/game_selection.cpp:34
+msgid "Only partially working games"
+msgstr "Solo giochi parzialm. funzionanti"
+
+#: source/sdl/dialogs/game_selection.cpp:286
+msgid "All"
+msgstr "Tutte le categorie"
+
+#: source/sdl/dialogs/game_selection.cpp:60
+msgid "All companies"
+msgstr "Tutte le aziende"
+
+#: source/sdl/dialogs/game_selection.cpp:38
+msgid "All drivers"
+msgstr "Tutti i driver"
+
+# ....................................
+
+#: source/sdl/dialogs/romdirs.cpp:51
+msgid "rom dirs"
+msgstr "[ Cartelle dei giochi (rom) ]"
+
+#: source/sdl/dialogs/romdirs.cpp:48
+msgid "Add rom dir..."
+msgstr "Aggiungi cartella con giochi (rom)..."
+
+msgid "Directory options"
+msgstr " - Opzioni cartella: - "
+
+msgid "Change dir"
+msgstr "Cambia cartella"
+
+msgid "Remove dir"
+msgstr "Rimuovi cartella"
+
+msgid "Change dir|Remove dir"
+msgstr "Cambia cartella|Rimuovi cartella"
+
+# ????
+msgid "Rom dir"
+msgstr "[ Seleziona un percorso contenente giochi (rom) ]"
+
+#: source/sdl/dialogs/fsel.cpp:152
+msgid "Path selection"
+msgstr "[ Selezione percorso ]"
+
+# ------------------------------ GAME LOADING ------------------------------
+
+#: source/sdl/gui.cpp:165
+msgid "Loading Game"
+msgstr ":: Gioco in fase di caricamento ::"
+
+msgid "Loading error"
+msgstr ":: Errore di caricamento ::"
+
+msgid "Loading problem"
+msgstr ":: Problema sul caricamento ::"
+
+msgid "EmuDX"
+msgstr ":: EmuDX ::"
+
+msgid "Loading CPU code"
+msgstr "Caricamento codice della CPU..."
+
+msgid "Loading audio regions"
+msgstr "Caricamento dati audio..."
+
+msgid "Loading video regions"
+msgstr "Caricamento dati video..."
+
+#: source/sdl/gui.cpp:163
+msgid "Applying GFX Layouts and stuff..."
+msgstr "Applicazione impaginaz.grafica e altro..."
+
+msgid "Applying graphics layouts..."
+msgstr "Azionamento livelli grafici..."
+
+msgid "Sprites conversion..."
+msgstr "Conversione elementi grafici (sprites)..."
+
+msgid "Driver loading function..."
+msgstr "Funzione di caricamento del driver..."
+
+msgid "Decoding GFX layer"
+msgstr "Decodifica livello grafico..."
+
+msgid "Rebuilding 8x8 layer"
+msgstr "Ricostruzione del livello 8x8px..."
+
+msgid "Rebuilding 16x16 layer"
+msgstr "Ricostruzione del livello 16x16px..."
+
+msgid "Decrypting rom..."
+msgstr "Decriptazione della ROM..."
+
+msgid "Decrypting 68K (Code)"
+msgstr "Decriptazione codice 68K..."
+
+msgid "Decrypting GFX1 (Tilemaps)"
+msgstr "Decriptazione mappa dei tile GFX1..."
+
+msgid "Decrypting GFX2 (Sprites)"
+msgstr "Decriptazione elem.grafici GFX2..."
+
+msgid "Decrypting sprites"
+msgstr "Decriptazione elem.grafici..."
+
+msgid "Decrypting OKI (Sound)"
+msgstr "Decriptazione suono OKI..."
+
+msgid "kof97oro decrypt rom..."
+msgstr "Decriptazione della ROM KOF97oro..."
+
+msgid "kof97oro decrypt fix..."
+msgstr "Decriptazione corretta di KOF97oro..."
+
+msgid "kof97oro decrypt sprites..."
+msgstr "Decriptazione sprites di KOF97oro..."
+
+msgid "decrypting sprites (kof99 type)"
+msgstr "Decriptazione elem.grafici di KOF99..."
+
+msgid "Preparing ROMS (patches...)"
+msgstr "Preparazione patch sulle ROMs..."
+
+msgid "loading EmuDX big sprites"
+msgstr "Caricamento Sprite grandi per EmuDX"
+
+msgid "loading EmuDX sprites"
+msgstr "Caricamento Sprite per EmuDX"
+
+msgid "loading EmuDX tiles"
+msgstr "Caricamento Tile per EmuDX"
+
+#, c-format
+msgid "Unable to load: %s"
+msgstr "Impossibile caricare: %s"
+
+#, c-format
+msgid "Unable to open '%s' crc32:%x\n"
+msgstr "Impossibile aprire '%s' crc32:%x\n"
+
+#, c-format
+msgid "Unable to save: %s"
+msgstr "Impossibile salvare: %s"
+
+# ????
+#, c-format
+msgid "Bad CRC for ROM %s (%x)\n"
+msgstr "CRC errato per la ROM %s (%x)\n"
+
+#, c-format
+msgid "Bad ROM size for %s: tried to read %xh bytes, got %lxh\n"
+msgstr "Dimensione errata per la ROM %s: tentativo lettura di %xh byte, ottenuti %lxh\n"
+
+#, c-format
+msgid "Bad ROM size for %s: tried to read %xh bytes, got %xh\n"
+msgstr "Dimensione errata per la ROM %s: tentativo lettura di %xh byte, ottenuti %xh\n"
+
+msgid "The game might not run correctly."
+msgstr "Il gioco potrebbe non funzionare correttamente."
+
+#, c-format
+msgid "Search path:\n"
+msgstr "Percorsi di ricerca:\n"
+
+#, c-format
+msgid "The game didn't initialise any CPU, this game can't work !\n"
+msgstr "Il gioco non ha inizializzato nessuna CPU, di sicuro non funzionerà!\n"
+
+#, c-format
+msgid "ZIP file damaged for ROM %s\n"
+msgstr "Il file ZIP è danneggiato per la ROM %s\n"
+
+#, c-format
+msgid "The file '%s' can't be loaded"
+msgstr "Il file '%s' non può essere caricato"
+
+#, c-format
+msgid "ERROR: Unable to load gfx rom: %s"
+msgstr "ERRORE: Impossibile caricare la rom grafica: %s"
+
+#, c-format
+msgid "Without %s you will have no sound"
+msgstr "Senza %s non puoi sentire nessun audio (EmuDX)"
+
+#: source/sdl/gui.cpp:106
+msgid "Progress"
+msgstr "Avanzamento"
+
+# --------------------------------- IN-GAME ---------------------------------
+
+#, c-format
+msgid "Applied speed hack %d at %x"
+msgstr "Applicata modifica su velocita' (hack): %d in %x"
+
+#, c-format
+msgid "Applied speed hack at %d:%x"
+msgstr "Applicata modifica su velocita' (hack): %d in %x"
+
+#, c-format
+msgid "Applied speed hack at %x:%s"
+msgstr "Applicata modifica su velocita' (hack) a %x:%s"
+
+msgid "Speed hack not found, slowing down..."
+msgstr "Modifica su velocita' (hack) non trovata, esecuzione lenta..."
+
+msgid "Z80: applied HALT speed hack"
+msgstr "Applicata modifica su velocita' HALT (hack) su Z80"
+
+msgid "Z80: speed hack applied"
+msgstr "Applicata modifica su velocita' (hack) su Z80"
+
+#, c-format
+msgid "Long hack jump at %x..."
+msgstr "Lunga modifica sul salto (Long hack jump) in %x..."
+
+# -------------------------- NEOCD/NEOGEO: OPTIONS --------------------------
+
+#, c-format
+msgid "Neo-Geo bios : %s"
+msgstr "BIOS del Neo-Geo : %s"
+
+#: source/sdl/dialogs/neocd_options.cpp:172
+msgid "NeoCD bios"
+msgstr "BIOS del NeoCD"
+
+#, c-format
+msgid "NeoCD bios : %s"
+msgstr "BIOS del NeoCD : %s"
+
+#, c-format
+msgid "No NeoCD bios"
+msgstr "Nessun BIOS del NeoCD"
+
+#: source/sdl/dialogs/neocd_options.cpp:176
+msgid "Exit to"
+msgstr "Se esci dal gioco vai verso"
+
+#: source/sdl/dialogs/neocd_options.cpp:178
+msgid "Loading animations speed"
+msgstr "Velocità animazione di caricam."
+
+#: source/sdl/dialogs/neocd_options.cpp:180
+msgid "Update neocd sprite block"
+msgstr "Aggiorna il blocco di Sprite del NeoCD"
+
+#: source/sdl/dialogs/neocd_options.cpp:181
+msgid "Allow speed hacks"
+msgstr "Permetti modifica sulla velocità"
+
+#: source/sdl/dialogs/neocd_options.cpp:182
+msgid "Raster effects"
+msgstr "Emula gli effetti Raster"
+
+#: source/sdl/dialogs/neocd_options.cpp:183
+msgid "Capture mode"
+msgstr "Modalità di cattura"
+
+# ....................................
+
+#: source/sdl/dialogs/neocd_options.cpp:60
+#: source/sdl/dialogs/neocd_options.cpp:171
+msgid "Neo-Geo bios"
+msgstr "[ BIOS del Neo-Geo ]"
+
+#: source/????.cpp:????
+msgid "Find NeoCD bios"
+msgstr "[ Trova il BIOS per NeoCD ]"
+
+#: source/sdl/dialogs/neocd_options.cpp:177
+msgid "CD Interface"
+msgstr "Interfaccia CD"
+
+#: source/sdl/dialogs/neocd_options.cpp:177
+msgid "Test mode"
+msgstr "Modalità di prova"
+
+#: source/sdl/dialogs/neocd_options.cpp:177
+msgid "Config mode"
+msgstr "Configurazione"
+
+#: source/sdl/dialogs/neocd_options.cpp:177
+msgid "NeoGeo Logo"
+msgstr "Logo del NeoGeo"
+
+#: source/sdl/dialogs/neocd_options.cpp:179
+msgid "CD 1x (150 Kb/s)"
+msgstr "1x (150 Kb/s)"
+
+msgid "2x"
+msgstr "2x (molto lento)"
+
+msgid "4x"
+msgstr "4x (lento)"
+
+#: source/sdl/dialogs/neocd_options.cpp:179
+msgid "8x (default)"
+msgstr "8x (predefinito)"
+
+msgid "16x"
+msgstr "16x (veloce)"
+
+msgid "32x"
+msgstr "32x (molto veloce)"
+
+#: source/sdl/dialogs/neocd_options.cpp:179
+msgid "48x"
+msgstr "48x (il più veloce)"
+
+#: source/sdl/dialogs/neocd_options.cpp:183
+msgid "Overwrite"
+msgstr "Sovrascrivi"
+
+#: source/sdl/dialogs/neocd_options.cpp:183
+msgid "New pictures"
+msgstr "Nuove immagini"
+
+# ....................................
+
+#: source/sdl/dialogs/neocd_options.cpp:175
+msgid "Developper mode"
+msgstr "Modalità sviluppatore"
+
+#: source/sdl/dialogs/neocd_options.cpp:174
+msgid "Debug dips"
+msgstr "Debug dips"
+
+#: source/sdl/dialogs/neocd_options.cpp:173
+msgid "Soft dips"
+msgstr "Soft dips"
+
+#: source/sdl/dialogs/neo_softdips.cpp:171
+msgid "Soft dipswitches"
+msgstr "Soft dipswitches"
+
+# Truxton
+msgid "Dipsw display"
+msgstr "Mostra Dipswitch"
+
+msgid "Bad soft dips"
+msgstr "Soft Dips errato"
+
+# ....................................
+
+#: source/neocd/neocd.c:4561
+msgid "No game loaded yet"
+msgstr "Ancora nessun gioco caricato"
+
+msgid "No game loaded yet (neocd)"
+msgstr "Ancora nessun gioco caricato per NeoCD"
+
+msgid "Can't find any neogeo bios in your roms."
+msgstr "Spiacente, non trovo nessun BIOS per NeoGeo."
+
+msgid "Setup your rom directories so that neogeo.zip is loadable"
+msgstr "Inserisci il BIOS nel file neogeo.zip dentro una cartella giochi (roms)"
+
+msgid "Find the NeoCD bios (neocd.bin).\n"
+msgstr "Trova il BIOS del NeoCD (neocd.bin) e copialo nella cartella di Raine.\n"
+
+msgid "Ask Google if you can't find it !"
+msgstr "Cerca su Google.it il file neocd.bin se non ne hai già uno!"
+
+#, c-format
+msgid "Couldn't open iso file:|%s"
+msgstr "Non riesco ad aprire il file ISO:|%s"
+
+#, c-format
+msgid "Could not find audio track %d"
+msgstr "Non riesco a trovare la traccia audio %d"
+
+msgid "can't find iso file"
+msgstr "Non riesco a trovare il file ISO"
+
+#, c-format
+msgid "Track format unknown '%s'"
+msgstr "Formato sconosciuto per la traccia '%s'"
+
+msgid "Audio track unreadable"
+msgstr "Traccia audio illeggibile"
+
+msgid "Could not open IPL.TXT!"
+msgstr "Non riesco ad aprire il file IPL.TXT!"
+
+msgid "Error: Error while processing IPL.TXT."
+msgstr "Errore: Problema riscontrato durante l'analisi di IPL.TXT."
+
+msgid "Could not determine sector size from\n"
+msgstr "Non riesco a determinare la dimensione del settore dal\n"
+
+msgid "the cue file"
+msgstr "file .CUE"
+
+#, c-format
+msgid "Serious cue format error on line %s"
+msgstr "Errore grave nel formato CUE presente alla linea %s"
+
+#, c-format
+msgid "cue format error on line : %s"
+msgstr "Errore nel formato CUE presente alla linea %s"
+
+# ------------------------------ VIDEO OPTIONS ------------------------------
+
+#: source/sdl/dialogs/video_options.cpp:197
+msgid "SDL video driver"
+msgstr "Driver video SDL"
+
+#: source/sdl/dialogs/video_options.cpp:200
+msgid "Video renderer"
+msgstr "Responsabile della resa video"
+
+#: source/sdl/dialogs/video_options.cpp:202
+msgid "Fullscreen"
+msgstr "Schermo intero"
+
+#: source/sdl/dialogs/video_options.cpp:203
+msgid "Borderless"
+msgstr "Finestra senza bordi"
+
+msgid "Use double buffer (ignored by opengl)"
+msgstr "Usa doppio buffer (ignorato da OGL)"
+
+#: source/sdl/dialogs/video_options.cpp:205
+msgid "Blend file options..."
+msgstr "Opzioni su file di trasparenza (Blend)..."
+
+#: source/sdl/dialogs/video_options.cpp:206
+msgid "Video info..."
+msgstr "Info sulle caratteristiche video..."
+
+#: source/sdl/dialogs/video_options.cpp:207
+msgid "Renderer options"
+msgstr "Opzioni sulla resa grafica..."
+
+msgid "General options:"
+msgstr " - Impostazioni video generiche: - "
+
+msgid "Limit framerate <= 60fps"
+msgstr "Limita la freq. fotogrammi a <= 60/s"
+
+#: source/sdl/dialogs/video_options.cpp:210
+msgid "Frame skip"
+msgstr "Salta fotogrammi"
+
+#: source/sdl/dialogs/video_options.cpp:212
+msgid "Screen rotation"
+msgstr "Rotazione dello schermo"
+
+#: source/sdl/dialogs/video_options.cpp:214
+msgid "Flip screen"
+msgstr "Capovolgimento schermo"
+
+msgid "Save per game screen settings"
+msgstr "Salva impostaz. video per ogni gioco"
+
+# .................................... OPTIONS
+
+#: source/sdl/dialogs/video_options.cpp:198
+msgid "windib (good for ogl)"
+msgstr "Windib (buono per OpenGL)"
+
+#: source/sdl/dialogs/video_options.cpp:198
+msgid "SDL default (windib since 1.2.10)"
+msgstr "SDL predefinito (windib dalla v.1.2.10)"
+
+#: source/sdl/dialogs/video_options.cpp:198
+msgid "directx (good for hw overlays/blits)"
+msgstr "DirectX (buono per overlay/blit in hw)"
+
+#: source/sdl/dialogs/video_options.cpp:201
+msgid "Normal blits"
+msgstr "Blit normale"
+
+#: source/sdl/dialogs/video_options.cpp:201
+msgid "OpenGL"
+msgstr "OpenGL"
+
+#: source/sdl/dialogs/video_options.cpp:201
+msgid "YUV overlays"
+msgstr "YUV con sovrapposizioni"
+
+#: source/sdl/dialogs/video_options.cpp:204
+msgid "When possible"
+msgstr "Quando disponibile"
+
+#: source/sdl/dialogs/video_options.cpp:204
+msgid "Even with overlays"
+msgstr "Anche con sovrapposizioni"
+
+#: source/sdl/dialogs/video_options.cpp:215
+msgid "Flip X"
+msgstr "Capovolgi asse X"
+
+#: source/sdl/dialogs/video_options.cpp:215
+msgid "Flip Y"
+msgstr "Capovolgi asse Y"
+
+#: source/sdl/dialogs/video_options.cpp:215
+msgid "Flip XY"
+msgstr "Capovolgi assi X e Y"
+
+# ---------------------- VIDEO OPTIONS: BLEND OPTIONS ----------------------
+
+#: source/sdl/dialogs/video_options.cpp:182
+msgid "bld options"
+msgstr "[ Opzioni sulla trasparenza (Blend) ]"
+
+msgid "Use blending files (.bld)"
+msgstr "Usa file per la trasparenza (Blend/.bld)"
+
+#: source/sdl/dialogs/video_options.cpp:170
+msgid "Reset transparency values to default"
+msgstr "Ripristina i valori trasp. ai predefiniti"
+
+msgid "Transparency for 1 (25% default)"
+msgstr "Trasparenza per 1 (predefinito 25%)"
+
+msgid "Transparency for 2 (50% default)"
+msgstr "Trasparenza per 2 (predefinito 50%)"
+
+# -------------- VIDEO OPTIONS: RENDER INFO FOR YUV-BLIT/OPENGL --------------
+
+# .................................... YUV-BLIT INFO
+
+#: source/sdl/dialogs/video_info.cpp:98
+msgid "Video info"
+msgstr "[ Informazioni sulle caratteristiche video ]"
+
+msgid "Current display"
+msgstr "Schermo corrente"
+
+msgid "Video driver name"
+msgstr "Nome del driver video"
+
+msgid "hardware surface available"
+msgstr "Superficie hardware disponibile"
+
+msgid "window manager available"
+msgstr "Gestore delle finestre disponibile"
+
+msgid "accelerated hardware->hardware blits"
+msgstr "Accelerazione HW -> Blit HW"
+
+msgid "accelerated hardware->hardware colorkey blits"
+msgstr "Accelerazione HW -> Blit su colorkey HW"
+
+msgid "accelerated hardware->hardware alpha blits"
+msgstr "Accelerazione HW -> Alpha blit HW"
+
+msgid "accelerated software->hardware blits"
+msgstr "Accelerazione SW -> Blit HW"
+
+msgid "accelerated software->hardware colorkey blits"
+msgstr "Accelerazione SW -> Blit su colorkey HW"
+
+msgid "accelerated software->hardware alpha blits"
+msgstr "Accelerazione SW -> Alpha blit HW"
+
+msgid "accelerated color fills"
+msgstr "Accelerazione sul riempimento dei colori"
+
+msgid "Double buffer enabled"
+msgstr "Doppio buffer disponibile"
+
+#: source/sdl/dialogs/video_info.cpp:93
+msgid "Using unscaled blits"
+msgstr "Utilizzo di Blit non graduate"
+
+# .................................... OPENGL INFO
+
+msgid "OpenGL Current display"
+msgstr "Schermo corrente OpenGL"
+
+msgid "OpenGL vendor"
+msgstr "Fornitore di OpenGL"
+
+msgid "Renderer"
+msgstr "Dispostivo di resa grafica"
+
+msgid "Version"
+msgstr "Versione"
+
+msgid "OpenGL double buffer"
+msgstr "Doppio buffer di OpenGL"
+
+msgid "FSAA (multisampling)"
+msgstr "Smussamento contorni a SI (FSAA)"
+
+msgid "Acceleration"
+msgstr "Accelerazione"
+
+msgid "HW Acceleration"
+msgstr "Accelerazione in hardware"
+
+msgid "OpenGL VBL (force sync)"
+msgstr "Sincronia su soppres.vert. di OGL"
+
+# ------------ VIDEO OPTIONS: RENDER OPTIONS FOR YUV/BLIT/OPENGL ------------
+
+# .................................... YUV RENDER OPTIONS
+
+#: source/sdl/dialogs/video_options.cpp:141
+msgid "Overlays Options"
+msgstr ":: Opzioni YUV con sovrapposizioni ::"
+
+#: source/sdl/dialogs/video_options.cpp:63
+msgid "Prefered YUV format"
+msgstr "Formato YUV preferito"
+
+#: source/sdl/dialogs/video_options.cpp:64
+msgid "Fix aspect ratio to 4:3"
+msgstr "Fissa proporz. schermo a 4:3"
+
+#: source/sdl/dialogs/video_options.cpp:68
+#: source/sdl/dialogs/video_options.cpp:124
+msgid "Keep aspect ratio"
+msgstr "Mantieni le proporzioni"
+
+#: source/sdl/dialogs/video_options.cpp:63
+msgid "YUY2"
+msgstr "YUY2"
+
+#: source/sdl/dialogs/video_options.cpp:63
+msgid "YV12 (mpeg)"
+msgstr "YV12 (mpeg)"
+
+#: source/sdl/dialogs/video_options.cpp:66
+msgid "Overlays workarounds"
+msgstr "Soluzioni alternative per la sovrapposiz."
+
+# .................................... BLITS RENDER OPTIONS
+
+#: source/sdl/dialogs/video_options.cpp:142
+msgid "Blits Options"
+msgstr ":: Opzioni della resa video con Blit ::"
+
+#: source/sdl/dialogs/video_options.cpp:74
+msgid "Change video mode"
+msgstr "Cambia la modalità video"
+
+#: source/sdl/dialogs/video_options.cpp:76
+msgid "Scaler"
+msgstr "Ridimensionamento"
+
+#: source/sdl/dialogs/video_options.cpp:78
+msgid "Scanlines"
+msgstr "Linee di scansione"
+
+#: source/sdl/dialogs/video_options.cpp:75
+msgid "To match game resolution (low res most of the time)"
+msgstr "Adatta alla risoluz. del gioco (di solito molto bassa)"
+
+#: source/sdl/dialogs/video_options.cpp:75
+msgid "To match 2x game resolution"
+msgstr "Adatta al doppio della risoluzione del gioco"
+
+#: source/sdl/dialogs/video_options.cpp:77
+msgid "Scale2x/3x"
+msgstr "Scala a 2x/3x"
+
+#: source/sdl/dialogs/video_options.cpp:77
+msgid "Pixel double"
+msgstr "Raddoppia i pixel"
+
+#: source/sdl/dialogs/video_options.cpp:77
+msgid "hq2x/3x"
+msgstr "Alg.HQ2X/3X"
+
+msgid "You can't have at the same time a scaler + scanlines,\n"
+msgstr "Non è possibile avere allo stesso tempo ridimensionamento e linee di scansione,\n"
+
+msgid "You can't have at the same time a scaler + scanlines,"
+msgstr "Non è possibile avere allo stesso tempo ridimensionamento e linee di scansione!"
+
+msgid "Choose 1"
+msgstr "Scegline uno"
+
+#: source/sdl/dialogs/video_options.cpp:79
+msgid "Halfheight"
+msgstr "Metà altezza"
+
+#: source/sdl/dialogs/video_options.cpp:79
+msgid "Fullheight"
+msgstr "Massima altezza"
+
+msgid "Fullheight + Double width"
+msgstr "Massima altezza + Doppia larghezza"
+
+# .................................... OPENGL OPTIONS
+
+#: source/sdl/dialogs/video_options.cpp:140
+msgid "OpenGL Options"
+msgstr ":: Opzioni OpenGL ::"
+
+#: source/sdl/dialogs/video_options.cpp:118
+msgid "Rendering"
+msgstr "Resa grafica"
+
+#: source/sdl/dialogs/video_options.cpp:119
+msgid "Double buffer"
+msgstr "Doppio buffer"
+
+#: source/sdl/dialogs/video_options.cpp:120
+msgid "Save opengl screenshots"
+msgstr "Salva le schermate catturate con OGL"
+
+#: source/sdl/dialogs/video_options.cpp:121
+msgid "Shader"
+msgstr "Seleziona file ombreggiat. (Shader)..."
+
+#: source/sdl/dialogs/video_options.cpp:122
+msgid "OpenGL overlay interface"
+msgstr "Interfaccia sovrapposizione OpenGL"
+
+#: source/sdl/dialogs/video_options.cpp:125
+msgid "OpenGL filtering"
+msgstr "Filtri OpenGL"
+
+#: source/sdl/dialogs/video_options.cpp:118
+msgid "Texture (possible shaders)"
+msgstr "Texture (con Shader)"
+
+#: source/sdl/dialogs/video_options.cpp:118
+msgid "DrawPixels (no shaders)"
+msgstr "DrawPixels (senza Shader)"
+
+#: source/sdl/dialogs/video_options.cpp:125
+msgid "Nearest"
+msgstr "Più fedele"
+
+#: source/sdl/dialogs/video_options.cpp:125
+msgid "Linear"
+msgstr "Lineare"
+
+msgid "Select shader"
+msgstr "[ Seleziona il file di ombreggiatura (Shader) ]"
+
+msgid "Disable shaders ?"
+msgstr "Disabilita le ombreggiature (Shader) ?"
+
+# ----------------------------- SOUND OPTIONS -----------------------------
+
+#: source/sdl/dialogs/sound_options.cpp:27
+msgid "Emulate sound"
+msgstr "Emula il sonoro (musica, effetti sonori, CD)"
+
+#: source/sdl/dialogs/sound_options.cpp:30
+msgid "Sample rate"
+msgstr "Frequenza di campionamento audio"
+
+#: source/sdl/dialogs/sound_options.cpp:32
+msgid "ES5506 voice filters"
+msgstr "Applica filtri alle voci del ES5506 (Taito F3)"
+
+#: source/sdl/dialogs/sound_options.cpp:35
+msgid "Always stop CD music while loading"
+msgstr "Ferma sempre la musica CD mentre carica"
+
+#: source/sdl/dialogs/sound_options.cpp:36
+msgid "Sfx volume"
+msgstr "Volume degli effetti sonori"
+
+#: source/sdl/dialogs/sound_options.cpp:37
+msgid "Music volume"
+msgstr "Volume della musica"
+
+#: source/sdl/dialogs/sound_options.cpp:38
+msgid "Audio tracks format"
+msgstr "Ordine dei bit nel formato delle tracce audio"
+
+#: source/sdl/dialogs/sound_options.cpp:39
+msgid "Mute SFX"
+msgstr "Silenzia gli effetti sonori (SFX)"
+
+#: source/sdl/dialogs/sound_options.cpp:40
+msgid "Mute CD"
+msgstr "Silenzia la musica su CD"
+
+#: source/sdl/dialogs/sound_options.cpp:41
+msgid "Default volumes"
+msgstr "Ripristina volumi predefiniti"
+
+#: source/sdl/dialogs/sound_options.cpp:43
+msgid "Record to raine_sound.wav"
+msgstr "Registra audio nel file raine_sound.wav"
+
+#: source/sdl/dialogs/sound_options.cpp:45
+msgid "Sound commands..."
+msgstr "Comandi dei suoni..."
+
+# .................................... OPTIONS
+
+#: source/sdl/dialogs/sound_options.cpp:38
+msgid "lsb"
+msgstr "LSB"
+
+#: source/sdl/dialogs/sound_options.cpp:38
+msgid "msb"
+msgstr "MSB"
+
+#: source/sdl/dialogs/sound_options.cpp:43
+msgid "Without monitoring"
+msgstr "Senza monitoraggio"
+
+#: source/sdl/dialogs/sound_options.cpp:43
+msgid "With monitoring"
+msgstr "Con monitoraggio"
+
+# ----------------------------- SOUND COMMANDS -----------------------------
+
+#: source/sdl/dialogs/sound_commands.cpp:302
+msgid "Sound commands"
+msgstr "[ Comandi dei suoni ]"
+
+#: source/sdl/dialogs/sound_commands.cpp:231
+msgid "Command"
+msgstr "Comando"
+
+#: source/sdl/dialogs/sound_commands.cpp:232
+msgid "Test Sound"
+msgstr "Verifica suono"
+
+#: source/sdl/dialogs/sound_commands.cpp:238
+msgid "Stop"
+msgstr "Ferma"
+
+#: source/sdl/dialogs/sound_commands.cpp:239
+msgid "Associate..."
+msgstr "Associa..."
+
+#: source/sdl/dialogs/sound_commands.cpp:240
+msgid "Manage associations"
+msgstr "Gestisci associazioni..."
+
+#: source/sdl/dialogs/sound_commands.cpp:241
+msgid "Disable associations"
+msgstr "Disattiva associazioni"
+
+# .................................... OPTIONS
+
+msgid "Choose audio track"
+msgstr "[ Scegli la traccia audio da associare]"
+
+#: source/sdl/dialogs/sound_commands.cpp:206
+msgid "Sound associations"
+msgstr "[ Associazioni dei suoni ]"
+
+#: source/sdl/dialogs/sound_commands.cpp:175
+msgid "Track"
+msgstr "Traccia"
+
+#: source/sdl/dialogs/sound_commands.cpp:178
+msgid "File"
+msgstr "File"
+
+#: source/sdl/dialogs/sound_commands.cpp:207
+msgid "Loop"
+msgstr "Ciclo continuo"
+
+#: source/sdl/dialogs/sound_commands.cpp:178
+msgid "Silence"
+msgstr "Silenzio"
+
+msgid "Track options"
+msgstr " - Opzioni sulla traccia: - "
+
+msgid "Play track"
+msgstr "Ascolta traccia"
+
+msgid "Test command"
+msgstr "Verifica comando"
+
+msgid "Silence track"
+msgstr "Silenzia traccia"
+
+msgid "Change track"
+msgstr "Cambia traccia"
+
+msgid "Remove association"
+msgstr "Elimina associazione"
+
+msgid "Play track|Test command|Silence track|Change track|Remove association"
+msgstr "Ascolta traccia|Verifica comando|Silenzia traccia|Cambia traccia|Elimina associazione"
+
+msgid "No associations yet"
+msgstr "Ancora non associato"
+
+#: source/sdl/dialogs/sound_commands.cpp:144
+#: source/sdl/dialogs/sound_commands.cpp:155
+msgid "Playback"
+msgstr "Riproduzione"
+
+#: source/sdl/dialogs/sound_commands.cpp:235
+msgid "Test this"
+msgstr "Prova questo"
+
+msgid "Close this dialog to stop playback (Return, ESC or mouse button)"
+msgstr "Chiudi questo messaggio per fermare la riproduzione (premi Invio, Esc o il mouse)"
+
+# ---------------------------- EMULATOR OPTIONS ----------------------------
+
+# Lingua/Language/Langue/Idioma/Sprache - used as dipswitch as well
+msgid "Language"
+msgstr "Lingua"
+
+#: source/sdl/gui/tfont.cpp:34
+msgid "Min font size"
+msgstr "Dimensione minima del carattere"
+
+#: source/sdl/gui/tfont.cpp:35
+msgid "Max font size"
+msgstr "Dimensione massima del carattere"
+
+#: source/sdl/gui.cpp:90
+msgid "Key repeat delay"
+msgstr "Ritardo nella ripetizione dei tasti"
+
+#: source/sdl/gui.cpp:91
+msgid "Key repeat interval"
+msgstr "Intervallo nella ripetizione dei tasti"
+
+#: source/sdl/gui/menu.cpp:143
+msgid "Return mandatory"
+msgstr "Pressione del tasto Invio obbligatorio"
+
+#: source/sdl/gui/menu.cpp:144
+msgid "GUI transparency"
+msgstr "Trasparenza nell'interfaccia grafica"
+
+#: source/sdl/gui/menu.cpp:145
+msgid "Use custom mouse cursor"
+msgstr "Usa puntatore mouse personalizzato"
+
+#: source/????.cpp:????
+msgid "Minimum GUI resolution = VGA"
+msgstr "Imposta risoluz.minima interfaccia a VGA"
+
+#: source/sdl/dialogs/gui_options.cpp:19
+msgid "Colors..."
+msgstr "Modifica i colori dell'interfaccia grafica..."
+
+msgid "No HUD messages"
+msgstr "Disattiva messaggi in sovraimpressione"
+
+#: source/sdl/dialogs/gui_options.cpp:20
+msgid "Opaque HUD"
+msgstr "Messaggi in sovraimpressione resi opachi"
+
+#: source/sdl/dialogs/gui_options.cpp:21
+msgid "Pause when focus lost"
+msgstr "Metti in pausa quando la finestra è inattiva"
+
+#: source/sdl/dialogs/gui_options.cpp:32
+msgid "Directories..."
+msgstr "Percorsi delle cartelle..."
+
+# .................................... LANGUAGES
+
+msgid "Default (english)"
+msgstr "Predef.(ing.)"
+
+msgid "English"
+msgstr "Inglese"
+
+msgid "French"
+msgstr "Francese"
+
+msgid "Spanish"
+msgstr "Spagnolo"
+
+msgid "Portuguese"
+msgstr "Portoghese"
+
+msgid "German"
+msgstr "Tedesco"
+
+msgid "Italian"
+msgstr "Italiano"
+
+msgid "Russian"
+msgstr "Russo"
+
+msgid "Dutch"
+msgstr "Olandese"
+
+msgid "Danish"
+msgstr "Danese"
+
+msgid "Polish"
+msgstr "Polacco"
+
+msgid "Swedish"
+msgstr "Svedese"
+
+msgid "Indonesian"
+msgstr "Indonesiano"
+
+msgid "Norwegian"
+msgstr "Norvegese"
+
+msgid "Finnish"
+msgstr "Finlandese"
+
+msgid "Bengali"
+msgstr "Bengalese"
+
+msgid "Hungarian"
+msgstr "Ungherese"
+
+msgid "Hindi"
+msgstr "Hindi"
+
+msgid "Japanese"
+msgstr "Giapponese"
+
+msgid "Simplified Chinese"
+msgstr "Cinese sempl."
+
+msgid "Chinese"
+msgstr "Cinese"
+
+msgid "Korean"
+msgstr "Coreano"
+
+msgid "Arabic"
+msgstr "Arabo"
+
+msgid "Turkish"
+msgstr "Turco"
+
+# .................................... USER COLORS DIALOG
+
+#: source/sdl/dialogs/colors.cpp:143
+msgid "Colors"
+msgstr "[ Mofica i colori dell'interfaccia ]"
+
+#: source/sdl/dialogs/colors.cpp:108
+msgid "fg color"
+msgstr "Colore in primo piano"
+
+#: source/sdl/dialogs/colors.cpp:109
+msgid "bg color"
+msgstr "Colore di sfondo"
+
+#: source/sdl/dialogs/colors.cpp:110
+msgid "fg frame color"
+msgstr "Colore in primo piano della cornice"
+
+#: source/sdl/dialogs/colors.cpp:111
+msgid "bg frame color"
+msgstr "Colore di sfondo della cornice"
+
+#: source/sdl/dialogs/colors.cpp:112
+msgid "bg dialog bar color"
+msgstr "Colore di sfondo della barra di dialogo"
+
+#: source/sdl/dialogs/colors.cpp:113
+msgid "Blue"
+msgstr "Blu"
+
+#: source/sdl/dialogs/colors.cpp:113
+msgid "Green"
+msgstr "Verde"
+
+#: source/sdl/dialogs/colors.cpp:42
+msgid "red"
+msgstr "rosso"
+
+#: source/sdl/dialogs/colors.cpp:43
+msgid "green"
+msgstr "verde"
+
+#: source/sdl/dialogs/colors.cpp:44
+msgid "blue"
+msgstr "blu"
+
+#: source/sdl/dialogs/colors.cpp:45
+msgid "alpha"
+msgstr "alpha"
+
+#: source/sdl/dialogs/colors.cpp:41
+msgid "color"
+msgstr "colore"
+
+# .................................... EMUL DIRS
+
+#: source/sdl/dialogs/dirs.cpp:37
+msgid "Directories"
+msgstr "[ Percorsi delle cartelle ]"
+
+#: source/sdl/dialogs/dirs.cpp:22
+msgid "Screenshot dir"
+msgstr "Cartella degli schermi catturati"
+
+#: source/sdl/dialogs/dirs.cpp:25
+msgid "Emudx dir"
+msgstr "Cartella dei file EmuDX"
+
+#: source/sdl/dialogs/dirs.cpp:28
+msgid "Artwork dir"
+msgstr "Cartella delle copertine"
+
+msgid "m68kdis (console)"
+msgstr "Cartella per m68kdis"
+
+msgid "dz80 (console)"
+msgstr "Cartella per dz80"
+
+# --------------------------------- INPUTS ---------------------------------
+
+#: source/sdl/dialogs/controls.cpp:969
+msgid "Controls"
+msgstr "[ Impostazioni controlli e periferiche di gioco ]"
+
+#: source/sdl/dialogs/controls.cpp:929
+msgid "Raine controls"
+msgstr "Controlli dell'emulatore Raine"
+
+#: source/sdl/dialogs/controls.cpp:954
+msgid "Edit custom game inputs"
+msgstr "Controlli in ingresso personalizzati"
+
+#: source/sdl/dialogs/controls.cpp:945
+msgid "Edit default game inputs"
+msgstr "Modifica i controlli in ingresso predefiniti"
+
+#: source/sdl/dialogs/controls.cpp:946
+msgid "Switch to custom game controls"
+msgstr "Passa in modalità controlli personalizzati >>"
+
+#: source/sdl/dialogs/controls.cpp:931
+#: source/sdl/dialogs/controls.cpp:955
+msgid "Revert to default game controls"
+msgstr "<< Ritorna in modalità controlli predefiniti"
+
+#: source/sdl/dialogs/controls.cpp:932
+msgid "Video layers"
+msgstr "Controlli sui livelli grafici"
+
+#: source/sdl/dialogs/controls.cpp:542 source/sdl/dialogs/controls.cpp:933
+msgid "Autofire..."
+msgstr "Fuoco automatico (Autofire)..."
+
+#: source/sdl/dialogs/controls.cpp:934
+msgid "Autofire controls"
+msgstr "Controlli con fuoco automatico..."
+
+#: source/sdl/dialogs/controls.cpp:935
+msgid "Analog controls..."
+msgstr "Controlli analogici..."
+
+#: source/sdl/dialogs/controls.cpp:936
+msgid "Load inputs from..."
+msgstr "Carica controlli personalizzati da..."
+
+#: source/sdl/dialogs/controls.cpp:937
+msgid "Save inputs as..."
+msgstr "Salva controlli personalizzati come..."
+
+#: source/sdl/dialogs/controls.cpp:938
+msgid "Get inputs from another game"
+msgstr "Importa i controlli da un altro gioco"
+
+# .................................... RAINE CONTROLS
+
+#: source/sdl/dialogs/controls.cpp:390 source/sdl/dialogs/controls.cpp:413
+msgid "Raine Controls"
+msgstr "[ Controlli di Raine ] "
+
+#: source/sdl/dialogs/cheats.cpp:112
+msgid "Cheats"
+msgstr "Attiva trucco (Cheat)"
+
+msgid "Decrease cpu skip"
+msgstr "Diminuisci salti CPU"
+
+msgid "Decrease frameskip"
+msgstr "Diminuisci salti fotogramma"
+
+msgid "Fwd 1 frame in pause"
+msgstr "Prosegui di 1 fotogramma in pausa"
+
+msgid "Increase cpu skip"
+msgstr "Aumenta salti CPU"
+
+msgid "Increase frameskip"
+msgstr "Aumenta salti fotogramma"
+
+msgid "Load demo"
+msgstr "Carica demo"
+
+msgid "Load game with name"
+msgstr "Carica gioco con nome"
+
+msgid "Pause game"
+msgstr "Metti in pausa il gioco"
+
+msgid "Quit w/o saving"
+msgstr "Esci senza salvare"
+
+msgid "Reset game"
+msgstr "Riavvia gioco"
+
+msgid "Return to gui"
+msgstr "Ritorna all'interfaccia"
+
+msgid "Save Screenshot"
+msgstr "Salva schermata"
+
+msgid "Save demo"
+msgstr "Salva demo"
+
+msgid "Save game with name"
+msgstr "Salva gioco con nome"
+
+msgid "Stop emulation"
+msgstr "Ferma emulazione"
+
+msgid "Switch fps display"
+msgstr "Cambia visualizzaore FPS"
+
+msgid "Switch save slot"
+msgstr "Cambia posizione di salvataggio"
+
+msgid "Toggle limit speed"
+msgstr "Interruttore del limitatore velocità"
+
+# .................................... USER INPUT DIALOG
+
+#: source/sdl/dialogs/controls.cpp:233 source/sdl/dialogs/controls.cpp:275
+#: source/sdl/dialogs/controls.cpp:303
+msgid "Input"
+msgstr ":: Singolo controllo in ingresso (input) ::"
+
+#: source/sdl/dialogs/controls.cpp:196
+msgid "Press a key, a button, or move a joystick..."
+msgstr "Premi un tasto, un pulsante, o muovi un joystick..."
+
+#: source/sdl/dialogs/controls.cpp:197
+msgid "or escape to delete this control"
+msgstr "oppure Esc per eliminare questo controllo"
+
+msgid "What do you want to do ?"
+msgstr " - Quale operazione vuoi applicare ? - "
+
+msgid "Delete the key"
+msgstr "Cancella completamente il tasto associato"
+
+msgid "Delete the joystick ctrl"
+msgstr "Cancella il comando del joystick (ignora altro)"
+
+msgid "Del the mouse button"
+msgstr "Cancella il pulsante del mouse (ignora altro)"
+
+msgid "Really use ESC here"
+msgstr "Imposta davvero il tasto Esc"
+
+msgid "Delete the key|Delete the joystick ctrl|Del the mouse button"
+msgstr "Cancella il pulsante della tastiera|Cancella il comando del joystick|Cancella il pulsante del mouse (ignora altro)"
+
+msgid "Delete the key|Delete the joystick ctrl|Really use ESC here"
+msgstr "Cancella il pulsante della tastiera|Cancella il comando del joystick (ignora altro)|Imposta davvero il tasto Esc"
+
+#: source/sdl/dialogs/controls.cpp:203
+msgid "Press a key..."
+msgstr "Premi un tasto..."
+
+msgid "No buttons mapped by this game for autofire, sorry !"
+msgstr "Nessun pulsante di fuoco-automatico è stato associato per questo gioco!"
+
+msgid "Too many controls have been defined for this game, sorry !"
+msgstr "Troppi controlli sono stati definiti per questo gioco, mi spiace!"
+
+# .................................... LOAD/SAVE INPUTS
+
+msgid "Save 1st some custom inputs using\n"
+msgstr "Salva prima almeno dei controlli personalizzati con\n"
+
+msgid "Save inputs as"
+msgstr "Salva controlli personalizzati come"
+
+msgid "No game uses custom inputs in your config file yet"
+msgstr "Nel file di config. non c'è ancora nessun gioco che usa controlli personaliz."
+
+msgid "Load from which ?"
+msgstr ":: Da dove importare i dati ? ::"
+
+# .................................... ANALOG DEVICE
+
+#: source/sdl/dialogs/controls.cpp:726
+msgid "Select analog device"
+msgstr "[ Seleziona il dispositivo analogico ]"
+
+#: source/sdl/dialogs/controls.cpp:723
+msgid "No analog device"
+msgstr "Nessun dispositivo analogico"
+
+#: source/sdl/dialogs/controls.cpp:758
+msgid "Select the stick to use..."
+msgstr "[ Seleziona l'asta da usare ]"
+
+#: source/sdl/dialogs/controls.cpp:779
+msgid "Calibration"
+msgstr "[ Calibrazione ]"
+
+#: source/sdl/dialogs/controls.cpp:775
+msgid "Move the stick to all the extreme positions"
+msgstr "Muovi l'asta in tutte le posizioni più esterne"
+
+msgid "If it's a steering wheel, then move it to the max"
+msgstr "Se è un volante, allora ruotalo al massimo"
+
+#: source/sdl/dialogs/controls.cpp:777
+msgid "left and right positions, and press then release"
+msgstr "posiziona a sinistra e destra, premere e rilasciare"
+
+#: source/sdl/dialogs/controls.cpp:778
+msgid "each pedal separately"
+msgstr "ogni pedale separatamente"
+
+# ....................................
+
+#: source/sdl/dialogs/controls.cpp:466
+msgid "Ingame Controls"
+msgstr "[ Controlli nel gioco ]"
+
+# ????
+msgid "Not here"
+msgstr "Non presente"
+
+msgid "unknown key"
+msgstr "Tasto sconosc."
+
+# ????
+msgid "no key"
+msgstr "nes.tasto"
+
+#: source/sdl/dialogs/sound_commands.cpp:232
+msgid "Test"
+msgstr "Verifica"
+
+msgid "Service"
+msgstr "Servizio"
+
+msgid "Tilt"
+msgstr "Tilt"
+
+msgid "Tilt Left"
+msgstr "Tilt Sinistro"
+
+msgid "Tilt Right"
+msgstr "Tilt Destro"
+
+#, c-format
+msgid "Player"
+msgstr "Giocatore"
+
+msgid "Player1"
+msgstr "Giocatore 1"
+msgid "Player2"
+msgstr "Giocatore 2"
+msgid "Player3"
+msgstr "Giocatore 3"
+msgid "Player4"
+msgstr "Giocatore 4"
+
+msgid "Player1 Start"
+msgstr "Giocatore 1 Inizia"
+msgid "Player2 Start"
+msgstr "Giocatore 2 Inizia"
+msgid "Player3 Start"
+msgstr "Giocatore 3 Inizia"
+msgid "Player4 Start"
+msgstr "Giocatore 4 Inizia"
+
+msgid "Player1 Button1"
+msgstr "Giocatore 1 Pulsante 1"
+msgid "Player1 Button2"
+msgstr "Giocatore 1 Pulsante 2"
+msgid "Player1 Button3"
+msgstr "Giocatore 1 Pulsante 3"
+msgid "Player1 Button4"
+msgstr "Giocatore 1 Pulsante 4"
+msgid "Player2 Button1"
+msgstr "Giocatore 2 Pulsante 1"
+msgid "Player2 Button2"
+msgstr "Giocatore 2 Pulsante 2"
+msgid "Player2 Button3"
+msgstr "Giocatore 2 Pulsante 3"
+msgid "Player2 Button4"
+msgstr "Giocatore 2 Pulsante 4"
+msgid "Player3 Button1"
+msgstr "Giocatore 3 Pulsante 1"
+msgid "Player3 Button2"
+msgstr "Giocatore 3 Pulsante 2"
+msgid "Player3 Button3"
+msgstr "Giocatore 3 Pulsante 3"
+msgid "Player3 Button4"
+msgstr "Giocatore 3 Pulsante 4"
+msgid "Player4 Button1"
+msgstr "Giocatore 4 Pulsante 1"
+msgid "Player4 Button2"
+msgstr "Giocatore 4 Pulsante 2"
+msgid "Player4 Button3"
+msgstr "Giocatore 4 Pulsante 3"
+msgid "Player4 Button4"
+msgstr "Giocatore 4 Pulsante 4"
+
+# ---------------------------------- ABOUT ----------------------------------
+
+#: source/sdl/dialogs/about.cpp:716
+msgid "About this game"
+msgstr "Info su questo gioco"
+
+#: source/sdl/dialogs/about.cpp:762
+msgid "History..."
+msgstr ">> Informazioni storiche sul gioco..."
+
+#: source/sdl/dialogs/about.cpp:756
+msgid "Compiled on"
+msgstr "Compilato il"
+
+#: source/sdl/dialogs/about.cpp:756
+msgid "CPU emulators:"
+msgstr "Emulatori CPU:"
+
+#: source/sdl/dialogs/about.cpp:757
+msgid "Starscream 0.26r4 by Neill Corlett"
+msgstr "Starscream 0.26r4 di Neill Corlett"
+
+#: source/sdl/dialogs/about.cpp:758
+msgid "MZ80 3.4raine3 by Neill Bradley"
+msgstr "MZ80 3.4raine3 di Neill Bradley"
+
+#: source/sdl/dialogs/about.cpp:759
+msgid "M6502 1.6raine2 by Neill Bradley"
+msgstr "M6502 1.6raine2 di Neill Bradley"
+
+#: source/sdl/dialogs/about.cpp:760
+msgid "UAE 68020 Emulator : old hacked asm version from UAE"
+msgstr "68020EMU di UAE : modifica della vecchia ver. scritta in ASM"
+
+#: source/sdl/dialogs/about.cpp:761
+msgid "MCU 68705: statically recompiled code by Richard Mitton"
+msgstr "MCU68705: codice ricompilato staticam. da Richard Mitton"
+
+# ------------------------ GAME OPTIONS - TRANSLATOR ------------------------
+
+#: source/sdl/dialogs/translator.cpp:745
+#: source/sdl/dialogs/game_options.cpp:240
+msgid "Edit screen"
+msgstr "Modifica schermo"
+
+#: source/sdl/dialogs/translator.cpp:838
+#: source/sdl/dialogs/game_options.cpp:241
+msgid "Edit msg"
+msgstr "Modifica messaggio"
+
+# .................................... EDIT SCREEN
+
+msgid "File to edit ?"
+msgstr " - Quale file vuoi modificare? - "
+
+msgid "no 8x16 font available !!!"
+msgstr "Il carattere da 8x16px non è disponibile!"
+
+#: source/sdl/dialogs/translator.cpp:673
+#: source/sdl/dialogs/translator.cpp:681
+msgid "hidden"
+msgstr "Nascosto"
+
+# .................................... EDIT MSG
+
+
+#: source/sdl/dialogs/translator.cpp:810
+msgid "msg to edit"
+msgstr "[ Messaggio da modificare ]"
+
+#: source/sdl/dialogs/translator.cpp:674
+msgid "Insert special code..."
+msgstr "Inserisci codice speciale..."
+
+#: source/sdl/dialogs/translator.cpp:987
+msgid "Translator"
+msgstr "Traduttore"
+
+# ----------------------------- COMMON STRINGS -----------------------------
+
+msgid "Fatal error"
+msgstr ":: Errore grave ::"
+
+msgid "Error"
+msgstr ":: Errore ::"
+
+msgid "Warning"
+msgstr ":: Avvertimento ::"
+
+msgid "Confirmation"
+msgstr ":: Conferma ::"
+
+msgid "Selection"
+msgstr ":: Selezione ::"
+
+#: source/sdl/gui/tedit.cpp:267
+msgid "Edition"
+msgstr ":: Modifica personalizzata ::"
+
+msgid "Question"
+msgstr ":: Domanda di conferma ::"
+
+msgid "Choice"
+msgstr ":: Possibili scelte ::"
+
+msgid "Load from"
+msgstr "Carica da"
+
+msgid "Save as"
+msgstr "Salva come"
+
+#: source/sdl/dialogs/neocd_options.cpp:182
+msgid "Enabled"
+msgstr "Attivato"
+
+#: source/sdl/dialogs/neocd_options.cpp:182
+msgid "Disabled"
+msgstr "Disattivato"
+
+#: source/sdl/dialogs/game_selection.cpp:39
+msgid "With"
+msgstr "Compresi"
+
+#: source/sdl/dialogs/game_selection.cpp:39
+msgid "Without"
+msgstr "Esclusi"
+
+msgid "Available"
+msgstr "Disponibile"
+
+msgid "unavailable"
+msgstr "Non disponibile"
+
+# Majestic Twelve
+msgid "Not Allowed"
+msgstr "Non permesso"
+
+msgid "Allowed"
+msgstr "Permesso"
+
+msgid "Don't use"
+msgstr "Non usare"
+
+msgid "Default"
+msgstr "Predefinito"
+
+#: source/sdl/dialogs/game_selection.cpp:39
+msgid "OK"
+msgstr "Va bene"
+
+#: source/sdl/dialogs/game_selection.cpp:39
+msgid "Ok"
+msgstr "Okay!"
+
+msgid "ok"
+msgstr "ok"
+
+#: source/sdl/dialogs/video_options.cpp:75
+#: source/sdl/dialogs/video_options.cpp:204
+msgid "Never"
+msgstr "Mai"
+
+#: source/sdl/dialogs/video_options.cpp:77
+#: source/sdl/dialogs/video_options.cpp:133
+#: source/sdl/dialogs/video_options.cpp:213
+#: source/sdl/dialogs/video_options.cpp:215
+msgid "None"
+msgstr "Nessuno"
+
+msgid "Auto"
+msgstr "Automatico"
+
+#: source/sdl/dialogs/colors.cpp:113
+msgid "Revert to..."
+msgstr "Reimposta a..."
+
+#: source/sdl/console/scripts.cpp:131 source/sdl/dialogs/cheats.cpp:106
+#: source/sdl/dialogs/game_options.cpp:214
+msgid "On"
+msgstr "Attivo"
+
+#: source/sdl/console/scripts.cpp:130 source/sdl/dialogs/cheats.cpp:105
+#: source/sdl/dialogs/game_options.cpp:213
+#: source/sdl/dialogs/game_options.cpp:247 source/sdl/dialogs/controls.cpp:528
+#: source/sdl/dialogs/neocd_options.cpp:179
+#: source/sdl/dialogs/video_options.cpp:79
+msgid "Off"
+msgstr "Non attivo"
+
+msgid "Yes|No"
+msgstr "Sì|No"
+
+#: source/sdl/dialogs/gui_options.cpp:20 source/sdl/dialogs/gui_options.cpp:21
+#: source/sdl/dialogs/sound_commands.cpp:241
+#: source/sdl/dialogs/sound_options.cpp:27
+#: source/sdl/dialogs/sound_options.cpp:32
+#: source/sdl/dialogs/sound_options.cpp:35
+#: source/sdl/dialogs/sound_options.cpp:39
+#: source/sdl/dialogs/sound_options.cpp:40
+#: source/sdl/dialogs/game_selection.cpp:40
+#: source/sdl/dialogs/neocd_options.cpp:175
+#: source/sdl/dialogs/neocd_options.cpp:181
+#: source/sdl/dialogs/video_info.cpp:25 source/sdl/dialogs/video_options.cpp:64
+#: source/sdl/dialogs/video_options.cpp:66
+#: source/sdl/dialogs/video_options.cpp:68
+#: source/sdl/dialogs/video_options.cpp:119
+#: source/sdl/dialogs/video_options.cpp:120
+#: source/sdl/dialogs/video_options.cpp:122
+#: source/sdl/dialogs/video_options.cpp:123
+#: source/sdl/dialogs/video_options.cpp:124
+#: source/sdl/dialogs/video_options.cpp:169
+#: source/sdl/dialogs/video_options.cpp:202
+#: source/sdl/dialogs/video_options.cpp:203
+#: source/sdl/dialogs/video_options.cpp:209 source/sdl/gui/menu.cpp:143
+#: source/sdl/gui/menu.cpp:144 source/sdl/gui/menu.cpp:146
+#: source/sdl/gui/menu.cpp:147
+msgid "Yes"
+msgstr "Sì"
+
+#: source/sdl/dialogs/gui_options.cpp:20 source/sdl/dialogs/gui_options.cpp:21
+#: source/sdl/dialogs/sound_commands.cpp:241
+#: source/sdl/dialogs/sound_options.cpp:27
+#: source/sdl/dialogs/sound_options.cpp:32
+#: source/sdl/dialogs/sound_options.cpp:35
+#: source/sdl/dialogs/sound_options.cpp:39
+#: source/sdl/dialogs/sound_options.cpp:40
+#: source/sdl/dialogs/sound_options.cpp:43
+#: source/sdl/dialogs/game_selection.cpp:40
+#: source/sdl/dialogs/neocd_options.cpp:175
+#: source/sdl/dialogs/neocd_options.cpp:181
+#: source/sdl/dialogs/video_info.cpp:24 source/sdl/dialogs/video_options.cpp:64
+#: source/sdl/dialogs/video_options.cpp:66
+#: source/sdl/dialogs/video_options.cpp:68
+#: source/sdl/dialogs/video_options.cpp:119
+#: source/sdl/dialogs/video_options.cpp:120
+#: source/sdl/dialogs/video_options.cpp:122
+#: source/sdl/dialogs/video_options.cpp:123
+#: source/sdl/dialogs/video_options.cpp:124
+#: source/sdl/dialogs/video_options.cpp:169
+#: source/sdl/dialogs/video_options.cpp:202
+#: source/sdl/dialogs/video_options.cpp:203
+#: source/sdl/dialogs/video_options.cpp:209 source/sdl/gui/menu.cpp:143
+#: source/sdl/gui/menu.cpp:144 source/sdl/gui/menu.cpp:146
+#: source/sdl/gui/menu.cpp:147
+msgid "No"
+msgstr "No"
+
+# --------------------------- RAINE LOADING MSGS ---------------------------
+
+#: source/sdl/dialogs/video_info.cpp:87
+msgid "Currently using hardware accelerated YUY2 overlay"
+msgstr "In uso la sovrapposiz. YUY2 con acceleraz. hardware"
+
+#: source/sdl/dialogs/video_info.cpp:85
+msgid "Currently using hardware accelerated YV12 overlay"
+msgstr "In uso la sovrapposiz. YV12 con acceleraz. hardware"
+
+#: source/sdl/dialogs/video_info.cpp:89
+msgid "Currently using scale2x"
+msgstr "In uso il ridimensionamento al doppio dei pixel"
+
+#: source/sdl/dialogs/video_info.cpp:91
+msgid "Currently using scale3x"
+msgstr "In uso il ridimensionamento al triplo dei pixel"
+
+msgid "RDTSC Timing Enabled (cycles)"
+msgstr "Abilitata Temporizzaz. RDTSC (cicli)"
+
+msgid "RDTSC Timing Enabled (percentages)"
+msgstr "Abilitata Temporizzaz. RDTSC (percentuale)"
+
+#, c-format
+msgid "Screen Saved to %s"
+msgstr "Schermata salvata come %s"
+
+msgid "No speed limit !"
+msgstr "Nessun limite di velocità !"
+
+#, c-format
+msgid "Speed limit %d fps"
+msgstr "Velocità limitata a %d fps"
+
+#, c-format
+msgid "used override for %s"
+msgstr "In uso l'override per %s"
+
+#, c-format
+msgid "Playing from: %s"
+msgstr "In play da: %s"
+
+#, c-format
+msgid "Drawing Every %1d Frames"
+msgstr "Disegna ogni %1d fotogrammi"
+
+#, c-format
+msgid "Can't create %s"
+msgstr "Non è possibile creare %s"
+
+#, c-format
+msgid "Music error: %s"
+msgstr "Errore musica: %s"
+
+#, c-format
+msgid "%d - Free savegame slot"
+msgstr "%d - Posizione libera per il salvataggio del gioco"
+
+#, c-format
+msgid "%s is not recognised"
+msgstr "%s non è riconosciuto"
+
+#, c-format
+msgid "%s is too ancient!"
+msgstr "%s è troppo vecchio!"
+
+msgid "Game does not support Loading."
+msgstr "Il gioco non supporta il caricamento."
+
+msgid "Game does not support Saving."
+msgstr "Il gioco non supporta il salvataggio."
+
+#, c-format
+msgid "Running CPU Every %01d Frames"
+msgstr "Esecuzione della CPU ogni %01d fotogrammi"
+
+#, c-format
+msgid "cpusldn:Running CPU Every %01d Frames"
+msgstr "cpusldn: Esecuzione della CPU ogni %01d fotogrammi"
+
+#, c-format
+msgid "M68705: Invalid jump address (0x%x)\n"
+msgstr "M68705: Salto all'indirizzo non valido (0x%x)\n"
+
+#, c-format
+msgid "Recording demo to: %s"
+msgstr "Registrazione demo su: %s"
+
+msgid "Recording to wav..."
+msgstr "Registrazione audio sul file wav..."
+
+msgid "No raine logo, or it's a true color bitmap"
+msgstr "Logo di Raine non presente, oppure c'è ma è una bitmap in true-color"
+
+msgid "raine_logo.png must have the 1st color of the palette\n"
+msgstr "Raine_Logo.png deve avere il primo colore della tavolozza dei colori\n"
+msgid "(color 0) as transparent"
+msgstr "(colore di indice 0) come trasparente"
+
+msgid "This picture isn't 8bpp"
+msgstr "Questa immagine non è a 8bpp (256 colori)"
+
+msgid "history.dat not found\n"
+msgstr "History.dat non trovato!\n"
+msgid "Download it from http://www.arcade-history.com/index.php?page=download\n"
+msgstr "Scaricalo da http://www.arcade-history.com/index.php?page=download\n"
+msgid "and install it in your raine directory\n"
+msgstr "e copia il file .dat nella cartella di Raine\n"
+msgid "in linux ~/.raine or /usr/share/games/raine\n"
+msgstr "sotto linux copia in ~/.raine o /usr/share/games/raine\n"
+
+msgid "Open this page now !|Later maybe..."
+msgstr "Apri ora questa pagina|Forse dopo..."
+
+msgid "No savegames loadable for this game"
+msgstr "Per questo gioco non c'è nessun salvataggio disponibile"
+
+msgid "FPS Counter Disabled"
+msgstr "Disabilitato il conteggio dei frame al sec. (FPS)"
+
+msgid "FPS Counter Enabled"
+msgstr "Abilitato il conteggio dei frame al sec. (FPS)"
+
+msgid "Average FPS Counter Enabled"
+msgstr "Abilitato il conteggio sulla media dei frame al sec. (FPS)"
+
+msgid "Drawing All Frames"
+msgstr "Disegna tutti i fotogrammi"
+
+msgid "Running CPU All Frames"
+msgstr "Esecuzione della CPU per tutti i fotogrammi"
+
+#, c-format
+msgid "Remaining size not enough for continue %s\n"
+msgstr "Le dimensioni rimaste non sono sufficienti per continuare %s\n"
+
+msgid "Sprites layer"
+msgstr "Livello di sprites"
+
+# .................................... VIDEO
+
+msgid "No options for this renderer ? Strange !"
+msgstr "Nessuna opzione per questo tipo di resa grafica? Strano !"
+
+msgid "No hardware support for overlays"
+msgstr "L'hardware non supporta la sovrapposizione (Overlays)"
+
+msgid "No opengl info yet, run something first"
+msgstr "Ancora nessuna info su OpenGL, esegui prima qualcosa"
+
+msgid "No shader support on your hardware"
+msgstr "Il tuo hardware non supporta l'ombreggiatura (Shader)"
+
+msgid "OpenGL error"
+msgstr "Errore di OpenGL"
+
+msgid "switch to 16bpp color depth and reload"
+msgstr "Cambia la profondità di colore dello schermo a 16bpp e ricarica"
+
+#, c-format
+msgid "Not enough memory for layer bitmap %d"
+msgstr "Momoria insufficiente per il livello bitmap %d"
+
+#, c-format
+msgid "bad screen format, report this to rainemu.com:\n"
+msgstr "Formato dello schermo errato, segnalare l'errore sul sito di Raine:\n"
+
+#, c-format
+msgid "bpp : %d rshift %d gshift %d bshift %d"
+msgstr "bpp : %d rshift %d gshift %d bshift %d"
+
+msgid "error while attaching fragment shader"
+msgstr "errore verificato sull'interpolazione sull'ombreggiatura (Fragment Shader)"
+
+msgid "error while attaching vertex shader"
+msgstr "errore verificato sulla colorazione dei vertici (Vertex Shader)"
+
+msgid "Error linking shader"
+msgstr "Errore collegando il sistema di ombreggiatura (Shader)"
+
+msgid "Errors compiling fragment shader"
+msgstr "Errori compilando l'interpolazione sull'ombreggiatura (Fragment Shader)"
+
+msgid "Errors compiling vertex shader"
+msgstr "Errori compilando la colorazione dei vertici (Vertex Shader)"
+
+#, c-format
+msgid "The field %d must have a value between %d and %d"
+msgstr "Il campo %d deve avere un valore compreso tra %d e %d"
+
+#, c-format
+msgid "The field %g must have a value between %g and %g"
+msgstr "Il campo %g deve avere un valore compreso tra %g e %g"
+
+#, c-format
+msgid "The field %x must have a value between %x and %x"
+msgstr "Il campo %x deve avere un valore compreso tra %x e %x"
+
+msgid "Transparent masks / rotation"
+msgstr "Maschere/Rotazione trasparente"
+
+msgid "EmuDX support ?"
+msgstr "Supporto EmuDX ?"
+
+# ----------------------------- GAMES CATEGORY -----------------------------
+
+msgid "Beat'em up"
+msgstr "Picchiaduro"
+
+msgid "Breakout"
+msgstr "Rompimattoni"
+
+msgid "Fight"
+msgstr "Lotta"
+
+msgid "Maze"
+msgstr "Labirinto"
+
+msgid "Misc"
+msgstr "Misto"
+
+msgid "Platform"
+msgstr "Piattaforme"
+
+msgid "Puzzle"
+msgstr "Rompicapo"
+
+msgid "Quizz"
+msgstr "Indovinello"
+
+msgid "Race"
+msgstr "Corse"
+
+msgid "Shoot'em up"
+msgstr "Sparatutto"
+
+msgid "Sport"
+msgstr "Sportivo"
+
+msgid "Adult"
+msgstr "Erotico"
+
+# ------------------------------- INPUT ITEMS -------------------------------
+
+msgid "Stick 0"
+msgstr "Asta 0"
+msgid "Stick 1"
+msgstr "Asta 1"
+msgid "Stick 2"
+msgstr "Asta 2"
+msgid "Stick 3"
+msgstr "Asta 3"
+
+#: source/sdl/dialogs/controls.cpp:44
+msgid "UP"
+msgstr "SOPRA"
+
+#: source/sdl/dialogs/controls.cpp:42
+msgid "DOWN"
+msgstr "SOTTO"
+
+#: source/sdl/dialogs/controls.cpp:49
+msgid "LEFT"
+msgstr "SINISTRA"
+
+#: source/sdl/dialogs/controls.cpp:47
+msgid "RIGHT"
+msgstr "DESTRA"
+
+msgid "Btn 1"
+msgstr "Pulsante 1"
+msgid "Btn 2"
+msgstr "Pulsante 3"
+msgid "Btn 3"
+msgstr "Pulsante 3"
+msgid "Btn 4"
+msgstr "Pulsante 4"
+msgid "Btn 5"
+msgstr "Pulsante 5"
+msgid "Btn 6"
+msgstr "Pulsante 6"
+
+msgid "Mouse btn 1"
+msgstr "Puls.Mouse 1"
+msgid "Mouse btn 2"
+msgstr "Puls.Mouse 2"
+msgid "Mouse btn 3"
+msgstr "Puls.Mouse 3"
+msgid "Mouse btn 4"
+msgstr "Puls.Mouse 4"
+
+msgid "escape"
+msgstr "Esc"
+
+msgid "up"
+msgstr "sopra"
+
+msgid "down"
+msgstr "sotto"
+
+msgid "left"
+msgstr "sinistra"
+
+msgid "right"
+msgstr "destra"
+
+msgid "Brake"
+msgstr "Freno"
+
+msgid "Accelerator"
+msgstr "Acceleratore"
+
+# ------------------------ DIPSWITCHES (MOST COMMON) ------------------------
+
+msgid "Unused"
+msgstr "(Non usato)"
+
+msgid "Unknown"
+msgstr "(Sconosciuto)"
+
+# Ms Pacman Hack
+msgid "Alternate"
+msgstr "Alternativo"
+
+msgid "Unlimited"
+msgstr "Illimitato"
+
+# Bubble Bobble
+msgid "Mode"
+msgstr "Modalità"
+
+msgid "Cabinet Moves"
+msgstr "Movim. del Cabinato"
+
+# CPS1
+msgid "Game Mode"
+msgstr "Modalità avvio"
+
+# {common}
+msgid "Test Mode"
+msgstr "Modalità verifica"
+
+# CPS1
+msgid "Game"
+msgstr "Gioco"
+
+msgid "Double"
+msgstr "Doppio"
+
+# {common}
+msgid "Difficulty"
+msgstr "Difficoltà"
+
+# {common}
+msgid "Free Play"
+msgstr "Gioca gratis"
+
+# {common}
+msgid "Freeze"
+msgstr "Congela"
+
+# {common}
+msgid "Flip Screen"
+msgstr "Capovolgi schermo"
+msgid "Normal"
+msgstr "Normale"
+msgid "Invert"
+msgstr "Invertito"
+
+# {common}
+msgid "Demo Sound"
+msgstr "Musica d'attesa"
+
+# Gigandes
+msgid "Demo Game"
+msgstr "Gioca demo"
+
+# Phantasm, Plump Pop, Quiz HQ, Rygar
+msgid "Continue Play"
+msgstr "Continua il gioco"
+
+# Gun Frontier, Metal Black Jap, Operation Thunderbolt, etc.
+msgid "Continue Mode"
+msgstr "Modalità Continua"
+
+# Blandia, Euro Champ 92, Rastan, Truxton
+msgid "Continue"
+msgstr "Continua"
+
+# Batsugun, Fix Eight, Knuckle Bash, Truxton
+msgid "Territory"
+msgstr "Territorio"
+
+# Gigandes
+msgid "Invincibility"
+msgstr "Invincibilità"
+
+# Crazy Climber 2, Legend of Makai, Makai Densetsu, Maze of Flott, etc.
+msgid "Invulnerability"
+msgstr "Invulnerabilità"
+
+# CPS1
+msgid "Allow Continue"
+msgstr "Permetti di continuare"
+
+# CPS1
+msgid "2 Players Game"
+msgstr "Gioca con 2 gioc."
+
+# {common}
+msgid "Extra Life"
+msgstr "Vita Extra"
+
+# Winter Bobble
+msgid "Extra Life at"
+msgstr "Vita Extra a"
+
+# Battle K-Road
+msgid "Bonus Life"
+msgstr "Vita Bonus"
+
+msgid "Life"
+msgstr "Grado di vita"
+
+# JJ Squawkers, Magical Cat adv., Ninja Gaiden, etc.
+msgid "Energy"
+msgstr "Energia"
+
+# {common}
+msgid "Lives"
+msgstr "Num. di Vite"
+
+msgid "Life Bar"
+msgstr "Barra energia"
+
+msgid "Cheat"
+msgstr "Trucco"
+
+msgid "ROM type"
+msgstr "Tipo di ROM"
+
+msgid "Cabinet"
+msgstr "Cabinato"
+
+msgid "Cabinet Type"
+msgstr "Tipo di Cabinato"
+
+msgid "Upright"
+msgstr "In piedi (Upright)"
+
+msgid "Table"
+msgstr "Tavolo (Table)"
+
+msgid "Cocktail"
+msgstr "Su piano (Cocktail)"
+
+msgid "Cockpit"
+msgstr "Strutturato (Cockpit)"
+
+# Dino Rex, Demo Taito F2, Liquid Kids, Pulilura, Quiz HQ
+msgid "Upright Controls"
+msgstr "Controlli verticali"
+msgid "Single"
+msgstr "Singolo"
+msgid "Dual"
+msgstr "Duplice"
+
+# ....................................
+
+msgid "1 Player"
+msgstr "1 Giocatore"
+
+# Euro Champ 92, WWF Westlefest
+msgid "2 Players"
+msgstr "2 Giocatori"
+
+msgid "3 Players"
+msgstr "3 Giocatori"
+
+# WWF Westlefest
+msgid "4 Players"
+msgstr "4 Giocatori"
+
+# ....................................
+
+# More more, Ms PacMan, Mug Smashers, Pnickies
+msgid "Coinage"
+msgstr "Conio"
+
+# Cuby Bop, Nastar Warrior, Pnickies, Puzznic
+msgid "Coin Slots"
+msgstr "Num.gettoni per credito"
+
+# Blandia, Dragon Unit, Meta Fox, Multi Champ, Twin Eagle
+msgid "Coinage Type"
+msgstr "Tipo di gettoniera"
+
+# Fantasia, Blood Bros, Magical Cat adv., Miss World 96, West Story
+msgid "Coin Mode"
+msgstr "Modo gettone"
+
+# Fantasia, Miss World 96
+msgid "Mode 1"
+msgstr "Modo 1"
+msgid "Mode 2"
+msgstr "Modo 2"
+
+msgid "Coin Chutes?"
+msgstr "Ingressi monete?"
+
+# {common}
+msgid "Coin A"
+msgstr "Gettoniera A"
+msgid "Coin B"
+msgstr "Gettoniera B"
+msgid "Coin C"
+msgstr "Gettoniera C"
+msgid "Coin D"
+msgstr "Gettoniera D"
+
+# CPS1, Zombie Raid
+msgid "2 Coins to Start,1 to Continue"
+msgstr "2 gett. inizia,1 continua"
+
+# CPS1
+msgid "2 Coins to Start,2 to Continue"
+msgstr "2 gett. inizia,2 continua"
+
+msgid "1 Coin"
+msgstr "1 Gettone"
+
+msgid "2 Coins"
+msgstr "2 Gettoni"
+
+msgid "1 Credit"
+msgstr "1 Credito"
+
+msgid "2 Credits"
+msgstr "2 Crediti"
+
+msgid "1 Coin to Continue"
+msgstr "1 Gettone per cont."
+
+msgid "2 Coin to Continue"
+msgstr "2 Gettoni per cont."
+
+# ....................................
+
+msgid "Easiest"
+msgstr "Facilissimo"
+
+msgid "Easier"
+msgstr "Più facile"
+
+msgid "Very Easy"
+msgstr "Molto facile"
+
+msgid "Easy"
+msgstr "Facile"
+
+msgid "Hard"
+msgstr "Difficile"
+
+msgid "Very Hard"
+msgstr "Molto difficile"
+
+msgid "Harder"
+msgstr "Più difficile"
+
+msgid "Hardest"
+msgstr "Difficilissimo"
+
+# ....................................
+
+# CPS1
+msgid "1 (Easiest)"
+msgstr "1 (Facilissimo)"
+
+msgid "4 (Normal)"
+msgstr "4 (Normale)"
+
+msgid "8 (Hardest)"
+msgstr "8 (Difficilissimo)"
+
+# ....................................
+
+msgid "Very Slow"
+msgstr "Molto lento"
+
+msgid "Slow"
+msgstr "Lento"
+
+msgid "Fast"
+msgstr "Veloce"
+
+msgid "Very Fast"
+msgstr "Molto veloce"
+
+# ....................................
+
+msgid "More Slowly"
+msgstr "Più lentamente"
+
+msgid "Slowly"
+msgstr "Lentamente"
+
+msgid "Quickly"
+msgstr "Velocemente"
+
+msgid "More Quickly"
+msgstr "Più velocemente"
+
+# ....................................
+
+msgid "Very Low"
+msgstr "Molto bassa"
+
+msgid "Low"
+msgstr "Bassa"
+
+msgid "Medium"
+msgstr "Media"
+
+msgid "High"
+msgstr "Alta"
+
+msgid "Very High"
+msgstr "Molto alta"
+
+# ....................................
+
+msgid "Smallest"
+msgstr "Piccolissimo"
+
+msgid "Small"
+msgstr "Piccolo"
+
+msgid "Big"
+msgstr "Grande"
+
+msgid "Biggest"
+msgstr "Grandissimo"
+
+msgid "Large"
+msgstr "Largo"
+
+# ---------------------------------------------------------------------------
+
+msgid "no mixer yet"
+msgstr "ancora nessun mixer"
+
+msgid "path format error"
+msgstr "errore nel formato percorso"
+
+msgid "recreating fixed layer"
+msgstr "ricostruzione sistemata del livello"
+
+# Air Gallet
+msgid "disabling row select (agallet)"
+msgstr "Disabilitata la selezione della riga (row select) per AirGallet"
+
+msgid "indexes alloc error"
+msgstr "Errore nell'indice di allocazione"
+
+#, c-format
+msgid "layer %d disabled"
+msgstr "Livello %d disabilitato"
+
+msgid "layer 1 disabled"
+msgstr "Livello 1 disabilitato"
+
+#, c-format
+msgid "line scroll %d"
+msgstr "Scorrimento linea %d"
+
+#, c-format
+msgid "no line scroll %d"
+msgstr "Nessuna linea di scorrimento %d"
+
+#, c-format
+msgid "line scroll bg0 %d %d size %d"
+msgstr "Linea di scorrimento BG0 %d %d dimensione %d"
+
+#, c-format
+msgid "line scroll bg1 %d %d size %d"
+msgstr "Linea di scorrimento BG1 %d %d dimensione %d"
+
+#, c-format
+msgid "row scroll %d"
+msgstr "Riga di scorrimento %d"
+
+#, c-format
+msgid "row select layer %d size %d"
+msgstr "Riga di scorrimento su livello %d dimensione %d"
+
+msgid "row scroll on 8x8 layer unemulated"
+msgstr "Riga di scorrimento su livello 8x8 non emulata"
+
+# ....................................
+
+msgid "CPU M6502#0 Reset"
+msgstr ""
+
+msgid "CPU M6502#1 Reset"
+msgstr ""
+
+msgid "CPU M6502#2 Reset"
+msgstr ""
+
+msgid "CPU M68000#0 Reset"
+msgstr ""
+
+msgid "CPU M68000#1 Reset"
+msgstr ""
+
+msgid "CPU M68020#0 Reset"
+msgstr ""
+
+msgid "CPU Z80#0 Reset"
+msgstr ""
+
+msgid "CPU Z80#1 Reset"
+msgstr ""
+
+msgid "CPU Z80#2 Reset"
+msgstr ""
+
+msgid "CPU Z80#3 Reset"
+msgstr ""
+
+msgid "s8 not supported"
+msgstr "s8 non supportato"
+
+msgid "u16lsb not supported"
+msgstr "u16lsb non supportato"
+
+msgid "u16msb not supported"
+msgstr "u16msb non supportato"
+
+msgid "u8 not supported"
+msgstr "u8 non supportato"
+
+msgid "tilemap0"
+msgstr "MappaTile0"
+
+msgid "tilemap1"
+msgstr "MappaTile1"
+
+msgid "dsw"
+msgstr "dsw"
+
+msgid "fb"
+msgstr "fb"
+
+msgid "alloc error"
+msgstr "Errore di allocazione"
+
+msgid "WALTZ0"
+msgstr "WALTZ0"
+
+msgid "OBJ"
+msgstr "OGGETTO"
+
+msgid "OBJ 2"
+msgstr "OGGETTO 2"
+
+# ....................................
+
+msgid "Fixed layer"
+msgstr "Livello fisso"
+
+msgid "sprites"
+msgstr "sprite"
+
+msgid "sprites disabled"
+msgstr "sprite disabilitati"
+
+msgid "text"
+msgstr "testo"
+
+#: source/sdl/gui/tedit.cpp:256
+msgid "label"
+msgstr "etichetta"
+
+#: source/sdl/dialogs/fsel.cpp:225
+msgid "New file"
+msgstr "Nuovo file"
+
+# West Story
+msgid "Rom Option"
+msgstr "Opzione ROM"
+
+msgid "TEST MODE"
+msgstr "MODALITA VERIFICA"
+
+msgid "TEXT"
+msgstr "TESTO"
+
+msgid "Minimun"
+msgstr "Minimo"
+
+msgid "Next sprite block"
+msgstr "Sprite block successivo"
+
+msgid "Prev sprite block"
+msgstr "Sprite block precedente"
+
+msgid "Throttle Game Speed"
+msgstr "Velocità acceleratore di gioco"
+
+msgid "Autofire"
+msgstr "Fuoco autom."
+
+msgid "Autofire (in some games)"
+msgstr "Fuoco autom. (in alcuni giochi)"
+
+msgid "Toggle capture mode"
+msgstr "Interrut. modalità cattura"
+
+msgid "Control Panel"
+msgstr "Pannello di controllo"
+
+msgid "Change Setup"
+msgstr "Impostazioni di cambio"
+
+msgid "Clear RAM"
+msgstr "Pulisci la memoria"
+
+msgid "Capture block"
+msgstr "Blocco di cattura"
+
+msgid "Master"
+msgstr ""
+
+msgid "Slave"
+msgstr ""
+
+msgid "Wild blocks"
+msgstr ""
+
+msgid "Zooming Object"
+msgstr ""
+
+msgid "Tes Mode Display"
+msgstr ""
+
+# ....................................
+
+msgid "Player1 Button5"
+msgstr "Giocatore 1 Pulsante 5"
+
+msgid "Player1 Button6"
+msgstr "Giocatore 1 Pulsante 6"
+
+msgid "Player1 Button7"
+msgstr "Giocatore 1 Pulsante 7"
+
+msgid "Player1 Button8"
+msgstr "Giocatore 1 Pulsante 8"
+
+msgid "Player1 Down"
+msgstr "Giocatore 1 Sotto"
+
+msgid "Player1 Left"
+msgstr "Giocatore 1 Sinistra"
+
+msgid "Player1 Right"
+msgstr "Giocatore 1 Destra"
+
+msgid "Player1 Up"
+msgstr "Giocatore 1 Sopra"
+
+msgid "Player2 Button5"
+msgstr "Giocatore 2 Pulsante 5"
+
+msgid "Player2 Button6"
+msgstr "Giocatore 2 Pulsante 6"
+
+msgid "Player2 Button7"
+msgstr "Giocatore 2 Pulsante 7"
+
+msgid "Player2 Button8"
+msgstr "Giocatore 2 Pulsante 8"
+
+msgid "Player2 Down"
+msgstr "Giocatore 2 Sotto"
+
+msgid "Player2 Left"
+msgstr "Giocatore 2 Sinistra"
+
+msgid "Player2 Right"
+msgstr "Giocatore 2 Destra"
+
+msgid "Player2 Up"
+msgstr "Giocatore 2 Sopra"
+
+msgid "Player3 Button5"
+msgstr "Giocatore 3 Pulsante 5"
+
+msgid "Player3 Button6"
+msgstr "Giocatore 3 Pulsante 6"
+
+msgid "Player3 Button7"
+msgstr "Giocatore 3 Pulsante 7"
+
+msgid "Player3 Button8"
+msgstr "Giocatore 3 Pulsante 8"
+
+msgid "Player3 Down"
+msgstr "Giocatore 3 Sotto"
+
+msgid "Player3 Left"
+msgstr "Giocatore 3 Sinistra"
+
+msgid "Player3 Right"
+msgstr "Giocatore 3 Destra"
+
+msgid "Player3 Up"
+msgstr "Giocatore 3 Sopra"
+
+msgid "Player4 Button5"
+msgstr "Giocatore 4 Pulsante 5"
+
+msgid "Player4 Button6"
+msgstr "Giocatore 4 Pulsante 6"
+
+msgid "Player4 Button7"
+msgstr "Giocatore 4 Pulsante 7"
+
+msgid "Player4 Button8"
+msgstr "Giocatore 4 Pulsante 8"
+
+msgid "Player4 Down"
+msgstr "Giocatore 4 Sotto"
+
+msgid "Player4 Left"
+msgstr "Giocatore 4 Sinistra"
+
+msgid "Player4 Right"
+msgstr "Giocatore 4 Destra"
+
+msgid "Player4 Up"
+msgstr "Giocatore 4 Sopra"
+
+msgid "Flipper 1 Left"
+msgstr "Flipper 1 Sinistra"
+
+msgid "Flipper 1 Right"
+msgstr "Flipper 1 Destra"
+
+msgid "Flipper 2 Left"
+msgstr "Flipper 2 Sinistra"
+
+msgid "Flipper 2 Right"
+msgstr "Flipper 2 Destra"
+
+msgid "Buttons"
+msgstr "Pulsanti"
+
+msgid "Button 1 Left"
+msgstr "Pulsante 1 Sinistra"
+
+msgid "Button 1 Right"
+msgstr "Pulsante 1 Destra"
+
+msgid "Button 2 Left"
+msgstr "Pulsante 2 Sinistra"
+
+msgid "Button 2 Right"
+msgstr "Pulsante 2 Destra"
+
+msgid "Upright 1 Controller"
+msgstr "Inpiedi 1 controllo"
+
+msgid "Upright 2 Controllers"
+msgstr "Inpiedi 2 controlli"
+
+msgid "Upright 1 Player"
+msgstr "Inpiedi 1 giocatore"
+
+msgid "Upright 2 Players"
+msgstr "Inpiedi 2 giocatori"
+
+# ....................................
+
+# Continental Circus
+msgid "Free"
+msgstr "Libero"
+
+# Continental Circus
+msgid "Locked"
+msgstr "Bloccato"
+
+# Continental Circus
+msgid "Enable 3d alternate frames"
+msgstr "Fotogrammi alternativi 3D"
+
+# Quiz Torimonochou
+msgid "Show Correct Answer"
+msgstr "Mostra risposta corretta"
+
+# Dragon Unit, Thundercade
+msgid "Title"
+msgstr "Titolo"
+
+# Maniac Square (Mono/Stereo)
+msgid "Sound type"
+msgstr "Tipo di suono"
+
+# Maniac Square (Mono/Stereo)
+msgid "Mono"
+msgstr "Mono"
+
+# Maniac Square (Mono/Stereo)
+msgid "Stereo"
+msgstr "Stereo"
+
+# Kiff Off
+msgid "Text"
+msgstr "Lingua del testo"
+
+# Tetris 2 Plus
+msgid "Voice"
+msgstr "Voce"
+
+# Camel Try
+msgid "Together"
+msgstr "Insieme"
+
+# Ms PacMan
+msgid "DX alpha blending"
+msgstr "Traslucido di DX"
+msgid "Variable (MMX)"
+msgstr "Variabile MMX)"
+msgid "30% (MMX)"
+msgstr "30% (MMX)"
+msgid "50%"
+msgstr "50%"
+
+# Ms PacMan
+msgid "2x Speed Cheat"
+msgstr "Trucco doppia velocità"
+msgid "Enabled Always"
+msgstr "Sempre attivato"
+msgid "Enabled with Button"
+msgstr "Abilitato con pulsante"
+
+# Ms PacMan
+msgid "Rack Test (Cheat)"
+msgstr "Testa rack (trucco)"
+
+# Chase HQ
+msgid "Full Throttle Convrt"
+msgstr "Conver. a max velocità"
+
+# Daioh
+msgid "Auto Shot"
+msgstr "Sparo automatico"
+
+# Daioh, Snow Bros, Winter Bobble
+msgid "Country"
+msgstr "Località"
+
+# Darius
+msgid "Auto Turbo Fire"
+msgstr "Spero con turbo autom."
+
+# Space Gun
+msgid "Digital Input Speed"
+msgstr "Velocità input digitale"
+msgid "Mouse Speed"
+msgstr "Velocità del mouse"
+msgid "Show Crosshair"
+msgstr "Mostra mirino"
+msgid "Player 1 Only"
+msgstr "Solo giocatore 1"
+msgid "Player 2 Only"
+msgstr "Solo giocatore 2"
+
+# Bubble Bobble
+msgid "Test (grid and input)"
+msgstr "Verifica (griglia e controlli)"
+msgid "Test (ram and sound)/pause"
+msgstr "Verifica (mem. e suono)/pausa"
+msgid "IC52=256kb, IC53=256kb"
+msgstr "IC52=256kb, IC53=256kb"
+msgid "IC52=512kb, IC53=none"
+msgstr "IC52=512kb, IC53=nessuno"
+
+# Head Panic, Multi Champ
+msgid "Selectable Games"
+msgstr "Giochi selezionabili"
+
+# Jumping Pop
+msgid "Picture Viewer"
+msgstr "Visualizza immagini"
+
+# Jumping Pop (1=Normal, 2=Sexy)
+msgid "BG Type"
+msgstr "Tipo di sfondo"
+
+# Caliber 50
+msgid "Erase Backup Ram"
+msgstr "Svuota Ram backup"
+
+# Space Gun
+msgid "P1 Input Control"
+msgstr "Perif.di controllo G1"
+
+# ....................................
+
+# Thunder & Lighting, Wiggie Waggie
+msgid "Copyright"
+msgstr "Diritti sulla copia"
+
+# Snow Bros 2
+msgid "All Rights Reserved"
+msgstr "Tutti i diritti riservati"
+
+# Combatribes, Tetris 2 Plus, WWF Westlefest
+msgid "FBI Logo"
+msgstr "Mostra logo FBI"
+
+# Wit's
+msgid "License"
+msgstr "Licenza"
+
+# Caliber 50, Meta Fox, Thundercade
+msgid "Licensed To"
+msgstr "Licenziato a"
+
+# Caliber 50, Meta Fox
+msgid "Alt License"
+msgstr "Licenza Alt."
+
+# Dragon Unit
+msgid "(C) / License"
+msgstr "Copyrigh/Licenza"
+
+# Diver Boy
+msgid "Display Copyright"
+msgstr "Mostra copyright"
+
+msgid "Territory/Copyright"
+msgstr "Territorio/Copyright"
+
+# ....................................
+
+# Caliber 50
+msgid "Display Score"
+msgstr "Mostra punteggio"
+
+# Caliber 50
+msgid "Score Digits"
+msgstr "Cifre del punteggio"
+
+# Battle Bakraid
+msgid "Score Ranking"
+msgstr "Classifica punteggio"
+msgid "Timer"
+msgstr "Cronometro"
+
+# Final Tennis, Kiff Off
+msgid "Time"
+msgstr "Tempo"
+
+# Thunder Fox
+msgid "Time Limit"
+msgstr "Limite tempo"
+
+# Dino Rex, UN Squadron
+msgid "Damage"
+msgstr "Danno"
+
+# Darius 2
+msgid "Continuous Fire"
+msgstr "Fuoco continuo"
+
+# ....................................
+
+# Three Wonders
+msgid "Difficulty (Midnight Wand.)"
+msgstr "Difficoltà (1-Midnight W.)"
+msgid "Difficulty (Chariot)"
+msgstr "Difficoltà  (2-Chariot)"
+msgid "Difficulty (Don't Pull)"
+msgstr "Difficoltà  (3-Don't Pull)"
+msgid "Lives (Midnight Wand.)"
+msgstr "Vite (1-Midnight W.)"
+msgid "Lives (Chariot)"
+msgstr "Vite (2-Chariot)"
+msgid "Lives (Don't Pull)"
+msgstr "Vite (3-Don't Pull)"
+
+msgid "Difficulty 1"
+msgstr "Difficoltà 1"
+
+msgid "Difficulty 2"
+msgstr "Difficoltà 2"
+
+# Continental Circus
+msgid "Difficulty 1 (time/speed)"
+msgstr "Difficoltà 1 (tempo/velocità)"
+msgid "Difficulty 2 (other cars)"
+msgstr "Difficoltà 2 (altre auto)"
+
+# U.S. Navy
+msgid "Difficulty Level (Enemy's Strength)"
+msgstr "Difficoltà (forza nemico)"
+
+# U.S. Navy
+msgid "Difficulty Level (Player's Strength)"
+msgstr "Difficoltà (forza giocatore)"
+
+# CPS1
+msgid "Difficulty Level 1"
+msgstr "Livello di difficoltà 1"
+msgid "Difficulty Level 2"
+msgstr "Livello di difficoltà 2"
+
+# ....................................
+
+# Drift Out, Drive Out
+msgid "Control"
+msgstr "Controllo"
+
+# Kiff Off
+msgid "Joystick"
+msgstr "Joystick"
+
+# Toki
+msgid "Joysticks"
+msgstr "Num.Joystick"
+
+# Space Gun
+msgid "Analog Joystick"
+msgstr "Joystick analogico"
+msgid "Digital"
+msgstr "Digitale"
+msgid "Mouse"
+msgstr "Mouse"
+
+msgid "Keyboard/Digital"
+msgstr "Tastiera/Digitale"
+
+msgid "Wheel"
+msgstr "Volante"
+
+# Continental Circus
+msgid "Steering wheel"
+msgstr "Volante cont."
+
+msgid "Trackball"
+msgstr "Trackball"
+
+msgid "Paddles"
+msgstr "Paddle"
+
+msgid "Paddle A"
+msgstr "Paddle A"
+
+# Drive Out
+msgid "Paddle B"
+msgstr "Paddle B"
+
+# Drive Out
+msgid "Lever"
+msgstr "Leva"
+
+# ....................................
+
+msgid "1 Game Match"
+msgstr "1 sfida"
+
+msgid "3 Games Match"
+msgstr "3 sfide"
+
+msgid "5 Games Match"
+msgstr "5 sfide"
+
+msgid "7 Games Match"
+msgstr "7 sfide"
+
+# ....................................
+
+# Blandia
+msgid "2 Player Game"
+msgstr "Gioco a 2 persone"
+
+# Majestic Twelve, Camel Try, Dino Rex
+msgid "2 Player Mode"
+msgstr "Modalità 2 gioc."
+
+# Majestic Twelve
+msgid "Simultaneous"
+msgstr "Simultaneo"
+msgid "AlternateSingle"
+msgstr "Singolo alternato"
+msgid "AlternateDual"
+msgstr "Duplice alternato"
+msgid "Shields"
+msgstr "Scudi"
+
+msgid "2 Players Mode"
+msgstr "Modalità 2 gioc."
+
+msgid "4 Players / 1 Cab"
+msgstr "4 gioc./1 cabinato"
+
+msgid "4 Players / 2 Cabs"
+msgstr "4 gioc./2 cabinati"
+
+# Euro Champ 92
+msgid "4 Player/2 Cabinets"
+msgstr "4 gioc./2 cabinati"
+msgid "4 Player/2 Coin Slot"
+msgstr "4 gioc./2 ingressi gett."
+msgid "4 Player/4 Coin Slot"
+msgstr "4 gioc./4 ingressi gett."
+
+msgid "100 (Cheat)"
+msgstr "100 (Trucco)"
+
+msgid "256 (Cheat)"
+msgstr "256 (Trucco)"
+
+# ....................................
+
+# CPS1/SF2
+msgid "1 Credit/No Continue"
+msgstr "1 Credito/Non continuare"
+
+# CPS1/SF2
+msgid "2 Credits/Winner Continue"
+msgstr "2 Crediti/Vincitore continua"
+
+msgid "1 Credit/2P"
+msgstr "1 credito/2P"
+
+msgid "1 Credit/4P"
+msgstr "1 credito/4P"
+
+msgid "2 Credits/4P"
+msgstr "2 crediti/4 gioc."
+
+msgid "4 Credits/4P"
+msgstr "4 crediti/4 gioc."
+
+msgid "3 per Credit"
+msgstr "3 per credito"
+
+msgid "9 per Credit"
+msgstr "9 per credito"
+
+# ....................................
+
+msgid "1 Coin/1 Credit"
+msgstr "1 Gett./1 Credito"
+
+msgid "1 Coin/1 Credit 2/3"
+msgstr "1 Gett./1 Credito 2/3"
+
+msgid "1 Coin/1 Credit 4/5"
+msgstr "1 Gett./1 Credito 4/5"
+
+msgid "1 Coin/1 Credit 5/6"
+msgstr "1 Gett./1 Credito 5/6"
+
+msgid "1 Coin/2 Credits"
+msgstr "1 Gett./2 Crediti"
+
+msgid "1 Coin/2 Credits 4/9"
+msgstr "1 Gett./2 Crediti 4/9"
+
+msgid "1 Coin/2 Credits 5/11"
+msgstr "1 Gett./2 Crediti 5/11"
+
+msgid "1 Coin/3 Credits"
+msgstr "1 Gett./3 Crediti"
+
+msgid "1 Coin/4 Credits"
+msgstr "1 Gett./4 Crediti"
+
+msgid "1 Coin/5 Credits"
+msgstr "1 Gett./5 Crediti"
+
+msgid "1 Coin/6 Credits"
+msgstr "1 Gett./6 Crediti"
+
+msgid "1 Coin/7 Credits"
+msgstr "1 Gett./7 Crediti"
+
+msgid "1 Coin/8 Credits"
+msgstr "1 Gett./8 Crediti"
+
+msgid "1 Coin/9 Credits"
+msgstr "1 Gett./9 Crediti"
+
+# Gunbird, Samurai Aces
+msgid "2 Coins/1 Credit"
+msgstr "2 Gettoni/1 Credito"
+
+msgid "2 Coins/1 Credit 3/2 4/3 6/5"
+msgstr "2 Gettoni/1 Credito 3/2 4/3 6/5"
+
+msgid "2 Coins/1 Credit 4/3"
+msgstr "2 Gettoni/1 Credito 4/3"
+
+msgid "2 Coins/1 Credit 5/3"
+msgstr "2 Gettoni/1 Credito 5/3"
+
+msgid "2 Coins/2 Credits"
+msgstr "2 Gettoni/2 Crediti"
+
+msgid "2 Coins/3 Credits"
+msgstr "2 Gettoni/3 Crediti"
+
+msgid "2 Coins/4 Credits"
+msgstr "2 Gettoni/4 Crediti"
+
+msgid "2 Coins/5 Credits"
+msgstr "2 Gettoni/5 Crediti"
+
+msgid "2 Coins/6 Credits"
+msgstr "2 Gettoni/6 Crediti"
+
+msgid "2 Coins/7 Credits"
+msgstr "2 Gettoni/7 Crediti"
+
+msgid "2 Coins/8 Credits"
+msgstr "2 Gettoni/8 Crediti"
+
+msgid "3 Coins/1 Credit"
+msgstr "3 Gettoni/1 Credito"
+
+msgid "3 Coins/2 Credits"
+msgstr "3 Gettoni/2 Crediti"
+
+msgid "3 Coins/3 Credits"
+msgstr "3 Gettoni/3 Crediti"
+
+msgid "3 Coins/4 Credits"
+msgstr "3 Gettoni/4 Crediti"
+
+msgid "3 Coins/5 Credits"
+msgstr "3 Gettoni/5 Crediti"
+
+msgid "3 Coins/6 Credits"
+msgstr "3 Gettoni/6 Crediti"
+
+# ????
+msgid "3 Coins/7 Credit"
+msgstr "3 Gettoni/7 Crediti"
+
+msgid "3 Coins/7 Credits"
+msgstr "3 Gettoni/7 Crediti"
+
+msgid "3 Coins/8 Credits"
+msgstr "3 Gettoni/8 Crediti"
+
+msgid "4 Coins/1 Credit"
+msgstr "4 Gettoni/1 Credit8"
+
+msgid "4 Coins/2 Credits"
+msgstr "4 Gettoni/2 Crediti"
+
+msgid "4 Coins/3 Credits"
+msgstr "4 Gettoni/3 Crediti"
+
+msgid "4 Coins/4 Credits"
+msgstr "4 Gettoni/4 Crediti"
+
+msgid "4 Coins/5 Credits"
+msgstr "4 Gettoni/5 Crediti"
+
+msgid "4 Coins/6 Credits"
+msgstr "4 Gettoni/6 Crediti"
+
+msgid "4 Coins/7 Credits"
+msgstr "4 Gettoni/7 Crediti"
+
+msgid "4 Coins/8 Credits"
+msgstr "4 Gettoni/8 Crediti"
+
+msgid "5 Coins/1 Credit"
+msgstr "5 Gettoni/1 Credito"
+
+msgid "5 Coins/2 Credits"
+msgstr "5 Gettoni/2 Crediti"
+
+msgid "5 Coins/3 Credits"
+msgstr "5 Gettoni/3 Crediti"
+
+msgid "5 Coins/4 Credits"
+msgstr "5 Gettoni/4 Crediti"
+
+msgid "6 Coins/1 Credit"
+msgstr "6 Gettoni/1 Credito"
+
+msgid "6 Coins/2 Credits"
+msgstr "6 Gettoni/2 Crediti"
+
+msgid "6 Coins/3 Credits"
+msgstr "6 Gettoni/3 Crediti"
+
+msgid "6 Coins/4 Credits"
+msgstr "6 Gettoni/4 Crediti"
+
+msgid "7 Coins/1 Credit"
+msgstr "7 Gettoni/1 Credito"
+
+msgid "7 Coins/2 Credits"
+msgstr "7 Gettoni/2 Crediti"
+
+msgid "7 Coins/3 Credits"
+msgstr "7 Gettoni/3 Crediti"
+
+msgid "7 Coins/4 Credits"
+msgstr "7 Gettoni/4 Crediti"
+
+msgid "8 Coins/1 Credit"
+msgstr "8 Gettoni/1 Credito"
+
+msgid "8 Coins/2 Credits"
+msgstr "8 Gettoni/2 Crediti"
+
+msgid "8 Coins/3 Credits"
+msgstr "8 Gettoni/3 Crediti"
+
+msgid "8 Coins/4 Credits"
+msgstr "8 Gettoni/4 Crediti"
+
+msgid "9 Coins/1 Credit"
+msgstr "9 Gettoni/1 Credito"
+
+msgid "1 extra coin"
+msgstr "1 gettone extra"
+
+msgid "2 extra coins"
+msgstr "2 gettoni extra"
+
+msgid "3 extra coins"
+msgstr "3 gettoni extra"
+
+# Blood Bros, West Story
+msgid "Coinage Mode 1"
+msgstr "Conio in Modo 1"
+
+# Blood Bros, West Story
+msgid "Coin Start"
+msgstr "Avvio gettone"
+
+msgid "Coin Setup"
+msgstr "Opzioni gettone"
+
+# Gunbird
+msgid "Coinage A"
+msgstr "Conio A"
+
+# Gunbird
+msgid "Coinage B"
+msgstr "Conio B"
+
+msgid "Coinage C"
+msgstr "Conio C"
+
+msgid "Coinage D"
+msgstr "Conio D"
+
+msgid "Coin Slot A"
+msgstr "Ingresso Gett. A"
+
+msgid "Coin Slot B"
+msgstr "Ingresso Gett. B"
+
+# Double Dragon 3
+msgid "Coin Statistics"
+msgstr "Statistiche gettoni"
+
+# Rainbow Islands, West Story
+msgid "Bonus"
+msgstr "Bonus"
+
+# Rainbow Islands
+msgid "Coin Type"
+msgstr "Tipo di gett."
+
+# Rainbow Islands
+msgid "Type 1"
+msgstr "Tipo 1"
+
+# Rainbow Islands
+msgid "Type 2"
+msgstr "Tipo 2"
+
+# Rainbow Islands
+msgid "Complete Bonus"
+msgstr "Bonus completo"
+
+# Rainbow Islands
+msgid "1Up"
+msgstr "Ottieni vita"
+
+# Rainbow Islands
+msgid "100k/1000k"
+msgstr ""
+
+msgid "Coin slots"
+msgstr "Ingressi gettoni"
+
+# ....................................
+
+msgid "Service A"
+msgstr "Servizio A"
+
+msgid "Service B"
+msgstr "Servizio B"
+
+msgid "Service C"
+msgstr "Servizio C"
+
+# ....................................
+
+msgid "A 1/1 B 1/1 C 1/1"
+msgstr ""
+
+msgid "A 1/1 B 1/2"
+msgstr ""
+
+msgid "A 1/1 B 1/6 C 1/1"
+msgstr ""
+
+msgid "A 2/1 B 1/3"
+msgstr ""
+
+msgid "A 2/1 B 1/3 C 2/1"
+msgstr ""
+
+msgid "A 2/1 B 2/1 C 2/1"
+msgstr ""
+
+msgid "A 3/1 B 1/5"
+msgstr ""
+
+msgid "A 5/1 B 1/6"
+msgstr ""
+
+# Gun Bird
+msgid "A+B/A,B"
+msgstr ""
+
+# Gun Bird
+msgid "A,B/A"
+msgstr ""
+
+msgid "3 Bars"
+msgstr "3 barre"
+
+msgid "4 Bars"
+msgstr "4 barre"
+
+msgid "Level 1"
+msgstr "Livello "
+
+msgid "Level 2"
+msgstr "Livello 2"
+
+msgid "Level 3"
+msgstr "Livello 3"
+
+msgid "Level 4"
+msgstr "Livello 4"
+
+msgid "Level 5"
+msgstr "Livello 5"
+
+msgid "Level 6"
+msgstr "Livello 6"
+
+msgid "Level 7"
+msgstr "Livello 7"
+
+msgid "Level 8"
+msgstr "Livello 8"
+
+# Blood Bros
+msgid "A"
+msgstr ""
+
+msgid "B"
+msgstr ""
+
+msgid "C"
+msgstr ""
+
+msgid "D"
+msgstr ""
+
+msgid "E"
+msgstr ""
+
+msgid "F"
+msgstr ""
+
+msgid "N"
+msgstr ""
+
+#: source/sdl/dialogs/game_options.cpp:134
+msgid "X"
+msgstr ""
+
+msgid "1 of 4 Scenes"
+msgstr "1 di 4 scene"
+
+msgid "1 of 8 Scenes"
+msgstr "1 di 8 scene"
+
+msgid "COMM Setting (Cabinet No.)"
+msgstr "Impostazioni COMM (Num.cabinato)"
+
+msgid "COMM Setting (Link Enable)"
+msgstr "Impostazioni COMM (Colleg.abilitato)"
+
+# Operation Wolf
+msgid "Attract Mode"
+msgstr "Promozione"
+msgid "Sound"
+msgstr "Suono"
+
+# Operation Wolf
+msgid "Cont Discount"
+msgstr "Sconto Cont"
+
+# Operation Wolf
+msgid "Start Ammo"
+msgstr "Munizioni iniziali"
+msgid "4 Clips"
+msgstr "4 cartucce"
+msgid "5 Clips"
+msgstr "5 cartucce"
+msgid "6 Clips"
+msgstr "6 cartucce"
+msgid "7 Clips"
+msgstr "7 cartucce"
+
+# Astyanax, Lord of King
+msgid "1P/2P Control Flip"
+msgstr "Scambia controlli 1G/2G"
+
+# Rygar
+msgid "2P Start Anytime"
+msgstr "gioc.2 inizia quando vuole"
+
+# Puzznic, Plus Alpha
+msgid "Bombs"
+msgstr "Bombe"
+
+# Puzznic
+msgid "Retries"
+msgstr "Tentativi"
+
+# Puzznic
+msgid "Girls"
+msgstr "Ragazze"
+
+# Puzznic
+msgid "Terms of Replay"
+msgstr "Tipo di Replay"
+msgid "One step back/Time Cnt"
+msgstr "1 passo indietro/Cont.tempo"
+msgid "Stage Start/Timer Cont"
+msgstr "Livello inizio/Cont.tempo"
+msgid "Stage & Timer Start"
+msgstr "Livello e tempo d'inizio"
+
+# Operation Thunderbolt
+msgid "Bullet Mags / Rockets"
+msgstr "Ricarica proiettili/Razzi"
+msgid "Bullets per Magazine"
+msgstr "Proiettili per ricarica"
+msgid "Half Price Continue"
+msgstr "Continua a metà prezzo"
+msgid "Game Title Language"
+msgstr "Lingua titolo gioco"
+
+# WWF Westlefest
+msgid "Buy In Price"
+msgstr "Costo di acquisto"
+msgid "As Start Price"
+msgstr "Come costo iniziale"
+msgid "Regain Power Price"
+msgstr "Costo riacq.energia"
+msgid "Continue Price"
+msgstr "Costo per continuare"
+msgid "Championship Games"
+msgstr "Giocate di campionato"
+
+# WWF Westlefest, WWF Superstars
+msgid "Health For Winning"
+msgstr "Salute per vincere"
+
+# Mobile Suite Gundam
+msgid "Memory Check"
+msgstr "Verifica memoria"
+
+# Gals Panic
+msgid "Character Test"
+msgstr "Test sui personaggi"
+
+# Mug Smashers
+msgid "Sound Test"
+msgstr "Verifica il suono"
+
+# Mug Smashers
+msgid "Colour Test"
+msgstr "Test sui colori"
+
+# Mug Smashers
+msgid "Draw SF."
+msgstr "Disegna SF."
+
+# Mug Smashers
+msgid "Draw Objects"
+msgstr "Disegna oggetti"
+
+# Chase HQ
+msgid "Clear Damage on Cont."
+msgstr "Nessun danno se continui"
+
+# Cadash
+msgid "Communication"
+msgstr "Comunicazione"
+
+# Cadash
+msgid "Status for Comm"
+msgstr "Stato di comun."
+
+# Camel Try
+msgid "Continue Time Add"
+msgstr "Aggiungi tempo"
+
+# Asuka and Asuka
+msgid "Up to Level 2"
+msgstr "Fino al livello 2"
+
+msgid "Up to Level 3"
+msgstr "Fino al livello 3"
+
+# Battle Bakraid, Eight Forces
+msgid "Credits To Start"
+msgstr "Crediti per iniziare"
+
+msgid "Credits to Start"
+msgstr "Crediti per iniziare"
+
+msgid "Bullet's Speed"
+msgstr "Velocità proiettili"
+
+msgid "Changed to High Gear"
+msgstr "Cambiato in marcia alta"
+
+msgid "Changed to Low Gear"
+msgstr "Cambiato in marcia bassa"
+
+msgid "Combined"
+msgstr "Combinato"
+
+msgid "Common"
+msgstr "Comune"
+
+msgid "Constant"
+msgstr "Costante"
+
+msgid "Continue cost"
+msgstr "Costo per continuare"
+
+msgid "Credit Mode"
+msgstr "Modalità crediti"
+
+msgid "Credit Service"
+msgstr "Servizio crediti"
+
+msgid "Extend"
+msgstr "Estendi"
+
+msgid "Extended Test Mode"
+msgstr "Mod.Verifica estesa"
+
+msgid "Female & Male"
+msgstr "Maschio e femmina"
+
+msgid "Female & Male (Full)"
+msgstr "Maschio e femmina (compl.)"
+
+msgid "Female (Full)"
+msgstr "Femmina (compl.)"
+
+msgid "Timer Speed"
+msgstr "Velocità Timer"
+
+# Eight Forces
+msgid "Shared Credits"
+msgstr "Crediti condivisi"
+
+# US Classic Golf
+msgid "Credits For 9-Hole"
+msgstr "Crediti per 9-buche"
+
+# Battle K-Road, Gunbird, Samurai Aces
+msgid "Credits/Coinage"
+msgstr "Crediti/Conio"
+
+msgid "1 Medal 1 Credit"
+msgstr "1 medaglia 1 credito"
+
+msgid "Default Episode"
+msgstr "Episodio predefinito"
+
+# Batsung, Knuckle Bash, Snow Bros 2
+msgid "Discount"
+msgstr "Sconto"
+
+# US Classic Golf
+msgid "Domestic"
+msgstr "Domestico"
+msgid "Foreign"
+msgstr "Straniero"
+msgid "Flight Distance"
+msgstr "Distanza di volo"
+
+msgid "Enemy's attack frequency"
+msgstr "Frequenza attacco nemico"
+
+msgid "Enemy's attack power"
+msgstr "Forza attacco nemico"
+
+# Magic Sword
+msgid "Player's vitality consumption"
+msgstr "Consumo vita gioc."
+
+# Magic Sword
+msgid "Enemy's vitality and attacking power"
+msgstr "Energia e attacco gioc."
+
+# Magic Sword
+msgid "Vitality Packs"
+msgstr "Barre vitali"
+
+# Magic Sword
+msgid "3 (2 when continue)"
+msgstr "3 (2 quando continua)"
+
+# Magic Sword
+msgid "4 (3 when continue)"
+msgstr "4 (3 quando continua)"
+
+# Football Champ
+msgid "Euro Version"
+msgstr "Versione Euro"
+
+# Cadash
+msgid "Extra Clear Time"
+msgstr "Tempo extra"
+
+# Darius
+msgid "Extra Ship"
+msgstr "Navicella extra"
+
+# Darius
+msgid "Ships"
+msgstr "Num.Navicelle"
+
+# Growl
+msgid "Final Stage Cont"
+msgstr "Continua livello finale"
+
+# Thunder & Lighting, Wiggie Waggie
+msgid "Force 1 Life"
+msgstr "Forza 1 vita"
+
+# Euro Champ 92, Football Champ
+msgid "Game Over For"
+msgstr "Fine gioco per"
+
+# Euro Champ 92
+msgid "Both Teams"
+msgstr "Entrambe le squadre"
+
+# Euro Champ 92
+msgid "Loser Team Only"
+msgstr "Solo squadra perdente"
+
+# Euro Champ 92, WWF Superstars
+msgid "Game Time"
+msgstr "Tempo di gioco"
+
+# Euro Champ 92, Growl, US Classic Golf
+msgid "Game Type"
+msgstr "Tipo di gioco"
+
+# Rainbow Islands, Camel Try
+msgid "Game Style"
+msgstr "Modello cabinato"
+
+# Soldam
+msgid "Games to Play (Vs)"
+msgstr "Num.di giocate (Vs)"
+msgid "Cred. to Start (Vs)"
+msgstr "Cred.per inizio (Vs)"
+msgid "Cred. Continue (Vs)"
+msgstr "Cred.per cont. (Vs)"
+
+# Chase HQ
+msgid "Gear Mode"
+msgstr "Tipo di cambio"
+
+# Chase HQ
+msgid "Toggle"
+msgstr "Interr. alta/bassa"
+
+# Chase HQ
+msgid "Low while pressed"
+msgstr "Bassa finchè premuto"
+
+# Ms Pacman Hack
+msgid "Ghost Names"
+msgstr "Nomi fantasmi"
+
+# New Zealand Story
+msgid "Invulnerability (Debug)"
+msgstr "Invulnerab. (debug)"
+
+msgid "God Mode"
+msgstr "Modalità Dio"
+
+msgid "Guest Player"
+msgstr "Gioc.ospite"
+
+msgid "Help Penalty (Heuk Sun)"
+msgstr "Aiuto Penalità (Heuk Sun)"
+
+# Crime City
+msgid "Hiscores"
+msgstr "Miglior punteggio"
+
+# Crime City
+msgid "Scribble"
+msgstr "Scarabocchio"
+
+# Crime City
+msgid "3 characters"
+msgstr "3 caratteri"
+
+msgid "Individual"
+msgstr "Individuale"
+
+msgid "Infinite"
+msgstr "Infinito"
+
+msgid "Initial Vitality"
+msgstr "Energia iniziale"
+
+msgid "Innings"
+msgstr "Innings"
+
+msgid "Instructions"
+msgstr "Istruzioni"
+
+msgid "Internal Test"
+msgstr "Verifica interna"
+
+msgid "Player Select"
+msgstr "Seleziona giocatore"
+
+msgid "Stage Magic Continue"
+msgstr "Continua livello magico"
+
+msgid "Infinite Lives"
+msgstr "Vite infinite"
+
+msgid "Bonus / K=10,000"
+msgstr "Bonus / K=10,000"
+
+msgid "Motor"
+msgstr "Motore"
+
+msgid "Movement"
+msgstr "Movimento"
+
+msgid "Multiplayer"
+msgstr "Multi-giocatori"
+
+msgid "Nando Speed"
+msgstr "Velocità di Nando"
+
+msgid "Nitros per Stage"
+msgstr "Nitro per livello"
+
+msgid "No Bonus Lives"
+msgstr "Nessua vita bonus"
+
+msgid "No Use"
+msgstr "Non usare"
+
+msgid "No change"
+msgstr "Non cambiare"
+
+msgid "Nothing"
+msgstr "Nulla"
+
+msgid "PC Pedal (analog)"
+msgstr "Pedale PC (analog.)"
+
+msgid "PC Steering Wheel"
+msgstr "Volante PC"
+
+msgid "Responds to Controls"
+msgstr "Risposta ai controlli"
+
+msgid "Roadscroll"
+msgstr "Scorrimento strada"
+
+msgid "Same as play"
+msgstr "Come la partita"
+
+msgid "Seperate"
+msgstr "Separa"
+
+msgid "Variable"
+msgstr "Variabile"
+
+# CPS1 Strider
+msgid "Internal Diff. on Life Loss"
+msgstr "Diff.interna su vita persa"
+
+# Bonze's Adventure
+msgid "Level test"
+msgstr "Quadro di verifica"
+
+# Choky Choky, Cookie e Bibi
+msgid "VS Round"
+msgstr "Num. incontri"
+
+# War of Aero
+msgid "Stage & Weapon Select"
+msgstr "Livello e selez.arma"
+
+# Combatribes, Double Dragon 3
+msgid "Stage Clear Life"
+msgstr "Energia a livello finito"
+
+# Double Dragon 3, Silent Dragon
+msgid "Player Hurt Player"
+msgstr "Fuoco amico"
+
+# Battle Bakraid
+msgid "Stage Edit"
+msgstr "Modifica quadro"
+
+# CPS1: Magic Sword, SD Gundam, Ultraman Club
+msgid "Stage Select"
+msgstr "Selezione livello"
+
+# Cookie e Bibi, Hatch Catch
+msgid "Stage Skip"
+msgstr "Salta livello"
+
+# Bomb Jack twin
+msgid "Start Level"
+msgstr "Livello d'inizio"
+
+# Cadash, Camel Try, Chase HQ
+msgid "Start Time"
+msgstr "Tempo iniziale"
+
+# Chase HQ
+msgid "Start Turbos"
+msgstr "N.Turbo iniziali"
+
+# Cross Pang
+msgid "Bonus Power (Bomb)"
+msgstr "Bonus Power (bomba)"
+
+msgid "Bonus Power (Points)"
+msgstr "Bonus Power (punti)"
+
+msgid "Extra Balls per Move"
+msgstr "Palla extra per movim."
+
+msgid "Number of Powers"
+msgstr "Numero di Power"
+
+msgid "Minimum Balls per Row"
+msgstr "Minime palle per riga"
+
+msgid "3 Chain Reactions"
+msgstr "3 Reazioni a catena"
+
+# Cross Pang
+msgid "4 Chain Reactions"
+msgstr "4 Reazioni a catena"
+
+# Gunbird, Samurai Aces
+msgid "Bonus life"
+msgstr "Vita bonus"
+
+# Pulilura
+msgid "Magic"
+msgstr "Magie"
+
+# Warrior Blade
+msgid "Magician"
+msgstr "Mago"
+
+# Dino Rex
+msgid "Match Type"
+msgstr "Tipo di sfida"
+
+# Dino Rex
+msgid "Best of 3"
+msgstr "Migliore su 3"
+
+# Fix Eight, Hit the ice, Snow Bros 2, Wit's
+msgid "Max Players"
+msgstr "Num.massimo gioc."
+
+# Fix Eight
+msgid "Shooting Style"
+msgstr "Tipo di sparo"
+
+# Fix Eight
+msgid "Fully-auto"
+msgstr "Completam.auto"
+
+# Fix Eight
+msgid "Semi-auto"
+msgstr "Semi-auto"
+
+msgid "Medal Setup"
+msgstr "Opzioni Medaglia"
+
+# Zombie Raid
+msgid "Mirror"
+msgstr "Specchiato"
+
+# Bobble Bobble
+msgid "Monster Speed"
+msgstr "Velocità mostri"
+
+# Battle Bakraid, Garegga
+msgid "Save"
+msgstr "Salva"
+msgid "No Save"
+msgstr "Non salvare"
+
+# Pipi and Bibi's, Whoopee
+msgid "Nudity"
+msgstr "Nudità"
+msgid "High, but censored"
+msgstr "Alta, ma censurata"
+
+# Kiki kai kai, Knight boy
+msgid "Number Match"
+msgstr "Num.di sfide"
+
+msgid "Payout Mode"
+msgstr "Modo di pagamento"
+
+msgid "Payout Rate Setup"
+msgstr "Tasso di pagamento"
+
+msgid "Payout Setup"
+msgstr "Opzioni pagamento"
+
+# Warrior Blade
+msgid "Power Ups"
+msgstr "Potenziamento"
+
+# Pengo
+msgid "Rack Test"
+msgstr "Verifica Rack"
+
+# Down Town
+msgid "Sales"
+msgstr "Vendite"
+
+# Down Town
+msgid "Japan Only"
+msgstr "Solo Giappone"
+
+# Terra Cresta
+msgid "Second Life at"
+msgstr "Seconda vita a"
+
+# Gun Frontier, Metal Black Jap
+msgid "Simultaneous Play"
+msgstr "Gioco simultaneo"
+
+msgid "Special Course"
+msgstr "Corsa speciale"
+
+# Choky Choky
+msgid "Starting Balls"
+msgstr "Palle iniziali"
+
+# Double Dragon 3
+msgid "Starting Life"
+msgstr "Energia iniziale"
+
+# WWF Superstars
+msgid "Super Techniques"
+msgstr "Super tecniche"
+
+# CPS1 Dynasty Wars
+msgid "Turbo Mode"
+msgstr "Modalità Turbo"
+
+# War of Aero
+msgid "Unknown 1-1*"
+msgstr "(Sconosciuto 1-1*)"
+
+msgid "Unknown 1-2"
+msgstr "(Sconosciuto 1-2)"
+
+# War of Aero
+msgid "Unknown 1-2*"
+msgstr "(Sconosciuto 1-2*)"
+
+# Mobile Suite Gundam
+msgid "Unknown 1-3"
+msgstr "(Sconosciuto 1-3)"
+
+# War of Aero
+msgid "Unknown 1-4"
+msgstr "(Sconosciuto 1-4)"
+
+# War of Aero
+msgid "Unknown 1-5"
+msgstr "(Sconosciuto 1-5)"
+
+# Dragon Unit, Mobile Suite Gundam, War of Aero
+msgid "Unknown 1-6"
+msgstr "(Sconosciuto 1-6)"
+
+msgid "Unknown 1-7"
+msgstr "(Sconosciuto 1-7)"
+
+# Dragon Unit, Wit's
+msgid "Unknown 1-7*"
+msgstr "(Sconosciuto 1-7*)"
+
+# Dragon Unit, Wit's
+msgid "Unknown 2-0"
+msgstr "(Sconosciuto 2-0)"
+
+# Down Town
+msgid "Unknown 2-0&1"
+msgstr "(Sconosciuto 2-0&1)"
+
+# Meta Fox
+msgid "Unknown 2-2"
+msgstr "(Sconosciuto 2-2)"
+
+# War of Aero
+msgid "Unknown 2-2&3"
+msgstr "(Sconosciuto 2-2&3)"
+
+# Ultraman Club, Wit's
+msgid "Unknown 2-2*"
+msgstr "(Sconosciuto 2-2)"
+
+# Meta Fox
+msgid "Unknown 2-3"
+msgstr "(Sconosciuto 2-3)"
+
+# Ultraman Club
+msgid "Unknown 2-4"
+msgstr "(Sconosciuto 2-4)"
+
+# Ultraman Club
+msgid "Unknown 2-5"
+msgstr "(Sconosciuto 2-5)"
+
+# Head Panic, Multi Champ, Ultraman Club
+msgid "Unknown 2-6"
+msgstr "(Sconosciuto 2-6)"
+
+# Head Panic, Multi Champ, Caliber 50
+msgid "Unknown 2-7"
+msgstr "(Sconosciuto 2-7)"
+
+# Wit's
+msgid "Unknown 3-4*"
+msgstr "(Sconosciuto 3-4*)"
+
+# Wit's
+msgid "Unknown 3-5*"
+msgstr "(Sconosciuto 3-5*)"
+
+# Mug Smashers
+msgid "Unused 2-4"
+msgstr "(Non usato 2-4)"
+
+# Gemini Wing
+msgid "F. Round Continue"
+msgstr "Continua a livello F."
+
+# Gemini Wing
+msgid "Round 6"
+msgstr "Livello 6"
+
+# Gemini Wing
+msgid "Round 7"
+msgstr "Livello 7"
+
+# Gemini Wing
+msgid "Buy in Final Round"
+msgstr "Compra in scontro finale"
+
+# Cuby Bop, Palamedes
+msgid "Versus Mode"
+msgstr "Modalità a sfida"
+
+msgid "Vitality"
+msgstr "Durata Vita"
+
+msgid "Volume of Siren"
+msgstr "Volume sirena"
+
+# Tetris 2 Plus
+msgid "Vs Mode Rounds"
+msgstr "Modalità sfide Vs"
+
+# Pnickies
+msgid "Vs Play Mode"
+msgstr "Modalità gioco Vs"
+
+# ....................................
+
+msgid "US"
+msgstr "US"
+
+# Caliber 50
+msgid "None (Japan)"
+msgstr "Nessuna (Giap.)"
+
+msgid "World"
+msgstr "Mondiale"
+
+msgid "Asia"
+msgstr "Asia"
+
+msgid "South East Asia"
+msgstr "Sud est Asiatico"
+
+msgid "SE Asia"
+msgstr "SudEst Asia"
+
+# Ghox
+msgid "Japan"
+msgstr "Giappone"
+
+msgid "USA"
+msgstr "U.S.A."
+
+# Ghox
+msgid "America"
+msgstr "America"
+
+# Ghox
+msgid "Europe"
+msgstr "Europa"
+
+msgid "England"
+msgstr "Inghilterra"
+
+msgid "Germany"
+msgstr "Germania"
+
+msgid "Thailand"
+msgstr "Tailandia"
+
+# Ghox
+msgid "Taiwan"
+msgstr "Taiwan"
+
+msgid "China"
+msgstr "Cina"
+
+msgid "Hong Kong"
+msgstr "Hong Kong"
+
+# Ghox
+msgid "Korea"
+msgstr "Corea"
+
+msgid "Denmark"
+msgstr "Danimarca"
+
+# Bomb Jack Twin
+msgid "Nevada"
+msgstr "Nevada"
+
+# ....................................
+
+msgid "Asia (Taito)"
+msgstr "Asia (Taito)"
+
+msgid "South East Asia(Taito)"
+msgstr "Sud est Asia (Taito)"
+
+msgid "Japanese (Taito)"
+msgstr "Giapponese (Taito)"
+
+msgid "Japan (Taito)"
+msgstr "Giappone (Taito)"
+
+msgid "USA (Taito)"
+msgstr "USA (Taito)"
+
+msgid "Europe (Taito)"
+msgstr "Europa (Taito)"
+
+msgid "Taiwan (Taito)"
+msgstr "Taiwan (Taito)"
+
+msgid "Hong Kong (Taito)"
+msgstr "Hong Kong (Taito)"
+
+msgid "Korea (Taito)"
+msgstr "Corea (Taito)"
+
+# ....................................
+
+# Pipi and Bibi's
+msgid "World (Ryouta)/PipiBibi"
+msgstr ""
+
+# Down Town
+msgid "World License"
+msgstr "Licenza internaz."
+
+# Pipi and Bibi's
+msgid "World/PipiBibi"
+msgstr ""
+
+msgid "World/Taito Corp Japan"
+msgstr ""
+
+msgid "Asia/Japanese"
+msgstr ""
+
+# Pipi and Bibi's
+msgid "Asia/PipiBibi"
+msgstr ""
+
+msgid "South East Asia (Charterfield License)"
+msgstr ""
+
+msgid "SE Asia, Charterfield"
+msgstr ""
+
+msgid "SE Asia/Tatsujin2"
+msgstr ""
+
+msgid "Japanese (Toaplan)"
+msgstr ""
+
+msgid "Japan (2 buttons)"
+msgstr ""
+
+msgid "Japan (Ryouta)/Whoopee"
+msgstr ""
+
+# Ghox
+msgid "Japan (Taito Corp)"
+msgstr ""
+
+# Ghox
+msgid "Japan (null)"
+msgstr ""
+
+msgid "Japan (taito license)"
+msgstr ""
+
+msgid "Japan - Taito"
+msgstr ""
+
+msgid "Japan - Tecmo"
+msgstr ""
+
+msgid "Japan/Japanese"
+msgstr ""
+
+msgid "Japan/Taito Corp"
+msgstr ""
+
+msgid "Japan/Tatsujin2"
+msgstr ""
+
+msgid "Japan/Whoopee"
+msgstr ""
+
+# Ghox
+msgid "America (Romstar)"
+msgstr ""
+
+msgid "America - Atari"
+msgstr ""
+
+msgid "America - Romstar"
+msgstr ""
+
+msgid "America/English"
+msgstr ""
+
+# Pipi and Bibi's
+msgid "America/PipiBibi"
+msgstr ""
+
+msgid "USA (6 buttons)"
+msgstr ""
+
+# Pipi and Bibi's
+msgid "USA (Romstar)/PipiBibi"
+msgstr ""
+
+# Ghox
+msgid "USA (Taito America)"
+msgstr ""
+
+# Ghox
+msgid "USA (Taito Japan)"
+msgstr ""
+
+msgid "USA, Europe (Atari)"
+msgstr ""
+
+msgid "USA, Sammy Corp."
+msgstr ""
+
+# Pipi and Bibi's
+msgid "USA/PipiBibi"
+msgstr ""
+
+msgid "USA/Taito America"
+msgstr ""
+
+msgid "USA/Taito America (Romstar)"
+msgstr ""
+
+msgid "USA/Truxton2"
+msgstr ""
+
+# Ghox
+msgid "UK (JP Leisure)"
+msgstr ""
+
+# Ghox
+msgid "Italy (Star Elect)"
+msgstr ""
+
+# Ghox
+msgid "Europe (Nova)"
+msgstr ""
+
+# Pipi and Bibi's
+msgid "Europe (Nova)/PipiBibi"
+msgstr ""
+
+# Ghox
+msgid "Europe (Taito Japan)"
+msgstr ""
+
+msgid "Europe, USA (Atari)"
+msgstr ""
+
+msgid "Europe/English"
+msgstr ""
+
+# Pipi and Bibi's
+msgid "Europe/PipiBibi"
+msgstr ""
+
+msgid "Europe/Truxton2"
+msgstr ""
+
+msgid "Taiwan - Spacy"
+msgstr ""
+
+msgid "Taiwan, Anomoto Int."
+msgstr ""
+
+msgid "Taiwan/Japanese"
+msgstr ""
+
+# Pipi and Bibi's
+msgid "Taiwan/PipiBibi"
+msgstr ""
+
+msgid "Taiwan/Tatsujin2"
+msgstr ""
+
+# Ghox
+msgid "Hong Kong (Honest)"
+msgstr ""
+
+msgid "Hong Kong - Honest"
+msgstr ""
+
+msgid "Hong Kong, Charterfield"
+msgstr ""
+
+msgid "HongKong/Japanese"
+msgstr ""
+
+# Pipi and Bibi's
+msgid "HongKong/PipiBibi"
+msgstr ""
+
+msgid "HongKong/Tatsujin2"
+msgstr ""
+
+msgid "Korea (Unite Trading)"
+msgstr ""
+
+msgid "Korea (Unite license)"
+msgstr ""
+
+msgid "Korea, Unite Trading"
+msgstr ""
+
+msgid "Korea/Japanese"
+msgstr ""
+
+msgid "Korea/Tatsujin2"
+msgstr ""
+
+# Ghox
+msgid "Spain & Portugal (APM)"
+msgstr "Spagna e Portogallo (APM)"
+
+# Pipi and Bibi's
+msgid "Spain&Portugal/PipiBibi"
+msgstr "Spagna e Portogallo/PipiBibi"
+
+# ....................................
+
+msgid "cps1"
+msgstr ""
+
+msgid "cps2"
+msgstr ""
+
+msgid "Capcom CPS1"
+msgstr ""
+
+msgid "Capcom CPS2"
+msgstr ""
+
+msgid "Cave"
+msgstr ""
+
+msgid "NMK"
+msgstr ""
+
+msgid "Neo-Geo"
+msgstr ""
+
+msgid "Psikyo (gunbird)"
+msgstr ""
+
+msgid "Seta"
+msgstr ""
+
+# Thunder & Lighting
+msgid "Seta (Romstar License)"
+msgstr ""
+
+# Thunder & Lighting
+msgid "Seta (Visco License)"
+msgstr ""
+
+msgid "Seta U.S.A"
+msgstr ""
+
+msgid "Seta USA / Romstar"
+msgstr ""
+
+msgid "Seta USA / Taito America"
+msgstr ""
+
+msgid "Taito"
+msgstr ""
+
+# Meta Fox
+msgid "Taito America"
+msgstr ""
+
+msgid "Taito America Corp."
+msgstr ""
+
+msgid "Taito Corp. Japan"
+msgstr ""
+
+msgid "Taito F2"
+msgstr ""
+
+msgid "Taito L-System"
+msgstr ""
+
+msgid "Taito X-System 2"
+msgstr ""
+
+msgid "Toaplan"
+msgstr ""
+
+msgid "Toaplan 1"
+msgstr ""
+
+msgid "Toaplan 2"
+msgstr ""
+
+# ....................................
+
+# Thunder & Lighting, Caliber 50
+msgid "Romstar"
+msgstr ""
+
+# Earth Joker
+msgid "Romstar License"
+msgstr "Licenza Romstar"
+
+# Thunder & Lighting
+msgid "Visco"
+msgstr ""
+
+msgid "Visco (Japan Only)"
+msgstr ""
+
+msgid "Wisdom"
+msgstr ""
+
+# Meta Fox
+msgid "Jordan"
+msgstr ""
+
+# ....................................
+
+# Thundercade
+msgid "Thundercade"
+msgstr ""
+msgid "Twin Formation"
+msgstr ""
+
+msgid "Castle of Dragon"
+msgstr ""
+
+msgid "Bobble Bobble"
+msgstr ""
+
+msgid "Super Bobble Bobble"
+msgstr ""
+
+msgid "Super Dream Land"
+msgstr ""
+
+msgid "Dragon Unit"
+msgstr ""
+
+msgid "Dream Land"
+msgstr ""
+
+msgid "Athena (Japan Only)"
+msgstr ""
+
+msgid "Athena (Japan)"
+msgstr ""
+
+msgid "Athena / Taito (Japan)"
+msgstr ""
+
+# ....................................
+
+msgid "P1 A"
+msgstr ""
+
+msgid "P1 B"
+msgstr ""
+
+msgid "P1 C"
+msgstr ""
+
+msgid "P1 Chi"
+msgstr ""
+
+msgid "P1 D"
+msgstr ""
+
+msgid "P1 E"
+msgstr ""
+
+msgid "P1 F"
+msgstr ""
+
+msgid "P1 G"
+msgstr ""
+
+msgid "P1 H"
+msgstr ""
+
+msgid "P1 I"
+msgstr ""
+
+msgid "P1 J"
+msgstr ""
+
+msgid "P1 K"
+msgstr ""
+
+msgid "P1 Kan"
+msgstr ""
+
+msgid "P1 L"
+msgstr ""
+
+msgid "P1 M"
+msgstr ""
+
+msgid "P1 N"
+msgstr ""
+
+msgid "P1 Pon"
+msgstr ""
+
+msgid "P1 Reach"
+msgstr ""
+
+msgid "P1 Ron"
+msgstr ""
+
+msgid "P1 Invulnerability"
+msgstr "Invulnerabilità G1"
+
+msgid "P2 Invulnerability"
+msgstr "Invulnerabilità G2"
+
+# ....................................
+
+msgid "3 Times"
+msgstr "3 volte"
+
+msgid "5 Times"
+msgstr "5 volte"
+
+msgid "8 Times"
+msgstr "8 volte"
+
+# ....................................
+
+msgid "6 fps"
+msgstr ""
+
+msgid "7 fps"
+msgstr ""
+
+msgid "10 fps"
+msgstr ""
+
+msgid "15 fps"
+msgstr ""
+
+msgid "30 fps"
+msgstr ""
+
+# ....................................
+
+msgid "10 Yen"
+msgstr ""
+
+msgid "10 Yen Setup"
+msgstr ""
+
+msgid "100 Yen"
+msgstr ""
+
+# ....................................
+
+# US Classic Golf
+msgid "+10 Yards"
+msgstr ""
+
+msgid "+20 Yards"
+msgstr ""
+
+msgid "+30 Yards"
+msgstr ""
+
+msgid "+40 Yards"
+msgstr ""
+
+msgid "+50 Yards"
+msgstr ""
+
+msgid "+60 Yards"
+msgstr ""
+
+msgid "-30 Yards"
+msgstr ""
+
+# ....................................
+
+msgid "20 sec"
+msgstr ""
+
+msgid "25 sec"
+msgstr ""
+
+msgid "30 sec"
+msgstr ""
+
+msgid "35 sec"
+msgstr ""
+
+msgid "40 sec"
+msgstr ""
+
+msgid "50 sec"
+msgstr ""
+
+msgid "60 sec"
+msgstr ""
+
+msgid "40 Seconds"
+msgstr "40 Secondi"
+
+msgid "50 Seconds"
+msgstr "40 Secondi"
+
+msgid "60 Seconds"
+msgstr "60 Secondi"
+
+msgid "70 Seconds"
+msgstr "70 Secondi"
+
+msgid "90 Seconds"
+msgstr "90 Secondi"
+
+msgid "120 Seconds"
+msgstr "120 Secondi"
+
+msgid "150 Seconds"
+msgstr "150 Secondi"
+
+msgid "5 seconds"
+msgstr "5 secondi"
+
+msgid "10 seconds"
+msgstr "10 secondi"
+
+msgid "15 seconds"
+msgstr "15 secondi"
+
+msgid "20 seconds"
+msgstr "20 secondi"
+
+msgid "30 seconds"
+msgstr "30 secondi"
+
+msgid "40 seconds"
+msgstr "40 secondi"
+
+msgid "50 seconds"
+msgstr "50 secondi"
+
+msgid "60 seconds"
+msgstr "60 secondi"
+
+# ....................................
+
+# Kiff off
+msgid "3'"
+msgstr ""
+msgid "4'"
+msgstr ""
+msgid "5'"
+msgstr ""
+msgid "6'"
+msgstr ""
+
+# Euro Champ 92
+msgid " 2  Minutes"
+msgstr " 2  minuti"
+msgid " 3  Minutes"
+msgstr " 3  minuti"
+msgid "1.5 Minutes"
+msgstr "1.5 minuti"
+msgid "2.5 Minutes"
+msgstr "2.5 minuti"
+
+# Camel Try, Champion Wrestler
+msgid "2 Minutes"
+msgstr "2 minuti"
+msgid "3 Minutes"
+msgstr "3 minuti"
+msgid "4 Minutes"
+msgstr "4 minuti"
+msgid "5 Minutes"
+msgstr "5 minuti"
+
+# Camel Try, Champion Wrestler
+msgid "1 Minute Lenght"
+msgstr "Durata di 1 minuto"
+
+# Cadash
+msgid "5 Mins"
+msgstr "5 minuti"
+
+msgid "6 Mins"
+msgstr "6 minuti"
+
+msgid "7 Mins"
+msgstr "7 minuti"
+
+msgid "8 Mins"
+msgstr "8 minuti"
+
+msgid "+1 Min"
+msgstr "+1 minuto"
+
+msgid "-1 Min"
+msgstr "-1 minuto"
+
+msgid "-2 Mins"
+msgstr "-2 minuti"
+
+# ....................................
+
+# Atomic Robo Kid
+msgid "DSW A Bit 1"
+msgstr ""
+
+msgid "DSW A Bit 2"
+msgstr ""
+
+msgid "DSW A Bit 3"
+msgstr ""
+
+msgid "DSW A Bit 4"
+msgstr ""
+
+msgid "DSW A Bit 5"
+msgstr ""
+
+msgid "DSW A Bit 6"
+msgstr ""
+
+msgid "DSW A Bit 7"
+msgstr ""
+
+msgid "DSW A Bit 8"
+msgstr ""
+
+msgid "DSW B Bit 1"
+msgstr ""
+
+msgid "DSW B Bit 2"
+msgstr ""
+
+msgid "DSW B Bit 3"
+msgstr ""
+
+msgid "DSW B Bit 4"
+msgstr ""
+
+msgid "DSW B Bit 5"
+msgstr ""
+
+msgid "DSW B Bit 6"
+msgstr ""
+
+msgid "DSW B Bit 7"
+msgstr ""
+
+msgid "DSW B Bit 8"
+msgstr ""
+
+msgid "DSW C Bit 1"
+msgstr ""
+
+msgid "DSW C Bit 2"
+msgstr ""
+
+msgid "DSW C Bit 3"
+msgstr ""
+
+msgid "DSW C Bit 4"
+msgstr ""
+
+msgid "DSW C Bit 5"
+msgstr ""
+
+msgid "DSW C Bit 6"
+msgstr ""
+
+msgid "DSW C Bit 7"
+msgstr ""
+
+msgid "DSW C Bit 8"
+msgstr ""
+
+# ....................................
+
+msgid "10k"
+msgstr ""
+
+msgid "20K"
+msgstr ""
+
+msgid "30k"
+msgstr ""
+
+msgid "40k"
+msgstr ""
+
+msgid "50k"
+msgstr ""
+
+msgid "70k"
+msgstr ""
+
+msgid "80k"
+msgstr ""
+
+msgid "100K"
+msgstr ""
+
+msgid "100k"
+msgstr ""
+
+msgid "150k"
+msgstr ""
+
+# ????
+msgid "200K"
+msgstr ""
+
+msgid "200k"
+msgstr ""
+
+msgid "250k"
+msgstr ""
+
+msgid "300K"
+msgstr ""
+
+msgid "400k"
+msgstr ""
+
+msgid "400K"
+msgstr ""
+
+msgid "500K"
+msgstr ""
+
+msgid "600k"
+msgstr ""
+
+msgid "1000K"
+msgstr ""
+
+msgid "30k 70k.."
+msgstr ""
+
+msgid "50k 100k.."
+msgstr ""
+
+msgid "50k, 150k"
+msgstr ""
+
+msgid "70k, 200k"
+msgstr ""
+
+msgid "100k, 250k"
+msgstr ""
+
+msgid "150k, 350k"
+msgstr ""
+
+msgid "200k, 300k"
+msgstr ""
+
+msgid "200k, 500k"
+msgstr ""
+
+msgid "300k, 600k"
+msgstr ""
+
+msgid "10k, 110K, 210K, 310K"
+msgstr ""
+
+msgid "15K, 145K, 365K, 515K"
+msgstr ""
+
+msgid "20k, 220K, 420K, 620K"
+msgstr ""
+
+msgid "20k 40k"
+msgstr ""
+
+msgid "20k 80k"
+msgstr ""
+
+msgid "30k 100k"
+msgstr ""
+
+msgid "40k 200k"
+msgstr ""
+
+msgid "50k 100k"
+msgstr ""
+
+msgid "50k 150k"
+msgstr ""
+
+msgid "50k 250k"
+msgstr ""
+
+msgid "70k 150k"
+msgstr ""
+
+msgid "70k 200k"
+msgstr ""
+
+msgid "70k 280k"
+msgstr ""
+
+msgid "100k 200k"
+msgstr ""
+
+msgid "100k 300k"
+msgstr ""
+
+msgid "100k 500k"
+msgstr ""
+
+msgid "500k 1000k"
+msgstr ""
+
+msgid "800k 1500k"
+msgstr ""
+
+msgid "1000k 2000k"
+msgstr "1000k 2000k"
+
+# ????
+msgid "1.200k 3.500k"
+msgstr "1.200k 3.500k"
+
+msgid "5k 20k 15k+"
+msgstr ""
+
+msgid "8k 23k 15k+"
+msgstr ""
+
+msgid "70k 14k 21k"
+msgstr ""
+
+msgid "10k and 100k"
+msgstr "10k e 100k"
+
+msgid "10k and 150k"
+msgstr "10k e 150k"
+
+msgid "10k and 250k"
+msgstr "10k e 250k"
+
+msgid "10k and 350k"
+msgstr "10k e 350k"
+
+msgid "20k and 50k"
+msgstr "20k e 50k"
+
+msgid "20k and 80k"
+msgstr "20k e 80k"
+
+msgid "30k and 50k"
+msgstr "30k e 50k"
+
+msgid "30k and 100k"
+msgstr "30k e 100k"
+
+msgid "30k and 150k"
+msgstr "30k e 150k"
+
+msgid "40k and 100k"
+msgstr "40k e 100k"
+
+msgid "40k and 200k"
+msgstr "40k e 200k"
+
+msgid "50K and 100K"
+msgstr "50K e 100K"
+
+msgid "50k and 100k"
+msgstr "50k e 100k"
+
+msgid "50k and 150k"
+msgstr "50k e 150k"
+
+msgid "50k and 200k"
+msgstr "50k e 200k"
+
+msgid "50k and 250k"
+msgstr "50k e 250k"
+
+msgid "50k and 300k"
+msgstr "50k e 300k"
+
+msgid "50k and 350k"
+msgstr "50k e 350k"
+
+msgid "60k and 200k"
+msgstr "60k e 200k"
+
+msgid "70K and 200K"
+msgstr "70K e 200K"
+
+msgid "80k and 160k"
+msgstr "80k e 160k"
+
+msgid "80k and 250k"
+msgstr "80k e 250k"
+
+msgid "100K and 250K"
+msgstr "100K e 250K"
+
+msgid "100k and 100k"
+msgstr "100k e 100k"
+
+msgid "100k and 200k"
+msgstr "100k e 200k"
+
+msgid "100k and 300k"
+msgstr "100k e 300k"
+
+msgid "100k and 500k"
+msgstr "100k e 500k"
+
+msgid "200K and 500K"
+msgstr "200K e 500K"
+
+msgid "200k and 500k"
+msgstr "200k e 500k"
+
+# ????
+msgid "300k & 600k"
+msgstr "300k e 600k"
+
+msgid "300k and 800k"
+msgstr "300k e 800k"
+
+msgid "1000k and 2000k"
+msgstr "1000k e 2000k"
+
+msgid "60000 and 130000"
+msgstr "60000 e 130000"
+
+msgid "30000 and 100000"
+msgstr "30000 e 100000"
+
+msgid "50k, 200k and 500k"
+msgstr "50k, 200k e 500k"
+
+msgid "100k, 300k and 600k"
+msgstr "100k, 300k e 600k"
+
+msgid "100k, 300k and 800k"
+msgstr "100k, 300k e 800k"
+
+msgid "200k, 400k and 600k"
+msgstr "200k, 400k e 600k"
+
+# ????
+msgid "600k 2.000k and 4500k"
+msgstr "600k 2.000k e 4500k"
+
+msgid "20k and every 50k"
+msgstr "20k e ogni 50k"
+
+msgid "30k and every 50k"
+msgstr "30k e ogni 50k"
+
+msgid "50k and every 100k"
+msgstr "50k e ogni 100k"
+
+msgid "50k and every 150k"
+msgstr "50k e ogni 150k"
+
+msgid "50k and every 80k"
+msgstr "50k e ogni 80k"
+
+msgid "70k and every 130k"
+msgstr "70k e ogni 130k"
+
+msgid "70k and every 200k"
+msgstr "70k e ogni 200k"
+
+msgid "80k and every 400k"
+msgstr "80k e ogni 400k"
+
+msgid "100k and every 150k"
+msgstr "100k e ogni 150k"
+
+msgid "100k and every 200k"
+msgstr "100k e ogni 200k"
+
+msgid "100k and every 450k"
+msgstr "100k e ogni 450k"
+
+msgid "150k and every 200k"
+msgstr "150k e ogni 200k"
+
+msgid "160k and every 450k"
+msgstr "160k e ogni 450k"
+
+msgid "200k and every 200k"
+msgstr "200k e ogni 200k"
+
+msgid "200k and every 450k"
+msgstr "200k e ogni 450k"
+
+msgid "300k and every 300k"
+msgstr "300k e ogni 300k"
+
+msgid "300k and every 800k"
+msgstr "300k e ogni 800k"
+
+msgid "500k and every 1000k"
+msgstr "500k e ogni 1000k"
+
+msgid "500k and every 600k"
+msgstr "500k e ogni 600k"
+
+msgid "600k and every 1.400k"
+msgstr "600k e ogni 1.400k"
+
+msgid "10K 30K and every 30K"
+msgstr "10K 30K e ogni 30K"
+
+msgid "20K 50K and every 70K"
+msgstr "20K 50K e ogni 70K"
+
+msgid "20K 60K and every 60K"
+msgstr "20K 60K e ogni 60K"
+
+# ????
+msgid "20K60K and every 60K"
+msgstr "20K 60K e ogni 60K"
+
+msgid "30K 60K and every 70K"
+msgstr "30K 60K e ogni 70K"
+
+msgid "40K 70K and every 80K"
+msgstr "40K 70K e ogni 80K"
+
+# ????
+msgid "60K100K and every 60K"
+msgstr "60K 100K e ogni 60K"
+
+msgid "50K, every 150K"
+msgstr "50K, ogni 150K"
+
+msgid "50K, every 200K"
+msgstr "50K, ogni 200K"
+
+msgid "50K, every 250K"
+msgstr "50K, ogni 250K"
+
+msgid "200k, every 300k"
+msgstr "200k, ogni 300k"
+
+msgid "70K, every 150K"
+msgstr "70K, ogni 150K"
+
+msgid "70K, every 200K"
+msgstr "70K, ogni 200K"
+
+msgid "100k, every 200k"
+msgstr "100k, ogni 200k"
+
+msgid "20000, every 80000"
+msgstr "20000, ogni 80000"
+
+msgid "20000, every 90000"
+msgstr "20000, ogni 90000"
+
+msgid "20000, every 60000"
+msgstr "20000, ogni 60000"
+
+msgid "30000, every 100000"
+msgstr "30000, ogni 100000"
+
+msgid "40000, every 60000"
+msgstr "40000, ogni 60000"
+
+msgid "40000, every 80000"
+msgstr "40000, ogni 80000"
+
+msgid "50000, every 60000"
+msgstr "50000, ogni 60000"
+
+msgid "50000, every 90000"
+msgstr "50000, ogni 90000"
+
+msgid "70k then every 200k"
+msgstr "70k quindi ogni 200k"
+
+msgid "20K 40K then every 60K"
+msgstr "20K 40K quindi ogni 60K"
+
+msgid "30K 50K then every 70K"
+msgstr "30K 50K quindi ogni 70K"
+
+msgid "100k then every 200k"
+msgstr "100k quindi ogni 200k"
+
+msgid "100k then every 250k"
+msgstr "100k quindi ogni 250k"
+
+msgid "100k then every 300k"
+msgstr "100k quindi ogni 300k"
+
+msgid "100k then every 400k"
+msgstr "100k quindi ogni 400k"
+
+msgid "150k then every 200k"
+msgstr "150k quindi ogni 200k"
+
+msgid "200k then every 300k"
+msgstr "200k quindi ogni 300k"
+
+msgid "300k then every 800k"
+msgstr "300k quindi ogni 800k"
+
+msgid "20K Every 100K"
+msgstr "20K ogni 100K"
+
+# ????
+msgid "30Kevery 100K"
+msgstr "30K ogni 100K"
+
+# ????
+msgid "50Kevery 150K"
+msgstr "50K ogni 150K"
+
+msgid "50K Every 150K"
+msgstr "50K ogni 150K"
+
+msgid "50K Every 200K"
+msgstr "50K ogni 200K"
+
+# ????
+msgid "70Kevery 200K"
+msgstr "70K ogni 200K"
+
+msgid "70K Every 200K"
+msgstr "70K ogni 200K"
+
+msgid "150K Every 300K"
+msgstr "150K ogni 300K"
+
+msgid "200K Every 200K"
+msgstr "200K ogni 200K"
+
+msgid "200K Every 400K"
+msgstr "200K ogni 400K"
+
+# ????
+msgid "200Kevery 500K"
+msgstr "200K ogni 500K"
+
+msgid "300K Every 500K"
+msgstr "300K ogni 500K"
+
+msgid "500K Every 1500K"
+msgstr "500K ogni 1500K"
+
+# ????
+msgid "500Kevery 1M"
+msgstr "500K ogni 1M"
+
+msgid "10k only"
+msgstr "Solo a 10k"
+
+msgid "20K only"
+msgstr "Solo a 20k"
+
+# ????
+msgid "50K Only"
+msgstr "Solo a 50K"
+
+# ????
+msgid "50K  Only"
+msgstr "Solo a 50K"
+
+msgid "50k only"
+msgstr "Solo a 50k "
+
+msgid "60K only"
+msgstr "Solo a 60K"
+
+msgid "80k only"
+msgstr "Solo a 80k"
+
+msgid "100k only"
+msgstr "Solo a 100k"
+
+msgid "150k only"
+msgstr "Solo a 150k"
+
+msgid "160k only"
+msgstr "Solo a 160k"
+
+msgid "200k only"
+msgstr "Solo a 200k"
+
+msgid "250k only"
+msgstr "Solo a 250k"
+
+msgid "300K only"
+msgstr "Solo a 300K"
+
+# ????
+msgid "300k Only"
+msgstr "Solo a 300k"
+
+# ????
+msgid "300k only"
+msgstr "Solo a 300k"
+
+msgid "400k only"
+msgstr "Solo a 400k"
+
+# ????
+msgid "400K Only"
+msgstr "Solo a 400K"
+
+# ????
+msgid "500K Only"
+msgstr "Solo a 500K"
+
+msgid "500k only"
+msgstr "Solo a 500k"
+
+msgid "600k Only"
+msgstr "Solo a 600k"
+
+msgid "1000k only"
+msgstr "Solo a 1000k"
+
+msgid "1500k only"
+msgstr "Solo a 1500k"
+
+msgid "2000k only"
+msgstr "Solo a 2000k"
+
+msgid "30000 only"
+msgstr "Solo a 30000"
+
+msgid "50000 only"
+msgstr "Solo a 50000"
+
+msgid "60000 only"
+msgstr "Solo a 60000"
+
+msgid "20K & 60K only"
+msgstr "Solo a 20K e 60K"
+
+msgid "30K & 60K only"
+msgstr "Solo a 30K e 60K"
+
+msgid "800k and 2000k only"
+msgstr "Solo a 800k e 2000k"
+
+msgid "70K 200K Only"
+msgstr "Solo a 70K 200K"
+
+msgid "Every 50k"
+msgstr "Ogni 50k"
+
+msgid "Every 100k"
+msgstr "Ogni 100k"
+
+msgid "Every 150k"
+msgstr "Ogni 150k"
+
+msgid "Every 200k"
+msgstr "Ogni 200k"
+
+msgid "Every 250k"
+msgstr "Ogni 250k"
+
+msgid "Every 300K"
+msgstr "Ogni 300K"
+
+msgid "Every 300k"
+msgstr "Ogni 300k"
+
+msgid "Every 500k"
+msgstr "Ogni 500k"
+
+msgid "Every 700k"
+msgstr "Ogni 700k"
+
+msgid "Every 800k"
+msgstr "Ogni 800k"
+
+msgid "Every 900k"
+msgstr "Ogni 900k"
+
+# ????
+msgid "every 1000k"
+msgstr "Ogni 1000k"
+
+msgid "Every 1000k"
+msgstr "Ogni 1000k"
+
+msgid "every 1500k"
+msgstr "Ogni 1500k"
+
+msgid "Every 2000k"
+msgstr "Ogni 2000k"
+
+# ????
+msgid "every 2000k"
+msgstr "Ogni 2000k"
+
+# ????
+msgid "every 3000k"
+msgstr "Ogni 3000k"
+
+# ????
+msgid "every 4000k"
+msgstr "Ogni 4000k"
+
+msgid "Every 60000"
+msgstr "Ogni 60000"
+
+msgid "Every 90000"
+msgstr "Ogni 90000"
