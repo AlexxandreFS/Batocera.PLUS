@@ -1,12 +1,4 @@
 #!/bin/sh
-################################################################################
-
-### Resolve o bug, de não carregar os arquivos de configuração da pasta
-### /etc/triggerhappy/triggers.d necessário para ativar os atalhos de teclado.
-
-/etc/init.d/K10triggerhappy restart
-
-################################################################################
 
 # hide mouse cursor
 unclutter --noevents -b
@@ -97,6 +89,13 @@ batocera-resolution minTomaxResolution
 
 xset -dpms
 xset s off
+
+################################################################################
+
+### Resolve o bug, de não carregar os arquivos de configuração da pasta
+### /etc/triggerhappy/triggers.d para ativar os atalhos de teclado.
+
+/etc/init.d/K10triggerhappy start &
 
 ################################################################################
 
