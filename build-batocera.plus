@@ -3,8 +3,8 @@
 
 # Versão do Batocera.PLUS
 VERSION='2.00'
-RELEASE='RC2'
-NVIDIA_LEGACY='0'
+RELEASE='RC3'
+NVIDIA_LEGACY='1'
 
 # Pasta temporária em uma partição Linux
 TEMP_DIR='tmp'
@@ -32,7 +32,7 @@ URL_THEME_A='https://github.com/BatoceraPLUS/Theme-batocera-plus/archive/master.
 URL_WINE='https://github.com/BatoceraPLUS/Wine/releases/download/Wine/Wine-5.0-v1.7z'
 URL_DIRECTX='https://github.com/BatoceraPLUS/Wine/releases/download/DX9Jun2010/DX9Jun2010.7z'
 URL_MONO='http://dl.winehq.org/wine/wine-mono/4.9.4/wine-mono-bin-4.9.4.tar.gz'
-URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/68.6.0esr/linux-x86_64/en-US/firefox-68.6.0esr.tar.bz2'
+URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/68.7.0esr/linux-x86_64/en-US/firefox-68.7.0esr.tar.bz2'
 URL_FLASH='https://fpdownload.adobe.com/get/flashplayer/pdc/32.0.0.344/flash_player_npapi_linux.x86_64.tar.gz'
 
 ################################################################################

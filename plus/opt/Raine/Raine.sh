@@ -169,6 +169,7 @@ if ! [ -f "$HOME/configs/raine/rainex_sdl.cfg" ]; then
         pt_BR|pt_PT) echo 'language = pt'     >> "$HOME/configs/raine/rainex_sdl.cfg" ;;
         es_ES)       echo 'language = es'     >> "$HOME/configs/raine/rainex_sdl.cfg" ;;
         fr_FR)       echo 'language = fr'     >> "$HOME/configs/raine/rainex_sdl.cfg" ;;
+        it_IT)       echo 'language = it'     >> "$HOME/configs/raine/rainex_sdl.cfg" ;;
         *)           echo 'language = C'      >> "$HOME/configs/raine/rainex_sdl.cfg" ;;
     esac
 

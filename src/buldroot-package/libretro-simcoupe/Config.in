@@ -1,0 +1,11 @@
+config BR2_PACKAGE_LIBRETRO_SIMCOUPE
+        bool "libretro-simcoupe"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_INSTALL_LIBSTDCPP
+        help
+          A SimCoupe core for Retroarch
+
+	  http://www.libretro.com
+
+comment "LIBRETRO_SIMCOUPE needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP
