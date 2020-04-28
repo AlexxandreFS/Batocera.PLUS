@@ -3,11 +3,11 @@
 
 # Versão do Batocera.PLUS
 VERSION='2.00'
-RELEASE='RC3'
-NVIDIA_LEGACY='1'
+RELEASE='RC4'
+NVIDIA_LEGACY='0'
 
 # Pasta temporária em uma partição Linux
-TEMP_DIR='tmp'
+TEMP_DIR='./tmp'
 #TEMP_DIR='/media/NO_LABEL/tmp'
 #TEMP_DIR='/media/NO_LABEL_1/tmp'
 #TEMP_DIR='/media/NO_LABEL_2/tmp'
@@ -33,7 +33,7 @@ URL_WINE='https://github.com/BatoceraPLUS/Wine/releases/download/Wine/Wine-5.0-v
 URL_DIRECTX='https://github.com/BatoceraPLUS/Wine/releases/download/DX9Jun2010/DX9Jun2010.7z'
 URL_MONO='http://dl.winehq.org/wine/wine-mono/4.9.4/wine-mono-bin-4.9.4.tar.gz'
 URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/68.7.0esr/linux-x86_64/en-US/firefox-68.7.0esr.tar.bz2'
-URL_FLASH='https://fpdownload.adobe.com/get/flashplayer/pdc/32.0.0.344/flash_player_npapi_linux.x86_64.tar.gz'
+URL_FLASH='https://fpdownload.adobe.com/get/flashplayer/pdc/32.0.0.363/flash_player_npapi_linux.x86_64.tar.gz'
 
 ################################################################################
 
@@ -60,11 +60,11 @@ if ! [ -f "$IMG_OFICIAL" ]; then
     exit $?
 fi
 
-gunzip -k "$IMG_OFICIAL" -c > "$TEMP_DIR/Batocera.PLUS.img" || exit $?
+gunzip -k "$IMG_OFICIAL" -c > "$TEMP_DIR/batocera.linux.img" || exit $?
 
 echo 'Adicionando imagem oficial do batocera.linux ao disposivo loop...'
 losetup -f
-losetup /dev/loop7 -o $((512 * 2048)) "$TEMP_DIR/Batocera.PLUS.img" || exit $?
+losetup /dev/loop7 -o $((512 * 2048)) "$TEMP_DIR/batocera.linux.img" || exit $?
 
 echo 'Montando imagem oficial do batcera.linux...'
 mkdir "$TEMP_DIR/BATOCERA"
@@ -217,15 +217,15 @@ echo 'Montando imagem do BatoceraZero...'
 mkdir "$TEMP_DIR/BatoceraZero"
 mount /dev/loop6 "$TEMP_DIR/BatoceraZero" || exit $?
 
-echo 'Movendo arquivos de boot para o Batocera.PLUS...'
+echo 'Movendo arquivos de boot para o BatoceraZero...'
 rm    "$TEMP_DIR/BATOCERA/boot/batocera"              || exit $?
 rm -r "$TEMP_DIR/BATOCERA/boot/syslinux"              || exit $?
 cp -r "$TEMP_DIR/BATOCERA/"* "$TEMP_DIR/BatoceraZero" || exit $?
 
-echo 'Movendo arquivo squashfs para o Batocera.PLUS...'
+echo 'Movendo arquivo squashfs para o BatoceraZero...'
 mv "$TEMP_DIR/batocera" "$TEMP_DIR/BatoceraZero/boot/batocera" || exit $?
 
-echo 'Copiando arquivos extras para o Batocera.PLUS...'
+echo 'Copiando arquivos extras para o BatoceraZero...'
 cp -r -f "$BOOT_DIR/"* "$TEMP_DIR/BatoceraZero" || exit $?
 
 echo 'Adicionando opção de resolução em batocera-boot.conf'
@@ -248,26 +248,36 @@ echo 'Removendo imagens dos disposivos loop...'
 losetup -d /dev/loop7 || exit $?
 losetup -d /dev/loop6 || exit $?
 
-echo 'Removendo arquivos temporários...'
-rmdir "$TEMP_DIR/BATOCERA"          || exit $?
-rmdir "$TEMP_DIR/BatoceraZero"      || exit $?
-rm -r "$TEMP_DIR/squashfs-root"     || exit $?
-rm    "$TEMP_DIR/Batocera.PLUS.img" || exit $?
+sync
 
 mv    "$TEMP_DIR/BatoceraZero.img" "$TEMP_DIR/Batocera.PLUS.img" || exit $?
 
-sync
-
 if [ "${RELEASE}" ]; then
-    echo 'Compactando imagem final...'
+    echo 'Copiando arquivos extra para a release...'
     if [ "${NVIDIA_LEGACY}" == '1' ]; then
         RELEASE="${RELEASE}-Nvidia-Legacy"
     fi
+    cp -f  "${BOOT_DIR}/batocera-hd-edition/grub.cfg"               "${TEMP_DIR}"                      || exit $?
+    cp -f  "${BOOT_DIR}/batocera-hd-edition/leia-me.txt"            "${TEMP_DIR}/dualboot-leia-me.txt" || exit $?
+    #cp -f  "whatsnew.txt"                                           "${TEMP_DIR}"                      || exit $?
+    #sed -i "1s/^/#### Batocera.PLUS-${VERSION}-${RELEASE} ####\n\n/" "${TEMP_DIR}/whatsnew.txt"        || exit $?
+
+    echo 'Compactando imagem final...'
     7zr a "${TEMP_DIR}/Batocera.PLUS-${VERSION}-${RELEASE}.7z" "${TEMP_DIR}/Batocera.PLUS.img" || exit $?
-    rm "${TEMP_DIR}/Batocera.PLUS.img"
+
+    echo 'Gerando Md5sum...'
+    md5sum "${TEMP_DIR}/Batocera.PLUS-${VERSION}-${RELEASE}.7z" | cut -d ' ' -f 1 >> "${TEMP_DIR}/md5sum.txt" || exit $?
 fi
 
-echo 'Imagem criada! Pressione qualquer tecla para concluir'
-read -n 1
+echo 'Removendo arquivos temporários...'
+rmdir "$TEMP_DIR/BATOCERA"                || exit $?
+rmdir "$TEMP_DIR/BatoceraZero"            || exit $?
+rm -r "$TEMP_DIR/squashfs-root"           || exit $?
+rm    "$TEMP_DIR/batocera.linux.img"      || exit $?
+if [ "${RELEASE}" ]; then
+    rm -r "${TEMP_DIR}/Batocera.PLUS.img" || exit $?
+fi
+
+echo 'IMAGEM CRIADA COM SUCESSO!'
 
 exit 0

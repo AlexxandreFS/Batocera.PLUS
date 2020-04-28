@@ -1,0 +1,11 @@
+config BR2_PACKAGE_LIBRETRO_BLASTEM
+        bool "libretro-bsnes"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_INSTALL_LIBSTDCPP
+        help
+          A libretro Mega Drive emulator core.
+
+	  http://www.libretro.com
+
+comment "LIBRETRO_BLASTEM needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP

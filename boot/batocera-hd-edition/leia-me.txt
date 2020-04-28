@@ -1,0 +1,204 @@
+O que é o BATOCERA-HD-EDITION?
+--------------------------------------------------------------------------------
+Última atualização: 09/abr/2020
+
+Trata-se de um adicional que permite rodar o Batocera.PLUS diretamente do HD do PC
+sem usar Pendrive, sem adicionar um HD extra, sem particionar ou formatar o HD.
+É uma maneira alternativa de instalar o Batocera, muito mais prática, fácil e sem
+risco de ferrar com tudo.
+
+O procedimento consiste em configurar o gerenciar de inicialização "GRUB" para dar 
+boot em uma imagem do Batocera.PLUS que fica em uma pasta qualquer no PC.
+
+
+Como instalar o BATOCERA-HD-EDITION?
+--------------------------------------------------------------------------------
+Descompacte a imagem do Batocera.PLUS (Batocera.PLUS-x.x-stable.7z) com o programa
+de sua preferência, recomendo que use o 7zip https://www.7-zip.org
+Crie uma pasta ou sub-pasta na unidade raiz (C:), sem usar espaços e caracteres
+especiais para evitar aborrecimentos futuros.
+
+Exemplo Windows:
+C:\linux\Batocera.PLUS.img
+
+Exemplo Linux:
+/opt/batocera/Batocera.PLUS.img
+
+Windows: Se você usa somente o Windows você vai precisar baixar um programa para
+inicializar o Batocera.PLUS, baixe o Grub2Win que pode ser encontrado gratuitamente
+no seguinte site https://sourceforge.net/projects/grub2win o programa também está
+na imagem do Batocera.PLUS na pasta tools.
+
+Depois de baixar instale o programa em suas configurações padrões.
+
+Este programa vai adicionar uma entra no menu de inicialização do Windows, ele não
+altera em nada a inicialização do Windows apenas adiciona uma opção extra para poder
+inicializar outros sistemas operacionais.
+
+Ao término da instalação do programa ele vai abrir um utilitário que permite personalizar
+o menu de inicialização do Windows, não customize nada, apenas conclua a instalação.
+
+Windows: O Grub2Win por padrão vai ser instalado direto na unidade C:\grub2 e suas configurações
+vão dentro do arquivo grub.cfg, para adicionar sistemas operacionais na inicialização
+do Windows basta editar este arquivo usando o programa o Notepad++ disponível em
+https://notepad-plus-plus.org/downloads
+
+Linux : Se você usa Linux em seu PC, parabéns, você é um cara esperto ;-) e não precisa
+de mais nada, pois o Linux normalmente já vem com o Grub2 instalado por padrão e com bons
+editores de texto.
+
+Windows: A configuração do Grub fica no arquivo grub.cfg e este arquivo está na pasta de
+instalação do grub "C:\grub2\grub.cfg"
+
+Na imagem do batocera, pasta batocera-hd-edition tem o arquivo grub.cfg pré-configurado para
+iniciar o Batocera.PLUS, este mesmo arquivo também está disponível no seguinte link
+https://github.com/AlexxandreFS/Batocera.PLUS/blob/master/boot/batocera-hd-edition/grub.cfg
+Este arquivo deve ser alterado de acordo com o local onde você descompactou a imagem do
+Batocera.PLUS e somente as primeira linhas dele devem ser editadas.
+
+Para configurar este arquivo você deve descobrir os números das unidades em que você
+descompactou o Batocera.
+Para descobrir estas informações digite o seguinte comando:
+
+Windows: Tecla Windos+R e digite DISKMGMT.MSC Ele vai mostrar o número do disco e suas
+partições. Se você só tem um HD no PC ele será o disco 0 e se você instalou o Windows
+em suas configurações padrões a partição será a 2.
+
+Linux: Abra o terminal e digite df –h Verifique o número do disco onde você colocou o
+Batocera se você colocou em sda1 o disco será 0 e a partição será 1.
+
+De posse destas informações basta editar o arquivo grub.cfg
+set DISC=0                                     (Numero do HD)
+set PART=2                                     (Número da partição)
+set DIR=/linux                                 (Diretório onde você descompactou o Batocera)
+set FILE=Batocera.PLUS                         (Nome do arquivo descompactado)
+
+Lembre-se de respeitar as letras maiuúsculas e minúsculas nos nomes dos arquivos e diretórios.
+
+Windows: Copie o arquivo modificado para a pasta de instalação do Grub2Win substituindo
+o arquivo que já existe lá. Se você seguiu exatamente o que foi explicado, basta reiniciar
+o computador e escolher o Grub2Win na inicialização e se divertir.
+
+Linux Debian e derivados: Remova as seguintes linhas do arquivo grub.cfg set default="0"
+e set timeout="0", renomei o arquivo para custom.cfg, copie o arquivo para /boot/grub
+
+cp grub.cfg /boot/grub/custom.cfg
+
+Atualize o grub para reconhecer o Batocera
+
+update-grub
+
+Linux Outros: Remova as seguintes linhas do arquivo grub.cfg set default="0"
+e set timeout="0" adicione as demais linhas do arquivo grub.cfg no final do arquivo
+/boot/grub/grub.cfg
+
+Ao iniciar o Batocera.PLUS pela peireira vêz, escolha nas opções de sistema uma
+partição onde deseja armazenar os seus jogos, temas, etc...
+O Batocera.PLUS irá criar uma pasta com o nome de batocera na unidade que você
+escolheu, exemplo: C:\batocera
+
+
+Conclusões
+--------------------------------------------------------------------------------
+Embora possa parece complicado o processo de instalação é bem simples.
+Criei esta modificação para poder instalar o Batocera.PLUS em meu PC sem modificar as
+minhas configurações e para não ficar somente em meu computador resolvi compartilhar.
+
+
+=================================================================================
+=================================================================================
+=================================================================================
+
+TUTORIAL PARA USUÁRIOS UBUNTU E DERIVADOS
+
+Abra um terminal e siga a receita de bolo.
+
+Faça login como root
+
+	sudo su [Digite sua senha]
+
+Entre na pasta onde você baixou o Batocera.PLUS pelo terminal.
+	
+	cd Downloads
+	
+Instale o 7zip para poder descompactar o arquivo.
+	
+	apt-get update
+	apt-get install p7zip
+
+Descompacte a imagem do Batocera.PLUS.
+	
+	7zr x Batocera.PLUS-x.x-stable.7z
+
+Crie uma pasta para colocar o Batocera.PLUS
+	
+	mkdir -p /opt/batocera
+
+Mova a imagem descompactada para a pasta que você acaba de criar.
+
+	mv  Batocera.PLUS.img /opt/batocera
+
+Veja qual é o número da partição onde você colocou o batocera.
+neste exemplo ele mostra que o Batocera está em /dev/sda1
+ou seja Disco 0 e partição 1
+
+	fdisk -l | grep sd
+	Disco /dev/sda: 10 GiB, 10737418240 bytes, 20971520 setores
+	/dev/sda1   *             2048 20969471 20967424     10G 83 Linux
+
+Edite o arquivo grub.cfg que você baixou com um editor de texto de sua preferência.
+	
+	nano grub.cfg
+	
+	ou
+
+	gedit grub.cfg
+
+Configure os números das partições e o local onde você baixou o Batocera.
+
+	set DISC=0
+	set PART=1
+	set DIR=/opt/batocera
+	set FILE= Batocera.PLUS.img
+	
+Remova as duas primeiras linhas do arquivo ou comente com # no início da linha.
+Não se esqueça de salvar o arquivo.
+
+	#set default="0"
+	#set timeout="0"
+
+Mova o arquivo grub.cfg para o diretório de boot do Grub.
+	
+	mv grub.cfg /boot/grub/custom.cfg
+
+O Ubuntu por padrão não mostra o menu de inicialização do Grub para poder escolher
+qual sistema você quer inicializar (Ubuntu ou Batocera)
+Para ter acesso a este menu você tem duas opções:
+
+1 - Ligar o computador segurando a tecla Shift da esquerda até o menu aparecer.
+
+2 - Editar o arquivo de preferências do Grub para o menu sempre aparecer.
+	
+	nano /etc/default/grub
+	
+	ou
+	
+	gedit /etc/default/grub
+
+Procure pela seguinte linha e remova ou comente com um # no início da linha.
+
+	#GRUB_HIDDEN_TIMEOUT=0
+	
+Aproveite que você já está aqui e aumente o tempo para poder selecionar qual sistema
+você pretende carregar. Neste caso 60 segundos = 1 Minuto
+
+	GRUB_TIMEOUT=60
+
+Por fim atualize as configurações do Grub e reinicie o PC
+
+	update-grub
+
+SOBRE
+--------------------------------------------------------------------------------
+Autor:  Alexandre Freire dos Santos
+E-Mail: alexxandre.freire@gmail.com
