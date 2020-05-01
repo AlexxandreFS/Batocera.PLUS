@@ -205,21 +205,6 @@ done
 
 ################################################################################
 
-cat >> smb-ps2smb.conf << EOF
-[ps2smb]
-comment = Open PS2 Loader
-path = /userdata/roms/ps2smb
-writeable = yes
-guest ok = yes
-create mask = 0744
-directory mask = 0755
-force user = root
-veto files = /._*/.DS_Store/
-delete veto files = yes
-EOF
-
-################################################################################
-
 echo 'Compactando arquivo squashfs...'
 mksquashfs "$TEMP_DIR/squashfs-root/"* "$TEMP_DIR/batocera" || exit $?
 
