@@ -99,14 +99,6 @@ xset s off
 
 ################################################################################
 
-### Resolve o bug de não identificar o teclado PT-BR ABNT2
-
-#if [ "${settings_lang}" == 'pt_BR' ]; then
-#    setxkbmap -model abnt2 -layout br -variant ,abnt2 &
-#fi
-
-################################################################################
-
 ### Video de abertura
 
 VIDEO_DIR='/userdata/splashvideos'

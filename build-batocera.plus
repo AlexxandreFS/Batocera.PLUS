@@ -198,9 +198,25 @@ rm -r "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/LGPL" \
 ################################################################################
 
 echo 'Aplicando Patch...'
+cp -f "${TEMP_DIR}/squashfs-root/etc/samba/smb.conf" "${TEMP_DIR}/squashfs-root/etc/samba/smb-ps2smb.conf" || exit $?
 for i in $(du -a "${PATCH_DIR}" | grep -F '.patch' | awk '{print $2}' | sed "s#${PATCH_DIR}/##"); do
     patch -p1 "${TEMP_DIR}/squashfs-root/${i%.patch}" "${PATCH_DIR}/${i}" || exit $?
 done
+
+################################################################################
+
+cat >> smb-ps2smb.conf << EOF
+[ps2smb]
+comment = Open PS2 Loader
+path = /userdata/roms/ps2smb
+writeable = yes
+guest ok = yes
+create mask = 0744
+directory mask = 0755
+force user = root
+veto files = /._*/.DS_Store/
+delete veto files = yes
+EOF
 
 ################################################################################
 

@@ -1,0 +1,30 @@
+## SYSTEM SONY PLAYSTATION 2 OPL ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted (Batocera.PLUS): ".iso .ISO"
+-------------------------------------------------------------------------------
+Os jogos destas pasta serão compartilhados pela rede para serem acessados pelo
+jogados pelo Homebrew OPL (Open PS2 Loader) diretamente pelo hardware original
+do Playstation 2.
+
+O serviço de compartilhamento é iniciado ao copiar um ou mais jogos para a pasta
+/userdata/roms/ps2smb/DVD ou /userdata/roms/ps2smb/CD e reiniciar o compuatador.
+
+Se não quiser reinicar o computador, abra um terminal com o atalho de teclado
+(Win + F4) ou F1 e depois F4 e execute este comando.
+/etc/init.d/S91smb restart
+
+Não é necessário reiniciar o computador ao adicionar novos jogos. O serviço de
+compartilhamento será interrompido quando não hoverem mais jogos nas pastas
+descritas à cima.
+
+Os jogos também ficarão disponíveis no menu do Batocera.PLUS para serem jogados
+via emulação.
+
+A pasta compartilhada pela rede recebe o nome de ps2smb e o endereço de rede está
+disponível das opções de rede no menu do Batocera.PLUS.
+
+Caso queira usar um endereço ip fixo no Batocera.PLUS use o comando ifconfig
+no arquivo /userdata/system/custom.sh Neste exemplo eu adiciono a seguinte linha:
+ifconfig eth0 192.168.1.10
+
+-------------------------------------------------------------------------------

@@ -1,32 +1,50 @@
-Novidades
+################################################################################
 
-    * Sincronizado: Batocera.PLUS com o Batocera.Linux 5.24 [Alexandre Freire dos Santos]
+PRINCIPAIS MUDANÇAS 
+    * Adicionado Todas as Bios
 
-    * Adicionado todas as Bios. [Alexandre Freire dos Santos e Comunidade]
-    * Adicionado bios extra para o Flycast. [Sérgio de Carvalho Júnior]
-    * Adicionado bios extra para o Dolphin e FullBoot para o sistema GameCube [Sérgio de Carvalho Júnior]
+    * DualBoot, batocera-hd-edition.gz isso não é mais necessário, atualizado grub.cfg (Grub2 and Grub2Win)
+    * Programas úteis para o Windows (/boot/tools) [Sérgio de Carvalho Júnior]
 
-    * DualBoot, batocera-hd-edition.gz não é mais necessário. [Alexandre Freire dos Santos]
-    * DualBoot, Atualizado arquivo grub.cfg (Grub2 e Grub2Win) [Alexandre Freire dos Santos]
+    * Mozilla Firefox ESR e Flash Player
+    * Wine Staging (DirectX 9 + Mono + Fonts Microsoft)
+    * OpenBOR 4.0 (v7142, v6330, v4432)
+    * Raine Emu 2020(0.90.3), 2015(0.64.10) NeoGeoCD
 
-    * Por padrão a resolução do PSP vem em 2x. [Alexandre Freire dos Santos]
-    * Desativado por padrão a inicialização do Kodi pressionando o botão X [Alexandre Freire dos Santos]
+    * Tamanho total da imagem 2.5GB
+    * Compartilhamento de .ISO de PS2 por rede para o OPL (/userdata/roms/ps2smb) [Agradescimento à Sérgio de Carvalho Júnior]
+    * Desativado as atualizações automáticas.
+    * Novos temas nas atualizações online [Cleber Batista, Caetano Ramos]
+    * Libretro Dolphin (GameCube, Wii)
+    * Dolphin (GameCube) FullBoot (/userdata/system/batocera.conf) [Agradescimento à Sérgio de Carvalho Júnior]
+    * Decorações de janela sem efeito de vidro
+    * Configurações personalizadas para o terminal (xterm)
+    * Logo Batocera+ no terminal [lala, crcrerror, cyperghost]
+    * Configuração personalizada para o genciador de arquivos (F1)
+    * Suporte à fontes Chinesas [Agradescimento à C1724 (discord)]
+    * Vários atalhos de teclado, (Win + F2) lista completa
+      Print de tela (Win + PrintScreen) para /userdata/screenshots veja mais (Win + F2)
+      Ativar/desativar ponteiro do mouse (Win + F3)
+      Abrir o xterm (Win + F4)
+      Abrir o Firefox (Win + F10)
+      Controle de volume (Win + teclas de direção)
+    * Melhor suporte para controles de PS4
+    * Auto identificação de variantes de layout de teclado e opção system.kblayout em (/userdata/system)
+    * Resolução de tela personalizada pelo usuários no arquivo (/boot/batocera-boot.conf)
+    * Video de abertura ativado pelo arquivo (/boot/batocera-boot.conf) vídeos no formato .mp4 em (/userdata/splashvideos)
+    * Imagem de carregamento inicial como parte do tema .jpg e .png (/userdata/themes/Meu-Tema/loadscreen/startscreen.png)
+    * Script de criação de roms /usr/bin/batocera-fake-roms
 
-    * Ao iniciar a partição SHARE em modo tmpfs as bios apontam para
-      /usr/share/batocera/datainit [Alexandre Freire dos Santos]
 
-    * Atualizado ferramentas úteis para o windows (/boot/tools) [Sérgio de Carvalho Júnior]
 
-    * Atualizado Mozilla Firefox ESR e Flash Player [Alexandre Freire dos Santos]
-    * Atualizado OpenBOR para 4.0 Alpha (7142) [Alexandre Freire dos Santos]
-    * Atualizado Wine Staging 5.0 [Alexandre Freire dos Santos]
-    * Adicionado Drive D: no Wine apontando para /userdata/roms/windows [Alexandre Freire dos Santos]
-    * Atualizado core BSNES-HD [Alexandre Freire dos Santos]
-    * Corrigido falha de execução no core BSNES em alguns tipos de processadores. [Alexandre Freire dos Santos]
+
+    * Adicionado BSNES-HD
+    * Atualizado vários Cores
+
+
     * Corrigido bug no sistema Dreamcast que impede o joystick de funcionar. [Alexandre Freire dos Santos, Sérgio de Carvalho Júnior]
-    * Adicionado core PPSSPP (PSP) para o Retroarch. [Alexandre Freire dos Santos, Sérgio de Carvalho Júnior]
-    * Adicionado suporte a DLC's no sistema PSP /
-
+    * Adicionado core PPSSPP (PSP) para o Retroarch.
+    * Adicionado suporte a DLC's no sistema PSP (/userdata/roms/psp/DLC)  [Alexandre Freire dos Santos, Sérgio de Carvalho Júnior]
 
 ONLINE
 
@@ -39,7 +57,6 @@ ONLINE
 
     * Adicionado arquivos de informação de núcleo para o Retroarch. [Alexandre Freire dos Santos]
       Agradescimentos [Sérgio de Carvalho Júnior, Douglas Martins de Matos, Sérgio Graças, Cleber Batista]
-
 
 PERFUMARIA
 
@@ -56,7 +73,86 @@ PERFUMARIA
 
     Corrigido problemas com fontes Asiáticas. [Alexandre Freire dos Santos, C1724]
 
-    Adicionado Logo Batocera+ ao terminal [cyperghost]
+
+
+
+
+LIST OF CORES
+
+    NEW LIBRETRO
+        blastem              Sega Megadrive
+        bsnes_hd             Super Nintendo, Super Nintendo Classic Mini, Super Nintendo CD (MSU-1), Satellaview
+        catsfc               Super Nintendo, Super Nintendo Classic Mini, Satellaview
+        dolphin              Nintendo GameCube, Nintendo Wii
+        fbalpha2012          Final Burn Alpha, FBA LIBRETRO, Neo-Geo, Neo-Geo Mini, Neo-Geo X, Arcade
+        flycast2019          Sega Naomi, Sega Dreamcast, Atomiswave, Arcade
+        freechaf             Fairchild Channel F
+        gearsystem           Sega Master System, Sega Game Gear, Sega SG1000
+        gpsp                 Game Boy Advance
+        hbmame               HBMame
+        mame0174             Mame, Neo-Geo, Neo-Geo Mini, Neo-Geo X, Light Gun, Arcade
+        mame0200             Mame, Neo-Geo, Neo-Geo Mini, Neo-Geo X, Light Gun, Arcade
+        mame078              Mame, Neo-Geo, Neo-Geo Mini, Neo-Geo X, Light Gun, Arcade
+        mednafen_pce         PC Engine, PC Engine CD, Supergrafx
+        mednafen_psx_sw      Sony Playstation, Sony Playstation Classic Mini
+        melonds              Nintendo DS
+        meteor               Game Boy Advance
+        nekop2               NEC PC-98
+        ppsspp               Sony PSP, Sony PSP MINIs
+        puae                 Commodore Amiga, Amiga CD32, Amiga CDTV
+        quicknes             Nintendo Entertainment System, Nintendo Classic Mini
+        race                 Neo-Geo Pocket, Neo-Geo Pocket Color
+        redream              Sega Dreamcast
+        smsplus              Sega Game Gear, ColecoVision, Sega Master System
+
+    NEW STANDALONE
+        OpenBOR_v4432        OpenBOR
+        OpenBOR_v6330        OpenBOR
+        OpenBOR_v4432        OpenBOR
+        raine2020            Neo-Geo CD
+        raine2015            Neo-Geo CD
+        Mozilla_Firefox      Internet, Flash Games
+        Linux                Linux Games
+        Wine5.0              Windows Games
+
+    UPDATE LIBRETRO
+        beetle-saturn        Sega Saturn
+        bsnes                Super Nintendo, Super Nintendo Classic Mini, Super Nintendo CD (MSU-1), Satellaview
+        citra                Nintendo 3DS
+        dosbox               Dos (x86)
+        fbneo                Arcade, Final Burn Alpha, FBA LIBRETRO, Neo-Geo, Neo-Geo Mini, Neo-Geo CD, Neo-Geo X
+        fceumm               Nintendo Entertainment System, Nintendo Classic Mini, Family Computer Disk System
+        flycast              Sega Dreamcast, Arcade, Sega Naomi, Atomiswave, Sega Dreamcast
+        genesisplusgx        Sega SG1000, Sega Master System, Sega Megadrive, Sega CD, Sega Game Gear
+        mednafen_lynx        Atari Lynx
+        mednafen_ngp         Neo-Geo Pocket, Neo-Geo Pocket Color
+        mednafen_supergrafx  Supergrafx
+        mupen64plus-next     Nintendo 64
+        neocd                Neo-Geo CD
+        nestopia             Nintendo Entertainment System, Nintendo Classic Mini, Family Computer Disk System
+        np2kai               NEC PC-98
+        nxengine             Cave Story
+        opera                3DO Interactive Multiplayer
+        parallel_n64         Nintendo 64, Nintendo 64 Disk Drive
+        pce                  PC Engine, PC Engine CD
+        pcsx_rearmed         Sony Playstation, Sony Playstation Classic Mini
+        picodrive            Sega Master System, Sega Megadrive, Sega CD, Sega 32x
+        snes9x               Super Nintendo, Super Nintendo Classic Mini, Super Nintendo CD (MSU-1), Satellaview, SuFami Turbo
+        theodore             Thomson
+        vice                 Commodore 64
+        virtualjaguar        Atari Jaguar
+        yabause              Sega Saturn
+
+    UPDATE STANDALONE
+        dolphin              Nintendo GameCube, Nintendo Wii
+        fs-uae               Amiga CD32, Commodore Amiga, Amiga CDTV
+        hypseus              Daphne
+        PPSSPP               Sony PSP, Sony PSP MINIs
+        reicast              Sega Dreamcast
+
+
+
+
 
 
 

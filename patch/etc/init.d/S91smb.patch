@@ -1,0 +1,15 @@
+--- S91smb.original
++++ S91smb.modificado
+@@ -9,7 +9,11 @@
+ if [ "$securityenabled" == "1" ];then
+     CONFIGFILE="/etc/samba/smb-secure.conf"
+ else
+-    CONFIGFILE="/etc/samba/smb.conf"
++    if [ "$(ls /userdata/roms/ps2smb/DVD | grep .iso$)" ] || [ "$(ls /userdata/roms/ps2smb/CD | grep .iso$)" ]; then
++        CONFIGFILE='/etc/samba/smb-ps2smb.conf'
++    else
++        CONFIGFILE="/etc/samba/smb.conf"
++    fi
+ fi
+ 
+ # Make directories.
