@@ -60,7 +60,7 @@
 +  core:     parallel_n64
 +fba_libretro:
 +  emulator: libretro
-+  core:     fbneo
++  core:     fbalpha2012
 +nesmini:
 +  emulator: libretro
 +  core:     fceumm
