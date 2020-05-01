@@ -27,6 +27,15 @@
             <decor>yes</decor>
             <fullscreen>no</fullscreen>
         </application>
+        <application name="yad">
+            <decor>yes</decor>
+            <fullscreen>no</fullscreen>
+            <maximized>false</maximized>
+            <position type="normal">
+                <x>center</x>
+                <y>center</y>
+            </position>
+        </application>
     </applications>
 
     <theme>
