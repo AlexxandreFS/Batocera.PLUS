@@ -36,10 +36,6 @@
 +# Enables fast booting (skip GameCube BIOS when booting an ISO
 +# uncoment this line to disable BIOS when booting an ISO
 +#gamecube.fullboot=0
-
-+# Enables the use of real gamecube pads on dolphin via MyFlash USB adaptor
-+# Just remove the (#) from begining of line above
-+#use.gamecube.pads=1
  
  # scrapper
  # Comma seperated order to prefer images, s=snapshot, b=boxart, f=fanart, a=banner, l=logo, 3b=3D boxart
