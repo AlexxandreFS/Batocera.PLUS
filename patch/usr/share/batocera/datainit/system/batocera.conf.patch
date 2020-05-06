@@ -36,6 +36,10 @@
 +# Enables fast booting (skip GameCube BIOS when booting an ISO
 +# uncoment this line to disable BIOS when booting an ISO
 +#gamecube.fullboot=0
+
++# Adds support for using the GameCube MayFlash USB adapter
++# just remove (#) at the beginning of the line below to enable
++#use.gamecube.pads=1
  
  # scrapper
  # Comma seperated order to prefer images, s=snapshot, b=boxart, f=fanart, a=banner, l=logo, 3b=3D boxart
