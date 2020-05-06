@@ -13,7 +13,21 @@
  ## Kodi can wait for a network component before starting
  ## waithost is the ip or hostname that must answer to a ping to validate the availability
 #
-# Desativa atualizações.
+# Por padrão ativa o layout do teclado para pt_BR ABNT2.
+#
+@@ -117,8 +117,8 @@
+ # ------------ F - Language and keyboard ------------ #
+ ## Set the language of the system (fr_FR,en_US,en_GB,de_DE,pt_BR,es_ES,it_IT,eu_ES,tr_TR,zh_CN)
+ system.language=en_US
+-## set the keyboard layout (fr,en,de,us,es)
+-#system.kblayout=us
++## set the keyboard layout (fr,en,de,us,es,ptbr2)
++system.kblayout=ptbr2
+ ## Set you local time
+ ## Select your timezone from : ls /usr/share/zoneinfo/ (string)
+ #system.timezone=Europe/Paris
+#
+# Por padrão desativa as atualizações automáticas.
 #
 @@ -127,7 +127,7 @@
  
@@ -23,10 +37,9 @@
 +updates.enabled=0
  # default : stable ; set to beta to get the next version currently being tested. set to unstable at your own risk to get the development version.
  updates.type=stable
-
 #
-# Ativa o fullboot do GameCube.
-# 
+# Por padrão ativa o fullboot do GameCube.
+#
 @@ -219,6 +219,11 @@
  # Enables fast booting (skip PS2 BIOS when booting an ISO ; some games relies on BIOS to get start-up parameters and thus may not work correctly)
  # set fullboot to 0 to disable BIOS when booting an ISO
