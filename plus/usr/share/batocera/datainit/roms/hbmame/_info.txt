@@ -7,7 +7,7 @@ gerar links limbólicos para as roms split (clones).
 
 ./_hbmame-erase-clones.sh
 
-Atenção: Somente use este script se tiver que o seu set é merged.
+Atenção: Somente use este script se estiver certo que o seu set é merged.
 
 Para remover os clones use o script:
 

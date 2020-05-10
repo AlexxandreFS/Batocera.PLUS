@@ -1,45 +1,44 @@
 ################################################################################
 
 PRINCIPAIS MUDANÇAS 
-    * Adicionado Todas as Bios
+    * Adicionado: Todas as Bios
+    * Adicionado: DualBoot, batocera-hd-edition.gz isso não é mais necessário, atualizado grub.cfg (Grub2 and Grub2Win)
+    * Adicionado: Programas úteis para o Windows (/boot/tools) [Sérgio de Carvalho Júnior]
+    * Adicionado: Mozilla Firefox ESR e Flash Player
+    * Adicionado: Wine Staging com suporte à programas e jogos de 32 e 64 bits
+    * Adicionado: DirectX 9 + Fonts Microsoft + Mono
+    * Adicionado: Winetrix
+    * Adicionado: OpenBOR 4.0 (v7142, v6330, v4432)
+    * Adicionado: Raine Emu 2020(0.90.3), 2015(0.64.10) NeoGeoCD
+    * Informação: Tamanho total da imagem 2.5GB
+    * Adicionado: Compartilhamento de .ISO de PS2 por rede para o OPL (/userdata/roms/ps2smb)
+    * Desativado: Atualizações automáticas.
+  *** Adicionado: Novos temas nas atualizações online [Cleber Batista, Caetano Ramos]
+    * Adicionado: Libretro Dolphin (GameCube, Wii)
+    * Adicionado: Dolphin (GameCube) FullBoot (/userdata/system/batocera.conf) [Agradescimento à Sérgio de Carvalho Júnior]
+    * Alterado:   Decorações de janela sem efeito de vidro
+    * Adicionado: Configurações personalizadas para o terminal (xterm)
+    * Adicionado: Logo Batocera+ no terminal [lala, crcrerror, cyperghost]
+    * Adicionado: Configuração personalizada para o genciador de arquivos (F1)
+    * Corrigido:  Problemas com fontes Asiáticas [Agradescimento à C1724 (discord)]
+    * Adicionado: Vários atalhos de teclado, (Win + F2) lista completa
+                  Print de tela (Win + PrintScreen) para /userdata/screenshots veja mais (Win + F2)
+                  Ativar/desativar ponteiro do mouse (Win + F3)
+                  Abrir o xterm (Win + F4)
+                  Abrir o Firefox (Win + F10)
+                  Controle de volume (Win + teclas de direção)
+    * Adicionado: Melhor suporte para controles de PS4
+    * Corrigido:  Auto identificação de variantes de layout de teclado e opção system.kblayout em (/userdata/system) [Agradescimento à Sérgio de Carvalho Júnior]
+    * Adicionado: Resolução de tela personalizada pelo usuários no arquivo (/boot/batocera-boot.conf)
+    * Adicionado: Suporte à video de abertura .mp4 ativado pelo arquivo (/boot/batocera-boot.conf) vídeos em (/userdata/splashvideos)
+    * Adicionado: Imagem de carregamento inicial como parte do tema .jpg e .png (/userdata/themes/Meu-Tema/loadscreen/startscreen.png)
+    * Adicionado: Script de criação de roms falsas para a testes de temas (batocera-fake-roms)
+    * Adicionado: Programa chdman para compressão / descompressão de roms pelo terminal para o formato .chd
+    * Adicionado: Programa scraper para baixar capas e informações de jogos, somente pelo terminal
+    * Adicionado: Programa xjoypad para emulação de controle pelo teclado por linha de comando
+    * Adicionado: Programa unrar para descompressão de arquivos no formato .rar por linha de comando
+    * Adicionado: Suporte à jogatina online pelo Rretroarch
 
-    * DualBoot, batocera-hd-edition.gz isso não é mais necessário, atualizado grub.cfg (Grub2 and Grub2Win)
-    * Programas úteis para o Windows (/boot/tools) [Sérgio de Carvalho Júnior]
-
-    * Mozilla Firefox ESR e Flash Player
-    * Wine Staging (DirectX 9 + Mono + Fonts Microsoft)
-    * OpenBOR 4.0 (v7142, v6330, v4432)
-    * Raine Emu 2020(0.90.3), 2015(0.64.10) NeoGeoCD
-
-    * Tamanho total da imagem 2.5GB
-    * Compartilhamento de .ISO de PS2 por rede para o OPL (/userdata/roms/ps2smb) [Agradescimento à Sérgio de Carvalho Júnior]
-    * Desativado as atualizações automáticas.
-    * Novos temas nas atualizações online [Cleber Batista, Caetano Ramos]
-    * Libretro Dolphin (GameCube, Wii)
-    * Dolphin (GameCube) FullBoot (/userdata/system/batocera.conf) [Agradescimento à Sérgio de Carvalho Júnior]
-    * Decorações de janela sem efeito de vidro
-    * Configurações personalizadas para o terminal (xterm)
-    * Logo Batocera+ no terminal [lala, crcrerror, cyperghost]
-    * Configuração personalizada para o genciador de arquivos (F1)
-    * Suporte à fontes Chinesas [Agradescimento à C1724 (discord)]
-    * Vários atalhos de teclado, (Win + F2) lista completa
-      Print de tela (Win + PrintScreen) para /userdata/screenshots veja mais (Win + F2)
-      Ativar/desativar ponteiro do mouse (Win + F3)
-      Abrir o xterm (Win + F4)
-      Abrir o Firefox (Win + F10)
-      Controle de volume (Win + teclas de direção)
-    * Melhor suporte para controles de PS4
-    * Auto identificação de variantes de layout de teclado e opção system.kblayout em (/userdata/system)
-    * Resolução de tela personalizada pelo usuários no arquivo (/boot/batocera-boot.conf)
-    * Video de abertura ativado pelo arquivo (/boot/batocera-boot.conf) vídeos no formato .mp4 em (/userdata/splashvideos)
-    * Imagem de carregamento inicial como parte do tema .jpg e .png (/userdata/themes/Meu-Tema/loadscreen/startscreen.png)
-    * Script de criação de roms /usr/bin/batocera-fake-roms
-
-
-
-
-    * Adicionado BSNES-HD
-    * Atualizado vários Cores
 
 
     * Corrigido bug no sistema Dreamcast que impede o joystick de funcionar. [Alexandre Freire dos Santos, Sérgio de Carvalho Júnior]
@@ -71,9 +70,6 @@ PERFUMARIA
     
     Adicionado Filtros de Imagem padrão para os sistemas extras do Batocera.PLUS [Sérgio de Carvalho Júnior]
 
-    Corrigido problemas com fontes Asiáticas. [Alexandre Freire dos Santos, C1724]
-
-
 
 
 
@@ -104,6 +100,7 @@ LIST OF CORES
         race                 Neo-Geo Pocket, Neo-Geo Pocket Color
         redream              Sega Dreamcast
         smsplus              Sega Game Gear, ColecoVision, Sega Master System
+        yabasanshiro         Sega Saturn
 
     NEW STANDALONE
         OpenBOR_v4432        OpenBOR
@@ -124,8 +121,10 @@ LIST OF CORES
         fceumm               Nintendo Entertainment System, Nintendo Classic Mini, Family Computer Disk System
         flycast              Sega Dreamcast, Arcade, Sega Naomi, Atomiswave, Sega Dreamcast
         genesisplusgx        Sega SG1000, Sega Master System, Sega Megadrive, Sega CD, Sega Game Gear
+        kronos               Sega Saturn
         mednafen_lynx        Atari Lynx
         mednafen_ngp         Neo-Geo Pocket, Neo-Geo Pocket Color
+        mednafen_psx         Sony Playstation, Sony Playstation Classic Mini
         mednafen_supergrafx  Supergrafx
         mupen64plus-next     Nintendo 64
         neocd                Neo-Geo CD
@@ -149,10 +148,6 @@ LIST OF CORES
         hypseus              Daphne
         PPSSPP               Sony PSP, Sony PSP MINIs
         reicast              Sega Dreamcast
-
-
-
-
 
 
 
