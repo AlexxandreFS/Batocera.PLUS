@@ -6,9 +6,53 @@
 
 ################################################################################
 
-### CAMINHOS
-
 WINE_DIR='/opt/Wine'
+WINE_VERSION='1580332120'
+
+################################################################################
+
+### ARQUITETURA DO WINE (x32, x64)
+
+if ! [ "${WINEARCH}" ]; then
+    WINE_ARCH="$(basename "$0")"
+else
+    WINE_ARCH="${WINEARCH}"
+fi
+
+case ${WINE_ARCH} in
+    wine)
+        WINE_ARCH=''
+        LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        export LIBGL_DRIVERS_PATH="/lib32/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
+        ;;
+    wine64)
+        WINE_ARCH='64'
+        LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        export WINEARCH='win64'
+        ;;
+    win32)
+        WINE_ARCH=''
+        LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        export LIBGL_DRIVERS_PATH="/lib32/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
+        ;;
+    win64)
+        WINE_ARCH='64'
+        LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        ;;
+    *)
+        exit -1
+esac
+
+export LD_LIBRARY_PATH
+export PYTHONPATH="/usr/lib/python2.7:${PYTHONPATH:+:$PYTHONPATH}"
+export PERLLIB="/usr/share/perl5/:${PERLLIB:+:$PERLLIB}"
+
+################################################################################
+
+### CAMINHOS
 
 if ! [ "${WINEPREFIX}" ]; then
     export WINEPREFIX="${HOME}/configs/wine"
@@ -17,61 +61,65 @@ elif ! [ -d "${WINEPREFIX}" ]; then
     exit 1
 fi
 
-LD_LIBRARY_PATH="/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-
-export LD_LIBRARY_PATH
-export LIBGL_DRIVERS_PATH="/lib32/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
-export PYTHONPATH="/usr/lib/python2.7:${PYTHONPATH:+:$PYTHONPATH}"
-export PERLLIB="/usr/share/perl5/:${PERLLIB:+:$PERLLIB}"
-
-################################################################################
-
-### ARQUITETURA DO WINE (x32, x64)
-
-if ! [ "$WINEARCH" ]; then
-    WINE_ARCH="$(basename "$0")"
-
-    if [ "$WINE_ARCH" == 'wine' ]; then
-        WINE_ARCH=''
-    elif [ "$WINE_ARCH" == 'wine64' ]; then
-        WINE_ARCH='64'
-    fi
-fi
-
-################################################################################
-
-### MONO, GECKO
-
-# Impede a solicitação para instalar o Mono e o Gecko.
-
-#if [ "$WINEDLLOVERRIDES" ]; then
-#    WINEDLLOVERRIDES="$WINEDLLOVERRIDES;mscoree;mshtml="
-#fi
-
-#export WINEDLLOVERRIDES='mscoree;mshtml='
-
 ################################################################################
 
 ### INICIA O WINE NORMALMENTE
 
-if [ -f "${WINEPREFIX}/user.reg" ]; then
-    exec "${WINE_DIR}/bin/wine${WINE_ARCH}" "$@"
+if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
+    WINE_VERSION_NEW="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
+    if [ "${WINE_VERSION}" == "${WINE_VERSION_NEW}" ]; then
+        exec "${WINE_DIR}/bin/wine${WINE_ARCH}" "$@"
+    else
+        echo 'CREATING NEW WINEPREFIX'
+    fi
 fi
 
-
 ################################################################################
 ################################################################################
 
+### TELA DE CARREGAMENTO
 
-### CRIA O DIRETÓRIO DE TRABALHO PARA O WINE "WINEPREFIX"
+retroarch -L '/usr/lib/libretro/imageviewer_libretro.so' \
+          --config '/usr/share/batocera/datainit/system/configs/retroarch/retroarchcustom.cfg' \
+          "${WINE_DIR}/wine.png" &
+
+################################################################################
+
+### CRIA UM NOVO WINEPREFIX
+
+rm -r "${WINEPREFIX}/"* 2> /dev/null
+
+################################################################################
+
+### DIRECTX 9 (install)
+
+# Se o usuário definir o WINEPREFIX o DirectX não será instalado, útil para
+# instalações em prefixos diferentes para evitar influências externas.
+
+if [ "${WINEPREFIX}" == "${HOME}/configs/wine" ]; then
+    ${WINE_DIR}/bin/wine${WINE_ARCH} ${WINE_DIR}/apps/directx_Jun2010_redist/DXSETUP.exe /silent
+fi
+
+################################################################################
+
+### WINE-MONO (install)
+
+mkdir "${WINEPREFIX}/drive_c/windows/mono"
+ln -s "${WINE_DIR}/apps/mono" "${WINEPREFIX}/drive_c/windows/mono/mono-2.0"
+
+################################################################################
+
+### REINICIA O "WINDOWS"
 
 "${WINE_DIR}/bin/wine${WINE_ARCH}" wineboot
 
-# Aguarda o "Windows" ser reiniciado para prosseguir.
-for (( i = 0; i <= 120; i++ )); do
+for i in {0..300}; do
     sleep 1
+
+    if [ "$(pidof wineserver)" ]; then
+        continue
+    fi
+
     if [ -f "${WINEPREFIX}/user.reg" ] && [ -f "${WINEPREFIX}/system.reg" ]; then
         sleep 2
         break
@@ -81,6 +129,7 @@ done
 ################################################################################
 
 ### PASTAS DO USUÁRIO
+
 
 for i in "${WINEPREFIX}/drive_c/users/root/"* "${WINEPREFIX}/drive_c/users/0/"* ; do
     if [ -L "$i" ]; then
@@ -120,70 +169,53 @@ sed -i s'/\"My Videos\"=str(2):\"%USERPROFILE%\\\\.*/\"My Videos\"=str(2):\"%USE
 
 ln -s "/userdata/roms/windows" "${WINEPREFIX}/dosdevices/d:"
 
-
 ################################################################################
 
 ### REGISTRA UM USUÁRIO NO WINDOWS.
 
-sed -i s'/"RegisteredOrganization"=""/"RegisteredOrganization"="Batocera.PLUS"/'                                 "${WINEPREFIX}/system.reg"
-sed -i s'/"RegisteredOwner"=""/"RegisteredOwner"="Alexandre Freire dos Santos"/'                                 "${WINEPREFIX}/system.reg"
+sed -i s'/"RegisteredOrganization"=""/"RegisteredOrganization"="Batocera.PLUS"/' "${WINEPREFIX}/system.reg"
+sed -i s'/"RegisteredOwner"=""/"RegisteredOwner"="Alexandre Freire dos Santos"/' "${WINEPREFIX}/system.reg"
 
 ################################################################################
 
 ### USA O GERENCIADOR DE JANELAS INTERNO DO WINE (O DO SISTEMA DÁ BUG)
 
-echo '' >>                                                                                                       "${WINEPREFIX}/user.reg"
-echo '[Software\\Wine\\X11 Driver]' >>                                                                           "${WINEPREFIX}/user.reg"
-echo '"Managed"="N"' >>                                                                                          "${WINEPREFIX}/user.reg"
+#echo ''                             >> "${WINEPREFIX}/user.reg"
+#echo '[Software\\Wine\\X11 Driver]' >> "${WINEPREFIX}/user.reg"
+#echo '"Managed"="N"'                >> "${WINEPREFIX}/user.reg"
 
 ################################################################################
 
-# IMPEDE QUE O WINECFG CRIE ARQUIVOS DESNECESSÁRIOS.
+### IMPEDE QUE O WINECFG CRIE ARQUIVOS DESNECESSÁRIOS.
 
-echo '[Software\\Wine\\FileOpenAssociations]' >>                                                                 "${WINEPREFIX}/user.reg"
-echo '"Enable"="N"' >>                                                                                           "${WINEPREFIX}/user.reg"
-
-################################################################################
-
-### WINE-MONO
-
-mkdir "${WINEPREFIX}/drive_c/windows/mono"
-ln -s "${WINE_DIR}/apps/mono" "${WINEPREFIX}/drive_c/windows/mono/mono-2.0"
+echo '[Software\\Wine\\FileOpenAssociations]' >> "${WINEPREFIX}/user.reg"
+echo '"Enable"="N"'                           >> "${WINEPREFIX}/user.reg"
 
 ################################################################################
 
-### DIRECTX 9 (install)
+### INTERROMPE A TELA DE CARREGAMENTO
 
-# Se o usuário definir o WINEPREFIX o DirectX não será instalado, útil para
-# instalações em prefixos diferentes para evitar influências externas.
-
-if [ "${WINEPREFIX}" == "${HOME}/configs/wine" ]; then
-    ${WINE_DIR}/bin/wine${WINE_ARCH} ${WINE_DIR}/apps/directx_Jun2010_redist/DXSETUP.exe /silent
-    sleep 1
-fi
-
-# Aguarda o fim da instalação do directx para prosseguir.
-for (( i = 0; i <= 120; i++ )); do
-    sleep 1
-    if ! [ "$(pidof DXSETUP.exe)" ]; then
-        sleep 1
-        break
-    fi
+while [ $(pidof retroarch) ]; do
+    killall retroarch
+    sleep 0.2
 done
+
+wait
 
 ################################################################################
 
 ### INICIA O WINE PELA PRIMEIRA VEZ
 
-exec "${WINE_DIR}/bin/wine${WINE_ARCH}" "$@"
+exec "${0}" "${@}"
 
 ################################################################################
 
 # REFULGO
-#export FONTCONFIG_PATH="/etc/fonts:${FONTCONFIG_PATH:+:$FONTCONFIG_PATH}"
-#export XDG_DATA_DIRS="/usr/share/:${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
-#export GSETTINGS_SCHEMA_DIR="/wine-staging/share/glib-2.0/schemas:${GSETTINGS_SCHEMA_DIR:+:$GSETTINGS_SCHEMA_DIR}"
-#export GSETTINGS_SCHEMA_DIR="/usr/share/glib-2.0/schemas:${GSETTINGS_SCHEMA_DIR:+:$GSETTINGS_SCHEMA_DIR}"
+# export FONTCONFIG_PATH="/etc/fonts:${FONTCONFIG_PATH:+:$FONTCONFIG_PATH}"
+# export XDG_DATA_DIRS="/usr/share/:${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
+# export GSETTINGS_SCHEMA_DIR="/wine-staging/share/glib-2.0/schemas:${GSETTINGS_SCHEMA_DIR:+:$GSETTINGS_SCHEMA_DIR}"
+# export GSETTINGS_SCHEMA_DIR="/usr/share/glib-2.0/schemas:${GSETTINGS_SCHEMA_DIR:+:$GSETTINGS_SCHEMA_DIR}"
+# export WINEDLLOVERRIDES='mscoree;mshtml='
 # http://dl.winehq.org/wine
 # https://wiki.winehq.org/Wine_User%27s_Guide
 

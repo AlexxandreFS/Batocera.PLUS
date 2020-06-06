@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
+
     <desktops>
         <number>1</number>
         <firstdesk>1</firstdesk>
     </desktops>
 
     <applications>
+        <!-- Run obxprop | grep "^_OB_APP" to see the value -->
+
         <application type="normal">
-            <maximized>true</maximized>
+            <maximized>yes</maximized>
             <fullscreen>yes</fullscreen>
         </application>
 
@@ -15,27 +18,70 @@
             <decor>yes</decor>
             <fullscreen>no</fullscreen>
         </application>
+
         <application name="xterm">
             <decor>yes</decor>
             <fullscreen>no</fullscreen>
         </application>
+
         <application name="leafpad">
             <decor>yes</decor>
             <fullscreen>no</fullscreen>
         </application>
+
         <application class="Firefox">
             <decor>yes</decor>
             <fullscreen>no</fullscreen>
         </application>
-        <application name="yad">
+
+        <application title="Dolphin 5.0">
             <decor>yes</decor>
-            <fullscreen>no</fullscreen>
-            <maximized>false</maximized>
+            <fullscreen></fullscreen>
+            <maximized>yes</maximized>
+        </application>
+
+        <application name="parsecd">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+            <maximized></maximized>
             <position type="normal">
                 <x>center</x>
                 <y>center</y>
             </position>
         </application>
+
+        <application class="Yad">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+            <maximized></maximized>
+            <position type="normal">
+                <x>center</x>
+                <y>center</y>
+            </position>
+        </application>
+
+        <application class="Wine">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+            <maximized></maximized>
+            <position type="normal">
+                <x>center</x>
+                <y>center</y>
+            </position>
+        </application>
+        <application name="explorer.exe">
+            <maximized>yes</maximized>
+        </application>
+        <application name="wordpad.exe">
+            <maximized>yes</maximized>
+        </application>
+        <application name="regedit.exe">
+            <maximized>yes</maximized>
+        </application>
+        <application name="oleview.exe">
+            <maximized>yes</maximized>
+        </application>
+
     </applications>
 
     <theme>
@@ -65,4 +111,5 @@
             <slant>Italic</slant>
         </font>
     </theme>
+
 </openbox_config>

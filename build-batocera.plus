@@ -3,7 +3,7 @@
 
 # Versão do Batocera.PLUS
 VERSION='2.00'
-RELEASE='RC4'
+RELEASE='RC5'
 NVIDIA_LEGACY='0'
 
 # Pasta temporária em uma partição Linux
@@ -32,8 +32,10 @@ URL_THEME_A='https://github.com/BatoceraPLUS/Theme-batocera-plus/archive/master.
 URL_WINE='https://github.com/BatoceraPLUS/Wine/releases/download/Wine/Wine-5.0-v1.7z'
 URL_DIRECTX='https://github.com/BatoceraPLUS/Wine/releases/download/DX9Jun2010/DX9Jun2010.7z'
 URL_MONO='http://dl.winehq.org/wine/wine-mono/4.9.4/wine-mono-bin-4.9.4.tar.gz'
-URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/68.7.0esr/linux-x86_64/en-US/firefox-68.7.0esr.tar.bz2'
-URL_FLASH='https://fpdownload.adobe.com/get/flashplayer/pdc/32.0.0.363/flash_player_npapi_linux.x86_64.tar.gz'
+URL_MAME='https://github.com/BatoceraPLUS/Mame-Mess/releases/download/0220/mame_libretro_0220.7z'
+URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/68.9.0esr/linux-x86_64/en-US/firefox-68.9.0esr.tar.bz2'
+URL_FLASH='https://fpdownload.adobe.com/get/flashplayer/pdc/32.0.0.371/flash_player_npapi_linux.x86_64.tar.gz'
+
 
 ################################################################################
 
@@ -135,7 +137,7 @@ rm -f "$TEMP_DIR/squashfs-root/usr/share/fonts/truetype/msttcorefonts.7z"
 
 mkdir -p "${DOWNLOAD_DIR}"
 
-for URL in "${URL_WINE}" "${URL_DIRECTX}" "${URL_MONO}" "${URL_FIREFOX}"; do
+for URL in "${URL_WINE}" "${URL_DIRECTX}" "${URL_MONO}" "${URL_FIREFOX}" ${URL_MAME}; do
     PKG_NAME="$(basename "${URL}")"
     echo "Baixando ${PKG_NAME}..."
     if ! [ -f "${DOWNLOAD_DIR}/${PKG_NAME}" ]; then
@@ -194,6 +196,11 @@ gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-r
 rm -r "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/LGPL" \
       "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/usr"  \
       "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/license.pdf"
+
+echo 'Descompactando Mame...'
+PKG_NAME="$(basename "${URL_MAME}")"
+7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/usr/lib/libretro" -y || exit $?
+
 
 ################################################################################
 

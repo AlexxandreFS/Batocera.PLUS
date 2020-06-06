@@ -1,0 +1,40 @@
+--- winetricks.original
++++ winetricks.modificado
+@@ -1,4 +1,24 @@
+ #!/bin/sh
++
++################################################################################
++
++###
++### Batocera.PLUS
++###
++
++if ! [ "${WINEPREFIX}" ]; then
++    export WINEPREFIX="${HOME}/configs/wine"
++fi
++
++if ! [ -d "${WINEPREFIX}" ]; then
++    echo "Error ${WINEPREFIX} not found."
++    exit 1
++fi
++
++export PATH="${PATH}:/opt/Wine/bin"
++
++################################################################################
++
+ # shellcheck disable=SC2030,SC2031
+ # SC2030: Modification of WINE is local (to subshell caused by (..) group).
+ # SC2031: WINE was modified in a subshell. That change might be lost
+@@ -5220,9 +5240,9 @@
+     fi
+ 
+     # Running Wine as root is (generally) bad, mmkay?
+-    if [ "$(id -u)" = 0 ]; then
+-        w_warn "Running Wine/winetricks as root is highly discouraged. See https://wiki.winehq.org/FAQ#Should_I_run_Wine_as_root.3F"
+-    fi
++    #if [ "$(id -u)" = 0 ]; then
++    #    w_warn "Running Wine/winetricks as root is highly discouraged. See https://wiki.winehq.org/FAQ#Should_I_run_Wine_as_root.3F"
++    #fi
+ 
+     # Ephemeral files for this run
+     WINETRICKS_WORKDIR="$W_TMP_EARLY/w.$LOGNAME.$$"

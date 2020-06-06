@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=parsec-config
+GenericName=Parsec
+Comment=Simple, low-latency game streaming.
+Icon=/usr/share/icons/batocera/parsecd.png
+Categories=Game;batocera.linux;
+Type=Application
+Terminal=false
+Exec=/usr/bin/parsecd

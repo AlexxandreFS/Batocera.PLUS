@@ -1,0 +1,6 @@
+#!/bin/bash
+for cueFile in *.cue; do
+    echo "Converting ${gameName}..."
+    chdman createcd -i "$cueFile" -o "${cueFile%.*}.chd"
+done
+echo "All done."

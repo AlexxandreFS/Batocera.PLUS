@@ -1,44 +1,491 @@
 ## SYSTEM WINDOWS GAMES ##
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 ROM files extensions accepted (Batocera.PLUS): ".plus .PLUS"
--------------------------------------------------------------------------------
-Alguns jogos de Windows podem ser jogados no Batocera.PLUS por meio do Wine.
+--------------------------------------------------------------------------------
 
-Os jogos podem vir em apenas um unico arquivo ou uma pasta com arquivos, ambos
-com extensao .plus ou .PLUS
+________________________________________________________________________________
 
-Exemplo 1: My Game.plus         (arquivo)
+  * BATOCERA.PLUS + WINE
+________________________________________________________________________________
 
-Exemplo 2:  My Game.plus        (pasta)
-            |---- batocera.plus (arquivo)
-            |---- game.exe      (arquivo)
-            |---- game.dat      (arquivo) (se existir)
-            |---- game.bin      (arquivo) (se existir)
-            |---- ...                     (se existir)
+    Neste momento em que escrevo este guia (05/2020) o Batocera.PLUS é o único
+filmware de retroemulação do mundo que implementa o Wine como uma alternativa à
+execução de jogos de Windows.
 
-Jogos compactados usam o formato squashfs.
+    Quando o conceito de uso do Wine com o Batocera foi apresentado para a
+comunidade a ideia foi tratada como uma piada, sendo referenciada como uma
+"gambiarra", hoje vemos uma vedadeira corrida no sentido de copiar o
+Batocera.PLUS em vários aspectos e isso é um motivo de orgulho pois mostra que o
+Batocera.PLUS não é apenas uma cópia do Batocea oficial, mostra que o sistema
+tem características próprias que o torna diferente de seu irmão e mostra também
+como a força de uma única pessoa pode impactar os rumos de grandes projetos.
 
-Nunca renomei o jogo (pasta ou arquivo) pois ele pode deixar de funcionar ou
-o sistema de save pode nao funcionar adequadamente.
-----------------------------------------------------------------------------
-Ao iniciar um jogo pela primeira vez no wine ele vai demorar um pouco para ser
-iniciado, algo em torno de 2 minutos. Na primeira inicializacao o wine configura
-a instalacao virtual do windows e faz a instacao do Mono e do Directx, dentre
-outras configuracoes.
-----------------------------------------------------------------------------
-"WINEPREFIX" (Diretorio de instalacao virtual do Windows)
-Por padrao o Wine cria o diretorio que simula uma instalacao do Windows em
-/userdata/system/configs/wine
+By: Alexxandre Freire dos Santos.
 
-Alguns jogos criam a pasta separada no diretorio do save do jogo, neste caso
-as modificacoes no configurador do Wine (winecfg, F1) nao vai ter efeito sobre
-estes jogos, caso nao encontre um script na pasta de save ou na pasta dos
-arquivos do jogo para abrir o winecfg e configurar o wine para este jogo em
-particular, basta exportar as variaveis "WINEPREFIX" e WINEARCH antes de chamar
-o configurador do wine "winecfg" no terminal (win + F4)
+________________________________________________________________________________
 
+    UMA VISÃO GERAL SOBRE O WINE
+________________________________________________________________________________
+
+    O Batocea.PLUS usa uma versão "turbinada" do Wine chamada de Wine-Staging,
+compilada de forma que consegue executar jogos e programas tanto de 32 quanto de
+64 bits, Windows on Windows (WOW).
+
+    Um menu no sistema (Emulationstation) foi adicionado para lançar os jogos
+diretamente pela interface do sistema facilitando assim a execução dos jogos,
+também foi adicionado uma opção de core que permite forçar a execução de uma
+determinada arquitetura do Wine.
+
+    Por padrão na primeira execução do Wine será instalado automáticamente o
+DirectX e o Mono (Net Framework) é por esta razão que ao executar um jogo pela
+primeira vez existe uma certa demora pois o sistema está instalando componentes
+em segundo plano.
+
+    No gerenciador de arquivo (F1) no canto inferior esquerdo vemos a pasta que
+simula uma instalação do Windows (WINEPREFIX) "/userdata/system/configs/wine"
+outras pastas podem ser usadas com um PREFIXO diferente, isto é particularmente
+útil para jogos que precisam de configurações específicas para funcionar.
+
+    Foi adicionado o Winetrix para a instalação de dependências que podem
+ser necessárias para a execução de alguns jogos, e alguns utitários gráfico
+que permitem fazer algumas configurações extras no Wine como é o caso do editor
+do registro (regedit).
+
+    Na guia Applications do gerenciador de arquivos (F1) foi adicionado um
+atalho para o configurador do Wine (winecfg) que permite fazer algumas
+configurações no Wine, estas configurações são válidas apenas para o WINEPREFIX
+padrão.
+
+    É um pouco lógico, mas não custa comentar, nem todos os jogos podem ser
+executados pelo Wine pois alguns jogos usam recursos do Windows que ainda não
+foram implementados pelo Wine, porém uma enorme quantidade de jogos funcionam
+perfeitamente e outros podem ser excutados com configurações específicas em
+scripts "batocera.plus" as comunidades estão ai para ajudar neste sentido.
+
+________________________________________________________________________________
+
+    COMO ADICIONAR JOGOS PRONTOS, BAIXADOS DA INTERNET PARA O BATOCERA.PLUS
+________________________________________________________________________________
+
+    Jogos que são compartilhados nas comunidades pelas redes sociais (discord,
+facebook, youtube, colegas, etc..) são simples de serem adicionados, apenas
+copie o jogo para a pasta "/userdata/roms/windows" Depois de copiar o(s)
+arquivo(s) para a pasta correta, apenas use a opção de atualizar a lista de
+jogos no menu do Batocera.PLUS para os jogos serem mostrados na lista de jogo ou
+reinicie o PC.
+
+    Alguns jogos são distribuídos em apenas um único arquivo com a extenção
+.plus e outros são distribuídos em uma pasta também com a extensão .plus
+
+Exemplo 1
+
+  My Game.plus          (Arquivo compactado no formato squashfs)
+
+Exemplo 2
+
+  My Game.plus          (Pasta)
+    |_ game.exe         (Executável do jogo)
+    |_ libXYZ.dll       (Outros arquivos do jogo, se existirem)
+    |_ data.dat         (Outros arquivos do jogo, se existirem)
+
+Exemplo 3
+
+  My Game.plus          (Pasta)
+    |_ batocera.plus    (Shell Script)
+    |_ game.exe         (Executável do jogo)
+    |_ libXYZ.dll       (Outros arquivos do jogo, se existirem)
+    |_ data.dat         (Outros arquivos do jogo, se existirem)
+
+________________________________________________________________________________
+
+    COMO ADICIONAR MEUS PRÓPRIOS JOGOS DE WINDOWS
+________________________________________________________________________________
+
+    Basicamente para se tornar um meste nesta arte de adicionar jogos de Windows
+você precisa aprender como usa o Wine por linha de comando, existem muitos
+tutoriais e vídeos pela internet que explicam como o Wine funciona, porém o
+Batocera.PLUS vem com alguns recurso que facilitam para que os jogos sejam
+adicionados de forma mais fácil, muitos jogos vão funcionar facilmente seguindo
+esta receita e outros vão precisar de scripts específicos.
+
+    Existe uma enorme quantidade de jogos que são feitos para serem executados
+diretamente dentro de uma pasta, muitos deles por meio do uso de Cracks, estes
+jogos tem um arquivo executável dentro de sua própria pasta com a extensão .exe
+que executa o jogo, neste caso copie a pasta do jogo para o diretório de roms do
+windows "roms/windows" e mude o nome da pasta do jogo adionando a extensão .plus
+ao final do nome da pasta, por exemplo, se a pasta do seu jogo tem o nome de
+"My Game" altere o nome da pasta para "My Game.plus"
+
+    Muitos jogos podem ser copiados diretamente do diretório de instalação do
+próprio Windows, neste caso apenas copie a pasta de instalação do jogo do
+Windows para o Batocera.PLUS
+
+    Ao encontrar uma pasta com a extensão .plus o Batocea.PLUS vai procurar por
+arquivos executáveis (.exe) dentro da pasta e o primeiro arquivo executável que
+for encontrado será executado pelo Wine, a princípio o Batocera.PLUS vai
+procurar pelo executável na raíz da pasta e se não encotrar vai procurar em
+todas as outrs pastas.
+
+    Alguns jogos possuem dois executáveis, um deles serve para executar o jogo
+e os outros para outras funcões determinadas pelos criadores do jogo, neste caso
+o Baoteoce.PLUS irá executar aleatóriamente um dos dois arquivo. Para poder
+definir qual dos dois arquivos serão executados mude o nome do arquivo para
+"batocera.plus.exe" alternativamente também é possivel adicionar a extensão
+.plus.exe no final do nome do jogo, a escolha é sua, por exemplo, se o seu jogo
+tem o nome de "My Game.exe" mude o nome para "My Game.plus.exe" ou para
+batocera.plus.exe
+
+    Antes de iniciar a busca por executáveis o Batocera.PLUS procura por um
+script na pasta do jogo com o nome de "batocera.plus" este é um simples shell
+script com os comandos que executam o jogo, este é um exemplo rudimentar de
+scrip:
+
+    #!/bin/sh
+    exec wine 'My Game.exe'
+
+    Por padrão o Wine tenta "adivinhar" qual é a arquitetura do executável
+(32 ou 64 bits) mas podemos forçar para que um jogo de 64 bits seja executado
+como um jogo de 64 bits mudando o nome do comando wine para wine64, veja o
 Exemplo:
-export WINEPREFIX='/userdata/saves/windows/Cuphead/wine'
-export WINEACH='win32'
-wine winecfg
-----------------------------------------------------------------------------
+
+    #!/bin/sh
+    exec wine64 'game.exe'
+
+    Neste script podemos informar o nome do executável do jogo para não precisar
+renomear o executável, é possivel também executar o jogo quando o executável
+(.exe) está em uma pasta diferente da pasta raíz, exemplo: Se o executtável do
+jogo está na pasta bin/game.exe o script ficará desta forma:
+
+    #!/bin/sh
+    cd bin
+    exec wine 'game.exe'
+
+    O script "batocera.plus" é opcional mas alguns jogos só serão executados com
+configurações específicas neste arquivo, estas configurações podem ser
+encontradas na documentação do Wine no site oficial e nas comunidades espalhadas
+pela internet.
+
+EXEMPLOS comentados:
+
+--------------------------------------------------------------------------------
+
+    Este jogo não possui nenhum script, é apenas uma pasta com a extensão .plus
+com os arquivos do jogo. Neste exemplo como só existe um arquivo executável este
+será executado.
+
+  My Game.plus            (Pasta)
+    |_ game.exe           (Executável do jogo)
+    |_ game.dat           (Outros arquivos do jogo, se existirem)
+
+--------------------------------------------------------------------------------
+
+    Este é um tradicional jogo portado para o Batocera.PLUS aqui percebemos a
+existência de um script "batocera.plus" que será usado para executar o jogo.
+
+  My Game.plus          (Pasta)
+    |_ batocera.plus    (Shell Script)
+    |_ game.exe         (Executável do jogo)
+
+    Nas primeiras versões do Batocera.PLUS o script batocera.plus era
+obrigatório, muitos deles tinham apenas o comando "exec wine game.exe"
+atualmente este script não é mais necessário. Os scrits continuam sendo de suma
+importamcia para a execução e configuração inicial do jogo porém tem mais
+relevancia para os jogos que apresentam problemas de compatibilidade com o Wine
+e precisam de configurações específicas para funcionar.
+
+    Um outro exemplo usando o script batocera.plus, vemos que o executável do
+jogo está na pasta Bin
+
+  My Game.plus          (Pasta)
+    |_ batocera.plus    (Shell Script)
+    |_ Bin              (Pasta)
+    |  |_ game.exe      (Executável do jogo)
+    |  |_ game.dll      (outros arquivos do jogo, se existirem)
+    |_ Game Data        (Pasta)
+       |_ game.dat      (outros arquivos do jogo, se existirem)
+       |_ game.bin      (outros arquivos do jogo, se existirem)
+
+	Existe uma grande chance do script "batocera.plus" deste jogo ter sido
+montado desta forma:
+	
+	#!/bin/sh
+	cd Bin
+	exec wine 'game.exe'
+
+--------------------------------------------------------------------------------
+
+    Neste jogo existem mais de um aquivo executável (.exe) e não existe o script
+"batocera.plus" então para informar para o sistema qual dos dois arquivos (.exe)
+deve ser executado um deles foi renomeado para "batocera.plus.exe"
+
+  My Game.plus          (pasta)
+   |_ batocera.plus.exe (Executável do jogo renomeado, tem prioridade)
+   |_ game-config.exe   (Executável com configurações extras do jogo)
+   |_ game.dat          (Outros arquivos do jogo, se existirem)
+
+    Uma outra alternativa seria acrescentar a extenção .plus.exe ao nome final
+do nome do arquivo executável (.exe)
+
+  My Game.plus          (pasta)
+   |_ game.plus.exe     (Executável do jogo renomeado, tem prioridade)
+   |_ game-config.exe   (Executável com configurações extras do jogo)
+   |_ game.dat          (Outros arquivos do jogo, se existirem)
+
+--------------------------------------------------------------------------------
+
+    Este jogo não possui nenhum script "batocera.plus" e o executável do jogo
+está escondido em uma das várias pastas do jogo, para poder executar este jogo o
+Batocera.PLUS terá que procurar pelo executável do jogo (.exe) e isso não é bom
+porque esta procura pode levar algum tempo. Embora funcione isto não é
+recomendável, é mais inteligente usar um script.
+
+  My Game.plus            (Pasta)
+    |_ Bin                (Pasta)
+    |  |_ game.exe        (Executável do jogo)
+    |  |_ game.dll        (Outros arquivos do jogo, se existirem)
+    |_ Game Data          (Pasta)
+       |_ game.dat        (Outros arquivos do jogo, se existirem)
+	   |_ game.bin        (Outros arquivos do jogo, se existirem)
+
+    Neste caso o conceito de mudar o nome do executável vista anteriormente
+também funciona.
+
+  My Game.plus            (Pasta)
+    |_ Bin                (Pasta)
+    |  |_ game.plus.exe   (Executável do jogo)
+    |  |_ game-config.exe (Executável com configurações extras do jogo)
+    |  |_ game.dll        (Outros arquivos do jogo, se existirem)
+    |_ Game Data          (Pasta)
+       |_ game.dat        (Outros arquivos do jogo, se existirem)
+	   |_ game.bin        (Outros arquivos do jogo, se existirem)
+
+    Ou desta forma também.
+
+  My Game.plus              (Pasta)
+    |_ Bin                  (Pasta)
+    |  |_ batocera.plus.exe (Executável do jogo)
+    |  |_ game-config.exe   (Executável com configurações extras do jogo)
+    |  |_ game.dll          (Outros arquivos do jogo, se existirem)
+    |_ Game Data            (Pasta)
+       |_ game.dat          (Outros arquivos do jogo, se existirem)
+	   |_ game.bin          (Outros arquivos do jogo, se existirem)
+
+________________________________________________________________________________
+
+    INSTALAR JOGOS
+________________________________________________________________________________
+
+    Alguns jogos precisam ser instalados diretamente pelo wine para funcionar,
+isso acontece porque durante a instalação o instalador do jogo registra certas
+dlls e configura o registro do Windows para executar o jogo, dentre outras
+tarefas.
+
+    Para fazer a instalação do jogo pelo Wine, crie uma pasta vazia no diretório
+de roms do windows com a extensão .plus Exemplo:
+/userdata/roms/windows/My Game.plus
+durante a instalação do jogo quando for perguntado onde instalar o jogo pelo
+assistente de instalação escolha a pasta criada anteriormente e conclua a
+instalação do jogo.
+
+    Para iniciar o processo de instalação do jogo copie os arquivos de
+instalação do jogo para uma pasta com a extensão de .plus como se fosse um jogo
+normal de windows, ao executar o jogo pelo Batocera.PLUS (emulationstation) será
+executado na verdade o assistente de instalação do jogo, depois que o jogo for
+instalado a pasta com os arquivos usados na instalação pode ser excluída.
+
+________________________________________________________________________________
+
+    INSTALAR E EXECUTAR JOGOS PELO TERMINAL
+________________________________________________________________________________
+
+    O Wine é uma ferramenta que funciona por linha de comando, quando alguma
+coisa não funciona da forma como deveria funcionar é preciso sujar as mãos no
+terminal para conseguir entender o que está acontecendo.
+
+    Um jogo pode ser executado ou instalado por linha de comando diretamente,
+para isso acesse a pasta do jogo onde está o executável (.exe) do jogo está pelo
+gerenciador de arquivos pressionando a tecla F1 e abra um terminal nesta pasta
+pressionando a tecla F4.
+
+    No terminal execute o jogo ou o instalador do jogo digitando o comando wine
+seguido pelo nome do executável do jogo, exemplo wine 'My Game.exe' no terminal
+será mostrado diversas mensagens e estas mensagens ao serem analizadas com calma
+podem informar a causa do problema.
+
+    Se você for procurar ajuda nas comunidades para rodar um determinado jogo
+não ajuda em nada falar que o jogo não funcionou, são estas mensagens de erro no
+terminal que apontam as causas do problema.
+
+________________________________________________________________________________
+
+    INSTALAR JOGOS USANDO UM PREFIXO DIFERENTE
+________________________________________________________________________________
+
+    Por padrão o Wine usa o diretório de instalação virtual do "windows"
+(WINEPREFIX) no diretório /userdata/system/configs/wine porém você pode usar
+outro diretório de sua escolha. Alguns jogos precisam de um diretório limpo do
+Wine para poder funcionar de forma adequada.
+
+    Ao definir um diretório diferente o Wine não vai instalar o DirectX, a ideia
+é que o usuário tenha um nível de controle maior sobre o Wine para fazer o jogo
+funcionar. Um exmplo de um script "batocea.plus" usando prefixo diferente e
+forçando para o wine se comportar como um windows de 32 bits.
+
+    #!/bin/sh
+    mkdir -p '/userdata/saves/windows/My Game/wine'
+    export WINEPREFIX='/userdata/saves/windows/My Game/wine'
+    export WINEARCH='win32'
+    exec wine 'My Game.exe'
+
+    Neste exemplo estamos criando um prefixo limpo apenas para este jogo, se
+precisar instalar o DirectX manualmente, execute este comando:
+
+    WINEPREFIX='/userdata/saves/windows/My Game/wine' WINEARCH='win32' wine '/opt/Wine/apps/DirectX/DXSETUP.exe'
+
+    Lembre-se também que ao criar um prefixo diferente o configurador do wine
+(winecfg) deixará de atuar sobre este jogo, mas você pode executar o
+configurador criando um script alternativo exatamente igual o anterior, mudando
+apenas o nome de executável.
+
+    exec wine 'winecfg'
+
+    No terminal o comando fica desta forma:
+
+    WINEPREFIX='/userdata/saves/windows/My Game/wine' WINEARCH='win32' wine 'winecfg'
+
+_______________________________________________________________________________
+
+    COMPACTAR O JOGO
+_______________________________________________________________________________
+
+    O Batocera.PLUS consegue executar jogos compactados no formato SQUASHFS
+estes jogos são compactados pelo programa em linha de comando mksquashfs, jogos
+compactados neste formato ocupam menos espaço em disco e em muitos casos o
+carregamento do jogo fica mais rápido.
+
+    Antes de compactar o jogo tenha certeza que o jogo está funcionando
+perfeitamente em sua forma descompactada.
+
+    A primeira coisa que você precisa saber antes de compactar o seu jogo é que
+quando um jogo é compactado todos os seus arquivos ficam como somente leitura,
+então se o jogo criar ou modificar algum arquivo dentro de sua própria pasta ao
+sair do jogo isso será perdido.
+ 
+    Uma maneira alternativa de contornar esta limitação é usar links simbólicos
+para as pastas e arquivos alterados direcionando estes arquivos para a pasta de
+save do jogo. Exemplo, se o jogo cria uma pasta dentro de sua própria pasta com
+o nome de profile onde ele salva o progresso do jogo, você pode criar
+um links para a pasta de saves do Batocera.PLUS antes de compactar o jogo.
+
+    ln -s '/userdata/saves/windows/My Game' '/userdata/roms/windows/My Game.plus/profile'
+
+    No script do jogo "batocera.plus" é só adicionar uma linha extra para criar
+a pasta quando o jogo for executado, exemplo:
+
+    #!/bin/sh
+    mkdir -p '/userdata/saves/windows/My Game'
+    exec wine 'My Game.exe'
+
+    Para compactar o jogo é só acessar a pasta do jogo pelo próprio
+Batocera.PLUS (F1) e abrir um terminal (F4) no terminal execute este comando:
+
+    mksquashfs * 'My Game.plus'
+
+    Um arquivo com o nome de 'My Game.plus' será criado dentro da pasta do jogo
+se ao compactar o jogo o tamanho do arquivo não tiver uma boa redução no tamanho
+recomendo que desista da ideia de compactar pois isso não vai trazer nenhum
+benefício, use o jogo em sua forma descompactada que é melhor.
+
+_______________________________________________________________________________
+
+    SAVES
+________________________________________________________________________________
+
+    O Batocera.PLUS tem uma pasta feita específicamente para quardar os saves
+dos jogos /userdata/saves/windows é altamente recomendável usar esta pasta para
+salvar o progresso dos jogos pois se algum sinistro acontecer com o Wine os seus
+saves estarão preservados. Os jogos de Windows salvam o progresso basicamente de
+3 formas:
+
+    1 - Dentro da pasta do próprio jogo;
+    2 - Dentro de uma pasta em um dos diretórios do windows;
+    3 - No registro do Windows.
+
+    1) Para os jogos que salvam o progresso na pasta do jogo isso não é um
+problema pois os saves estão preservado, mas caso você queira criar um atalho
+para a pasta de saves do Batocera.PLUS é muito simples, basta criar um link
+simbólico pelo terminal, Exemplo:
+
+    mkdir -p '/userdata/saves/windows/My Game'
+    ln-sf '/userdata/saves/windows/My Game' '/userdata/roms/windows/My Game.plus/Saves'
+
+    Também é possivel escrever um script para criar o link automáticamente no
+próprio script do jogo "batocera.plus" Exemplo:
+
+    #!/bin/sh
+    if ! [ -f '/userdata/saves/windows/My Game' ]; then
+        mkdir -p '/userdata/saves/windows/My Game'
+        ln -sf '/userdata/saves/windows/My Game' '/userdata/roms/windows/My Game.plus/Saves'
+    fi
+    exec wine 'My Game.exe'
+
+
+    2) O Batocera.PLUS consegue configurar automáticamente os saves dos jogos
+que salvam em uma das pastas do disco C:\ para isso você precisa descobrir em
+qual das pastas o jogo é salva o progresso, uma das maneira de fazer isso é
+pesquisando pela internet pois esta pasta também é usada no próprio Windows,
+outra maneira é procurando a pasta manualmente no diretório de instalação
+virtual do Wine (WINEPREFIX) depois de encontrar onde o jogo salva o progresso é
+só adicionar a linha WIN_SAVE_DIR apontando para este diretório no script que
+executa o jogo "batocea.plus" veja o Exemplo:
+
+    #!/bin/sh
+    WIN_SAVE_DIR='C:/ProgramData/Steam/My Game/save'
+    exec wine 'My Game.exe'
+
+    3) Descubra as chaves que o jogo usa para salvar o progresso e exporte estas
+chaves pelo editor do registro que fica no menu do Batocera.PLUS (regedit).
+
+________________________________________________________________________________
+
+    PROBLEMAS E SOLUÇÕES
+________________________________________________________________________________
+
+  * O PONTEIRO DO MOUSE SUMIU
+
+        Para mostrar o ponteiro do mouse existem duas alternativas:
+
+        1) Use o atalho de teclado Win + F3 pressionando uma vez o ponteiro
+           aparece, pressionando mais uma vez ele some.
+
+        2) Adicione o comando mouse-pointe on no script do jogo Exemplo:
+           #!/bin/sh
+           mouse-pointer on
+           exec wine 'My Game.exe'
+
+  * POSSO ESCREVER O SCRIPT "batocera.plus" PELO WINDOWS?
+
+        A partir da versão 2.0 RC5 sim, em versões anteriores não, scripts
+        escritos pelo windows serão convertidos para o padrão de caracteres unix
+        na primeira execução, se for editar pelo windows use o programa
+        notepad++
+
+  * MEUS JOGOS PARARAM DE FUNCIONAR
+  
+        Exclua todos os arquivos da pasta virtual de instalação do Wine
+        (WINEPREFIX), a pasta fica no diretório "/userdata/system/configs/wine"
+        também existe um atalho desta no gerenciador de arquivo (F1) olhando no
+        canto inferior esquerdo.
+
+  * MEU JOGO PAROU DE SALVAR NA PASTA SAVES
+
+        Nunca renomei o jogo (pasta ou arquivo) pois ele pode deixar de
+        funcionar ou o sistema de save pode nao funcionar adequadamente.
+
+  * NÃO BAIXA AS CAPAS DOS JOGOS DE WINDOWS (scrap)
+
+        O Wine é um sistema novo e os programas que baixam as capas, imagens,
+        vídeos e informações de jogos ainda não estão aceitando estes jogos,
+        então precisa ser feito manualmente utilizando o próprio
+        Emulationstation, usando uma ferramenta para editar o arquivo
+        gamelists.xml ou editando manualmente o arquivo.

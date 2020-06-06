@@ -1,0 +1,4 @@
+#!/bin/sh
+mouse-pointer on
+#exec xterm -e /bin/bash -l -c "wine cmd /k cd d:/"
+exec wine start cmd /k z:

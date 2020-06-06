@@ -57,7 +57,14 @@ BIOS[amiga]="amiga,                   Commodore Amiga
     9bdedde6a4f33555b4a270c8ca53297d, bios/kick40068.A4000
     89da1838a24460e4b93f4f0c5d92d48d, bios/kick34005.CDTV
     5f8924d013dd57a89cf349f4cdedc6b1, bios/kick40060.CD32
-    bb72565701b1b6faece07d68ea5da639, bios/kick40060.CD32.ext"
+    bb72565701b1b6faece07d68ea5da639, bios/kick40060.CD32.ext
+    b64bee23f356635f67fb08b543df9797  bios/uae_data/drive_click_LOUD.wav
+    40cdf89f35b68cfefd4df5fb0256e02f  bios/uae_data/drive_snatch_LOUD.wav
+    56d8e36a2f04b5e8c5a1f1530cfc886c  bios/uae_data/drive_spin_LOUD.wav
+    43ab05c6d969cb40805970a5b2352875  bios/uae_data/drive_spinnd_LOUD.wav
+    743b4b9f0ca645c4c2a34953b5e01e45  bios/uae_data/drive_startup_LOUD.wav
+    00000000000000000000000000000000, bios/capsimg.so"
+
 
 #### Magnavox and Philips ####
 

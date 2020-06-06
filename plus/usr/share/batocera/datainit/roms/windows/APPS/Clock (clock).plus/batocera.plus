@@ -1,0 +1,3 @@
+#!/bin/sh
+mouse-pointer on
+exec wine clock

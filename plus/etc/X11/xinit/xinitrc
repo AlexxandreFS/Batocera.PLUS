@@ -130,7 +130,7 @@ function randVideo() {
 function playVideo() {
     openbox &
     cvlc --fullscreen --play-and-exit --no-interact --no-osd "$1" 2> /dev/null &
-    for ((i = 0; i < 120; i++)); do
+    for ((i = 0; i < 600; i++)); do
         sleep 0.5
         if ! [ "$(pidof vlc)" ]; then
             break

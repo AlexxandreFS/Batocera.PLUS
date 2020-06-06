@@ -1,0 +1,29 @@
+#!/bin/sh
+
+### Batocera.PLUS
+
+if ! [ "${1}" == 'start' ]; then
+  exit 0
+fi
+
+MEM_TOTAL="$(grep ^MemTotal /proc/meminfo | awk '{print $2}')"  || exit 5
+MEM_TOTAL="$(echo $((${MEM_TOTAL} * 1024)))"
+
+if [[ ${MEM_TOTAL} < 1200000000 ]]; then
+    MEM_TOTAL="$(echo $((${MEM_TOTAL} / 2)))"
+elif [[ ${MEM_TOTAL} < 2200000000 ]]; then
+    MEM_TOTAL=512M
+elif [[ ${MEM_TOTAL} < 3200000000 ]]; then
+    MEM_TOTAL=1G
+elif [[ ${MEM_TOTAL} < 4200000000 ]]; then
+    MEM_TOTAL=1.5G
+else
+    MEM_TOTAL=2G
+fi
+
+modprobe zram || exit 10
+echo "${MEM_TOTAL}" > /sys/block/zram0/disksize  || exit 15
+mkswap /dev/zram0 || exit 20
+swapon /dev/zram0 || exit 25
+
+exit 0
