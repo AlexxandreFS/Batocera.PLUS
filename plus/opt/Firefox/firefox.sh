@@ -46,6 +46,11 @@ else
     FIREFOX_DIR="$APP_DIR/firefox-esr"
 fi
 
+##
+ # Ativa o ponteiro do mouse.
+ ##
+mouse-pointer on
+
 ################################################################################
 
 ##

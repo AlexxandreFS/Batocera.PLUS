@@ -1,8 +1,8 @@
-#
-# Aumenta o tamanho do arquivo overlay.
-#
---- batocera-save-overlay
-+++ batocera-save-overlay
+--- batocera-save-overlay.original
++++ batocera-save-overlay.modificado
+###
+### Aumenta o tamanho padrão do arquivo overlay.
+###
 @@ -6,7 +6,7 @@
  OVERLAYFILE="/boot/boot/overlay"
  OVERLAYMOUNT="/overlay/saved"
@@ -12,3 +12,24 @@
  
  # fix for winscp running bash and then not sourcing /etc/profile
  PATH=$PATH:/sbin
+
+###
+### Desativa a montagem da unidade como somente leitura se estiver rodando pelo batocera-hd-dition.
+###
+@@ -74,10 +74,13 @@
+ fi
+ 
+ # put /boot in ro back
+-echo "Making /boot read only..."
+-if ! mount -o remount,ro /boot
++if ! df | grep ^/dev/loop0 | grep /boot$ > /dev/null
+ then
+-    exit 1
++    echo "Making /boot read only..."
++    if ! mount -o remount,ro /boot
++    then
++        exit 1
++    fi
+ fi
+ 
+ echo "Synchronizing..."

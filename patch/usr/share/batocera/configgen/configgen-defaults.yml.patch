@@ -25,7 +25,7 @@
  mame:
    emulator: libretro
 -  core:     mame078plus
-+  core:     mame0200
++  core:     mame
  fba:
    emulator: libretro
    core:     fbneo

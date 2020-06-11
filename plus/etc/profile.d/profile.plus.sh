@@ -10,6 +10,12 @@ if [ "$PS1" ]; then
 	fi
 fi
 
+JAVA_HOME='/opt/Java'
+PATH="${PATH}:${JAVA_HOME}/bin"
+CLASSPATH="${JAVA_HOME}/lib/tools.jar"
+CLASSPATH=".:${CLASSPATH}"
+export JAVA_HOME PATH CLASSPATH
+
 BATOCERA_VERSION='/usr/share/batocera/batocera.version'
 RECALBOX_VERSION='/usr/share/batocera/recalbox.version'
 RECALBOX_ARCH='/usr/share/batocera/batocera.arch'

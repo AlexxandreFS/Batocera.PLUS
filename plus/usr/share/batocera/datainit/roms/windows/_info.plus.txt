@@ -340,7 +340,7 @@ forçando para o wine se comportar como um windows de 32 bits.
     Neste exemplo estamos criando um prefixo limpo apenas para este jogo, se
 precisar instalar o DirectX manualmente, execute este comando:
 
-    WINEPREFIX='/userdata/saves/windows/My Game/wine' WINEARCH='win32' wine '/opt/Wine/apps/DirectX/DXSETUP.exe'
+    WINEPREFIX='/userdata/saves/windows/My Game/wine' WINEARCH='win32' wine '/opt/Wine/apps/directx_Jun2010_redist/DXSETUP.exe'
 
     Lembre-se também que ao criar um prefixo diferente o configurador do wine
 (winecfg) deixará de atuar sobre este jogo, mas você pode executar o

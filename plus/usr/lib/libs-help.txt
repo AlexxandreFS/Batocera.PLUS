@@ -1,0 +1,2 @@
+Usada pelo Java.
+libXtst.so.6

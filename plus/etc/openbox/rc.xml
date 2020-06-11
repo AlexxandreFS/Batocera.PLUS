@@ -17,6 +17,17 @@
         <application name="pcmanfm">
             <decor>yes</decor>
             <fullscreen>no</fullscreen>
+            <maximized>no</maximized>
+            <position type="normal">
+                <x>center</x>
+                <y>center</y>
+            </position>
+        </application>
+        <application title="userdata">
+            <maximized>yes</maximized>
+        </application>
+        <application title="/">
+            <maximized>yes</maximized>
         </application>
 
         <application name="xterm">

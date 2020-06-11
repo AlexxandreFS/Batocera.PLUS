@@ -3,7 +3,7 @@
 
 # Versão do Batocera.PLUS
 VERSION='2.00'
-RELEASE='RC5'
+RELEASE='RC6'
 NVIDIA_LEGACY='0'
 
 # Pasta temporária em uma partição Linux
@@ -27,15 +27,38 @@ BOOT_DIR='boot'
 DOWNLOAD_DIR='download'
 PATCH_DIR='patch'
 
-# URL
-URL_THEME_A='https://github.com/BatoceraPLUS/Theme-batocera-plus/archive/master.zip'
-URL_WINE='https://github.com/BatoceraPLUS/Wine/releases/download/Wine/Wine-5.0-v1.7z'
-URL_DIRECTX='https://github.com/BatoceraPLUS/Wine/releases/download/DX9Jun2010/DX9Jun2010.7z'
-URL_MONO='http://dl.winehq.org/wine/wine-mono/4.9.4/wine-mono-bin-4.9.4.tar.gz'
-URL_MAME='https://github.com/BatoceraPLUS/Mame-Mess/releases/download/0220/mame_libretro_0220.7z'
-URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/68.9.0esr/linux-x86_64/en-US/firefox-68.9.0esr.tar.bz2'
-URL_FLASH='https://fpdownload.adobe.com/get/flashplayer/pdc/32.0.0.371/flash_player_npapi_linux.x86_64.tar.gz'
+################################################################################
 
+# URL - Manual Update
+
+URL_WINE='https://github.com/BatoceraPLUS/Wine/releases/download/Wine/Wine-5.0-v1.7z'
+URL_MAME='https://github.com/BatoceraPLUS/Mame-Mess/releases/download/0220/mame_libretro_0220.7z'
+URL_MONO='http://dl.winehq.org/wine/wine-mono/4.9.4/wine-mono-bin-4.9.4.tar.gz'
+URL_JAVA="https://javadl.oracle.com/webapps/download/AutoDL?BundleId=242050_3d5a2bb8f8d4428bbe94aed7ec7ae784#/java-jre-linux-x64-${VERSION}${RELEASE}.tar.gz"
+
+# URL - Auto Update
+
+URL_THEME_A="https://github.com/BatoceraPLUS/Theme-batocera-plus/archive/master.zip#/Theme-batocera-plus-${VERSION}${RELEASE}.zip"
+URL_DIRECTX='https://github.com/BatoceraPLUS/Wine/releases/download/DX9Jun2010/DX9Jun2010.7z'
+URL_FIREFOX="https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US#/firefox-esr-${VERSION}${RELEASE}.tar.bz2"
+
+URL_FLASH="$(curl -s https://get.adobe.com/en/flashplayer/about/ | grep '<td>32.0.' | tail -n 1 | cut -d '>' -f 2 | cut -d '<' -f 1)"
+if ! [ "${URL_FLASH}" ]; then
+    URL_FLASH=32.0.0.387
+fi
+URL_FLASH="https://fpdownload.adobe.com/get/flashplayer/pdc/${URL_FLASH}/flash_player_npapi_linux.x86_64.tar.gz#/flash_player_npapi_linux.x86_64_${URL_FLASH}.tar.gz"
+
+# DOWNLOAD
+
+mkdir -p "${DOWNLOAD_DIR}"
+
+for URL in "${URL_WINE}" "${URL_DIRECTX}" "${URL_MONO}" "${URL_FIREFOX}" "${URL_MAME}" "${URL_JAVA}" "${URL_FLASH}" "${URL_THEME_A}"; do
+    PKG_NAME="$(basename "${URL}")"
+    echo "Baixando ${PKG_NAME}..."
+    if ! [ -f "${DOWNLOAD_DIR}/${PKG_NAME}" ]; then
+        curl -L -C - "${URL}" -o "${DOWNLOAD_DIR}/${PKG_NAME}"
+    fi
+done
 
 ################################################################################
 
@@ -109,6 +132,8 @@ echo 'Copiando arquivos do batocera.plus...'
 cp -r -f "$PLUS_DIR/"*   "$TEMP_DIR/squashfs-root"  || exit $?
 cp -r -f "$UPDATE_DIR/"* "$TEMP_DIR/squashfs-root"  || exit $?
 
+################################################################################
+
 echo 'Descompactando Libretro mame0174...'
 7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame0174_libretro.so.7z" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
 rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame0174_libretro.so.7z"
@@ -135,33 +160,10 @@ rm -f "$TEMP_DIR/squashfs-root/usr/share/fonts/truetype/msttcorefonts.7z"
 
 ################################################################################
 
-mkdir -p "${DOWNLOAD_DIR}"
-
-for URL in "${URL_WINE}" "${URL_DIRECTX}" "${URL_MONO}" "${URL_FIREFOX}" ${URL_MAME}; do
-    PKG_NAME="$(basename "${URL}")"
-    echo "Baixando ${PKG_NAME}..."
-    if ! [ -f "${DOWNLOAD_DIR}/${PKG_NAME}" ]; then
-        curl -L -C - "${URL}" -o "${DOWNLOAD_DIR}/${PKG_NAME}"
-    fi
-done
-
-echo 'Baixando Flash Player...'
-FLASH_VERSION="$(echo "${URL_FLASH}" | sed 's/[^0-9.a]//g' | cut -d 'a' -f 5)"
-PKG_NAME="$(basename "${URL_FLASH}" | sed "s/flash_player/flash_player_${FLASH_VERSION}/")"
-if ! [ -f "${DOWNLOAD_DIR}/${PKG_NAME}" ]; then
-    curl -L -C - "$URL_FLASH" -o "${DOWNLOAD_DIR}/${PKG_NAME}"
-fi
-
-echo 'Baixando tema batocera.plus...'
-PKG_NAME="Theme-batocera-plus-${VERSION}.zip"
-if ! [ -f "${DOWNLOAD_DIR}/${PKG_NAME}" ]; then
-    curl -L -C - "$URL_THEME_A" -o "${DOWNLOAD_DIR}/${PKG_NAME}"
-fi
-
-################################################################################
-
 echo 'Descompactando tema batocera.plus...'
-unzip "${DOWNLOAD_DIR}/Theme-batocera-plus-${VERSION}.zip" \
+
+PKG_NAME="$(basename "${URL_THEME_A}")"
+unzip "${DOWNLOAD_DIR}/${PKG_NAME}" \
       -d "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes" || exit $?
 mv "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/Theme-batocera-plus-master" \
    "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus" || exit $?
@@ -189,8 +191,7 @@ mv    "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox/"* \
 rmdir "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox"
 
 echo 'Descompactando Flash Player...'
-FLASH_VERSION="$(echo "${URL_FLASH}" | sed 's/[^0-9.a]//g' | cut -d 'a' -f 5)"
-PKG_NAME="$(basename "${URL_FLASH}" | sed "s/flash_player/flash_player_${FLASH_VERSION}/")"
+PKG_NAME="$(basename "${URL_FLASH}")"
 mkdir -p  "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins" || exit $?
 rm -r "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/LGPL" \
@@ -201,6 +202,10 @@ echo 'Descompactando Mame...'
 PKG_NAME="$(basename "${URL_MAME}")"
 7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/usr/lib/libretro" -y || exit $?
 
+echo 'Descompactando Java...'
+PKG_NAME="$(basename "${URL_JAVA}")"
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/opt" || exit $?
+mv "${TEMP_DIR}/squashfs-root/opt/jre"*  "${TEMP_DIR}/squashfs-root/opt/Java"
 
 ################################################################################
 

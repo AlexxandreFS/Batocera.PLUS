@@ -91,21 +91,17 @@ rm -r "${WINEPREFIX}/"* 2> /dev/null
 
 ################################################################################
 
-### DIRECTX 9 (install)
+### DIRECTX 9 + WINE-MONO (install)
 
-# Se o usuário definir o WINEPREFIX o DirectX não será instalado, útil para
+# Se o usuário definir o WINEPREFIX o DirectX e o mono não será instalado, útil para
 # instalações em prefixos diferentes para evitar influências externas.
 
 if [ "${WINEPREFIX}" == "${HOME}/configs/wine" ]; then
     ${WINE_DIR}/bin/wine${WINE_ARCH} ${WINE_DIR}/apps/directx_Jun2010_redist/DXSETUP.exe /silent
+
+    mkdir "${WINEPREFIX}/drive_c/windows/mono"
+    ln -s "${WINE_DIR}/apps/mono" "${WINEPREFIX}/drive_c/windows/mono/mono-2.0"
 fi
-
-################################################################################
-
-### WINE-MONO (install)
-
-mkdir "${WINEPREFIX}/drive_c/windows/mono"
-ln -s "${WINE_DIR}/apps/mono" "${WINEPREFIX}/drive_c/windows/mono/mono-2.0"
 
 ################################################################################
 
@@ -195,7 +191,7 @@ echo '"Enable"="N"'                           >> "${WINEPREFIX}/user.reg"
 
 ### INTERROMPE A TELA DE CARREGAMENTO
 
-while [ $(pidof retroarch) ]; do
+while [ "$(pidof retroarch)" ]; do
     killall retroarch
     sleep 0.2
 done
