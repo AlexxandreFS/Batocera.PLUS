@@ -1,0 +1,26 @@
+#!/bin/sh
+
+### Batocera.PLUS
+### Encerra a execução de todos os programas executados pelo wine.
+### Alexandre Freire dos santos
+
+if ! [ $(pidof -s wineserver) ]; then
+    exit 0
+fi
+
+export WINEPREFIX="/$(ls -l "/proc/$(pidof -s wineserver)/fd" |
+                      grep -E '/drive_c/windows/system32$' |
+                      cut -d '/' -f 2- |
+                      sed 's+/drive_c/windows/system32$++')"
+
+wineserver -k
+
+if [ $(pidof -s wineserver) ]; then
+    killall -9 wineserver
+fi
+
+for i in $(ps ax | grep -E ".exe$|.EXE$" | awk '{print $1}'); do
+    kill -9 "${i}" 2> /dev/null
+done
+
+exit 0

@@ -20,8 +20,10 @@ else
 fi
 
 case ${WINE_ARCH} in
-    wine)
-        WINE_ARCH=''
+    wine|wineserver)
+        if [ "${WINE_ARCH}" == 'wine' ]; then
+            WINE_ARCH=''
+        fi
         LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
@@ -59,6 +61,14 @@ if ! [ "${WINEPREFIX}" ]; then
 elif ! [ -d "${WINEPREFIX}" ]; then
     echo "Error ${WINEPREFIX} not found."
     exit 1
+fi
+
+################################################################################
+
+### INICIA O WINESERVER
+
+if [ "${WINE_ARCH}" == 'wineserver' ]; then
+    exec "${WINE_DIR}/bin/wineserver" "$@"
 fi
 
 ################################################################################

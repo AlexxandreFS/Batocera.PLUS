@@ -1,0 +1,59 @@
+#!/bin/sh
+
+### Batocera.PLUS
+
+function zRamStart() {
+    if [ -e /dev/zram0 ]; then
+        return 2
+    fi
+
+    MEM_TOTAL="$(grep ^MemTotal /proc/meminfo | awk '{print $2}')"  || return 5
+    MEM_TOTAL="$(echo $((${MEM_TOTAL} * 1024)))"
+
+    if [[ ${MEM_TOTAL} < 1200000000 ]]; then
+        MEM_TOTAL="$(echo $((${MEM_TOTAL} / 2)))"
+    elif [[ ${MEM_TOTAL} < 2200000000 ]]; then
+        MEM_TOTAL=512M
+    elif [[ ${MEM_TOTAL} < 3200000000 ]]; then
+        MEM_TOTAL=1G
+    elif [[ ${MEM_TOTAL} < 4200000000 ]]; then
+        MEM_TOTAL=1.5G
+    else
+        MEM_TOTAL=2G
+    fi
+
+    modprobe zram || return 10
+    echo "${MEM_TOTAL}" > /sys/block/zram0/disksize || return 15
+
+    mkswap /dev/zram0 > /dev/null || return 20
+
+    swapon /dev/zram0 || return 25
+}
+
+function zRamStop() {
+    if ! [ -e /dev/zram0 ]; then
+        return 27
+    fi
+
+    swapoff /dev/zram0 || return 30
+    modprobe -r zram   || return 35
+}
+
+case "$1" in
+    start)
+        zRamStart
+        ;;
+    stop)
+        zRamStop
+        ;;
+    restart|reload)
+        zRamStop
+        sleep 1
+        zRamStart
+        ;;
+    *)
+        echo "usage: ${0}  start|stop|restart"
+esac
+
+exit 0
+

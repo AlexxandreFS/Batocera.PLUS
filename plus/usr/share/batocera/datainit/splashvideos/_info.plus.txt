@@ -1,0 +1,39 @@
+## SPLASHVIDEOS  ##
+--------------------------------------------------------------------------------
+VIDEO files extensions accepted (Batocera.PLUS): ".mp4 .MP4"
+--------------------------------------------------------------------------------
+
+Por padrão os vídeos de abertura, ou seja, aqueles que são executados quando o
+sistema inicia estão desabilitados. Para habilitar os vídeos edite o arquivo
+
+    /boot/batocera-boot.conf
+
+procure pela seguinte linha
+
+    #splashvideo=true
+
+remova o # do início da linha
+
+    splashvideo=true
+
+Alternativamente também existe um script na pasta de vídeos que ao ser executado
+ativa ou desativa os vídeos de inicialização.
+
+Ao ativar os vídeos o Batocera.PLUS procura por vídeos na pasta
+
+    /userdata/splashvideos
+
+caso encontre o Batocera.PLUS excutará o vídeo na inicialização, se mais de
+um vídeo for encontrado o Batocera.PLUS vai escolher a cada inicialização um
+vídeo aleatóriamente.
+
+Se nenhum vídeo for encontrado o Batocera.PLUS vai executar um vídeo padrão
+do sistema criado pela comunidade.
+
+Durante a execução do vídeo ao pressionar qualquer botão no joystick o vídeo
+será interrompido. No teclado ao pressionar a tecla S (stop) o vídeo também
+será interrompido.
+
+O motivo dos vídeos virem desabilitados por padrão é para evitar problemas de
+inicialização com um pequeno número de placas de vídeo que não são completamente
+suportadas pelo Batocera.PLUS

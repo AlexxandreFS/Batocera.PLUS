@@ -1,380 +1,197 @@
 ################################################################################
 
-PRINCIPAIS MUDANÇAS 
-    * Adicionado: Todas as Bios
-    * Adicionado: DualBoot, batocera-hd-edition.gz isso não é mais necessário, atualizado grub.cfg (Grub2 and Grub2Win)
-    * Adicionado: Programas úteis para o Windows (/boot/tools) [Sérgio de Carvalho Júnior]
-    * Adicionado: Mozilla Firefox ESR e Flash Player
-    * Adicionado: Wine Staging com suporte à programas e jogos de 32 e 64 bits
-    * Adicionado: DirectX 9 + Fonts Microsoft + Mono
-    * Adicionado: Winetrix
-    * Adicionado: OpenBOR 4.0 (v7142, v6330, v4432)
-    * Adicionado: Raine Emu 2020(0.90.3), 2015(0.64.10) NeoGeoCD
-    * Informação: Tamanho total da imagem 2.5GB
-    * Adicionado: Compartilhamento de .ISO de PS2 por rede para o OPL (/userdata/roms/ps2smb)
-    * Desativado: Atualizações automáticas.
-  *** Adicionado: Novos temas nas atualizações online [Cleber Batista, Caetano Ramos]
-    * Adicionado: Libretro Dolphin (GameCube, Wii)
-    * Adicionado: Dolphin (GameCube) FullBoot (/userdata/system/batocera.conf) [Agradescimento à Sérgio de Carvalho Júnior]
-    * Alterado:   Decorações de janela sem efeito de vidro
-    * Adicionado: Configurações personalizadas para o terminal (xterm)
-    * Adicionado: Logo Batocera+ no terminal [lala, crcrerror, cyperghost]
-    * Adicionado: Configuração personalizada para o genciador de arquivos (F1)
-    * Corrigido:  Problemas com fontes Asiáticas [Agradescimento à C1724 (discord)]
-    * Adicionado: Vários atalhos de teclado, (Win + F2) lista completa
-                  Print de tela (Win + PrintScreen) para /userdata/screenshots veja mais (Win + F2)
-                  Ativar/desativar ponteiro do mouse (Win + F3)
-                  Abrir o xterm (Win + F4)
-                  Abrir o Firefox (Win + F10)
-                  Controle de volume (Win + teclas de direção)
-    * Adicionado: Melhor suporte para controles de PS4
-    * Corrigido:  Auto identificação de variantes de layout de teclado e opção system.kblayout em (/userdata/system) [Agradescimento à Sérgio de Carvalho Júnior]
-    * Adicionado: Resolução de tela personalizada pelo usuários no arquivo (/boot/batocera-boot.conf)
-    * Adicionado: Suporte à video de abertura .mp4 ativado pelo arquivo (/boot/batocera-boot.conf) vídeos em (/userdata/splashvideos)
-    * Adicionado: Imagem de carregamento inicial como parte do tema .jpg e .png (/userdata/themes/Meu-Tema/loadscreen/startscreen.png)
-    * Adicionado: Script de criação de roms falsas para a testes de temas (batocera-fake-roms)
-    * Adicionado: Programa chdman para compressão / descompressão de roms pelo terminal para o formato .chd
-    * Adicionado: Programa scraper para baixar capas e informações de jogos, somente pelo terminal
-    * Adicionado: Programa xjoypad para emulação de controle pelo teclado por linha de comando
-    * Adicionado: Programa unrar para descompressão de arquivos no formato .rar por linha de comando
-    * Adicionado: Suporte à jogatina online pelo Rretroarch
-
-
-
-    * Corrigido bug no sistema Dreamcast que impede o joystick de funcionar. [Alexandre Freire dos Santos, Sérgio de Carvalho Júnior]
-    * Adicionado core PPSSPP (PSP) para o Retroarch.
-    * Adicionado suporte a DLC's no sistema PSP (/userdata/roms/psp/DLC)  [Alexandre Freire dos Santos, Sérgio de Carvalho Júnior]
-
-ONLINE
-
-    * Adicionado suporte para atualizações de cores pelo retroarch
-      util para o modo online. [Alexandre Freire dos Santos]
-      Agradescimentos [Sérgio de Carvalho Júnior, Douglas Martins de Matos, Sérgio Graças, Cleber Batista]
-
-    * Adicionado script "batocera-update-core" para atualização de alguns cores do Retroarch,
-      útil para o netplay [Alexandre Freire dos Santos, Sérgio Graças]
-
-    * Adicionado arquivos de informação de núcleo para o Retroarch. [Alexandre Freire dos Santos]
-      Agradescimentos [Sérgio de Carvalho Júnior, Douglas Martins de Matos, Sérgio Graças, Cleber Batista]
-
-PERFUMARIA
-
-    Atualizado tema principal do Batocera.PLUS. [Alexandre Freire dos Santos]
-    Corrigido falta de som ao iniciar o Emulationstaion. [Alexandre Freire dos Santos]
-    Adicionado suporte à atualizações online para temas compatíveis com o Batocera.PLUS. [Sérgio de Carvalho Júnior]
-    Adicionado temas extras para as Atualizações Online do ES. [Cleber Batista, Caetano Ramos]
-    Adicionado script para criação de roms falsas, útil para experimentar temas "batocera-fake-roms" [Alexandre Freire dos Santos]
-
-    Adicionado suporte para vídeos de abertura, habilite no arquivo /boot/batocera-boot.conf [Alexandre Freire dos Santos]
-    Adicionado suporte para vídeos de abertura adicionados pelo usuário em /userdata/splashvideos [Alexandre Freire dos Santos]
-    
-    Adicionado Filtros de Imagem padrão para os sistemas extras do Batocera.PLUS [Sérgio de Carvalho Júnior]
-
-
-
-
-LIST OF CORES
-
-    NEW LIBRETRO
-        blastem              Sega Megadrive
-        bsnes_hd             Super Nintendo, Super Nintendo Classic Mini, Super Nintendo CD (MSU-1), Satellaview
-        catsfc               Super Nintendo, Super Nintendo Classic Mini, Satellaview
-        dolphin              Nintendo GameCube, Nintendo Wii
-        fbalpha2012          Final Burn Alpha, FBA LIBRETRO, Neo-Geo, Neo-Geo Mini, Neo-Geo X, Arcade
-        flycast2019          Sega Naomi, Sega Dreamcast, Atomiswave, Arcade
-        freechaf             Fairchild Channel F
-        gearsystem           Sega Master System, Sega Game Gear, Sega SG1000
-        gpsp                 Game Boy Advance
-        hbmame               HBMame
-        mame0174             Mame, Neo-Geo, Neo-Geo Mini, Neo-Geo X, Light Gun, Arcade
-        mame0200             Mame, Neo-Geo, Neo-Geo Mini, Neo-Geo X, Light Gun, Arcade
-        mame078              Mame, Neo-Geo, Neo-Geo Mini, Neo-Geo X, Light Gun, Arcade
-        mednafen_pce         PC Engine, PC Engine CD, Supergrafx
-        mednafen_psx_sw      Sony Playstation, Sony Playstation Classic Mini
-        melonds              Nintendo DS
-        meteor               Game Boy Advance
-        nekop2               NEC PC-98
-        ppsspp               Sony PSP, Sony PSP MINIs
-        puae                 Commodore Amiga, Amiga CD32, Amiga CDTV
-        quicknes             Nintendo Entertainment System, Nintendo Classic Mini
-        race                 Neo-Geo Pocket, Neo-Geo Pocket Color
-        redream              Sega Dreamcast
-        smsplus              Sega Game Gear, ColecoVision, Sega Master System
-        yabasanshiro         Sega Saturn
-
-    NEW STANDALONE
-        OpenBOR_v4432        OpenBOR
-        OpenBOR_v6330        OpenBOR
-        OpenBOR_v4432        OpenBOR
-        raine2020            Neo-Geo CD
-        raine2015            Neo-Geo CD
-        Mozilla_Firefox      Internet, Flash Games
-        Linux                Linux Games
-        Wine5.0              Windows Games
-
-    UPDATE LIBRETRO
-        beetle-saturn        Sega Saturn
-        bsnes                Super Nintendo, Super Nintendo Classic Mini, Super Nintendo CD (MSU-1), Satellaview
-        citra                Nintendo 3DS
-        dosbox               Dos (x86)
-        fbneo                Arcade, Final Burn Alpha, FBA LIBRETRO, Neo-Geo, Neo-Geo Mini, Neo-Geo CD, Neo-Geo X
-        fceumm               Nintendo Entertainment System, Nintendo Classic Mini, Family Computer Disk System
-        flycast              Sega Dreamcast, Arcade, Sega Naomi, Atomiswave, Sega Dreamcast
-        genesisplusgx        Sega SG1000, Sega Master System, Sega Megadrive, Sega CD, Sega Game Gear
-        kronos               Sega Saturn
-        mednafen_lynx        Atari Lynx
-        mednafen_ngp         Neo-Geo Pocket, Neo-Geo Pocket Color
-        mednafen_psx         Sony Playstation, Sony Playstation Classic Mini
-        mednafen_supergrafx  Supergrafx
-        mupen64plus-next     Nintendo 64
-        neocd                Neo-Geo CD
-        nestopia             Nintendo Entertainment System, Nintendo Classic Mini, Family Computer Disk System
-        np2kai               NEC PC-98
-        nxengine             Cave Story
-        opera                3DO Interactive Multiplayer
-        parallel_n64         Nintendo 64, Nintendo 64 Disk Drive
-        pce                  PC Engine, PC Engine CD
-        pcsx_rearmed         Sony Playstation, Sony Playstation Classic Mini
-        picodrive            Sega Master System, Sega Megadrive, Sega CD, Sega 32x
-        snes9x               Super Nintendo, Super Nintendo Classic Mini, Super Nintendo CD (MSU-1), Satellaview, SuFami Turbo
-        theodore             Thomson
-        vice                 Commodore 64
-        virtualjaguar        Atari Jaguar
-        yabause              Sega Saturn
-
-    UPDATE STANDALONE
-        dolphin              Nintendo GameCube, Nintendo Wii
-        fs-uae               Amiga CD32, Commodore Amiga, Amiga CDTV
-        hypseus              Daphne
-        PPSSPP               Sony PSP, Sony PSP MINIs
-        reicast              Sega Dreamcast
-
-
-
-28/02/2020 - Batocera.PLUS 2.0
-
-    * Sincronizado: Batocera.PLUS com o Batocera.Linux 5.24
-
-    * Adicionado: Todas as Bios
-
-    * Adicionado: Novos Sistemas
-        * Windows Games               /userdata/roms/windows
-        * Linux Games                 /userdata/roms/linux
-        * OpenBOR                     /userdata/roms/openbor
-        * Flash Games                 /userdata/roms/flash
-        * Internet                    /userdata/roms/internet
-        * Arcade                      /userdata/roms/Arcade
-        * Super Nintendo CD (MSU-1)   /userdata/roms/snescd
-        * Nintendo 64 Disk Drive      /userdata/roms/n64dd
-        * Nintendo Classic Mini       /userdata/roms/nesmini
-        * Super Nintendo Classic Mini /userdata/roms/snesmini
-        * Playstation Classic Mini    /userdata/roms/psxmini
-        * PSP MINIs                   /userdata/roms/pspminis
-        * Neo-Geo Mini                /userdata/roms/neogeomini
-        * Neo-Geo X                   /userdata/roms/neogeox
-        * NEC PC-98                   /userdata/roms/pc98
-        * Fairchild Channel F         /userdata/roms/channelf
-        * Thomson                     /userdata/roms/thomson
-
-    * Mantido: Sistema MSX2 /userdata/roms/msx2
-    * Mantido: Sistema FBA Libretro /userdata/roms/fba_libretro
-
-    * Adicionado: Wine Staging ("Emulador de Windows")
-        * Adicionado: Suporte à executáveis Win32
-        * Adicionado: Suporte à executáveis Win64
-        * Adicionado: DirectX 9 Jun2010
-        * Adicionado: Mono (suporte ao NET Framework)
-        * Adicionado: Fontes msttcorefonts (Windows)
-        * Adicionado: Winetrix (altamente experimental)
-        * Atualizado: Compilação pelo buildroot
-
-    * Adicionado: Mozilla Firefox ESR
-        * Corrigido:  Vários bugs
-        * Atualizado: Flash Player
-        * Atualizado: Tema e opções personalizadas
-        * Adicionado: Possibilidade do usuário atualizar o navegador manualmente veja o
-                      arquivo leia-me no diretório /userdata/roms/internet/firefox.linux64
-        * Adicionado: Atalho (WIN + F10) abre o navegador
-
-    * Adicionado: OpenBOR
-        * Atualizado: OpenBOR_v7142 para o GCC-9
-        * Atualizado: OpenBOR_v6330 para o GCC-9
-        * Adicionado: OpenBOR_v4432 para o GCC-9
-        * Adicionado: Configuração de filtro de imagem básico
-        * Adicionado: Save independente para cada Core (evita bugs)
-
-    * Adicionado: Core Raine (Neo-Geo CD)
-        * Adicionado: Raine 2018
-        * Adicionado: Raine 2015 (Melhor compatibilidade com alguns jogos)
-        * Adicionado: Tradução para português do Brasil (pt_BR)
-        * Informação: Suporta músicas em MP3
-
-    * Adicionado: Core Bsnes-HD para:
-        * Super Nintendo Entertainment System
-        * Super Nintendo Classic Mini
-        * Super Nintendo CD (MSU-1)
-        * Satellaview
-        * Informação: Roda jogos em Mode 7 em alta resolução
-        * Informação: Precisa ativar nas opções do retroarach
-        * Informação: Experimente: F-zero, Super Mario Kart, Pilot Wings, etc...
-
-    * Adicionado: Core Higan para:
-        * Super Nintendo Entertainment System
-        * Super Nintendo Classic Mini
-        * Satellaview
-
-    * Adicionado: Core mame0200 para:
-        * Arcade
-        * Mame
-        * Light Gun
-        * Neo-Geo
-        * Neo-Geo Mini
-        * Neo-Geo X
-
-    * Adicionado: Core fbalpha2012 para:
-        * Arcade
-        * Final Burn Alpha
-        * Neo-Geo
-        * Neo-Geo Mini
-        * Neo-Geo X
-
-    * Adicionado: Core freechaf para:
-        * Fairchild Channel F
-
-    * Adicionado: Core np2kai para:
-        * NEC PC-98
-
-    * Adicionado: Core nekop2 para:
-        * NEC PC-98
-
-    * Adicionado: Core theodore para:
-        * Thomson
-
-    * Mantido: Core mame078
-    * Mantido: Core mame0174
-    * Mantido: Core catsfc
-    * Mantido: Core mupen64plus
-    * Mantido: Core quicknes
-    * Mantido: Core meteor
-    * Mantido: Core gpsp
-    * Mantido: Core scummvm
-    * Mantido: Core dosbox
-    * Mantido: Core Dos x86
-
-    * Adicionado mudança de Filtros (shaders) hotkey + L R durante o jogo
-
-    * Adicionado vídeo de introdução personalizado pelo usuário
-
-    * Adicionado: Fontes extras para o PPSSPP (conserta alguns jogos)
-
-    * Adicionado: Suporte para roms compactadas no formato 7z
-        * Adicionado: Tela de carregamento enquanto o jogo é descompactado
-        * Adicionado: Suporte para os seguintes sistemas:
-          3do, psx, psp, pspminis, ps2, gamecube, wii, 3ds, segacd, saturn,
-          dreamcast, naomi, neogeocd, n64, atomiswave, naomi, arcade, snescd
-
-    * Adicionado: Suporte para execusão de roms dentro de pastas
-        * Suporta todos os sistemas exceto para Windows, Dos e Linux
-         (estes sistema já rodam dentro de pastas nativamente)
-
-    * Adicionado: Suporte para criação de coleções por arquivos de texto (rom virtual)
-
-    * Corrigido:  Layout de teclas para o teclado Brasileiro ABNT-2
-
-    * Adicionado: Atalho (WIN + F3) para ativar ou desativa o ponteiro do mouse
-
-    * Adicionado: Print Screen, salva uma imagem da tela para /userdata/screenshots
-        * Adicionado: Atalho (PRINT_SCREEN)       Salva no formato PNG
-        * Adicionado: Atalho (WIN + P)            Salva no formato PNG
-        * Adicionado: Atalho (WIN + PRINT_SCREEN) Salva no formato JPG
-        * Adicionado: Atalho (WIN + J)            Salva no formato JPG
-        * Informação: Funciona em qualquer parte do sistema
-          (Emulationstation, Gerenciador de Arquivos, Firefox, durante o jogo, etc...)
-
-    * Adicionado: Tela de ajuda para os atalhos de teclado e Joystick
-        * Adicionado: Atalho (WIN + F5) para mostrar os atalhos, (F5) mostra este atalho
-        * Informação: Pode ser aberto a qualquer momento, mesmo durante o jogo.
-
-    * Adicionado: Controle de volume pelo teclado
-        * Adicionado: Atalho (WIN + Esquerda) Diminui o volume
-        * Adicionado: Atalho (WIN + Direita)  Aumenta o volume
-        * Adicionado: Atalho (WIN + Cima)     Volume em 50%, segure para ir para 100%
-        * Adicionado: Atalho (WIN + Baixo)    Mudo
-
-    * Adicionado: Imagem de carregamento inicial personalizada pelo tema
-        * Funciona com imagens PNG e JPG
-        * A imagem deve ficar dentro de uma pasta no tema com o nome loadscreen
-        * A imagem precisa ter o nome de startscreen.png ou startscreen.jpg
-          Exemplo: /userdata/themes/meu_tema/loadscreen/startscreen.png
-
-    * Adicionado: Imagem de carregamento do jogo personalizada pelo tema (loadscreen)
-        * Funciona com imagens PNG e JPG
-        * As imagens devem ficar dentro de uma pasta no tema com o nome loadscreen
-        * Exemplo: Siga o padrão de nomes dos arquivos baseados em
-          /etc/emulationstation/themes/batoce-plus/loadscreen
-
-    * Adicionado: batocera-hd-edition (dualboot entre Batocera.PLUS, Windows e Linux)
-        * Adicionado: batocera-hd-edition.gz para /boot/batocera-hd-edition
-        * Adicionado: grub.cfg em /boot/batocera-hd-edition
-        * Informação: O Batocera.PLUS não precisa de um arquivo batocera-hd-edition.gz externo.
-
-    * Adicionado: Vários programas úteis para usuários de Windows em /boot/tools
-    
-    * Adicionado: Várias imagens batoceraZero, usadas para criar imagens prontas menores
-                  para caber em pendrives pequenos /boot/batoceraZeroImg
-
-    * Adicionado: Opção para força resolução personaliza em /boot/batocera-boot.conf
-
-    * Adicionado: Script de auto execução para /userdata/system/custom.sh
-
-    * Desativado: Serviço ntp, impede que o relógio do Windows seja desconfigurado
-
-    * Atualizado: Tamanho padrão do arquivo overlay de 50MB para 128MB
-
-    * Corrigido:  Bug do PC não desligar/reiniciar em alguns computadores
-                  especialmente quando está usando o batocera-hd-edition
-
-    * Adicionado: Configurações personalizadas para o pcmanfm (F1)
-
-    * Adicionado: Tema de ícones (Plastik Blue Crystal Box V2)
-
-    * Adicionado: Barra título com opção de fechar e maximizar no seguintes programas:
-        * Gerenciador de arquivos (F1)
-        * Editor de textos
-        * Mozilla Firefox
-        * Terminal 
-
-    * Corrigido:  Melhor suporte à controles de Playstation 4.
-    
-    * Atualizado: Tradução português do Brasil pt_BR para o emulationstation
-    
-    * Adicionado: Configurações personalizadas para o xterm
-        * Adicionado: Atalho (WIN + F4) abre o terminal a qualquer momento
-
-    * Adicionado: Programas em linha de comando
-        * xjoypad (emulador de teclado por joystick), atualizado para reconhecer mais botões
-        * scraper (baixa capas e informações de jogos por linha de comando)
-        * unrar (descompactador de aquivos .rar em linha de comando)
-        * chdman (compressor de iso para chd em linha de comando)
-
-    * Removido: Efeito de vídeo que deixa a imagem clara ao usar decorações de janelas
-
-    * Adicionado: Tema padrão para o emulationstation adaptado do tema de jdorigao
-        * Adicionado: Suporte a vídeos
-        * Adicionado: Novos sistemas e icones
-
-    * Adicionado: Músicas no estilo 8 Bits para o emulationstation
-
-    * Desativado: Por padrão o Rebobinar (rewind), garante maior desempenho
-
-    * Removido: Roms extras
-        * Super Mario Bros 64 - Zeropaige (c64)
-        * The Great Giana Sisters (c64)
-        * SpaceTwins (gba)
-        * 2048 (tsone) (nes)
-        * Reflectron (aetherbyte) (pcengine)
-        * Santatlantean (aetherbyte) (pcengine)
-        * Doom Shareware (prboom)
-        * Donkey Kong Classic (Shiru) (prboom)
-
-    * Desativado: Atualizações automáticas.
+BATOCERA.PLUS PRINCIPAIS MUDANÇAS
+
+    SYSTEMA
+        * Alterado:   Tamanho da imagem do sistema 2.5GB
+        * Adicionado: Wine Staging WOW (suporte à programas e jogos de 32 e 64 bits)
+        * Adicionado: Algumas pendências opcionais para o Wine (DirectX 9 + Mono + Fonts Microsoft)
+        * Adicionado: Winetrix (linha de comando apenas)
+        * Alterado:   Tamanho padrão do arquivo de save (/boot/overlay) de 50MB para 128MB.
+        * Adicionado: Oracle Java
+        * Adicionado: Zram para aumentar a memória RAM em computadores com pouca memória
+        * Corrigido:  Travamentos por falta de memória swap em computadores com pouca memória e em sistemas que usam muita memória RAM (windows, linux, wii. etc...)
+        * Adicionado: Novo método de validação das bios, produz resultados mais precisos sobre as bios que estão faltando
+        * Adicionado: DualBoot, batocera-hd-edition.gz não é mais necessário, atualizado grub.cfg (Grub2 e Grub2Win)
+        * Corrigido:  Erro ao salvar as alterações pelo script "batocera-save-overlay" quando está usando o batocera-hd-edition
+        * Corrigido:  Auto identificação de variantes de layout de teclado e opção system.kblayout em (/userdata/system) [Agradescimento à Sérgio de Carvalho Júnior]
+        * Corrigido:  Problemas com fontes Asiáticas [Agradescimento à C1724 (discord)]
+        * Adicionado: Melhor suporte para controles de PS4
+        * Adicionado: Emulador de teclado por joystick "xjoypad" (somente linha de comando)
+        * Adicionado: Suporte preliminar para o adaptador de controle sem fio do Xbox One [Agradescimento, Wesley Costa]
+        * Alterado:   Emulação do controle de Wii por padrão vem ativada
+        * Adicionado: Suporte para o adaptador de controle de GameCube MyFlash [Sérgio de Carvalho Júnior]
+        * Adicionado: Pasta de programas úteis para o Windows (/boot/tools) [Sérgio de Carvalho Júnior, Cleber Batista]
+        * Adicionado: Resolução de tela personalizada pelo usuário no arquivo /boot/batocera-boot.conf
+        * Adicionado: Script "cue2chd" para compressão de roms em série no formato .cue para o formato .chd
+        * Adicionado: Script "mouse-pointer" para ativar [on] e desativar [off] o ponteiro do mouse
+        * Adicionado: unrar (descompactador de aquivos .rar em linha de comando)
+        * Adicionado: chdman (compressor de iso para chd em linha de comando)
+        * Corrigido:  Bug do PC não desligar/reiniciar em alguns computadores e no batocera-hd-edition
+        * Desativado: Serviço ntp, impede que o relógio do Windows seja desconfigurado
+        * Adicionado: Script de auto execução para /userdata/system/custom.sh
+        * Desativado: Atualizações automáticas
+        * Corrigido:  Vários bugs do batocera.linux
+
+    FUNCIONALIDADES
+        * Adicionado: Mozilla Firefox ESR e Flash Plugin
+        * Adicionado: Suporte para atualização do Firefox manualmente veja o arquivo leia-me no diretório /userdata/roms/internet/firefox.linux64
+        * Adicionado: Pasta de rom compartilhada por rede (/userdata/roms/ps2smb) para o Open PS2 Loader (OPL)
+        * Adicionado: Suporte para execusão de roms em pastas (crie uma pasta com o mesmo nome da rom+extenção e coloque os arquivos dentro)
+        * Adicionado: Suporte para roms compactadas no formato 7zip para vários sistemas
+        * Adicionado: Suporte para criação de coleções por arquivos de texto com o nome da rom (rom virtual)
+        * Adicionado: Atalhos para as pastas mais acessadas no gerenciador de arquivos (F1)
+        * Adicionado: Print de tela (Win + PrintScreen) para a pasta /userdata/screenshots veja outros atalhos com (Win + F2)
+        * Adicionado: Atalho de teclado para mostrar ajuda dos atalhos mais usados (Win + F2)
+        * Adicionado: Atalho de teclado para executa o xterm no gerenciador de arquivos (F4)
+        * Adicionado: Atalho de teclado para Ativação/Desativação do ponteiro do mouse (Win + F3)
+        * Adicionado: Atalho de teclado para abrir o xterm (Win + F4)
+        * Adicionado: Atalho de teclado para abrir o Firefox (Win + F10)
+        * Adicionado: Atalho de teclado para controle de som (Win + teclas de direção)
+
+    EMULAÇÃO
+        * Adicionado: Todas as Bios
+        * Adicionado: Fontes extras para o PSP (melhor compatibilidade)
+        * Atualizado: Retroarch 1.8.7
+        * Adicionado: Arquivos de informação de núcleo para o Retroarch. [Alexandre Freire dos Santos] Agradescimentos [Sérgio de Carvalho Júnior, Douglas Martins de Matos, Sérgio Graças, Cleber Batista]
+        * Adicionado: Suporte para atualizações de cores pelo retroarch para o modo online. [Alexandre Freire dos Santos] Agradescimentos [Sérgio de Carvalho Júnior, Douglas Martins de Matos, Sérgio Graças, Cleber Batista]
+        * Adicionado: Script "batocera-update-core" para atualização de alguns cores do Retroarch para o netplay [Alexandre Freire dos Santos, Sérgio Graças]
+        * Adicionado: Parsec (game streaming) ícone no menu Appications (F1)
+        * Adicionado: FullBoot para o GameCube (/userdata/system/batocera.conf) [Agradescimento à Sérgio de Carvalho Júnior]
+        * Adicionado: dolphin-user-config, configurações realizadas no dolphin-config (F1) serão salvas
+        * Adicionado: Vários shaders (filtro de imagem) para o retroarach, após escolher um filtro qualquer no ES use (HotKey + L ou R) durante o jogo [Agradescimento à Sérgio de Carvalho Júnior]
+        * Informação: Raine Emu 2020(0.90.3) e 2015(0.64.10)
+        * Adicionado: Tradução PT-BR para o Raine Emu
+        * Adicionado: Suporte para roms compactadas no formato .zip para o core mupen64plus
+        * Adicionado: Suporte para DLC's no sistema PSP na pasa de roms (/userdata/roms/psp/DLC)  [Agradescimento, Sérgio de Carvalho Júnior]
+        * Adicionado: Midata para o Citra
+        * Adicionado: Atalhos para os principais programas do nativos do wine no ES
+        * Adicionado: Opção de core para executar jogos de 64 bits no sistema Windows Games
+        * Adicionado: Suporte para roms compactadas no formato squashfs no sistema Windows Games
+        * Corrigido:  Bug no sistema Dreamcast que impede o joystick de funcionar. [Alexandre Freire dos Santos, Sérgio de Carvalho Júnior]
+        * Adicionado: Save independente para cada Core do OpenBOR (evita bugs)
+        * Adicionado: Core bsnes-hd com suporte à jogos em Mode 7 em fullhd
+        * Removido:   Roms extras que vem por padrão no batocera.linux
+        * Desativado: Por padrão o Rebobinar (rewind) para maior desempenho
+        * Alterado:   Resolução padrão do PSP para 2x
+        * Alterado:   Resolução padrão do Dolphin para nativa
+        * Adicionado: Mame 220 com suporte para todos os sistemas (Mame + Mess)
+        * Adicionado: HBMAME Libretro (somente roms hack)
+        * Adicionado: Redream Libretro, última versão de código aberto (Sega Dreamcast)
+
+        NOVOS SISTEMAS
+            * Windows Games               /userdata/roms/windows
+            * Linux Games                 /userdata/roms/linux
+            * OpenBOR                     /userdata/roms/openbor
+            * HBMame                      /userdata/roms/hbmame
+            * Flash Games                 /userdata/roms/flash
+            * Internet                    /userdata/roms/internet
+            * Arcade                      /userdata/roms/arcade
+            * Super Nintendo CD (MSU-1)   /userdata/roms/snescd
+            * Nintendo 64 Disk Drive      /userdata/roms/n64dd
+            * Nintendo Classic Mini       /userdata/roms/nesmini
+            * Super Nintendo Classic Mini /userdata/roms/snesmini
+            * Playstation Classic Mini    /userdata/roms/psxmini
+            * PSP MINIs                   /userdata/roms/pspminis
+            * Neo-Geo Mini                /userdata/roms/neogeomini
+            * Neo-Geo X                   /userdata/roms/neogeox
+            * NEC PC-98                   /userdata/roms/pc98
+            * Fairchild Channel F         /userdata/roms/channelf
+            * Thomson                     /userdata/roms/thomson
+            * MSX2                        /userdata/roms/msx2
+            * FBA Libretro                /userdata/roms/fba_libretro
+
+        NOVOS CORES LIBRETRO
+            * blastem              Sega Megadrive
+            * bsnes_hd             Super Nintendo, Super Nintendo Classic Mini, Super Nintendo CD (MSU-1), Satellaview
+            * catsfc               Super Nintendo, Super Nintendo Classic Mini, Satellaview
+            * dolphin              Nintendo GameCube, Nintendo Wii
+            * fbalpha2012          Final Burn Alpha, FBA LIBRETRO, Neo-Geo, Neo-Geo Mini, Neo-Geo X, Arcade
+            * flycast2019          Sega Naomi, Sega Dreamcast, Atomiswave, Arcade
+            * freechaf             Fairchild Channel F
+            * gearsystem           Sega Master System, Sega Game Gear, Sega SG1000
+            * gpsp                 Game Boy Advance
+            * hbmame               HBMame
+            * mame0174             Mame, Neo-Geo, Neo-Geo Mini, Neo-Geo X, Light Gun, Arcade
+            * mame0200             Mame, Neo-Geo, Neo-Geo Mini, Neo-Geo X, Light Gun, Arcade
+            * mame078              Mame, Neo-Geo, Neo-Geo Mini, Neo-Geo X, Light Gun, Arcade
+            * mednafen_pce         PC Engine, PC Engine CD, Supergrafx
+            * mednafen_psx_sw      Sony Playstation, Sony Playstation Classic Mini
+            * melonds              Nintendo DS
+            * meteor               Game Boy Advance
+            * nekop2               NEC PC-98
+            * ppsspp               Sony PSP, Sony PSP MINIs
+            * quicknes             Nintendo Entertainment System, Nintendo Classic Mini
+            * race                 Neo-Geo Pocket, Neo-Geo Pocket Color
+            * redream              Sega Dreamcast
+            * smsplus              Sega Game Gear, ColecoVision, Sega Master System
+            * yabasanshiro         Sega Saturn
+
+        NOVOS CORES STANDALONE
+            * OpenBOR_v7142        OpenBOR
+            * OpenBOR_v6330        OpenBOR
+            * OpenBOR_v4432        OpenBOR
+            * raine2020            Neo-Geo CD
+            * raine2015            Neo-Geo CD
+            * Mozilla_Firefox      Internet, Flash Games
+            * Linux                Linux Games
+            * Wine                 Windows Games
+            * Wine64               Windows Games
+
+        CORES ATUALIZADOS LIBRETRO
+            * beetle-saturn        Sega Saturn
+            * bsnes                Super Nintendo, Super Nintendo Classic Mini, Super Nintendo CD (MSU-1), Satellaview
+            * citra                Nintendo 3DS
+            * dosbox               Dos (x86)
+            * desmume              Nintendo DS
+            * fbneo                Arcade, Final Burn Alpha, FBA LIBRETRO, Neo-Geo, Neo-Geo Mini, Neo-Geo CD, Neo-Geo X
+            * fceumm               Nintendo Entertainment System, Nintendo Classic Mini, Family Computer Disk System
+            * flycast              Sega Dreamcast, Arcade, Sega Naomi, Atomiswave, Sega Dreamcast
+            * genesisplusgx        Sega SG1000, Sega Master System, Sega Megadrive, Sega CD, Sega Game Gear
+            * kronos               Sega Saturn
+            * mednafen_lynx        Atari Lynx
+            * mednafen_ngp         Neo-Geo Pocket, Neo-Geo Pocket Color
+            * mednafen_psx         Sony Playstation, Sony Playstation Classic Mini
+            * mednafen_supergrafx  Supergrafx
+            * messen               Nintendo Entertainment System, Nintendo Classic Mini, Family Computer Disk System
+            * mupen64plus-next     Nintendo 64
+            * neocd                Neo-Geo CD
+            * nestopia             Nintendo Entertainment System, Nintendo Classic Mini, Family Computer Disk System
+            * np2kai               NEC PC-98
+            * nxengine             Cave Story
+            * opera                3DO Interactive Multiplayer
+            * parallel_n64         Nintendo 64, Nintendo 64 Disk Drive
+            * pce                  PC Engine, PC Engine CD
+            * pcsx_rearmed         Sony Playstation, Sony Playstation Classic Mini
+            * picodrive            Sega Master System, Sega Megadrive, Sega CD, Sega 32x
+            * puae                 Commodore Amiga, Amiga CD32, Amiga CDTV
+            * snes9x               Super Nintendo, Super Nintendo Classic Mini, Super Nintendo CD (MSU-1), Satellaview, SuFami Turbo
+            * theodore             Thomson
+            * vice                 Commodore 64
+            * virtualjaguar        Atari Jaguar
+            * yabause              Sega Saturn
+
+        CORES ATUALIZADOS STANDALONE
+            * dolphin              Nintendo GameCube, Nintendo Wii
+            * fs-uae               Amiga CD32, Commodore Amiga, Amiga CDTV
+            * hypseus              Daphne
+            * ppsspp               Sony PSP, Sony PSP MINIs
+            * reicast              Sega Dreamcast
+
+    ESTÉTICA
+        * Adicionado: Novo tema para o Batocera.PLLUS
+        * Adicionado: Novas músicas no estilo 8bit
+        * Adicionado: Novas imagens de logo personalizadas para o Batocera.PLUS [Wesley Costa]
+        * Adicionado: Programa "scraper" para baixar capas e informações de jogos (somente por linha de comando)
+        * Adicionado: Animação de carregamento durante os primeiros segundos do boot
+        * Adicionado: Logo Batocera+ no terminal [lala, crcrerror, cyperghost]
+        * Adicionado: Barra título nas janelas
+        * Adicionado: Tema personalizado para o genciador de arquivos (F1) tema de ícones (Plastik Blue Crystal Box V2)
+        * Adicionado: Script "batocera-fake-roms" cria roms falsas para ajudar no teste e desenvolvimento de temas
+        * Adicionado: Temas extras nas atualizações online [vários colaboradores]
+        * Adicionado: Suporte à videos de abertura .mp4 o suporte deve ser ativado no arquivo /boot/batocera-boot.conf e os vídeos adicionados em /userdata/splashvideos
+        * Adicionado: Imagem de carregamento inicial como parte do tema (.jpg, .png) (/userdata/themes/Meu-Tema/loadscreen/startscreen.png)
+        * Adicionado: Imagem de carregamento (.jpg, .png) antes de iniciar o jogo como parte do tema (/userdata/themes/Meu-Tema/loadscreen)
+        * Alterado:   Decorações de janela para o retroarch sem efeito de vidro.
+        * Adicionado: Configurações personalizadas para o terminal (xterm)
+        * Adicionado: Tema personalizado para o Firefox

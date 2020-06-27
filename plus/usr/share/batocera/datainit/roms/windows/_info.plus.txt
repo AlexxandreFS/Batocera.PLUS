@@ -27,6 +27,9 @@ ________________________________________________________________________________
     UMA VISÃO GERAL SOBRE O WINE
 ________________________________________________________________________________
 
+    Antes de tudo, Leia o manual do wine, https://wiki.winehq.org/FAQ agora
+prossiga com a leitura deste guia.
+
     O Batocea.PLUS usa uma versão "turbinada" do Wine chamada de Wine-Staging,
 compilada de forma que consegue executar jogos e programas tanto de 32 quanto de
 64 bits, Windows on Windows (WOW).
@@ -423,7 +426,7 @@ simbólico pelo terminal, Exemplo:
 próprio script do jogo "batocera.plus" Exemplo:
 
     #!/bin/sh
-    if ! [ -f '/userdata/saves/windows/My Game' ]; then
+    if ! [ -d '/userdata/saves/windows/My Game' ]; then
         mkdir -p '/userdata/saves/windows/My Game'
         ln -sf '/userdata/saves/windows/My Game' '/userdata/roms/windows/My Game.plus/Saves'
     fi
@@ -432,11 +435,11 @@ próprio script do jogo "batocera.plus" Exemplo:
 
     2) O Batocera.PLUS consegue configurar automáticamente os saves dos jogos
 que salvam em uma das pastas do disco C:\ para isso você precisa descobrir em
-qual das pastas o jogo é salva o progresso, uma das maneira de fazer isso é
+qual das pastas o jogo salva o progresso, uma das maneira de fazer isso é
 pesquisando pela internet pois esta pasta também é usada no próprio Windows,
 outra maneira é procurando a pasta manualmente no diretório de instalação
-virtual do Wine (WINEPREFIX) depois de encontrar onde o jogo salva o progresso é
-só adicionar a linha WIN_SAVE_DIR apontando para este diretório no script que
+virtual do Wine (WINEPREFIX) depois que encontrar onde o jogo salva o progresso
+é só adicionar a linha WIN_SAVE_DIR apontando para este diretório no script que
 executa o jogo "batocea.plus" veja o Exemplo:
 
     #!/bin/sh

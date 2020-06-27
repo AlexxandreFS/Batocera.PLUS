@@ -27,9 +27,9 @@ int sendevent(int typ, int keycode)
 	XEvent event;
 	Window win;
 	int    revert_to;
-    struct timeb t;
+	struct timeb t;
 
-    ftime(&t);
+	ftime(&t);
   
 	XGetInputFocus(mydisp, &win, &revert_to);
 
@@ -49,7 +49,7 @@ int sendevent(int typ, int keycode)
 	event.xkey.same_screen = True;
 
 	XSendEvent(mydisp, InputFocus, True, 3, &event);
-    XFlush(mydisp);
+	XFlush(mydisp);
 
 	return 0;
 }

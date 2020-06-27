@@ -2,8 +2,7 @@
 
 ### Batocera.PLUS
 
-if test "$1" != "start"
-then
+if [ "$1" != 'start' ]; then
   exit 0
 fi
 
@@ -12,9 +11,13 @@ SHARE_INIT='/usr/share/batocera/datainit'
 
 ### Cria pastas adicionais
 mkdir -p "$SHARE/downloads"
-mkdir -p "$SHARE/splashvideos"
 mkdir -p "$SHARE/system/.local/share/Trash/files"
 mkdir -p "$SHARE/system/configs/wine"
+
+### Pasta splashvideos
+if ! [ -d "$SHARE/splashvideos" ]; then
+    cp -r "${SHARE_INIT}/splashvideos" "${SHARE}"
+fi
 
 ### Arquivo de auto execução personalizado pelo usuário.
 if ! [ -f "$SHARE/system/custom.sh" ]; then

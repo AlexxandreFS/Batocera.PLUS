@@ -14,6 +14,7 @@
             <fullscreen>yes</fullscreen>
         </application>
 
+        <!-- Evita que as caixas de confirmação de execução de scripts e outras mensagem apareçam maximizadas -->
         <application name="pcmanfm">
             <decor>yes</decor>
             <fullscreen>no</fullscreen>
@@ -22,6 +23,9 @@
                 <x>center</x>
                 <y>center</y>
             </position>
+        </application>
+        <application title="pcmanfm">
+            <maximized>yes</maximized>
         </application>
         <application title="userdata">
             <maximized>yes</maximized>

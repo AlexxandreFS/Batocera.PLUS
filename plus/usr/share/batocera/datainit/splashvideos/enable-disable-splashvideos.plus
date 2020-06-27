@@ -1,0 +1,33 @@
+#!/bin/sh
+###
+### Batocera.PLUS
+###
+### Ativa ou desativo os vídeos na inicialização do Batocera.PLUS.
+### Este script só funciona com o sistema em execução, ao abrir o script escolha a opção executar.
+###
+### Enables or disables the videos at Batocera.PLUS startup.
+### This script only works with the system running, when opening the script choose the option run.
+###
+
+yad --form --title='Batocera.PLUS' --fixed --center --window-icon='/usr/share/icons/Adwaita/64x64/places/user-home-symbolic.symbolic.png' \
+    --text=' Enable Splashvideos?\n' \
+    --button="gtk-yes:0" \
+    --button="gtk-no:1" \
+    --button="gtk-cancel:2" \
+    --borders=10
+
+RESP="${?}"
+
+if [ "${RESP}" == '0' ] || [ "${RESP}" == '1' ]; then
+    mount -o remount,rw /boot 2> /dev/null
+
+    if [ "${RESP}" == '0' ]; then
+        batocera-settings /boot/batocera-boot.conf --command uncomment --key splashvideo
+    else
+        batocera-settings /boot/batocera-boot.conf --command comment   --key splashvideo
+    fi
+
+    umount /boot 2> /dev/null
+fi
+
+exit 0

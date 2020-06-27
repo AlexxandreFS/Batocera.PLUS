@@ -2,7 +2,6 @@
  * Autor: Alexandre Freire dos Santos
  * Email: alexxandre.freire@gmail.com
  * Version: 08/12/2018
- * Todos os direitos reservados 2018
  */
 #include <stdio.h>
 #include <string.h>

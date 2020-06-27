@@ -101,9 +101,8 @@ xset s off
 
 ### Video de abertura
 
-VIDEO_DIR='/userdata/splashvideos'
-
 function randVideo() {
+    local VIDEO_DIR='/userdata/splashvideos'
     local TOTAL_FILES='0'
 
     for i in "$VIDEO_DIR/"*; do
@@ -147,6 +146,7 @@ if [ "$(grep ^splashvideo=true /boot/batocera-boot.conf)" ]; then
     fi
     xjoypad -display $DISPLAY -device /dev/input/js0 -buttons 39 39 39 39 39 39 39 39 39 39 39 39 39 &
     playVideo "$VIDEO_FILE"
+    unset VIDEO_FILE
     killall xjoypad &
 fi
 
@@ -187,7 +187,6 @@ elif [ "/etc/emulationstation/themes/batocera-plus/loadscreen/startscreen.jpg" ]
 fi
 
 while [ true ]; do
-
     # Aguarda o emulationstation entrar em execução para exibir a tela de carregamento.
     if [ "$(pidof emulationstation)" ]; then
         cp '/usr/share/batocera/datainit/system/configs/retroarch/retroarchcustom.cfg' '/tmp/retroarchcustom.cfg'
