@@ -3,7 +3,7 @@
 
 # Versão do Batocera.PLUS
 VERSION='2.00'
-RELEASE='RC7'
+RELEASE='RC8'
 NVIDIA_LEGACY='0'
 
 # Pasta temporária em uma partição Linux
