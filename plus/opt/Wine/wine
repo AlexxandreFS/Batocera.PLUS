@@ -117,20 +117,25 @@ fi
 
 ### REINICIA O "WINDOWS"
 
+function wineWait() {
+    for i in {1..40}; do
+        if [ $(pidof -s wineserver) ]; then
+            sleep 1
+            continue
+        fi
+
+        if [ -f "${WINEPREFIX}/user.reg" ] && [ -f "${WINEPREFIX}/system.reg" ]; then
+            sleep 2
+            break
+        fi
+    done
+}
+
+wineWait
+
 "${WINE_DIR}/bin/wine${WINE_ARCH}" wineboot
 
-for i in {0..300}; do
-    sleep 1
-
-    if [ "$(pidof wineserver)" ]; then
-        continue
-    fi
-
-    if [ -f "${WINEPREFIX}/user.reg" ] && [ -f "${WINEPREFIX}/system.reg" ]; then
-        sleep 2
-        break
-    fi
-done
+wineWait
 
 ################################################################################
 

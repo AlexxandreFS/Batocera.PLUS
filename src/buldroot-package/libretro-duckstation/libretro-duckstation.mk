@@ -1,0 +1,24 @@
+################################################################################
+#
+# LIBRETRO DUCKSTATION
+#
+################################################################################
+# Version.: Commits on Jul 17, 2020
+LIBRETRO_DUCKSTATION_VERSION = 1069e12bffcd65e0c238d07b71f5b92368ab569b
+LIBRETRO_DUCKSTATION_SITE = $(call github,stenzek,duckstation,$(LIBRETRO_DUCKSTATION_VERSION))
+LIBRETRO_DUCKSTATION_LICENSE = GPLv3
+
+LIBRETRO_DUCKSTATION_CONF_OPTS  = -DBUILD_LIBRETRO_CORE=ON
+LIBRETRO_DUCKSTATION_CONF_OPTS += -DCMAKE_BUILD_TYPE=Release
+LIBRETRO_DUCKSTATION_CONF_OPTS += -DTHREADS_PTHREAD_ARG=ON
+LIBRETRO_DUCKSTATION_CONF_OPTS += -DBUILD_SHARED_LIBS=OFF
+#LIBRETRO_DUCKSTATION_CONF_OPTS += -DENABLE_VULKAN=OFF
+LIBRETRO_DUCKSTATION_CONF_OPTS += -DENABLE_DISCORD_PRESENCE=OFF
+
+
+define LIBRETRO_DUCKSTATION_INSTALL_TARGET_CMDS
+	$(INSTALL) -D $(@D)/duckstation_libretro.so \
+		$(TARGET_DIR)/usr/lib/libretro/duckstation_libretro.so
+endef
+
+$(eval $(cmake-package))

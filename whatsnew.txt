@@ -10,7 +10,7 @@ BATOCERA.PLUS PRINCIPAIS MUDANÇAS
         * Alterado:   Tamanho padrão do arquivo de save (/boot/overlay) de 50MB para 128MB.
         * Adicionado: Oracle Java
         * Adicionado: Zram para aumentar a memória RAM em computadores com pouca memória
-        * Corrigido:  Travamentos por falta de memória swap em computadores com pouca memória e em sistemas que usam muita memória RAM (windows, linux, wii. etc...)
+        * Corrigido:  Travamentos por falta de memória swap em computadores com pouca memória RAM
         * Adicionado: Novo método de validação das bios, produz resultados mais precisos sobre as bios que estão faltando
         * Adicionado: DualBoot, batocera-hd-edition.gz não é mais necessário, atualizado grub.cfg (Grub2 e Grub2Win)
         * Corrigido:  Erro ao salvar as alterações pelo script "batocera-save-overlay" quando está usando o batocera-hd-edition
@@ -18,7 +18,6 @@ BATOCERA.PLUS PRINCIPAIS MUDANÇAS
         * Corrigido:  Problemas com fontes Asiáticas [Agradescimento à C1724 (discord)]
         * Adicionado: Melhor suporte para controles de PS4
         * Adicionado: Emulador de teclado por joystick "xjoypad" (somente linha de comando)
-        * Adicionado: Suporte preliminar para o adaptador de controle sem fio do Xbox One [Agradescimento, Wesley Costa]
         * Alterado:   Emulação do controle de Wii por padrão vem ativada
         * Adicionado: Suporte para o adaptador de controle de GameCube MyFlash [Sérgio de Carvalho Júnior]
         * Adicionado: Pasta de programas úteis para o Windows (/boot/tools) [Sérgio de Carvalho Júnior, Cleber Batista]
@@ -106,6 +105,7 @@ BATOCERA.PLUS PRINCIPAIS MUDANÇAS
             * bsnes_hd             Super Nintendo, Super Nintendo Classic Mini, Super Nintendo CD (MSU-1), Satellaview
             * catsfc               Super Nintendo, Super Nintendo Classic Mini, Satellaview
             * dolphin              Nintendo GameCube, Nintendo Wii
+            * duckstation          Sony Playstation, Sony Playstation Classic Mini
             * fbalpha2012          Final Burn Alpha, FBA LIBRETRO, Neo-Geo, Neo-Geo Mini, Neo-Geo X, Arcade
             * flycast2019          Sega Naomi, Sega Dreamcast, Atomiswave, Arcade
             * freechaf             Fairchild Channel F

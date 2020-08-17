@@ -1,9 +1,10 @@
-Art-Book     https://github.com/BatoceraPLUS/Theme-Art-Book
-Alekfull     https://github.com/BatoceraPLUS/Theme-Alekfull
-Bluray       https://github.com/BatoceraPLUS/Theme-Bluray
-Cosmic-Rise  https://github.com/BatoceraPLUS/Theme-Cosmic-Rise
-Fundamental  https://github.com/BatoceraPLUS/Theme-Fundamental
-Neon-Magenta https://github.com/BatoceraPLUS/Theme-Neon-Magenta
-UniFlyered   https://github.com/BatoceraPLUS/Theme-UniFlyered-PLUS
-Zoid         https://github.com/BatoceraPLUS/Theme-Zoid
-
+ARTFLIXforPLUS   https://github.com/fagnerpc/Alekfull-ARTFLIXforPLUS
+Alekfull-SOLO    https://github.com/fagnerpc/Alekfull-SOLO
+Alekfull-NX-PLUS https://github.com/BatoceraPLUS/Theme-Alekfull-NX-PLUS.git
+Art-Book         https://github.com/BatoceraPLUS/Theme-Art-Book
+Bluray           https://github.com/BatoceraPLUS/Theme-Bluray
+Cosmic-Rise      https://github.com/BatoceraPLUS/Theme-Cosmic-Rise
+Fundamental      https://github.com/BatoceraPLUS/Theme-Fundamental
+Neon-Magenta     https://github.com/BatoceraPLUS/Theme-Neon-Magenta
+UniFlyered       https://github.com/BatoceraPLUS/Theme-UniFlyered-PLUS
+Zoid             https://github.com/BatoceraPLUS/Theme-Zoid

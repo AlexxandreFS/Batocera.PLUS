@@ -3,9 +3,9 @@
 # REDREAM
 #
 ################################################################################
-# Version.: Commits on Apr 18, 2018
-LIBRETRO_REDREAM_VERSION = ffb7302245ff40515cb9f0f0b0e233a4b39342d3
-LIBRETRO_REDREAM_SITE = $(call github,inolen,redream,$(LIBRETRO_REDREAM_VERSION))
+# Version.: Commits on Jun 7, 2020
+LIBRETRO_REDREAM_VERSION = bf4d812daf326c56e99208a4c30acae1475fd701
+LIBRETRO_REDREAM_SITE = $(call github,libretro,retrodream,$(LIBRETRO_REDREAM_VERSION))
 LIBRETRO_REDREAM_LICENSE="GPLv3"
 
 define LIBRETRO_REDREAM_BUILD_CMDS
@@ -14,7 +14,7 @@ define LIBRETRO_REDREAM_BUILD_CMDS
 endef
 
 define LIBRETRO_REDREAM_INSTALL_TARGET_CMDS
-	$(INSTALL) -D $(@D)/deps/libretro/redream_libretro.so \
+	$(INSTALL) -D $(@D)/deps/libretro/retrodream_libretro.so \
 		$(TARGET_DIR)/usr/lib/libretro/redream_libretro.so
 endef
 

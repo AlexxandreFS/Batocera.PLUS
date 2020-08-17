@@ -3,7 +3,7 @@
 
 # Versão do Batocera.PLUS
 VERSION='2.00'
-RELEASE='RC8'
+RELEASE='stable'
 NVIDIA_LEGACY='0'
 
 # Pasta temporária em uma partição Linux
@@ -42,9 +42,9 @@ URL_THEME_A="https://github.com/BatoceraPLUS/Theme-batocera-plus/archive/master.
 URL_DIRECTX='https://github.com/BatoceraPLUS/Wine/releases/download/DX9Jun2010/DX9Jun2010.7z'
 URL_FIREFOX="https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US#/firefox-esr-${VERSION}${RELEASE}.tar.bz2"
 
-URL_FLASH="$(curl -s https://get.adobe.com/en/flashplayer/about/ | grep '<td>32.0.' | tail -n 1 | cut -d '>' -f 2 | cut -d '<' -f 1)"
+URL_FLASH="$(curl -s 'https://fpdownload.macromedia.com/pub/flashplayer/masterversion/masterversion.xml' | grep 'NPAPI_linux version' | head -n 1 | cut -d '"' -f 2 | sed 's/,/./g')"
 if ! [ "${URL_FLASH}" ]; then
-    URL_FLASH=32.0.0.387
+    URL_FLASH='32.0.0.414'
 fi
 URL_FLASH="https://fpdownload.adobe.com/get/flashplayer/pdc/${URL_FLASH}/flash_player_npapi_linux.x86_64.tar.gz#/flash_player_npapi_linux.x86_64_${URL_FLASH}.tar.gz"
 

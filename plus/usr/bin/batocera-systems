@@ -234,7 +234,8 @@ BIOS[megadrive]="megadrive,           Sega Megadrive
     4ea493ea4e9f6c9ebfccbdb15110367e, bios/sk.bin
     b4e76e416b887f4e7413ba76fa735f16, bios/sk2chip.bin
     a0028b3043f9d59ceeb03da5b073b30d, bios/areplay.bin
-    e8af7fe115a75c849f6aab3701e7799b, bios/ggenie.bin"
+    e8af7fe115a75c849f6aab3701e7799b, bios/ggenie.bin
+    ff4a3572475236e859e3e9ac5c87d1f1, bios/rom.db"
 
 BIOS[sega32x]="sega32x,               Sega 32x
     e66fa1dc5820d254611fdcdba0662372, bios/bios_CD_E.bin
