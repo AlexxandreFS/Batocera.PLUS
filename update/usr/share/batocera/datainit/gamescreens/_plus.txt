@@ -1,0 +1,16 @@
+Put a .png or .jpg images here so the loadingscreen will be changed by this images
+
+FILE STRUCTURE
+
+/gamescreens
+     |
+     |-----> /system_1 --> gamename.png or gamename.jpg
+     |
+     |-----> /system_2 --> gamename.png or gamename.jpg
+
+
+/gamescreens
+     |
+     |-----> /megadrive --> comix_zone.png or comix_zone.jpg
+     |
+     |-----> /snes --> super_metroid.png or super_metroid.jpg
