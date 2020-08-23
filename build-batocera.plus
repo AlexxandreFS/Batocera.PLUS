@@ -214,23 +214,23 @@ mv "${TEMP_DIR}/squashfs-root/opt/jre"*  "${TEMP_DIR}/squashfs-root/opt/Java"
 echo 'Descompactando Cemu...'
 PKG_NAME="$(basename "${URL_CEMU%.*}")"
 unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}"
-mv    "${TEMP_DIR}/${PKG_NAME}/"* "./opt/Cemu/emulator"
+mv    "${TEMP_DIR}/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/emulator"
 
 echo 'Descompactando Cemu Extras...'
 PKG_NAME="$(basename "${URL_EXTRAFILES%.*}")"
 unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}"
-mv    "${TEMP_DIR}/${PKG_NAME}/"* "./opt/Cemu/cemuextras"
+mv    "${TEMP_DIR}/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/cemuextras"
 
 echo 'Descompactando CemuHook...'
 PKG_NAME="$(basename "${URL_CEMUHOOK%.*}")"
 unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/${PKG_NAME}"
-mv    "${TEMP_DIR}/${PKG_NAME}/"* "./opt/Cemu/cemuhook"
+mv    "${TEMP_DIR}/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/cemuhook"
 rm "./opt/Cemu/cemuhook/Go to project website for updates.url"
 
 echo 'Descompactando Cemu Fakefiles...'
 PKG_NAME="$(basename "${URL_CEMUFAKEFILES}")"
 7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}" -y
-mv    "${TEMP_DIR}/${PKG_NAME%.*}/"* "./opt/Cemu/fakefiles"
+mv    "${TEMP_DIR}/${PKG_NAME%.*}/"* "${TEMP_DIR}/squashfs-root/opt/fakefiles"
 rm "./opt/Cemu/fakefiles/README.md"
 
 ################################################################################
