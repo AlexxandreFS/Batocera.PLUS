@@ -1,0 +1,47 @@
+## SYSTEM WiiU EXPERIMENTAL ##
+-----------------------------------------------------------------------------------------------------
+ROM files extensions accepted (Batocera.PLUS): ".wud .wux .iso .wad .rpx .elf"
+-----------------------------------------------------------------------------------------------------
+  O sistema WiiU precisa de alguns pré-requisitos, dentre eles uma boa placa de
+vídeo NVÍDIA (Preferencial) com OpenGL 4.5 ou superior, 8GB de memória ram, e
+um processador de no mínimo 4 cores e acima de 3GHz por núcleo.
+
+  É necessário configurar seu controle no emulador antes de poder jogar ele
+atravéz no menu do batocera.PLUS.
+
+  As teclas "Hotkey + botão de sair" precisam ser configurados manualmente também
+através do JoyToKey no menu F1, o CEMU (emulador de nintendo WiiU) utiliza a
+combinação de teclas ALT+F4 para sair do jogo e o JoyToKey vai pré configurado
+pra sair do jogo usando o Botão GUIDE + Start no controle de Xbox 360.
+
+  Os ShaderCache são excenciais para que o jogo funcione sem travamentos, eu
+deixei alguns já inclusos no Batocera.PLUS com os principais jogos que eu testei.
+
+  OBS: Os shadercache são intercambiáveis entre as regiões do jogo, ou seja,
+o shadercache da versão USA funciona na versão EUR. É necessário identificar o
+nome do shadercache atravéz do caminho "system/configs/cemu/logs.txt", abra o
+arquivo e procure pela linha "Shader cache file: shaderCache\transferable\número_do_chader.bin"
+dentro do arquivo de log.
+  
+  ShaderCache podem ser encontrados no site abaixo:
+https://www.reddit.com/r/CEMUcaches/comments/8pocf4/complete_shader_cache_collection/
+
+  Os shadercahe ficam na pasta "saves/wiiu/shaderCache/transferable"
+  TODOS os ShaderCaches DEMORAM MUITO a carregar na primeira vez que o jogo é iniciado
+
+Todos os jogos foram testados usando um PC com as seguintes configurações:
+  Intel Xeon E3-1220 v3 3.10GHz
+  Geforce GT 1030 de 2GB ddr5
+  8GB de memória ram
+  HD 3TB Sata 3 de 5200 RPM
+
+  O Batocera.PLUS reconhece roms desencriptadas igual como funciona no emulador do nintendo 3ds,
+essas roms podem ser encontradas na internet com relativa facilidade. Não é necessário
+renomear pastas, basta apenas colocar os jogos DESCOMPACTADOS dentro da pasta "roms/wiiu"
+
+  Devido a ser um sistema novo sem nenhum tipo de scraper você terá de fazê-lo manualmente
+editando o arquivo gamelist.xml encontrado dentro da pasta roms/wiiu.
+
+  O Cemu pode ser atualizado por você quando houver uma versão nova do mesmo na internet,
+basta marcar a opção em opções>configurações gerais>Verificar autom. por atualizações.
+-----------------------------------------------------------------------------------------------------

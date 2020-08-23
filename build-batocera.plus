@@ -41,6 +41,10 @@ URL_JAVA="https://javadl.oracle.com/webapps/download/AutoDL?BundleId=242050_3d5a
 URL_THEME_A="https://github.com/BatoceraPLUS/Theme-batocera-plus/archive/master.zip#/Theme-batocera-plus-${VERSION}${RELEASE}.zip"
 URL_DIRECTX='https://github.com/BatoceraPLUS/Wine/releases/download/DX9Jun2010/DX9Jun2010.7z'
 URL_FIREFOX="https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US#/firefox-esr-${VERSION}${RELEASE}.tar.bz2"
+URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
+URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
+URL_CEMUFAKEFILES='https://github.com/BatoceraPLUS/FakeOnlineFiles/releases/download/FakeOnlineFiles/FakeOnlineFiles-28-Oct-2019.7z'
+URL_EXTRAFILES='https://github.com/sabotendarsama/cemuextras/releases/download/v1.0/cemuextras.zip'
 
 URL_FLASH="$(curl -s 'https://fpdownload.macromedia.com/pub/flashplayer/masterversion/masterversion.xml' | grep 'NPAPI_linux version' | head -n 1 | cut -d '"' -f 2 | sed 's/,/./g')"
 if ! [ "${URL_FLASH}" ]; then
@@ -52,7 +56,7 @@ URL_FLASH="https://fpdownload.adobe.com/get/flashplayer/pdc/${URL_FLASH}/flash_p
 
 mkdir -p "${DOWNLOAD_DIR}"
 
-for URL in "${URL_WINE}" "${URL_DIRECTX}" "${URL_MONO}" "${URL_FIREFOX}" "${URL_MAME}" "${URL_JAVA}" "${URL_FLASH}" "${URL_THEME_A}"; do
+for URL in "${URL_WINE}" "${URL_DIRECTX}" "${URL_MONO}" "${URL_FIREFOX}" "${URL_MAME}" "${URL_JAVA}" "${URL_FLASH}" "${URL_THEME_A}" "${URL_CEMU}" "${URL_CEMUHOOK}" "${URL_CEMUFAKEFILES}" "${URL_EXTRAFILES}"; do
     PKG_NAME="$(basename "${URL}")"
     echo "Baixando ${PKG_NAME}..."
     if ! [ -f "${DOWNLOAD_DIR}/${PKG_NAME}" ]; then
@@ -206,6 +210,28 @@ echo 'Descompactando Java...'
 PKG_NAME="$(basename "${URL_JAVA}")"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/opt" || exit $?
 mv "${TEMP_DIR}/squashfs-root/opt/jre"*  "${TEMP_DIR}/squashfs-root/opt/Java"
+
+echo 'Descompactando Cemu...'
+PKG_NAME="$(basename "${URL_CEMU%.*}")"
+unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}"
+mv    "${TEMP_DIR}/${PKG_NAME}/"* "./opt/Cemu/emulator"
+
+echo 'Descompactando Cemu Extras...'
+PKG_NAME="$(basename "${URL_EXTRAFILES%.*}")"
+unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}"
+mv    "${TEMP_DIR}/${PKG_NAME}/"* "./opt/Cemu/cemuextras"
+
+echo 'Descompactando CemuHook...'
+PKG_NAME="$(basename "${URL_CEMUHOOK%.*}")"
+unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/${PKG_NAME}"
+mv    "${TEMP_DIR}/${PKG_NAME}/"* "./opt/Cemu/cemuhook"
+rm "./opt/Cemu/cemuhook/Go to project website for updates.url"
+
+echo 'Descompactando Cemu Fakefiles...'
+PKG_NAME="$(basename "${URL_CEMUFAKEFILES}")"
+7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}" -y
+mv    "${TEMP_DIR}/${PKG_NAME%.*}/"* "./opt/Cemu/fakefiles"
+rm "./opt/Cemu/fakefiles/README.md"
 
 ################################################################################
 
