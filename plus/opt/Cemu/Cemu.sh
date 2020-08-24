@@ -58,11 +58,11 @@ fi
 export WINEDLLOVERRIDES="keystone.dll=n,b;dbghelp.dll=n,b"
 
 # Checa se as otimizações foram ativadas no emulationstation ALTAMENTE EXPERIMENTAL!
-if [ "${CORE}" == 'Cemu NVIDIA' ] ; then
+if [ "${CORE}" == 'cemu-nvidia' ] ; then
 	export mesa_glthread=true
     export vblank_mode=0
     export WINEESYNC=1
-elif [ "${CORE}" == 'Cemu AMD' ] ; then
+elif [ "${CORE}" == 'cemu-amd' ] ; then
     export R600_DEBUG=nohyperz
     export mesa_glthread=true
     export vblank_mode=0
