@@ -18,7 +18,7 @@ if [ ! -d "$CEMU" ] || [ -z "$(ls -A "$CEMU")" ] || [ ! -d "$SAVE" ] || [ -z "$(
 	# Montando o cemu em "system/configs/cemu"
 	    mkdir -p "$(dirname "$RUN")" "$(dirname "$CEMU/log.txt")" "$(dirname "$HOME/logs/cemu.txt")"
 		echo 'run=1' > "$RUN"
-		ln -s "$CEMU/log.txt" "$HOME/logs/cemu.txt"
+		ln -s "$CEMU/log.txt" "$HOME/logs/cemu.log"
 	    cp -r "$CEMU_DIR/emulator/resources" "$CEMU" || exit $?
         cp -r "$CEMU_DIR/cemuextras/sharedFonts" "$CEMU" || exit $?	    
 	    cp -r "$CEMU_DIR/cemuhook/keystone.dll" "$CEMU" || exit $?
