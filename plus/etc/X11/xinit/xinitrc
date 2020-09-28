@@ -3,7 +3,7 @@
 # hide mouse cursor
 unclutter --noevents -b
 
-systemsetting="python /usr/lib/python2.7/site-packages/configgen/settings/batoceraSettings.py"
+systemsetting="batocera-settings"
 
 # set the keyboard
 settings_lang="$(${systemsetting} -command load -key system.language)"
@@ -95,7 +95,7 @@ xset s off
 ### Resolve o bug, de não carregar os arquivos de configuração da pasta
 ### /etc/triggerhappy/triggers.d para ativar os atalhos de teclado.
 
-/etc/init.d/K10triggerhappy start &
+/etc/init.d/K50triggerhappy start &
 
 ################################################################################
 

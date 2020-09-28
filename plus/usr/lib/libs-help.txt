@@ -1,10 +1,2 @@
 Usada pelo Java
 libXtst.so.6
-
-Usados pelo lspci
-bin/lspci
-bin/setpci
-bin/update-pciids
-lib/libpci.so.3
-share/hwdata/pci.ids
-share/pci.ids

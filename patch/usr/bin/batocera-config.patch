@@ -7,7 +7,7 @@
  extra4="$6"
  arch=`cat /usr/share/batocera/batocera.arch`
  
--updateurl="https://batocera.org/upgrades"
+-updateurl="https://updates.batocera.org"
 +updateurl=""
  
  preBootConfig() {

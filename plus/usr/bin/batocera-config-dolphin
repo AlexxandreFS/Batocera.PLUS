@@ -10,6 +10,7 @@ if test -z "${DISPLAY}"; then
 fi
 
 export XDG_DATA_HOME='/userdata/saves'
+export QT_QPA_PLATFORM=xcb
 
 ################################################################################
 

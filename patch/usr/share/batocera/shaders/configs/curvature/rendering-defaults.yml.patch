@@ -1,39 +1,38 @@
 #
 # Adiciona alguns filtros de imagem personalizados.
 #
---- rendering-defaults.yml
-+++ rendering-defaults.yml
-@@ -106,3 +106,33 @@
-   shader: crt/crt-pi-curvature
+--- rendering-defaults.yml.original
++++ rendering-defaults.yml.modificado
+@@ -106,3 +106,32 @@
+   shader: crt/fakelottes
  x68000:
-   shader: crt/crt-pi-curvature
+   shader: crt/fakelottes
 +# Batocera.PLUS
-+n64dd:
-+  shader: crt/crt-pi-curvature
-+fba_libretro:
-+  shader: crt/crt-pi-curvature
-+neogeomini:
-+  shader: crt/crt-pi-curvature
-+neogeox:
-+  shader: crt/crt-pi-curvature
-+msx2:
-+  shader: crt/crt-pi-curvature
 +arcade:
-+  shader: crt/crt-pi-curvature
-+nesmini:
-+  shader: crt/crt-pi-curvature
-+snesmini:
-+  shader: crt/crt-pi-curvature
-+snescd:
-+  shader: crt/crt-pi-curvature
-+pspminis:
-+  shader: crt/crt-pi-curvature
-+psxmini:
-+  shader: crt/crt-pi-curvature
-+pc98:
-+  shader: crt/crt-pi-curvature
++  shader: crt/fakelottes
 +channelf:
-+  shader: crt/crt-pi-curvature
++  shader: crt/fakelottes
++fba_libretro:
++  shader: crt/fakelottes
++hbmame:
++  shader: crt/fakelottes
++n64dd:
++  shader: crt/fakelottes
++neogeomini:
++  shader: crt/fakelottes
++neogeox:
++  shader: crt/fakelottes
++nesmini:
++  shader: crt/fakelottes
++pspminis:
++  shader: crt/fakelottes
++psxmini:
++  shader: crt/fakelottes
++pc98:
++  shader: crt/fakelottes
++snesmini:
++  shader: crt/fakelottes
++snescd:
++  shader: crt/fakelottes
 +thomson:
-+  shader: crt/crt-pi-curvature
-+
++  shader: crt/fakelottes

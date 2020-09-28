@@ -11,15 +11,6 @@ pela internet.
 Basicamente com ele você vai poder executar jogos que utilizam esta engine no
 Batocera.PLUS para rodar jogos 2D no estilo “Tretinha”.
 -------------------------------------------------------------------------------
-ROMS, SAVES, SCREENSHOTS E LOGS
-
-Local dos arquivos usados pelo OpemBOR
-
-ROMS:        share/roms/openbor
-SAVES:       share/saves/pc/openbor.
-SCREENSHOTS: share/screenshots
-LOGS:        system/logs
--------------------------------------------------------------------------------
 JOGOS (ROMS)
 
 São aceitos jogos com extensão .pak

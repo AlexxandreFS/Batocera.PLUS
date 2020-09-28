@@ -1,0 +1,13 @@
+diff --git a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
+index fd14f6c..82ba062 100644
+--- a/es-app/src/guis/GuiMenu.cpp
++++ b/es-app/src/guis/GuiMenu.cpp
+@@ -391,7 +391,7 @@ void GuiMenu::addVersionInfo()
+ 			mVersion.setText(aboutInfo + buildDate);
+ 		else
+ #endif
+-		mVersion.setText("BATOCERA.LINUX ES V" + ApiSystem::getInstance()->getVersion() + buildDate);
++		mVersion.setText("BATOCERA.PLUS ES V" + ApiSystem::getInstance()->getVersion() + buildDate);
+ 	}
+ 
+ 	mVersion.setHorizontalAlignment(ALIGN_CENTER);

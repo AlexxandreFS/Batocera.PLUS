@@ -1,0 +1,16 @@
+diff --git a/dlls/kernel32/process.c b/dlls/kernel32/process.c
+index 01178c5..edcdc4e 100644
+--- a/dlls/kernel32/process.c
++++ b/dlls/kernel32/process.c
+@@ -159,8 +159,9 @@ void CDECL __wine_start_process( LPTHREAD_START_ROUTINE entry, PEB *peb )
+     {
+         if (CreateEventA(0, 0, 0, "__winestaging_warn_event") && GetLastError() != ERROR_ALREADY_EXISTS)
+         {
+-            FIXME_(winediag)("Wine Staging %s is a testing version containing experimental patches.\n", wine_get_version());
+-            FIXME_(winediag)("Please mention your exact version when filing bug reports on winehq.org.\n");
++            /* FIXME_(winediag)("Wine Staging %s is a testing version containing experimental patches.\n", wine_get_version()); */
++            /* FIXME_(winediag)("Please mention your exact version when filing bug reports on winehq.org.\n"); */
++            FIXME_(winediag)("Wine Staging %s compiled for Batocera.PLUS\n", wine_get_version());
+         }
+         else
+             WARN_(winediag)("Wine Staging %s is a testing version containing experimental patches.\n", wine_get_version());

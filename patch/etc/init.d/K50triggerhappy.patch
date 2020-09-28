@@ -1,0 +1,13 @@
+##
+## Resolve o bug do script não carregar todos os arquivos de configuração da pasta.
+##
+--- K50triggerhappy.original
++++ K50triggerhappy.modificado
+@@ -1,6 +1,6 @@
+ #!/bin/sh
+ 
+-CONFFILE=multimedia_keys.conf
++#CONFFILE=multimedia_keys.conf
+ 
+ enabled="`batocera-settings -command load -key system.multimediakeys.enabled`"
+ if [ "$enabled" = "0" ];then

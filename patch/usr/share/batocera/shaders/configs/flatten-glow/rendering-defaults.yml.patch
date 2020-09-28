@@ -1,0 +1,38 @@
+#
+# Adiciona alguns filtros de imagem personalizados.
+#
+--- rendering-defaults.yml.original
++++ rendering-defaults.yml.modificado
+@@ -106,3 +106,32 @@
+   shader: blurs/kawase_glow
+ x68000:
+   shader: blurs/kawase_glow
++# Batocera.PLUS
++arcade:
++  shader: blurs/kawase_glow
++channelf:
++  shader: blurs/kawase_glow
++fba_libretro:
++  shader: blurs/kawase_glow
++hbmame:
++  shader: blurs/kawase_glow
++n64dd:
++  shader: blurs/kawase_glow
++neogeomini:
++  shader: blurs/kawase_glow
++neogeox:
++  shader: blurs/kawase_glow
++nesmini:
++  shader: blurs/kawase_glow
++pspminis:
++  shader: blurs/kawase_glow
++psxmini:
++  shader: blurs/kawase_glow
++pc98:
++  shader: blurs/kawase_glow
++snesmini:
++  shader: blurs/kawase_glow
++snescd:
++  shader: blurs/kawase_glow
++thomson:
++  shader: blurs/kawase_glow

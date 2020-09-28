@@ -1,5 +1,0 @@
-#!/bin/bash
-
-killall xow
-#nohup /usr/bin/xow &
-/usr/bin/xow 2> /dev/null &

@@ -1,8 +1,8 @@
 #
 # Adiciona alguns filtros de imagem personalizados.
 #
---- rendering-defaults.yml
-+++ rendering-defaults.yml
+--- rendering-defaults.yml.original
++++ rendering-defaults.yml.modificado
 @@ -13,7 +13,11 @@
  gba:
    shader: handheld/lcd-grid-v2
@@ -21,23 +21,21 @@
  x68000:
    shader: interpolation/sharp-bilinear-scanlines
 +# Batocera.PLUS
-+n64dd:
++arcade:
 +  shader: interpolation/sharp-bilinear-scanlines
++channelf:
++  shader: crt/crt-pi
 +fba_libretro:
++  shader: interpolation/sharp-bilinear-scanlines
++hbmame:
++  shader: interpolation/sharp-bilinear-scanlines
++n64dd:
 +  shader: interpolation/sharp-bilinear-scanlines
 +neogeomini:
 +  shader: interpolation/sharp-bilinear-scanlines
 +neogeox:
 +  shader: interpolation/sharp-bilinear-scanlines
-+msx2:
-+  shader: interpolation/sharp-bilinear-scanlines
-+arcade:
-+  shader: interpolation/sharp-bilinear-scanlines
 +nesmini:
-+  shader: crt/crt-pi
-+snesmini:
-+  shader: crt/crt-pi
-+snescd:
 +  shader: crt/crt-pi
 +pspminis:
 +  shader: crt/crt-pi
@@ -45,7 +43,9 @@
 +  shader: crt/crt-pi
 +pc98:
 +  shader: crt/crt-pi
-+channelf:
++snesmini:
++  shader: crt/crt-pi
++snescd:
 +  shader: crt/crt-pi
 +thomson:
 +  shader: crt/crt-pi

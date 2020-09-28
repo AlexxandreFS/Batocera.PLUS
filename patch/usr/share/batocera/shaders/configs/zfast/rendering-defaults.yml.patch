@@ -1,0 +1,38 @@
+#
+# Adiciona alguns filtros de imagem personalizados.
+#
+--- rendering-defaults.yml.original
++++ rendering-defaults.yml.modificado
+@@ -106,3 +106,32 @@
+   shader: crt/zfast-crt
+ x68000:
+   shader: crt/zfast-crt
++# Batocera.PLUS
++arcade:
++  shader: crt/zfast-crt
++channelf:
++  shader: crt/zfast-crt
++fba_libretro:
++  shader: crt/zfast-crt
++hbmame:
++  shader: crt/zfast-crt
++n64dd:
++  shader: crt/zfast-crt
++neogeomini:
++  shader: crt/zfast-crt
++neogeox:
++  shader: crt/zfast-crt
++nesmini:
++  shader: crt/zfast-crt
++pspminis:
++  shader: crt/zfast-crt
++psxmini:
++  shader: crt/zfast-crt
++pc98:
++  shader: crt/zfast-crt
++snesmini:
++  shader: crt/zfast-crt
++snescd:
++  shader: crt/zfast-crt
++thomson:
++  shader: crt/zfast-crt

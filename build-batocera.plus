@@ -2,23 +2,23 @@
 ################################################################################
 
 # Versão do Batocera.PLUS
-VERSION='2.00'
-RELEASE='stable'
+VERSION='2.05'
+RELEASE='alpha'
 NVIDIA_LEGACY='0'
 
 # Pasta temporária em uma partição Linux
-#TEMP_DIR='./tmp'
+TEMP_DIR='./tmp'
 #TEMP_DIR='/media/NO_LABEL/tmp'
 #TEMP_DIR='/media/NO_LABEL_1/tmp'
 #TEMP_DIR='/media/NO_LABEL_2/tmp'
-TEMP_DIR='/mnt/tmp'
+#TEMP_DIR='/mnt/tmp'
 
 # Imagem oficial do batocera.linux.
-IMG_OFICIAL_NORMAL='img/batocera-5.24-x86_64-20191105.img.gz'
-IMG_OFICIAL_NVIDIA='img/batocera-5.24-x86_64-20191109.img.gz'
+IMG_OFICIAL_NORMAL='img/batocera-5.27-x86_64-20200912.img.gz'
+IMG_OFICIAL_NVIDIA='img/batocera-5.27-x86_64-20200919.img.gz'
 
 # BatoceraZero.
-IMG_ZERO='img/BatoceraZero2.5GB.7z'
+IMG_ZERO='img/BatoceraZero2.8GB.7z'
 
 # Arquivos extras do Batocera.PLUS
 PLUS_DIR='plus'
@@ -98,29 +98,23 @@ mount -o rw /dev/loop7 "$TEMP_DIR/BATOCERA" || exit $?
 echo 'Descompactando arquivo squashfs...'
 unsquashfs -d "$TEMP_DIR/squashfs-root" "$TEMP_DIR/BATOCERA/boot/batocera" || exit $?
 
+################################################################################
+
 echo 'Removendo arquivos desnecessários...'
-rm -r "$TEMP_DIR/squashfs-root/usr/bin/assets" || exit $?
 rm -r "$TEMP_DIR/squashfs-root/usr/share/icons/Adwaita" || exit $?
 rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/music" || exit $?
-rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/c64/super_mario_bros_64_-_zeropaige.zip"  || exit $?
-rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/c64/The_Great_Giana_Sisters.d64" || exit $?
-rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/gba/SpaceTwins.gba" || exit $?
-rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/megadrive/Old-Towers.bin" || exit $?
-rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/nes/2048 (tsone).nes" || exit $?
-rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/pcengine/Reflectron (aetherbyte).pce" || exit $?
-rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/pcengine/Reflectron (aetherbyte).readme.txt" || exit $?
-rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/pcengine/Santatlantean (aetherbyte).pce" || exit $?
-rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/pcengine/Santatlantean (aetherbyte).readme.txt" || exit $?
-rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/prboom/game-musics" || exit $?
-rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/prboom/doom1_shareware.wad" || exit $?
-rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/prboom/doom1_shareware_license.txt" || exit $?
-rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/prboom/prboom.wad" || exit $?
-rm    "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/snes/DonkeyKongClassic (Shiru).smc" || exit $?
+
+for x in c64 cannonball gba megadrive mrboom nes pcengine prboom snes; do
+    for y in "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/${x}/"*; do
+        if [ "${y}" != "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/${x}/_info.txt" ]; then
+            rm -r "${y}" || exit $?
+        fi
+    done
+done
 
 echo 'Desativando servicos...'
 mv    "$TEMP_DIR/squashfs-root/etc/init.d/S49ntp"          "$TEMP_DIR/squashfs-root/etc/init.d/K49ntp"          || exit $?
-mv    "$TEMP_DIR/squashfs-root/etc/init.d/S10triggerhappy" "$TEMP_DIR/squashfs-root/etc/init.d/K10triggerhappy" || exit $?
-rm    "$TEMP_DIR/squashfs-root/etc/init.d/S50triggerhappy"                                                      || exit $?
+mv    "$TEMP_DIR/squashfs-root/etc/init.d/S50triggerhappy" "$TEMP_DIR/squashfs-root/etc/init.d/K50triggerhappy" || exit $?
 
 echo 'Criando arquivo de versão...'
 mv   "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" "$TEMP_DIR/squashfs-root/usr/share/batocera/recalbox.version" || exit $?
@@ -145,10 +139,6 @@ rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame0200_libretro.so.7z"
 echo 'Descompactando Libretro hbmame...'
 7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/hbmame_libretro.so.7z" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
 rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/hbmame_libretro.so.7z"
-
-#echo 'Descompactando Libretro mess...'
-#7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mess_libretro.so.7z" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
-#rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mess_libretro.so.7z"
 
 #echo 'Descompactando Libretro mame_mame...'
 #7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame_mame_libretro.so.7z.001" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
@@ -241,17 +231,20 @@ mv "$TEMP_DIR/batocera" "$TEMP_DIR/BatoceraZero/boot/batocera" || exit $?
 echo 'Copiando arquivos extras para o BatoceraZero...'
 cp -r -f "$BOOT_DIR/"* "$TEMP_DIR/BatoceraZero" || exit $?
 
-echo 'Adicionando opção de resolução em batocera-boot.conf'
-echo ''                                                                          >> "$TEMP_DIR/BatoceraZero/batocera-boot.conf" || exit $?
-echo '# open a terminal (Win + F4) type xrandr to see all supported resolutions' >> "$TEMP_DIR/BatoceraZero/batocera-boot.conf" || exit $?
-echo '#global.videomode=1280x720'                                                >> "$TEMP_DIR/BatoceraZero/batocera-boot.conf" || exit $?
-
-echo 'Adicionando opção de vídeo de abertura em batocera-boot.conf'
-echo ''                                                                          >> "$TEMP_DIR/BatoceraZero/batocera-boot.conf" || exit $?
-echo '# enable the splashvideo on startup (remove the # to enable video)'        >> "$TEMP_DIR/BatoceraZero/batocera-boot.conf" || exit $?
-echo '#splashvideo=true'                                                         >> "$TEMP_DIR/BatoceraZero/batocera-boot.conf" || exit $?
-
-#echo 'nvidia-driver=true'                                                        >> "$TEMP_DIR/BatoceraZero/batocera-boot.conf" || exit $?
+echo 'Editando arquivo batocera-boot.conf...'
+echo "$(
+    while read FILE; do
+        echo "${FILE}"
+        if [ "$(echo "${FILE}" | grep 'splashsound=')" ]; then
+            echo
+            echo '# enable the splashvideo on startup (remove the # to enable video)'
+            echo '#splashvideo=true'
+            echo
+            echo '# open a terminal (Win + F4) type xrandr to see all supported resolutions'
+            echo '#global.videomode=1280x720'
+        fi
+    done < "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
+)" > "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 
 echo 'Desmontando imagens...'
 umount /dev/loop7 || exit $?

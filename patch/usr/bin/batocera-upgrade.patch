@@ -3,12 +3,12 @@
 #
 --- batocera-upgrade
 +++ batocera-upgrade
-@@ -28,7 +28,7 @@
+@@ -33,7 +33,7 @@
  
  echo "starting the upgrade..."
  
--updateurl="https://batocera.org/upgrades"
+-updateurl="https://updates.batocera.org"
 +updateurl=""
- systemsetting="python /usr/lib/python2.7/site-packages/configgen/settings/batoceraSettings.py"
+ systemsetting="/usr/bin/batocera-settings"
  
  arch=$(cat /usr/share/batocera/batocera.arch)

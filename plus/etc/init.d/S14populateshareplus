@@ -24,6 +24,11 @@ if ! [ -f "$SHARE/system/custom.sh" ]; then
     cp "$SHARE_INIT/system/custom.sh" "$SHARE/system/custom.sh"
 fi
 
+### Copiar arquivos de configurações específicas para o retroarch.
+if ! [ -d "${SHARE}/system/configs/retroarch" ]; then
+    cp -r "${SHARE_INIT}/system/configs/retroarch" "${SHARE}/system/configs"
+fi
+
 ### Usa Link simbólico para as bios quando a partição share é um disco ram
 if [ "$(df | grep /userdata | grep tmpfs)" ]; then
     rm -r "$SHARE/bios"
@@ -59,6 +64,6 @@ if [ "$(grep system.language=zh_TW ${SHARE}/system/batocera.conf)" ] || [ "$(gre
 fi
 
 # Limpa Arquivos temporários
-rm $SHARE/system/.serverauth.* 2> /dev/null
+# rm $SHARE/system/.serverauth.* 2> /dev/null
 
 exit 0
