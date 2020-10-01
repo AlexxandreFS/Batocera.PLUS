@@ -15,8 +15,8 @@
  neogeocd:
 -  emulator: libretro
 -  core:     neocd
-+  emulator: raine2020
-+  core:     cdz
++  emulator: raine
++  core:     raine2020
  mame:
    emulator: libretro
 -  core:     mame078plus

@@ -18,12 +18,11 @@ else
     ES_INPUT="/usr/share/batocera/datainit/system/configs/emulationstation/es_input.cfg"
 fi
 ROM="$1"
-EMULADOR="$2"
-CORE="$3"
-CONTROLE_NUM1="$4"
-CONTROLE_ID1="$5"
-CONTROLE_NUM2="$6"
-CONTROLE_ID2="$7"
+CORE="$2"
+CONTROLE_NUM1="$3"
+CONTROLE_ID1="$4"
+CONTROLE_NUM2="$5"
+CONTROLE_ID2="$6"
 
 ################################################################################
 
@@ -200,35 +199,20 @@ sed -i "s#^neocd_dir = .*#neocd_dir = $SHARE/roms/neogeocd/#"   "$HOME/configs/r
 
 ################################################################################
 
-### EMULATOR
-
-EMULATOR_GAME="$(grep -F "neogeocd[\"$(basename "${ROM}")\"].emulator=" "$HOME/batocera.conf" | cut -d '=' -f 2)"
-EMULATOR_NEOCD="$(grep '^neogeocd.emulator=' "$HOME/batocera.conf" | cut -d '=' -f 2)"
-
-if [ "$EMULATOR_GAME" ] && [ ! "$EMULATOR_GAME" == 'auto' ]; then
-    EMULATOR="$EMULATOR_GAME"
-elif [ "$EMULATOR_NEOCD" ] && [ ! "$EMULATOR_NEOCD" == 'auto' ]; then
-    EMULATOR="$EMULATOR_NEOCD"
-else
-    EMULATOR='auto'
-fi
-
-################################################################################
-
 ### CORE (BIOS).
 
-CORE_GAME="$(grep -F "neogeocd[\"$(basename "${ROM}")\"].core=" "$HOME/batocera.conf" | cut -d '=' -f 2)"
-CORE_NEOCD="$(grep '^neogeocd.core=' "$HOME/batocera.conf" | cut -d '=' -f 2)"
+BIOS_GAME="$(grep -F "neogeocd[\"$(basename "${ROM}")\"].bios=" "${HOME}/batocera.conf" | cut -d '=' -f 2)"
+BIOS_NEOCD="$(grep '^neogeocd.bios='                            "${HOME}/batocera.conf" | cut -d '=' -f 2)"
 
-if [ "$CORE_GAME" ] && [ ! "$CORE_GAME" == 'auto' ]; then
-    CORE="$CORE_GAME"
-elif [ "$CORE_NEOCD" ] && [ ! "$CORE_NEOCD" == 'auto' ]; then
-    CORE="$CORE_NEOCD"
+if [ "${BIOS_GAME}" ] && [ ! "${BIOS_GAME}" == 'auto' ]; then
+    BIOS="${BIOS_GAME}"
+elif [ "${BIOS_NEOCD}" ] && [ ! "${BIOS_NEOCD}" == 'auto' ]; then
+    BIOS="${BIOS_NEOCD}"
 else
-    CORE='auto'
+    BIOS='auto'
 fi
 
-case "$CORE" in
+case ${BIOS} in
     cdz|auto)   NEOCD_BIOS='neocd-cdz.bin'        ;;
     front-load) NEOCD_BIOS='neocd-front-load.bin' ;;
     top-load)   NEOCD_BIOS='neocd-top-load.bin'   ;;
@@ -236,11 +220,12 @@ case "$CORE" in
     *)          exit 1                            ;;
 esac
 
-if [ -f "$SHARE/bios/$NEOCD_BIOS" ]; then
-    sed -i "s#^neocd_bios = .*#neocd_bios = $SHARE/bios/$NEOCD_BIOS#" "$HOME/configs/raine/rainex_sdl.cfg"
-else
+# Verifica se a bios existe na pasta de bios, o raine não funciona sem bios.
+if ! [ -f "${SHARE}/bios/${NEOCD_BIOS}" ]; then
     exit 1
 fi
+
+sed -i "s#^neocd_bios = .*#neocd_bios = ${SHARE}/bios/${NEOCD_BIOS}#" "${HOME}/configs/raine/rainex_sdl.cfg"
 
 ################################################################################
 
@@ -362,12 +347,12 @@ export HOME='/tmp/raine'
 
 #### EXECUTA O RAINE (FINALMENTE)
 
-cd "$RAINE_DIR/RaineEmu"
+cd "${RAINE_DIR}/RaineEmu"
 
-case  $EMULATOR in
-    raine2020|auto) ./raine2020 -video 0 -dbuf 1 -fullscreen 1 -nogui "$ROM"
+case ${CORE} in
+    raine2020|auto) ./raine2020 -video 0 -dbuf 1 -fullscreen 1 -nogui "${ROM}"
     ;;
-    raine2015)      ./raine2015 -video 0 -dbuf 1 -fullscreen 1 -nogui "$ROM"
+    raine2015)      ./raine2015 -video 0 -dbuf 1 -fullscreen 1 -nogui "${ROM}"
     ;;
     *)              exit 1
 esac

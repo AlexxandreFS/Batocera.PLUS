@@ -189,22 +189,27 @@ fi
 while [ true ]; do
     # Aguarda o emulationstation entrar em execução para exibir a tela de carregamento.
     if [ "$(pidof emulationstation)" ]; then
-        cp '/usr/share/batocera/datainit/system/configs/retroarch/retroarchcustom.cfg' '/tmp/retroarchcustom.cfg'
+
+        # Desativa o som para o retroarch para evita conflito com o ES.
+        cp -f   '/usr/share/batocera/datainit/system/configs/retroarch/retroarchcustom.cfg' '/tmp/retroarchcustom.cfg'
         echo -e '\naudio_enable = "false"' >> '/tmp/retroarchcustom.cfg'
         echo    'audio_driver = "null"'    >> '/tmp/retroarchcustom.cfg'
-        sleep 0.5
-        nice -n +19 retroarch -L '/usr/lib/libretro/imageviewer_libretro.so' \
-                    --config '/tmp/retroarchcustom.cfg' \
-                    "$START_SCREEN" &
-        sleep 3
-        # Interrompe a tela de carregamento quando o emulationstation terminar o loading.
+
+        # Aguarda o ES entrar em execução para executar o retroarch (visializador de imagem) em primeiro plano.
+        sleep 0.2
+
+        # Exibe a tela de carregamento.
+        retroarch -L '/usr/lib/libretro/imageviewer_libretro.so' --config '/tmp/retroarchcustom.cfg' "${START_SCREEN}" &
+        sleep 4
+
+        # Interrompe a tela de carregamento quando o emulationstation terminar o carregamento.
         while [ true ]; do
-            sleep 1
             if [ -f '/tmp/emulationstation.ready' ]; then
-                killall retroarch
-                rm '/tmp/retroarchcustom.cfg'
+                killall -9 retroarch
+                rm -f '/tmp/retroarchcustom.cfg'
                 break
             fi
+            sleep 1
         done
         break
     fi

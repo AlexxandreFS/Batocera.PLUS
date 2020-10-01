@@ -1,0 +1,14 @@
+##
+## Altera o título da tela de redimensionamento da partição no primeiro boot.
+##
+--- S02resize.original
++++ S02resize.modificado
+@@ -17,7 +17,7 @@
+     local percent="$1"
+     local text="Do not switch off your device!"
+ 
+-    dialog --backtitle "batocera.linux" --title " Resizing Partition " \
++    dialog --backtitle "Batocera.PLUS" --title " Resizing Partition " \
+            --mixedgauge "$text" 18 50 "$percent" "${arr[@]}" &>/dev/tty1
+ }
+ 

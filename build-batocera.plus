@@ -222,7 +222,7 @@ mount /dev/loop6 "$TEMP_DIR/BatoceraZero" || exit $?
 
 echo 'Movendo arquivos de boot para o BatoceraZero...'
 rm    "$TEMP_DIR/BATOCERA/boot/batocera"              || exit $?
-rm -r "$TEMP_DIR/BATOCERA/boot/syslinux"              || exit $?
+rm    "$TEMP_DIR/BATOCERA/boot/syslinux/ldlinux.sys"  || exit $?
 cp -r "$TEMP_DIR/BATOCERA/"* "$TEMP_DIR/BatoceraZero" || exit $?
 
 echo 'Movendo arquivo squashfs para o BatoceraZero...'
@@ -235,7 +235,7 @@ echo 'Editando arquivo batocera-boot.conf...'
 echo "$(
     while read FILE; do
         echo "${FILE}"
-        if [ "$(echo "${FILE}" | grep 'splashsound=')" ]; then
+        if [ "$(echo "${FILE}" | grep 'autoresize=')" ]; then
             echo
             echo '# enable the splashvideo on startup (remove the # to enable video)'
             echo '#splashvideo=true'
@@ -245,6 +245,8 @@ echo "$(
         fi
     done < "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 )" > "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
+
+sync
 
 echo 'Desmontando imagens...'
 umount /dev/loop7 || exit $?
@@ -263,10 +265,10 @@ if [ "${RELEASE}" ]; then
     if [ "${NVIDIA_LEGACY}" == '1' ]; then
         RELEASE="${RELEASE}-Nvidia-Legacy"
     fi
-    cp -f  "${BOOT_DIR}/batocera-hd-edition/grub.cfg"               "${TEMP_DIR}"                      || exit $?
-    cp -f  "${BOOT_DIR}/batocera-hd-edition/leia-me.txt"            "${TEMP_DIR}/dualboot-leia-me.txt" || exit $?
-    #cp -f  "whatsnew.txt"                                           "${TEMP_DIR}"                      || exit $?
-    #sed -i "1s/^/#### Batocera.PLUS-${VERSION}-${RELEASE} ####\n\n/" "${TEMP_DIR}/whatsnew.txt"        || exit $?
+    cp -f  "${BOOT_DIR}/batocera-hd-edition/grub.cfg"                "${TEMP_DIR}"                      || exit $?
+    cp -f  "${BOOT_DIR}/batocera-hd-edition/leia-me.txt"             "${TEMP_DIR}/dualboot-leia-me.txt" || exit $?
+    #cp -f  "whatsnew.txt"                                            "${TEMP_DIR}"                      || exit $?
+    #sed -i "1s/^/#### Batocera.PLUS-${VERSION}-${RELEASE} ####\n\n/" "${TEMP_DIR}/whatsnew.txt"         || exit $?
 
     echo 'Compactando imagem final...'
     7zr a "${TEMP_DIR}/Batocera.PLUS-${VERSION}-${RELEASE}.7z" "${TEMP_DIR}/Batocera.PLUS.img" || exit $?
@@ -283,6 +285,8 @@ rm    "$TEMP_DIR/batocera.linux.img"      || exit $?
 if [ "${RELEASE}" ]; then
     rm -r "${TEMP_DIR}/Batocera.PLUS.img" || exit $?
 fi
+
+sync
 
 echo 'IMAGEM CRIADA COM SUCESSO!'
 

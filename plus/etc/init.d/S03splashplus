@@ -24,7 +24,7 @@ function loadAnimationPlus() {
     for i in {1..240}; do
         if [ "${i}" == '1' ]; then
             clear  > /dev/tty1
-            echo -n -e '\n Starting Batocera.PLUS' > /dev/tty1
+            echo -n -e '\n Batocera.PLUS' > /dev/tty1
             sleep 1
             echo -n '+' > /dev/tty1
             sleep 1
@@ -44,7 +44,7 @@ function loadAnimationPlus() {
 
     for i in {1..240}; do
         if [ "$(pidof X)" ] || [ -f /tmp/emulationstation.ready ] || [ "${i}" == '240' ]; then
-            sleep 3
+            sleep 10
             echo -n -e '\n Batocera.PLUS' > /dev/tty1
             break
         fi
