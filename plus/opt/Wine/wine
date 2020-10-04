@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ### WINE - Batocera.PLUS
 ### Alexandre Freire dos Santos
@@ -11,7 +11,7 @@ WINE_VERSION='1580332120'
 
 ################################################################################
 
-### ARQUITETURA DO WINE (x32, x64)
+### WINE ARCHITECTURE (x32, x64)
 
 if ! [ "${WINEARCH}" ]; then
     WINE_ARCH="$(basename "$0")"
@@ -54,7 +54,7 @@ export PERLLIB="/usr/share/perl5/:${PERLLIB:+:$PERLLIB}"
 
 ################################################################################
 
-### CAMINHOS
+### WAYS
 
 if ! [ "${WINEPREFIX}" ]; then
     export WINEPREFIX="${HOME}/configs/wine"
@@ -65,7 +65,7 @@ fi
 
 ################################################################################
 
-### INICIA O WINESERVER
+### START WINESERVER
 
 if [ "${WINE_ARCH}" == 'wineserver' ]; then
     exec "${WINE_DIR}/bin/wineserver" "$@"
@@ -73,7 +73,7 @@ fi
 
 ################################################################################
 
-### INICIA O WINE NORMALMENTE
+### START OR WINE NORMALLY
 
 if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
     WINE_VERSION_NEW="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
@@ -87,7 +87,7 @@ fi
 ################################################################################
 ################################################################################
 
-### TELA DE CARREGAMENTO
+### LOADING SCREEN
 
 retroarch -L '/usr/lib/libretro/imageviewer_libretro.so' \
           --config '/usr/share/batocera/datainit/system/configs/retroarch/retroarchcustom.cfg' \
@@ -95,9 +95,9 @@ retroarch -L '/usr/lib/libretro/imageviewer_libretro.so' \
 
 ################################################################################
 
-### CRIA UM NOVO WINEPREFIX
+### CREATES A NEW WINEPREFIX
 
-rm -r "${WINEPREFIX}/"* 2> /dev/null
+rm -r "${WINEPREFIX:?}/" 2> /dev/null
 
 ################################################################################
 
@@ -139,7 +139,7 @@ wineWait
 
 ################################################################################
 
-### PASTAS DO USUÁRIO
+### USER FOLDERS
 
 
 for i in "${WINEPREFIX}/drive_c/users/root/"* "${WINEPREFIX}/drive_c/users/0/"* ; do
@@ -161,7 +161,7 @@ mkdir -p "${WINEPREFIX}/drive_c/users/0/Desktop"         \
          "${WINEPREFIX}/drive_c/users/root/My Videos"    \
          "${WINEPREFIX}/drive_c/users/root/Personal"
 
-# Configura diretórios padrões para as principais pastas do usuário no registro do windows.
+# Configure default directories for the main user folders in the windows registry.
 sed -i s'/\"Desktop\"=\"C:\\\\users\\\\0\\\\.*/\"Desktop\"=\"C:\\\\users\\\\0\\\\Desktop\"/'                     "${WINEPREFIX}/user.reg"
 sed -i s'/\"Personal\"=\"C:\\\\users\\\\0\\\\.*/\"Personal\"=\"C:\\\\users\\\\0\\\\Personal\"/'                  "${WINEPREFIX}/user.reg"
 sed -i s'/\"My Music\"=\"C:\\\\users\\\\0\\\\.*/\"My Music\"=\"C:\\\\users\\\\0\\\\My Music\"/'                  "${WINEPREFIX}/user.reg"
@@ -182,14 +182,14 @@ ln -s "/userdata/roms/windows" "${WINEPREFIX}/dosdevices/d:"
 
 ################################################################################
 
-### REGISTRA UM USUÁRIO NO WINDOWS.
+### REGISTER A USER WITH WINDOWS.
 
 sed -i s'/"RegisteredOrganization"=""/"RegisteredOrganization"="Batocera.PLUS"/' "${WINEPREFIX}/system.reg"
 sed -i s'/"RegisteredOwner"=""/"RegisteredOwner"="Alexandre Freire dos Santos"/' "${WINEPREFIX}/system.reg"
 
 ################################################################################
 
-### USA O GERENCIADOR DE JANELAS INTERNO DO WINE (O DO SISTEMA DÁ BUG)
+### USE THE WINE INTERNAL WINDOW MANAGER (THE SYSTEM GIVES BUG)
 
 #echo ''                             >> "${WINEPREFIX}/user.reg"
 #echo '[Software\\Wine\\X11 Driver]' >> "${WINEPREFIX}/user.reg"
@@ -197,14 +197,14 @@ sed -i s'/"RegisteredOwner"=""/"RegisteredOwner"="Alexandre Freire dos Santos"/'
 
 ################################################################################
 
-### IMPEDE QUE O WINECFG CRIE ARQUIVOS DESNECESSÁRIOS.
+### PREVENTS WINECFG CREATE UNNECESSARY FILES.
 
 echo '[Software\\Wine\\FileOpenAssociations]' >> "${WINEPREFIX}/user.reg"
 echo '"Enable"="N"'                           >> "${WINEPREFIX}/user.reg"
 
 ################################################################################
 
-### INTERROMPE A TELA DE CARREGAMENTO
+### STOP LOADING SCREEN
 
 while [ "$(pidof retroarch)" ]; do
     killall retroarch
@@ -215,7 +215,7 @@ wait
 
 ################################################################################
 
-### INICIA O WINE PELA PRIMEIRA VEZ
+### LAUNCHES WINE FOR THE FIRST TIME
 
 exec "${0}" "${@}"
 
