@@ -1,6 +1,0 @@
-# Locally calculated after checking pgp signature
-#sha256 2de20053877fbfe8c0b55999a1ed6740f868cc3cdab6d17d49cd0375b2a65785 wine-4.10.tar.xz
-#sha256 4c36bfa285a651fe508359e461e0539c24dc2aa0f486979e7aa01aeb63d34eda wine-4.13.tar.xz
-#sha256 23ace726a120ff05e2402673c4a1f486afa81b82204cc9ff962d86bc64e1c8e2 wine-4.15.tar.xz
-#sha256 8b6e1ecada5700f002f3a8990ce0efc4f538bfdf655243c58369dc67b09101ae wine-4.17.tar.xz
-sha256 de772ff7e9fd845162b313b0246e3e4be583bb35764052715a82d6b84f5a6179 wine-5.0.tar.xz

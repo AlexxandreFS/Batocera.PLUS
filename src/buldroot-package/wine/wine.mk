@@ -4,28 +4,59 @@
 #
 ################################################################################
 
-WINE_VERSION = 5.0
-WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
-WINE_SITE = https://dl.winehq.org/wine/source/5.x
-WINE_LICENSE = LGPL-2.1+
-WINE_LICENSE_FILES = COPYING.LIB LICENSE
-WINE_DEPENDENCIES = host-bison host-flex host-wine
-HOST_WINE_DEPENDENCIES = host-bison host-flex
+WINE_LICENSE            = LGPL-2.1+
+WINE_LICENSE_FILES      = COPYING.LIB LICENSE
+WINE_DEPENDENCIES       = host-bison host-flex host-wine
+HOST_WINE_DEPENDENCIES  = host-bison host-flex
+HOST_WINE_DEPENDENCIES += vulkan-headers vulkan-loader vkd3d 
+HOST_WINE_DEPENDENCIES += orc gstreamer1 gst1-libav gst1-plugins-good gst1-plugins-ugly gst1-plugins-bad
+
+################################################################################
+
+# Version: Wine
+#WINE_VERSION = 5.0.2
+#WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
+#WINE_SITE = https://dl.winehq.org/wine/source/5.0
+#WINE_FOLDER_INSTALL = /opt/Wine/wine
+
+# Version: Wine-Staging
+#WINE_VERSION = 5.0
+#WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
+#WINE_SITE = https://dl.winehq.org/wine/source/5.0
+#WINE_FOLDER_INSTALL = /opt/Wine/wine-staging
+
+# Version: Wine-Staging Dev
+#WINE_VERSION = 5.17
+#WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
+#WINE_SITE = https://dl.winehq.org/wine/source/5.x
+#WINE_FOLDER_INSTALL = /opt/Wine/wine-staging-dev
+
+# Version: Proton (Commits on Jun 10, 2020) (BR proton_5.0)
+#WINE_VERSION = 2409bd1f74be116172688a25df725290637c255a
+#WINE_SITE = $(call github,ValveSoftware,wine,$(WINE_VERSION))
+#WINE_FOLDER_INSTALL = /opt/Wine/proton
+
+# Version: Commits on Aug 12, 2020 (BR ge-5.9) (Proton GE 5.9)
+WINE_VERSION = 536055316691a51dcf613fd9304b4ce351c0ef6c
+WINE_SITE = $(call github,GloriousEggroll,wine,$(WINE_VERSION))
+WINE_FOLDER_INSTALL = /opt/Wine/proton-ge
+
+################################################################################
 
 # Wine needs its own directory structure and tools for cross compiling
 WINE_CONF_OPTS  = --with-wine-tools=../host-wine-$(WINE_VERSION)
-WINE_CONF_OPTS += --prefix=/opt/Wine
-WINE_CONF_OPTS += --bindir=/opt/Wine/bin
-WINE_CONF_OPTS += --datarootdir=/opt/Wine/share
+WINE_CONF_OPTS += --prefix=$(WINE_FOLDER_INSTALL)
+WINE_CONF_OPTS += --bindir=$(WINE_FOLDER_INSTALL)/bin
+WINE_CONF_OPTS += --datarootdir=$(WINE_FOLDER_INSTALL)/share
 
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86),y)
-WINE_CONF_OPTS += --libdir=/opt/Wine/lib32
-WINE_CONF_OPTS += --with-wine64=../../../output64/build/wine-$(WINE_VERSION)
+WINE_CONF_OPTS += --libdir=$(WINE_FOLDER_INSTALL)/lib32
+WINE_CONF_OPTS += --with-wine64=$(BR2_EXTERNAL_BATOCERA_PATH)/output/x86_64/build/wine-$(WINE_VERSION)
 WINE_CONF_OPTS += --without-netapi
 endif
 
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_64),y)
-WINE_CONF_OPTS += --libdir=/opt/Wine/lib64
+WINE_CONF_OPTS += --libdir=$(WINE_FOLDER_INSTALL)/lib64
 WINE_CONF_OPTS += --enable-win64
 WINE_CONF_OPTS += --with-netapi
 endif
@@ -34,8 +65,8 @@ WINE_CONF_OPTS += --without-gtk3
 WINE_CONF_OPTS += --with-x 
 
 # Suport DXVK
-#WINE_CONF_OPTS += --with-vkd3d
-#WINE_CONF_OPTS += --with-vulkan
+WINE_CONF_OPTS += --with-vkd3d
+WINE_CONF_OPTS += --with-vulkan
 #HOST_WINE_CONF_OPTS += --with-vkd3d
 #HOST_WINE_CONF_OPTS += --with-vulkan
 
@@ -208,7 +239,7 @@ else
 WINE_CONF_OPTS += --without-ldap
 endif
 
-ifeq ($(BR2_PACKAGE_MESA3D_OSMESA),y)
+ifeq ($(BR2_PACKAGE_MESA3D_OSMESA_CLASSIC),y)
 WINE_CONF_OPTS += --with-osmesa
 WINE_DEPENDENCIES += mesa3d
 else
@@ -228,7 +259,6 @@ endif
 #else
 #WINE_CONF_OPTS += --without-netapi
 #endif
-
 
 ifeq ($(BR2_PACKAGE_SANE_BACKENDS),y)
 WINE_CONF_OPTS += --with-sane

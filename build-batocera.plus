@@ -33,7 +33,7 @@ PATCH_DIR='patch'
 
 URL_WINE='https://github.com/BatoceraPLUS/Wine/releases/download/Wine/Wine-5.0-v1.7z'
 URL_MAME='https://github.com/BatoceraPLUS/Mame-Mess/releases/download/0220/mame_libretro_0220.7z'
-URL_MONO='http://dl.winehq.org/wine/wine-mono/4.9.4/wine-mono-bin-4.9.4.tar.gz'
+URL_MONO='https://dl.winehq.org/wine/wine-mono/5.1.1/wine-mono-5.1.1-x86.tar.xz'
 URL_JAVA="https://javadl.oracle.com/webapps/download/AutoDL?BundleId=242050_3d5a2bb8f8d4428bbe94aed7ec7ae784#/java-jre-linux-x64-${VERSION}${RELEASE}.tar.gz"
 
 # URL - Auto Update
