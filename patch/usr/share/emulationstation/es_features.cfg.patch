@@ -1,8 +1,5 @@
-##
-## Adiciona os cores extras do Batocera.PLUS
-##
---- es_features.cfg.original
-+++ es_features.cfg.modificado
+--- es_features.cfg
++++ es_features.cfg.plus
 @@ -77,8 +77,51 @@
    <emulator name="melonds" features="videomode" />
    <emulator name="daphne" features="videomode, ratio" />
@@ -55,3 +52,29 @@
        <core name="gw" features="" />
        <core name="freeintv" features="" />
        <core name="pcfx" features="netplay, rewind, autosave" />
+@@ -169,7 +212,24 @@
+   </emulator>
+   <emulator name="vice" features="videomode, ratio" />
+   <emulator name="fsuae" features="videomode, ratio" />
+-  <emulator name="cemu" features="videomode" />
++  <emulator name="cemu" features="" />
++    <cores>
++      <core name="cemu" features="" />
++	    <feature name="MOD"       value="mod">
++           <choice name="nvidia"  value="nvidia" />
++           <choice name="amd"     value="amd" />
++        </feature>
++    </cores>
++  </emulator>
++  <emulator name="model2" features="videomode, ratio" />
++    <cores>
++      <core name="model2" features="" />
++	    <feature name="MOD"             value="mod">
++           <choice name="singlecore"    value="singlecore" />
++           <choice name="multicore"     value="multicore" />
++        </feature>
++    </cores>
++  <emulator name="model3" features="videomode, ratio" />
+   <emulator name="citra" features="videomode, ratio, rewind, screen_layout" />
+   <emulator name="moonlight" features="videomode, ratio" />
+   <emulator name="rpcs3" features="videomode" />
