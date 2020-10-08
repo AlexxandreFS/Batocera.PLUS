@@ -107,7 +107,7 @@ unsquashfs -d "$TEMP_DIR/squashfs-root" "$TEMP_DIR/BATOCERA/boot/batocera" || ex
 ################################################################################
 
 echo 'Removendo arquivos desnecessários...'
-rm -r "$TEMP_DIR/squashfs-root/usr/share/icons/Adwaita" || exit $?
+rm -r "$TEMP_DIR/squashfs-root/usr/share/icons/Adwaita"  || exit $?
 rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/music" || exit $?
 
 for x in c64 cannonball gba megadrive mrboom nes pcengine prboom snes; do
