@@ -3,7 +3,7 @@
 # hide mouse cursor
 unclutter --noevents -b
 
-systemsetting="batocera-settings"
+systemsetting="python /usr/lib/python2.7/site-packages/configgen/settings/batoceraSettings.py"
 
 # set the keyboard
 settings_lang="$(${systemsetting} -command load -key system.language)"
@@ -95,7 +95,7 @@ xset s off
 ### Resolve o bug, de não carregar os arquivos de configuração da pasta
 ### /etc/triggerhappy/triggers.d para ativar os atalhos de teclado.
 
-/etc/init.d/K50triggerhappy start &
+/etc/init.d/K10triggerhappy start &
 
 ################################################################################
 
@@ -197,27 +197,22 @@ fi
 while [ true ]; do
     # Aguarda o emulationstation entrar em execução para exibir a tela de carregamento.
     if [ "$(pidof emulationstation)" ]; then
-
-        # Desativa o som para o retroarch para evita conflito com o ES.
-        cp -f   '/usr/share/batocera/datainit/system/configs/retroarch/retroarchcustom.cfg' '/tmp/retroarchcustom.cfg'
+        cp '/usr/share/batocera/datainit/system/configs/retroarch/retroarchcustom.cfg' '/tmp/retroarchcustom.cfg'
         echo -e '\naudio_enable = "false"' >> '/tmp/retroarchcustom.cfg'
         echo    'audio_driver = "null"'    >> '/tmp/retroarchcustom.cfg'
-
-        # Aguarda o ES entrar em execução para executar o retroarch (visializador de imagem) em primeiro plano.
-        sleep 0.2
-
-        # Exibe a tela de carregamento.
-        retroarch -L '/usr/lib/libretro/imageviewer_libretro.so' --config '/tmp/retroarchcustom.cfg' "${START_SCREEN}" &
-        sleep 4
-
-        # Interrompe a tela de carregamento quando o emulationstation terminar o carregamento.
+        sleep 0.5
+        nice -n +19 retroarch -L '/usr/lib/libretro/imageviewer_libretro.so' \
+                    --config '/tmp/retroarchcustom.cfg' \
+                    "$START_SCREEN" &
+        sleep 3
+        # Interrompe a tela de carregamento quando o emulationstation terminar o loading.
         while [ true ]; do
+            sleep 1
             if [ -f '/tmp/emulationstation.ready' ]; then
-                killall -9 retroarch
-                rm -f '/tmp/retroarchcustom.cfg'
+                killall retroarch
+                rm '/tmp/retroarchcustom.cfg'
                 break
             fi
-            sleep 1
         done
         break
     fi
