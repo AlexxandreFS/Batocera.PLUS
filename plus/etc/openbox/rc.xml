@@ -85,7 +85,27 @@
             </position>
         </application>
 
+        <!--
         <application class="Wine">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+            <maximized></maximized>
+            <position type="normal">
+                <x>center</x>
+                <y>center</y>
+            </position>
+        </application>
+        <application class="steam_proton">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+            <maximized></maximized>
+            <position type="normal">
+                <x>center</x>
+                <y>center</y>
+            </position>
+        </application>
+        -->
+        <application name="*.exe">
             <decor>yes</decor>
             <fullscreen></fullscreen>
             <maximized></maximized>

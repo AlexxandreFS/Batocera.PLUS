@@ -7,7 +7,12 @@
 ################################################################################
 
 WINE_DIR='/opt/Wine'
-WINE_VERSION='1580332120'
+
+#WINE_BUILD='proton'
+#WINE_BUILD='proton-ge'
+#WINE_BUILD='wine-stable'
+WINE_BUILD='wine-staging'
+#WINE_BUILD='wine-staging-dev'
 
 ################################################################################
 
@@ -25,39 +30,54 @@ case ${WINE_ARCH} in
             WINE_ARCH=''
         fi
         LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         export LIBGL_DRIVERS_PATH="/lib32/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
         ;;
     wine64)
         WINE_ARCH='64'
         LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         export WINEARCH='win64'
         ;;
     win32)
         WINE_ARCH=''
         LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         export LIBGL_DRIVERS_PATH="/lib32/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
         ;;
     win64)
         WINE_ARCH='64'
         LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         ;;
     *)
         exit -1
 esac
 
 export LD_LIBRARY_PATH
+
+export XDG_RUNTIME_DIR=/userdata
+export XDG_CONFIG_DIRS=/etc/xdg
+export XDG_CACHE_HOME=/tmp/xdg_cache
+
 export PYTHONPATH="/usr/lib/python2.7:${PYTHONPATH:+:$PYTHONPATH}"
 export PERLLIB="/usr/share/perl5/:${PERLLIB:+:$PERLLIB}"
+
+#export GST_PLUGIN_SYSTEM_PATH=${WINE_DIR}/lib32
+#export GST_PLUGIN_SCANNER=${WINE_DIR}/lib32/gstreamer-1.0
+#export GST_PLUGIN_SYSTEM_PATH=${WINE_DIR}/lib64
+#export GST_PLUGIN_SCANNER=${WINE_DIR}/lib64/gstreamer-1.0
 
 ################################################################################
 
 ### WAYS
 
 if ! [ "${WINEPREFIX}" ]; then
-    export WINEPREFIX="${HOME}/configs/wine"
+    export WINEPREFIX="${HOME}/configs/wine/${WINE_BUILD}"
 elif ! [ -d "${WINEPREFIX}" ]; then
     echo "Error ${WINEPREFIX} not found."
     exit 1
@@ -68,17 +88,34 @@ fi
 ### START WINESERVER
 
 if [ "${WINE_ARCH}" == 'wineserver' ]; then
-    exec "${WINE_DIR}/bin/wineserver" "$@"
+    exec "${WINE_DIR}/${WINE_BUILD}/bin/wineserver" "$@"
 fi
 
 ################################################################################
 
-### START OR WINE NORMALLY
+### START WINE NORMALLY
 
 if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
+    WINE_VERSION="$(cat -e "${WINE_DIR}/${WINE_BUILD}/.update-timestamp" | cut -d '^' -f 1)"
     WINE_VERSION_NEW="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
+
     if [ "${WINE_VERSION}" == "${WINE_VERSION_NEW}" ]; then
-        exec "${WINE_DIR}/bin/wine${WINE_ARCH}" "$@"
+        #ldd ${WINE_DIR}/${WINE_BUILD}/bin/*                 2> /dev/null | grep 'not found'
+        #${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}      --check-libs | grep ': missing'
+
+        #ldd ${WINE_DIR}/lib32/*                             2> /dev/null | grep 'not found'
+        #ldd ${WINE_DIR}/${WINE_BUILD}/lib32/*               2> /dev/null | grep 'not found'
+        #ldd ${WINE_DIR}/${WINE_BUILD}/lib32/wine/*          2> /dev/null | grep 'not found'
+        #ldd ${WINE_DIR}/${WINE_BUILD}/lib32/wine/fakedlls/* 2> /dev/null | grep 'not found'
+
+        #ldd ${WINE_DIR}/lib64/*                             2> /dev/null | grep 'not found'
+        #ldd ${WINE_DIR}/${WINE_BUILD}/lib64/*               2> /dev/null | grep 'not found'
+        #ldd ${WINE_DIR}/${WINE_BUILD}/lib64/wine/*          2> /dev/null | grep 'not found'
+        #ldd ${WINE_DIR}/${WINE_BUILD}/lib64/wine/fakedlls/* 2> /dev/null | grep 'not found'
+
+        #exit 0
+
+        exec "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" "$@"
     else
         echo 'CREATING NEW WINEPREFIX'
     fi
@@ -106,8 +143,8 @@ rm -r "${WINEPREFIX:?}/" 2> /dev/null
 # Se o usuário definir o WINEPREFIX o DirectX e o mono não será instalado, útil para
 # instalações em prefixos diferentes para evitar influências externas.
 
-if [ "${WINEPREFIX}" == "${HOME}/configs/wine" ]; then
-    ${WINE_DIR}/bin/wine${WINE_ARCH} ${WINE_DIR}/apps/directx_Jun2010_redist/DXSETUP.exe /silent
+if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ]; then
+    ${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH} ${WINE_DIR}/apps/directx_Jun2010_redist/DXSETUP.exe /silent
 
     mkdir "${WINEPREFIX}/drive_c/windows/mono"
     ln -s "${WINE_DIR}/apps/mono" "${WINEPREFIX}/drive_c/windows/mono/mono-2.0"
@@ -133,7 +170,7 @@ function wineWait() {
 
 wineWait
 
-"${WINE_DIR}/bin/wine${WINE_ARCH}" wineboot
+"${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" wineboot
 
 wineWait
 
@@ -186,14 +223,6 @@ ln -s "/userdata/roms/windows" "${WINEPREFIX}/dosdevices/d:"
 
 sed -i s'/"RegisteredOrganization"=""/"RegisteredOrganization"="Batocera.PLUS"/' "${WINEPREFIX}/system.reg"
 sed -i s'/"RegisteredOwner"=""/"RegisteredOwner"="Alexandre Freire dos Santos"/' "${WINEPREFIX}/system.reg"
-
-################################################################################
-
-### USE THE WINE INTERNAL WINDOW MANAGER (THE SYSTEM GIVES BUG)
-
-#echo ''                             >> "${WINEPREFIX}/user.reg"
-#echo '[Software\\Wine\\X11 Driver]' >> "${WINEPREFIX}/user.reg"
-#echo '"Managed"="N"'                >> "${WINEPREFIX}/user.reg"
 
 ################################################################################
 

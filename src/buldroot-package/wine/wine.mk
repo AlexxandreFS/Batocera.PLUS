@@ -6,10 +6,11 @@
 
 WINE_LICENSE            = LGPL-2.1+
 WINE_LICENSE_FILES      = COPYING.LIB LICENSE
-WINE_DEPENDENCIES       = host-bison host-flex host-wine
+WINE_DEPENDENCIES       = host-bison host-flex host-wine vulkan-headers vulkan-loader vkd3d
+#WINE_DEPENDENCIES      += faudio orc gstreamer1 gst1-libav gst1-plugins-good gst1-plugins-ugly gst1-plugins-bad
 HOST_WINE_DEPENDENCIES  = host-bison host-flex
-HOST_WINE_DEPENDENCIES += vulkan-headers vulkan-loader vkd3d 
-HOST_WINE_DEPENDENCIES += orc gstreamer1 gst1-libav gst1-plugins-good gst1-plugins-ugly gst1-plugins-bad
+
+
 
 ################################################################################
 
@@ -17,6 +18,12 @@ HOST_WINE_DEPENDENCIES += orc gstreamer1 gst1-libav gst1-plugins-good gst1-plugi
 #WINE_VERSION = 5.0.2
 #WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
 #WINE_SITE = https://dl.winehq.org/wine/source/5.0
+#WINE_FOLDER_INSTALL = /opt/Wine/wine-stable
+
+# Version: Wine Dev
+#WINE_VERSION = 5.18
+#WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
+#WINE_SITE = https://dl.winehq.org/wine/source/5.x
 #WINE_FOLDER_INSTALL = /opt/Wine/wine
 
 # Version: Wine-Staging
@@ -35,6 +42,11 @@ HOST_WINE_DEPENDENCIES += orc gstreamer1 gst1-libav gst1-plugins-good gst1-plugi
 #WINE_VERSION = 2409bd1f74be116172688a25df725290637c255a
 #WINE_SITE = $(call github,ValveSoftware,wine,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/proton
+
+# Version: Proton (Commits on Feb 21, 2020) (BR proton_4.11)
+#WINE_VERSION = bdab6e746e31256431371d4af98d37eb942207e7
+#WINE_SITE = $(call github,ValveSoftware,wine,$(WINE_VERSION))
+#WINE_FOLDER_INSTALL = /opt/Wine/proton-4.11
 
 # Version: Commits on Aug 12, 2020 (BR ge-5.9) (Proton GE 5.9)
 WINE_VERSION = 536055316691a51dcf613fd9304b4ce351c0ef6c
@@ -64,6 +76,10 @@ endif
 WINE_CONF_OPTS += --without-gtk3
 WINE_CONF_OPTS += --with-x 
 
+ifeq ($(BR2_TOOLCHAIN_EXTERNAL),y)
+WINE_CONF_OPTS += TARGETFLAGS="-b $(TOOLCHAIN_EXTERNAL_PREFIX)"
+endif
+
 # Suport DXVK
 WINE_CONF_OPTS += --with-vkd3d
 WINE_CONF_OPTS += --with-vulkan
@@ -72,6 +88,14 @@ WINE_CONF_OPTS += --with-vulkan
 
 #WINE_CONF_OPTS += --without-gnutls
 #HOST_WINE_CONF_OPTS += --without-gnutls
+
+ifeq ($(BR2_PACKAGE_FAUDIO),y)
+    WINE_CONF_OPTS += --with-faudio
+else
+    WINE_CONF_OPTS += --without-faudio
+endif
+
+################################################################################
 
 # Wine uses a wrapper around gcc, and uses the value of --host to
 # construct the filename of the gcc to call.  But for external
@@ -132,12 +156,12 @@ else
 WINE_CONF_OPTS += --without-gnutls
 endif
 
-ifeq ($(BR2_PACKAGE_GST1_PLUGINS_BASE),y)
-WINE_CONF_OPTS += --with-gstreamer
-WINE_DEPENDENCIES += gst1-plugins-base
-else
+#ifeq ($(BR2_PACKAGE_GST1_PLUGINS_BASE),y)
+#WINE_CONF_OPTS += --with-gstreamer
+#WINE_DEPENDENCIES += gst1-plugins-base
+#else
 WINE_CONF_OPTS += --without-gstreamer
-endif
+#endif
 
 ifeq ($(BR2_PACKAGE_JPEG),y)
 WINE_CONF_OPTS += --with-jpeg
