@@ -31,7 +31,11 @@ PATCH_DIR='patch'
 
 # URL - Manual Update
 
-URL_WINE='https://github.com/BatoceraPLUS/Wine/releases/download/Wine/Wine-5.0-v1.7z'
+URL_WINE_PRONTON='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-5.0-1.7z'
+URL_WINE_PROTON_GE='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-ge-5.9-1.7z'
+URL_WINE_STABLE='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-stable-5.0.2-1.7z'
+URL_WINE_STAGING='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-staging-5.0-1.7z'
+URL_WINE_STAGING_DEV='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-staging-dev-5.19-1.7z'
 URL_MAME='https://github.com/BatoceraPLUS/Mame-Mess/releases/download/0220/mame_libretro_0220.7z'
 URL_MONO='https://dl.winehq.org/wine/wine-mono/5.1.1/wine-mono-5.1.1-x86.tar.xz'
 URL_JAVA="https://javadl.oracle.com/webapps/download/AutoDL?BundleId=242050_3d5a2bb8f8d4428bbe94aed7ec7ae784#/java-jre-linux-x64-${VERSION}${RELEASE}.tar.gz"
@@ -59,7 +63,7 @@ URL_FLASH="https://fpdownload.adobe.com/get/flashplayer/pdc/${URL_FLASH}/flash_p
 
 mkdir -p "${DOWNLOAD_DIR}"
 
-for URL in "${URL_WINE}" "${URL_DIRECTX}" "${URL_MONO}" "${URL_FIREFOX}" "${URL_MAME}" "${URL_JAVA}" "${URL_FLASH}" "${URL_THEME_A}" "${URL_CEMU}" "${URL_CEMUHOOK}" "${URL_CEMUFAKEFILES}" "${URL_EXTRAFILES}" "${URL_MODEL2}" "${URL_MODEL3}" "${URL_DXVK}"; do
+for URL in "${URL_WINE_PRONTON}" "${URL_WINE_PROTON_GE}" "${URL_WINE_STABLE}" "${URL_WINE_STAGING}" "${URL_WINE_STAGING_DEV}" "${URL_DIRECTX}" "${URL_MONO}" "${URL_FIREFOX}" "${URL_MAME}" "${URL_JAVA}" "${URL_FLASH}" "${URL_THEME_A}" "${URL_CEMU}" "${URL_CEMUHOOK}" "${URL_CEMUFAKEFILES}" "${URL_EXTRAFILES}" "${URL_MODEL2}" "${URL_MODEL3}" "${URL_DXVK}"; do
     PKG_NAME="$(basename "${URL}")"
     echo "Baixando ${PKG_NAME}..."
     if ! [ -f "${DOWNLOAD_DIR}/${PKG_NAME}" ]; then
@@ -165,14 +169,30 @@ unzip "${DOWNLOAD_DIR}/${PKG_NAME}" \
 mv "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/Theme-batocera-plus-master" \
    "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus" || exit $?
 
-echo "Descompactando Wine..."
-PKG_NAME="$(basename "${URL_WINE}")"
-7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt" || exit $?
-
 echo 'Descompactando Directx...'
 PKG_NAME="$(basename "${URL_DIRECTX}")"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
 7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
+
+echo "Descompactando Wine-Proton..."
+PKG_NAME="$(basename "${URL_WINE_PRONTON}")"
+7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
+
+echo "Descompactando Wine-Proton-GE..."
+PKG_NAME="$(basename "${URL_WINE_PROTON_GE}")"
+7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
+
+echo "Descompactando Wine-Stable..."
+PKG_NAME="$(basename "${URL_WINE_STABLE}")"
+7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
+
+echo "Descompactando Wine-Staging..."
+PKG_NAME="$(basename "${URL_WINE_STAGING}")"
+7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
+
+echo "Descompactando Wine-Staging-Dev..."
+PKG_NAME="$(basename "${URL_WINE_STAGING_DEV}")"
+7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
 
 echo 'Descompactando Mono...'
 PKG_NAME="$(basename "${URL_MONO}")"
