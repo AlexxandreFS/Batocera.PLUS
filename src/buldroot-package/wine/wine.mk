@@ -7,10 +7,9 @@
 WINE_LICENSE            = LGPL-2.1+
 WINE_LICENSE_FILES      = COPYING.LIB LICENSE
 WINE_DEPENDENCIES       = host-bison host-flex host-wine vulkan-headers vulkan-loader vkd3d
-#WINE_DEPENDENCIES      += faudio orc gstreamer1 gst1-libav gst1-plugins-good gst1-plugins-ugly gst1-plugins-bad
+#WINE_DEPENDENCIES       += faudio orc gstreamer1 gst1-libav gst1-plugins-good gst1-plugins-ugly gst1-plugins-bad
+#WINE_DEPENDENCIES       += gstreamer1 gst1-libav gst1-plugins-good
 HOST_WINE_DEPENDENCIES  = host-bison host-flex
-
-
 
 ################################################################################
 
@@ -20,20 +19,14 @@ HOST_WINE_DEPENDENCIES  = host-bison host-flex
 #WINE_SITE = https://dl.winehq.org/wine/source/5.0
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-stable
 
-# Version: Wine Dev
-#WINE_VERSION = 5.18
-#WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
-#WINE_SITE = https://dl.winehq.org/wine/source/5.x
-#WINE_FOLDER_INSTALL = /opt/Wine/wine
-
 # Version: Wine-Staging
-#WINE_VERSION = 5.0
-#WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
-#WINE_SITE = https://dl.winehq.org/wine/source/5.0
-#WINE_FOLDER_INSTALL = /opt/Wine/wine-staging
+WINE_VERSION = 5.0
+WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
+WINE_SITE = https://dl.winehq.org/wine/source/5.0
+WINE_FOLDER_INSTALL = /opt/Wine/wine-staging
 
 # Version: Wine-Staging Dev
-#WINE_VERSION = 5.17
+#WINE_VERSION = 5.19
 #WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
 #WINE_SITE = https://dl.winehq.org/wine/source/5.x
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-staging-dev
@@ -49,9 +42,9 @@ HOST_WINE_DEPENDENCIES  = host-bison host-flex
 #WINE_FOLDER_INSTALL = /opt/Wine/proton-4.11
 
 # Version: Commits on Aug 12, 2020 (BR ge-5.9) (Proton GE 5.9)
-WINE_VERSION = 536055316691a51dcf613fd9304b4ce351c0ef6c
-WINE_SITE = $(call github,GloriousEggroll,wine,$(WINE_VERSION))
-WINE_FOLDER_INSTALL = /opt/Wine/proton-ge
+#WINE_VERSION = 536055316691a51dcf613fd9304b4ce351c0ef6c
+#WINE_SITE = $(call github,GloriousEggroll,wine,$(WINE_VERSION))
+#WINE_FOLDER_INSTALL = /opt/Wine/proton-ge
 
 ################################################################################
 
@@ -399,14 +392,17 @@ endif
 # Wine only needs the host tools to be built, so cut-down the
 # build time by building just what we need.
 define HOST_WINE_BUILD_CMDS
-	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) \
-	  tools \
-	  tools/sfnt2fon \
-	  tools/widl \
-	  tools/winebuild \
-	  tools/winegcc \
-	  tools/wmc \
-	  tools/wrc
+    $(HOST_MAKE_ENV) $(MAKE) -C $(@D) __tooldeps__
+
+# Obsolento, remova se não appresentar erros nas próximas compilações.
+#	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) \
+#	  tools \
+#	  tools/sfnt2fon \
+#	  tools/widl \
+#	  tools/winebuild \
+#	  tools/winegcc \
+#	  tools/wmc \
+#	  tools/wrc
 endef
 
 # Wine only needs its host variant to be built, not that it is
@@ -423,9 +419,10 @@ HOST_WINE_CONF_OPTS += \
 	--without-gnutls   \
 	--without-capi     \
 	--without-cups     \
-    --without-oss      \
+        --without-oss      \
 	--without-pulse    \
 	--without-sane
 
 $(eval $(autotools-package))
 $(eval $(host-autotools-package))
+

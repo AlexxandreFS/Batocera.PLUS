@@ -8,27 +8,32 @@
 
 WINE_DIR='/opt/Wine'
 
-#WINE_BUILD='proton'
-#WINE_BUILD='proton-ge'
-#WINE_BUILD='wine-stable'
-WINE_BUILD='wine-staging'
-#WINE_BUILD='wine-staging-dev'
+export DXVK_HUD=1
+
+################################################################################
+
+### WINE VERSION (wine, wine-staging, proton, etcc...)
+
+WINE_BUILD="$(basename "${0}" '-64')"
+WINE_BUILD="${WINE_BUILD#wineserver-}"
+
+if [ "${WINE_BUILD}" == 'wine' ] || [ "${WINE_BUILD}" == 'wine64' ] || [ "${WINE_BUILD}" == 'wineserver' ]; then
+    # Set default version
+    WINE_BUILD='wine-staging'
+fi
 
 ################################################################################
 
 ### WINE ARCHITECTURE (x32, x64)
 
-if ! [ "${WINEARCH}" ]; then
-    WINE_ARCH="$(basename "$0")"
-else
+if [ "${WINEARCH}" ]; then
     WINE_ARCH="${WINEARCH}"
+else
+    WINE_ARCH="$(basename "${0}")"
 fi
 
 case ${WINE_ARCH} in
-    wine|wineserver)
-        if [ "${WINE_ARCH}" == 'wine' ]; then
-            WINE_ARCH=''
-        fi
+    wineserver|wineserver-wine-stable|wineserver-wine-staging|wineserver-wine-staging-dev|wineserver-proton|wineserver-proton-ge)
         LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
@@ -36,7 +41,16 @@ case ${WINE_ARCH} in
         LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         export LIBGL_DRIVERS_PATH="/lib32/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
         ;;
-    wine64)
+    wine|wine-stable|wine-staging|wine-staging-dev|proton|proton-ge)
+        WINE_ARCH=''
+        LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        export LIBGL_DRIVERS_PATH="/lib32/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
+        ;;
+    wine64|wine-stable-64|wine-staging-64|wine-staging-dev-64|proton-64|proton-ge-64)
         WINE_ARCH='64'
         LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
@@ -87,9 +101,93 @@ fi
 
 ### START WINESERVER
 
-if [ "${WINE_ARCH}" == 'wineserver' ]; then
+case "${WINE_ARCH}" in wineserver|wineserver-wine-stable|wineserver-wine-staging|wineserver-wine-staging-dev|wineserver-proton|wineserver-proton-ge)
     exec "${WINE_DIR}/${WINE_BUILD}/bin/wineserver" "$@"
-fi
+esac
+
+################################################################################
+
+### DXVK
+
+DXVK_DLL='d3d11.dll d3d10core.dll d3d10.dll d3d10_1.dll d3d9.dll dxgi.dll'
+
+function dxvkInstall() {
+    for DLL in ${DXVK_DLL}; do
+        # Backup
+        if ! [ -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}.backup" ]; then
+            if [ -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" ] && [ ! -L "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" ]; then
+                mv -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}.backup"
+            fi
+        fi
+        if ! [ -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}.backup" ]; then
+            if [ -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}" ] && [ ! -L "${WINEPREFIX}/drive_c/windows/system32/${DLL}" ]; then
+                mv -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}.backup"
+            fi
+        fi
+
+        # Install
+        if ! [ -L "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" ]; then
+            ln -sf "${WINE_DIR}/apps/dxvk/x32/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
+        fi
+        if ! [ -L "${WINEPREFIX}/drive_c/windows/system32/${DLL}" ]; then
+            if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
+                ln -sf "${WINE_DIR}/apps/dxvk/x64/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+            else
+                ln -sf "${WINE_DIR}/apps/dxvk/x32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+            fi
+        fi
+    done
+}
+
+function dxvkUninstall() {
+    if [ -L "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}.backup" ]; then
+        mv -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}.backup" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
+    fi
+    if [ -L "${WINEPREFIX}/drive_c/windows/system32/${DLL}.backup" ]; then
+        mv -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}.backup" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+    fi
+}
+
+function dxvkExport() {
+    local FIRST=TRUE
+
+    for DLL in ${DXVK_DLL}; do
+        if [ ${FIRST} == 'TRUE' ]; then
+            if [ "${WINEDLLOVERRIDES}" ]; then
+                WINEDLLOVERRIDES="${WINEDLLOVERRIDES};${DLL}"
+            else
+                WINEDLLOVERRIDES="${DLL}"
+            fi
+            FIRST=FALSE
+        else
+            WINEDLLOVERRIDES="${WINEDLLOVERRIDES},${DLL}"
+        fi
+    done
+
+    WINEDLLOVERRIDES="${WINEDLLOVERRIDES}=n,b;nvapi64,nvapi="
+
+    export WINEDLLOVERRIDES
+}
+
+function dxvkMain() {
+    if [ "${DXVK}" == 'ON' ] || [ "${dxvk}" == 'on' ] || [ "${DXVK}" == 'on' ] || [ "${dxvk}" == 'ON' ]; then
+        if [ "$(vulkaninfo 2> /dev/null)" ]; then
+            dxvkInstall
+            dxvkExport
+            echo 'info: DXVK Enabled'
+         else
+            dxvkUninstall
+            echo "info: Vulkan not supported, DXVK will be disabled'"
+         fi
+         unset DXVK
+    else
+        if [ "$(vulkaninfo 2> /dev/null)" ]; then
+            dxvkUninstall
+            echo "info: DXVK avaliable, to enable run 'DXVK=ON wine MyGame.exe'"
+        fi
+     fi
+     unset DXVK_DLL
+}
 
 ################################################################################
 
@@ -100,24 +198,10 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
     WINE_VERSION_NEW="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
 
     if [ "${WINE_VERSION}" == "${WINE_VERSION_NEW}" ]; then
-        #ldd ${WINE_DIR}/${WINE_BUILD}/bin/*                 2> /dev/null | grep 'not found'
-        #${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}      --check-libs | grep ': missing'
-
-        #ldd ${WINE_DIR}/lib32/*                             2> /dev/null | grep 'not found'
-        #ldd ${WINE_DIR}/${WINE_BUILD}/lib32/*               2> /dev/null | grep 'not found'
-        #ldd ${WINE_DIR}/${WINE_BUILD}/lib32/wine/*          2> /dev/null | grep 'not found'
-        #ldd ${WINE_DIR}/${WINE_BUILD}/lib32/wine/fakedlls/* 2> /dev/null | grep 'not found'
-
-        #ldd ${WINE_DIR}/lib64/*                             2> /dev/null | grep 'not found'
-        #ldd ${WINE_DIR}/${WINE_BUILD}/lib64/*               2> /dev/null | grep 'not found'
-        #ldd ${WINE_DIR}/${WINE_BUILD}/lib64/wine/*          2> /dev/null | grep 'not found'
-        #ldd ${WINE_DIR}/${WINE_BUILD}/lib64/wine/fakedlls/* 2> /dev/null | grep 'not found'
-
-        #exit 0
-
+        dxvkMain
         exec "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" "$@"
     else
-        echo 'CREATING NEW WINEPREFIX'
+        echo 'info: creating new wineprefix'
     fi
 fi
 
@@ -255,7 +339,20 @@ exec "${0}" "${@}"
 # export XDG_DATA_DIRS="/usr/share/:${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
 # export GSETTINGS_SCHEMA_DIR="/wine-staging/share/glib-2.0/schemas:${GSETTINGS_SCHEMA_DIR:+:$GSETTINGS_SCHEMA_DIR}"
 # export GSETTINGS_SCHEMA_DIR="/usr/share/glib-2.0/schemas:${GSETTINGS_SCHEMA_DIR:+:$GSETTINGS_SCHEMA_DIR}"
-# export WINEDLLOVERRIDES='mscoree;mshtml='
+
+#ldd ${WINE_DIR}/${WINE_BUILD}/bin/*                 2> /dev/null | grep 'not found'
+#${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}      --check-libs | grep ': missing'
+#ldd ${WINE_DIR}/lib32/*                             2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/${WINE_BUILD}/lib32/*               2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/${WINE_BUILD}/lib32/wine/*          2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/${WINE_BUILD}/lib32/wine/fakedlls/* 2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/${WINE_BUILD}/lib32/gstreamer-1.0/* 2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/${WINE_BUILD}/lib32/mpg123/*        2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/lib64/*                             2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/${WINE_BUILD}/lib64/*               2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/${WINE_BUILD}/lib64/wine/*          2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/${WINE_BUILD}/lib64/wine/fakedlls/* 2> /dev/null | grep 'not found'
+
 # http://dl.winehq.org/wine
 # https://wiki.winehq.org/Wine_User%27s_Guide
 
