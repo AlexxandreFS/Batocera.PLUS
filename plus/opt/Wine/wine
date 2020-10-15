@@ -8,7 +8,10 @@
 
 WINE_DIR='/opt/Wine'
 
-export DXVK_HUD=1
+# Set the MIDI (sequencer) device. Default /dev/sequencer.
+# modprobe snd-seq
+# MIDIDEV=/dev/snd/seq
+
 
 ################################################################################
 
@@ -170,7 +173,7 @@ function dxvkExport() {
 }
 
 function dxvkMain() {
-    if [ "${DXVK}" == 'ON' ] || [ "${dxvk}" == 'on' ] || [ "${DXVK}" == 'on' ] || [ "${dxvk}" == 'ON' ]; then
+    if [ "${DXVK}" == '1' ] || [ "${dxvk}" == '1' ]; then
         if [ "$(vulkaninfo 2> /dev/null)" ]; then
             dxvkInstall
             dxvkExport
@@ -183,7 +186,7 @@ function dxvkMain() {
     else
         if [ "$(vulkaninfo 2> /dev/null)" ]; then
             dxvkUninstall
-            echo "info: DXVK avaliable, to enable run 'DXVK=ON wine MyGame.exe'"
+            echo "info: DXVK avaliable, to enable run 'DXVK=1 wine MyGame.exe'"
         fi
      fi
      unset DXVK_DLL

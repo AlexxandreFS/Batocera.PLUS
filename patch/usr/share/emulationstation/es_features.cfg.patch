@@ -1,103 +1,139 @@
 --- es_features.cfg.original
 +++ es_features.cfg.modificado
-@@ -77,8 +77,74 @@
+@@ -77,8 +77,128 @@
    <emulator name="melonds" features="videomode" />
    <emulator name="daphne" features="videomode, ratio" />
    <emulator name="flycast" features="videomode, ratio" />
-+  <!-- videomode, ratio, smooth, shaders, pixel_perfect, decoration, latency_reduction, game_translation, netplay, rewind, autosave -->
-+  <emulator name="raine"            features="smooth, shaders, ratio">
++
++  <!-- BATOCERA.PLUS START -->
++
++  <emulator name="cemu" features="">
 +    <cores>
-+      <core name="raine2020"        features="" />
-+      <core name="raine2015"        features="" />
++      <core name="cemu" features="" />
 +    </cores>
-+    <feature name="BIOS"            value="bios">
-+      <choice name="cdz"            value="cdz" />
-+      <choice name="front-load"     value="front-load" />
-+      <choice name="top-load"       value="top-load" />
-+      <choice name="unibios"        value="unibios" />
++    <feature name="MOD" value="mod">
++      <choice name="nvidia" value="nvidia" />
++      <choice name="amd" value="amd" />
 +    </feature>
 +  </emulator>
-+  <emulator name="wine"             features="">
++
++  <emulator name="model2" features="videomode, ratio">
 +    <cores>
-+      <core name="wine-stable"      features="" />
-+      <core name="wine-staging"     features="" />
++      <core name="model2" features="" />
++    </cores>
++    <feature name="MOD" value="mod">
++      <choice name="singlecore" value="singlecore" />
++      <choice name="multicore" value="multicore" />
++    </feature>
++  </emulator>
++
++  <emulator name="model3" features="videomode, ratio" />
++
++  <emulator name="raine" features="smooth, shaders, ratio">
++    <cores>
++      <core name="raine2020" features="" />
++      <core name="raine2015" features="" />
++    </cores>
++    <feature name="BIOS" value="bios">
++      <choice name="cdz" value="cdz" />
++      <choice name="front-load" value="front-load" />
++      <choice name="top-load" value="top-load" />
++      <choice name="unibios" value="unibios" />
++    </feature>
++  </emulator>
++
++  <emulator name="wine" features="">
++    <cores>
++      <core name="wine-stable" features="" />
++      <core name="wine-staging" features="" />
 +      <core name="wine-staging-dev" features="" />
 +    </cores>
-+    <feature name="ARCH"            value="arch">
-+      <choice name="32bits"         value="32bits" />
-+      <choice name="64bits"         value="64bits" />
++    <feature name="GAME EXECUTABLE" value="arch">
++      <choice name="32-bits" value="32" />
++      <choice name="64-bits" value="64" />
 +    </feature>
-+    <feature name="DXVK"            value="dxvk">
-+      <choice name="on"             value="on" />
-+      <choice name="off"            value="off" />
++    <feature name="DXVK" value="dxvk">
++      <choice name="on" value="on" />
++      <choice name="off" value="off" />
++    </feature>
++    <feature name="MOUSE POINTER" value="mouse_pointer">
++      <choice name="on" value="on" />
++      <choice name="off" value="off" />
++    </feature>
++    <feature name="EMULATE JOYPAD" value="emulate_joypad">
++      <choice name="on" value="on" />
++      <choice name="off" value="off" />
++    </feature>
++    <feature name="SCRIPT BATOCERA.PLUS" value="script">
++      <choice name="on" value="on" />
++      <choice name="off" value="off" />
 +    </feature>
 +  </emulator>
-+  <emulator name="proton"           features="">
++
++  <emulator name="proton" features="">
 +    <cores>
-+      <core name="proton"           features="" />
-+      <core name="proton-ge"        features="" />
++      <core name="proton" features="" />
++      <core name="proton-ge" features="" />
 +    </cores>
-+    <feature name="ARCH"            value="arch">
-+      <choice name="32bits"         value="32bits" />
-+      <choice name="64bits"         value="64bits" />
++    <feature name="GAME EXECUTABLE" value="arch">
++      <choice name="32-bits" value="32" />
++      <choice name="64-bits" value="64" />
 +    </feature>
-+    <feature name="DXVK"            value="dxvk">
-+      <choice name="on"             value="on" />
-+      <choice name="off"            value="off" />
++    <feature name="DXVK" value="dxvk">
++      <choice name="on" value="on" />
++      <choice name="off" value="off" />
++    </feature>
++    <feature name="MOUSE POINTER" value="mouse_pointer">
++      <choice name="on" value="on" />
++      <choice name="off" value="off" />
++    </feature>
++    <feature name="EMULATE JOYPAD" value="emulate_joypad">
++      <choice name="on" value="on" />
++      <choice name="off" value="off" />
++    </feature>
++    <feature name="SCRIPT BATOCERA.PLUS" value="script">
++      <choice name="on" value="on" />
++      <choice name="off" value="off" />
 +    </feature>
 +  </emulator>
++
    <emulator name="libretro" features="videomode, ratio, smooth, shaders, pixel_perfect, decoration, latency_reduction, game_translation">
      <cores>
-+      <core name="bsnes_hd"         features="netplay, rewind, autosave" />
-+      <core name="catsfc"           features="netplay, rewind, autosave" />
-+      <core name="dolphin"          features="netplay, rewind, autosave" />
-+      <core name="duckstation"      features="netplay, rewind, autosave" />
-+      <core name="fbalpha2012"      features="netplay, rewind, autosave" />
-+      <core name="flycast2019"      features="netplay, rewind, autosave" />
-+      <core name="freechaf"         features="netplay, rewind, autosave" />
-+      <core name="gearsystem"       features="netplay, rewind, autosave" />
-+      <!-- <core name="gpsp"             features="netplay, rewind, autosave" /> -->
-+      <core name="hbmame"           features="netplay, rewind, autosave" />
-+      <core name="mame0174"         features="netplay, rewind, autosave" />
-+      <core name="mame0200"         features="netplay, rewind, autosave" />
-+      <core name="mame078"          features="netplay, rewind, autosave" />
-+      <core name="mednafen_pce"     features="netplay, rewind, autosave" />
-+      <core name="mednafen_psx_sw"  features="netplay, rewind, autosave" />
-+      <core name="melonds"          features="netplay, rewind, autosave" />
-+      <core name="meteor"           features="netplay, rewind, autosave" />
-+      <core name="nekop2"           features="netplay, rewind, autosave" />
-+      <core name="ppsspp"           features="netplay, rewind, autosave" />
-+      <core name="quicknes"         features="netplay, rewind, autosave" />
-+      <core name="race"             features="netplay, rewind, autosave" />
-+      <core name="redream"          features="netplay, rewind, autosave" />
-+      <core name="smsplus"          features="netplay, rewind, autosave" />
-+      <core name="yabause"          features="netplay, rewind, autosave" />
++      <core name="bsnes_hd"        features="netplay, rewind, autosave" />
++      <core name="catsfc"          features="netplay, rewind, autosave" />
++      <core name="dolphin"         features="netplay, rewind, autosave" />
++      <core name="duckstation"     features="netplay, rewind, autosave" />
++      <core name="fbalpha2012"     features="netplay, rewind, autosave" />
++      <core name="flycast2019"     features="netplay, rewind, autosave" />
++      <core name="freechaf"        features="netplay, rewind, autosave" />
++      <core name="gearsystem"      features="netplay, rewind, autosave" />
++ <!-- <core name="gpsp"            features="netplay, rewind, autosave" /> -->
++      <core name="hbmame"          features="netplay, rewind, autosave" />
++      <core name="mame0174"        features="netplay, rewind, autosave" />
++      <core name="mame0200"        features="netplay, rewind, autosave" />
++      <core name="mame078"         features="netplay, rewind, autosave" />
++      <core name="mednafen_pce"    features="netplay, rewind, autosave" />
++      <core name="mednafen_psx_sw" features="netplay, rewind, autosave" />
++      <core name="melonds"         features="netplay, rewind, autosave" />
++      <core name="meteor"          features="netplay, rewind, autosave" />
++      <core name="nekop2"          features="netplay, rewind, autosave" />
++      <core name="ppsspp"          features="netplay, rewind, autosave" />
++      <core name="quicknes"        features="netplay, rewind, autosave" />
++      <core name="race"            features="netplay, rewind, autosave" />
++      <core name="redream"         features="netplay, rewind, autosave" />
++      <core name="smsplus"         features="netplay, rewind, autosave" />
++      <core name="yabause"         features="netplay, rewind, autosave" />
++
++  <!-- BATOCERA.PLUS END -->
++
        <core name="gw" features="" />
        <core name="freeintv" features="" />
        <core name="pcfx" features="netplay, rewind, autosave" />
-@@ -169,7 +212,24 @@
+@@ -169,7 +289,6 @@
    </emulator>
    <emulator name="vice" features="videomode, ratio" />
    <emulator name="fsuae" features="videomode, ratio" />
 -  <emulator name="cemu" features="videomode" />
-+  <emulator name="cemu" features="" />
-+    <cores>
-+      <core name="cemu" features="" />
-+	    <feature name="MOD"    value="mod">
-+           <choice name="nvidia"  value="nvidia" />
-+           <choice name="amd"     value="amd" />
-+        </feature>
-+    </cores>
-+  </emulator>
-+  <emulator name="model2" features="videomode, ratio" />
-+    <cores>
-+      <core name="model2" features="" />
-+	    <feature name="MOD"          value="mod">
-+           <choice name="singlecore"    value="singlecore" />
-+           <choice name="multicore"     value="multicore" />
-+        </feature>
-+    </cores>
-+  <emulator name="model3" features="videomode, ratio" />
    <emulator name="citra" features="videomode, ratio, rewind, screen_layout" />
    <emulator name="moonlight" features="videomode, ratio" />
    <emulator name="rpcs3" features="videomode" />
