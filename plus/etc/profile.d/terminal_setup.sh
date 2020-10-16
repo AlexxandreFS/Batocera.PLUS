@@ -43,13 +43,13 @@ echo    '       |__|'
 echo    "   Based on version $(cat $RECALBOX_VERSION | cut -d' ' -f 1) of the batocera.linux"
 echo
 
-BATOCERA_INFO="$(batocera-info 2>/dev/null)"
+BATOCERA_INFO="$(env DISPLAY= batocera-info 2>/dev/null)"
 
 echo    "   $(echo "${BATOCERA_INFO}" | grep '^Cpu model:')"
 echo -n "   $(echo "${BATOCERA_INFO}" | grep '^Cpu number:')"
 echo    "   $(echo "${BATOCERA_INFO}" | grep '^Cpu max frequency:')"
-echo -n "   $(echo "${BATOCERA_INFO}" | grep '^OpenGL:')"
-echo    "   $(echo "${BATOCERA_INFO}" | grep '^Vulkan:')"
+#echo -n "   $(echo "${BATOCERA_INFO}" | grep '^OpenGL:')"
+#echo    "   $(echo "${BATOCERA_INFO}" | grep '^Vulkan:')"
 echo    "   $(echo "${BATOCERA_INFO}" | grep '^Available memory:')"
 echo
 

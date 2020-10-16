@@ -1,14 +1,26 @@
 #!/bin/bash
 
 function showImage() {
-    if [ -e /dev/fb0 ]; then
-        if [ -f '/boot/splash.png' ]; then
-	    image="/boot/splash.png"
-        else
-	    image='/usr/share/batocera/splash/logo-version.png'
-        fi
-        fbv -f -i "${image}"
+
+    # Esta função e somente esta, é uma cópia exata da função "do_start" do arquivo orignal "S03splash" do batocera.linux.
+
+    if [[ $(ls /boot/splash/*.{jpg,png}  2>/dev/null) ]]
+    then
+        image="$(ls /boot/splash/*.{jpg,png} | sed -e "$((RANDOM%$(ls -1 /boot/splash/*.{jpg,png} | wc -l)+1))!d")"
+    else
+        image="/usr/share/batocera/splash/logo-version.png"
     fi
+
+    # on some sytems, fb0 is not immediatly loaded, so, keep a chance by waiting a bit
+    N=0
+    while ! test -e /dev/fb0 -o $N -gt 15
+    do
+        sleep 1
+        let N++
+    done
+    test -e /dev/fb0 && fbv -f -i "${image}"
+    sleep infinity
+    wait $!
 }
 
 function spinner() {
@@ -40,7 +52,9 @@ function loadAnimationPlus() {
         fi
     done
 
-    showImage
+    if ! grep -qE '^[ ]*splash.screen.enabled[ ]*=[ ]*0[ ]*$' "/boot/batocera-boot.conf"; then
+        showImage &
+    fi
 
     for i in {1..240}; do
         if [ "$(pidof X)" ] || [ -f /tmp/emulationstation.ready ] || [ "${i}" == '240' ]; then

@@ -12,7 +12,6 @@ WINE_DIR='/opt/Wine'
 # modprobe snd-seq
 # MIDIDEV=/dev/snd/seq
 
-
 ################################################################################
 
 ### WINE VERSION (wine, wine-staging, proton, etcc...)
@@ -102,14 +101,6 @@ fi
 
 ################################################################################
 
-### START WINESERVER
-
-case "${WINE_ARCH}" in wineserver|wineserver-wine-stable|wineserver-wine-staging|wineserver-wine-staging-dev|wineserver-proton|wineserver-proton-ge)
-    exec "${WINE_DIR}/${WINE_BUILD}/bin/wineserver" "$@"
-esac
-
-################################################################################
-
 ### DXVK
 
 DXVK_DLL='d3d11.dll d3d10core.dll d3d10.dll d3d10_1.dll d3d9.dll dxgi.dll'
@@ -194,6 +185,22 @@ function dxvkMain() {
 
 ################################################################################
 
+### UNLIMITED NUMBER OF OPEN FILES
+
+ulimit -S -c unlimited wine
+ulimit -S -c unlimited wine64
+ulimit -S -c unlimited wineserver
+
+################################################################################
+
+### START WINESERVER
+
+case "${WINE_ARCH}" in wineserver|wineserver-wine-stable|wineserver-wine-staging|wineserver-wine-staging-dev|wineserver-proton|wineserver-proton-ge)
+    exec "${WINE_DIR}/${WINE_BUILD}/bin/wineserver" "$@"
+esac
+
+################################################################################
+
 ### START WINE NORMALLY
 
 if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
@@ -264,7 +271,6 @@ wineWait
 ################################################################################
 
 ### USER FOLDERS
-
 
 for i in "${WINEPREFIX}/drive_c/users/root/"* "${WINEPREFIX}/drive_c/users/0/"* ; do
     if [ -L "$i" ]; then

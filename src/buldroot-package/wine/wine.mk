@@ -20,10 +20,10 @@ HOST_WINE_DEPENDENCIES  = host-bison host-flex
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-stable
 
 # Version: Wine-Staging
-WINE_VERSION = 5.0
-WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
-WINE_SITE = https://dl.winehq.org/wine/source/5.0
-WINE_FOLDER_INSTALL = /opt/Wine/wine-staging
+#WINE_VERSION = 5.0
+#WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
+#WINE_SITE = https://dl.winehq.org/wine/source/5.0
+#WINE_FOLDER_INSTALL = /opt/Wine/wine-staging
 
 # Version: Wine-Staging Dev
 #WINE_VERSION = 5.19
@@ -31,20 +31,20 @@ WINE_FOLDER_INSTALL = /opt/Wine/wine-staging
 #WINE_SITE = https://dl.winehq.org/wine/source/5.x
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-staging-dev
 
-# Version: Proton (Commits on Jun 10, 2020) (BR proton_5.0)
-#WINE_VERSION = 2409bd1f74be116172688a25df725290637c255a
+# Version: Proton (Commits on Oct 13, 2020) (BR proton_5.13)
+#WINE_VERSION = b48ce9a2778a4ff7ee14067f0ea73693ed70c52d
 #WINE_SITE = $(call github,ValveSoftware,wine,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/proton
 
-# Version: Proton (Commits on Feb 21, 2020) (BR proton_4.11)
-#WINE_VERSION = bdab6e746e31256431371d4af98d37eb942207e7
-#WINE_SITE = $(call github,ValveSoftware,wine,$(WINE_VERSION))
-#WINE_FOLDER_INSTALL = /opt/Wine/proton-4.11
-
 # Version: Commits on Aug 12, 2020 (BR ge-5.9) (Proton GE 5.9)
-#WINE_VERSION = 536055316691a51dcf613fd9304b4ce351c0ef6c
-#WINE_SITE = $(call github,GloriousEggroll,wine,$(WINE_VERSION))
-#WINE_FOLDER_INSTALL = /opt/Wine/proton-ge
+WINE_VERSION = 536055316691a51dcf613fd9304b4ce351c0ef6c
+WINE_SITE = $(call github,GloriousEggroll,wine,$(WINE_VERSION))
+WINE_FOLDER_INSTALL = /opt/Wine/proton-ge
+
+# Version: Wine-Lutrix 5.7-11 (Commits on Oct 15, 2020) (BR lutrix-5.7-11)
+#WINE_VERSION = bf5291b6cfcc67762e7acdf1aec0bad7c3046ce1
+#WINE_SITE = $(call github,lutris,wine,$(WINE_VERSION))
+#WINE_FOLDER_INSTALL = /opt/Wine/wine-lutrix
 
 ################################################################################
 
@@ -393,16 +393,6 @@ endif
 # build time by building just what we need.
 define HOST_WINE_BUILD_CMDS
     $(HOST_MAKE_ENV) $(MAKE) -C $(@D) __tooldeps__
-
-# Obsolento, remova se não appresentar erros nas próximas compilações.
-#	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) \
-#	  tools \
-#	  tools/sfnt2fon \
-#	  tools/widl \
-#	  tools/winebuild \
-#	  tools/winegcc \
-#	  tools/wmc \
-#	  tools/wrc
 endef
 
 # Wine only needs its host variant to be built, not that it is
@@ -419,7 +409,7 @@ HOST_WINE_CONF_OPTS += \
 	--without-gnutls   \
 	--without-capi     \
 	--without-cups     \
-        --without-oss      \
+    --without-oss      \
 	--without-pulse    \
 	--without-sane
 

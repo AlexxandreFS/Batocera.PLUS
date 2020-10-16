@@ -1,0 +1,54 @@
+##
+## Desabilita a verificação da versão do vulkan e OpenGL se executado fora do servidor X
+## A verificação do Vulkan e OpenGL fora do X (ctrl + alt + f3) causa um erro e o terminal fica travado por cerca de 1 minuto.
+##
+--- batocera-info.original
++++ batocera-info.modificado
+@@ -78,26 +78,36 @@
+ # OPENGL
+ if test "${V_ARCH}" = "x86" -o "${V_ARCH}" = "x86_64"
+ then
+-    V_OPENGLVERSION=$(DISPLAY=:0.0 glxinfo 2>/dev/null | grep -E '^OpenGL core profile version string:' | sed -e s+'^OpenGL core profile version string:[ ]*'++)
+-    if test -z "${V_OPENGLVERSION}"
++    if test -z ${DISPLAY}
+     then
+-	V_OPENGLVERSION=$(DISPLAY=:0.0 glxinfo 2>/dev/null | grep -E '^OpenGL version string:' | sed -e s+'^OpenGL version string:[ ]*'++)
++        echo 'OpenGL: not verified'
++    else
++        V_OPENGLVERSION=$(DISPLAY=:0.0 glxinfo 2>/dev/null | grep -E '^OpenGL core profile version string:' | sed -e s+'^OpenGL core profile version string:[ ]*'++)
++        if test -z "${V_OPENGLVERSION}"
++        then
++            V_OPENGLVERSION=$(DISPLAY=:0.0 glxinfo 2>/dev/null | grep -E '^OpenGL version string:' | sed -e s+'^OpenGL version string:[ ]*'++)
++        fi
++        echo "OpenGL: ${V_OPENGLVERSION}"
+     fi
+-    echo "OpenGL: ${V_OPENGLVERSION}"
+ fi
+ 
+ # VULKAN
+ if test -e /usr/bin/vulkaninfo
+ then
+-    APIVERSION=$(vulkaninfo --json 2>/dev/null | jq -r ".VkPhysicalDeviceProperties.apiVersion" 2>/dev/null)
+-    if test -n "${APIVERSION}"
++    if test -z ${DISPLAY}
+     then
+-	let "APIVERSION_MAJOR=${APIVERSION} >> 22"
+-	let "APIVERSION_MINOR=(${APIVERSION} >> 12) & 0x3ff"
+-	let "APIVERSION_PATCH=${APIVERSION} & 0xfff"
+-	echo "Vulkan: ${APIVERSION_MAJOR}.${APIVERSION_MINOR}.${APIVERSION_PATCH}"
++        echo "Vulkan: not verified"
+     else
+-	echo "Vulkan: none"
++        APIVERSION=$(vulkaninfo --json 2>/dev/null | jq -r ".VkPhysicalDeviceProperties.apiVersion" 2>/dev/null)
++        if test -n "${APIVERSION}"
++        then
++            let "APIVERSION_MAJOR=${APIVERSION} >> 22"
++            let "APIVERSION_MINOR=(${APIVERSION} >> 12) & 0x3ff"
++            vlet "APIVERSION_PATCH=${APIVERSION} & 0xfff"
++            echo "Vulkan: ${APIVERSION_MAJOR}.${APIVERSION_MINOR}.${APIVERSION_PATCH}"
++        else
++            echo 'Vulkan: none'
++        fi
+     fi
+ fi
+ 
