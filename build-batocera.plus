@@ -277,6 +277,7 @@ echo Descompactando driver nvidia ...
 if ! [ "${NVIDIA_LEGACY}" == '1' ]; then
     PKG_NAME="$(basename "${URL_NVIDIA}")"
 
+    chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
     "${DOWNLOAD_DIR}/${PKG_NAME}" -x --target                     "${TEMP_DIR}/${PKG_NAME%.run}" || exit $?
 
     mv "${TEMP_DIR}/${PKG_NAME%.run}/nvidia_icd.json"             "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d" || exit $?
