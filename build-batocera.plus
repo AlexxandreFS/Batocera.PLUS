@@ -29,30 +29,28 @@ PATCH_DIR='patch'
 
 ################################################################################
 
-# URL - Manual Update
-
-URL_WINE_PRONTON='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-5.0-1.7z'
-URL_WINE_PROTON_GE='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-ge-5.9-1.7z'
-URL_WINE_STABLE='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-stable-5.0.2-1.7z'
-URL_WINE_STAGING='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-staging-5.0-1.7z'
-URL_WINE_STAGING_DEV='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-staging-dev-5.19-1.7z'
-URL_WINE_EXTRA_LIBS1='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/wine-extra-libs/wine-extra-libs-1.7z'
-URL_MAME='https://github.com/BatoceraPLUS/Mame-Mess/releases/download/0220/mame_libretro_0220.7z'
-URL_MONO='https://dl.winehq.org/wine/wine-mono/5.1.1/wine-mono-5.1.1-x86.tar.xz'
-URL_JAVA="https://javadl.oracle.com/webapps/download/AutoDL?BundleId=242050_3d5a2bb8f8d4428bbe94aed7ec7ae784#/java-jre-linux-x64-${VERSION}${RELEASE}.tar.gz"
-URL_DXVK="https://github.com/doitsujin/dxvk/releases/download/v1.7.2/dxvk-1.7.2.tar.gz"
-
-# URL - Auto Update
+# DOWNLOADS LINKS
 
 URL_THEME_A="https://github.com/BatoceraPLUS/Theme-batocera-plus/archive/master.zip#/Theme-batocera-plus-${VERSION}${RELEASE}.zip"
-URL_DIRECTX='https://github.com/BatoceraPLUS/Wine/releases/download/DX9Jun2010/DX9Jun2010.7z'
 URL_FIREFOX="https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US#/firefox-esr-${VERSION}${RELEASE}.tar.bz2"
+URL_MAME='https://github.com/BatoceraPLUS/Mame-Mess/releases/download/0220/mame_libretro_0220.7z'
+URL_JAVA="https://javadl.oracle.com/webapps/download/AutoDL?BundleId=242050_3d5a2bb8f8d4428bbe94aed7ec7ae784#/java-jre-linux-x64-${VERSION}${RELEASE}.tar.gz"
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 URL_CEMUFAKEFILES='https://github.com/sabotendarsama/fakefiles/releases/download/1.0/fakefiles.zip'
 URL_EXTRAFILES='https://github.com/sabotendarsama/cemuextras/releases/download/v1.0/cemuextras.zip'
 URL_MODEL2='https://github.com/sabotendarsama/Model2/releases/download/V1.0/emulator.zip'
 URL_MODEL3='https://github.com/sabotendarsama/Model3-emulator-for-Batocera.PLUS/releases/download/v1/model3.zip'
+
+URL_WINE_STABLE='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-stable-5.0.2-1.7z'
+URL_WINE_STAGING='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-staging-dev-5.19-1.7z'
+URL_WINE_LUTRIX=''
+URL_WINE_PROTON_VALVE='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-5.0-1.7z'
+URL_WINE_PROTON_GE_CUSTOM='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-ge-5.9-1.7z'
+URL_WINE_EXTRA_LIBS='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/wine-extra-libs/wine-extra-libs-1.7z'
+URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/5.1.1/wine-mono-5.1.1-x86.tar.xz'
+URL_WINE_DIRECTX='https://github.com/BatoceraPLUS/Wine/releases/download/DX9Jun2010/DX9Jun2010.7z'
+URL_WINE_DXVK="https://github.com/doitsujin/dxvk/releases/download/v1.7.2/dxvk-1.7.2.tar.gz"
 
 URL_FLASH="$(curl -s 'https://fpdownload.macromedia.com/pub/flashplayer/masterversion/masterversion.xml' | grep 'NPAPI_linux version' | head -n 1 | cut -d '"' -f 2 | sed 's/,/./g')"
 if ! [ "${URL_FLASH}" ]; then
@@ -67,7 +65,7 @@ URL_NVIDIA=http://download.nvidia.com/XFree86/Linux-x86_64/450.66/NVIDIA-Linux-x
 
 mkdir -p "${DOWNLOAD_DIR}"
 
-for URL in "${URL_NVIDIA}" "${URL_WINE_PRONTON}" "${URL_WINE_PROTON_GE}" "${URL_WINE_STABLE}" "${URL_WINE_STAGING}" "${URL_WINE_STAGING_DEV}" "$URL_WINE_EXTRA_LIBS1" "${URL_DIRECTX}" "${URL_MONO}" "${URL_FIREFOX}" "${URL_MAME}" "${URL_JAVA}" "${URL_FLASH}" "${URL_THEME_A}" "${URL_CEMU}" "${URL_CEMUHOOK}" "${URL_CEMUFAKEFILES}" "${URL_EXTRAFILES}" "${URL_MODEL2}" "${URL_MODEL3}" "${URL_DXVK}"; do
+for URL in "${URL_NVIDIA}" "${URL_WINE_STABLE}" "${URL_WINE_STAGING}" "${URL_WINE_LUTRIX}" "${URL_WINE_PROTON_VALVE}" "${URL_WINE_PROTON_GE_CUSTOM}" "${URL_WINE_EXTRA_LIBS}" "${URL_WINE_MONO}" "${URL_WINE_DIRECTX}" "${URL_WINE_DXVK}" "${URL_FIREFOX}" "${URL_MAME}" "${URL_JAVA}" "${URL_FLASH}" "${URL_THEME_A}" "${URL_CEMU}" "${URL_CEMUHOOK}" "${URL_CEMUFAKEFILES}" "${URL_EXTRAFILES}" "${URL_MODEL2}" "${URL_MODEL3}"; do
     PKG_NAME="$(basename "${URL}")"
     echo "Baixando ${PKG_NAME}..."
     if ! [ -f "${DOWNLOAD_DIR}/${PKG_NAME}" ]; then
@@ -172,17 +170,12 @@ unzip "${DOWNLOAD_DIR}/${PKG_NAME}" \
 mv "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/Theme-batocera-plus-master" \
    "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus" || exit $?
 
-echo 'Descompactando Directx...'
-PKG_NAME="$(basename "${URL_DIRECTX}")"
-mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
-7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
-
-echo "Descompactando Wine-Proton..."
-PKG_NAME="$(basename "${URL_WINE_PRONTON}")"
+echo "Descompactando Proton-Valve..."
+PKG_NAME="$(basename "${URL_WINE_PROTON_VALVE}")"
 7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
 
-echo "Descompactando Wine-Proton-GE..."
-PKG_NAME="$(basename "${URL_WINE_PROTON_GE}")"
+echo "Descompactando Proton-GE-Custom..."
+PKG_NAME="$(basename "${URL_WINE_PROTON_GE_CUSTOM}")"
 7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
 
 echo "Descompactando Wine-Stable..."
@@ -193,21 +186,31 @@ echo "Descompactando Wine-Staging..."
 PKG_NAME="$(basename "${URL_WINE_STAGING}")"
 7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
 
-echo "Descompactando Wine-Staging-Dev..."
-PKG_NAME="$(basename "${URL_WINE_STAGING_DEV}")"
+echo "Descompactando Wine-Lutrix..."
+PKG_NAME="$(basename "${URL_WINE_LUTRIX}")"
 7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
 
-echo "Descompactando Wine-Extra Libs1..."
-PKG_NAME="$(basename "${URL_WINE_EXTRA_LIBS1}")"
+echo "Descompactando Wine-Extra Libs..."
+PKG_NAME="$(basename "${URL_WINE_EXTRA_LIBS}")"
 7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
 cp -r "${TEMP_DIR}/squashfs-root/opt/Wine/wine-extra-libs/"* "${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
 rm -r "${TEMP_DIR}/squashfs-root/opt/Wine/wine-extra-libs"
 
-echo 'Descompactando Mono...'
-PKG_NAME="$(basename "${URL_MONO}")"
+echo 'Descompactando Wine Mono...'
+PKG_NAME="$(basename "${URL_WINE_MONO}")"
 xz -d -k -c -v "${DOWNLOAD_DIR}/${PKG_NAME}" | tar xv -C "${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
 mv "${TEMP_DIR}/squashfs-root/opt/Wine/apps/wine-mono-"* \
    "${TEMP_DIR}/squashfs-root/opt/Wine/apps/mono"
+
+echo 'Descompactando Wine DXVK...'
+PKG_NAME="$(basename "${URL_WINE_DXVK}")"
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
+mv "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk-"*  "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk"
+
+echo 'Descompactando Directx...'
+PKG_NAME="$(basename "${URL_WINE_DIRECTX}")"
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
+7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
 
 echo 'Descompactando Firefox...'
 PKG_NAME="$(basename "${URL_FIREFOX}")"
@@ -232,11 +235,6 @@ echo 'Descompactando Java...'
 PKG_NAME="$(basename "${URL_JAVA}")"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/opt" || exit $?
 mv "${TEMP_DIR}/squashfs-root/opt/jre"*  "${TEMP_DIR}/squashfs-root/opt/Java"
-
-echo 'Descompactando DXVK...'
-PKG_NAME="$(basename "${URL_DXVK}")"
-gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
-mv "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk-"*  "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk"
 
 echo 'Descompactando Cemu...'
 PKG_NAME="$(basename "${URL_CEMU%.*}")"

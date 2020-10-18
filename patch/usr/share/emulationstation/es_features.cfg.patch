@@ -46,7 +46,7 @@
 +    <cores>
 +      <core name="wine-stable" features="" />
 +      <core name="wine-staging" features="" />
-+      <core name="wine-staging-dev" features="" />
++      <core name="wine-lutrix" features="" />
 +    </cores>
 +    <feature name="GAME EXECUTABLE" value="arch">
 +      <choice name="32-bits" value="32" />
@@ -72,8 +72,8 @@
 +
 +  <emulator name="proton" features="">
 +    <cores>
-+      <core name="proton" features="" />
-+      <core name="proton-ge" features="" />
++      <core name="proton-valve" features="" />
++      <core name="proton-ge-custom" features="" />
 +    </cores>
 +    <feature name="GAME EXECUTABLE" value="arch">
 +      <choice name="32-bits" value="32" />

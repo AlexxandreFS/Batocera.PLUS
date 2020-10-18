@@ -44,7 +44,7 @@
 +        then
 +            let "APIVERSION_MAJOR=${APIVERSION} >> 22"
 +            let "APIVERSION_MINOR=(${APIVERSION} >> 12) & 0x3ff"
-+            vlet "APIVERSION_PATCH=${APIVERSION} & 0xfff"
++            let "APIVERSION_PATCH=${APIVERSION} & 0xfff"
 +            echo "Vulkan: ${APIVERSION_MAJOR}.${APIVERSION_MINOR}.${APIVERSION_PATCH}"
 +        else
 +            echo 'Vulkan: none'
