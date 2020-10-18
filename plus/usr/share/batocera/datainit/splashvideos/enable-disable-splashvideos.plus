@@ -22,9 +22,9 @@ if [ "${RESP}" == '0' ] || [ "${RESP}" == '1' ]; then
     mount -o remount,rw /boot 2> /dev/null
 
     if [ "${RESP}" == '0' ]; then
-        batocera-settings /boot/batocera-boot.conf --command uncomment --key splashvideo
+        batocera-settings /boot/batocera-boot.conf --command uncomment --key splash.video
     else
-        batocera-settings /boot/batocera-boot.conf --command comment   --key splashvideo
+        batocera-settings /boot/batocera-boot.conf --command comment   --key splas.hvideo
     fi
 
     umount /boot 2> /dev/null

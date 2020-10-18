@@ -10,11 +10,11 @@ sistema inicia estão desabilitados. Para habilitar os vídeos edite o arquivo
 
 procure pela seguinte linha
 
-    #splashvideo=true
+    #splash.video=true
 
 remova o # do início da linha
 
-    splashvideo=true
+    splash.video=true
 
 Alternativamente também existe um script na pasta de vídeos que ao ser executado
 ativa ou desativa os vídeos de inicialização.
@@ -36,4 +36,4 @@ será interrompido.
 
 O motivo dos vídeos virem desabilitados por padrão é para evitar problemas de
 inicialização com um pequeno número de placas de vídeo que não são completamente
-suportadas pelo Batocera.PLUS
+suportadas pelo linux.
