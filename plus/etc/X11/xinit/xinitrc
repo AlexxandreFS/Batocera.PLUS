@@ -146,7 +146,7 @@ function playVideo() {
     openbox --exit
 }
 
-if [ "$(grep ^splashvideo=true /boot/batocera-boot.conf)" ]; then
+if [ "$(grep ^splash.video=true /boot/batocera-boot.conf)" ]; then
     if [ "$(ls -A -1 /userdata/splashvideos/*.mp4 | head -n 1)" ]; then
         randVideo
     else
