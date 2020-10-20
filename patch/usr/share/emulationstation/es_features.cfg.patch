@@ -1,6 +1,6 @@
 --- es_features.cfg.original
 +++ es_features.cfg.modificado
-@@ -77,8 +77,128 @@
+@@ -77,8 +77,129 @@
    <emulator name="melonds" features="videomode" />
    <emulator name="daphne" features="videomode, ratio" />
    <emulator name="flycast" features="videomode, ratio" />
@@ -46,7 +46,7 @@
 +    <cores>
 +      <core name="wine-stable" features="" />
 +      <core name="wine-staging" features="" />
-+      <core name="wine-lutrix" features="" />
++      <core name="wine-lutris" features="" />
 +    </cores>
 +    <feature name="GAME EXECUTABLE" value="arch">
 +      <choice name="32-bits" value="32" />
@@ -74,6 +74,7 @@
 +    <cores>
 +      <core name="proton-valve" features="" />
 +      <core name="proton-ge-custom" features="" />
++      <core name="proton-tkg" features="" />
 +    </cores>
 +    <feature name="GAME EXECUTABLE" value="arch">
 +      <choice name="32-bits" value="32" />
@@ -129,7 +130,7 @@
        <core name="gw" features="" />
        <core name="freeintv" features="" />
        <core name="pcfx" features="netplay, rewind, autosave" />
-@@ -169,7 +289,6 @@
+@@ -169,7 +290,6 @@
    </emulator>
    <emulator name="vice" features="videomode, ratio" />
    <emulator name="fsuae" features="videomode, ratio" />

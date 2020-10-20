@@ -17,17 +17,48 @@ yad --form --title='Batocera.PLUS' --fixed --center --window-icon='/usr/share/ic
     --borders=10
 
 RESP="${?}"
+BOOT_DIR='/boot'
+MOUNT_STATUS=0
 
-if [ "${RESP}" == '0' ] || [ "${RESP}" == '1' ]; then
-    mount -o remount,rw /boot 2> /dev/null
+function mountBoot() {
+    local TMP_FILE="$(mktemp -p "${BOOT_DIR}" 2> /dev/null)"
 
-    if [ "${RESP}" == '0' ]; then
-        batocera-settings /boot/batocera-boot.conf --command uncomment --key splash.video
-    else
-        batocera-settings /boot/batocera-boot.conf --command comment   --key splas.hvideo
+    if [ "${TMP_FILE}" ]; then
+        rm -f "${TMP_FILE}"
+        return 0
     fi
 
-    umount /boot 2> /dev/null
+    if mount -o remount,rw "${BOOT_DIR}"; then
+        sleep 0.5
+        MOUNT_STATUS=1
+        return 0
+    fi
+
+    exit 1
+}
+
+function umountBoot() {
+    if [ "${MOUNT_STATUS}" == '1' ]; then
+        if umount -o remount,ro "${BOOT_DIR}"; then
+            return
+        fi
+    fi
+
+    exit 2
+}
+
+if [ "${RESP}" == '0' ] || [ "${RESP}" == '1' ]; then
+
+        mountBoot
+
+        if [ "${RESP}" == '0' ]; then
+            batocera-settings "${BOOT_DIR}/batocera-boot.conf" --command uncomment --key splash.video
+        else
+            batocera-settings "${BOOT_DIR}/batocera-boot.conf" --command comment   --key splash.video
+        fi
+
+        umountBoot
+    fi
 fi
 
 exit 0

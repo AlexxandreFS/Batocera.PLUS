@@ -11,13 +11,25 @@ WINE_DIR='/opt/Wine'
 # Set the MIDI (sequencer) device. Default /dev/sequencer.
 # modprobe snd-seq
 # MIDIDEV=/dev/snd/seq
+# echo "$(yad --file --width=1024 --height=768 --center --file-filter='*.exe' --filename='/userdata/roms/windows/Streets of Rage 4.plus')"
 
 ################################################################################
 
 ### SET DEFAULT VERSION OF WINE (wine, wine-staging, proton, etc...)
 
-WINE_BUILD="$(basename "${0}" '-64')"
-WINE_BUILD="${WINE_BUILD#wineserver-}"
+# A variavel CORE define o core que será usado, caso a variável não tenha
+# sido exportada o nome do atalho do executável será o nome do core.
+# Esta opção foi criada para o usuário poder escolher qual core usar pela
+# interface do ES mesmo que exista o script batocera.plus na pasta do jogo será
+# usado o core escolhido pelo usuário.
+
+if [ -z "${CORE}" ] || [ "${CORE}" == 'auto' ]; then
+    WINE_BUILD="$(basename "${0}" '-64')"
+    WINE_BUILD="${WINE_BUILD#wineserver-}"
+else
+    WINE_BUILD="${CORE}"
+    unset CORE
+fi
 
 case "${WINE_BUILD}" in 
     wine|wine64|wineserver)
@@ -39,7 +51,7 @@ else
 fi
 
 case ${WINE_ARCH} in
-    wineserver|wineserver-wine-stable|wineserver-wine-staging|wineserver-wine-lutrix|wineserver-proton|wineserver-proton-valve|wineserver-proton-ge-custom)
+    wineserver|wineserver-wine-stable|wineserver-wine-staging|wineserver-wine-lutris|wineserver-proton|wineserver-proton-valve|wineserver-proton-ge-custom|wineserver-proton-tkg)
         LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
@@ -47,7 +59,7 @@ case ${WINE_ARCH} in
         LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         export LIBGL_DRIVERS_PATH="/lib32/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
         ;;
-    wine|wine-stable|wine-staging|wine-lutrix|proton|proton-valve|proton-ge-custom)
+    wine|wine-stable|wine-staging|wine-lutris|proton|proton-valve|proton-ge-custom|proton-tkg)
         WINE_ARCH=''
         LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
@@ -56,7 +68,7 @@ case ${WINE_ARCH} in
         LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         export LIBGL_DRIVERS_PATH="/lib32/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
         ;;
-    wine64|wine-stable-64|wine-staging-64|wine-lutrix-64|proton64|proton-valve-64|proton-ge-custom-64)
+    wine64|wine-stable-64|wine-staging-64|wine-lutris-64|proton64|proton-valve-64|proton-ge-custom-64|proton-tkg-64)
         WINE_ARCH='64'
         LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
@@ -106,6 +118,11 @@ fi
 ################################################################################
 
 ### DXVK
+
+export DXVK_HUD=1
+export DXVK_LOG_LEVEL=none
+#export DXVK_LOG_PATH="${HOME}/logs"
+export DXVK_STATE_CACHE_PATH="${HOME}/.cache"
 
 DXVK_DLL='d3d11.dll d3d10core.dll d3d10.dll d3d10_1.dll d3d9.dll dxgi.dll'
 
@@ -199,7 +216,7 @@ ulimit -S -c unlimited wineserver
 
 ### START WINESERVER
 
-case "${WINE_ARCH}" in wineserver|wineserver-wine-stable|wineserver-wine-staging|wineserver-wine-lutrix|wineserver-proton|wineserver-proton-valve|wineserver-proton-ge-custom)
+case "${WINE_ARCH}" in wineserver|wineserver-wine-stable|wineserver-wine-staging|wineserver-wine-lutris|wineserver-proton|wineserver-proton-valve|wineserver-proton-ge-custom|wineserver-proton-tkg)
     exec "${WINE_DIR}/${WINE_BUILD}/bin/wineserver" "$@"
 esac
 
