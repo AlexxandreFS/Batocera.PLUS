@@ -1,0 +1,101 @@
+#!/bin/sh
+
+### Batocera.PLUS
+### Encerra a execução de todos os programas executados pelo wine.
+### Alexandre Freire dos Santos
+
+# Não tenta executar este script se ele já estiver em execução.
+if [ "$(pidof -o $$ "$(basename "$0")")" ]; then
+    echo 'this script is already running'
+    exit 1
+fi
+
+##
+ # Detecta o WINEPREFIX da instância do wine em execução e define o mesmo prefix para este script.
+ ##
+function setWinePrefix() {
+
+    if [ -z "$(pidof -s wineserver)" ]; then
+        return 1
+    fi
+
+    WINEPREFIX="/$(ls -l "/proc/$(pidof -s wineserver)/fd" |
+                          grep -E '/drive_c/windows/system32$' |
+                          cut -d  '/' -f 2- |
+                          sed 's+/drive_c/windows/system32$++')"
+
+    if [ -z "${WINEPREFIX}" ]; then
+        return 1
+    else
+        export WINEPREFIX
+    fi
+
+    return 0
+}
+
+##
+ # Encerra o wine forçadamente.
+ ##
+function killWine() {
+    for i in $(ps ax | grep -E ".exe$|.EXE$" | awk '{print $1}'); do
+        kill -9 "${i}" 2> /dev/null
+        sleep 0.1
+    done
+
+    for i in wine wine64 wineserver winedbg wine-preloader wine64-preloader; do
+        if [ "$(pidof -s ${i})" ]; then
+            killall -9 "${i}" > /dev/null
+            sleep 0.1
+        fi
+    done
+}
+
+##
+ # Encerra o wine normalmente.
+ ##
+function closeWine() {
+    if [ "$(pidof -s winedbg)" ]; then
+        kill -15 "$(pidof -s winedbg)"
+        sleep 0.5
+    fi
+
+    wineserver -k 15 > /dev/null
+
+    for i in {1..20}; do
+        if [ "$(pidof wineserver)" ]; then
+            if [ "${i}" == '20' ]; then
+                return 1
+            fi
+            sleep 0.5
+            continue
+        else
+            for i in $(ps ax | grep -E ".exe$|.EXE$" | awk '{print $1}'); do
+                return 1
+            done
+
+            for i in wine wine64 wine-preloader wine64-preloader winedbg; do
+                if [ "$(pidof -s ${i})" ]; then
+                    return 1
+                fi
+            done
+
+            return 0
+        fi
+    done
+}
+
+### MAIN
+
+if ! setWinePrefix; then
+    killWine
+    exit 2
+fi
+
+if ! closeWine; then
+    killWine
+    exit 3
+fi
+
+echo 'wine is dead'
+
+exit 0

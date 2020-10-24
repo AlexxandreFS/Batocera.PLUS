@@ -119,7 +119,8 @@ fi
 
 ### DXVK
 
-export DXVK_HUD=1
+#export DXVK_HUD=full
+export DXVK_HUD=fps,memory,gpuload,api
 export DXVK_LOG_LEVEL=none
 #export DXVK_LOG_PATH="${HOME}/logs"
 export DXVK_STATE_CACHE_PATH="${HOME}/.cache"

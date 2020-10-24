@@ -1,2 +1,15 @@
 Usada pelo Java
 libXtst.so.6
+--------------------
+file
+
+/── usr
+    ├── bin
+    │   └── file
+    ├── lib
+    │   └── libmagic.so.1
+    └── share
+        └── misc
+            └── magic.mgc
+
+--------------------
