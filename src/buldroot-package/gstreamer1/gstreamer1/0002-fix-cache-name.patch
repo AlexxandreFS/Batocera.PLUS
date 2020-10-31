@@ -1,0 +1,30 @@
+diff --git a/gst/gstregistry.c b/gst/gstregistry.c
+index a8b2f51..2ffb9db 100644
+--- a/gst/gstregistry.c
++++ b/gst/gstregistry.c
+@@ -1712,8 +1712,24 @@ ensure_current_registry (GError ** error)
+   if (registry_file == NULL)
+     registry_file = g_strdup (g_getenv ("GST_REGISTRY"));
+   if (registry_file == NULL) {
++    int i;
++    char cache_name[20];
++    char time_now[] = __TIME__;
++
++    for (i = 0; i < strlen(time_now); i++)
++    {
++        if (time_now[i] == ':')
++        {
++            time_now[i] = '0';
++        }
++    }
++
++    strcpy(cache_name, "registry.");
++    strcat(cache_name, time_now);
++    strcat(cache_name, ".bin");
++
+     registry_file = g_build_filename (g_get_user_cache_dir (),
+-        "gstreamer-" GST_API_VERSION, "registry." TARGET_CPU ".bin", NULL);
++        "gstreamer-" GST_API_VERSION, cache_name, NULL);
+   }
+ 
+   if (!_gst_disable_registry_cache) {

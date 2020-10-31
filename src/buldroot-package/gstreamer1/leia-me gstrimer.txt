@@ -1,4 +1,3 @@
-GSTREAMER
 Adicione no config.def do batocera para compilar os plugins.
 
     select BR2_PACKAGE_ORC
