@@ -1,0 +1,174 @@
+#!/bin/bash
+###
+### Batocera.PLUS
+### Alexxandre Freire dos Santos
+###
+
+################################################################################
+
+### CONFIGURAÇÃO
+
+WINE_DIR=/opt/Wine
+WINE_PREFIX=/userdata/system/configs/wine
+WINE_BUILDS=$(ls -1r ${WINE_DIR} | grep -E '^wine-|^proton-')
+
+APP_IMAGE=${WINE_DIR}/winecfg.png
+APP_ICON=/usr/share/icons/batocera/wine.png
+
+################################################################################
+
+declare -A MSG
+
+MSG[0]=''
+MSG[1]=''
+MSG[2]=''
+
+##
+## Faz a tradução dos textos apresentados para o usuário.
+##
+function translate() {
+    LANG="$(batocera-settings -command load -key system.language)"
+
+    case $LANG in
+        pt_BR)
+            MSG[0]='O winecfg é o programa de configuração padrão do wine.\n\nEscolha na lista qual versão que você deseja configurar.\n'
+            MSG[1]='AGUARDE UM MOMENTO...'
+            MSG[2]='AGUARDANDO WINE/PROTON ENCERRAR...'
+            ;;
+        es_ES)
+            MSG[0]='Winecfg es el programa de configuración de wine predeterminado.\n\nElija de la lista qué versión desea configurar.\n'
+            MSG[1]='ESPERA UN MOMENTO...'
+            MSG[2]='ESPERE EL ACABADO DE WINE/PROTON...'
+            ;;
+        *)
+            MSG[0]='Winecfg is the default wine configuration program.\n\nChoose from the list which version you want to configure.\n'
+            MSG[1]='WAIT FOR A MOMENT...'
+            MSG[2]='WAIT FOR WINE/PROTON FINISH...'
+    esac
+}
+
+
+##
+## Exibe um menu gráfico para escolher a versão do wine para ser configurada.
+##
+function choiceMenu() {
+    local RESOLUTION=$(batocera-resolution currentResolution)
+    local RESOLUTION_X=$(echo ${RESOLUTION} | cut -d x -f 1)
+    local RESOLUTION_Y=$(echo ${RESOLUTION} | cut -d x -f 1)
+
+    if [ "${RESOLUTION_X}" -ge '1024' ]; then
+        RESOLUTION_X='1000'
+    else
+        RESOLUTION_X=$(( ${RESOLUTION_X} - 20 ))
+    fi
+
+    if [ "${RESOLUTION_Y}" -ge '768' ]; then
+        RESOLUTION_Y='500'
+    else
+        RESOLUTION_Y=$(( ${RESOLUTION_Y} - 20 ))
+    fi
+
+    for WINE in ${WINE_BUILDS}; do
+        NAME="${WINE}"
+
+        COMPILATION="$(date -d @$(cat -e ${WINE_DIR}/${WINE}/.update-timestamp | cut -d '^' -f 1))"
+
+        if [ -f "${WINE_PREFIX}/${WINE}/system.reg" ]; then
+            VER="$(${WINE} --version)"
+        else
+            VER='Never Executed'
+        fi
+
+        LIST="${LIST} '${NAME}' '${VER}' '${COMPILATION}'"
+    done
+
+    RESP=$(
+        eval yad --title='"WINECFG (Batocera.PLUS)"' \
+                 --width=${RESOLUTION_X} \
+                 --height=${RESOLUTION_Y} \
+                 --borders=20 \
+                 --fixed \
+                 --center \
+                 --window-icon="${APP_ICON}" \
+                 --text='"${MSG[0]}"' \
+                 --buttons-layout=start \
+                 --button="gtk-cancel:1" \
+                 --button="gtk-ok:0" \
+                 --list \
+                 --column=name \
+                 --column=ver \
+                 --column=compilation \
+                   ${LIST}
+    )
+
+    if [ -z "${RESP}" ]; then
+        return 1
+    fi
+
+    echo "${RESP}" | cut -d '|' -f 1
+}
+
+##
+## Exibe uma imagem de carregamento enquando o winecfg está carregando.
+##
+function loadSreen() {
+    yad --borders=10 \
+        --fixed \
+        --center \
+        --undecorated \
+        --no-buttons \
+        --close-on-unfocus \
+        --image-on-top \
+        --image="${APP_IMAGE}" \
+        --text-align=center \
+        --text="${1}"
+}
+
+##
+## Se algo estiver errado retorna um código de erro e encerra a função.
+##
+function sanityTest() {
+    if [ "$(pidof yad)" ]; then
+        return 1
+    fi
+
+    if [ "$(pidof winecfg.exe)" ]; then
+        return 5
+    fi
+
+    if [ "$(pidof wineserver)" ]; then
+        loadSreen "${1}" &
+
+        for i in {1..30}; do
+            if [ "$(pidof wineserver)" ]; then
+                sleep 1
+            else
+                break
+            fi
+
+            if [ "${i}" == '30' ]; then
+                killwine
+                killall yad
+                return 10
+            fi
+        done
+    fi
+}
+
+##
+## MAIN
+##
+
+translate
+
+sanityTest "BATOCERA.PLUS\n\n${MSG[2]}" || exit 1
+
+RESP=$(choiceMenu)
+
+if [ -z "${RESP}" ]; then
+    exit 0
+fi
+
+loadSreen "BATOCERA.PLUS\n\n${MSG[1]}" &
+
+exec ${RESP} winecfg

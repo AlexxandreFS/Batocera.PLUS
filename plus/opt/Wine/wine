@@ -28,7 +28,6 @@ if [ -z "${CORE}" ] || [ "${CORE}" == 'auto' ]; then
     WINE_BUILD="${WINE_BUILD#wineserver-}"
 else
     WINE_BUILD="${CORE}"
-    unset CORE
 fi
 
 case "${WINE_BUILD}" in 
@@ -90,19 +89,29 @@ case ${WINE_ARCH} in
         exit -1
 esac
 
+################################################################################
+
+### LIBS
+
 export LD_LIBRARY_PATH
 
-export XDG_RUNTIME_DIR=/userdata
+### XDG
+
+export XDG_RUNTIME_DIR="${HOME}"
 export XDG_CONFIG_DIRS=/etc/xdg
-export XDG_CACHE_HOME=/tmp/xdg_cache
+export XDG_CACHE_HOME="${HOME}/.cache"
+
+### GSTREAMER
+
+export GST_REGISTRY_UPDATE=no
+export GST_PLUGIN_PATH=${WINE_DIR}/lib32/gstreamer-1.0:${WINE_DIR}/lib64/gstreamer-1.0
+export GST_PLUGIN_SYSTEM_PATH=${WINE_DIR}/lib32/gstreamer-1.0:${WINE_DIR}/lib64/gstreamer-1.0
+export GST_PLUGIN_SCANNER=${WINE_DIR}/lib32/gstreamer-1.0:${WINE_DIR}/lib64/gstreamer-1.0
+
+### MISC
 
 export PYTHONPATH="/usr/lib/python2.7:${PYTHONPATH:+:$PYTHONPATH}"
 export PERLLIB="/usr/share/perl5/:${PERLLIB:+:$PERLLIB}"
-
-#export GST_PLUGIN_SYSTEM_PATH=${WINE_DIR}/lib32
-#export GST_PLUGIN_SCANNER=${WINE_DIR}/lib32/gstreamer-1.0
-#export GST_PLUGIN_SYSTEM_PATH=${WINE_DIR}/lib64
-#export GST_PLUGIN_SCANNER=${WINE_DIR}/lib64/gstreamer-1.0
 
 ################################################################################
 
@@ -119,15 +128,17 @@ fi
 
 ### DXVK
 
-#export DXVK_HUD=full
 export DXVK_HUD=fps,memory,gpuload,api
 export DXVK_LOG_LEVEL=none
-#export DXVK_LOG_PATH="${HOME}/logs"
-export DXVK_STATE_CACHE_PATH="${HOME}/.cache"
+export DXVK_LOG_PATH="${HOME}/logs"
+export DXVK_STATE_CACHE_PATH="${HOME}/.cache/dxvk"
 
 DXVK_DLL='d3d11.dll d3d10core.dll d3d10.dll d3d10_1.dll d3d9.dll dxgi.dll'
 
 function dxvkInstall() {
+    mkdir -p "${DXVK_LOG_PATH}"
+    mkdir -p "${DXVK_STATE_CACHE_PATH}"
+
     for DLL in ${DXVK_DLL}; do
         # Backup
         if ! [ -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}.backup" ]; then
@@ -190,16 +201,16 @@ function dxvkMain() {
         if [ "$(vulkaninfo 2> /dev/null)" ]; then
             dxvkInstall
             dxvkExport
-            echo 'info: DXVK Enabled'
+            #echo 'info: DXVK Enabled'
          else
             dxvkUninstall
-            echo "info: Vulkan not supported, DXVK will be disabled'"
+            #echo "info: Vulkan not supported, DXVK will be disabled'"
          fi
          unset DXVK
     else
         if [ "$(vulkaninfo 2> /dev/null)" ]; then
             dxvkUninstall
-            echo "info: DXVK avaliable, to enable run 'DXVK=1 wine MyGame.exe'"
+            #echo "info: DXVK avaliable, to enable run 'DXVK=1 wine MyGame.exe'"
         fi
      fi
      unset DXVK_DLL
@@ -271,7 +282,7 @@ fi
 ### REINICIA O "WINDOWS"
 
 function wineWait() {
-    for i in {1..40}; do
+    for i in {1..60}; do
         if [ $(pidof -s wineserver) ]; then
             sleep 1
             continue
@@ -361,7 +372,7 @@ wait
 
 ### LAUNCHES WINE FOR THE FIRST TIME
 
-exec "${0}" "${@}"
+exec "${WINE_BUILD}" "${@}"
 
 ################################################################################
 
@@ -371,20 +382,28 @@ exec "${0}" "${@}"
 # export GSETTINGS_SCHEMA_DIR="/wine-staging/share/glib-2.0/schemas:${GSETTINGS_SCHEMA_DIR:+:$GSETTINGS_SCHEMA_DIR}"
 # export GSETTINGS_SCHEMA_DIR="/usr/share/glib-2.0/schemas:${GSETTINGS_SCHEMA_DIR:+:$GSETTINGS_SCHEMA_DIR}"
 
-#ldd ${WINE_DIR}/${WINE_BUILD}/bin/*                 2> /dev/null | grep 'not found'
+# GSTREAMER TEST
+#/userdata/Wine/EXTRA-gstreamer/usr-32/bin/gst-launch-1.0 videotestsrc ! autovideosink
+#/userdata/Wine/EXTRA-gstreamer/usr-32/bin/gst-launch-1.0 audiotestsrc ! autoaudiosink
+#/userdata/Wine/EXTRA-gstreamer/usr-32/bin/gst-launch-1.0 audiotestsrc ! autoaudiosink videotestsrc ! autovideosink
+#/userdata/Wine/EXTRA-gstreamer/usr-32/bin/gst-launch-1.0 playbin uri=file:///userdata/meu_video.wmv
+#/userdata/Wine/EXTRA-gstreamer/usr-32/bin/gst-launch-1.0 --gst-debug-level=0
+
+# WINE DEPS
 #${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}      --check-libs | grep ': missing'
+#ldd ${WINE_DIR}/${WINE_BUILD}/bin/*                 2> /dev/null | grep 'not found'
 #ldd ${WINE_DIR}/lib32/*                             2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/lib32/gstreamer-1.0/*               2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/lib32/mpg123/*                      2> /dev/null | grep 'not found'
 #ldd ${WINE_DIR}/${WINE_BUILD}/lib32/*               2> /dev/null | grep 'not found'
 #ldd ${WINE_DIR}/${WINE_BUILD}/lib32/wine/*          2> /dev/null | grep 'not found'
 #ldd ${WINE_DIR}/${WINE_BUILD}/lib32/wine/fakedlls/* 2> /dev/null | grep 'not found'
-#ldd ${WINE_DIR}/${WINE_BUILD}/lib32/gstreamer-1.0/* 2> /dev/null | grep 'not found'
-#ldd ${WINE_DIR}/${WINE_BUILD}/lib32/mpg123/*        2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/lib64/*                             2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/lib64/gstreamer-1.0/*               2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/lib64/mpg123/*                      2> /dev/null | grep 'not found'
 #ldd ${WINE_DIR}/lib64/*                             2> /dev/null | grep 'not found'
 #ldd ${WINE_DIR}/${WINE_BUILD}/lib64/*               2> /dev/null | grep 'not found'
 #ldd ${WINE_DIR}/${WINE_BUILD}/lib64/wine/*          2> /dev/null | grep 'not found'
 #ldd ${WINE_DIR}/${WINE_BUILD}/lib64/wine/fakedlls/* 2> /dev/null | grep 'not found'
-
-# http://dl.winehq.org/wine
-# https://wiki.winehq.org/Wine_User%27s_Guide
 
 ################################################################################

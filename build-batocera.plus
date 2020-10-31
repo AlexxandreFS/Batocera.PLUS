@@ -36,13 +36,13 @@ URL_FIREFOX="https://download.mozilla.org/?product=firefox-esr-latest&os=linux64
 URL_MAME='https://github.com/BatoceraPLUS/Mame-Mess/releases/download/0220/mame_libretro_0220.7z'
 URL_JAVA="https://javadl.oracle.com/webapps/download/AutoDL?BundleId=242050_3d5a2bb8f8d4428bbe94aed7ec7ae784#/java-jre-linux-x64-${VERSION}${RELEASE}.tar.gz"
 
-URL_WINE_STABLE='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-stable-5.0.2-2.7z'
-URL_WINE_STAGING='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-staging-5.19-2.7z'
-URL_WINE_LUTRIS='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-lutris-5.7-11-1.7z'
-URL_WINE_PROTON_VALVE='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-valve-5.13-1.7z'
-URL_WINE_PROTON_GE_CUSTOM='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-ge-custom-5.9-3.7z'
-URL_WINE_PROTON_TKG='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-tkg-5.19.r1-2.7z'
-URL_WINE_EXTRA_LIBS='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/wine-extra-libs/wine-extra-libs-2.7z'
+URL_WINE_STABLE='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-stable-5.0.2-3.7z'
+URL_WINE_STAGING='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-staging-5.20-1.7z'
+URL_WINE_LUTRIS='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-lutris-5.7-11-2.7z'
+URL_WINE_PROTON_VALVE='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-valve-5.13-2.7z'
+URL_WINE_PROTON_GE_CUSTOM='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-ge-custom-5.9-4.7z'
+URL_WINE_PROTON_TKG='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-tkg-5.19.r1-3.7z'
+URL_WINE_EXTRA_LIBS='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/wine-extra-libs/wine-extra-libs-3.7z'
 URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/5.1.1/wine-mono-5.1.1-x86.tar.xz'
 URL_WINE_DIRECTX='https://github.com/BatoceraPLUS/Wine/releases/download/DX9Jun2010/DX9Jun2010.7z'
 URL_WINE_DXVK="https://github.com/doitsujin/dxvk/releases/download/v1.7.2/dxvk-1.7.2.tar.gz"
