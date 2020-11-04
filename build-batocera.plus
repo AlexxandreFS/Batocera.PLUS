@@ -3,7 +3,7 @@
 
 # Versão do Batocera.PLUS
 VERSION='2.05'
-#RELEASE='alpha'
+RELEASE='dev'
 NVIDIA_LEGACY='0'
 
 # Pasta temporária em uma partição Linux
@@ -51,8 +51,8 @@ URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 URL_CEMUFAKEFILES='https://github.com/sabotendarsama/fakefiles/releases/download/1.0/fakefiles.zip'
 URL_EXTRAFILES='https://github.com/sabotendarsama/cemuextras/releases/download/v1.0/cemuextras.zip'
-URL_MODEL2='https://github.com/sabotendarsama/Model2/releases/download/V1.0/emulator.zip'
-URL_MODEL3='https://github.com/sabotendarsama/Model3-emulator-for-Batocera.PLUS/releases/download/v1/model3.zip'
+URL_MODEL2='https://github.com/sabotendarsama/Model2/releases/download/V1.0/model2-1.1.zip'
+URL_MODEL3='https://github.com/sabotendarsama/Model3/releases/download/v1.0/model3-1.1.zip'
 
 URL_FLASH="$(curl -s 'https://fpdownload.macromedia.com/pub/flashplayer/masterversion/masterversion.xml' | grep 'NPAPI_linux version' | head -n 1 | cut -d '"' -f 2 | sed 's/,/./g')"
 if ! [ "${URL_FLASH}" ]; then
@@ -273,10 +273,7 @@ unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/squashfs-root/opt/Model2" ||
 
 echo 'Descompactando Model 3 Emulator...'
 PKG_NAME="$(basename "${URL_MODEL3%.*}")"
-unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/squashfs-root/opt" || exit $?
-mkdir -p "${TEMP_DIR}/squashfs-root/opt/Model3/emulator"
-mv    "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/Model3/emulator"
-rm -r "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}"
+unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/squashfs-root/opt/Model3" || exit $?
 
 # REMOVA o driver da nvidia quando for atualizar.
 echo Descompactando driver nvidia ...
