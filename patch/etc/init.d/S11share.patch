@@ -1,0 +1,80 @@
+##
+## Corrige o bug de montar a partição share.
+## Aumenta o tamanho do ramdisk em caso de falhas.
+##
+--- S11share.original
++++ S11share.modificado
+@@ -45,6 +45,8 @@
+ MAXTRY=$(getMaxTryConfig "${SHARECONFFILE}")
+ NTRY=0
+ 
++TMPFSSIZE=512M
++
+ mountDeviceOrFallback() {
+     DEVICE=$1
+     TDEVICE=$2
+@@ -76,7 +78,7 @@
+     then
+         if ! batocera-mount "${INTERNALDEVICETYPE}" 1 "${INTERNALDEVICE}" /userdata
+         then
+-            mount -t tmpfs -o size=256M tmpfs /userdata
++            mount -t tmpfs -o size=${TMPFSSIZE} tmpfs /userdata
+         fi
+     fi
+ }
+@@ -193,12 +195,11 @@
+ 
+ case "${MODE}" in
+     "DEV")
+-        LDEVICE=$(blkid | grep " UUID=\"${UUID}\"")
+         while [[ -z "${LDEVICE}" && "${NTRY}" -lt "${MAXTRY}" ]] # wait the device that can take some seconds after udev started
+         do
+-            (( NTRY++ ))
+-            sleep 1
++           let NTRY++
+            LDEVICE=$(blkid | grep " UUID=\"${UUID}\"")
++           sleep 0.5
+         done
+         DEVICE=$(echo "${LDEVICE}" | sed -e s+'^\([^:]*\):.*$'+'\1'+)
+         TDEVICE=$(echo "${LDEVICE}" | sed -e s+'^.* TYPE="\([^"]*\)"$'+'\1'+)
+@@ -207,12 +208,11 @@
+     ;;
+     "ANYEXTERNAL")
+         PARTPREFIX=$(batocera-part prefix "${INTERNALDEVICE}")
+-        LDEVICE=$(blkid | grep -vE "^${PARTPREFIX}" | head -1)
+         while [ -z "${LDEVICE}" ] && [ "${NTRY}" -lt "${MAXTRY}" ] # wait the device that can take some seconds after udev started
+         do
+             let NTRY++
+-            sleep 1
+             LDEVICE=$(blkid | grep -vE "^${PARTPREFIX}" | head -1)
++            sleep 0.5
+         done
+         DEVICE=$(echo "${LDEVICE}" | sed -e s+'^\([^:]*\):.*$'+'\1'+)
+         TDEVICE=$(echo "${LDEVICE}" | sed -e s+'^.* TYPE="\([^"]*\)"$'+'\1'+)
+@@ -220,7 +220,7 @@
+         fixbatoceraconfname
+     ;;
+     "RAM")
+-        mount -t tmpfs -o size=256M tmpfs /userdata
++        mount -t tmpfs -o size=${TMPFSSIZE} tmpfs /userdata
+     ;;
+     "NETWORK")
+         # first, INTERNAL mount, then, network mount over the NETWORK mounts
+@@ -233,7 +233,7 @@
+             fixbatoceraconfname
+         else
+             # fallback
+-            mount -t tmpfs -o size=256M tmpfs /userdata
++            mount -t tmpfs -o size=${TMPFSSIZE} tmpfs /userdata
+         fi
+ 
+         # Network mounts
+@@ -245,7 +245,7 @@
+         then
+             # fallback
+             # the internal partition is no more required in fact
+-           mount -t tmpfs -o size=256M tmpfs /userdata
++           mount -t tmpfs -o size=${TMPFSSIZE} tmpfs /userdata
+         fi
+         fixbatoceraconfname
+     ;;

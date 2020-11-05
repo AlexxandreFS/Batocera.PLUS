@@ -11,107 +11,316 @@
 WINE_DIR=/opt/Wine
 WINE_PREFIX=/userdata/system/configs/wine
 WINE_BUILDS=$(ls -1r ${WINE_DIR} | grep -E '^wine-|^proton-')
+LOAD_IMAGE=${WINE_DIR}/winecfg.png
+WINDOW_ICON=/usr/share/icons/batocera/wine.png
 
-APP_IMAGE=${WINE_DIR}/winecfg.png
-APP_ICON=/usr/share/icons/batocera/wine.png
+CACHE_FILE="${HOME}/.cache/wine-version.cfg"
 
 ################################################################################
 
-declare -A MSG
+APP_LIST="
+    'winecfg'                           'Wine Configuration.'
+    'explorer z:/userdata/roms/windows' 'My Computer.'
+    'regedit'                           'Registry Editor'
+    'start cmd /k z:'                   'Command Prompt'
+    'control appwiz.cpl'                'Add-Remove Programs.'
+    'control joy.cpl'                   'Game Controllers.'
+    'taskmgr'                           'Task Manager.'
+    'boot'                              'Wine Reboot.'
+    'notepad'                           'Notedpad.'
+    'wordpad'                           'Wordpad'
+    'oleview'                           'Ole View.'
+    'winhlp32'                          'Wine Help32'
+    'winemine'                          'Minesweeper.'
+"
 
-MSG[0]=''
-MSG[1]=''
-MSG[2]=''
+################################################################################
+
+##
+## MAIN
+##
+function main()
+{
+    # INITIALIZE
+
+    translate
+    sanityTest "$@" || exit $?
+
+    # APPS
+    MENU=apps
+    LIST="${APP_LIST}"
+    WINDOW_SIZE=$(windowSize ${MENU})
+    APP_NAME=$(choiceMenu ${MENU} ${WINDOW_SIZE} "${LIST}")
+    if [ -z "${APP_NAME}" ]; then
+        return 0
+    fi
+
+    # WINE 
+    MENU=wine
+    LIST="$(readList)"
+    WINDOW_SIZE=$(windowSize ${MENU})
+    WINE_VERSION=$(choiceMenu ${MENU} ${WINDOW_SIZE} "${LIST}")
+    if [ -z "${WINE_VERSION}" ]; then
+        return 0
+    fi
+
+    loadSreen "${MSG[1]}"
+    exec ${WINE_VERSION} ${APP_NAME}
+}
+
+################################################################################
 
 ##
 ## Faz a tradução dos textos apresentados para o usuário.
 ##
-function translate() {
+
+declare -A MSG
+
+function translate()
+{
     LANG="$(batocera-settings -command load -key system.language)"
 
     case $LANG in
         pt_BR)
-            MSG[0]='O winecfg é o programa de configuração padrão do wine.\n\nEscolha na lista qual versão que você deseja configurar.\n'
+            MSG[0]='O Batocera.PLUS vem com várias versões do Wine.\n\nEscolha a versão do Wine que você deseja usar para executar este programa.\n'
             MSG[1]='AGUARDE UM MOMENTO...'
             MSG[2]='AGUARDANDO WINE/PROTON ENCERRAR...'
+            MSG[3]='NOME'
+            MSG[4]='VERSÃO'
+            MSG[5]='DATA DE COMPILAÇÃO'
+            MSG[6]='DESCRIÇÃO'
+            MSG[7]='Escolha na lista à baixo o programa que você deseja executar.\n'
             ;;
         es_ES)
-            MSG[0]='Winecfg es el programa de configuración de wine predeterminado.\n\nElija de la lista qué versión desea configurar.\n'
+            MSG[0]='Batocera.PLUS viene con varias versiones de Wine.\n\nElija la versión de Wine que desea utilizar para ejecutar este programa.\n'
             MSG[1]='ESPERA UN MOMENTO...'
             MSG[2]='ESPERE EL ACABADO DE WINE/PROTON...'
+            MSG[3]='NOMBRE'
+            MSG[4]='VERSIÓN'
+            MSG[5]='FECHA DE CREACIÓN'
+            MSG[6]='DESCRIPCIÓN'
+            MSG[7]='Elija el programa que desea ejecutar de la lista a continuación.\n'
             ;;
         *)
-            MSG[0]='Winecfg is the default wine configuration program.\n\nChoose from the list which version you want to configure.\n'
+            MSG[0]='Batocera.PLUS comes with several versions of Wine.\n\nChoose the version of Wine you want to use to run this program.\n'
             MSG[1]='WAIT FOR A MOMENT...'
             MSG[2]='WAIT FOR WINE/PROTON FINISH...'
+            MSG[3]='NAME'
+            MSG[4]='VERSION'
+            MSG[5]='BUILD DATE'
+            MSG[6]='DESCRIPTION'
+            MSG[7]='Choose the program you want to run from the list below.\n'
     esac
 }
 
+################################################################################
 
 ##
-## Exibe um menu gráfico para escolher a versão do wine para ser configurada.
+## Se algo estiver errado retorna um código de erro e encerra a função.
 ##
-function choiceMenu() {
+function sanityTest()
+{
+    if [ "$(pidof -o $$ "$(basename "${0}")")" ]
+    then
+        exit 1
+    fi
+
+    if [ "$(pidof wineserver)" ]
+    then
+        loadSreen "${MSG[2]}"
+
+        for STEP in {1..30}
+        do
+            if [ "$(pidof wineserver)" ]
+            then
+                sleep 1
+            else
+                break
+            fi
+
+            if [ "${STEP}" == '30' ]
+            then
+                killwine
+                killall yad
+                return 1
+            fi
+        done
+    fi
+}
+
+
+################################################################################
+
+##
+## Atualiza os dados do cache com informações sobre versões do Wine.
+##
+function readList()
+{
+    local NAME
+    local VERSION
+    local COMPILATION
+    local LIST
+    local INDEX
+
+    # CREATE CACHE
+
+    if [ ! -f "${CACHE_FILE}" ]
+    then
+        for INDEX in ${WINE_BUILDS}
+        do
+            if [ -f "${WINE_PREFIX}/${INDEX}/.update-timestamp" ]
+            then
+                VERSION="$(${INDEX} --version)"
+            else
+                VERSION=''
+            fi
+            echo "${INDEX}-version=${VERSION}" >> "${CACHE_FILE}"
+
+            COMPILATION="$(date -d @$(cat -e ${WINE_DIR}/${INDEX}/.update-timestamp | cut -d '^' -f 1))"
+            echo "${INDEX}-compilation=${COMPILATION}" >> "${CACHE_FILE}"
+        done
+    fi
+
+    # UPDATE CACHE
+
+    for INDEX in ${WINE_BUILDS}
+    do
+        if [ -z "$(grep -E "^[ ]*${INDEX}-version=" "${CACHE_FILE}" | cut -d = -f 2)" ]
+        then
+            if [ -f "${WINE_PREFIX}/${INDEX}/.update-timestamp" ]
+            then
+                VERSION="${INDEX}-version=$(${INDEX} --version)"
+                sed -i "s/${INDEX}-version=.*/${VERSION}/" "${CACHE_FILE}"
+            fi
+        fi
+    done
+
+    # SELECT CACHE
+
+    for INDEX in ${WINE_BUILDS}
+    do
+        VERSION="$(grep ${INDEX}-version= "${CACHE_FILE}" | cut -d '=' -f 2)"
+
+        if [ -z "${VERSION}" ]
+        then
+            VERSION=0.0
+        fi
+
+        COMPILATION="$(grep ${INDEX}-compilation= "${CACHE_FILE}" | cut -d '=' -f 2)"
+
+        LIST="${LIST} '${INDEX}' '${VERSION}' '${COMPILATION}'"
+    done
+
+    echo "${LIST}"
+}
+
+################################################################################
+
+##
+## Mostra um tamanho de janela adequado de acordo coma a resolução da área de trabalho.
+##
+function windowSize()
+{
+    local WINDOW=${1}
     local RESOLUTION=$(batocera-resolution currentResolution)
     local RESOLUTION_X=$(echo ${RESOLUTION} | cut -d x -f 1)
     local RESOLUTION_Y=$(echo ${RESOLUTION} | cut -d x -f 1)
+    local MAX_SIZE_X
+    local MAX_SIZE_Y
 
-    if [ "${RESOLUTION_X}" -ge '1024' ]; then
-        RESOLUTION_X='1000'
+    case ${WINDOW} in
+        wine)
+            MAX_SIZE_X=1000
+            MAX_SIZE_Y=500
+            ;;
+        apps)
+            MAX_SIZE_X=800
+            MAX_SIZE_Y=600
+            ;;
+        *)
+            MAX_SIZE_X=1000
+            MAX_SIZE_Y=500
+    esac
+
+    if [ "${RESOLUTION_X}" -ge '1024' ]
+    then
+        RESOLUTION_X=${MAX_SIZE_X}
     else
         RESOLUTION_X=$(( ${RESOLUTION_X} - 20 ))
     fi
 
-    if [ "${RESOLUTION_Y}" -ge '768' ]; then
-        RESOLUTION_Y='500'
+    if [ "${RESOLUTION_Y}" -ge '768' ]
+    then
+        RESOLUTION_Y=${MAX_SIZE_Y}
     else
         RESOLUTION_Y=$(( ${RESOLUTION_Y} - 20 ))
     fi
 
-    for WINE in ${WINE_BUILDS}; do
-        NAME="${WINE}"
+    echo "${RESOLUTION_X}x${RESOLUTION_Y}"
+}
 
-        COMPILATION="$(date -d @$(cat -e ${WINE_DIR}/${WINE}/.update-timestamp | cut -d '^' -f 1))"
+################################################################################
 
-        if [ -f "${WINE_PREFIX}/${WINE}/system.reg" ]; then
-            VER="$(${WINE} --version)"
-        else
-            VER='Never Executed'
-        fi
+##
+## Exibe um menu gráfico para escolher a versão do wine para ser configurada.
+##
+function choiceMenu()
+{
+    local WINDOW=${1}
+    local RESOLUTION_X=$(echo ${2} | cut -d x -f 1)
+    local RESOLUTION_Y=$(echo ${2} | cut -d x -f 2)
+    local TEXT
+    local COLUMN
+    local LIST=${3}
 
-        LIST="${LIST} '${NAME}' '${VER}' '${COMPILATION}'"
-    done
+    case ${WINDOW} in
+        wine)
+            TEXT=${MSG[0]}
+            COLUMN="--column='${MSG[3]}' --column='${MSG[4]}' --column='${MSG[5]}'"
+            ;;
+        apps)
+            TEXT=${MSG[7]}
+            COLUMN="--column='${MSG[3]}' --column='${MSG[6]}'"
+            ;;
+        *)
+            TEXT=${MSG[0]}
+            COLUMN="--column='-'"
+    esac
 
-    RESP=$(
-        eval yad --title='"WINECFG (Batocera.PLUS)"' \
-                 --width=${RESOLUTION_X} \
-                 --height=${RESOLUTION_Y} \
-                 --borders=20 \
-                 --fixed \
-                 --center \
-                 --window-icon="${APP_ICON}" \
-                 --text='"${MSG[0]}"' \
-                 --buttons-layout=start \
-                 --button="gtk-cancel:1" \
-                 --button="gtk-ok:0" \
-                 --list \
-                 --column=name \
-                 --column=ver \
-                 --column=compilation \
-                   ${LIST}
+    RESP=$(eval yad \
+        --title='"WINECFG (Batocera.PLUS)"' \
+        --width=${RESOLUTION_X} \
+        --height=${RESOLUTION_Y} \
+        --borders=20 \
+        --fixed \
+        --center \
+        --window-icon="${WINDOW_ICON}" \
+        --text='"${TEXT}"' \
+        --buttons-layout=start \
+        --button="gtk-cancel:1" \
+        --button="gtk-ok:0" \
+        --list \
+          ${COLUMN} \
+          ${LIST}
     )
 
-    if [ -z "${RESP}" ]; then
+    if [ -z "${RESP}" ]
+    then
         return 1
     fi
 
     echo "${RESP}" | cut -d '|' -f 1
 }
 
+################################################################################
+
 ##
 ## Exibe uma imagem de carregamento enquando o winecfg está carregando.
 ##
-function loadSreen() {
+function loadSreen()
+{
+    local MSG="BATOCERA.PLUS\n\n${1}"
+
     yad --borders=10 \
         --fixed \
         --center \
@@ -119,56 +328,11 @@ function loadSreen() {
         --no-buttons \
         --close-on-unfocus \
         --image-on-top \
-        --image="${APP_IMAGE}" \
+        --image="${LOAD_IMAGE}" \
         --text-align=center \
-        --text="${1}"
+        --text="${MSG}" &
 }
 
-##
-## Se algo estiver errado retorna um código de erro e encerra a função.
-##
-function sanityTest() {
-    if [ "$(pidof yad)" ]; then
-        return 1
-    fi
+################################################################################
 
-    if [ "$(pidof winecfg.exe)" ]; then
-        return 5
-    fi
-
-    if [ "$(pidof wineserver)" ]; then
-        loadSreen "${1}" &
-
-        for i in {1..30}; do
-            if [ "$(pidof wineserver)" ]; then
-                sleep 1
-            else
-                break
-            fi
-
-            if [ "${i}" == '30' ]; then
-                killwine
-                killall yad
-                return 10
-            fi
-        done
-    fi
-}
-
-##
-## MAIN
-##
-
-translate
-
-sanityTest "BATOCERA.PLUS\n\n${MSG[2]}" || exit 1
-
-RESP=$(choiceMenu)
-
-if [ -z "${RESP}" ]; then
-    exit 0
-fi
-
-loadSreen "BATOCERA.PLUS\n\n${MSG[1]}" &
-
-exec ${RESP} winecfg
+main "$@"

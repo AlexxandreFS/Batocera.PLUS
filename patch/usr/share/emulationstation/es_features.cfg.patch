@@ -125,6 +125,7 @@
 +    </feature>
 +    <feature name="DXVK" value="dxvk">
 +      <choice name="on" value="on" />
++      <choice name="on (show fps)" value="fps" />
 +      <choice name="off" value="off" />
 +    </feature>
 +    <feature name="MOUSE POINTER" value="mouse_pointer">
@@ -153,6 +154,7 @@
 +    </feature>
 +    <feature name="DXVK" value="dxvk">
 +      <choice name="on" value="on" />
++      <choice name="on (show fps)" value="fps" />
 +      <choice name="off" value="off" />
 +    </feature>
 +    <feature name="MOUSE POINTER" value="mouse_pointer">
