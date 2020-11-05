@@ -2,7 +2,8 @@
 
 # Variáveis externas
 JOGO="$1"
-CORE="$2"
+OTIMIZATIONS="$2"
+#SHOWFPS="$3"
 
 # Variáveis da instalação e execução do Cemu
 CEMU_DIR='/opt/Cemu'
@@ -44,7 +45,7 @@ if [ ! "$(ls -A "${CEMU}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/nu
     ln -s "${SAVE}/"* "${CEMU}"
 fi
 
-# Muda a linguagem do Cemu de acordo com a liguagem do sistema
+# Linguagem
 SLANG="$(batocera-settings -command load -key system.language)"
 case $SLANG in
     fr_FR)             sed -i 's/<language>.*/<language>79<\/language>/'  "$CEMU/settings.xml" ;;
@@ -56,6 +57,11 @@ case $SLANG in
     tr_TR)             sed -i 's/<language>.*/<language>214<\/language>/' "$CEMU/settings.xml" ;;
     zh_CN)             sed -i 's/<language>.*/<language>44<\/language>/'  "$CEMU/settings.xml" ;;
  esac
+ 
+# FPS
+#if [ "${SHOWFPS}" == 'auto' ] || [ "${SHOWFPS}" == 'off' ]; then
+#else
+#fi
 
 # Checa se a interface foi executada de forma correta na última vez
 # Esse site salvou minha vida https://dwaves.de/tools/escape/
@@ -67,11 +73,11 @@ fi
 export WINEDLLOVERRIDES="keystone.dll=n,b;dbghelp.dll=n,b"
 
 # Checa se as otimizações foram ativadas no emulationstation ALTAMENTE EXPERIMENTAL!
-if [ "${CORE}" == 'cemu-nvidia' ] ; then
+if [ "${OTIMIZATIONS}" == 'nvidia' ] ; then
     export mesa_glthread=true
     export vblank_mode=0
     export WINEESYNC=1
-elif [ "${CORE}" == 'cemu-amd' ] ; then
+elif [ "${OTIMIZATIONS}" == 'amdintel' ] ; then
     export R600_DEBUG=nohyperz
     export mesa_glthread=true
     export vblank_mode=0

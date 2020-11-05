@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Icon=/usr/share/icons/batocera/model2.png
-Exec=/bin/sh -c "/opt/Model2/Model2.sh"
-Terminal=false
-Type=Application
-Categories=games;batocera.linux;
-Name=model2-config
-NoDisplay=false

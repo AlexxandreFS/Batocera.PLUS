@@ -1,8 +1,15 @@
 #!/bin/sh
 
 # Parametros externos
-JOGO="$1"
-CORE="$2"
+JOGO="${1}"
+CORE="${2}"
+RESOLUTION="${3}"
+WIDESCREEN="${4}"
+ANTIALIASING="${5}"
+VSYNC="${6}"
+ANISOTROPICFILTER="${7}"
+DRAWCROSS="${8}"
+RUMBLE="${9}"
 
 # Variáveis da instalação do Model 2
 MODEL2_DIR='/opt/Model2'
@@ -20,15 +27,8 @@ fi
 if [ ! "$(ls -A "${MODEL2}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/null)" ]; then
     # Montando o model2 em "system/configs/model2"
     mkdir -p "${SAVE}"                                   "${MODEL2}" || exit $?
-
-    cp -r "${MODEL2_DIR}/emulator/d3d9.dll"              "${MODEL2}" || exit $?
     cp -r "${MODEL2_DIR}/emulator/emulator.exe"          "${MODEL2}" || exit $?
     cp -r "${MODEL2_DIR}/emulator/emulator_multicpu.exe" "${MODEL2}" || exit $?
-    cp -r "${MODEL2_DIR}/emulator/Encdr.dll"             "${MODEL2}" || exit $?
-    cp -r "${MODEL2_DIR}/emulator/Encof.dll"             "${MODEL2}" || exit $?
-    cp -r "${MODEL2_DIR}/emulator/Sega Model 2 UI.exe"   "${MODEL2}" || exit $?
-    cp -r "${MODEL2_DIR}/emulator/Source"                "${MODEL2}" || exit $?
-    cp -r "${MODEL2_DIR}/emulator/snaps"                 "${MODEL2}" || exit $?
     cp -r "${MODEL2_DIR}/emulator/Emulator.ini"          "${MODEL2}" || exit $?
 
     # Montando o model2 em "share/save/model2"
@@ -40,24 +40,10 @@ if [ ! "$(ls -A "${MODEL2}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/
     ln -s "$SAVE/"* "$MODEL2"
 fi
 
-# Capta a resolução inicial da tela antes inicar o jogo
+# Captura a resolução inicial da tela antes inicar o jogo
 RES_START="$(batocera-resolution currentMode)"
 
-# Ativa WideScreen per-game ou global
-WIDE_GAME="$(grep -F "model2[\"$(basename "${JOGO}")\"].ratio=" "${HOME}/batocera.conf" | cut -d '=' -f 2)"
-WIDE_MODEL2="$(grep '^model2.ratio=' "${HOME}/batocera.conf" | cut -d '=' -f 2)"
-WIDE_GLOBAL="$(grep '^model2.ratio=' "${HOME}/batocera.conf" | cut -d '=' -f 2)"
-
-if [ "${WIDE_GAME}" ] && [ ! "${WIDE_GAME}" == 'auto' ]; then
-    WIDESCREEN="${WIDE_GAME}"
-elif [ "${WIDE_MODEL2}" ] && [ ! "${WIDE_MODEL2}" == 'auto' ]; then
-    WIDESCREEN="${WIDE_MODEL2}"
-elif [ "${WIDE_GLOBAL}" ] && [ ! "${WIDE_GLOBAL}" == 'auto' ]; then
-    WIDESCREEN="${WIDE_GLOBAL}"
-else
-    WIDESCREEN='auto'
-fi
-
+# WIDESCREEN
 case "${WIDESCREEN}" in
     4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|auto|custom|squarepixel)
         sed -i s/'^WideScreenWindow=.*/WideScreenWindow=0/' "${MODEL2}/Emulator.ini"
@@ -67,21 +53,7 @@ case "${WIDESCREEN}" in
         ;;
 esac
 
-# Carrega a resolução do sistema configurado pelo emulationstation
-GAME_RES="$(grep -F "model2[\"$(basename "${JOGO}")\"].videomode=" "${HOME}/batocera.conf" | cut -d '=' -f 2)"
-MODEL2_RES="$(grep '^model2.videomode=' "${HOME}/batocera.conf" | cut -d '=' -f 2)"
-GLOBAL_RES="$(grep '^model2.videomode=' "${HOME}/batocera.conf" | cut -d '=' -f 2)"
-
-if [ "${GAME_RES}" ] && [ ! "${GAME_RES}" == 'auto' ]; then
-    RESOLUTION="${GAME_RES}"
-elif [ "${MODEL2_RES}" ] && [ ! "${MODEL2_RES}" == 'auto' ]; then
-    RESOLUTION="${MODEL2_RES}"
-elif [ "${GLOBAL_RES}" ] && [ ! "${GLOBAL_RES}" == 'auto' ]; then
-    RESOLUTION="${GLOBAL_RES}"
-else
-    RESOLUTION='auto'
-fi
-
+# RESOLUÇÃO
 if [ "${RESOLUTION}" == 'auto' ]; then
     XRES="$(echo "${RES_START}" | cut -d 'x' -f 1)"
     YRES="$(echo "${RES_START}" | cut -d 'x' -f 2)"
@@ -94,7 +66,56 @@ else
 	sed -i 's/^FullScreenHeight=.*/FullScreenHeight='"${YRES}"'/' "${MODEL2}/Emulator.ini"
 fi
 
-# Sempre em tela cheia
+# ANTIALIASING
+if [ "${ANTIALIASING}" == 'auto' ] || [ "${ANTIALIASING}" == 'on' ]; then
+    sed -i s/'^FSAA=.*/FSAA=1/' "${MODEL2}/Emulator.ini"
+else
+    sed -i s/'^FSAA=.*/FSAA=0/' "${MODEL2}/Emulator.ini"
+fi
+
+# ANISOTROPICFILTER
+if [ "${ANISOTROPICFILTER}" == 'bilinear' ]; then
+    sed -i s/'^Bilinear=.*/Bilinear=1/' "${MODEL2}/Emulator.ini"
+	sed -i s/'^Trilinear=.*/Trilinear=0/' "${MODEL2}/Emulator.ini"
+elif [ "${ANISOTROPICFILTER}" == 'trilinear' ]; then
+    sed -i s/'^Bilinear=.*/Bilinear=0/' "${MODEL2}/Emulator.ini"
+	sed -i s/'^Trilinear=.*/Trilinear=1/' "${MODEL2}/Emulator.ini"
+else
+    sed -i s/'^Bilinear=.*/Bilinear=0/' "${MODEL2}/Emulator.ini"
+	sed -i s/'^Trilinear=.*/Trilinear=0/' "${MODEL2}/Emulator.ini"
+fi
+
+# VSYNC
+if [ "${VSYNC}" == 'off' ] || [ "${VSYNC}" == 'on' ]; then
+    sed -i s/'^ForceSync=.*/ForceSync=1/' "${MODEL2}/Emulator.ini"
+else
+    sed -i s/'^ForceSync=.*/ForceSync=0/' "${MODEL2}/Emulator.ini"
+fi
+
+# DRAWCROSS
+# Para jogos de tiro, seria interessante portar o demulshooter
+if [ "${DRAWCROSS}" == 'auto' ] || [ "${DRAWCROSS}" == 'off' ]; then
+    mouse-pointer off
+	sed -i s/'^DrawCross=.*/DrawCross=0/' "${MODEL2}/Emulator.ini"
+	sed -i s/'^RawDevP1=.*/RawDevP1=0/' "${MODEL2}/Emulator.ini"
+	sed -i s/'^RawDevP2=.*/RawDevP1=0/' "${MODEL2}/Emulator.ini"
+else
+    mouse-pointer on
+	sed -i s/'^DrawCross=.*/DrawCross=1/' "${MODEL2}/Emulator.ini"
+	sed -i s/'^RawDevP1=.*/RawDevP1=0/' "${MODEL2}/Emulator.ini"
+	sed -i s/'^RawDevP2=.*/RawDevP1=1/' "${MODEL2}/Emulator.ini"
+fi
+
+# FORCE FEEDBACK
+if [ "${RUMBLE}" == 'auto' ] || [ "${RUMBLE}" == 'on' ]; then
+	sed -i s/'^EnableFF=.*/EnableFF=1/' "${MODEL2}/Emulator.ini"
+	sed -i s/'^Force Feedback=.*/Force Feedback=1/' "${MODEL2}/Emulator.ini"
+else
+    sed -i s/'^EnableFF=.*/EnableFF=0/' "${MODEL2}/Emulator.ini"
+    sed -i s/'^Force Feedback=.*/Force Feedback=0/' "${MODEL2}/Emulator.ini"
+fi
+
+# TELA CHEIA
 sed -i s/'^AutoFull=.*/AutoFull=1/' "${MODEL2}/Emulator.ini"
 sed -i s/'^FullMode=.*/FullMode=4/' "${MODEL2}/Emulator.ini"
 
@@ -112,10 +133,6 @@ if [ "${JOGO}" == "${JOGO%zip}zip" ] || [ "${JOGO}" == "${JOGO%ZIP}ZIP" ]; then
         # Executa o Model2 por linha de comando (multi core)
         wine 'emulator_multicpu.exe' "${JOGO}"
     fi
-else
-    # Executa interface gráfica do Model2 quando aberto pelo menu F1
-    export WINEDLLOVERRIDES='d3dx9.dll=n,b'
-    wine 'Sega Model 2 UI.exe'
 fi
 
 # Aguarda encerrar a execução do jogo
