@@ -8,11 +8,6 @@
 
 WINE_DIR='/opt/Wine'
 
-# Set the MIDI (sequencer) device. Default /dev/sequencer.
-# modprobe snd-seq
-# MIDIDEV=/dev/snd/seq
-# echo "$(yad --file --width=1024 --height=768 --center --file-filter='*.exe' --filename='/userdata/roms/windows/Streets of Rage 4.plus')"
-
 ################################################################################
 
 ### SET DEFAULT VERSION OF WINE (wine, wine-staging, proton, etc...)
@@ -128,13 +123,6 @@ fi
 
 ### DXVK
 
-export DXVK_HUD=fps,memory,gpuload,api
-export DXVK_LOG_LEVEL=none
-export DXVK_LOG_PATH="${HOME}/logs"
-export DXVK_STATE_CACHE_PATH="${HOME}/.cache/dxvk"
-
-DXVK_DLL='d3d11.dll d3d10core.dll d3d10.dll d3d10_1.dll d3d9.dll dxgi.dll'
-
 function dxvkInstall() {
     mkdir -p "${DXVK_LOG_PATH}"
     mkdir -p "${DXVK_STATE_CACHE_PATH}"
@@ -176,6 +164,11 @@ function dxvkUninstall() {
 }
 
 function dxvkExport() {
+    export DXVK_HUD
+    export DXVK_LOG_LEVEL
+    export DXVK_LOG_PATH
+    export DXVK_STATE_CACHE_PATH
+
     local FIRST=TRUE
 
     for DLL in ${DXVK_DLL}; do
@@ -191,30 +184,55 @@ function dxvkExport() {
         fi
     done
 
-    WINEDLLOVERRIDES="${WINEDLLOVERRIDES}=n,b;nvapi64,nvapi="
-
-    export WINEDLLOVERRIDES
+    export WINEDLLOVERRIDES="${WINEDLLOVERRIDES}=n,b;nvapi64,nvapi="
 }
 
-function dxvkMain() {
-    if [ "${DXVK}" == '1' ] || [ "${dxvk}" == '1' ]; then
-        if [ "$(vulkaninfo 2> /dev/null)" ]; then
+if [ "${DXVK}" ]; then
+    DXVK_DLL='d3d11.dll d3d10core.dll d3d10.dll d3d10_1.dll d3d9.dll dxgi.dll'
+
+    if ! [ ${DXVK_HUD} ]; then
+        DXVK_HUD=fps,memory,gpuload,api
+    fi
+    if ! [ ${DXVK_LOG_LEVEL} ]; then
+        DXVK_LOG_LEVEL=none
+    fi
+    if ! [ ${DXVK_LOG_PATH} ]; then
+        DXVK_LOG_PATH="${HOME}/logs"
+    fi
+    if ! [ ${DXVK_STATE_CACHE_PATH} ]; then
+        DXVK_STATE_CACHE_PATH="${HOME}/.cache/dxvk"
+    fi
+
+    case ${DXVK} in
+        0)
+            dxvkUninstall
+            unset DXVK_HUD
+            unset DXVK_LOG_LEVEL
+            unset DXVK_LOG_PATH
+            unset DXVK_STATE_CACHE_PATH
+            ;;
+        1)
+            if [ ! "$(vulkaninfo 2> /dev/null)" ]; then
+                echo 'vulkan is not supported, dxvk disable.'
+            fi
             dxvkInstall
             dxvkExport
-            #echo 'info: DXVK Enabled'
-         else
-            dxvkUninstall
-            #echo "info: Vulkan not supported, DXVK will be disabled'"
-         fi
-         unset DXVK
-    else
-        if [ "$(vulkaninfo 2> /dev/null)" ]; then
-            dxvkUninstall
-            #echo "info: DXVK avaliable, to enable run 'DXVK=1 wine MyGame.exe'"
-        fi
-     fi
-     unset DXVK_DLL
-}
+            unset DXVK_HUD
+            ;;
+        2)
+            if [ ! "$(vulkaninfo 2> /dev/null)" ]; then
+                echo 'vulkan is not supported, dxvk disable.'
+            fi
+            dxvkInstall
+            dxvkExport
+            export DXVK_HUD
+            ;;
+        *)
+             export DXVK
+    esac
+
+    unset DXVK_DLL
+fi
 
 ################################################################################
 
@@ -234,6 +252,27 @@ esac
 
 ################################################################################
 
+### COMPATIBILITY WHITH WINEPREFIX OF Batocera.PLUS 2.0
+
+if [ -f "${HOME}/configs/wine/${WINE_BUILD}/.update-timestamp" ]; then
+    WINEPREFIX_BASE="${HOME}/configs/wine"
+
+    for FILE in "${WINEPREFIX_BASE}/${WINE_BUILD}/"*; do
+        LINK="${WINEPREFIX_BASE}/$(basename "${FILE}")"
+        if [ "${LINK}" ] && [ ! "$(readlink "${LINK}")" == "${LINK}" ]; then
+            rm -rf "${LINK}"
+            ln -sf "${FILE}" "${LINK}"
+        fi
+    done
+
+    sleep 0.3
+
+    unset LINK
+    unset WINEPREFIX_BASE
+fi
+
+################################################################################
+
 ### START WINE NORMALLY
 
 if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
@@ -241,7 +280,6 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
     WINE_VERSION_NEW="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
 
     if [ "${WINE_VERSION}" == "${WINE_VERSION_NEW}" ]; then
-        dxvkMain
         exec "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" "$@"
     else
         echo 'info: creating new wineprefix'
@@ -405,5 +443,10 @@ exec "${WINE_BUILD}" "${@}"
 #ldd ${WINE_DIR}/${WINE_BUILD}/lib64/*               2> /dev/null | grep 'not found'
 #ldd ${WINE_DIR}/${WINE_BUILD}/lib64/wine/*          2> /dev/null | grep 'not found'
 #ldd ${WINE_DIR}/${WINE_BUILD}/lib64/wine/fakedlls/* 2> /dev/null | grep 'not found'
+
+# MIDI
+# Set the MIDI (sequencer) device. Default /dev/sequencer.
+# modprobe snd-seq
+# MIDIDEV=/dev/snd/seq
 
 ################################################################################

@@ -1,6 +1,6 @@
 --- es_features.cfg.original
 +++ es_features.cfg.modificado
-@@ -77,8 +77,129 @@
+@@ -77,8 +77,131 @@
    <emulator name="melonds" features="videomode" />
    <emulator name="daphne" features="videomode, ratio" />
    <emulator name="flycast" features="videomode, ratio" />
@@ -54,6 +54,7 @@
 +    </feature>
 +    <feature name="DXVK" value="dxvk">
 +      <choice name="on" value="on" />
++      <choice name="on (show fps)" value="fps" />
 +      <choice name="off" value="off" />
 +    </feature>
 +    <feature name="MOUSE POINTER" value="mouse_pointer">
@@ -82,6 +83,7 @@
 +    </feature>
 +    <feature name="DXVK" value="dxvk">
 +      <choice name="on" value="on" />
++      <choice name="on (show fps)" value="fps" />
 +      <choice name="off" value="off" />
 +    </feature>
 +    <feature name="MOUSE POINTER" value="mouse_pointer">
@@ -130,7 +132,7 @@
        <core name="gw" features="" />
        <core name="freeintv" features="" />
        <core name="pcfx" features="netplay, rewind, autosave" />
-@@ -169,7 +290,6 @@
+@@ -169,7 +292,6 @@
    </emulator>
    <emulator name="vice" features="videomode, ratio" />
    <emulator name="fsuae" features="videomode, ratio" />
