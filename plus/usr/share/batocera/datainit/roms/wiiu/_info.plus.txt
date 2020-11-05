@@ -1,0 +1,122 @@
+## SYSTEM WiiU ##
+--------------------------------------------------------------------------------
+ROM files extensions accepted (Batocera.PLUS): ".wud .wux .iso .wad .rpx .elf"
+--------------------------------------------------------------------------------
+ROM Aceitas neste sistema (Batocera.PLUS): ".wud .wux .iso .wad .rpx .elf"
+--------------------------------------------------------------------------------
+1 - INTRODUÇÃO
+--------------------------------------------------------------------------------
+    O Batocera.PLUS utiliza o Cemu para rodar os jogos de Nintendo WiiU, 
+infelizmente este emulador tem o código fonte fechado e até o presente momento 
+5/set/2020 não existe nenhuma versão nativa para Linux, por este motivo a nossa 
+única alternativa é usar o Wine (emulador de Windows) para executar este emulador
+, ou seja, é um emulador rodando dentro de um emulador, apesar de rodar pelo Wine
+é realmente inclível a performace deste emulador no Batocera.PLUS, não devendo 
+em nada para o Windows.
+
+    O Nintendo WiiU é um console potente e sua emulação exige um bom processador
+, com muita memória e placa de vídeo dedicada e as exigências aumentam bastante 
+de acordo com o jogo executado, um exemplo disso e o jogo Zelda: Breath of the 
+Wild que chega a consumir quase 16GB de memória ram.
+--------------------------------------------------------------------------------
+2 - REQUISITOS
+--------------------------------------------------------------------------------
+    Pré-requisitos, uma boa placa de vídeo (NVIDIA Preferencialmente) com OpenGL
+4.5 ou superior, 16GB de memória ram, e um processador de 4 núcleos com no mínimo
+3GHz por núcleo. O emulador Cemu foi testado e incluído no Batocera.PLUS usando 
+as seguintes configurações:
+
+        Core i5 4570 3.10GHz
+        Geforce GT 1030 de 2GB ddr5
+        8GB de memória ram
+        HD 2TB Sata 3 de 5200 RPM
+--------------------------------------------------------------------------------
+3 - OTIMIZAÇÂO
+--------------------------------------------------------------------------------
+    Os ShaderCache são excenciais para que o jogo funcione sem travamentos em 
+computadores mais modestos, no link abaixo você pode baixá-los.
+
+https://www.reddit.com/r/CEMUcaches/comments/8pocf4/complete_shader_cache_collection/
+
+    Os ShaderCache são intercambiáveis entre as regiões do jogo, ou seja, o 
+ShaderCache da versão USA de um jogo funciona na versão EUR. É necessário 
+identificar o nome do ShaderCache atravéz do caminho "system/logs/cemu.log", 
+abra o arquivo e procure pela linha:
+
+"Shader cache file: shaderCache\transferable\número_do_shadercache.bin"
+
+    Os ShaderCache precisam estar na pasta "saves/wiiu/shaderCache/transferable"
+para serem reconhecidos pelo emulador.
+
+    TODOS os ShaderCache DEMORAM MUITO a carregar na primeira vez que o jogo é 
+iniciado ou se você atualizar o sistema Batocera.PLUS para uma nova versão.
+
+    ShaderCaches antigos de versões mais antigas do Cemu serão convertidos pelo 
+emulador, assim que se abre um jogo que está usando um ShaderCache antigo o Cemu
+vai solicitar sua intervenção para converter o Shader para o novo formato
+(Necessário o uso de um mouse nesta etapa).
+--------------------------------------------------------------------------------
+4 - OTIMIZAÇÔES EXPERIMENTAIS
+--------------------------------------------------------------------------------
+    O sistema conta com 3 otimizações que podem ser selecionados através do menu
+do emulationstation.
+
+    CEMU-NVIDIA ---> Otimização para placas NVIDIA (EXTREMAMENTE EXPERIMENTAL)
+    CEMU-AMD    ---> Otimização para placas AMD (EXTREMAMENTE EXPERIMENTAL)
+    AUTOMÁTICO  ---> Nenhuma otimização, recomendado para a maioria dos PCs.
+--------------------------------------------------------------------------------
+5 - ROMS
+--------------------------------------------------------------------------------
+    O formato de roms recomendado para uso no WiiU/Cemu são aqueles que tem o 
+suporte ao desbloqueio loadiine, essas roms são desencriptadas e demanda menos
+recursos do processador na hora de rodar os jogos, dessa forma ele tem menos 
+demanda.
+    Você pode achar as roms no formato loadiine com certa facilidade na internet.
+    Não é necessário renomear pastas, basta apenas colocar os jogos DESCOMPACTADOS
+dentro da pasta "roms/wiiu". Para que você não precise ficar entrando em varias
+pastas para achar o jogo no emulationstation você pode ativar a opção de mostrar
+somente o executável do jogo. Dentro da lista de jogos do sistema WiiU pressione
+"SELECT" em seu controle, em seguida vá até "MOSTRAR PASTAS" selecione a opção
+"HAVING MULTIPLE GAMES".
+--------------------------------------------------------------------------------
+6 - SCRAPPER
+--------------------------------------------------------------------------------
+    Devido ser um sistema novo você não conseguirá fazer o scrapper mas é possível
+fazê-lo manualmente editando o arquivo "gamelist.xml" encontrado dentro da pasta
+"roms/wiiu" apos um "scan" por novos jogos.
+--------------------------------------------------------------------------------
+7 - CONTROLES
+--------------------------------------------------------------------------------
+    É necessário configurar seu controle no emulador através do menu acessado via
+F1 caso o mesmo não funcione por padrão.
+    Os botões no controle "Hotkey + Start" vem configurados por padrão e sempre 
+funciona, mesmo que seu controle não funcione no sistema.
+--------------------------------------------------------------------------------
+8 - ATUALIZAÇÕES
+--------------------------------------------------------------------------------
+    O Cemu pode ser atualizado através do menu F1 quando há uma nova versão 
+disponível na internete e você pode atualizá-lo por sua conta e risco.
+--------------------------------------------------------------------------------
+9 - PROBLEMAS FREQUENTES
+--------------------------------------------------------------------------------
+9 - 1 Wine
+    É de suma importância que ao atualizar o Batocera.PLUS com suporte ao Cemu e
+outros emuladores que, por ventura, venham a ser incluídos nesse sistema e 
+utilizem o wine como background seja apagado a pasta "wine" que se encontra no 
+caminho "system/configs".
+
+9 - 2 Coleções malucas da internet
+    Se você baixou uma imagem pronta ou um pacote de roms collections certamente
+você vai encontrar em "system/configs/emulationstation" um arquivo com o nome de
+"es_systems.cfg" esse arquivo que faz com que as roms do WiiU não sejam reconhe-
+cidas, se esse arquivo existir apague ou renomeie ele e reinicie o Batocera.PLUS.
+
+9 - 3 Perda de sincronismo dos controles
+    O Cemu tem um problema de parar de reconhecer o controle se ele for desligado
+durante o jogo, ou seja, se você pausar o jogo e estiver utilizando um controle 
+que utilize um sistema de desligamento automático para economia de energia devido
+ao tempo ocioso, xbox360, ps3, ps4, etc... ele não voltará a ser reconhecido 
+quando for religado, você vai precisar sair do jogo utilizando os atalhos "ALT+F4"
+e voltar para o jogo para que ele volte a ser reconhecido pelo Cemu.
+    Infelizmente isso é um problema que só o pessoal que desenvolve o emulador 
+pode resolver.
