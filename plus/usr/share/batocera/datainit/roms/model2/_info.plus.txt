@@ -1,0 +1,48 @@
+## SYSTEM Sega Model 2 ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted (Batocera.PLUS): ".zip"
+-------------------------------------------------------------------------------
+ROM Aceitas neste sistema (Batocera.PLUS): ".zip"
+-------------------------------------------------------------------------------
+
+   O Sega Model 2 é outro sistema integrado ao Batocera.PLUS que utiliza o wine
+como base para ser executado, diferente do WiiU que precisa de um gardware po-
+tente para executar o model 2 se mantem muito bem nos PCs mais modestos.
+
+   Achar romsets completos para esse emulador é bem fácil mas você pode montar
+seu próprio romset, inclusive fazer scrappes de capas usando as ferramentas de 
+scrappe de sempre.
+
+   Os controles já estão configurados e utilizão um controle de xbox 360 como 
+base mas outros controles podem ser configurados se você souber como fazê-lo.
+
+   O Sega Model 2 não possúi uma interface grafica onde você pode configurar algo
+por esse motivo eu implementei também uma interface g´rafica muito utlizada no 
+windows por quem usa este emulador, nela você pode configurar algumas otimizações
+para um melhor funcionamento e qualidade do emulador.
+
+   O Sega Model 2 apresenta duas configurações que podem ser acessadas pelo emu-
+lationstation são elas:
+   MODEL2 -> Executa os jogos usando apenas 1 núcleo do processador.
+   MODEL2-MULTICORE -> Executa os jogos usando todos os nucleos do seu processador
+   
+   É de suma importância que ao atualizar o Batocera.PLUS com suporte ao Sega Model
+2 e outros emuladores que, por ventura, venham a ser incluídos nesse sistema e
+utilizem o wine como background seja apagado a pasta "wine" que se encontra no caminho
+"system/configs".
+
+   Se você baixou uma imagem pronta ou um pacote de roms collections certamente
+você vai encontrar em "system/configs/emulationstation" um arquivo com o nome de
+"es_systems.cfg" esse arquivo que faz com que as roms do Sega Model 2 não sejam 
+reconhecidas, se esse arquivo existir apague ou renomeie ele e reinicie o 
+Batocera.PLUS.
+
+   Assim como no WiiU o Sega Model 2 tem um problema de parar de reconhecer o 
+controle se ele for desligado durante o jogo, ou seja, se você esquecer o jogo aberto
+e estiver utilizando um controle que utilize um sistema de desligamento automático
+para economia de energia devido ao tempo ocioso, xbox360, ps3, ps4, etc... ele não 
+voltará a ser reconhecido quando for religado, você vai precisar sair do jogo 
+utilizando os atalhos "ALT+F4" e voltar para o jogo para que ele volte a ser 
+reconhecido pelo Sega Model 2.
+    Infelizmente isso é um problema que só o pessoal que desenvolve o emulador 
+pode resolver.
