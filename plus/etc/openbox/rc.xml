@@ -74,6 +74,9 @@
                 <y>center</y>
             </position>
         </application>
+        <application title="batocera-load-screen">
+            <layer>above</layer>
+        </application>
 
         <application title="Event Tester">
             <decor>yes</decor>

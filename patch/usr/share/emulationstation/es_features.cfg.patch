@@ -1,6 +1,6 @@
---- es_features.cfg
-+++ es_features.cfg.plus
-@@ -77,8 +77,200 @@
+--- es_features.cfg.original
++++ es_features.cfg.modificado
+@@ -77,8 +77,202 @@
    <emulator name="melonds" features="videomode" />
    <emulator name="daphne" features="videomode, ratio" />
    <emulator name="flycast" features="videomode, ratio" />
@@ -15,88 +15,88 @@
 +      <choice name="nvidia" value="nvidia" />
 +      <choice name="amd/intel" value="amdintel" />
 +    </feature>
-+	<!-- <feature name="SHOW FPS" value="showfps">
-+           <choice name="on" value="on" />
-+           <choice name="off" value="off" />
-+         </feature>  -->
++    <!-- <feature name="SHOW FPS" value="showfps">
++      <choice name="on" value="on" />
++      <choice name="off" value="off" />
++    </feature> -->
 +  </emulator>
 +
 +  <emulator name="model2" features="videomode, ratio">
 +    <cores>
 +      <core name="singlecore" features="" />
-+	  <core name="multicore" features="" />
++      <core name="multicore" features="" />
 +    </cores>
 +    <feature name="ANTIALIASING" value="antialiasing">
-+	  <choice name="off" value="off" />
++      <choice name="off" value="off" />
 +      <choice name="on" value="on" />
 +    </feature>
 +    <feature name="ANISOTROPIC FILTER" value="anisotropicfilter">
-+	  <choice name="off" value="off" />
++      <choice name="off" value="off" />
 +      <choice name="bilinear" value="bilinear" />
-+	  <choice name="trilinear" value="trilinear" />
++      <choice name="trilinear" value="trilinear" />
 +    </feature>
 +    <feature name="VSYNC" value="vsync">
-+	  <choice name="off" value="off" />
-+	  <choice name="on" value="on" />
++      <choice name="off" value="off" />
++      <choice name="on" value="on" />
 +    </feature>
 +    <feature name="DRAW CROSS" value="drawcross">
-+	  <choice name="off" value="off" />
-+	  <choice name="on" value="on" />
++      <choice name="off" value="off" />
++      <choice name="on" value="on" />
 +    </feature>
-+	<feature name="RUMBLE" value="rumble">
-+	  <choice name="off" value="off" />
-+	  <choice name="on" value="on" />
++    <feature name="RUMBLE" value="rumble">
++      <choice name="off" value="off" />
++      <choice name="on" value="on" />
 +    </feature>
 +  </emulator>
 +
 +  <emulator name="model3" features="videomode, ratio, pixel_perfect">
 +    <cores>
 +      <core name="singlecore" features="" />
-+	  <core name="multicore" features="" />
++      <core name="multicore" features="" />
 +    </cores>
-+	<feature name="MULTI TEXTURE" value="multitexture">
-+	  <choice name="off" value="off" />
++    <feature name="MULTI TEXTURE" value="multitexture">
++      <choice name="off" value="off" />
 +      <choice name="on" value="on" />
 +    </feature>
-+	<feature name="MULTI THREAD" value="multithread">
-+	  <choice name="off" value="off" />
++    <feature name="MULTI THREAD" value="multithread">
++      <choice name="off" value="off" />
 +      <choice name="on" value="on" />
 +    </feature>
-+	<feature name="QUAD RENDERING" value="quadrendering">
-+	  <choice name="off" value="off" />
++    <feature name="QUAD RENDERING" value="quadrendering">
++      <choice name="off" value="off" />
 +      <choice name="on" value="on" />
 +    </feature>
-+	<feature name="VSYNC" value="vsync">
-+	  <choice name="off" value="off" />
++    <feature name="VSYNC" value="vsync">
++      <choice name="off" value="off" />
 +      <choice name="on" value="on" />
 +    </feature>
-+	<feature name="NEW 3D ENGINE" value="new3dengine">
-+	  <choice name="off" value="off" />
++    <feature name="NEW 3D ENGINE" value="new3dengine">
++      <choice name="off" value="off" />
 +      <choice name="on" value="on" />
 +    </feature>
-+	<feature name="THROTTLE" value="throttle">
-+	  <choice name="off" value="off" />
++    <feature name="THROTTLE" value="throttle">
++      <choice name="off" value="off" />
 +      <choice name="on" value="on" />
 +    </feature>
-+	<feature name="POWERPC FREQUENCY" value="powerpcfrequency">
-+	  <choice name="10" value="10" />
++    <feature name="POWERPC FREQUENCY" value="powerpcfrequency">
++      <choice name="10" value="10" />
 +      <choice name="20" value="20" />
-+	  <choice name="30" value="30" />
-+	  <choice name="40" value="40" />
-+	  <choice name="50" value="50" />
-+	  <choice name="60" value="60" />
-+	  <choice name="70" value="70" />
-+	  <choice name="80" value="80" />
-+	  <choice name="90" value="90" />
-+	  <choice name="100" value="100" />
++      <choice name="30" value="30" />
++      <choice name="40" value="40" />
++      <choice name="50" value="50" />
++      <choice name="60" value="60" />
++      <choice name="70" value="70" />
++      <choice name="80" value="80" />
++      <choice name="90" value="90" />
++      <choice name="100" value="100" />
 +    </feature>
-+	<feature name="RUMBLE" value="rumble">
-+	  <choice name="off" value="off" />
-+	  <choice name="on" value="on" />
++    <feature name="RUMBLE" value="rumble">
++      <choice name="off" value="off" />
++      <choice name="on" value="on" />
 +    </feature>
-+	<feature name="EMULATE NET" value="emulatenet">
-+	  <choice name="off" value="off" />
-+	  <choice name="on" value="on" />
++    <feature name="EMULATE NET" value="emulatenet">
++      <choice name="off" value="off" />
++      <choice name="on" value="on" />
 +    </feature>
 +  </emulator>
 +
@@ -203,7 +203,7 @@
        <core name="gw" features="" />
        <core name="freeintv" features="" />
        <core name="pcfx" features="netplay, rewind, autosave" />
-@@ -169,7 +361,6 @@
+@@ -169,7 +363,6 @@
    </emulator>
    <emulator name="vice" features="videomode, ratio" />
    <emulator name="fsuae" features="videomode, ratio" />

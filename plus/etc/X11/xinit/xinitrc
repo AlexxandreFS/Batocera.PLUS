@@ -99,7 +99,7 @@ xset s off
 
 ################################################################################
 
-### Video de abertura
+### Vídeo de abertura
 
 function randVideo() {
     local VIDEO_DIR='/userdata/splashvideos'
@@ -127,22 +127,23 @@ function randVideo() {
 }
 
 function playVideo() {
-    openbox &
+    openbox & 
+
     cvlc --fullscreen --play-and-exit --no-interact --no-osd "$1" 2> /dev/null &
-    for ((i = 0; i < 60; i++)); do
+    for i in {1..60}; do
         if [ "$(pidof vlc)" ]; then
             break
         fi
-		sleep 0.5
+	sleep 0.5
     done
 	
-	for ((i = 0; i < 600; i++)); do
+    for i in {1..600}; do
         sleep 0.5
         if ! [ "$(pidof vlc)" ]; then
             break
         fi
     done
-	
+
     openbox --exit
 }
 
@@ -194,41 +195,35 @@ elif [ "/etc/emulationstation/themes/batocera-plus/loadscreen/startscreen.jpg" ]
     START_SCREEN='/etc/emulationstation/themes/batocera-plus/loadscreen/startscreen.jpg'
 fi
 
-while [ true ]; do
-    # Aguarda o emulationstation entrar em execução para exibir a tela de carregamento.
-    if [ "$(pidof emulationstation)" ]; then
-
-        # Desativa o som para o retroarch para evita conflito com o ES.
-        cp -f   '/usr/share/batocera/datainit/system/configs/retroarch/retroarchcustom.cfg' '/tmp/retroarchcustom.cfg'
-        echo -e '\naudio_enable = "false"' >> '/tmp/retroarchcustom.cfg'
-        echo    'audio_driver = "null"'    >> '/tmp/retroarchcustom.cfg'
-
-        # Aguarda o ES entrar em execução para executar o retroarch (visializador de imagem) em primeiro plano.
+# Interrompe a tela de carregamento quando o emulationstation estiver pronto para uso.
+(
+    for i in {1..300}; do
+        if [ "$(pidof emulationstation)" ]; then
+            sleep 0.2
+            batocera-load-screen "${START_SCREEN}" --no-close &
+            break
+        fi
         sleep 0.2
+    done
 
-        # Exibe a tela de carregamento.
-        retroarch -L '/usr/lib/libretro/imageviewer_libretro.so' --config '/tmp/retroarchcustom.cfg' "${START_SCREEN}" &
-        sleep 4
+    sleep 4
 
-        # Interrompe a tela de carregamento quando o emulationstation terminar o carregamento.
-        while [ true ]; do
-            if [ -f '/tmp/emulationstation.ready' ]; then
-                killall -9 retroarch
-                rm -f '/tmp/retroarchcustom.cfg'
-                break
-            fi
-            sleep 1
-        done
-        break
-    fi
-    sleep 0.2
-done &
+    for i in {1..300}; do
+        if [ -f '/tmp/emulationstation.ready' ]; then
+            killall yad
+            break
+        fi
+        sleep 1
+    done
+) &
+
+################################################################################
+
+### Start Emulationstation.
 
 # allow coredumps for ES
 ulimit -H -c unlimited
 ulimit -S -c unlimited emulationstation
 
-################################################################################
-
 cd /userdata # es needs a PWD
-openbox --config-file /etc/openbox/rc.xml --startup "emulationstation --windowed --no-splash"
+openbox --config-file /etc/openbox/rc.xml --startup 'emulationstation --windowed --no-splash'

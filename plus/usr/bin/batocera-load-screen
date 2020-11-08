@@ -1,0 +1,160 @@
+#!/bin/bash
+##
+## Batocera.PLUS
+## Alexandre Freire dos Santos
+##
+## Este script exibe uma imagem de carregamento em tela cheia.
+##
+
+################################################################################
+
+readonly DEFAULT_IMAGE='/usr/share/batocera/splash/logo-version.png'
+readonly THEME=/tmp/yad.theme
+readonly MAX_TIME=120
+
+################################################################################
+
+##
+## MAIN
+##
+function main()
+{
+    local IMAGE="$(getImage "${1}")"
+
+    if [ -z "${IMAGE}" ]; then
+        help
+        return 1
+    fi
+
+    local CLOSE=${2}
+
+    if [ "${CLOSE}" == '--no-close' ];then
+        CLOSE=
+    elif [ -z "${CLOSE}" ]; then
+        CLOSE='--close-on-unfocus'
+    else
+        help
+        return 1
+    fi
+
+    local RESOLUTION=$(getResolution)
+
+    if [ -z "${RESOLUTION}" ]; then
+        exit 1
+    fi
+
+    showImage ${RESOLUTION} "${IMAGE}" ${CLOSE}
+
+    return 0
+}
+
+################################################################################
+
+##
+## Teste de sanidade, retorna o local da imagem a ser exibida.
+##
+function getImage()
+{
+    IMAGE="${1}"
+
+    # Use default image.
+    if [ -z "${IMAGE}" ]; then
+        echo "${DEFAULT_IMAGE}"
+        return
+    fi
+
+    # Show help.
+    if [ "${IMAGE}" == '--help' ]; then
+        return
+    fi
+
+    if [ ! -f "${IMAGE}" ]; then
+        return
+    fi
+
+    # Use a custom image.
+    echo "${IMAGE}"
+}
+
+################################################################################
+
+##
+## Help
+##
+function help()
+{
+    echo 'Show a image while window in foccus'
+    echo "Usage: $(basename ${0}) My_Image.jpg"
+    echo 'Window no close if foccus is lost'
+    echo "Usage: $(basename ${0}) My_Image.png --no-close"
+}
+
+################################################################################
+
+##
+## Retorna a resolução da área de trabalho acrescentando 4 pixels.
+##
+function getResolution() {
+    local RESOLUTION=$(batocera-resolution currentResolution)
+    local RESOLUTION_X=$(echo ${RESOLUTION} | cut -d x -f 1)
+    local RESOLUTION_Y=$(echo ${RESOLUTION} | cut -d x -f 2)
+
+    # Add 4 pixels in resolution.
+    RESOLUTION_X=$((${RESOLUTION_X} + 4))
+    RESOLUTION_Y=$((${RESOLUTION_Y} + 4))
+
+    # Minimum resolution 640x480
+    if [ "${RESOLUTION_X}" -lt '640' ]; then
+        return -1
+    fi
+    if [ "${RESOLUTION_Y}" -lt '480' ]; then
+        return -2
+    fi
+
+    echo "${RESOLUTION_X}x${RESOLUTION_Y}"
+}
+
+################################################################################
+
+##
+## Exibe a imagem de carregamento.
+##
+function showImage()
+{
+    local RESOLUTION=${1}
+    local IMAGE="${2}"
+    local CLOSE="${3}"
+
+    # Make a black theme
+    cat << '    EOF' > "${THEME}"
+        style "default-style"
+        {
+            bg[NORMAL] = "#000000"
+            fg[NORMAL] = "#000000"
+        }
+        class "GtkWidget" style "default-style"
+    EOF
+
+    # Show image
+    GTK2_RC_FILES="${THEME}" yad \
+        --title batocera-load-screen \
+        --geometry=${RESOLUTION} \
+        --borders=0 \
+        --undecorated \
+        --no-buttons \
+        --vscroll-policy=never \
+        --hscroll-policy=never \
+        --on-top \
+        "${CLOSE}" \
+        --no-escape \
+        --timeout=${MAX_TIME} \
+        --picture \
+            --size=fit \
+            --filename="${IMAGE}"
+
+    rm "${THEME}"
+}
+
+################################################################################
+
+main "${@}" && exit ${?}
