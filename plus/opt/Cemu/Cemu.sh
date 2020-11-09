@@ -1,12 +1,9 @@
 #!/bin/sh
 
 # Variáveis externas
-JOGO="${1}"
-OTIMIZATIONS="${2}" 
-RENDER="${3}"
-ESYNC="${4}"
-DXVK="${5}"
-SHOWFPS="${6}"
+JOGO="$1"
+OTIMIZATIONS="$2"
+#SHOWFPS="$3"
 
 # Variáveis da instalação e execução do Cemu
 CEMU_DIR='/opt/Cemu'
@@ -48,13 +45,7 @@ if [ ! "$(ls -A "${CEMU}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/nu
     ln -s "${SAVE}/"* "${CEMU}"
 fi
 
-# Checa se a interface foi executada de forma correta na última vez
-# Esse site salvou minha vida https://dwaves.de/tools/escape/
-if [ "$(grep '<check_update>true<\/check_update>' "${CEMU}/settings.xml" )" ]; then
-    sed -i 's/<check_update>true<\/check_update>/<check_update>false<\/check_update>/' "${CEMU}/settings.xml"
-fi
-
-# LINGUAGEM
+# Linguagem
 SLANG="$(batocera-settings -command load -key system.language)"
 case $SLANG in
     fr_FR)             sed -i 's/<language>.*/<language>79<\/language>/'  "$CEMU/settings.xml" ;;
@@ -67,54 +58,30 @@ case $SLANG in
     zh_CN)             sed -i 's/<language>.*/<language>44<\/language>/'  "$CEMU/settings.xml" ;;
  esac
  
-# OTIMIZATIONS
+# FPS
+#if [ "${SHOWFPS}" == 'auto' ] || [ "${SHOWFPS}" == 'off' ]; then
+#else
+#fi
+
+# Checa se a interface foi executada de forma correta na última vez
+# Esse site salvou minha vida https://dwaves.de/tools/escape/
+if [ "$(grep '<check_update>true<\/check_update>' "${CEMU}/settings.xml" )" ]; then
+    sed -i 's/<check_update>true<\/check_update>/<check_update>false<\/check_update>/' "${CEMU}/settings.xml"
+fi
+
+# Habilita as dependências necessárias para a execução do Cemu no menu F1
+export WINEDLLOVERRIDES="keystone.dll=n,b;dbghelp.dll=n,b"
+
+# Checa se as otimizações foram ativadas no emulationstation ALTAMENTE EXPERIMENTAL!
 if [ "${OTIMIZATIONS}" == 'nvidia' ] ; then
-    export __GL_THREADED_OPTIMIZATIONS=1
+    export mesa_glthread=true
     export vblank_mode=0
-elif [ "${OTIMIZATIONS}" == 'amd' ] ; then
+    export WINEESYNC=1
+elif [ "${OTIMIZATIONS}" == 'amdintel' ] ; then
     export R600_DEBUG=nohyperz
     export mesa_glthread=true
     export vblank_mode=0
-elif [ "${OTIMIZATIONS}" == 'intel' ] ; then
-    export MESA_GL_VERSION_OVERRIDE=4.5COMPAT
-    export vblank_mode=0
-fi
-
-# RENDER
-if [ "${RENDER}" == 'auto' ] || [ "${RENDER}" == 'opengl' ]; then
-    sed -i '/<Graphic>/!b;n;c\        <api>0</api>' "$CEMU/settings.xml"
-else
-    sed -i '/<Graphic>/!b;n;c\        <api>1</api>' "$CEMU/settings.xml"
-fi
-
-# ESYNC
-if [ "${ESYNC}" == 'on' ] || [ "${ESYNC}" == 'off' ]; then
     export WINEESYNC=1
-fi
-
-# FSYNC (Futura implementação)
-#if [ "${FSYNC}" == 'on' ]; then
-#    export WINEFSYNC=1
-#fi
-
-# DXVK
-# Se não ativar o DXVK as informações de VRAM utilizada não aparecem quando SHOW FPS está ativado (será resolvido de outra forma no futuro)
-if [ "${DXVK}" == 'on' ] || [ "${DXVK}" == 'auto' ] || [ "${SHOWFPS}" != 'auto' ]; then
-    export DXVK=1
-fi
-
-# SHOWFPS
-if [ "${SHOWFPS}" != 'auto' ]; then
-    case $SHOWFPS in
-        topleft)           sed -i '/<Overlay>/!b;n;c\            <Position>1</Position>' "${CEMU}/settings.xml" ;;
-        topcenter)         sed -i '/<Overlay>/!b;n;c\            <Position>2</Position>' "${CEMU}/settings.xml" ;;
-        topright)          sed -i '/<Overlay>/!b;n;c\            <Position>3</Position>' "${CEMU}/settings.xml" ;;
-        bottonleft)        sed -i '/<Overlay>/!b;n;c\            <Position>4</Position>' "${CEMU}/settings.xml" ;;
-        bottoncenter)      sed -i '/<Overlay>/!b;n;c\            <Position>5</Position>' "${CEMU}/settings.xml" ;;
-        bottonright)       sed -i '/<Overlay>/!b;n;c\            <Position>6</Position>' "${CEMU}/settings.xml" ;;
-    esac
-else
-    sed -i '/<Overlay>/!b;n;c\            <Position>0</Position>' "$CEMU/settings.xml"
 fi
 
 # Checa se tem uma rom válida na variável JOGO
@@ -137,18 +104,15 @@ if ! [ "$(ls -1 "$CEMU/controllerProfiles" | grep '.txt' | tail -n 1)" ] && [ "$
       /bin/echo -e "\nAVISO\nConfigure um controle\npara o Cemu no menu F1" | LC_ALL=C HOME=/userdata/system DISPLAY=:0.0 osd_cat -f -*-*-bold-*-*-*-32-120-*-*-*-*-*-* -cred -s 2 -d 4 -l 100 -cgreen -o 480 -A center
 fi
 
-# Habilita as dependências necessárias para o cemuhook
-export WINEDLLOVERRIDES="keystone.dll=n,b;dbghelp.dll=n,b"
-
 # Captura a resolução da tela antes de iniciar o jogo
 RES_START="$(batocera-resolution currentMode)"
 
 # Executa o Cemu com as configurações selecionadas
 if [ "${JOGO}" == '' ]; then
-    wine-lutris "${CEMU}/Cemu.exe"
+    wine "${CEMU}/Cemu.exe"
     sed -i 's/<check_update>true<\/check_update>/<check_update>false<\/check_update>/' "${CEMU}/settings.xml"
 else
-    wine-lutris "${CEMU}/Cemu.exe" -f -g "${JOGO}"
+    wine "${CEMU}/Cemu.exe" -f -g "${JOGO}"
 fi
 
 # Aguarda o Cemu encerrar a execução
