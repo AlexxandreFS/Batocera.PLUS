@@ -63,23 +63,23 @@ esac
 # Carrega a resolução do sistema configurado pelo emulationstation
 if [ "${RESOLUTION}" == 'auto' ]; then
     XRES="$(echo "${RES_START}" | cut -d 'x' -f 1)"
-	sed -i s/'^XResolution=.*/XResolution='"${XRES}"'/' "${MODEL3}/Config/Supermodel.ini"
+ sed -i s/'^XResolution=.*/XResolution='"${XRES}"'/' "${MODEL3}/Config/Supermodel.ini"
     YRES="$(echo "${RES_START}" | cut -d 'x' -f 2)"
-	sed -i s/'^YResolution=.*/YResolution='"${YRES}"'/' "${MODEL3}/Config/Supermodel.ini"
+ sed -i s/'^YResolution=.*/YResolution='"${YRES}"'/' "${MODEL3}/Config/Supermodel.ini"
 else
     XRES="$(echo "${RESOLUTION}" | cut -d 'x' -f 1)"
-	sed -i s/'^XResolution=.*/XResolution='"${XRES}"'/' "${MODEL3}/Config/Supermodel.ini"
+ sed -i s/'^XResolution=.*/XResolution='"${XRES}"'/' "${MODEL3}/Config/Supermodel.ini"
     YRES="$(echo "${RESOLUTION}" | cut -d 'x' -f 2)"
-	sed -i s/'^YResolution=.*/YResolution='"${YRES}"'/' "${MODEL3}/Config/Supermodel.ini"
+ sed -i s/'^YResolution=.*/YResolution='"${YRES}"'/' "${MODEL3}/Config/Supermodel.ini"
 fi
 
 # MultiThread
 if [ "${MULTITHREAD}" == 'auto' ] || [ "${MULTITHREAD}" == 'off' ]; then
     sed -i s/'^MultiThreaded=.*/MultiThreaded=0/' "${MODEL3}/Config/Supermodel.ini"
-	sed -i s/'^GPUMultiThreaded=.*/GPUMultiThreaded=0/' "${MODEL3}/Config/Supermodel.ini"
+ sed -i s/'^GPUMultiThreaded=.*/GPUMultiThreaded=0/' "${MODEL3}/Config/Supermodel.ini"
 else
     sed -i s/'^MultiThreaded=.*/MultiThreaded=1/' "${MODEL3}/Config/Supermodel.ini"
-	sed -i s/'^GPUMultiThreaded=.*/GPUMultiThreaded=1/' "${MODEL3}/Config/Supermodel.ini"
+ sed -i s/'^GPUMultiThreaded=.*/GPUMultiThreaded=1/' "${MODEL3}/Config/Supermodel.ini"
 fi
 
 # MultiTexture
@@ -133,14 +133,14 @@ fi
 
 # ForceFeedback
 if [ "${RUMBLE}" == 'auto' ] || [ "${RUMBLE}" == 'on' ]; then
-	sed -i s/'^ForceFeedback=.*/ForceFeedback=1/' "${MODEL3}/Config/Supermodel.ini" 
+ sed -i s/'^ForceFeedback=.*/ForceFeedback=1/' "${MODEL3}/Config/Supermodel.ini" 
 else
     sed -i s/'^ForceFeedback=.*/ForceFeedback=0/' "${MODEL3}/Config/Supermodel.ini" 
 fi
 
 # EmulateNet
 if [ "${EMULATENET}" == 'auto' ] || [ "${EMULATENET}" == 'off' ]; then
-	sed -i s/'^EmulateNet=.*/EmulateNet=0/' "${MODEL3}/Config/Supermodel.ini" 
+ sed -i s/'^EmulateNet=.*/EmulateNet=0/' "${MODEL3}/Config/Supermodel.ini" 
 else
     sed -i s/'^EmulateNet=.*/EmulateNet=1/' "${MODEL3}/Config/Supermodel.ini" 
 fi
@@ -151,8 +151,8 @@ sed -i s/'^FullScreen=.*/FullScreen=1/' "${MODEL3}/Config/Supermodel.ini"
 cd "$MODEL3"
 # Executa o jogo ou o configurador
 if [ "${JOGO}" == "${JOGO%zip}zip" ] || [ "${JOGO}" == "${JOGO%ZIP}ZIP" ]; then
-	export WINEDLLOVERRIDES="SDL.dll=n,b"
-	wine "supermodel.exe" "$JOGO" -flip-stereo -sound-volume=50 -music-volume=200
+ export WINEDLLOVERRIDES="SDL.dll=n,b"
+ wine "supermodel.exe" "$JOGO" -flip-stereo -sound-volume=50 -music-volume=200
 fi
 
 # Aguarda encerrar a execução do jogo
@@ -160,7 +160,7 @@ while [ "$(pidof wineserver)" ]; do
     sleep 1
 done
 
-# Restaura a resolução, caso o jogo tenha mudado ###	
+# Restaura a resolução, caso o jogo tenha mudado ### 
 RES_STOP="$(batocera-resolution currentResolution)"
 if [ "${RES_START}" != "${RES_STOP}" ]; then
     batocera-resolution setMode "${RES_START}"

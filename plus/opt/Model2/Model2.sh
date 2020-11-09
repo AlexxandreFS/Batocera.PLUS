@@ -57,13 +57,13 @@ esac
 if [ "${RESOLUTION}" == 'auto' ]; then
     XRES="$(echo "${RES_START}" | cut -d 'x' -f 1)"
     YRES="$(echo "${RES_START}" | cut -d 'x' -f 2)"
-	sed -i 's/^FullScreenWidth=.*/FullScreenWidth='"${XRES}"'/' "${MODEL2}/Emulator.ini"
-	sed -i 's/^FullScreenHeight=.*/FullScreenHeight='"${YRES}"'/' "${MODEL2}/Emulator.ini"
+ sed -i 's/^FullScreenWidth=.*/FullScreenWidth='"${XRES}"'/' "${MODEL2}/Emulator.ini"
+ sed -i 's/^FullScreenHeight=.*/FullScreenHeight='"${YRES}"'/' "${MODEL2}/Emulator.ini"
 else
     XRES="$(echo "${RESOLUTION}" | cut -d 'x' -f 1)"
     YRES="$(echo "${RESOLUTION}" | cut -d 'x' -f 2)"
-	sed -i 's/^FullScreenWidth=.*/FullScreenWidth='"${XRES}"'/' "${MODEL2}/Emulator.ini"
-	sed -i 's/^FullScreenHeight=.*/FullScreenHeight='"${YRES}"'/' "${MODEL2}/Emulator.ini"
+ sed -i 's/^FullScreenWidth=.*/FullScreenWidth='"${XRES}"'/' "${MODEL2}/Emulator.ini"
+ sed -i 's/^FullScreenHeight=.*/FullScreenHeight='"${YRES}"'/' "${MODEL2}/Emulator.ini"
 fi
 
 # ANTIALIASING
@@ -76,13 +76,13 @@ fi
 # ANISOTROPICFILTER
 if [ "${ANISOTROPICFILTER}" == 'bilinear' ]; then
     sed -i s/'^Bilinear=.*/Bilinear=1/' "${MODEL2}/Emulator.ini"
-	sed -i s/'^Trilinear=.*/Trilinear=0/' "${MODEL2}/Emulator.ini"
+ sed -i s/'^Trilinear=.*/Trilinear=0/' "${MODEL2}/Emulator.ini"
 elif [ "${ANISOTROPICFILTER}" == 'trilinear' ]; then
     sed -i s/'^Bilinear=.*/Bilinear=0/' "${MODEL2}/Emulator.ini"
-	sed -i s/'^Trilinear=.*/Trilinear=1/' "${MODEL2}/Emulator.ini"
+ sed -i s/'^Trilinear=.*/Trilinear=1/' "${MODEL2}/Emulator.ini"
 else
     sed -i s/'^Bilinear=.*/Bilinear=0/' "${MODEL2}/Emulator.ini"
-	sed -i s/'^Trilinear=.*/Trilinear=0/' "${MODEL2}/Emulator.ini"
+ sed -i s/'^Trilinear=.*/Trilinear=0/' "${MODEL2}/Emulator.ini"
 fi
 
 # VSYNC
@@ -96,20 +96,20 @@ fi
 # Para jogos de tiro, seria interessante portar o demulshooter
 if [ "${DRAWCROSS}" == 'auto' ] || [ "${DRAWCROSS}" == 'off' ]; then
     mouse-pointer off
-	sed -i s/'^DrawCross=.*/DrawCross=0/' "${MODEL2}/Emulator.ini"
-	sed -i s/'^RawDevP1=.*/RawDevP1=0/' "${MODEL2}/Emulator.ini"
-	sed -i s/'^RawDevP2=.*/RawDevP1=0/' "${MODEL2}/Emulator.ini"
+ sed -i s/'^DrawCross=.*/DrawCross=0/' "${MODEL2}/Emulator.ini"
+ sed -i s/'^RawDevP1=.*/RawDevP1=0/' "${MODEL2}/Emulator.ini"
+ sed -i s/'^RawDevP2=.*/RawDevP1=0/' "${MODEL2}/Emulator.ini"
 else
     mouse-pointer on
-	sed -i s/'^DrawCross=.*/DrawCross=1/' "${MODEL2}/Emulator.ini"
-	sed -i s/'^RawDevP1=.*/RawDevP1=0/' "${MODEL2}/Emulator.ini"
-	sed -i s/'^RawDevP2=.*/RawDevP1=1/' "${MODEL2}/Emulator.ini"
+ sed -i s/'^DrawCross=.*/DrawCross=1/' "${MODEL2}/Emulator.ini"
+ sed -i s/'^RawDevP1=.*/RawDevP1=0/' "${MODEL2}/Emulator.ini"
+ sed -i s/'^RawDevP2=.*/RawDevP1=1/' "${MODEL2}/Emulator.ini"
 fi
 
 # FORCE FEEDBACK
 if [ "${RUMBLE}" == 'auto' ] || [ "${RUMBLE}" == 'on' ]; then
-	sed -i s/'^EnableFF=.*/EnableFF=1/' "${MODEL2}/Emulator.ini"
-	sed -i s/'^Force Feedback=.*/Force Feedback=1/' "${MODEL2}/Emulator.ini"
+ sed -i s/'^EnableFF=.*/EnableFF=1/' "${MODEL2}/Emulator.ini"
+ sed -i s/'^Force Feedback=.*/Force Feedback=1/' "${MODEL2}/Emulator.ini"
 else
     sed -i s/'^EnableFF=.*/EnableFF=0/' "${MODEL2}/Emulator.ini"
     sed -i s/'^Force Feedback=.*/Force Feedback=0/' "${MODEL2}/Emulator.ini"
@@ -140,7 +140,7 @@ while [ "$(pidof wineserver)" ]; do
     sleep 1
 done
 
-# Restaura a resolução, caso o jogo tenha mudado ###	
+# Restaura a resolução, caso o jogo tenha mudado ### 
 RES_STOP="$(batocera-resolution currentResolution)"
 if [ "${RES_START}" != "${RES_STOP}" ]; then
     batocera-resolution setMode "${RES_START}"
