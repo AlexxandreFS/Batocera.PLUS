@@ -1,6 +1,6 @@
---- es_features.cfg.original
-+++ es_features.cfg.modificado
-@@ -77,8 +77,224 @@
+--- es_features.cfg
++++ es_features.cfg.plus
+@@ -77,8 +77,230 @@
    <emulator name="melonds" features="videomode" />
    <emulator name="daphne" features="videomode, ratio" />
    <emulator name="flycast" features="videomode, ratio" />
@@ -16,23 +16,19 @@
 +      <choice name="amd" value="amd" />
 +      <choice name="intel" value="intel" />
 +    </feature>
-+    <feature name="RENDER" value="render">
++    <feature name="GRAPHICS BACKEND" value="render">
 +      <choice name="opengl" value="opengl" />
 +      <choice name="vulkan" value="vulkan" />
 +    </feature>
-+    <feature name="ESYNC" value="esync">
-+      <choice name="on" value="on" />
++    <feature name="SYNC" value="sync">
++      <choice name="esync" value="esync" />
++      <choice name="fsync" value="fsync" />
 +      <choice name="off" value="off" />
 +    </feature>
 +    <feature name="DXVK" value="dxvk">
 +      <choice name="on" value="on" />
 +      <choice name="off" value="off" />
 +    </feature>
-+    <!-- FSYNC (Futura implementação)
-+    <feature name="FSYNC" value="fsync">
-+      <choice name="on" value="on" />
-+      <choice name="off" value="off" />
-+    </feature> -->
 +    <feature name="SHOW FPS" value="showfps">
 +      <choice name="top left" value="topleft" />
 +      <choice name="top center" value="topcenter" />
@@ -40,6 +36,10 @@
 +      <choice name="botton left" value="bottonleft" />
 +      <choice name="botton center" value="bottoncenter" />
 +      <choice name="botton right" value="bottonright" />
++    </feature>
++	<feature name="MOUSE POINTER" value="mouse_pointer">
++      <choice name="on" value="on" />
++      <choice name="off" value="off" />
 +    </feature>
 +  </emulator>
 +
@@ -56,10 +56,6 @@
 +      <choice name="off" value="off" />
 +      <choice name="bilinear" value="bilinear" />
 +      <choice name="trilinear" value="trilinear" />
-+    </feature>
-+    <feature name="VSYNC" value="vsync">
-+      <choice name="off" value="off" />
-+      <choice name="on" value="on" />
 +    </feature>
 +    <feature name="DRAW CROSS" value="drawcross">
 +      <choice name="off" value="off" />
@@ -150,6 +146,11 @@
 +      <choice name="on+fps" value="fps" />
 +      <choice name="off" value="off" />
 +    </feature>
++	<feature name="SYNC" value="sync">
++      <choice name="esync" value="esync" />
++      <choice name="fsync" value="fsync" />
++      <choice name="off" value="off" />
++    </feature>
 +    <feature name="MOUSE POINTER" value="mouse_pointer">
 +      <choice name="on" value="on" />
 +      <choice name="off" value="off" />
@@ -177,6 +178,11 @@
 +    <feature name="DXVK" value="dxvk">
 +      <choice name="on" value="on" />
 +      <choice name="on+fps" value="fps" />
++      <choice name="off" value="off" />
++    </feature>
++	<feature name="SYNC" value="sync">
++      <choice name="esync" value="esync" />
++      <choice name="fsync" value="fsync" />
 +      <choice name="off" value="off" />
 +    </feature>
 +    <feature name="MOUSE POINTER" value="mouse_pointer">
@@ -225,7 +231,7 @@
        <core name="gw" features="" />
        <core name="freeintv" features="" />
        <core name="pcfx" features="netplay, rewind, autosave" />
-@@ -169,7 +385,6 @@
+@@ -169,7 +391,6 @@
    </emulator>
    <emulator name="vice" features="videomode, ratio" />
    <emulator name="fsuae" features="videomode, ratio" />
