@@ -44,9 +44,9 @@ fi
 if [ ! "$(ls -A "${MODEL2}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/null)" ]; then
     # Montando o model2 em "system/configs/model2"
     mkdir -p "${SAVE}"                                    "${MODEL2}" || exit $?
-    cp -f  "${MODEL2_DIR}/emulator/emulator.exe"          "${MODEL2}" || exit $?
-    cp -f  "${MODEL2_DIR}/emulator/emulator_multicpu.exe" "${MODEL2}" || exit $?
-    cp -f  "${MODEL2_DIR}/emulator/Emulator.ini"          "${MODEL2}" || exit $?
+    cp -rf  "${MODEL2_DIR}/emulator/emulator.exe"          "${MODEL2}" || exit $?
+    cp -rf  "${MODEL2_DIR}/emulator/emulator_multicpu.exe" "${MODEL2}" || exit $?
+    cp -rf  "${MODEL2_DIR}/emulator/Emulator.ini"          "${MODEL2}" || exit $?
 
     # Montando o model2 em "share/save/model2"
     cp -rf "${MODEL2_DIR}/emulator/CFG"                   "${SAVE}"   || exit $?

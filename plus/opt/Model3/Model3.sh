@@ -51,8 +51,8 @@ if [ ! "$(ls -A "${MODEL3}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/
     # Montando o model2 em "system/configs/model2"
     mkdir -p "${SAVE}"                              "${MODEL3}" || exit $?
 
-    cp -f  "${MODEL3_DIR}/emulator/SDL.dll"         "${MODEL3}" || exit $?
-    cp -f  "${MODEL3_DIR}/emulator/Supermodel.exe"  "${MODEL3}" || exit $?
+    cp -rf  "${MODEL3_DIR}/emulator/SDL.dll"         "${MODEL3}" || exit $?
+    cp -rf  "${MODEL3_DIR}/emulator/Supermodel.exe"  "${MODEL3}" || exit $?
     cp -rf "${MODEL3_DIR}/emulator/Shaders"         "${MODEL3}" || exit $?
     
     # Montando o model2 em "share/save/model2"
