@@ -10,9 +10,10 @@
 JOGO="${1}"
 OTIMIZATIONS="${2}" 
 RENDER="${3}"
-ESYNC="${4}"
+SYNC="${4}"
 DXVK="${5}"
 SHOWFPS="${6}"
+MOUSE="${7}"
 
 ################################################################################
 
@@ -38,18 +39,18 @@ fi
 # Instalação do Cemu
 if [ ! "$(ls -A "${CEMU}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/null)" ]; then
     # Montando o cemu em "system/configs/cemu"
-    mkdir -p "$(dirname "${CEMU}/log.txt")"                     || exit $?
-    ln -s  "${CEMU}/log.txt" "${HOME}/logs/cemu.log"
-    cp -f  "${CEMU_DIR}/emulator/resources"            "${CEMU}" || exit $?
-    cp -f  "${CEMU_DIR}/cemuextras/sharedFonts"        "${CEMU}" || exit $?
-    cp -f  "${CEMU_DIR}/cemuhook/keystone.dll"         "${CEMU}" || exit $?
-    cp -f  "${CEMU_DIR}/emulator/Cemu.exe"             "${CEMU}" || exit $?
-    cp -f  "${CEMU_DIR}/cemuextras/cemuhook.ini"       "${CEMU}" || exit $?
-    cp -f  "${CEMU_DIR}/cemuhook/dbghelp.dll"          "${CEMU}" || exit $?
-    cp -f  "${CEMU_DIR}/cemuextras/keys.txt"           "${CEMU}" || exit $?
-    cp -f  "${CEMU_DIR}/fakefiles/otp.bin"             "${CEMU}" || exit $?
-    cp -f  "${CEMU_DIR}/fakefiles/seeprom.bin"         "${CEMU}" || exit $?
-    cp -f  "${CEMU_DIR}/cemuextras/settings.xml"       "${CEMU}" || exit $?
+    mkdir -p "$(dirname "${CEMU}/log.txt")"                      || exit $?
+    ln -sf  "${CEMU}/log.txt" "${HOME}/logs/cemu.log"
+    cp -rf  "${CEMU_DIR}/emulator/resources"            "${CEMU}" || exit $?
+    cp -rf  "${CEMU_DIR}/cemuextras/sharedFonts"        "${CEMU}" || exit $?
+    cp -rf  "${CEMU_DIR}/cemuhook/keystone.dll"         "${CEMU}" || exit $?
+    cp -rf  "${CEMU_DIR}/emulator/Cemu.exe"             "${CEMU}" || exit $?
+    cp -rf  "${CEMU_DIR}/cemuextras/cemuhook.ini"       "${CEMU}" || exit $?
+    cp -rf  "${CEMU_DIR}/cemuhook/dbghelp.dll"          "${CEMU}" || exit $?
+    cp -rf  "${CEMU_DIR}/cemuextras/keys.txt"           "${CEMU}" || exit $?
+    cp -rf  "${CEMU_DIR}/fakefiles/otp.bin"             "${CEMU}" || exit $?
+    cp -rf  "${CEMU_DIR}/fakefiles/seeprom.bin"         "${CEMU}" || exit $?
+    cp -rf  "${CEMU_DIR}/cemuextras/settings.xml"       "${CEMU}" || exit $?
 
     # Montando o cemu em "share/save/wiiu"
     mkdir -p "${SAVE}/hfiomlc01"                                 || exit $?
@@ -119,18 +120,13 @@ fi
 
 ################################################################################
 
-### ESYNC
-if [ "${ESYNC}" == 'on' ] || [ "${ESYNC}" == 'off' ]; then
-    export WINEESYNC=1
-fi
+### SYNC
 
-################################################################################
-
-### FSYNC (Futura implementação)
-
-#if [ "${FSYNC}" == 'on' ]; then
-#    export WINEFSYNC=1
-#fi
+case ${SYNC} in
+    esync) export WINEESYNC=1 ;;
+    fsync) export WINEFSYNC=1 ;;
+	auto)  exit 0 ;;
+esac
 
 ################################################################################
 
@@ -156,6 +152,16 @@ if [ "${SHOWFPS}" != 'auto' ]; then
     esac
 else
     sed -i '/<Overlay>/!b;n;c\            <Position>0</Position>'                   "${CEMU}/settings.xml"
+fi
+
+################################################################################
+
+# MOUSE POINTER
+
+if [ "${MOUSE}" == 'auto' ] || [ "${MOUSE}" == 'on' ] ; then
+    mouse-pointer on
+else
+    mouse-pointer off
 fi
 
 ################################################################################
