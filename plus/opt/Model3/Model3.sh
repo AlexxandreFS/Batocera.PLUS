@@ -2,6 +2,27 @@
 ##
 ## Batocera.PLUS
 ##
+## Código escrito por: Sérgio de Carvalho Júnior
+## Colaborador: Alexandre Freire dos Santos
+## 
+## Linha de comando:
+## Model3.sh [ROM] [CORE] [RESOLUTION] [WIDESCREEN] [MULTITEXTURE] [MULTITHREAD] [QUADRENDERING] [SYNC] [NEW3DENGINE] [THROTTLE] [STRETCH] [INTEGERSCALE] [POWERPCFREQUENCY] [RUMBLE] [EMULATENET]
+## ROM = Caminho do jogo até o .zip do jogo
+## CORE = singlecore, multicore ou auto
+## RESULUTION = auto ou algo que respeite a regra XXXXxXXXX ex: [1920x1080]
+## WIDESCREEN = 4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3|auto|custom|squarepixel
+## MULTITEXTURE = auto, on ou off
+## MULTITHREAD = auto, on ou off
+## QUADRENDERING= = auto, on ou off
+## VSYNC = auto, on ou off
+## NEW3DENGINE  = auto, on ou off
+## THROTTLE = auto, on ou off
+## STRETCH = auto, on ou off (pixel perfect off)
+## INTEGERSCALE = auto, on ou off
+## POWERPCFREQUENCY] = 10,20,30,40,50,60,70,80,90,100 (mhz)
+## RUMBLE = on, off ou auto
+## EMULATENET = auto, on ou off
+## PIGUID = parâmetro do emulatorlauncher.sh
 
 ################################################################################
 
@@ -22,17 +43,52 @@ INTEGERSCALE="${12}"
 POWERPCFREQUENCY="${13}"
 RUMBLE="${14}"
 EMULATENET="${15}"
+P1GUID="${16}"
 
 ################################################################################
 
 ### CAMINHOS
 
-# Variáveis da instalação do Model 3
 MODEL3_DIR='/opt/Model3'
-
-# Variáveis para configuração do Model 3
 MODEL3="${HOME}/configs/model3"
 SAVE="${HOME}/../saves/model3"
+
+################################################################################
+
+### HELP
+
+function help()
+{
+    echo " Sega Model 3 launcher for Batocera.PLUS"
+    echo " "
+    echo " Codigo escrito por: Sergio de Carvalho Junior"
+    echo " Colaborador: Alexandre Freire dos Santos"
+    echo " "
+    echo " Linha de comando:"
+    echo " Model3.sh [ROM] [CORE] [RESOLUTION] [WIDESCREEN] [MULTITEXTURE] [MULTITHREAD] [QUADRENDERING] [SYNC] [NEW3DENGINE] [THROTTLE] [STRETCH] [INTEGERSCALE] [POWERPCFREQUENCY] [RUMBLE] [EMULATENET]"
+    echo " ROM = Caminho do jogo até o .zip do jogo"
+    echo " CORE = singlecore, multicore ou auto"
+    echo " RESULUTION = auto ou algo que respeite a regra XXXXxXXXX ex: [1920x1080]"
+    echo " WIDESCREEN = 4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3|auto|custom|squarepixel"
+    echo " MULTITEXTURE = auto, on ou off"
+    echo " MULTITHREAD = auto, on ou off"
+    echo " QUADRENDERING= = auto, on ou off"
+    echo " VSYNC = auto, on ou off"
+    echo " NEW3DENGINE  = auto, on ou off"
+    echo " THROTTLE = auto, on ou off"
+    echo " STRETCH = auto, on ou off (pixel perfect off)"
+    echo " INTEGERSCALE = auto, on ou off"
+    echo " POWERPCFREQUENCY] = 10,20,30,40,50,60,70,80,90,100 (mhz)"
+    echo " RUMBLE = on, off ou auto"
+    echo " EMULATENET = auto, on ou off"
+    echo " PIGUID = parâmetro do emulatorlauncher.sh"
+    echo " "
+}
+
+if [ "${1}" == '--help' ]; then
+    help
+    exit 0
+fi
 
 ################################################################################
 
@@ -40,8 +96,20 @@ SAVE="${HOME}/../saves/model3"
 
 # Executa o Model2/Wine se não estiver sendo executado
 if [ "$(pidof supermodel.exe)" ]; then
+    echo " Sega Model 3 launcher ja esta sendo executado"
     exit 1
 fi
+
+################################################################################
+
+### LAUNCHER INFO
+
+echo " Sega Model 3 launcher for Batocera.PLUS"
+echo " "
+echo " Codigo escrito por: Sergio de Carvalho Junior"
+echo " Colaborador: Alexandre Freire dos Santos"
+echo " "
+
 
 ################################################################################
 
@@ -51,8 +119,8 @@ if [ ! "$(ls -A "${MODEL3}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/
     # Montando o model2 em "system/configs/model2"
     mkdir -p "${SAVE}"                              "${MODEL3}" || exit $?
 
-    cp -rf  "${MODEL3_DIR}/emulator/SDL.dll"         "${MODEL3}" || exit $?
-    cp -rf  "${MODEL3_DIR}/emulator/Supermodel.exe"  "${MODEL3}" || exit $?
+    cp -f  "${MODEL3_DIR}/emulator/SDL.dll"         "${MODEL3}" || exit $?
+    cp -f  "${MODEL3_DIR}/emulator/Supermodel.exe"  "${MODEL3}" || exit $?
     cp -rf "${MODEL3_DIR}/emulator/Shaders"         "${MODEL3}" || exit $?
     
     # Montando o model2 em "share/save/model2"
@@ -206,6 +274,25 @@ sed -i s/'^FullScreen=.*/FullScreen=1/'     "${MODEL3}/Config/Supermodel.ini"
 
 ################################################################################
 
+### HOTKEY
+
+BOTOES="$(/opt/Wine/getHotkeyStart "${P1GUID}")"
+BOTAO_HOTKEY="$(echo "${BOTOES}" | cut -d ' ' -f 1)"
+BOTAO_START="$(echo "${BOTOES}"  | cut -d ' ' -f 2)"
+
+if [ "${BOTAO_HOTKEY}" ] && [ "${BOTAO_START}" ]; then
+    # Impede que o xjoykill seja encerrado enquanto o jogo está em execução.
+    while : ; do
+        nice -n 20 xjoykill -hotkey "${BOTAO_HOTKEY}" -start "${BOTAO_START}" -kill /usr/bin/killwine
+        if ! [ "$(pidof wineserver)" ]; then
+              break
+        fi
+        sleep 5
+    done &
+fi
+
+################################################################################
+
 ### EXECUTA O JOGO
 
 cd "${MODEL3}"
@@ -220,18 +307,12 @@ fi
 
 ### FINALIZA A EXECUÇÃO DO JOGO
 
-for i in {1..30}; do
-    if [ "$(pidof wineserver)" ]; then
-        # Aguarda encerrar a execução do jogo
-        sleep 1
-    fi
-
-    if [ "${i}" == '30' ]; then
-        killwine
-    fi
+# Aguarda o Cemu encerrar a execução
+while [ "$(pidof wineserver)" ]; do
+    sleep 1
 done
 
-# Restaura a resolução, caso o jogo tenha mudado ### 
+# Restaura a resolução do jogo caso tenha mudado
 RES_STOP="$(batocera-resolution currentResolution)"
 if [ "${RES_START}" != "${RES_STOP}" ]; then
     batocera-resolution setMode "${RES_START}"
