@@ -2,6 +2,22 @@
 ##
 ## Batocera.PLUS
 ##
+## Código escrito por: Sérgio de Carvalho Júnior
+## Colaborador: Alexandre Freire dos Santos
+## 
+## Linha de comando:
+## Model2.sh [ROM] [CORE] [RESOLUTION] [WIDESCREEN] [ANTIALIASING] [VSYNC] [ANISOTROPICFILTER] [DRAWCROSS] [RUMBLE] [P1GUID]
+##
+## ROM = Caminho do jogo até o .zip do jogo
+## CORE = singlecore, multicore ou auto
+## RESULUTION = auto ou algo que respeite a regra XXXXxXXXX ex: [1920x1080]
+## WIDESCREEN = 4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3|auto|custom|squarepixel
+## ANTIALIASING = auto, on ou off
+## VSYNC = auto, on ou off
+## ANISOTROPICFILTER = bilinear, trilinear, auto ou off
+## DRAWCROSS = on, off ou auto
+## RUMBLE = on, off ou auto
+## PIGUID = parâmetro do emulatorlauncher.sh
 
 ################################################################################
 
@@ -16,17 +32,48 @@ VSYNC="${6}"
 ANISOTROPICFILTER="${7}"
 DRAWCROSS="${8}"
 RUMBLE="${9}"
+P1GUID="${10}"
 
 ################################################################################
 
 ### CAMINHOS
 
-# Variáveis da instalação do Model 2
 MODEL2_DIR='/opt/Model2'
-
-# Variáveis para configuração do Model 2
 MODEL2="${HOME}/configs/model2"
 SAVE="${HOME}/../saves/model2"
+
+################################################################################
+
+
+### HELP
+
+function help()
+{
+    echo " Sega Model 2 launcher for Batocera.PLUS"
+    echo " "
+    echo " Codigo escrito por: Sergio de Carvalho Junior"
+    echo " Colaborador: Alexandre Freire dos Santos"
+    echo " "
+    echo " Linha de comando:"
+    echo " Model2.sh [ROM] [CORE] [RESOLUTION] [WIDESCREEN] [ANTIALIASING] [VSYNC] [ANISOTROPICFILTER] [DRAWCROSS] [RUMBLE] [P1GUID]"
+    echo " "
+    echo " ROM = Caminho do jogo até o .zip do jogo"
+    echo " CORE = singlecore, multicore ou auto"
+    echo " RESULUTION = auto ou algo que respeite a regra XXXXxXXXX ex: [1920x1080]"
+    echo " WIDESCREEN = 4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3|auto|custom|squarepixel"
+    echo " ANTIALIASING = auto, on ou off"
+    echo " VSYNC = auto, on ou off"
+    echo " ANISOTROPICFILTER = bilinear, trilinear, auto ou off"
+    echo " DRAWCROSS = on, off ou auto"
+    echo " RUMBLE = on, off ou auto"
+    echo " PIGUID = parâmetro do emulatorlauncher.sh"
+    echo " "
+}
+
+if [ "${1}" == '--help' ]; then
+    help
+    exit 0
+fi
 
 ################################################################################
 
@@ -34,8 +81,20 @@ SAVE="${HOME}/../saves/model2"
 
 # Executa o Model2/Wine se não estiver sendo executado
 if [ "$(pidof emulator.exe)" ] || [ "$(pidof emulator_multicpu.exe)" ]; then
+    echo " Sega Model 2 launcher ja esta sendo executado"
     exit 1
 fi
+
+################################################################################
+
+### LAUNCHER INFO
+
+echo " Sega Model 2 launcher for Batocera.PLUS"
+echo " "
+echo " Codigo escrito por: Sergio de Carvalho Junior"
+echo " Colaborador: Alexandre Freire dos Santos"
+echo " "
+
 
 ################################################################################
 
@@ -44,9 +103,9 @@ fi
 if [ ! "$(ls -A "${MODEL2}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/null)" ]; then
     # Montando o model2 em "system/configs/model2"
     mkdir -p "${SAVE}"                                    "${MODEL2}" || exit $?
-    cp -rf  "${MODEL2_DIR}/emulator/emulator.exe"          "${MODEL2}" || exit $?
-    cp -rf  "${MODEL2_DIR}/emulator/emulator_multicpu.exe" "${MODEL2}" || exit $?
-    cp -rf  "${MODEL2_DIR}/emulator/Emulator.ini"          "${MODEL2}" || exit $?
+    cp -f  "${MODEL2_DIR}/emulator/emulator.exe"          "${MODEL2}" || exit $?
+    cp -f  "${MODEL2_DIR}/emulator/emulator_multicpu.exe" "${MODEL2}" || exit $?
+    cp -f  "${MODEL2_DIR}/emulator/Emulator.ini"          "${MODEL2}" || exit $?
 
     # Montando o model2 em "share/save/model2"
     cp -rf "${MODEL2_DIR}/emulator/CFG"                   "${SAVE}"   || exit $?
@@ -109,7 +168,7 @@ if [ "${ANISOTROPICFILTER}" == 'bilinear' ]; then
     sed -i s/'^Trilinear=.*/Trilinear=0/' "${MODEL2}/Emulator.ini"
 elif [ "${ANISOTROPICFILTER}" == 'trilinear' ]; then
     sed -i s/'^Bilinear=.*/Bilinear=0/'   "${MODEL2}/Emulator.ini"
- sed -i s/'^Trilinear=.*/Trilinear=1/'    "${MODEL2}/Emulator.ini"
+    sed -i s/'^Trilinear=.*/Trilinear=1/'    "${MODEL2}/Emulator.ini"
 else
     sed -i s/'^Bilinear=.*/Bilinear=0/'   "${MODEL2}/Emulator.ini"
     sed -i s/'^Trilinear=.*/Trilinear=0/' "${MODEL2}/Emulator.ini"
@@ -163,9 +222,27 @@ sed -i s/'^FullMode=.*/FullMode=4/' "${MODEL2}/Emulator.ini"
 
 ################################################################################
 
+### HOTKEY
+
+BOTOES="$(/opt/Wine/getHotkeyStart "${P1GUID}")"
+BOTAO_HOTKEY="$(echo "${BOTOES}" | cut -d ' ' -f 1)"
+BOTAO_START="$(echo "${BOTOES}"  | cut -d ' ' -f 2)"
+
+if [ "${BOTAO_HOTKEY}" ] && [ "${BOTAO_START}" ]; then
+    # Impede que o xjoykill seja encerrado enquanto o jogo está em execução.
+    while : ; do
+        nice -n 20 xjoykill -hotkey "${BOTAO_HOTKEY}" -start "${BOTAO_START}" -kill /usr/bin/killwine
+        if ! [ "$(pidof wineserver)" ]; then
+              break
+        fi
+        sleep 5
+    done &
+fi
+
+################################################################################
+
 ### EXECUTA O JOGO
 
-# Executa o emulador por linha de comando ou abre o configurador
 cd "${MODEL2}" || exit $?
 
 
@@ -174,10 +251,10 @@ if [ "${JOGO}" == "${JOGO%zip}zip" ] || [ "${JOGO}" == "${JOGO%ZIP}ZIP" ]; then
     JOGO="${JOGO%.ZIP}"
 
     if [ "${CORE}" == 'singlecore' ] || [ "${CORE}" == 'auto' ]; then
-        # Executa o Model2 por linha de comando (single core)
+        # Executa em single core
         wine-lutris 'emulator.exe' "${JOGO}"
     elif [ "${CORE}" == 'multicore' ]; then
-        # Executa o Model2 por linha de comando (multi core)
+        # Executa em multi core
         wine-lutris 'emulator_multicpu.exe' "${JOGO}"
     fi
 fi
@@ -186,17 +263,12 @@ fi
 
 ### FINALIZA A EXECUÇÃO DO JOGO
 
-for i in {1..30}; do
-    if [ "$(pidof wineserver)" ]; then
-        # Aguarda encerrar a execução do jogo
-        sleep 1
-    fi
-    if [ "${i}" == '30' ]; then
-        killwine
-    fi
+# Aguarda o Cemu encerrar a execução
+while [ "$(pidof wineserver)" ]; do
+    sleep 1
 done
 
-# Restaura a resolução, caso o jogo tenha mudado ### 
+# Restaura a resolução do jogo caso tenha mudado
 RES_STOP="$(batocera-resolution currentResolution)"
 if [ "${RES_START}" != "${RES_STOP}" ]; then
     batocera-resolution setMode "${RES_START}"
