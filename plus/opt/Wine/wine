@@ -397,7 +397,9 @@ echo '"Enable"="N"'                           >> "${WINEPREFIX}/user.reg"
 
 ### STOP LOADING SCREEN
 
-killall yad
+if [ "$(pidof yad)" ]; then
+    killall yad
+fi
 
 wait
 
