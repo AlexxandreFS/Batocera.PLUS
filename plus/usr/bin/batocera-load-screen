@@ -19,31 +19,49 @@ readonly MAX_TIME=120
 ##
 function main()
 {
-    local IMAGE="$(getImage "${1}")"
+    local CLOSE='--close-on-unfocus'
+    local IMAGE="${DEFAULT_IMAGE}"
+    local TIMEOUT=${MAX_TIME}
 
-    if [ -z "${IMAGE}" ]; then
-        help
-        return 1
-    fi
+    for i in $(seq ${#}); do
+        case "${1}" in
+            -n)
+                CLOSE=$(getClose "${1}")
+                if [ "${CLOSE}" == 'error' ]; then
+                    help
+                    return 1
+                fi
+                ;;
+            -i)
+                shift
+                IMAGE="$(getImage "${1}")"
+                if [ -z "${IMAGE}" ]; then
+                    help
+                   return 2
+                fi
+                ;;
+            -t)
+                shift
+                TIMEOUT="$(getTimeOut "${1}")"
+                if [ -z "${TIMEOUT}" ]; then
+                    help
+                    return 3
+                fi
+                ;;
+            --help)
+                    help
+                    return 4
+                ;;
+        esac
+        shift
+    done
 
-    local CLOSE=${2}
-
-    if [ "${CLOSE}" == '--no-close' ];then
-        CLOSE=
-    elif [ -z "${CLOSE}" ]; then
-        CLOSE='--close-on-unfocus'
-    else
-        help
-        return 1
-    fi
-
-    local RESOLUTION=$(getResolution)
-
+    local RESOLUTION="$(getResolution)"
     if [ -z "${RESOLUTION}" ]; then
-        exit 1
+        return 5
     fi
 
-    showImage ${RESOLUTION} "${IMAGE}" ${CLOSE}
+    showImage "${RESOLUTION}" "${IMAGE}" "${CLOSE}" "${TIMEOUT}"
 
     return 0
 }
@@ -51,7 +69,80 @@ function main()
 ################################################################################
 
 ##
-## Teste de sanidade, retorna o local da imagem a ser exibida.
+## Help
+##
+function help()
+{
+    echo
+    echo "Usage: $(basename ${0}) [-n] [-t seconds] [-i image]"
+    echo
+    echo 'Shows full screen image while the game is loading.'
+    echo
+    echo '    -n    The window does not close if focus is lost'
+    echo '    -t    Time in seconds for the loading screen to close automatically'
+    echo '    -i    Path to the image'
+    echo
+    echo 'Example:'
+    echo
+    echo "$(basename ${0}) -n -t 4 -i /userdata/screenshots/My_Image.png"
+    echo
+    echo 'If an image is not defined a standard image will be shown.'
+    echo
+}
+
+################################################################################
+
+##
+## Verifica se a tela de carregamento deve ser fechada chando o foco da janela for perdido.
+## Teste de sanidade.
+##
+function getClose()
+{
+    local CLOSE=${1}
+
+    if [ "${CLOSE}" == '-n' ]; then
+        return 0
+    fi
+
+    if [ -z "${CLOSE}" ]; then
+        echo '--close-on-unfocus'
+        return 0
+    fi
+
+    echo 'error'
+    return 1
+}
+
+################################################################################
+
+##
+## Retorna o tempo máximo para exibir a tela de carregamento.
+## Teste de sanidade.
+##
+function getTimeOut()
+{
+    local TIME=${1}
+
+    # Tempo padrão.
+    if [ -z "${TIME}" ]; then
+        echo "${MAX_TIME}"
+        return 0
+    fi
+
+    # Verifica se o tempo é um valor numérico (is numeric).
+    if let ${TIME}+0 2> /dev/null; then
+        echo "${TIME}"
+        return 0
+    fi
+
+    return 1
+}
+
+################################################################################
+
+##
+## Retorna o local da imagem a ser exibida.
+## Teste de sanidade.
 ##
 function getImage()
 {
@@ -74,19 +165,6 @@ function getImage()
 
     # Use a custom image.
     echo "${IMAGE}"
-}
-
-################################################################################
-
-##
-## Help
-##
-function help()
-{
-    echo 'Show a image while window in foccus'
-    echo "Usage: $(basename ${0}) My_Image.jpg"
-    echo 'Window no close if foccus is lost'
-    echo "Usage: $(basename ${0}) My_Image.png --no-close"
 }
 
 ################################################################################
@@ -124,6 +202,7 @@ function showImage()
     local RESOLUTION=${1}
     local IMAGE="${2}"
     local CLOSE="${3}"
+    local TIMEOUT="${4}"
 
     # Make a black theme
     cat << '    EOF' > "${THEME}"
@@ -147,7 +226,7 @@ function showImage()
         --on-top \
         "${CLOSE}" \
         --no-escape \
-        --timeout=${MAX_TIME} \
+        --timeout=${TIMEOUT} \
         --picture \
             --size=fit \
             --filename="${IMAGE}"

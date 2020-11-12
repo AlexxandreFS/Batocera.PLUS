@@ -291,9 +291,7 @@ fi
 
 ### LOADING SCREEN
 
-retroarch -L '/usr/lib/libretro/imageviewer_libretro.so' \
-          --config '/usr/share/batocera/datainit/system/configs/retroarch/retroarchcustom.cfg' \
-          "${WINE_DIR}/wine.png" &
+batocera-load-screen -t 600 -i "${WINE_DIR}/wine.png" &
 
 ################################################################################
 
@@ -399,10 +397,7 @@ echo '"Enable"="N"'                           >> "${WINEPREFIX}/user.reg"
 
 ### STOP LOADING SCREEN
 
-while [ "$(pidof retroarch)" ]; do
-    killall retroarch
-    sleep 0.2
-done
+killall yad
 
 wait
 

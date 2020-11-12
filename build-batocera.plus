@@ -11,9 +11,9 @@ VERSION='2.05'
 NVIDIA_LEGACY='0'
 
 # Pasta temporária em uma partição Linux
-#TEMP_DIR='./tmp'
+TEMP_DIR='./tmp'
 #TEMP_DIR='/media/NO_LABEL/tmp'
-TEMP_DIR='/media/NO_LABEL_1/tmp'
+#TEMP_DIR='/media/NO_LABEL_1/tmp'
 #TEMP_DIR='/media/NO_LABEL_2/tmp'
 #TEMP_DIR='/mnt/tmp'
 
@@ -205,7 +205,7 @@ echo "Descompactando Wine-Extra Libs..."
 PKG_NAME="$(basename "${URL_WINE_EXTRA_LIBS}")"
 7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
 # Remova a linha à baixo (mv) em uma futura atualização.
-mv "${TEMP_DIR}/squashfs-root/opt/Wine/wine-extra-libs/linux" ${TEMP_DIR}"
+mv "${TEMP_DIR}/squashfs-root/opt/Wine/wine-extra-libs/linux" "${TEMP_DIR}"
 cp -r "${TEMP_DIR}/squashfs-root/opt/Wine/wine-extra-libs/"* "${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
 rmdir "${TEMP_DIR}/squashfs-root/opt/Wine/wine-extra-libs"
 

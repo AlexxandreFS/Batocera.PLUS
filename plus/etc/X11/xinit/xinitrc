@@ -156,7 +156,7 @@ if [ "$(grep ^splash.video=true /boot/batocera-boot.conf)" ]; then
     xjoypad -display $DISPLAY -device /dev/input/js0 -buttons 39 39 39 39 39 39 39 39 39 39 39 39 39 &
     playVideo "$VIDEO_FILE"
     unset VIDEO_FILE
-    killall xjoypad &
+    killall -9 xjoypad
 fi
 
 ################################################################################
@@ -200,7 +200,7 @@ fi
     for i in {1..300}; do
         if [ "$(pidof emulationstation)" ]; then
             sleep 0.2
-            batocera-load-screen "${START_SCREEN}" --no-close &
+            batocera-load-screen -n -t 300 -i "${START_SCREEN}" &
             break
         fi
         sleep 0.2

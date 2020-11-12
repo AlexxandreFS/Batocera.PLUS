@@ -54,6 +54,10 @@ function killWine() {
  # Encerra o wine normalmente.
  ##
 function closeWine() {
+    if [ "$(pidof yad)" ]; then
+        killall -9 yad
+    fi
+
     if [ "$(pidof -s winedbg)" ]; then
         kill -15 "$(pidof -s winedbg)"
         sleep 0.5
