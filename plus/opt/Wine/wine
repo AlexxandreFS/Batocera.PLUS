@@ -141,8 +141,10 @@ function dxvkInstall() {
         fi
 
         # Install
-        if ! [ -L "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" ]; then
-            ln -sf "${WINE_DIR}/apps/dxvk/x32/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
+        if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
+            if ! [ -L "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" ]; then
+                ln -sf "${WINE_DIR}/apps/dxvk/x32/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
+            fi
         fi
         if ! [ -L "${WINEPREFIX}/drive_c/windows/system32/${DLL}" ]; then
             if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
@@ -155,12 +157,14 @@ function dxvkInstall() {
 }
 
 function dxvkUninstall() {
-    if [ -L "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}.backup" ]; then
-        mv -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}.backup" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
-    fi
-    if [ -L "${WINEPREFIX}/drive_c/windows/system32/${DLL}.backup" ]; then
-        mv -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}.backup" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
-    fi
+    for DLL in ${DXVK_DLL}; do
+        if [ -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}.backup" ]; then
+            mv -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}.backup" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
+        fi
+        if [ -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}.backup" ]; then
+            mv -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}.backup" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+        fi
+    done
 }
 
 function dxvkExport() {
@@ -187,49 +191,54 @@ function dxvkExport() {
     export WINEDLLOVERRIDES="${WINEDLLOVERRIDES}=n,b;nvapi64,nvapi="
 }
 
-if [ "${DXVK}" ]; then
+if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
+
     DXVK_DLL='d3d12.dll d3d11.dll d3d10core.dll d3d10.dll d3d10_1.dll d3d9.dll dxgi.dll'
 
-    if ! [ ${DXVK_HUD} ]; then
-        DXVK_HUD=fps,memory,gpuload,api
-    fi
-    if ! [ ${DXVK_LOG_LEVEL} ]; then
-        DXVK_LOG_LEVEL=none
-    fi
-    if ! [ ${DXVK_LOG_PATH} ]; then
-        DXVK_LOG_PATH="${HOME}/logs"
-    fi
-    if ! [ ${DXVK_STATE_CACHE_PATH} ]; then
-        DXVK_STATE_CACHE_PATH="${HOME}/.cache/dxvk"
-    fi
+    if [ "${DXVK}" ]; then
+        if ! [ ${DXVK_HUD} ]; then
+            DXVK_HUD=fps,memory,gpuload,api
+        fi
+        if ! [ ${DXVK_LOG_LEVEL} ]; then
+            DXVK_LOG_LEVEL=none
+        fi
+        if ! [ ${DXVK_LOG_PATH} ]; then
+            DXVK_LOG_PATH="${HOME}/logs"
+        fi
+        if ! [ ${DXVK_STATE_CACHE_PATH} ]; then
+            DXVK_STATE_CACHE_PATH="${HOME}/.cache/dxvk"
+        fi
 
-    case ${DXVK} in
-        0)
-            dxvkUninstall
-            unset DXVK_HUD
-            unset DXVK_LOG_LEVEL
-            unset DXVK_LOG_PATH
-            unset DXVK_STATE_CACHE_PATH
-            ;;
-        1)
-            if [ ! "$(vulkaninfo 2> /dev/null)" ]; then
-                echo 'vulkan is not supported, dxvk disable.'
-            fi
-            dxvkInstall
-            dxvkExport
-            unset DXVK_HUD
-            ;;
-        2)
-            if [ ! "$(vulkaninfo 2> /dev/null)" ]; then
-                echo 'vulkan is not supported, dxvk disable.'
-            fi
-            dxvkInstall
-            dxvkExport
-            export DXVK_HUD
-            ;;
-        *)
-             export DXVK
-    esac
+        case ${DXVK} in
+            0)
+                dxvkUninstall
+                unset DXVK_HUD
+                unset DXVK_LOG_LEVEL
+                unset DXVK_LOG_PATH
+                unset DXVK_STATE_CACHE_PATH
+                ;;
+            1)
+                if [ ! "$(vulkaninfo 2> /dev/null)" ]; then
+                    echo 'vulkan is not supported, dxvk disable.'
+                fi
+                dxvkInstall
+                dxvkExport
+                unset DXVK_HUD
+                ;;
+            2)
+                if [ ! "$(vulkaninfo 2> /dev/null)" ]; then
+                    echo 'vulkan is not supported, dxvk disable.'
+                fi
+                dxvkInstall
+                dxvkExport
+                export DXVK_HUD
+                ;;
+            *)
+                 export DXVK
+        esac
+    else
+        dxvkUninstall
+    fi
 
     unset DXVK_DLL
 fi
@@ -418,11 +427,10 @@ exec "${WINE_BUILD}" "${@}"
 # export GSETTINGS_SCHEMA_DIR="/usr/share/glib-2.0/schemas:${GSETTINGS_SCHEMA_DIR:+:$GSETTINGS_SCHEMA_DIR}"
 
 # GSTREAMER TEST
-#/userdata/Wine/EXTRA-gstreamer/usr-32/bin/gst-launch-1.0 videotestsrc ! autovideosink
-#/userdata/Wine/EXTRA-gstreamer/usr-32/bin/gst-launch-1.0 audiotestsrc ! autoaudiosink
-#/userdata/Wine/EXTRA-gstreamer/usr-32/bin/gst-launch-1.0 audiotestsrc ! autoaudiosink videotestsrc ! autovideosink
-#/userdata/Wine/EXTRA-gstreamer/usr-32/bin/gst-launch-1.0 playbin uri=file:///userdata/meu_video.wmv
-#/userdata/Wine/EXTRA-gstreamer/usr-32/bin/gst-launch-1.0 --gst-debug-level=0
+#gst-launch-1.0-xx videotestsrc ! autovideosink
+#gst-launch-1.0-xx audiotestsrc ! autoaudiosink videotestsrc ! autovideosink
+#gst-launch-1.0-xx playbin uri=file:///userdata/meu_video.wmv
+#gst-launch-1.0-xx --gst-debug-level=0
 
 # WINE DEPS
 #${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}      --check-libs | grep ': missing'

@@ -46,7 +46,7 @@ URL_WINE_LUTRIS='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/rel
 URL_WINE_PROTON_VALVE='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-valve-5.13-2.7z'
 URL_WINE_PROTON_GE_CUSTOM='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-ge-custom-5.9-4.7z'
 URL_WINE_PROTON_TKG='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-tkg-5.19.r1-3.7z'
-URL_WINE_EXTRA_LIBS='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/wine-extra-libs/wine-extra-libs-4.7z'
+URL_WINE_EXTRA_LIBS='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/wine-extra-libs/wine-extra-libs-5.7z'
 URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/5.1.1/wine-mono-5.1.1-x86.tar.xz'
 URL_WINE_DIRECTX='https://github.com/BatoceraPLUS/Wine/releases/download/DX9Jun2010/DX9Jun2010.7z'
 URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.7.2/dxvk-1.7.2.tar.gz'
@@ -207,7 +207,7 @@ PKG_NAME="$(basename "${URL_WINE_EXTRA_LIBS}")"
 # Remova a linha à baixo (mv) em uma futura atualização.
 mv "${TEMP_DIR}/squashfs-root/opt/Wine/wine-extra-libs/linux" "${TEMP_DIR}"
 cp -r "${TEMP_DIR}/squashfs-root/opt/Wine/wine-extra-libs/"* "${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
-rmdir "${TEMP_DIR}/squashfs-root/opt/Wine/wine-extra-libs"
+rm -r "${TEMP_DIR}/squashfs-root/opt/Wine/wine-extra-libs"
 
 echo 'Descompactando Wine Mono...'
 PKG_NAME="$(basename "${URL_WINE_MONO}")"
@@ -226,12 +226,14 @@ rm "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/setup_dxvk.sh"
 echo 'Descompactando Wine VKD3D_PROTON (DXVK12)...'
 PKG_NAME="$(basename "${URL_WINE_VKD3D_PROTON}")"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x32" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x64"
-if ! [ -f /usr/bin/zstd]; then
+if ! [ -f /usr/bin/zstd ]; then
     # Este bloco if foi adicionado para não quebrar a compilação do batocera.plus em versões mais antigas (batocera.plus 2.0)
-    # Remova este bloco if inteiro quando sair a pŕoxima imagem stable.
+    # Remova este bloco if quando sair a pŕoxima imagem stable.
     "${PLUS_DIR}/usr/bin/zstd" -d -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar -xvC "${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
+else
+    # Não remova esta linha quando remover o bloco if.
+    zstd -d -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar -xvC "${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
 fi
-zstd -d -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar -xvC "${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
 mv "${TEMP_DIR}/squashfs-root/opt/Wine/apps/${PKG_NAME%.tar.zst}/x86/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x32"
 mv "${TEMP_DIR}/squashfs-root/opt/Wine/apps/${PKG_NAME%.tar.zst}/x64/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x64"
 rm -r "${TEMP_DIR}/squashfs-root/opt/Wine/apps/${PKG_NAME%.tar.zst}"

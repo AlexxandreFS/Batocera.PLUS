@@ -198,22 +198,23 @@ fi
 # Interrompe a tela de carregamento quando o emulationstation estiver pronto para uso.
 (
     for i in {1..300}; do
+        sleep 0.3
         if [ "$(pidof emulationstation)" ]; then
-            sleep 0.2
             batocera-load-screen -n -t 300 -i "${START_SCREEN}" &
             break
         fi
-        sleep 0.2
     done
 
     sleep 4
 
     for i in {1..300}; do
         if [ -f '/tmp/emulationstation.ready' ]; then
-            killall yad
+            if [ "$(pidof yad)" ]; then
+                killall yad
+            fi
             break
         fi
-        sleep 1
+        sleep 0.5
     done
 ) &
 

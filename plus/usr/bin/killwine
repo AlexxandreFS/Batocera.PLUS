@@ -37,6 +37,10 @@ function setWinePrefix() {
  # Encerra o wine forçadamente.
  ##
 function killWine() {
+    if [ "$(pidof yad)" ]; then
+        killall -9 yad
+    fi
+
     for i in $(ps ax | grep -E ".exe$|.EXE$" | awk '{print $1}'); do
         kill -9 "${i}" 2> /dev/null
         sleep 0.1
@@ -55,7 +59,7 @@ function killWine() {
  ##
 function closeWine() {
     if [ "$(pidof yad)" ]; then
-        killall -9 yad
+        killall yad
     fi
 
     if [ "$(pidof -s winedbg)" ]; then
@@ -65,9 +69,9 @@ function closeWine() {
 
     wineserver -k 15 > /dev/null
 
-    for i in {1..20}; do
+    for i in {1..15}; do
         if [ "$(pidof wineserver)" ]; then
-            if [ "${i}" == '20' ]; then
+            if [ "${i}" == '15' ]; then
                 return 1
             fi
             sleep 0.5
