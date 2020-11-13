@@ -1,6 +1,6 @@
 --- es_features.cfg
 +++ es_features.cfg.plus
-@@ -77,8 +77,230 @@
+@@ -77,8 +77,238 @@
    <emulator name="melonds" features="videomode" />
    <emulator name="daphne" features="videomode, ratio" />
    <emulator name="flycast" features="videomode, ratio" />
@@ -159,6 +159,10 @@
 +      <choice name="on" value="on" />
 +      <choice name="off" value="off" />
 +    </feature>
++	<feature name="SKIP VIDEOS" value="skip_videos">
++      <choice name="on" value="on" />
++      <choice name="off" value="off" />
++    </feature>
 +    <feature name="SCRIPT BATOCERA.PLUS" value="script">
 +      <choice name="on" value="on" />
 +      <choice name="off" value="off" />
@@ -190,6 +194,10 @@
 +      <choice name="off" value="off" />
 +    </feature>
 +    <feature name="EMULATE JOYPAD" value="emulate_joypad">
++      <choice name="on" value="on" />
++      <choice name="off" value="off" />
++    </feature>
++	<feature name="SKIP VIDEOS" value="skip_videos">
 +      <choice name="on" value="on" />
 +      <choice name="off" value="off" />
 +    </feature>
@@ -231,7 +239,7 @@
        <core name="gw" features="" />
        <core name="freeintv" features="" />
        <core name="pcfx" features="netplay, rewind, autosave" />
-@@ -169,7 +391,6 @@
+@@ -169,7 +399,6 @@
    </emulator>
    <emulator name="vice" features="videomode, ratio" />
    <emulator name="fsuae" features="videomode, ratio" />
