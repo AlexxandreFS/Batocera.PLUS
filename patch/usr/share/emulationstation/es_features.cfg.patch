@@ -1,6 +1,6 @@
---- es_features.cfg
-+++ es_features.cfg.plus
-@@ -77,8 +77,230 @@
+--- es_features.cfg.original
++++ es_features.cfg.modificado
+@@ -77,8 +77,238 @@
    <emulator name="melonds" features="videomode" />
    <emulator name="daphne" features="videomode, ratio" />
    <emulator name="flycast" features="videomode, ratio" />
@@ -146,9 +146,13 @@
 +      <choice name="on+fps" value="fps" />
 +      <choice name="off" value="off" />
 +    </feature>
-+	<feature name="SYNC" value="sync">
++    <feature name="SYNC" value="sync">
 +      <choice name="esync" value="esync" />
 +      <choice name="fsync" value="fsync" />
++      <choice name="off" value="off" />
++    </feature>
++    <feature name="SKIP VIDEOS" value="skip_videos">
++      <choice name="on" value="on" />
 +      <choice name="off" value="off" />
 +    </feature>
 +    <feature name="MOUSE POINTER" value="mouse_pointer">
@@ -180,9 +184,13 @@
 +      <choice name="on+fps" value="fps" />
 +      <choice name="off" value="off" />
 +    </feature>
-+	<feature name="SYNC" value="sync">
++    <feature name="SYNC" value="sync">
 +      <choice name="esync" value="esync" />
 +      <choice name="fsync" value="fsync" />
++      <choice name="off" value="off" />
++    </feature>
++    <feature name="SKIP VIDEOS" value="skip_videos">
++      <choice name="on" value="on" />
 +      <choice name="off" value="off" />
 +    </feature>
 +    <feature name="MOUSE POINTER" value="mouse_pointer">
@@ -231,7 +239,7 @@
        <core name="gw" features="" />
        <core name="freeintv" features="" />
        <core name="pcfx" features="netplay, rewind, autosave" />
-@@ -169,7 +391,6 @@
+@@ -169,7 +399,6 @@
    </emulator>
    <emulator name="vice" features="videomode, ratio" />
    <emulator name="fsuae" features="videomode, ratio" />
