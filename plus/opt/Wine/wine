@@ -245,6 +245,18 @@ fi
 
 ################################################################################
 
+### DEFAULT PROFILE
+
+SAVE_DIR='/userdata/saves/windows/wine-profiles'
+
+if [ ! -d "${SAVE_DIR}/ProgramData" ] || [ ! -d "${SAVE_DIR}/users" ]; then
+    "${WINE_DIR}/makeDefaultProfile" "${SAVE_DIR}"
+fi
+
+unset SAVE_DIR
+
+################################################################################
+
 ### UNLIMITED NUMBER OF OPEN FILES
 
 ulimit -S -c unlimited wine

@@ -1,0 +1,124 @@
+#!/bin/sh
+
+##
+## Batocera.PLUS
+##
+## Cria a esturura de pastas padrão para todas as versões do wine.
+## Esta estrutura é necessária para savar o jogo.
+## Este script é parte integrante do script de execução do wine.
+##
+
+FOLDERS=(
+    'ProgramData/Microsoft/Windows/Start Menu/Programs/Administrative Tools'
+    'ProgramData/Microsoft/Windows/Start Menu/Programs/StartUp'
+    'ProgramData/Microsoft/Windows/Templates'
+    'users/0/Application Data/Microsoft/Windows/Themes'
+    'users/0/Cookies'
+    'users/0/Desktop'
+    'users/0/Local Settings/History'
+    'users/0/Local Settings/Temporary Internet Files'
+    'users/0/My Documents'
+    'users/0/My Music'
+    'users/0/My Pictures'
+    'users/0/My Videos'
+    'users/0/Personal'
+    'users/0/Temp'
+    'users/Public/Desktop'
+    'users/Public/Documents'
+    'users/Public/Favorites'
+    'users/Public/Music'
+    'users/Public/Pictures'
+    'users/Public/Videos'
+    'users/root/AppData/LocalLow'
+    'users/root/Application Data/Microsoft/Windows/Themes'
+    'users/root/Contacts'
+    'users/root/Cookies'
+    'users/root/Desktop'
+    'users/root/Favorites'
+    'users/root/Links'
+    'users/root/Local Settings/Application Data/Microsoft'
+    'users/root/Local Settings/History'
+    'users/root/Local Settings/Temporary Internet Files'
+    'users/root/My Documents'
+    'users/root/My Music'
+    'users/root/My Pictures'
+    'users/root/My Videos'
+    'users/root/NetHood'
+    'users/root/Personal'
+    'users/root/PrintHood'
+    'users/root/Recent'
+    'users/root/Saved Games'
+    'users/root/Searches'
+    'users/root/SendTo'
+    'users/root/Start Menu/Programs/Administrative Tools'
+    'users/root/Start Menu/Programs/StartUp'
+    'users/root/Temp'
+    'users/steamuser/AppData/LocalLow'
+    'users/steamuser/Application Data/Microsoft/Windows/Themes'
+    'users/steamuser/Contacts'
+    'users/steamuser/Cookies'
+    'users/steamuser/Desktop'
+    'users/steamuser/Downloads'
+    'users/steamuser/Favorites'
+    'users/steamuser/Links'
+    'users/steamuser/Local Settings/Application Data/Microsoft'
+    'users/steamuser/Local Settings/History'
+    'users/steamuser/Local Settings/Temporary Internet Files'
+    'users/steamuser/My Documents/Downloads'
+    'users/steamuser/My Documents/My Music'
+    'users/steamuser/My Documents/My Pictures'
+    'users/steamuser/My Documents/My Videos'
+    'users/steamuser/My Documents/Templates'
+    'users/steamuser/My Music'
+    'users/steamuser/My Pictures'
+    'users/steamuser/My Videos'
+    'users/steamuser/NetHood'
+    'users/steamuser/PrintHood'
+    'users/steamuser/Recent'
+    'users/steamuser/Saved Games'
+    'users/steamuser/Searches'
+    'users/steamuser/SendTo'
+    'users/steamuser/Start Menu/Programs/Administrative Tools'
+    'users/steamuser/Start Menu/Programs/StartUp'
+    'users/steamuser/Temp'
+    'users/steamuser/Templates'
+    'users/wine/Application Data/Microsoft/Windows/Themes'
+    'users/wine/Cookies'
+    'users/wine/Desktop'
+    'users/wine/Downloads'
+    'users/wine/Local Settings/History'
+    'users/wine/Local Settings/Temporary Internet Files'
+    'users/wine/My Documents'
+    'users/wine/My Music'
+    'users/wine/My Pictures'
+    'users/wine/My Videos'
+    'users/wine/Temp'
+    'users/wine/Templates'
+)
+
+################################################################################
+
+##
+## Cria a extrutuda de pastas para o save.
+##
+
+PROFILE_DIR="${1}"
+
+if ! [ "${PROFILE_DIR}" ]
+then
+    PROFILE_DIR=/userdata/saves/windows/wine-profiles
+fi
+
+mkdir -p "${PROFILE_DIR}"
+
+if ! [ -e "${PROFILE_DIR}" ]
+then
+    exit 1
+fi
+
+for FOLDER in "${FOLDERS[@]}"
+do
+    mkdir -p "${PROFILE_DIR}/${FOLDER}"
+done
+
+exit 0
