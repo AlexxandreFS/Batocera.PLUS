@@ -290,8 +290,6 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
 
     if [ "${WINE_VERSION}" == "${WINE_VERSION_NEW}" ]; then
         exec "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" "$@"
-    else
-        echo 'info: creating new wineprefix'
     fi
 fi
 
@@ -306,7 +304,22 @@ batocera-load-screen -t 600 -i "${WINE_DIR}/wine.png" &
 
 ### CREATES A NEW WINEPREFIX
 
-rm -r "${WINEPREFIX:?}/" 2> /dev/null
+echo "info: creating new wineprefix ${WINEPREFIX}"
+
+if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
+    rm -rf "${WINEPREFIX}"
+fi
+
+SAVE_DIR='/userdata/saves/windows/wine-profiles'
+
+mkdir -p "${SAVE_DIR}/ProgramData" \
+         "${SAVE_DIR}/users" \
+         "${WINEPREFIX}/drive_c"
+
+ln -s "${SAVE_DIR}/ProgramData" "${WINEPREFIX}/drive_c/ProgramData"
+ln -s "${SAVE_DIR}/users"       "${WINEPREFIX}/drive_c/users"
+
+unset SAVE_DIR
 
 ################################################################################
 
