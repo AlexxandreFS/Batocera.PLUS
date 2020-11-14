@@ -197,7 +197,7 @@ fi
 
 # Interrompe a tela de carregamento quando o emulationstation estiver pronto para uso.
 (
-    sleep 0.3
+    sleep 0.4
 
     for i in {1..300}; do
         if [ "$(pidof emulationstation)" ]; then
