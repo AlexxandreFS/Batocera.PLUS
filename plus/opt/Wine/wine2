@@ -1,0 +1,470 @@
+#!/bin/bash
+
+### WINE - Batocera.PLUS
+### Alexandre Freire dos Santos
+### Email: alexxandre.freire@gmail.com
+
+################################################################################
+
+WINE_DIR='/opt/Wine'
+
+################################################################################
+
+### SET DEFAULT VERSION OF WINE (wine, wine-staging, proton, etc...)
+
+# A variavel CORE define o core que será usado, caso a variável não tenha
+# sido exportada o nome do atalho do executável será o nome do core.
+# Esta opção foi criada para o usuário poder escolher qual core usar pela
+# interface do ES mesmo que exista o script batocera.plus na pasta do jogo será
+# usado o core escolhido pelo usuário.
+
+if [ -z "${CORE}" ] || [ "${CORE}" == 'auto' ]; then
+    WINE_BUILD="$(basename "${0}" '-64')"
+    WINE_BUILD="${WINE_BUILD#wineserver-}"
+else
+    WINE_BUILD="${CORE}"
+fi
+
+case "${WINE_BUILD}" in 
+    wine|wine64|wineserver)
+        WINE_BUILD='wine-stable'
+        ;;
+    proton|proton64|wineserver-proton)
+        WINE_BUILD='proton-valve'
+        ;;
+esac
+
+################################################################################
+
+### WINE ARCHITECTURE (x32, x64)
+
+if [ "${WINEARCH}" ]; then
+    WINE_ARCH="${WINEARCH}"
+else
+    WINE_ARCH="$(basename "${0}")"
+fi
+
+case ${WINE_ARCH} in
+    wineserver|wineserver-wine-stable|wineserver-wine-staging|wineserver-wine-lutris|wineserver-proton|wineserver-proton-valve|wineserver-proton-ge-custom|wineserver-proton-tkg)
+        LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        export LIBGL_DRIVERS_PATH="/lib32/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
+        ;;
+    wine|wine-stable|wine-staging|wine-lutris|proton|proton-valve|proton-ge-custom|proton-tkg)
+        WINE_ARCH=''
+        LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        export LIBGL_DRIVERS_PATH="/lib32/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
+        ;;
+    wine64|wine-stable-64|wine-staging-64|wine-lutris-64|proton64|proton-valve-64|proton-ge-custom-64|proton-tkg-64)
+        WINE_ARCH='64'
+        LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        export WINEARCH='win64'
+        ;;
+    win32)
+        WINE_ARCH=''
+        LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        export LIBGL_DRIVERS_PATH="/lib32/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
+        ;;
+    win64)
+        WINE_ARCH='64'
+        LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        ;;
+    *)
+        exit -1
+esac
+
+################################################################################
+
+### LIBS
+
+export LD_LIBRARY_PATH
+
+### XDG
+
+export XDG_RUNTIME_DIR="${HOME}"
+export XDG_CONFIG_DIRS=/etc/xdg
+export XDG_CACHE_HOME="${HOME}/.cache"
+
+### GSTREAMER
+
+export GST_REGISTRY_UPDATE=no
+export GST_PLUGIN_PATH=${WINE_DIR}/lib32/gstreamer-1.0:${WINE_DIR}/lib64/gstreamer-1.0
+export GST_PLUGIN_SYSTEM_PATH=${WINE_DIR}/lib32/gstreamer-1.0:${WINE_DIR}/lib64/gstreamer-1.0
+export GST_PLUGIN_SCANNER=${WINE_DIR}/lib32/gstreamer-1.0:${WINE_DIR}/lib64/gstreamer-1.0
+
+### MISC
+
+export PYTHONPATH="/usr/lib/python2.7:${PYTHONPATH:+:$PYTHONPATH}"
+export PERLLIB="/usr/share/perl5/:${PERLLIB:+:$PERLLIB}"
+
+################################################################################
+
+### WAYS
+
+if ! [ "${WINEPREFIX}" ]; then
+    export WINEPREFIX="${HOME}/configs/wine/${WINE_BUILD}"
+elif ! [ -d "${WINEPREFIX}" ]; then
+    echo "Error ${WINEPREFIX} not found."
+    exit 1
+fi
+
+################################################################################
+
+### DXVK
+
+function dxvkInstall() {
+    mkdir -p "${DXVK_LOG_PATH}"
+    mkdir -p "${DXVK_STATE_CACHE_PATH}"
+
+    for DLL in ${DXVK_DLL}; do
+        # Backup
+        if ! [ -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}.backup" ]; then
+            if [ -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" ] && [ ! -L "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" ]; then
+                mv -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}.backup"
+            fi
+        fi
+        if ! [ -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}.backup" ]; then
+            if [ -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}" ] && [ ! -L "${WINEPREFIX}/drive_c/windows/system32/${DLL}" ]; then
+                mv -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}.backup"
+            fi
+        fi
+
+        # Install
+        if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
+            if ! [ -L "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" ]; then
+                ln -sf "${WINE_DIR}/apps/dxvk/x32/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
+            fi
+        fi
+        if ! [ -L "${WINEPREFIX}/drive_c/windows/system32/${DLL}" ]; then
+            if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
+                ln -sf "${WINE_DIR}/apps/dxvk/x64/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+            else
+                ln -sf "${WINE_DIR}/apps/dxvk/x32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+            fi
+        fi
+    done
+}
+
+function dxvkUninstall() {
+    for DLL in ${DXVK_DLL}; do
+        if [ -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}.backup" ]; then
+            mv -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}.backup" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
+        fi
+        if [ -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}.backup" ]; then
+            mv -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}.backup" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+        fi
+    done
+}
+
+function dxvkExport() {
+    export DXVK_HUD
+    export DXVK_LOG_LEVEL
+    export DXVK_LOG_PATH
+    export DXVK_STATE_CACHE_PATH
+
+    local FIRST=TRUE
+
+    for DLL in ${DXVK_DLL}; do
+        if [ ${FIRST} == 'TRUE' ]; then
+            if [ "${WINEDLLOVERRIDES}" ]; then
+                WINEDLLOVERRIDES="${WINEDLLOVERRIDES};${DLL}"
+            else
+                WINEDLLOVERRIDES="${DLL}"
+            fi
+            FIRST=FALSE
+        else
+            WINEDLLOVERRIDES="${WINEDLLOVERRIDES},${DLL}"
+        fi
+    done
+
+    export WINEDLLOVERRIDES="${WINEDLLOVERRIDES}=n,b;nvapi64,nvapi="
+}
+
+if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
+
+    DXVK_DLL='d3d12.dll d3d11.dll d3d10core.dll d3d10.dll d3d10_1.dll d3d9.dll dxgi.dll'
+
+    if [ "${DXVK}" ]; then
+        if ! [ ${DXVK_HUD} ]; then
+            DXVK_HUD=fps,memory,gpuload,api
+        fi
+        if ! [ ${DXVK_LOG_LEVEL} ]; then
+            DXVK_LOG_LEVEL=none
+        fi
+        if ! [ ${DXVK_LOG_PATH} ]; then
+            DXVK_LOG_PATH="${HOME}/logs"
+        fi
+        if ! [ ${DXVK_STATE_CACHE_PATH} ]; then
+            DXVK_STATE_CACHE_PATH="${HOME}/.cache/dxvk"
+        fi
+
+        case ${DXVK} in
+            0)
+                dxvkUninstall
+                unset DXVK_HUD
+                unset DXVK_LOG_LEVEL
+                unset DXVK_LOG_PATH
+                unset DXVK_STATE_CACHE_PATH
+                ;;
+            1)
+                if [ ! "$(vulkaninfo 2> /dev/null)" ]; then
+                    echo 'vulkan is not supported, dxvk disable.'
+                fi
+                dxvkInstall
+                dxvkExport
+                unset DXVK_HUD
+                ;;
+            2)
+                if [ ! "$(vulkaninfo 2> /dev/null)" ]; then
+                    echo 'vulkan is not supported, dxvk disable.'
+                fi
+                dxvkInstall
+                dxvkExport
+                export DXVK_HUD
+                ;;
+            *)
+                 export DXVK
+        esac
+    else
+        dxvkUninstall
+    fi
+
+    unset DXVK_DLL
+fi
+
+################################################################################
+
+### UNLIMITED NUMBER OF OPEN FILES
+
+ulimit -S -c unlimited wine
+ulimit -S -c unlimited wine64
+ulimit -S -c unlimited wineserver
+
+################################################################################
+
+### START WINESERVER
+
+case "${WINE_ARCH}" in wineserver|wineserver-wine-stable|wineserver-wine-staging|wineserver-wine-lutris|wineserver-proton|wineserver-proton-valve|wineserver-proton-ge-custom|wineserver-proton-tkg)
+    exec "${WINE_DIR}/${WINE_BUILD}/bin/wineserver" "$@"
+esac
+
+################################################################################
+
+### COMPATIBILITY WHITH WINEPREFIX OF Batocera.PLUS 2.0
+
+if [ -f "${HOME}/configs/wine/${WINE_BUILD}/.update-timestamp" ]; then
+    WINEPREFIX_BASE="${HOME}/configs/wine"
+
+    for FILE in "${WINEPREFIX_BASE}/${WINE_BUILD}/"*; do
+        LINK="${WINEPREFIX_BASE}/$(basename "${FILE}")"
+        if [ "${LINK}" ] && [ ! "$(readlink "${LINK}")" == "${LINK}" ]; then
+            rm -rf "${LINK}"
+            ln -sf "${FILE}" "${LINK}"
+        fi
+    done
+
+    sleep 0.3
+
+    unset LINK
+    unset WINEPREFIX_BASE
+fi
+
+################################################################################
+
+### START WINE NORMALLY
+
+if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
+    WINE_VERSION="$(cat -e "${WINE_DIR}/${WINE_BUILD}/.update-timestamp" | cut -d '^' -f 1)"
+    WINE_VERSION_NEW="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
+
+    if [ "${WINE_VERSION}" == "${WINE_VERSION_NEW}" ]; then
+        exec "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" "$@"
+    fi
+fi
+
+################################################################################
+################################################################################
+
+### LOADING SCREEN
+
+batocera-load-screen -t 600 -i "${WINE_DIR}/wine.png" &
+
+################################################################################
+
+### CREATES A NEW WINEPREFIX
+
+echo "info: creating new wineprefix ${WINEPREFIX}"
+
+if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
+    rm -rf "${WINEPREFIX}"
+fi
+
+SAVE_DIR='/userdata/saves/windows/wine-profiles'
+
+mkdir -p "${SAVE_DIR}/ProgramData" \
+         "${SAVE_DIR}/users" \
+         "${WINEPREFIX}/drive_c"
+
+ln -s "${SAVE_DIR}/ProgramData" "${WINEPREFIX}/drive_c/ProgramData"
+ln -s "${SAVE_DIR}/users"       "${WINEPREFIX}/drive_c/users"
+
+unset SAVE_DIR
+
+################################################################################
+
+### DIRECTX 9 + WINE-MONO (install)
+
+# Se o usuário definir o WINEPREFIX o DirectX e o mono não será instalado, útil para
+# instalações em prefixos diferentes para evitar influências externas.
+
+if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ]; then
+    ${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH} ${WINE_DIR}/apps/directx_Jun2010_redist/DXSETUP.exe /silent
+
+    mkdir "${WINEPREFIX}/drive_c/windows/mono"
+    ln -s "${WINE_DIR}/apps/mono" "${WINEPREFIX}/drive_c/windows/mono/mono-2.0"
+fi
+
+################################################################################
+
+### REINICIA O "WINDOWS"
+
+function wineWait() {
+    for i in {1..60}; do
+        if [ $(pidof -s wineserver) ]; then
+            sleep 1
+            continue
+        fi
+
+        if [ -f "${WINEPREFIX}/user.reg" ] && [ -f "${WINEPREFIX}/system.reg" ]; then
+            sleep 2
+            break
+        fi
+    done
+}
+
+wineWait
+
+"${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" wineboot
+
+wineWait
+
+################################################################################
+
+### USER FOLDERS
+
+for i in "${WINEPREFIX}/drive_c/users/root/"* "${WINEPREFIX}/drive_c/users/0/"* ; do
+    if [ -L "$i" ]; then
+        rm -r "$i"
+    fi
+done
+
+mkdir -p "${WINEPREFIX}/drive_c/users/0/Desktop"         \
+         "${WINEPREFIX}/drive_c/users/0/My Documents"    \
+         "${WINEPREFIX}/drive_c/users/0/My Music"        \
+         "${WINEPREFIX}/drive_c/users/0/My Pictures"     \
+         "${WINEPREFIX}/drive_c/users/0/My Videos"       \
+         "${WINEPREFIX}/drive_c/users/0/Personal"        \
+         "${WINEPREFIX}/drive_c/users/root/Desktop"      \
+         "${WINEPREFIX}/drive_c/users/root/My Documents" \
+         "${WINEPREFIX}/drive_c/users/root/My Music"     \
+         "${WINEPREFIX}/drive_c/users/root/My Pictures"  \
+         "${WINEPREFIX}/drive_c/users/root/My Videos"    \
+         "${WINEPREFIX}/drive_c/users/root/Personal"
+
+# Configure default directories for the main user folders in the windows registry.
+sed -i s'/\"Desktop\"=\"C:\\\\users\\\\0\\\\.*/\"Desktop\"=\"C:\\\\users\\\\0\\\\Desktop\"/'                     "${WINEPREFIX}/user.reg"
+sed -i s'/\"Personal\"=\"C:\\\\users\\\\0\\\\.*/\"Personal\"=\"C:\\\\users\\\\0\\\\Personal\"/'                  "${WINEPREFIX}/user.reg"
+sed -i s'/\"My Music\"=\"C:\\\\users\\\\0\\\\.*/\"My Music\"=\"C:\\\\users\\\\0\\\\My Music\"/'                  "${WINEPREFIX}/user.reg"
+sed -i s'/\"My Pictures\"=\"C:\\\\users\\\\0\\\\.*/\"My Pictures\"=\"C:\\\\users\\\\0\\\\My Pictures\"/'         "${WINEPREFIX}/user.reg"
+sed -i s'/\"My Videos\"=\"C:\\\\users\\\\0\\\\.*/\"My Videos\"=\"C:\\\\users\\\\0\\\\My Videos\"/'               "${WINEPREFIX}/user.reg"
+
+sed -i s'/\"Desktop\"=str(2):\"%USERPROFILE%\\\\.*/\"Desktop\"=str(2):\"%USERPROFILE%\\\\Desktop\"/'             "${WINEPREFIX}/user.reg"
+sed -i s'/\"Personal\"=str(2):\"%USERPROFILE%\\\\.*/\"Personal\"=str(2):\"%USERPROFILE%\\\\Personal\"/'          "${WINEPREFIX}/user.reg"
+sed -i s'/\"My Music\"=str(2):\"%USERPROFILE%\\\\.*/\"My Music\"=str(2):\"%USERPROFILE%\\\\My Music\"/'          "${WINEPREFIX}/user.reg"
+sed -i s'/\"My Pictures\"=str(2):\"%USERPROFILE%\\\\.*/\"My Pictures\"=str(2):\"%USERPROFILE%\\\\My Pictures\"/' "${WINEPREFIX}/user.reg"
+sed -i s'/\"My Videos\"=str(2):\"%USERPROFILE%\\\\.*/\"My Videos\"=str(2):\"%USERPROFILE%\\\\My Videos\"/'       "${WINEPREFIX}/user.reg"
+
+################################################################################
+
+### DRIVES ADICIONAIS (D: E: Z: etc...)
+
+ln -s "/userdata/roms/windows" "${WINEPREFIX}/dosdevices/d:"
+
+################################################################################
+
+### REGISTER A USER WITH WINDOWS.
+
+sed -i s'/"RegisteredOrganization"=""/"RegisteredOrganization"="Batocera.PLUS"/' "${WINEPREFIX}/system.reg"
+sed -i s'/"RegisteredOwner"=""/"RegisteredOwner"="Alexandre Freire dos Santos"/' "${WINEPREFIX}/system.reg"
+
+################################################################################
+
+### PREVENTS WINECFG CREATE UNNECESSARY FILES.
+
+echo '[Software\\Wine\\FileOpenAssociations]' >> "${WINEPREFIX}/user.reg"
+echo '"Enable"="N"'                           >> "${WINEPREFIX}/user.reg"
+
+################################################################################
+
+### STOP LOADING SCREEN
+
+if [ "$(pidof yad)" ]; then
+    killall yad
+fi
+
+wait
+
+################################################################################
+
+### LAUNCHES WINE FOR THE FIRST TIME
+
+exec "${WINE_BUILD}" "${@}"
+
+################################################################################
+
+# REFULGO
+# export FONTCONFIG_PATH="/etc/fonts:${FONTCONFIG_PATH:+:$FONTCONFIG_PATH}"
+# export XDG_DATA_DIRS="/usr/share/:${XDG_DATA_DIRS:+:$XDG_DATA_DIRS}"
+# export GSETTINGS_SCHEMA_DIR="/wine-staging/share/glib-2.0/schemas:${GSETTINGS_SCHEMA_DIR:+:$GSETTINGS_SCHEMA_DIR}"
+# export GSETTINGS_SCHEMA_DIR="/usr/share/glib-2.0/schemas:${GSETTINGS_SCHEMA_DIR:+:$GSETTINGS_SCHEMA_DIR}"
+
+# GSTREAMER TEST
+#gst-launch-1.0-xx videotestsrc ! autovideosink
+#gst-launch-1.0-xx audiotestsrc ! autoaudiosink videotestsrc ! autovideosink
+#gst-launch-1.0-xx playbin uri=file:///userdata/meu_video.wmv
+#gst-launch-1.0-xx --gst-debug-level=0
+
+# WINE DEPS
+#${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}      --check-libs | grep ': missing'
+#ldd ${WINE_DIR}/${WINE_BUILD}/bin/*                 2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/lib32/*                             2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/lib32/gstreamer-1.0/*               2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/lib32/mpg123/*                      2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/${WINE_BUILD}/lib32/*               2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/${WINE_BUILD}/lib32/wine/*          2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/${WINE_BUILD}/lib32/wine/fakedlls/* 2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/lib64/*                             2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/lib64/gstreamer-1.0/*               2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/lib64/mpg123/*                      2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/lib64/*                             2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/${WINE_BUILD}/lib64/*               2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/${WINE_BUILD}/lib64/wine/*          2> /dev/null | grep 'not found'
+#ldd ${WINE_DIR}/${WINE_BUILD}/lib64/wine/fakedlls/* 2> /dev/null | grep 'not found'
+
+# MIDI
+# Set the MIDI (sequencer) device. Default /dev/sequencer.
+# modprobe snd-seq
+# MIDIDEV=/dev/snd/seq
+
+################################################################################
