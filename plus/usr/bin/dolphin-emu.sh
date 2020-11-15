@@ -37,20 +37,6 @@ fi
 
 ################################################################################
 
-# USA CONTROLES REAIS DO GAMECUBE ATRAVEZ DO ADAPTADOR MYFLASH DO NINTENDO WII
-
-#JOY_TYPE='6'
-
-#if [ "$(batocera-settings -command load -key use.gamecube.pads)" ]; then
-#    JOY_TYPE='12'
-#fi
-
-#for i in {0..3}; do
-#    sed -i "s/^SIDevice${i}.*/SIDevice${i} = ${JOY_TYPE}/" "${DOLPHIN_CFG}"
-#done
-
-################################################################################
-
 ### CRIA UMA CONFIGURAÇÃO INICIAL PARA O DOLPHIN-USER-CONFIG
 
 if ! [ -f "${DOLPHIN_CFG_DIR}/batocera.plus" ]; then
