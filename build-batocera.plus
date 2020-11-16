@@ -35,20 +35,34 @@ PATCH_DIR='patch'
 
 # DOWNLOADS LINKS
 
+URL_BATOCERA_PLUS_PKG=(
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-valve-5.4.13-3.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-ge-custom-5.9-5.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-tkg-5.19.r1-4.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-stable-5.0.2-4.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-staging-5.20-2.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-lutris-5.7-11-3.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-extra-libs-6.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/DX9Jun2010.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/msttcorefonts-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model2-1.1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model3-1.1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.0.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame078_libretro.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame0174_libretro.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame0200_libretro.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame_libretro_0220-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/hbmame0220_libretro.7z'
+)
+
+################################################################################
+
 URL_THEME_A="https://github.com/BatoceraPLUS/Theme-batocera-plus/archive/master.zip#/Theme-batocera-plus-${VERSION}${RELEASE}.zip"
 URL_FIREFOX="https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US#/firefox-esr-${VERSION}${RELEASE}.tar.bz2"
-URL_MAME='https://github.com/BatoceraPLUS/Mame-Mess/releases/download/0220/mame_libretro_0220.7z'
 URL_JAVA="https://javadl.oracle.com/webapps/download/AutoDL?BundleId=242050_3d5a2bb8f8d4428bbe94aed7ec7ae784#/java-jre-linux-x64-${VERSION}${RELEASE}.tar.gz"
 
-URL_WINE_STABLE='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-stable-5.0.2-3.7z'
-URL_WINE_STAGING='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-staging-5.20-1.7z'
-URL_WINE_LUTRIS='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/wine-lutris-5.7-11-2.7z'
-URL_WINE_PROTON_VALVE='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-valve-5.13-2.7z'
-URL_WINE_PROTON_GE_CUSTOM='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-ge-custom-5.9-4.7z'
-URL_WINE_PROTON_TKG='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/release/proton-tkg-5.19.r1-3.7z'
-URL_WINE_EXTRA_LIBS='https://github.com/AlexxandreFS/Wine.PLUS/releases/download/wine-extra-libs/wine-extra-libs-5.7z'
 URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/5.1.1/wine-mono-5.1.1-x86.tar.xz'
-URL_WINE_DIRECTX='https://github.com/BatoceraPLUS/Wine/releases/download/DX9Jun2010/DX9Jun2010.7z'
 URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.7.2/dxvk-1.7.2.tar.gz'
 URL_WINE_VKD3D_PROTON='https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.0/vkd3d-proton-2.0.tar.zst'
 
@@ -56,8 +70,6 @@ URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 URL_CEMUFAKEFILES='https://github.com/sabotendarsama/fakefiles/releases/download/1.0/fakefiles.zip'
 URL_EXTRAFILES='https://github.com/sabotendarsama/cemuextras/releases/download/v1.0/cemuextras.zip'
-URL_MODEL2='https://github.com/sabotendarsama/Model2/releases/download/V1.0/model2-1.1.zip'
-URL_MODEL3='https://github.com/sabotendarsama/Model3/releases/download/v1.0/model3-1.1.zip'
 
 URL_FLASH="$(curl -s 'https://fpdownload.macromedia.com/pub/flashplayer/masterversion/masterversion.xml' | grep 'NPAPI_linux version' | head -n 1 | cut -d '"' -f 2 | sed 's/,/./g')"
 if ! [ "${URL_FLASH}" ]; then
@@ -68,15 +80,28 @@ URL_FLASH="https://fpdownload.adobe.com/get/flashplayer/pdc/${URL_FLASH}/flash_p
 # REMOVA este link quando for atualizar
 URL_NVIDIA=http://download.nvidia.com/XFree86/Linux-x86_64/450.66/NVIDIA-Linux-x86_64-450.66.run
 
+################################################################################
+
 # DOWNLOAD
 
 mkdir -p "${DOWNLOAD_DIR}"
 
-for URL in "${URL_NVIDIA}" "${URL_WINE_STABLE}" "${URL_WINE_STAGING}" "${URL_WINE_LUTRIS}" "${URL_WINE_PROTON_VALVE}" "${URL_WINE_PROTON_GE_CUSTOM}" "${URL_WINE_PROTON_TKG}" "${URL_WINE_EXTRA_LIBS}" "${URL_WINE_MONO}" "${URL_WINE_DIRECTX}" "${URL_WINE_DXVK}" "${URL_WINE_VKD3D_PROTON}" "${URL_FIREFOX}" "${URL_MAME}" "${URL_JAVA}" "${URL_FLASH}" "${URL_THEME_A}" "${URL_CEMU}" "${URL_CEMUHOOK}" "${URL_CEMUFAKEFILES}" "${URL_EXTRAFILES}" "${URL_MODEL2}" "${URL_MODEL3}"; do
+for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
+           "${URL_NVIDIA}" \
+           "${URL_WINE_MONO}" \
+           "${URL_WINE_DXVK}" \
+           "${URL_WINE_VKD3D_PROTON}" \
+           "${URL_FIREFOX}" \
+           "${URL_JAVA}" \
+           "${URL_FLASH}" \
+           "${URL_THEME_A}" \
+           "${URL_CEMU}" \
+           "${URL_CEMUHOOK}"
+do
     PKG_NAME="$(basename "${URL}")"
-    echo "Baixando ${PKG_NAME}..."
+    echo -e "\nBaixando ${PKG_NAME}..."
     if ! [ -f "${DOWNLOAD_DIR}/${PKG_NAME}" ]; then
-        curl -L -C - "${URL}" -o "${DOWNLOAD_DIR}/${PKG_NAME}"
+        curl -L -C - "${URL}" -o "${DOWNLOAD_DIR}/${PKG_NAME}" || exit 0
     fi
 done
 
@@ -143,30 +168,21 @@ echo "$VERSION $(date +'%Y/%m/%d %H:%M')" >                        "$TEMP_DIR/sq
 ################################################################################
 
 echo 'Copiando arquivos do batocera.plus...'
-cp -r -f "$PLUS_DIR/"*   "$TEMP_DIR/squashfs-root"  || exit $?
-cp -r -f "$UPDATE_DIR/"* "$TEMP_DIR/squashfs-root"  || exit $?
+cp -r -f "$PLUS_DIR/"*   "$TEMP_DIR/squashfs-root" || exit $?
+cp -r -f "$UPDATE_DIR/"* "$TEMP_DIR/squashfs-root" || exit $?
 
 ################################################################################
 
-echo 'Descompactando Libretro mame0174...'
-7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame0174_libretro.so.7z" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
-rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame0174_libretro.so.7z"
+echo 'Descompactando PKGs...'
 
-echo 'Descompactando Libretro mame0200...'
-7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame0200_libretro.so.7z" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
-rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame0200_libretro.so.7z"
+mkdir -p "${DOWNLOAD_DIR}/pkg-xtract"
 
-echo 'Descompactando Libretro hbmame...'
-7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/hbmame_libretro.so.7z" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
-rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/hbmame_libretro.so.7z"
-
-#echo 'Descompactando Libretro mame_mame...'
-#7zr x "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame_mame_libretro.so.7z.001" -o"$TEMP_DIR/squashfs-root/usr/lib/libretro" || exit $?
-#rm -f "$TEMP_DIR/squashfs-root/usr/lib/libretro/mame_mame_libretro.so.7z."*
-
-echo 'Descompactando Fontes Microsoft msttcorefonts...'
-7zr x "$TEMP_DIR/squashfs-root/usr/share/fonts/truetype/msttcorefonts.7z" -o"$TEMP_DIR/squashfs-root/usr/share/fonts/truetype" || exit $?
-rm -f "$TEMP_DIR/squashfs-root/usr/share/fonts/truetype/msttcorefonts.7z"
+for PKG in "${URL_BATOCERA_PLUS_PKG[@]}"; do
+    echo -e "\nDescompactando ${PKG_NAME%.*}..."
+    PKG_NAME="$(basename "${PKG}")"
+    7zr x  "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/pkg-xtract" || exit $?
+    cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* "${TEMP_DIR}/squashfs-root" || exit $?
+done
 
 ################################################################################
 
@@ -177,37 +193,9 @@ unzip "${DOWNLOAD_DIR}/${PKG_NAME}" \
 mv "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/Theme-batocera-plus-master" \
    "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus" || exit $?
 
-echo "Descompactando Wine-Stable..."
-PKG_NAME="$(basename "${URL_WINE_STABLE}")"
-7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
-
-echo "Descompactando Wine-Staging..."
-PKG_NAME="$(basename "${URL_WINE_STAGING}")"
-7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
-
-echo "Descompactando Wine-Lutris..."
-PKG_NAME="$(basename "${URL_WINE_LUTRIS}")"
-7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
-
-echo "Descompactando Proton-Valve..."
-PKG_NAME="$(basename "${URL_WINE_PROTON_VALVE}")"
-7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
-
-echo "Descompactando Proton-GE-Custom..."
-PKG_NAME="$(basename "${URL_WINE_PROTON_GE_CUSTOM}")"
-7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
-
-echo "Descompactando Proton-TKG..."
-PKG_NAME="$(basename "${URL_WINE_PROTON_TKG}")"
-7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
-
 echo "Descompactando Wine-Extra Libs..."
-PKG_NAME="$(basename "${URL_WINE_EXTRA_LIBS}")"
-7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
 # Remova a linha à baixo (mv) em uma futura atualização.
-mv "${TEMP_DIR}/squashfs-root/opt/Wine/wine-extra-libs/linux" "${TEMP_DIR}"
-cp -r "${TEMP_DIR}/squashfs-root/opt/Wine/wine-extra-libs/"* "${TEMP_DIR}/squashfs-root/opt/Wine" || exit $?
-rm -r "${TEMP_DIR}/squashfs-root/opt/Wine/wine-extra-libs"
+mv "${TEMP_DIR}/squashfs-root/opt/Wine/linux" "${TEMP_DIR}"
 
 echo 'Descompactando Wine Mono...'
 PKG_NAME="$(basename "${URL_WINE_MONO}")"
@@ -238,11 +226,6 @@ mv "${TEMP_DIR}/squashfs-root/opt/Wine/apps/${PKG_NAME%.tar.zst}/x86/d3d12.dll" 
 mv "${TEMP_DIR}/squashfs-root/opt/Wine/apps/${PKG_NAME%.tar.zst}/x64/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x64"
 rm -r "${TEMP_DIR}/squashfs-root/opt/Wine/apps/${PKG_NAME%.tar.zst}"
 
-echo 'Descompactando Directx...'
-PKG_NAME="$(basename "${URL_WINE_DIRECTX}")"
-mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
-7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
-
 echo 'Descompactando Firefox...'
 PKG_NAME="$(basename "${URL_FIREFOX}")"
 bunzip2 -d -k -v -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar x -v -C "${TEMP_DIR}/squashfs-root/opt/Firefox" || exit $?
@@ -258,10 +241,6 @@ rm -r "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/LGPL" \
       "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/usr"  \
       "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/license.pdf"
 
-echo 'Descompactando Mame...'
-PKG_NAME="$(basename "${URL_MAME}")"
-7zr x "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/squashfs-root/usr/lib/libretro" -y || exit $?
-
 echo 'Descompactando Java...'
 PKG_NAME="$(basename "${URL_JAVA}")"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/opt" || exit $?
@@ -274,10 +253,6 @@ mkdir -p "${TEMP_DIR}/squashfs-root/opt/Cemu/emulator"
 mv    "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/Cemu/emulator"
 rm -r "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}"
 
-echo 'Descompactando Cemu Extras...'
-PKG_NAME="$(basename "${URL_EXTRAFILES%.*}")"
-unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/squashfs-root/opt/Cemu" || exit $?
-
 echo 'Descompactando CemuHook...'
 PKG_NAME="$(basename "${URL_CEMUHOOK%.*}")"
 unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}" || exit $?
@@ -285,18 +260,6 @@ mkdir -p  "${TEMP_DIR}/squashfs-root/opt/Cemu/cemuhook"
 rm -r "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/Go to project website for updates.url"
 mv "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/Cemu/cemuhook"
 rmdir "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}"
-
-echo 'Descompactando Cemu Fakefiles...'
-PKG_NAME="$(basename "${URL_CEMUFAKEFILES%.*}")"
-unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/squashfs-root/opt/Cemu" || exit $?
-
-echo 'Descompactando Model 2 Emulator...'
-PKG_NAME="$(basename "${URL_MODEL2%.*}")"
-unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/squashfs-root/opt/Model2" || exit $?
-
-echo 'Descompactando Model 3 Emulator...'
-PKG_NAME="$(basename "${URL_MODEL3%.*}")"
-unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/squashfs-root/opt/Model3" || exit $?
 
 # REMOVA o driver da nvidia quando for atualizar.
 echo Descompactando driver nvidia ...
@@ -399,12 +362,13 @@ if [ "${RELEASE}" ]; then
 fi
 
 echo 'Removendo arquivos temporários...'
-rmdir "$TEMP_DIR/BATOCERA"                || exit $?
-rmdir "$TEMP_DIR/BatoceraZero"            || exit $?
-rm -r "$TEMP_DIR/squashfs-root"           || exit $?
-rm    "$TEMP_DIR/batocera.linux.img"      || exit $?
+rmdir "${TEMP_DIR}/BATOCERA"               || exit $?
+rmdir "${TEMP_DIR}/BatoceraZero"           || exit $?
+rm -r "${TEMP_DIR}/squashfs-root"          || exit $?
+rm    "${TEMP_DIR}/batocera.linux.img"     || exit $?
+rm -r "${TEMP_DIR}/pkg-xtract"             || exit $?
 if [ "${RELEASE}" ]; then
-    rm -r "${TEMP_DIR}/Batocera.PLUS.img" || exit $?
+    rm -r "${TEMP_DIR}/Batocera.PLUS.img"  || exit $?
 fi
 
 sync
