@@ -1,130 +1,140 @@
 <?xml version="1.0"?>
 <gameList>
-    <game>
-        <path>./#mozilla-firefox.txt</path>
-        <name>### MOZILLA FIREFOX ###</name>
-        <desc>NAVEGADOR WEB MOZILLA FIREFOX.</desc>
-        <image>./downloaded_images/#mozilla-firefox-image.png</image>
-        <genre>navegador</genre>
-    </game>
-    <game>
-        <path>./GOOGLE.txt</path>
-        <name>#[SITE] GOOGLE</name>
-        <desc>O GOOGLE É UMAS DAS MAIORES EMPRESAS DE TECNOLOGIA DO MUNDO E TEM O MAIS POPULAR MECANISMO DE PESQUISA DA INTERNET, ACHO QUE ESTE SITE DIPENSA APRESENTAÇÕES.</desc>
-        <image>./downloaded_images/GOOGLE-image.png</image>
-        <genre>buscador</genre>
-    </game>
-    <game>
-        <path>./YOUTUBE.txt</path>
-        <name>#[SITE] YOUTUBE</name>
-        <desc>O YOUTUBE É UMA PLATAFORMA E COMUNIDADE DE COMPARTILHAMENTO DE VÍDEOS ONLINE.</desc>
-        <image>./downloaded_images/YOUTUBE-image.png</image>
-        <genre>videos</genre>
-    </game>
-    <game>
-        <path>./FACEBOOK.txt</path>
-        <name>#[SITE] FACEBOOK</name>
-        <desc>O facebook é uma mídia social e rede social virtual lançada em 4 de fevereiro de 2004, sendo a maior rede social virtual em todo o mundo.</desc>
-        <image>./downloaded_images/FACEBOOK-image.png</image>
-        <genre>rede social</genre>
-    </game>
-    <game>
-        <path>./GAMEFAQS.txt</path>
-        <name>[SITE] GAMEFAQS</name>
-        <desc>Este é um website especializado em conteúdo relacionado a vídeo games, guias, imagens, faqs, códigos, análises, entre muitas outras informações. O site tem um dos maiores bancos de dados de vídeo games disponíveis na internet. O site possui uma vasta gama de sistemas(consoles), com quase qualquer título que já tenha sido lançado ou que esteja marcado para ser lançado. sem ser cadastrado, já se tem acesso aos incontáveis guias e informações, além disso, ao registrar-se, o usuário pode contribuir com guias e informaçõeso, e pode, além disso, ter acesso ao fórum de mensagens (message board). desde 2003, o site tem sido subsidiado pela cnet.quase todo conteúdo da gamefaqs é contribuição de seus usuários. as informações são sempre revisadas antes de serem colocadas no site, privilegiando guias de melhor qualidade.o site também é notável pelos seus ativos fóruns de mensagens, pois há um fórum para cada jogo de seu banco de dados, além de vários outros fóruns sociais. dentre outros, contém fóruns separados por região, inclusive, há o do Brasi</desc>
-        <image>./downloaded_images/GAMEFAQS-image.png</image>
-        <genre>jogos</genre>
-    </game>
-    <game>
-        <path>./FRIV.txt</path>
-        <name>[SITE] FRIV.COM</name>
-        <desc>O FRIV É UM SITE COM DIVERSOS JOGOS EM FLASH, COM UMA ESTRUTURA SIMPLES E VÁRIOS JOGOS O SITE CONQUISTOU A ATENÇÃO PRINCIPALMENTE DAS CRIANÇAS.</desc>
-        <image>./downloaded_images/FRIV-image.png</image>
-        <genre>games</genre>
-    </game>
-    <game>
-        <path>./PARCEIROSDAEMULAÇÃO.txt</path>
-        <name>[SITE] PARCEIROS DA EMULAÇÃO</name>
-        <desc>Site, criado por sergio graças onde são disponiblizados rooms, temas, bios e imagens prontas de sistemas de retrogames Batocera e Recalbox.</desc>
-        <image>./downloaded_images/PARCEIROSDAEMULAÇÃO-image.png</image>
-        <genre>games</genre>
-    </game>
-    <game>
-        <path>./BATOCERAPLUS.txt</path>
-        <name>[CANAL YOUTUBE] BATOCERA.PLUS</name>
-        <desc>CANAL OFICIAL DO BATOCERA.PLUS, A IDEIA CENTRAL DESTE CANAL É PUBLICAR INFORMAÇÕES SOBRE AS NOVIDADES RELACIONADAS AO BATOCERA.PLUS.</desc>
-        <image>./downloaded_images/BATOCERAPLUS-image.png</image>
-        <genre>CANAL YOUTUBE</genre>
-    </game>
-    <game>
-        <path>./CLEBINHORJ.txt</path>
-        <name>[CANAL YOUTUBE] CLEBINHO RETRÔ-GAMES</name>
-        <desc>CANAL DEDICADO À SISTEMA DE RETRÔ-EMULAÇÃO, RECALBOX, BATOCERA, RASPBERRY PI3. PARA QUEM CURTE GAMES RETRÔ. AQUI VOCÊ ENCONTRA IMAGENS PRONTAS BASEADAS NO RECALBOX E BATOCERA E VÁRIOS PACK COLLECTIONS PARA ADICIONAR EM SEUS SISTEMAS E PACK DE ROMS.
+	<game>
+		<path>./GOOGLE.txt</path>
+		<name>#[SITE] GOOGLE</name>
+		<desc>O GOOGLE É UMAS DAS MAIORES EMPRESAS DE TECNOLOGIA DO MUNDO E TEM O MAIS POPULAR MECANISMO DE PESQUISA DA INTERNET, ACHO QUE ESTE SITE DIPENSA APRESENTAÇÕES.</desc>
+		<image>./downloaded_images/GOOGLE-image.png</image>
+		<genre>buscador</genre>
+	</game>
+	<game>
+		<path>./YOUTUBE.txt</path>
+		<name>#[SITE] YOUTUBE</name>
+		<desc>O YOUTUBE É UMA PLATAFORMA E COMUNIDADE DE COMPARTILHAMENTO DE VÍDEOS ONLINE.</desc>
+		<image>./downloaded_images/YOUTUBE-image.png</image>
+		<genre>videos</genre>
+	</game>
+	<game>
+		<path>./FACEBOOK.txt</path>
+		<name>#[SITE] FACEBOOK</name>
+		<desc>O facebook é uma mídia social e rede social virtual lançada em 4 de fevereiro de 2004, sendo a maior rede social virtual em todo o mundo.</desc>
+		<image>./downloaded_images/FACEBOOK-image.png</image>
+		<genre>rede social</genre>
+	</game>
+	<game>
+		<path>./GAMEFAQS.txt</path>
+		<name>[SITE] GAMEFAQS</name>
+		<desc>Este é um website especializado em conteúdo relacionado a vídeo games, guias, imagens, faqs, códigos, análises, entre muitas outras informações. O site tem um dos maiores bancos de dados de vídeo games disponíveis na internet. O site possui uma vasta gama de sistemas(consoles), com quase qualquer título que já tenha sido lançado ou que esteja marcado para ser lançado. sem ser cadastrado, já se tem acesso aos incontáveis guias e informações, além disso, ao registrar-se, o usuário pode contribuir com guias e informaçõeso, e pode, além disso, ter acesso ao fórum de mensagens (message board). desde 2003, o site tem sido subsidiado pela cnet.quase todo conteúdo da gamefaqs é contribuição de seus usuários. as informações são sempre revisadas antes de serem colocadas no site, privilegiando guias de melhor qualidade.o site também é notável pelos seus ativos fóruns de mensagens, pois há um fórum para cada jogo de seu banco de dados, além de vários outros fóruns sociais. dentre outros, contém fóruns separados por região, inclusive, há o do Brasi</desc>
+		<image>./downloaded_images/GAMEFAQS-image.png</image>
+		<genre>jogos</genre>
+	</game>
+	<game>
+		<path>./FRIV.txt</path>
+		<name>[SITE] FRIV.COM</name>
+		<desc>O FRIV É UM SITE COM DIVERSOS JOGOS EM FLASH, COM UMA ESTRUTURA SIMPLES E VÁRIOS JOGOS O SITE CONQUISTOU A ATENÇÃO PRINCIPALMENTE DAS CRIANÇAS.</desc>
+		<image>./downloaded_images/FRIV-image.png</image>
+		<genre>games</genre>
+	</game>
+	<game>
+		<path>./PARCEIROSDAEMULAÇÃO.txt</path>
+		<name>[SITE] PARCEIROS DA EMULAÇÃO</name>
+		<desc>Site, criado por sergio graças onde são disponiblizados rooms, temas, bios e imagens prontas de sistemas de retrogames Batocera e Recalbox.</desc>
+		<image>./downloaded_images/PARCEIROSDAEMULAÇÃO-image.png</image>
+		<genre>games</genre>
+	</game>
+	<game>
+		<path>./BATOCERAPLUS.txt</path>
+		<name>[CANAL YOUTUBE] BATOCERA.PLUS</name>
+		<desc>CANAL OFICIAL DO BATOCERA.PLUS, A IDEIA CENTRAL DESTE CANAL É PUBLICAR INFORMAÇÕES SOBRE AS NOVIDADES RELACIONADAS AO BATOCERA.PLUS.</desc>
+		<image>./downloaded_images/BATOCERAPLUS-image.png</image>
+		<genre>CANAL YOUTUBE</genre>
+	</game>
+	<game>
+		<path>./CLEBINHORJ.txt</path>
+		<name>[CANAL YOUTUBE] CLEBINHO RETRÔ-GAMES</name>
+		<desc>CANAL DEDICADO À SISTEMA DE RETRÔ-EMULAÇÃO, RECALBOX, BATOCERA, RASPBERRY PI3. PARA QUEM CURTE GAMES RETRÔ. AQUI VOCÊ ENCONTRA IMAGENS PRONTAS BASEADAS NO RECALBOX E BATOCERA E VÁRIOS PACK COLLECTIONS PARA ADICIONAR EM SEUS SISTEMAS E PACK DE ROMS.
 OBSERVAÇÃO: O CLEBER BATISTA É UMA DAS PESSOAS QUE APOIA O PROJETO COM TESTES, SUJESTÕES, TRABALHOS GRÁFICOS E O PRINCIPAL QUE É O APOIO MORAL. DEIXO O MEU MUITO OBRIGADO E A RECOMENDAÇÃO DO CANAL.</desc>
-        <image>./downloaded_images/CLEBINHORJ-image.png</image>
-        <genre>CANAL YOUTUBE</genre>
-    </game>
-    <game>
-        <path>./KONEKOPS3.txt</path>
-        <name>[CANAL YOUTUBE] KONEKOPS3</name>
-        <desc>CANAL SOBRE VIDEO-GAMES EM GERAL, MAS RECENTEMENTE VEM PUBLICANDO MUITO CONTEÚDO SOBRE O BATOCERA.PLUS, TUTORIAIS, DICAS, TESTES E MUITO MAIS.
+		<image>./downloaded_images/CLEBINHORJ-image.png</image>
+		<genre>CANAL YOUTUBE</genre>
+	</game>
+	<game>
+		<path>./KONEKOPS3.txt</path>
+		<name>[CANAL YOUTUBE] KONEKOPS3</name>
+		<desc>CANAL SOBRE VIDEO-GAMES EM GERAL, MAS RECENTEMENTE VEM PUBLICANDO MUITO CONTEÚDO SOBRE O BATOCERA.PLUS, TUTORIAIS, DICAS, TESTES E MUITO MAIS.
 O CANAL ESTÁ EM ESPANHOL MAS É PERFEITAMENTE COMPREENDIDO POR BRASILEIROS.
 ESTE CANAL ENTRA PARA O BATOCERA.PLUS POR MÉRITOS PRÓPRIOS.</desc>
-        <image>./downloaded_images/KONEKOPS3-image.png</image>
-        <genre>CANAL YOUTUBE</genre>
-    </game>
-    <game>
-        <path>./RUIVO.txt</path>
-        <name>[CANAL YOUTUBE] RUIVO</name>
-        <desc>RUIVO GAMES - INFORMAÇÕES SOBRE RASPBERRY PI, RECALBOX, RETROPIE, RETRORANGE PI, MUGEN, OPENBOR, PLAYSTATION, XBOX, NINTENDO, PRO EVOLUTION SOCCER, FIFA SOCCER E MUITO MAIS!
+		<image>./downloaded_images/KONEKOPS3-image.png</image>
+		<genre>CANAL YOUTUBE</genre>
+	</game>
+	<game>
+		<path>./PROTONDB.txt</path>
+		<name>[SITE] PROTON DATABASE</name>
+		<desc>COM O PROTON MUITOS JOGOS DE WINDOWS AGORA FUNCIONAM NO LINUX. UMA BASE DE CONHECIMENTO DE JOGOS DE WINDOWS QUE JÁ FORAM TESTADOS NO PROTON E QUE FUNCIONARAM OU NÃO, COM ESSA BASE É POSSÍVEL DETERMINAR SE O JOGO DESEJADO FUNCIONARÁ NO BATOCERA.PLUS.</desc>
+		<image>./downloaded_images/PROTONDB-image.png</image>
+		<genre>informações</genre>
+	</game>
+	<game>
+		<path>./RUIVO.txt</path>
+		<name>[CANAL YOUTUBE] RUIVO</name>
+		<desc>RUIVO GAMES - INFORMAÇÕES SOBRE RASPBERRY PI, RECALBOX, RETROPIE, RETRORANGE PI, MUGEN, OPENBOR, PLAYSTATION, XBOX, NINTENDO, PRO EVOLUTION SOCCER, FIFA SOCCER E MUITO MAIS!
 Fanpage: www.facebook.com/RuivoGameplays
 Blog do Ruivo: www.jogoretro.blogspot.com.br
 Instagram: www.instagram.com/ruivoplay</desc>
-        <image>./downloaded_images/RUIVO-image.png</image>
-        <genre>CANAL YOUTUBE</genre>
-    </game>
-    <game>
-        <path>./SERGIOGRAÇAS.txt</path>
-        <name>[CANAL YOUTUBE] SERGIO GRAÇAS</name>
-        <desc>CANAL PARA POSTAGENS DE VÍDEOS SOBRE INFORMÁTICA SOFTWARE LIVRE, ROBÓTICA LIVRE, TECNOLOGIA E EDUCAÇÃO.
+		<image>./downloaded_images/RUIVO-image.png</image>
+		<genre>CANAL YOUTUBE</genre>
+	</game>
+	<game>
+		<path>./SERGIOGRAÇAS.txt</path>
+		<name>[CANAL YOUTUBE] SERGIO GRAÇAS</name>
+		<desc>CANAL PARA POSTAGENS DE VÍDEOS SOBRE INFORMÁTICA SOFTWARE LIVRE, ROBÓTICA LIVRE, TECNOLOGIA E EDUCAÇÃO.
 OBSERVAÇÃO: O SERGIO GRAÇAS É UM SER "NOTÁVEL" DENTRO DA COMUNIDADE, APOIA O PROJETO COM TESTES, SUJESTÕES, DIVULGAÇÃO E O PRINCIPAL QUE É O APOIO MORAL.
 DEIXO O MEU MUITO OBRIGADO E A RECOMENDAÇÃO DO CANAL.</desc>
-        <image>./downloaded_images/SERGIOGRAÇAS-image.png</image>
-        <genre>CANAL YOUTUBE</genre>
-    </game>
-    <game>
-        <path>./AZVAREL.txt</path>
-        <name>[CANAL YOUTUBE] AZVAREL</name>
-        <desc>Canal retrô através do ponto de vista de Azvarel. Diversos pacotes de roms para download.</desc>
-        <image>./downloaded_images/AZVAREL-image.png</image>
-        <genre>CANAL YOUTUBE</genre>
-    </game>
-    <game>
-        <path>./NETFLIX.txt</path>
-        <name>[SITE] NETFLIX</name>
-        <desc>NETFLIX é uma provedora global de filmes e séries de televisão via streaming, atualmente com mais de 100 milhões de assinantes.</desc>
-        <image>./downloaded_images/NETFLIX-image.png</image>
-        <genre>filmes e series</genre>
-    </game>
-    <game>
-        <path>./GAMETRONIK.txt</path>
-        <name>[SITE] GAMETRONIK</name>
-        <desc>SITE DE JOGOS E ROMS PARA VÁRIOS SISTEMAS DE CONSOLES E ARCADES.</desc>
-        <image>./downloaded_images/GAMETRONIK-image.png</image>
-        <genre>games</genre>
-    </game>
-    <game>
-        <path>./DISCORD.txt</path>
-        <name>#[SITE] DISCORD</name>
-        <desc>O Discord é um chat de voz e texto para jogadores que é gratuito, seguro e que funciona tanto no celular quanto no computador.</desc>
-        <image>./downloaded_images/DISCORD-image.png</image>
-        <genre>rede social</genre>
-    </game>
-    <game>
-        <path>./WIKIPEDIA.txt</path>
-        <name>[SITE] WIKIPEDIA</name>
-        <desc>A Wikipédia é um projeto de enciclopédia multilíngue de licença livre, baseado na web.</desc>
-        <image>./downloaded_images/WIKIPEDIA-image.png</image>
-        <genre>informações</genre>
-    </game>
+		<image>./downloaded_images/SERGIOGRAÇAS-image.png</image>
+		<genre>CANAL YOUTUBE</genre>
+	</game>
+	<game>
+		<path>./AZVAREL.txt</path>
+		<name>[CANAL YOUTUBE] AZVAREL</name>
+		<desc>Canal retrô através do ponto de vista de Azvarel. Diversos pacotes de roms para download.</desc>
+		<image>./downloaded_images/AZVAREL-image.png</image>
+		<genre>CANAL YOUTUBE</genre>
+	</game>
+	<game>
+		<path>./NETFLIX.txt</path>
+		<name>[SITE] NETFLIX</name>
+		<desc>NETFLIX é uma provedora global de filmes e séries de televisão via streaming, atualmente com mais de 100 milhões de assinantes.</desc>
+		<image>./downloaded_images/NETFLIX-image.png</image>
+		<genre>filmes e series</genre>
+	</game>
+	<game>
+		<path>./GAMETRONIK.txt</path>
+		<name>[SITE] GAMETRONIK</name>
+		<desc>SITE DE JOGOS E ROMS PARA VÁRIOS SISTEMAS DE CONSOLES E ARCADES.</desc>
+		<image>./downloaded_images/GAMETRONIK-image.png</image>
+		<genre>games</genre>
+	</game>
+	<game>
+		<path>./DISCORD.txt</path>
+		<name>#[SITE] DISCORD</name>
+		<desc>O Discord é um chat de voz e texto para jogadores que é gratuito, seguro e que funciona tanto no celular quanto no computador.</desc>
+		<image>./downloaded_images/DISCORD-image.png</image>
+		<genre>rede social</genre>
+	</game>
+	<game>
+		<path>./WIKIPEDIA.txt</path>
+		<name>[SITE] WIKIPEDIA</name>
+		<desc>A Wikipédia é um projeto de enciclopédia multilíngue de licença livre, baseado na web.</desc>
+		<image>./downloaded_images/WIKIPEDIA-image.png</image>
+		<genre>informações</genre>
+	</game>
+	<game>
+		<path>./#mozilla-firefox.txt</path>
+		<name>### MOZILLA FIREFOX ###</name>
+		<desc>NAVEGADOR WEB MOZILLA FIREFOX.</desc>
+		<image>./downloaded_images/#mozilla-firefox-image.png</image>
+		<genre>navegador</genre>
+		<playcount>1</playcount>
+		<lastplayed>20201114T234349</lastplayed>
+		<gametime>28</gametime>
+	</game>
 </gameList>
