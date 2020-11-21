@@ -27,7 +27,7 @@
 +    </feature>
 +    <feature name="DXVK" value="dxvk">
 +      <choice name="on" value="on" />
-+	  <choice name="pba" value="pba" />
++      <choice name="pba" value="pba" />
 +      <choice name="off" value="off" />
 +    </feature>
 +    <feature name="SHOW FPS" value="showfps">
@@ -145,7 +145,7 @@
 +    <feature name="DXVK" value="dxvk">
 +      <choice name="on" value="on" />
 +      <choice name="on+fps" value="fps" />
-+	  <choice name="pba" value="pba" />
++      <choice name="pba" value="pba" />
 +      <choice name="off" value="off" />
 +    </feature>
 +    <feature name="SYNC" value="sync">
@@ -184,7 +184,7 @@
 +    <feature name="DXVK" value="dxvk">
 +      <choice name="on" value="on" />
 +      <choice name="on+fps" value="fps" />
-+	  <choice name="pba" value="pba" />
++      <choice name="pba" value="pba" />
 +      <choice name="off" value="off" />
 +    </feature>
 +    <feature name="SYNC" value="sync">
@@ -250,3 +250,4 @@
    <emulator name="citra" features="videomode, ratio, rewind, screen_layout" />
    <emulator name="moonlight" features="videomode, ratio" />
    <emulator name="rpcs3" features="videomode" />
+
