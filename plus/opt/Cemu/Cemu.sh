@@ -191,10 +191,15 @@ fi
 ### DXVK
 
 # Se não ativar o DXVK as informações de VRAM utilizada não aparecem quando SHOW FPS está ativado (será resolvido de outra forma no futuro)
-if [ "${DXVK}" == 'on' ] || [ "${SHOWFPS}" != 'auto' ]; then
+if [ "${DXVK}" == 'on' ] ; then
     export DXVK=1
-else
+    export PBA_ENABLE=0
+elif [ "${DXVK}" == 'pba' ]; then
     export DXVK=0
+    export PBA_ENABLE=1
+elif [ "${DXVK}" == 'off' ] || [ "${DXVK}" == 'auto' ]; then
+    export DXVK=0
+	export PBA_ENABLE=0
 fi
 
 ################################################################################
@@ -312,6 +317,10 @@ fi
 ################################################################################
 
 ### FINALIZA A EXECUÇÃO DO JOGO
+
+# Desativa variaveis exportadas
+export DXVK=0
+export PBA_ENABLE=0
 
 # Aguarda o Cemu encerrar a execução
 while [ "$(pidof wineserver)" ]; do
