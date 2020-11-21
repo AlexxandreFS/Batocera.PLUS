@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
 
+    <!-- Run obxprop | grep "^_OB_APP" to see the value -->
+
     <desktops>
         <number>1</number>
         <firstdesk>1</firstdesk>
     </desktops>
 
-    <applications>
-        <!-- Run obxprop | grep "^_OB_APP" to see the value -->
+    <theme>
+        <name>Plastik Blue Crystal Box V2</name>
+        <titleLayout>NLMC</titleLayout>
+        <keepBorder>no</keepBorder>
+        <animateIconify>yes</animateIconify>
+        <font place="ActiveWindow">
+            <size>10</size>
+            <slant>Italic</slant>
+        </font>
+        <font place="InactiveWindow">
+            <size>10</size>
+            <slant>Italic</slant>
+        </font>
+        <font place="MenuHeader">
+            <size>10</size>
+            <slant>Italic</slant>
+        </font>
+        <font place="MenuItem">
+            <name>Terminus</name>
+            <size>10</size>
+            <slant>Italic</slant>
+        </font>
+        <font place="OnScreenDisplay">
+            <size>11</size>
+            <slant>Italic</slant>
+        </font>
+    </theme>
 
+    <applications>
         <application type="normal">
             <maximized>yes</maximized>
             <fullscreen>yes</fullscreen>
@@ -127,35 +155,47 @@
         <application name="oleview.exe">
             <maximized>yes</maximized>
         </application>
+        <application title="Batocera.PLUS - Wine desktop">
+            <decor>no</decor>
+        </application>
 
     </applications>
 
-    <theme>
-        <name>Plastik Blue Crystal Box V2</name>
-        <titleLayout>NLMC</titleLayout>
-        <keepBorder>yes</keepBorder>
-        <animateIconify>yes</animateIconify>
-        <font place="ActiveWindow">
-            <size>10</size>
-            <slant>Italic</slant>
-        </font>
-        <font place="InactiveWindow">
-            <size>10</size>
-            <slant>Italic</slant>
-        </font>
-        <font place="MenuHeader">
-            <size>10</size>
-            <slant>Italic</slant>
-        </font>
-        <font place="MenuItem">
-            <name>Terminus</name>
-            <size>10</size>
-            <slant>Italic</slant>
-        </font>
-        <font place="OnScreenDisplay">
-            <size>11</size>
-            <slant>Italic</slant>
-        </font>
-    </theme>
+    <!--
+    <keyboard>
+	<keybind key="A-Tab">
+            <action name="NextWindow">
+                <finalactions>
+                    <action name="Focus"/>
+                    <action name="Raise"/>
+                    <action name="Unshade"/>
+                </finalactions>
+            </action>
+        </keybind>
+        <keybind key="A-F4">
+            <action name="Close"/>
+        </keybind>
+        <keybind key="W-F10">
+            <action name="Execute">
+                <command>/opt/Firefox/firefox.sh</command>
+            </action>
+        </keybind>
+        <keybind key="W-e">
+            <action name="Execute">
+                <command>filemanagerlauncher</command>
+            </action>
+        </keybind>
+        <keybind key="W-F3">
+            <action name="Execute">
+                <command>/usr/bin/mouse-pointer invert</command>
+            </action>
+        </keybind>
+        <keybind key="W-F4">
+            <action name="Execute">
+                <command>/usr/bin/xterm</command>
+            </action>
+        </keybind>
+    </keyboard>
+    -->
 
 </openbox_config>

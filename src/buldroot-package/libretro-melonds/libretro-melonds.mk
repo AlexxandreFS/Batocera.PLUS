@@ -3,8 +3,8 @@
 # LIBRETRO MELONDS
 #
 ################################################################################
-# Version.: Commits on Sep 12, 2019
-LIBRETRO_MELONDS_VERSION = 42c1acd5c47dcda17288dcb64ea4adb8e13b8732
+# Version.: Commits on Nov 15, 2020
+LIBRETRO_MELONDS_VERSION = 2c7dff7729f71a4ab17d8f5b1331c26eb9802c4b
 LIBRETRO_MELONDS_SITE = $(call github,libretro,melonds,$(LIBRETRO_MELONDS_VERSION))
 LIBRETRO_MELONDS_LICENSE = GPLv3
 

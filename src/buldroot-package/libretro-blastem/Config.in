@@ -1,9 +1,9 @@
 config BR2_PACKAGE_LIBRETRO_BLASTEM
-        bool "libretro-bsnes"
+        bool "libretro-blastem"
 	depends on BR2_PACKAGE_RETROARCH
 	depends on BR2_INSTALL_LIBSTDCPP
         help
-          A libretro Mega Drive emulator core.
+          A libretro SEGA 16 bits emulator core for x86.
 
 	  http://www.libretro.com
 

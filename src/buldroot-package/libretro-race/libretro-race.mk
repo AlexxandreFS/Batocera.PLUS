@@ -3,8 +3,8 @@
 # LIBRETRO RACE
 #
 ################################################################################
-# Version.: Commits on Sep 12, 2019
-LIBRETRO_RACE_VERSION = fc41e50aeff2be5c9d5c70757a2d77c4ecf13ef1
+# Version.: Commits on Oct 19, 2020
+LIBRETRO_RACE_VERSION = 76702703997cfb82e0f444dfa89442b964b17c3b
 LIBRETRO_RACE_SITE = $(call github,libretro,RACE,$(LIBRETRO_RACE_VERSION))
 LIBRETRO_MELONDS_LICENSE = GPL
 

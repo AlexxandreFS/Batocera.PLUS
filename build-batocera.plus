@@ -11,11 +11,11 @@ VERSION='2.05'
 NVIDIA_LEGACY='0'
 
 # Pasta temporária em uma partição Linux
-TEMP_DIR='./tmp'
+#TEMP_DIR='./tmp'
 #TEMP_DIR='/media/NO_LABEL/tmp'
 #TEMP_DIR='/media/NO_LABEL_1/tmp'
 #TEMP_DIR='/media/NO_LABEL_2/tmp'
-#TEMP_DIR='/mnt/tmp'
+TEMP_DIR='/mnt/tmp'
 
 # Imagem oficial do batocera.linux.
 IMG_OFICIAL_NORMAL='img/batocera-5.27-x86_64-20200912.img.gz'
@@ -54,6 +54,10 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame0200_libretro.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame_libretro_0220-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/hbmame0220_libretro.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dolphin-emu-5.0-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dolphin-ishiiruka-5.0-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bzip2-1.0.8.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/user-manual-1.7z'
 )
 
 ################################################################################
@@ -175,7 +179,7 @@ cp -r -f "$UPDATE_DIR/"* "$TEMP_DIR/squashfs-root" || exit $?
 
 echo 'Descompactando PKGs...'
 
-mkdir -p "${DOWNLOAD_DIR}/pkg-xtract"
+mkdir -p "${TEMP_DIR}/pkg-xtract"
 
 for PKG in "${URL_BATOCERA_PLUS_PKG[@]}"; do
     echo -e "\nDescompactando ${PKG_NAME%.*}..."
@@ -290,7 +294,7 @@ done
 ################################################################################
 
 echo 'Compactando arquivo squashfs...'
-mksquashfs "$TEMP_DIR/squashfs-root/"* "$TEMP_DIR/batocera" || exit $?
+mksquashfs "$TEMP_DIR/squashfs-root/"* "$TEMP_DIR/batocera" -b 1048576 -comp xz -Xdict-size 100% || exit $?
 
 echo 'Descompactando imagem do BatoceraZero...'
 7zr x "$IMG_ZERO" -o"$TEMP_DIR" || exit $?

@@ -3,8 +3,8 @@
 # QUICKNES
 #
 ################################################################################
-# Version.: Commits on Jan 7, 2020
-LIBRETRO_QUICKNES_VERSION = 31654810b9ebf8b07f9c4dc27197af7714364ea7
+# Version.: Commits on Oct 19, 2020
+LIBRETRO_QUICKNES_VERSION = 55d47ca526e7d8585e321b9d99cc2ac3796bd230
 LIBRETRO_QUICKNES_SITE = $(call github,libretro,QuickNES_Core,$(LIBRETRO_QUICKNES_VERSION))
 LIBRETRO_QUICKNES_LICENSE="LGPLv2.1+"
 

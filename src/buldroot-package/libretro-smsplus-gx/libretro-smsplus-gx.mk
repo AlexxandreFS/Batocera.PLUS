@@ -3,8 +3,8 @@
 # LIBRETRO_SMSPLUS_GX
 #
 ################################################################################
-# Version.: Commits on Apr 20, 2020
-LIBRETRO_SMSPLUS_GX_VERSION = a656bc26c3178dfda4ae9e05e18496ed93788f7b
+# Version.: Commits on Nov 1, 2020
+LIBRETRO_SMSPLUS_GX_VERSION = cd3400944bbff310b6e46353516542f990966633
 LIBRETRO_SMSPLUS_GX_SITE = $(call github,libretro,smsplus-gx,$(LIBRETRO_SMSPLUS_GX_VERSION))
 LIBRETRO_SMSPLUS_GX_LICENSE = Non-commercial
 

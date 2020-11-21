@@ -297,7 +297,7 @@ fi
 ### START WINE NORMALLY
 
 if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
-    WINE_VERSION="$(cat -e "${WINE_DIR}/${WINE_BUILD}/.update-timestamp" | cut -d '^' -f 1)"
+    WINE_VERSION="$(stat -t "${WINE_DIR}/${WINE_BUILD}/share/wine/wine.inf" | awk '{print $12}')"
     WINE_VERSION_NEW="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
 
     if [ "${WINE_VERSION}" == "${WINE_VERSION_NEW}" ]; then
