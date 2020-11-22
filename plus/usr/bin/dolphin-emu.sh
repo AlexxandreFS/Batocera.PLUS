@@ -55,7 +55,7 @@ fi
 
 ### NÃO EXECUTA O DOLPHIN SE FOR EXECUTADO PELO GERENCIADOR DE ARQUIVOS (F1)
 
-if [ "${ROM}" == '/userdata/roms/gamecube/batocera.plus' ]; then
+if [ "${ROM}" == 'batocera.plus' ]; then
     exit 0
 else
     unset BATOCERA_CONF
@@ -65,5 +65,5 @@ else
     unset SYSTEM
     unset ROM
 
-    exec /usr/bin/dolphin-emu "$@"   
+    exec /usr/bin/dolphin-emu "${@}"   
 fi

@@ -1,6 +1,6 @@
---- es_features.cfg
-+++ es_features.cfg.plus
-@@ -77,8 +77,241 @@
+--- es_features.cfg.original
++++ es_features.cfg.modificado
+@@ -77,8 +77,242 @@
    <emulator name="melonds" features="videomode" />
    <emulator name="daphne" features="videomode, ratio" />
    <emulator name="flycast" features="videomode, ratio" />
@@ -222,6 +222,7 @@
 +      <core name="gearsystem"      features="netplay, rewind, autosave" />
 + <!-- <core name="gpsp"            features="netplay, rewind, autosave" /> -->
 +      <core name="hbmame"          features="netplay, rewind, autosave" />
++      <core name="ishiiruka"       features="netplay, rewind, autosave" />
 +      <core name="mame0174"        features="netplay, rewind, autosave" />
 +      <core name="mame0200"        features="netplay, rewind, autosave" />
 +      <core name="mame078"         features="netplay, rewind, autosave" />
@@ -242,7 +243,7 @@
        <core name="gw" features="" />
        <core name="freeintv" features="" />
        <core name="pcfx" features="netplay, rewind, autosave" />
-@@ -169,7 +402,6 @@
+@@ -169,7 +403,6 @@
    </emulator>
    <emulator name="vice" features="videomode, ratio" />
    <emulator name="fsuae" features="videomode, ratio" />
@@ -250,4 +251,3 @@
    <emulator name="citra" features="videomode, ratio, rewind, screen_layout" />
    <emulator name="moonlight" features="videomode, ratio" />
    <emulator name="rpcs3" features="videomode" />
-

@@ -52,12 +52,12 @@ function loadAnimationPlus() {
         fi
     done
 
-    if ! grep -qE '^[ ]*splash.screen.enabled[ ]*=[ ]*0[ ]*$' "/boot/batocera-boot.conf"; then
+    if ! grep -qE '^[ ]*splash.screen.enabled[ ]*=[ ]*0[ ]*$' /boot/batocera-boot.conf; then
         showImage &
     fi
 
     for i in {1..240}; do
-        if [ "$(pidof X)" ] || [ -f /tmp/emulationstation.ready ] || [ "${i}" == '240' ]; then
+        if [ "$(pidof X)" ] || [ -f '/tmp/emulationstation.ready' ] || [ "${i}" == '240' ]; then
             sleep 10
             echo -n -e '\n Batocera.PLUS' > /dev/tty1
             break
@@ -66,7 +66,7 @@ function loadAnimationPlus() {
     done
 }
 
-case "$1" in
+case "${1}" in
     start)
         loadAnimationPlus &
         ;;

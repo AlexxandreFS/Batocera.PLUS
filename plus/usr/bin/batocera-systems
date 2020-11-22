@@ -167,9 +167,9 @@ BIOS[n64dd]="n64dd,                   Nintendo 64 Disk Drive
     8d3d9f294b6e174bc7b1d2fd1c727530, bios/Mupen64plus/IPL.n64"
 
 BIOS[gamecube]="gamecube,             Nintendo GameCube
-    b17148254a5799684c7d783206504926, bios/GC/USA/IPL.bin
-    db92574caab77a7ec99d4605fd6f2450, bios/GC/EUR/IPL.bin
-    019e39822a9ca3029124f74dd4d55ac4, bios/GC/JAP/IPL.bin"
+    b17148254a5799684c7d783206504926, bios/dolphin-emu/Sys/GC/USA/IPL.bin
+    019e39822a9ca3029124f74dd4d55ac4, bios/dolphin-emu/Sys/GC/JAP/IPL.bin
+    db92574caab77a7ec99d4605fd6f2450, bios/dolphin-emu/Sys/GC/EUR/IPL.bin"
 
 BIOS[nds]="nds,                       Nintendo DS
     145eaef5bd3037cbc247c213bb3da1b3, bios/firmware.bin

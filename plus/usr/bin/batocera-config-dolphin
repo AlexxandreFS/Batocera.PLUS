@@ -5,12 +5,11 @@
 
 ################################################################################
 
-if test -z "${DISPLAY}"; then
-    export DISPLAY=:0.0
-fi
+# CRIA A CONFIGURAÇÃO INICIAL
 
-export XDG_DATA_HOME='/userdata/saves'
-export QT_QPA_PLATFORM=xcb
+if ! [ -f "${HOME}/configs/dolphin-emu/batocera.plus" ]; then
+    LOADSCREEN=0 /usr/lib/python2.7/site-packages/configgen/emulatorlauncher.sh -system gamecube -rom batocera.plus
+fi
 
 ################################################################################
 
@@ -25,29 +24,25 @@ yad --form \
     --fixed --center \
     --close-on-unfocus
 
-case $? in
-    0) export XDG_CONFIG_HOME='/userdata/system/configs'
+case ${?} in
+    0) export XDG_CONFIG_HOME="${HOME}/configs"
        ;;
-    1) export XDG_CONFIG_HOME='/userdata/system/configs/dolphin-emu'
+    1) export XDG_CONFIG_HOME="${HOME}/configs/dolphin-emu"
        ;;
     *) exit 0
 esac
 
 ################################################################################
 
-### CRIA A CONFIGURAÇÃO INICIAL
-
-DOLPHIN_CFG="${HOME}/configs/dolphin-emu/Dolphin.ini"
-DOLPHIN_CFG_DIR="$(dirname "${DOLPHIN_CFG}")"
-
-if ! [ -f "${DOLPHIN_CFG_DIR}/batocera.plus" ]; then
-    export ROM='/userdata/roms/gamecube/batocera.plus'
-    /usr/lib/python2.7/site-packages/configgen/emulatorlauncher.sh -system gamecube -rom "${ROM}"
-    unset ROM
+if test -z "${DISPLAY}"; then
+    export DISPLAY=:0.0
 fi
+
+export XDG_DATA_HOME=/userdata/saves
+export QT_QPA_PLATFORM=xcb
 
 ################################################################################
 
 ### EXECUTA O DOLPHIN
 
-exec /usr/bin/dolphin-emu -platform xcb
+exec /usr/bin/dolphin-emu
