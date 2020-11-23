@@ -257,11 +257,21 @@ unset SAVE_DIR
 
 ################################################################################
 
-### UNLIMITED NUMBER OF OPEN FILES
+### MAXIMUM NUMBER OF OPEN FILES
+
+ulimit -n 1048576
+
+### UNLIMITED NUMBER OF CORE FILES CREATED (SOFT)
 
 ulimit -S -c unlimited wine
 ulimit -S -c unlimited wine64
 ulimit -S -c unlimited wineserver
+
+### UNLIMITED NUMBER OF CORE FILES CREATED (HARD)
+
+ulimit -H -c unlimited wine
+ulimit -H -c unlimited wine64
+ulimit -H -c unlimited wineserver
 
 ################################################################################
 

@@ -87,7 +87,8 @@ echo " "
 echo " Codigo escrito por: Sergio de Carvalho Junior"
 echo " Colaborador: Alexandre Freire dos Santos"
 echo " "
-
+echo " Ulimit ativo com limite de $(ulimit -Hn) arquivos abertos"
+echo " "
 
 ################################################################################
 
@@ -151,6 +152,7 @@ case ${SLANG} in
  ################################################################################
  
 ### OTIMIZAÇÕES
+### https://synappsis.wordpress.com/category/qt/
 
 if [ "${OTIMIZATIONS}" == 'nvidia' ] ; then
     export __GL_THREADED_OPTIMIZATIONS=1
@@ -216,6 +218,7 @@ if [ "${SHOWFPS}" != 'auto' ]; then
         bottonright)  sed -i '/<Overlay>/!b;n;c\            <Position>6</Position>' "${CEMU}/settings.xml" ;;
     esac
     export DXVK=1
+	export PBA_ENABLE=0
 else
     sed -i '/<Overlay>/!b;n;c\            <Position>0</Position>'                   "${CEMU}/settings.xml"
     if [ "${DXVK}" == 'off' ] || [ "${DXVK}" == 'auto' ]; then
@@ -229,8 +232,6 @@ fi
 
 if [ "${MOUSE}" == 'on' ] || [ "${JOGO}" == '' ]; then
     mouse-pointer on
-elif [ "${MOUSE}" == 'auto' ] || [ "${MOUSE}" == 'off' ]; then
-    mouse-pointer off
 fi
 
 ################################################################################
@@ -259,22 +260,19 @@ fi
 # Checa se tem uma rom válida na variável JOGO
 # Este também é o gatilho pra decidir se o GUI será aberto ou se o jogo será executado em linha de comando
 
-EXT='.wud .wux .iso .wad .rpx .elf .wiiu .WUD .WUX .ISO .WAD .RPX .ELF .WIIU'
-
-for i in ${EXT}; do
-    if [ "$(echo "${JOGO}" | grep "${i}")" ]; then
-        # Se o jogo estiver dentro de uma pasta
-        if [ "$(echo "${JOGO}" | grep ".wiiu")" ] || [ "$(echo "${JOGO}" | grep ".WIIU")" ]; then
-            cd "${JOGO}"
-            JOGO_NOME="$(find . -type f -iname *.rpx -print -quit | cut -c2- )"
+if [ -d "${JOGO}" ]; then # Se o jogo for um diretório
+   cd "${JOGO}"
+   ROM_EXTENSION='.wud .wux .iso .wad .rpx .elf .WUD .WUX .ISO .WAD .RPX .ELF' 
+   for i in $ROM_EXTENSION; do
+        JOGO_NOME="$(find . -type f -iname *${i} -print -quit | cut -c2- )"
+		if [ "$(echo "${JOGO_NOME}" | grep "${i}")" ]; then			
             JOGO="$(echo "Z:${JOGO}${JOGO_NOME}" | sed -e 's#/#\\#g')"
-            break
-        fi
-        # Se o jogo estiver fora de uma pasta
-        JOGO="$(echo "Z:${JOGO}" | sed -e 's#/#\\#g')"
-        break
-    fi
-done
+		    break
+		fi
+   done
+elif [ -f "${JOGO}" ]; then # Se o jogo for um arquivo
+    JOGO="$(echo "Z:${JOGO}" | sed -e 's#/#\\#g')"
+fi
 
 ################################################################################
 
@@ -301,7 +299,7 @@ fi
 ### EXECUTA O JOGO OU O CONFIGURADOR
 
 # Habilita as dependências necessárias para o cemuhook
-export WINEDLLOVERRIDES='keystone.dll=n,b;dbghelp.dll=n,b'
+export WINEDLLOVERRIDES='keystone.dll=n,b;dbghelp.dll=n,b;xaudio2_8.dll'
 
 # Captura a resolução da tela antes de iniciar o jogo
 RES_START="$(batocera-resolution currentMode)"
