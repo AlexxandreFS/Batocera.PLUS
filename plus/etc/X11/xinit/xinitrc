@@ -101,9 +101,10 @@ xset s off
 
 ### Vídeo de abertura
 
-function randVideo() {
+function getRandVideo() {
     local VIDEO_DIR='/userdata/splashvideos'
     local TOTAL_FILES='0'
+    local VIDEO_FILE=''
 
     for i in "$VIDEO_DIR/"*; do
         if [ "${i%mp4}mp4" == "$i" ]; then
@@ -124,39 +125,29 @@ function randVideo() {
             fi
         fi
     done
+
+    echo "${VIDEO_FILE}"
+}
+
+function getVideoFile()
+{
+    if [ "$(ls -A -1 /userdata/splashvideos/*.mp4 | head -n 1)" ]; then
+        echo "$(randVideo)"
+    else
+        echo '/usr/share/batocera/splash/splash.mp4'
+    fi
 }
 
 function playVideo() {
-    openbox & 
-
-    cvlc --fullscreen --play-and-exit --no-interact --no-osd "$1" 2> /dev/null &
-    for i in {1..60}; do
-        if [ "$(pidof vlc)" ]; then
-            break
-        fi
-	sleep 0.5
-    done
-	
-    for i in {1..600}; do
-        sleep 0.5
-        if ! [ "$(pidof vlc)" ]; then
-            break
-        fi
-    done
-
+    openbox &
+    xjoypad -display $DISPLAY -device /dev/input/js0 -buttons 39 39 39 39 39 39 39 39 39 39 39 39 39 &
+    cvlc --fullscreen --play-and-exit --no-interact --no-osd "$(getVideoFile)" 2> /dev/null
+    killall xjoypad
     openbox --exit
 }
 
 if [ "$(grep ^splash.video=true /boot/batocera-boot.conf)" ]; then
-    if [ "$(ls -A -1 /userdata/splashvideos/*.mp4 | head -n 1)" ]; then
-        randVideo
-    else
-        VIDEO_FILE='/usr/share/batocera/splash/splash.mp4'
-    fi
-    xjoypad -display $DISPLAY -device /dev/input/js0 -buttons 39 39 39 39 39 39 39 39 39 39 39 39 39 &
-    playVideo "$VIDEO_FILE"
-    unset VIDEO_FILE
-    killall -9 xjoypad
+    playVideo "${VIDEO_FILE}"
 fi
 
 ################################################################################
