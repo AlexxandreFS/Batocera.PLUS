@@ -132,7 +132,7 @@ function getRandVideo() {
 function getVideoFile()
 {
     if [ "$(ls -A -1 /userdata/splashvideos/*.mp4 | head -n 1)" ]; then
-        echo "$(randVideo)"
+        echo "$(getRandVideo)"
     else
         echo '/usr/share/batocera/splash/splash.mp4'
     fi
