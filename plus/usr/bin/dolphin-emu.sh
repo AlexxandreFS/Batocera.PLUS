@@ -18,7 +18,7 @@
 
 if [ "${SYSTEM}" == 'gamecube' ]; then
     if grep -q 'SkipIPL' "${DOLPHIN_CFG}"; then
-        if [ "$(grep '^gamecube.fullboot=0' "${BATOCERA_CONF}")" ]; then
+        if [ "${FULLBOOT}" == '1' ] || [ "${FULLBOOT}" == 'auto' ]; then
             sed -i 's/^SkipIPL.*/SkipIPL = True/'  "${DOLPHIN_CFG}"
         else
             sed -i 's/^SkipIPL.*/SkipIPL = False/' "${DOLPHIN_CFG}"
@@ -61,7 +61,7 @@ else
     unset BATOCERA_CONF
     unset DOLPHIN_CFG
     unset DOLPHIN_CFG_DIR
-
+    unset FULLBOOT
     unset SYSTEM
     unset ROM
 

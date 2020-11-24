@@ -1,8 +1,5 @@
---- batocera.conf.original
-+++ batocera.conf.modificado
-###
-### Por padrão desativa o botão X para abrir o Kodi.
-###
+--- batocera.conf
++++ batocera.conf.plus
 @@ -21,7 +21,7 @@
  ## Start kodi at launch (0,1)
  kodi.atstartup=0
@@ -12,12 +9,7 @@
  
  ## Kodi can wait for a network component before starting
  ## waithost is the ip or hostname that must answer to a ping to validate the availability
-
-###
-### Adiciona informações de como ativar a configuração automática de data e hora.
-### Desativa atualizações.
-###
-@@ -111,16 +111,21 @@
+@@ -115,16 +115,21 @@
  # ------------ F - Language and keyboard ------------ #
  ## Set the language of the system (fr_FR,en_US,en_GB,de_DE,pt_BR,es_ES,it_IT,eu_ES,tr_TR,zh_CN)
  system.language=en_US
@@ -41,13 +33,7 @@
  # default : stable ; set to beta to get the next version currently being tested. set to unstable at your own risk to get the development version.
  updates.type=stable
  
-###
-### Ativa a emulação do controle de Wii por padrão.
-### Ativa o fullboot do GameCube.
-### Ativa o fullboot do PS2.
-### Altera o nome de batocera.linux para Batocera.PLUS.
-###
-@@ -199,15 +204,20 @@
+@@ -203,15 +208,15 @@
  ## wiimotes
  ## real wiimotes must not be paired with batocera.linux system so that they can work with the wii emulator
  ## set emulatedwiimotes to 1 to emulate wiimotes with standard pads
@@ -60,11 +46,6 @@
 -#ps2.fullboot=1
 +ps2.fullboot=1
  
-+## GameCube
-+# Enables fast booting (skip GameCube BIOS when booting an ISO
-+# uncoment this line to disable BIOS when booting an ISO
-+#gamecube.fullboot=0
-+
  # Scraper
  # Comma seperated order to prefer images, s=snapshot, b=boxart, f=fanart, a=banner, l=logo, 3b=3D boxart
  #scrapper.style=s,b,f,a,l,3b
