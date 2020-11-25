@@ -19,9 +19,9 @@
 if [ "${SYSTEM}" == 'gamecube' ]; then
     if grep -q 'SkipIPL' "${DOLPHIN_CFG}"; then
         if [ "${FULLBOOT}" == '1' ] || [ "${FULLBOOT}" == 'auto' ]; then
-            sed -i 's/^SkipIPL.*/SkipIPL = True/'  "${DOLPHIN_CFG}"
+            sed -i 's/^SkipIPL.*/SkipIPL = False/'  "${DOLPHIN_CFG}"
         else
-            sed -i 's/^SkipIPL.*/SkipIPL = False/' "${DOLPHIN_CFG}"
+            sed -i 's/^SkipIPL.*/SkipIPL = True/' "${DOLPHIN_CFG}"
         fi
     else
         sed -i 's#^\[Core\]#[Core]\nSkipIPL = False#' "${DOLPHIN_CFG}"
