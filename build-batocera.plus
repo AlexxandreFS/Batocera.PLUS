@@ -50,7 +50,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/msttcorefonts-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model2-1.1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model3-1.1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.0.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-1.9.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame078_libretro.7z'
