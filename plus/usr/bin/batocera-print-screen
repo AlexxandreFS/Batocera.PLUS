@@ -1,0 +1,22 @@
+#!/bin/sh
+
+SCREENSHOTS_DIR=/userdata/screenshots
+IMAGE_NAME="print_$(date +%F_%H.%M.%S).$1"
+
+# Limita os prints em 1 por segundo.
+if [ -f "${SCREENSHOTS_DIR}/${IMAGE_NAME}" ]
+then
+    exit 1
+fi
+
+# Print Screen
+
+if import -window root -display :0.0 "${SCREENSHOTS_DIR}/${IMAGE_NAME}"
+then
+    # Menssagem na Tela
+    echo "save to ${IMAGE_NAME}" | LC_ALL=C DISPLAY=:0.0 osd_cat -f -*-*-bold-*-*-*-32-120-*-*-*-*-*-* -cred -s 2 -d 4 -l 100 -A center -ccyan &
+else
+    exit 1
+fi
+
+exit 0

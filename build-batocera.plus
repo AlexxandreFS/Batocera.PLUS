@@ -52,6 +52,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model3-1.1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.0.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-1.9.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame078_libretro.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame0174_libretro.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame0200_libretro.7z'
@@ -62,6 +63,12 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dolphin-ishiiruka-5.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dolphin-ishiiruka-libretro-5.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bzip2-1.0.8.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/unrar-5.90-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/zstd-1.4.3-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/squashfs-tools-4.4-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/imagemagic-7.0.8-59-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xmlstarlet-1.6.1-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dos2unix-7.4.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/user-manual-1.7z'
 )
 
@@ -389,3 +396,4 @@ sync
 echo 'IMAGEM CRIADA COM SUCESSO!'
 
 exit 0
+file:///userdata/downloads/New4/retroarch-slang-shaders-1.9.0-1.7z
