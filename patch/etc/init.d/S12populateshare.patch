@@ -1,0 +1,31 @@
+##
+## Em partições pequenas o espaço não é suficiente para copiar todas as bios
+## e o sistema trava durante o boot.
+##
+## Isso pode acontecer em outras condições mas o mais comum é quando o sistema
+## carrega usando o disco ram (tmpfs), este código verifica se existe espaço
+## para copiar as bios, caso não exista ele cria um link simbólico para as bios.
+##
+--- S12populateshare.original
++++ S12populateshare.modificado
+@@ -43,7 +43,19 @@
+             bios/mame2003
+ do
+     # not wanted for kodi
+-    test -e "${IN}/${FILE}" && test ! -e "${OUT}/${FILE}" && mkdir -p $(dirname "${OUT}/${FILE}") && cp -r "${IN}/${FILE}" "${OUT}/${FILE}"
++    if [ ! -e "${OUT}/${FILE}" ] && [ -e "${IN}/${FILE}" ]
++    then
++        # Use link to bios in small partition share.
++        if [ "${FILE}" == 'bios' ]
++        then
++            if [ $(df | grep /userdata | awk '{print $2}') -le 262144 ]
++            then
++                ln -s "${IN}/bios" "${OUT}"
++                continue
++            fi
++        fi
++        mkdir -p $(dirname "${OUT}/${FILE}") && cp -r "${IN}/${FILE}" "${OUT}/${FILE}"
++    fi
+ done
+ 
+ ### specific directories

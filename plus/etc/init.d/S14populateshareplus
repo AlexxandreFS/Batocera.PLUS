@@ -29,12 +29,6 @@ if ! [ -d "${SHARE}/system/configs/retroarch" ]; then
     cp -r "${SHARE_INIT}/system/configs/retroarch" "${SHARE}/system/configs"
 fi
 
-### Usa Link simbólico para as bios quando a partição share é um disco ram
-if [ "$(df | grep /userdata | grep tmpfs)" ]; then
-    rm -r "$SHARE/bios"
-    ln -s "$SHARE_INIT/bios" "$SHARE/bios"
-fi
-
 ### Configurações personalizadas para o xterm
 if ! [ -f "$SHARE/system/.Xdefaults" ]; then
     cp "$SHARE_INIT/system/.Xdefaults" "$SHARE/system/.Xdefaults"
