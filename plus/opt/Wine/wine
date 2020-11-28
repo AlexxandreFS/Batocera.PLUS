@@ -273,6 +273,12 @@ ulimit -H -c unlimited wine
 ulimit -H -c unlimited wine64
 ulimit -H -c unlimited wineserver
 
+### ARGUMENTS FOR REALTIME PRIORITY
+### changes for RTP is started in "/etc/profile.d/wine-tweaks.sh"
+### the setcap command above only complements this tweaks
+
+setcap cap_sys_nice+ep "${WINE_DIR}/${WINE_BUILD}/bin/wineserver"
+
 ################################################################################
 
 ### START WINESERVER

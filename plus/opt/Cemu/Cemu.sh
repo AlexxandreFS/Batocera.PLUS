@@ -154,17 +154,26 @@ case ${SLANG} in
 ### OTIMIZAÇÕES
 ### https://synappsis.wordpress.com/category/qt/
 
-if [ "${OTIMIZATIONS}" == 'nvidia' ] ; then
-    export __GL_THREADED_OPTIMIZATIONS=1
-    export vblank_mode=0
-elif [ "${OTIMIZATIONS}" == 'amd' ] ; then
-    export R600_DEBUG=nohyperz
-    export mesa_glthread=true
-    export vblank_mode=0
-elif [ "${OTIMIZATIONS}" == 'intel' ] ; then
-    export MESA_GL_VERSION_OVERRIDE=4.5COMPAT
-    export vblank_mode=0
-fi
+case ${OTIMIZATIONS} in
+    nvidia)
+          export __GL_THREADED_OPTIMIZATIONS=1
+          export vblank_mode=0
+          ;;
+    amd)
+          export R600_DEBUG=nohyperz
+          export mesa_glthread=true
+          export vblank_mode=0
+          ;;
+    intel)
+          export MESA_GL_VERSION_OVERRIDE=4.5COMPAT
+          export vblank_mode=0
+          ;;
+    auto)
+          export vblank_mode=1
+          ;;
+    *)
+          exit 1
+esac
 
 ################################################################################
 
