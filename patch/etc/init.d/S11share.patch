@@ -1,6 +1,5 @@
 ##
 ## Corrige o bug de montar a partição share.
-## Aumenta o tamanho do ramdisk em caso de falhas.
 ##
 --- S11share.original
 +++ S11share.modificado
@@ -8,7 +7,7 @@
  MAXTRY=$(getMaxTryConfig "${SHARECONFFILE}")
  NTRY=0
  
-+TMPFSSIZE=512M
++TMPFSSIZE=256M
 +
  mountDeviceOrFallback() {
      DEVICE=$1
