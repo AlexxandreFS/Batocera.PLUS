@@ -274,8 +274,6 @@ ulimit -H -c unlimited wine64
 ulimit -H -c unlimited wineserver
 
 ### ARGUMENTS FOR REALTIME PRIORITY
-### changes for RTP is started in "/etc/profile.d/wine-tweaks.sh"
-### the setcap command above only complements this tweaks
 
 setcap cap_sys_nice+ep "${WINE_DIR}/${WINE_BUILD}/bin/wineserver"
 
@@ -310,6 +308,16 @@ fi
 
 ################################################################################
 
+### VIRTUAL_DESKTOP
+
+if [ "${VIRTUAL_DESKTOP}" == '1' ]; then
+    WINE_COMMAND="${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH} explorer /desktop=Batocera.PLUS,$(batocera-resolution currentMode) ${@}; killwine"
+else
+    WINE_COMMAND="${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH} ${@}"
+fi
+
+################################################################################
+
 ### START WINE NORMALLY
 
 if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
@@ -317,12 +325,9 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
     WINE_VERSION_NEW="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
 
     if [ "${WINE_VERSION}" == "${WINE_VERSION_NEW}" ]; then
-        if [ "${VIRTUAL_DESKTOP}" == '1' ]; then
-            "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" explorer /desktop=Batocera.PLUS,$(batocera-resolution currentMode) "$@"
-            exec killwine
-        else
-            exec "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" "$@"
-        fi
+        unset VIRTUAL_DESKTOP
+        eval "${WINE_COMMAND}"
+        exit 0
     fi
 fi
 
