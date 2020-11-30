@@ -273,16 +273,12 @@ ulimit -H -c unlimited wine
 ulimit -H -c unlimited wine64
 ulimit -H -c unlimited wineserver
 
-### ARGUMENTS FOR REALTIME PRIORITY
-
-setcap cap_sys_nice+ep "${WINE_DIR}/${WINE_BUILD}/bin/wineserver"
-
 ################################################################################
 
 ### START WINESERVER
 
 case "${WINE_ARCH}" in wineserver|wineserver-wine-stable|wineserver-wine-staging|wineserver-wine-lutris|wineserver-proton|wineserver-proton-valve|wineserver-proton-ge-custom|wineserver-proton-tkg)
-    exec "${WINE_DIR}/${WINE_BUILD}/bin/wineserver" "$@"
+    exec "${WINE_DIR}/${WINE_BUILD}/bin/wineserver" "${@}"
 esac
 
 ################################################################################
@@ -326,7 +322,7 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
 
     if [ "${WINE_VERSION}" == "${WINE_VERSION_NEW}" ]; then
         unset VIRTUAL_DESKTOP
-        eval "${WINE_COMMAND}"
+        eval nice -n -10 "${WINE_COMMAND}"
         exit 0
     fi
 fi
