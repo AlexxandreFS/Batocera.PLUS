@@ -71,6 +71,16 @@
             <decor>yes</decor>
             <fullscreen>no</fullscreen>
         </application>
+        
+        <application name="goverlay">
+            <decor>yes</decor>
+            <fullscreen>no</fullscreen>
+            <maximized></maximized>
+            <position type="normal">
+                <x>center</x>
+                <y>center</y>
+            </position>
+        </application>
 
         <application class="Firefox">
             <decor>yes</decor>

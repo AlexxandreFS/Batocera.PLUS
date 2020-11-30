@@ -65,12 +65,14 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bzip2-1.0.8.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/unrar-5.90-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/zstd-1.4.3-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/setcap-1.0.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libcap-2.27-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/squashfs-tools-4.4-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/imagemagic-7.0.8-59-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xmlstarlet-1.6.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dos2unix-7.4.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/user-manual-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/MangoHud-0.6.1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/GOverlay-0.4.7z'
 )
 
 ################################################################################
