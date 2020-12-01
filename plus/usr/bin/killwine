@@ -62,6 +62,7 @@ function closeWine() {
         killall yad
     fi
 
+    # close wine debug
     if [ "$(pidof -s winedbg)" ]; then
         kill -15 "$(pidof -s winedbg)"
         sleep 0.5
@@ -69,17 +70,24 @@ function closeWine() {
 
     wineserver -k 15 > /dev/null
 
-    for i in {1..15}; do
+    for i in {1..10}; do
+        # close desktop virtual
+        if [ "${i}" == '8' ]; then
+            if [ "$(pidof -s explorer)" ]; then
+                kill -15 "$(pidof -s explorer)"
+            fi
+        fi
+
         if [ "$(pidof wineserver)" ]; then
-            if [ "${i}" == '15' ]; then
+            if [ "${i}" == '10' ]; then
                 return 1
             fi
             sleep 0.5
             continue
         else
-            for i in $(ps ax | grep -E ".exe$|.EXE$" | awk '{print $1}'); do
+            if [ "$(ps ax | grep -E ".exe$|.EXE$" | awk '{print $1}')" ]; then
                 return 1
-            done
+            fi
 
             for i in wine wine64 wine-preloader wine64-preloader winedbg; do
                 if [ "$(pidof -s ${i})" ]; then
