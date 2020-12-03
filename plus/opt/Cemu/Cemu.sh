@@ -22,13 +22,15 @@
 ### PARÂMETROS
 
 JOGO="${1}"
-OTIMIZATIONS="${2}" 
+OPTIMIZATIONS="${2}" 
 RENDER="${3}"
 SYNC="${4}"
 DXVK="${5}"
 SHOWFPS="${6}"
 MOUSE="${7}"
 P1GUID="${8}"
+
+echo "${JOGO}" "${OPTIMIZATIONS}" "${RENDER}" "${SYNC}" "${DXVK}" "${SHOWFPS}" "${MOUSE}" "${P1GUID}" > "${HOME}/../COMANDO.txt"
 
 ################################################################################
 
@@ -89,6 +91,10 @@ echo " Colaborador: Alexandre Freire dos Santos"
 echo " "
 echo " Ulimit ativo com limite de $(ulimit -Hn) arquivos abertos"
 echo " "
+
+if [ "${2}" == ' ' ]; then
+    echo " Cemu sendo executado com as configurações default"
+fi
 
 ################################################################################
 
@@ -154,25 +160,38 @@ case ${SLANG} in
 ### OTIMIZAÇÕES
 ### https://synappsis.wordpress.com/category/qt/
 
-case ${OTIMIZATIONS} in
-    nvidia)
-          export __GL_THREADED_OPTIMIZATIONS=1
-          export vblank_mode=0
-          ;;
-    amd)
-          export R600_DEBUG=nohyperz
-          export mesa_glthread=true
-          export vblank_mode=0
-          ;;
-    intel)
-          export MESA_GL_VERSION_OVERRIDE=4.5COMPAT
-          export vblank_mode=0
-          ;;
-    auto)
-          export vblank_mode=1
-          ;;
-    *)
-          exit 1
+case ${OPTIMIZATIONS} in
+    nvidia|nvidia_generic)
+        export __GL_THREADED_OPTIMIZATIONS=1
+        ;;
+    amd|amd_generic)
+        export R600_DEBUG=nohyperz
+        export mesa_glthread=true
+        ;;
+    intel|intel_generic)
+        export MESA_GL_VERSION_OVERRIDE=4.5COMPAT
+        ;;
+    none|auto)
+        ;;
+esac
+
+case ${OPTIMIZATIONS} in
+    generic|nvidia_generic|amd_generic|intel_generic)
+        export WINEDEBUG=-all
+        export STAGING_WRITECOPY=1
+        export STAGING_SHARED_MEMORY=1
+        export STAGING_RT_PRIORITY_BASE=90
+        export STAGING_RT_PRIORITY_SERVER=90
+        if [ "${CORE}" == 'auto' ]; then
+            for i in /opt/Wine/wine-*/bin/wineserver /opt/Wine/proton-*/bin/wineserver; do
+                setcap cap_sys_nice+ep ${i}
+            done
+         else
+            setcap cap_sys_nice+ep "/opt/Wine/${CORE}/bin/wineserver"
+         fi
+         ;;
+        none|auto)
+         ;;
 esac
 
 ################################################################################
@@ -188,53 +207,66 @@ fi
 ################################################################################
 
 ### SYNC
-if [ "${SYNC}" == 'esync' ]; then
-    export WINEESYNC=1
-elif [ "${SYNC}" == 'fsync' ]; then
-    export WINEFSYNC=1
-else
-    export WINEESYNC=0
-    export WINEFSYNC=0
-fi
+
+case ${SYNC} in
+    esync)
+	     export WINEESYNC=1
+		 export WINEFSYNC=0
+	     ;;
+    fsync)
+	     export WINEFSYNC=1
+		 export WINEESYNC=0
+	     ;;
+	auto)
+	     export WINEESYNC=0
+         export WINEFSYNC=0
+	     ;;
+esac
 
 ################################################################################
 
 ### DXVK
 
 # Se não ativar o DXVK as informações de VRAM utilizada não aparecem quando SHOW FPS está ativado (será resolvido de outra forma no futuro)
-if [ "${DXVK}" == 'on' ] ; then
-    export DXVK=1
-    export PBA_ENABLE=0
-elif [ "${DXVK}" == 'pba' ]; then
-    export DXVK=0
-    export PBA_ENABLE=1
-elif [ "${DXVK}" == 'off' ] || [ "${DXVK}" == 'auto' ]; then
-    export DXVK=0
-	export PBA_ENABLE=0
-fi
+
+case ${DXVK} in
+    dxvk)
+        export DXVK=1
+        export PBA_ENABLE=0
+        ;;
+    pba)
+        export vblank_mode=0
+        export __GL_SYNC_TO_VBLANK=0
+        export __GL_SHADER_CACHE=1
+        export __GL_SHADER_DISK_CACHE=1
+        export __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1
+        export __GL_SHADER_DISK_CACHE_PATH=/userdata/system/.cache/shader_cache
+        export MESA_GLSL_CACHE_DISABLE=0
+        export MESA_GLSL_CACHE_DIR=/userdata/system/.cache/shader_cache
+        export PBA_ENABLE=1
+        ;;
+    default|auto)
+        export vblank_mode=1
+        export __GL_SYNC_TO_VBLANK=1
+        export PBA_ENABLE=0
+        ;;
+esac
 
 ################################################################################
 
 ### SHOWFPS
 
-if [ "${SHOWFPS}" != 'auto' ]; then
-    case $SHOWFPS in
-        topleft)      sed -i '/<Overlay>/!b;n;c\            <Position>1</Position>' "${CEMU}/settings.xml" ;;
-        topcenter)    sed -i '/<Overlay>/!b;n;c\            <Position>2</Position>' "${CEMU}/settings.xml" ;;
-        topright)     sed -i '/<Overlay>/!b;n;c\            <Position>3</Position>' "${CEMU}/settings.xml" ;;
-        bottonleft)   sed -i '/<Overlay>/!b;n;c\            <Position>4</Position>' "${CEMU}/settings.xml" ;;
-        bottoncenter) sed -i '/<Overlay>/!b;n;c\            <Position>5</Position>' "${CEMU}/settings.xml" ;;
-        bottonright)  sed -i '/<Overlay>/!b;n;c\            <Position>6</Position>' "${CEMU}/settings.xml" ;;
-    esac
-    export DXVK=1
-	export PBA_ENABLE=0
-else
-    sed -i '/<Overlay>/!b;n;c\            <Position>0</Position>'                   "${CEMU}/settings.xml"
-    if [ "${DXVK}" == 'off' ] || [ "${DXVK}" == 'auto' ]; then
-        export DXVK=0
-    fi
+if [ "${SHOWFPS}" == 'on' ]; then
+    sed -i '/<Overlay>/!b;n;c\            <Position>0</Position>' "${CEMU}/settings.xml"
+    export LD_PRELOAD=/usr/lib/mangohud
+    export MANGOHUD_DLSYM=1
+    export MANGOHUD=1
+elif [ "${SHOWFPS}" == 'off' ] || [ "${SHOWFPS}" == 'auto' ]; then
+    sed -i '/<Overlay>/!b;n;c\            <Position>0</Position>' "${CEMU}/settings.xml"
+    unset LD_PRELOAD
+    unset MANGOHUD_DLSYM
+    unset MANGOHUD
 fi
-
 ################################################################################
 
 ### MOUSE POINTER
@@ -308,7 +340,7 @@ fi
 ### EXECUTA O JOGO OU O CONFIGURADOR
 
 # Habilita as dependências necessárias para o cemuhook
-export WINEDLLOVERRIDES='keystone.dll=n,b;dbghelp.dll=n,b;xaudio2_8.dll'
+export WINEDLLOVERRIDES='keystone.dll=n,b;dbghelp.dll=n,b'
 
 # Captura a resolução da tela antes de iniciar o jogo
 RES_START="$(batocera-resolution currentMode)"
@@ -324,10 +356,6 @@ fi
 ################################################################################
 
 ### FINALIZA A EXECUÇÃO DO JOGO
-
-# Desativa variaveis exportadas
-export DXVK=0
-export PBA_ENABLE=0
 
 # Aguarda o Cemu encerrar a execução
 while [ "$(pidof wineserver)" ]; do
