@@ -6,8 +6,8 @@
 ################################################################################
 
 # Versão do Batocera.PLUS
-VERSION='2.05'
-#RELEASE='dev'
+VERSION='2.06'
+RELEASE='dev'
 NVIDIA_LEGACY='0'
 
 # Demora mais tempo para compilar
