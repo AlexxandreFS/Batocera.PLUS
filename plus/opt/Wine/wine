@@ -323,25 +323,22 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
 
     if [ "${WINE_VERSION}" == "${WINE_VERSION_NEW}" ]; then
         nice -n -10 "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" ${VIRTUAL_DESKTOP} "${@}"
+
+        # Stop wine
+        for i in {1..8}; do
+            if [ "$(pidof wineserver)" ]; then
+                sleep 0.5
+            else
+                exit 0
+            fi
+
+            if [ "${i}" == '8' ]; then
+                killwine
+                exit 1
+            fi
+        done
     fi
 fi
-
-################################################################################
-
-### STOP WINE
-
-for i in {1..8}; do
-    if [ "$(pidof wineserver)" ]; then
-        sleep 0.5
-    else
-        exit 0
-    fi
-
-    if [ "${i}" == '8' ]; then
-        killwine
-        exit 1
-    fi
-done
 
 ################################################################################
 ################################################################################
