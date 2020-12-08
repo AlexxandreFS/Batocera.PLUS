@@ -7,7 +7,7 @@
 
 # Versão do Batocera.PLUS
 VERSION='2.06'
-RELEASE='dev'
+#RELEASE='dev'
 NVIDIA_LEGACY='0'
 
 # Demora mais tempo para compilar
@@ -180,10 +180,6 @@ echo 'Desativando servicos...'
 mv    "$TEMP_DIR/squashfs-root/etc/init.d/S49ntp"          "$TEMP_DIR/squashfs-root/etc/init.d/K49ntp"          || exit $?
 mv    "$TEMP_DIR/squashfs-root/etc/init.d/S50triggerhappy" "$TEMP_DIR/squashfs-root/etc/init.d/K50triggerhappy" || exit $?
 
-echo 'Criando arquivo de versão...'
-mv   "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" "$TEMP_DIR/squashfs-root/usr/share/batocera/recalbox.version" || exit $?
-echo "$VERSION $(date +'%Y/%m/%d %H:%M')" >                        "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" || exit $?
-
 ################################################################################
 
 echo 'Copiando arquivos do batocera.plus...'
@@ -305,6 +301,15 @@ cp -f "${TEMP_DIR}/squashfs-root/etc/samba/smb.conf" "${TEMP_DIR}/squashfs-root/
 for i in $(du -a "${PATCH_DIR}" | grep -F '.patch' | awk '{print $2}' | sed "s#${PATCH_DIR}/##"); do
     patch -p1 "${TEMP_DIR}/squashfs-root/${i%.patch}" "${PATCH_DIR}/${i}" || exit $?
 done
+
+################################################################################
+
+echo 'Criando arquivo de versão do Batocera.PLUS...'
+mv   "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" "$TEMP_DIR/squashfs-root/usr/share/batocera/recalbox.version" || exit $?
+echo "$VERSION $(date +'%Y/%m/%d %H:%M')" >                        "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" || exit $?
+
+echo 'Adicionando versão BATOCERA.PLUS no ES'
+sed -i 's/BATOCERA.LINUX/BATOCERA.PLUS /' "${TEMP_DIR}/squashfs-root/usr/bin/emulationstation"
 
 ################################################################################
 
