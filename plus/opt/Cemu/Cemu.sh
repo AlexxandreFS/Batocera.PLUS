@@ -30,7 +30,7 @@ SHOWFPS="${6}"
 MOUSE="${7}"
 P1GUID="${8}"
 
-echo "${JOGO}" "${OPTIMIZATIONS}" "${RENDER}" "${SYNC}" "${DXVK}" "${SHOWFPS}" "${MOUSE}" "${P1GUID}" > "${HOME}/../COMANDO.txt"
+#echo "${JOGO}" "${OPTIMIZATIONS}" "${RENDER}" "${SYNC}" "${DXVK}" "${SHOWFPS}" "${MOUSE}" "${P1GUID}" > "${HOME}/../COMANDO.txt"
 
 ################################################################################
 
@@ -89,10 +89,9 @@ echo " "
 echo " Codigo escrito por: Sergio de Carvalho Junior"
 echo " Colaborador: Alexandre Freire dos Santos"
 echo " "
-echo " Ulimit ativo com limite de $(ulimit -Hn) arquivos abertos"
-echo " "
 
 if [ "${2}" == ' ' ]; then
+    echo " Ulimit ativo com limite de $(ulimit -Hn) arquivos abertos"
     echo " Cemu sendo executado com as configurações default"
 fi
 
@@ -230,42 +229,42 @@ esac
 # Se não ativar o DXVK as informações de VRAM utilizada não aparecem quando SHOW FPS está ativado (será resolvido de outra forma no futuro)
 
 case ${DXVK} in
-    dxvk)
-        export DXVK=1
-        export PBA_ENABLE=0
-        ;;
-    pba)
-        export vblank_mode=0
-        export __GL_SYNC_TO_VBLANK=0
-        export __GL_SHADER_CACHE=1
-        export __GL_SHADER_DISK_CACHE=1
-        export __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1
-        export __GL_SHADER_DISK_CACHE_PATH=/userdata/system/.cache/shader_cache
-        export MESA_GLSL_CACHE_DISABLE=0
-        export MESA_GLSL_CACHE_DIR=/userdata/system/.cache/shader_cache
-        export PBA_ENABLE=1
-        ;;
-    default|auto)
-        export vblank_mode=1
-        export __GL_SYNC_TO_VBLANK=1
-        export PBA_ENABLE=0
-        ;;
+     dxvk)
+          export DXVK=1
+          export PBA_ENABLE=0
+          ;;
+     pba)
+          export vblank_mode=0
+          export __GL_SYNC_TO_VBLANK=0
+          export __GL_SHADER_CACHE=1
+          export __GL_SHADER_DISK_CACHE=1
+          export __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1
+          export __GL_SHADER_DISK_CACHE_PATH=/userdata/system/.cache/shader_cache
+          export MESA_GLSL_CACHE_DISABLE=0
+          export MESA_GLSL_CACHE_DIR=/userdata/system/.cache/shader_cache
+          export PBA_ENABLE=1
+          ;;
+     default|auto)
+          export vblank_mode=1
+          export __GL_SYNC_TO_VBLANK=1
+          export PBA_ENABLE=0
+          ;;
 esac
 
 ################################################################################
 
 ### SHOWFPS
 
-if [ "${SHOWFPS}" == 'on' ]; then
-    sed -i '/<Overlay>/!b;n;c\            <Position>0</Position>' "${CEMU}/settings.xml"
-    export LD_PRELOAD=/usr/lib/mangohud
-    export MANGOHUD_DLSYM=1
-    export MANGOHUD=1
-elif [ "${SHOWFPS}" == 'off' ] || [ "${SHOWFPS}" == 'auto' ]; then
-    sed -i '/<Overlay>/!b;n;c\            <Position>0</Position>' "${CEMU}/settings.xml"
-    unset LD_PRELOAD
-    unset MANGOHUD_DLSYM
-    unset MANGOHUD
+if [ "${OPTION}" != 'auto' ]; then
+   if [ "${OPTION}" == 'default' ]; then
+      export MANGOHUD_CONFIGFILE=/opt/Wine/apps/mangohud/MangoHud.conf
+   fi
+   mkdir -p "${HOME}/.config/MangoHud"
+   cp -rf "${HOME}/.config/goverlay/MangoHud.conf" "${HOME}/.config/MangoHud/MangoHud.conf"
+   export MANGOHUD_DLSYM=1
+   export MANGOHUD=1
+elif [ "${OPTION}" == 'auto' ]; then
+     export DISABLE_MANGOHUD=1
 fi
 ################################################################################
 
