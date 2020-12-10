@@ -317,8 +317,8 @@ fi
 
 ### MANGOHUD
 
-if [ "${MANGOHUD_DLSYM}" ]; then
-    MANGOHUD='mangohud MANGOHUD_DLSYM=${MANGOHUD_DLSYM}'
+if [ "${MANGOHUD}" == '1' ]; then
+    MANGOHUD_CMD='/opt/MangoHud/mangohud --dlsym'
 fi
 
 ################################################################################
@@ -330,7 +330,7 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
     WINE_VERSION_NEW="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
 
     if [ "${WINE_VERSION}" == "${WINE_VERSION_NEW}" ]; then
-        nice -n -10 ${MANGOHUD} "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" ${VIRTUAL_DESKTOP} "${@}"
+        nice -n -10 ${MANGOHUD_CMD} "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" ${VIRTUAL_DESKTOP} "${@}"
 
         # Stop wine
 
