@@ -6,9 +6,13 @@
 ################################################################################
 
 # Versão do Batocera.PLUS
-VERSION='2.06'
+VERSION='2.07'
 #RELEASE='dev'
-NVIDIA_LEGACY='0'
+
+# Nvidia Driver
+NVIDIA_LEGACY='1'
+NVIDIA_DRIVER=450.66
+NVIDIA_LEGACY_DRIVER=390.138
 
 # Demora mais tempo para compilar
 SQUASHFS_MAX_COMPRESSION=1
@@ -49,6 +53,7 @@ URL_BATOCERA_PLUS_PKG=(
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/DX9Jun2010.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/msttcorefonts-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk-1.5.1-1.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model2-1.1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model3-1.1.7z'
@@ -115,8 +120,11 @@ if ! [ "${URL_FLASH}" ]; then
 fi
 URL_FLASH="https://fpdownload.adobe.com/get/flashplayer/pdc/${URL_FLASH}/flash_player_npapi_linux.x86_64.tar.gz#/flash_player_npapi_linux.x86_64_${URL_FLASH}.tar.gz"
 
-# REMOVA este link quando for atualizar
-URL_NVIDIA=http://download.nvidia.com/XFree86/Linux-x86_64/450.66/NVIDIA-Linux-x86_64-450.66.run
+if [ "${NVIDIA_LEGACY}" == '1' ]; then
+    URL_NVIDIA=http://download.nvidia.com/XFree86/Linux-x86_64/${NVIDIA_LEGACY_DRIVER}/NVIDIA-Linux-x86_64-${NVIDIA_LEGACY_DRIVER}.run
+else
+    URL_NVIDIA=http://download.nvidia.com/XFree86/Linux-x86_64/${NVIDIA_DRIVER}/NVIDIA-Linux-x86_64-${NVIDIA_DRIVER}.run
+fi
 
 ################################################################################
 
@@ -295,22 +303,25 @@ rm -r "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/Go to project website for updat
 mv "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/Cemu/cemuhook"
 rmdir "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}"
 
-# REMOVA o driver da nvidia quando for atualizar.
-echo Descompactando driver nvidia ...
-if ! [ "${NVIDIA_LEGACY}" == '1' ]; then
-    PKG_NAME="$(basename "${URL_NVIDIA}")"
+echo 'Descompactando nvidia driver...'
+PKG_NAME="$(basename "${URL_NVIDIA}")"
+chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
+"${DOWNLOAD_DIR}/${PKG_NAME}" -x --target "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}" || exit $?
+mkdir -p "${TEMP_DIR}/squashfs-root/usr/share/nvidia"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-settings"                 "${TEMP_DIR}/squashfs-root/usr/bin"                                || exit $?
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk2.so."*             "${TEMP_DIR}/squashfs-root/usr/lib"                                || exit $?
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-application-profiles-"*   "${TEMP_DIR}/squashfs-root/usr/share/nvidia"                       || exit $?
+if [ "${NVIDIA_LEGACY}" == '1' ]; then
+    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia_icd.json.template"    "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d/nvidia_icd.json" || exit $?
+    sed -i 's/__NV_VK_ICD__/libGLX_nvidia.so.0/'                             "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d/nvidia_icd.json" || exit $?
+fi
 
-    chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
-    "${DOWNLOAD_DIR}/${PKG_NAME}" -x --target                     "${TEMP_DIR}/${PKG_NAME%.run}" || exit $?
-
-    mv "${TEMP_DIR}/${PKG_NAME%.run}/nvidia_icd.json"             "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d" || exit $?
-    mv "${TEMP_DIR}/${PKG_NAME%.run}/libnvidia-glvkspirv.so."*    "${TEMP_DIR}/squashfs-root/usr/lib" || exit $?
-    mv "${TEMP_DIR}/${PKG_NAME%.run}/32/libnvidia-glvkspirv.so."* "${TEMP_DIR}/squashfs-root/lib32" || exit $?
-
-    mkdir -p                                                      "${TEMP_DIR}/squashfs-root/usr/share/vulkan/implicit_layer.d"
-    mv "${TEMP_DIR}/${PKG_NAME%.run}/nvidia_layers.json"          "${TEMP_DIR}/squashfs-root/usr/share/vulkan/implicit_layer.d" || exit $?
-
-    rm -r "${TEMP_DIR}/${PKG_NAME%.run}" || exit $?
+# Remova este bloco if durante a atualização do batocera.plus.
+if [ "${NVIDIA_LEGACY}" != '1' ]; then
+    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia_icd.json"             "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d"                 || exit $?
+    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia_layers.json"          "${TEMP_DIR}/squashfs-root/usr/share/vulkan/implicit_layer.d"      || exit $?
+    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-glvkspirv.so."*    "${TEMP_DIR}/squashfs-root/usr/lib"                                || exit $?
+    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/32/libnvidia-glvkspirv.so."* "${TEMP_DIR}/squashfs-root/lib32"                                  || exit $?
 fi
 
 ################################################################################
@@ -423,4 +434,3 @@ sync
 echo 'IMAGEM CRIADA COM SUCESSO!'
 
 exit 0
-file:///userdata/downloads/New4/retroarch-slang-shaders-1.9.0-1.7z

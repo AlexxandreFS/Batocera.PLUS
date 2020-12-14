@@ -82,6 +82,20 @@
             </position>
         </application>
 
+        <application name="nvidia-settings">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+            <maximized></maximized>
+            <position type="normal">
+                <x>center</x>
+                <y>center</y>
+            </position>
+            <size>
+               <width>1024</width>
+               <height>640</height>
+            </size>
+        </application>
+
         <application class="Firefox">
             <decor>yes</decor>
             <fullscreen>no</fullscreen>

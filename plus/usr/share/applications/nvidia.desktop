@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Icon=/usr/share/icons/batocera/nvidia.png
+Exec=/usr/bin/nvidia-settings
+Terminal=false
+Type=Application
+Categories=games;batocera.linux;
+Name=nvidia-config
+NoDisplay=false

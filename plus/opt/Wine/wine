@@ -142,15 +142,18 @@ function dxvkInstall() {
 
         # Install
         if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
-            if ! [ -L "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" ]; then
-                ln -sf "${WINE_DIR}/apps/dxvk/x32/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
+            # Win WOW
+            if [ "$(readlink "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}")" != "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" ]; then
+                ln -sf "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
+                echo 'alexandre' > /userdata/teste.txt
             fi
-        fi
-        if ! [ -L "${WINEPREFIX}/drive_c/windows/system32/${DLL}" ]; then
-            if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
-                ln -sf "${WINE_DIR}/apps/dxvk/x64/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
-            else
-                ln -sf "${WINE_DIR}/apps/dxvk/x32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+            if [ "$(readlink "${WINEPREFIX}/drive_c/windows/system32/${DLL}")" != "${WINE_DIR}/apps/${DXVK_VERSION}/x64/${DLL}" ]; then
+                ln -sf "${WINE_DIR}/apps/${DXVK_VERSION}/x64/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+            fi
+        else
+            # Win32
+            if [ "$(readlink "${WINEPREFIX}/drive_c/windows/system32/${DLL}")" != "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" ]; then
+                ln -sf "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
             fi
         fi
     done
@@ -210,6 +213,15 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
         fi
 
         case ${DXVK} in
+            0|1|2)
+                DXVK_VERSION='dxvk'
+                ;;
+            3|4)
+                DXVK_VERSION='dxvk_legacy'
+                ;;
+        esac
+
+        case ${DXVK} in
             0)
                 dxvkUninstall
                 unset DXVK_HUD
@@ -217,7 +229,7 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
                 unset DXVK_LOG_PATH
                 unset DXVK_STATE_CACHE_PATH
                 ;;
-            1)
+            1|3)
                 if [ ! "$(vulkaninfo 2> /dev/null)" ]; then
                     echo 'vulkan is not supported, dxvk disable.'
                 fi
@@ -225,7 +237,7 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
                 dxvkExport
                 unset DXVK_HUD
                 ;;
-            2)
+            2|4)
                 if [ ! "$(vulkaninfo 2> /dev/null)" ]; then
                     echo 'vulkan is not supported, dxvk disable.'
                 fi
@@ -241,6 +253,7 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
     fi
 
     unset DXVK_DLL
+    unset DXVK_VERSION
 fi
 
 ################################################################################
