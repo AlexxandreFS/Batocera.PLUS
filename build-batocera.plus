@@ -93,8 +93,8 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xmlstarlet-1.6.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dos2unix-7.4.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mangohud-0.6.1-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/GOverlay-0.4.2-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vkBasalt-0.3.2.3.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/GOverlay-0.4.2-4.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vkBasalt-0.3.2.3-4.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/user-manual-2.7z'
 )
