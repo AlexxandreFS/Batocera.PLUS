@@ -6,11 +6,11 @@
 ################################################################################
 
 # Versão do Batocera.PLUS
-VERSION='2.07'
+VERSION=2.08
 #RELEASE='dev'
 
 # Nvidia Driver
-NVIDIA_LEGACY='1'
+NVIDIA_LEGACY=0
 NVIDIA_DRIVER=450.66
 NVIDIA_LEGACY_DRIVER=390.138
 
@@ -25,7 +25,9 @@ TEMP_DIR='./tmp'
 #TEMP_DIR='/mnt/tmp'
 
 # Imagem oficial do batocera.linux.
-IMG_OFICIAL_NORMAL='img/batocera-5.27-x86_64-20200912.img.gz'
+# https://batocera.org/upgrades/x86_64/stable/last/archives/20201001/batocera-5.27.2-x86_64-20201001.img.gz
+# https://batocera.org/users/alexxandrefs/5.27-nvidia-legacy/batocera-5.27-x86_64-20200919.img.gz
+IMG_OFICIAL_NORMAL='img/batocera-5.27.2-x86_64-20201001.img.gz'
 IMG_OFICIAL_NVIDIA='img/batocera-5.27-x86_64-20200919.img.gz'
 
 # BatoceraZero.
