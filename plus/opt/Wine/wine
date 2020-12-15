@@ -145,7 +145,6 @@ function dxvkInstall() {
             # Win WOW
             if [ "$(readlink "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}")" != "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" ]; then
                 ln -sf "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
-                echo 'alexandre' > /userdata/teste.txt
             fi
             if [ "$(readlink "${WINEPREFIX}/drive_c/windows/system32/${DLL}")" != "${WINE_DIR}/apps/${DXVK_VERSION}/x64/${DLL}" ]; then
                 ln -sf "${WINE_DIR}/apps/${DXVK_VERSION}/x64/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"

@@ -259,7 +259,7 @@ mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x32" "${TEMP_DIR}/squashf
 if ! [ -f /usr/bin/zstd ]; then
     # Este bloco if foi adicionado para não quebrar a compilação do batocera.plus em versões mais antigas (batocera.plus 2.0)
     # Remova este bloco if quando sair a pŕoxima imagem stable.
-    "${PLUS_DIR}/usr/bin/zstd" -d -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar -xvC "${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
+    "${TEMP_DIR}/squashfs-root/usr/bin/zstd" -d -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar -xvC "${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
 else
     # Não remova esta linha quando remover o bloco if.
     zstd -d -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar -xvC "${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
