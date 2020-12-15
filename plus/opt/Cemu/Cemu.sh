@@ -255,17 +255,39 @@ esac
 
 ### SHOWFPS
 
-if [ "${OPTION}" != 'auto' ]; then
-   if [ "${OPTION}" == 'default' ]; then
-      export MANGOHUD_CONFIGFILE=/opt/Wine/apps/mangohud/MangoHud.conf
-   fi
-   mkdir -p "${HOME}/.config/MangoHud"
-   cp -rf "${HOME}/.config/goverlay/MangoHud.conf" "${HOME}/.config/MangoHud/MangoHud.conf"
-   export MANGOHUD_DLSYM=1
-   export MANGOHUD=1
-elif [ "${OPTION}" == 'auto' ]; then
-     export DISABLE_MANGOHUD=1
-fi
+if [ "${SHOWFPS}" != 'auto' ]; then
+    case ${SHOWFPS} in
+        mangohud_default)
+            export MANGOHUD=1
+            export MANGOHUD_CONFIGFILE=/opt/MangoHud/profiles/default.conf
+            ;;
+        mangohud_more_info)
+            export MANGOHUD=1
+            export MANGOHUD_CONFIGFILE=/opt/MangoHud/profiles/more_info.conf
+            ;;
+        mangohud_smarty)
+            export MANGOHUD=1
+            export MANGOHUD_CONFIGFILE=/opt/MangoHud/profiles/smarty.conf
+            ;;
+        goverlay) #user-config
+            export MANGOHUD=1
+            if [ -f "${HOME}/.config/goverlay/MangoHud.conf" ]; then
+                export MANGOHUD_CONFIGFILE="${HOME}/.config/goverlay/MangoHud.conf"
+            else
+                export MANGOHUD_CONFIGFILE=/opt/MangoHud/profiles/default.conf
+            fi
+            ;;
+        dxvk_hud)
+            # Execute este código deve ser executado sempre depois do bloco do DirectX Engine.
+            if [ "${DXVK}" == '1' ]; then
+                export DXVK=2
+            else
+                export MANGOHUD=1
+                export MANGOHUD_CONFIGFILE=/opt/MangoHud/profiles/default.conf
+            fi
+            ;;
+    esac
+ fi
 ################################################################################
 
 ### MOUSE POINTER

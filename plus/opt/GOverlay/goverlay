@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export LD_LIBRARY_PATH="/opt/GOverlay/lib:${LD_LIBRARY_PATH}"
+export PATH="/opt/GOverlay/bin:${PATH}"
+export QT_QPA_PLATFORM=xcb
+exec /opt/GOverlay/bin/goverlay --style fusion
