@@ -336,6 +336,14 @@ fi
 
 ################################################################################
 
+### VKBASALT
+
+if [ "${ENABLE_VKBASALT}" == '1' ]; then
+    /opt/vkBasalt/vkbasalt &
+fi
+
+################################################################################
+
 ### START WINE NORMALLY
 
 if [ -f "${WINEPREFIX}/.update-timestamp" ]; then

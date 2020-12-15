@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# echo "${@}" >>/userdata/teste.txt
+#mkdir -p "${HOME}/.local/share/reshade/.git"
+
+RESHADE_URL="https://github.com/crosire/reshade-shaders/archive/master.zip"
+QUNIT_URL="https://codeload.github.com/martymcmodding/qUINT/zip/master"
+PKG_NAME="$(basename "${RESHADE_URL}")"
+
+mkdir -p "${HOME}/.local/share/reshade/.git"
+
+curl -L -C - "${RESHADE_URL}" -o /tmp/"${PKG_NAME}"
+PKG_NAME="$(basename "${RESHADE_URL%.*}")"
+unzip -o /tmp/"${PKG_NAME}" -d /tmp
+cp -r "/tmp/reshade-shaders-${PKG_NAME}/"* "${HOME}/.local/share/reshade"
+
+curl -L -C - "${QUNIT_URL}" -o /tmp/QUNIT.zip
+unzip -o /tmp/QUNIT.zip -d /tmp
+cp -r /tmp/qUINT-master/Shaders/* "${HOME}/.local/share/reshade/Shaders"

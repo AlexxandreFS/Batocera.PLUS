@@ -1,0 +1,8 @@
+#!/bin/sh
+
+export LD_LIBRARY_PATH="/opt/vkBasalt/lib:${LD_LIBRARY_PATH}"
+
+if ! [ -e "${HOME}/.local/share/vulkan/implicit_layer.d/vkBasalt.json" ]; then
+    mkdir -p "${HOME}/.local/share/vulkan/implicit_layer.d/"
+    ln -s /opt/vkBasalt/vkBasalt.json "${HOME}/.local/share/vulkan/implicit_layer.d/vkBasalt.json"
+fi
