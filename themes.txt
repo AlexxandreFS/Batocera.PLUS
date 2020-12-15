@@ -2,7 +2,7 @@ ARTFLIXforPLUS    https://github.com/fagnerpc/Alekfull-ARTFLIXforPLUS
 Alekfull-SOLO     https://github.com/fagnerpc/Alekfull-SOLO
 Alekfull-NX-PLUS  https://github.com/BatoceraPLUS/Theme-Alekfull-NX-PLUS.git
 Art-Book          https://github.com/BatoceraPLUS/Theme-Art-Book
-Batocera.PLUS-dev https://github.com/AlexxandreFS/Batocera.PLUS-Theme
+Batocera-PLUS-dev https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS
 Bluray            https://github.com/BatoceraPLUS/Theme-Bluray
 Cosmic-Rise       https://github.com/BatoceraPLUS/Theme-Cosmic-Rise
 Fundamental       https://github.com/BatoceraPLUS/Theme-Fundamental
