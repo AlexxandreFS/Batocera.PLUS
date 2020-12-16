@@ -1,8 +1,15 @@
 # Perfumaria
 xterm*faceName: DejaVu Sans Mono
 xterm*faceSize: 13
-xterm*background: #0A122A
-xterm*foreground: #EEEEEE
+
+#xterm*background: #0A122A
+xterm*background: #0B3861
+#xterm*background: #052035
+#xterm*background: #062045
+xterm*foreground: #FFFFFF
+
+# Exibe corretamente caracteres especiais.
+xterm*locale: UTF-16
 
 #Ativa a leitura do arquivo de profile
 XTerm*.LoginShell: True
