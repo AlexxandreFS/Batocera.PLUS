@@ -83,6 +83,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mednafen_psx_libretro-0.9.44.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mednafen_psx_sw_libretro-0.9.44.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/melonds_libretro-0.9-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/smsplus_libretro-1.8-1.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dolphin-emu-5.0-3.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dolphin-ishiiruka-5.0-1.7z'
