@@ -55,7 +55,8 @@ URL_BATOCERA_PLUS_PKG=(
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/DX9Jun2010.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/msttcorefonts-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk-1.5.1-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk-1.5.1-2.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk_proton_ge_custom-1.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model2-1.1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model3-1.1.7z'
@@ -262,24 +263,26 @@ mv "${TEMP_DIR}/squashfs-root/opt/Wine/apps/wine-mono-"* \
 echo 'Descompactando Wine DXVK...'
 PKG_NAME="$(basename "${URL_WINE_DXVK}")"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
-gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
-mv "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk-"*  "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk"
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract" || exit $?
+cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk" || exit $?
+ln -s '/opt/Wine/apps/vkd3d-proton/x32/d3d12.dll' "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x32/d3d12.dll" || exit $?
+ln -s '/opt/Wine/apps/vkd3d-proton/x64/d3d12.dll' "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x64/d3d12.dll" || exit $?
 rm "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/setup_dxvk.sh"
 
 echo 'Descompactando Wine VKD3D_PROTON (DXVK12)...'
 PKG_NAME="$(basename "${URL_WINE_VKD3D_PROTON}")"
-mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x32" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x64"
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x32"
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x64"
 if ! [ -f /usr/bin/zstd ]; then
     # Este bloco if foi adicionado para não quebrar a compilação do batocera.plus em versões mais antigas (batocera.plus 2.0)
     # Remova este bloco if quando sair a pŕoxima imagem stable.
-    "${TEMP_DIR}/squashfs-root/usr/bin/zstd" -d -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar -xvC "${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
+    "${TEMP_DIR}/squashfs-root/usr/bin/zstd" -d -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar -xvC "${TEMP_DIR}/pkg-xtract" || exit $?
 else
     # Não remova esta linha quando remover o bloco if.
-    zstd -d -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar -xvC "${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
+    zstd -d -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar -xvC "${TEMP_DIR}/pkg-xtract" || exit $?
 fi
-mv "${TEMP_DIR}/squashfs-root/opt/Wine/apps/${PKG_NAME%.tar.zst}/x86/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x32"
-mv "${TEMP_DIR}/squashfs-root/opt/Wine/apps/${PKG_NAME%.tar.zst}/x64/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x64"
-rm -r "${TEMP_DIR}/squashfs-root/opt/Wine/apps/${PKG_NAME%.tar.zst}"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x86/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x32" || exit $?
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x64/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x64" || exit $?
 
 echo 'Descompactando Firefox...'
 PKG_NAME="$(basename "${URL_FIREFOX}")"
