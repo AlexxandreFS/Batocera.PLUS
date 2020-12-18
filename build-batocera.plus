@@ -86,6 +86,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mednafen_psx_sw_libretro-0.9.44.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/melonds_libretro-0.9-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/meteor_libretro-1.4-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nekop2_libretro-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/quicknes_libretro-1.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/smsplus_libretro-1.8-1.7z'
 
