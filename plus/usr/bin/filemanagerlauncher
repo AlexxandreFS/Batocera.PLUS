@@ -6,8 +6,15 @@ export XDG_CONFIG_DIRS=/etc/xdg
 # fix for exfat on HOME + pcmanfm
 export XDG_CACHE_HOME=/tmp/xdg_cache
 
+tint2 &
+PID_TINT=$!
+
 mouse-pointer on
 
 DISPLAY=:0.0 pcmanfm /userdata
 
 mouse-pointer off
+
+kill -15 ${PID_TINT}
+
+exit 0

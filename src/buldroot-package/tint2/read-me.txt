@@ -1,0 +1,7 @@
+Adicione isto para o arquivo package/batocera/core/batocera-system/Config.in
+
+    select BR2_PACKAGE_IMLIB2_JPEG
+    select BR2_PACKAGE_IMLIB2_PNG
+    select BR2_PACKAGE_IMLIB2_GIF
+    select BR2_PACKAGE_IMLIB2_X
+

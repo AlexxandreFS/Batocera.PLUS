@@ -1,0 +1,6 @@
+config BR2_PACKAGE_TINT2
+    bool "tint2"
+    help
+      tint2 - lightweight panel/taskbar
+
+      https://gitlab.com/o9000/tint2/tree/master

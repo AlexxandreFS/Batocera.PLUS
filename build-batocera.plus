@@ -106,6 +106,9 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vkBasalt-0.3.2.3-4.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/parsec-1.7z'
 
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/tint2-16.7-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/imlib2-1.5.1-1.7z'
+
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/user-manual-2.7z'
 )
 
