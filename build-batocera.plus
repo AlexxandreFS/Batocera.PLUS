@@ -72,6 +72,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dolphin-ishiiruka-libretro-5.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/duckstation_libretro-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/fbalpha2012_libretro-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/flycast_libretro-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/flycast2019_libretro-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/freechaf_libretro-1.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gearsystem_libretro-3.1.1-1.7z'
