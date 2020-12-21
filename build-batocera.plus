@@ -97,6 +97,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/zstd-1.4.3-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libcap-2.27-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/squashfs-tools-4.4-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/popstationr-1.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/imagemagic-7.0.8-59-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xmlstarlet-1.6.1-1.7z'

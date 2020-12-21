@@ -3,8 +3,8 @@
 # LIBRETRO NP2KAI
 #
 ################################################################################
-# Version.: Commits on Aug 23, 2020
-LIBRETRO_NP2KAI_VERSION = a234606a13d53ee31147504f0a41e410952684eb
+# Version.: Commits on Nov 29, 2020
+LIBRETRO_NP2KAI_VERSION = 1c9eb5c62f8474c9deec81aad9502701775ad993
 LIBRETRO_NP2KAI_SITE = https://github.com/AZO234/NP2kai
 LIBRETRO_NP2KAI_SITE_METHOD=git
 LIBRETRO_NP2KAI_GIT_SUBMODULES=YES

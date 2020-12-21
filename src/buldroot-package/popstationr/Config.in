@@ -1,0 +1,4 @@
+config BR2_PACKAGE_POPSTATIONR
+	bool "popstationr"
+	help
+	  convert psp-psx .pbp to .iso

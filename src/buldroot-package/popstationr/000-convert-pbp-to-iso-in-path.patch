@@ -1,0 +1,62 @@
+###
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+###
+diff --git a/main.c b/main.c
+index cf0d90e..9700a91 100644
+--- a/main.c
++++ b/main.c
+@@ -28,8 +28,9 @@ int getsize(FILE *f)
+ void usage(char *filename)
+ {
+     printf("Usage: %s [OPTION...] file.iso\n\n",filename);
+-    printf(" -iso [EBOOT.bin]  converts a EBOOT.bin into iso\n");
+-    printf(" --help            displays this message\n");
++    printf(" -iso [EBOOT.PBP]                converts a EBOOT.PBP into iso\n");
++    printf(" -iso Psx_game.iso Psx_game.PBP  converts a EBOOT.PBP into iso\n");
++    printf(" --help                          displays this message\n");
+ }
+ 
+ z_stream z;
+@@ -754,7 +755,7 @@ int ExtractISO(char * eboot, char * output)
+ 
+    int compressed=0;
+    int write=0;
+-   int isosize=GetISOSize("EBOOT.PBP",offset);
++   int isosize=GetISOSize(eboot,offset);
+ 
+    FILE * fp = fopen(eboot,"rb");
+    FILE * out = fopen(output,"wb");
+@@ -918,20 +919,29 @@ int main(int argc, char *argv[])
+       usage(argv[0]);
+       exit(0);
+     }
+-    if ((argc != 5)&&(argc != 3))
++    if ((argc>5)&&(argc<3))
+ 	{
+       help:
+       fprintf(stderr,"Invalid Number of Arguments.\n");
+       usage(argv[0]);
+       exit(-1);
+ 	}
+-   if(argc==3)
++   if ((argc>=3)&&(argc<=4))
+    {
+       if(strcmp(argv[1],"-iso")) goto help;
+ 
+       printf("Attempting to Extract PSX ISO [%s] out of EBOOT.PBP... Please Wait!\n",argv[2]);
+ 
+-      int exresult = ExtractISO("EBOOT.PBP",argv[2]);
++      int exresult = 0;
++
++      if(argc==3)
++      {
++          exresult = ExtractISO("EBOOT.PBP",argv[2]);
++      }
++      else
++      {
++          exresult = ExtractISO(argv[3],argv[2]);
++      }
+ 
+       if(exresult)
+       {
