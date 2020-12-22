@@ -1,0 +1,46 @@
+Metadata-Version: 1.1
+Name: evdev
+Version: 0.7.0
+Summary: Bindings to the Linux input handling subsystem
+Home-page: https://github.com/gvalkov/python-evdev
+Author: Georgi Valkov
+Author-email: georgi.t.valkov@gmail.com
+License: Revised BSD License
+Description: *evdev*
+        -------
+        
+        This package provides bindings to the generic input event interface in
+        Linux. The *evdev* interface serves the purpose of passing events
+        generated in the kernel directly to userspace through character
+        devices that are typically located in ``/dev/input/``.
+        
+        This package also comes with bindings to *uinput*, the userspace input
+        subsystem. *Uinput* allows userspace programs to create and handle
+        input devices that can inject events directly into the input
+        subsystem.
+        
+        Documentation:
+            http://python-evdev.readthedocs.io/en/latest/
+        
+        Development:
+            https://github.com/gvalkov/python-evdev
+        
+        Package:
+            http://pypi.python.org/pypi/evdev
+        
+        Changelog:
+            http://python-evdev.readthedocs.io/en/latest/changelog.html
+        
+Keywords: evdev input uinput
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python :: Implementation :: CPython
