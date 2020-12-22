@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: evmapy
+Version: 1.0
+Summary: An evdev event mapper
+Home-page: https://github.com/kempniu/evmapy
+Author: Michal Kepien
+Author-email: github@kempniu.pl
+License: GPL2
+Description: UNKNOWN
+Platform: UNKNOWN

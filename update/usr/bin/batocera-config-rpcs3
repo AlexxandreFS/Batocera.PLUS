@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export XDG_CONFIG_HOME="${HOME}/configs"
+export XDG_CACHE_HOME="${HOME}/../saves"
+export QT_QPA_PLATFORM=xcb
+
+exec /usr/bin/rpcs3
