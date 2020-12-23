@@ -125,6 +125,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/user-manual-2.7z'
 )
 
+# Estes pacotes são compilados apenas nas imagens de desenvolvimento.
 if [ -z "${RELEASE}" ]; then
     URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}"
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3-2.7z'
@@ -226,7 +227,7 @@ unsquashfs -d "$TEMP_DIR/squashfs-root" "$TEMP_DIR/BATOCERA/boot/batocera" || ex
 ################################################################################
 
 echo 'Removendo arquivos desnecessários...'
-rm -r "$TEMP_DIR/squashfs-root/usr/share/icons/Adwaita" || exit $?
+rm -r "$TEMP_DIR/squashfs-root/usr/share/icons/Adwaita"  || exit $?
 rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/music" || exit $?
 
 for x in c64 cannonball gba megadrive mrboom nes pcengine prboom snes; do
@@ -256,7 +257,16 @@ mkdir -p "${TEMP_DIR}/pkg-xtract"
 for PKG in "${URL_BATOCERA_PLUS_PKG[@]}"; do
     echo -e "\nDescompactando ${PKG_NAME%.*}..."
     PKG_NAME="$(basename "${PKG}")"
+
     7zr x  "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/pkg-xtract" || exit $?
+
+    # Executa o script batocera.plus que fica dentro do pacote.
+    # O script contém instruções expecíficas de instação para o pacote.
+    if [ -f "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/batocera.plus" ]; then
+        source "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/batocera.plus" || exit $?
+        rm -f  "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/batocera.plus" || exit $?
+    fi
+
     cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* "${TEMP_DIR}/squashfs-root" || exit $?
 done
 
