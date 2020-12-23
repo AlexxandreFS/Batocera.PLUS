@@ -1,11 +1,7 @@
 # Perfumaria
 xterm*faceName: DejaVu Sans Mono
 xterm*faceSize: 13
-
-#xterm*background: #0A122A
-xterm*background: #0B3861
-#xterm*background: #052035
-#xterm*background: #062045
+xterm*background: #04082A
 xterm*foreground: #FFFFFF
 
 # Exibe corretamente caracteres especiais.
