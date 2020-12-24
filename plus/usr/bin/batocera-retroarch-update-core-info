@@ -1,0 +1,103 @@
+#!/bin/sh
+###
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+###
+### Atualiza informações de core do Retroarch.
+###
+
+set -e
+
+################################################################################
+
+TMP_DIR=/tmp/libretro_info
+
+
+################################################################################
+
+### DOWNLOAD
+
+mkdir -p ${TMP_DIR}
+
+cd ${TMP_DIR}
+
+mkdir libretro_info
+
+git clone https://github.com/libretro/libretro-core-info.git
+
+################################################################################
+
+### INSTALL
+
+for i in /usr/lib/libretro/*
+do
+    if [ -f "libretro-core-info/$(basename ${i%.so}).info" ]
+    then
+        cp "libretro-core-info/$(basename ${i%.so}).info" libretro_info
+    fi
+done
+
+cp -f libretro-core-info/snes9x2005_libretro.info         libretro_info/catsfc_libretro.info
+cp -f libretro-core-info/bsnes_hd_beta_libretro.info      libretro_info/bsnes_hd_libretro.info
+cp -f libretro-core-info/mednafen_saturn_libretro.info    libretro_info/beetle-saturn_libretro.info
+cp -f libretro-core-info/genesis_plus_gx_libretro.info    libretro_info/genesisplusgx_libretro.info
+cp -f libretro-core-info/mame2010_libretro.info           libretro_info/mame0139_libretro.info
+cp -f libretro-core-info/mame2016_libretro.info           libretro_info/mame0174_libretro.info
+cp -f libretro-core-info/mame2003_libretro.info           libretro_info/mame078_libretro.info
+cp -f libretro-core-info/mame2003_plus_libretro.info      libretro_info/mame078plus_libretro.info
+cp -f libretro-core-info/mednafen_psx_hw_libretro.info    libretro_info/mednafen_psx_libretro.info
+cp -f libretro-core-info/mednafen_psx_libretro.info       libretro_info/mednafen_psx_sw_libretro.info
+cp -f libretro-core-info/mupen64plus_next_libretro.info   libretro_info/mupen64plus-next_libretro.info
+cp -f libretro-core-info/mednafen_pce_libretro.info       libretro_info/pce_libretro.info
+cp -f libretro-core-info/mednafen_pce_fast_libretro.info  libretro_info/pce_fast_libretro.info
+cp -f libretro-core-info/mednafen_pcfx_libretro.info      libretro_info/pcfx_libretro.info
+cp -f libretro-core-info/snes9x2010_libretro.info         libretro_info/snes9x_next_libretro.info
+cp -f libretro-core-info/mednafen_vb_libretro.info        libretro_info/vb_libretro.info
+cp -f libretro-core-info/vbam_libretro.info               libretro_info/vba-m_libretro.info
+cp -f libretro-core-info/vice_x64_libretro.info           libretro_info/vice_libretro.info
+
+################################################################################
+
+### EDIT INFO
+
+cp -f libretro-core-info/flycast_libretro.info            libretro_info/flycast2019_libretro.info
+sed -i 's|Flycast|Flycast2019|g'                          libretro_info/flycast2019_libretro.info
+
+cp -f libretro-core-info/retrodream_libretro.info         libretro_info/redream_libretro.info
+sed -i 's|RetroDream|Redream|g'                           libretro_info/redream_libretro.info
+
+cp -f libretro-core-info/mame2016_libretro.info           libretro_info/mame0200_libretro.info
+sed -i 's|2016|2018|g'                                    libretro_info/mame0200_libretro.info
+sed -i 's|174|200|g'                                      libretro_info/mame0200_libretro.info
+
+################################################################################
+
+### NEW INFO
+
+cat << EOF >                                              libretro_info/retro8_libretro.info
+display_name = "PICO8 (Retro8)"
+authors = "jakz"
+supported_extensions = "p8|png"
+corename = "Retro8"
+manufacturer = "N/A"
+categories = "Emulator"
+systemname = "PICO8"
+systemid = "pico8"
+database = "PICO8"
+license = "GPLv3"
+permissions = ""
+display_version = "Git"
+supports_no_game = "false"
+EOF
+
+################################################################################
+
+### INSTALL
+
+rm -r /usr/lib/libretro_info
+mv libretro_info /usr/lib/libretro_info
+
+cd /
+rm -r ${TMP_DIR}
+
+exit 0
