@@ -93,7 +93,6 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame0174_libretro.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame0200_libretro.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame_libretro_0220-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mednafen_pce_libretro-0.9.48-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mednafen_psx_libretro-0.9.44.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mednafen_psx_sw_libretro-0.9.44.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/melonds_libretro-0.9-1.7z'
