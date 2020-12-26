@@ -74,6 +74,7 @@ BIOS[o2em]="o2em,                     Odyssey2
     c500ff71236068e0dc0d0603d265ae76, bios/g7400.bin
     279008e4a0db2dc5f1c048853b033828, bios/jopac.bin"
 
+
 #### Mattel ####
 
 BIOS[intellivision]="intellivision,   Intellivision
@@ -81,6 +82,7 @@ BIOS[intellivision]="intellivision,   Intellivision
     0cd5946c6473e42e8e4c2137785e427f, bios/grom.bin
     2e72a9a2b897d330a35c8b07a6146c52, bios/ECS.bin
     d5530f74681ec6e0f282dab42e6b1c5f, bios/IVOICE.bin"
+
 
 #### Microsoft ####
 
@@ -110,6 +112,29 @@ BIOS[supergrafx]="supergrafx,         Supergrafx
     424f1d6bf93259bf255afa7d1dc9f721, bios/syscard2.pce
     9f770275393b8627cf9d24e5c56d2ab9, bios/syscard1.pce
     6d2cb14fc3e1f65ceb135633d1694122, bios/gexpress.pce"
+
+BIOS[pc88]="pc88,                     NEC PC-88
+    4f984e04a99d56c4cfe36115415d6eb8, bios/quasi88/N88.ROM
+    793f86784e5608352a5d7f03f03e0858, bios/quasi88/N88SUB.ROM
+    2ff07b8769367321128e03924af668a0, bios/quasi88/N88N.ROM
+    d675a2ca186c6efcd6277b835de4c7e5, bios/quasi88/N88EXT0.ROM
+    e844534dfe5744b381444dbe61ef1b66, bios/quasi88/N88EXT1.ROM
+    6548fa45061274dee1ea8ae1e9e93910, bios/quasi88/N88EXT2.ROM
+    fc4b76a402ba501e6ba6de4b3e8b4273, bios/quasi88/N88EXT3.ROM"
+
+BIOS[pc98]="pc98,                     NEC PC-98
+    d94546e70f17fd899be8df3544ab6cbb, bios/np2kai/2608_bd.wav
+    08c54a0c1f774a5538a848a6665a34b4, bios/np2kai/2608_hh.wav
+    465ea0768b27da404aec45dfc501404b, bios/np2kai/2608_rim.wav
+    d71004351c8bbfdad53b18222c061d49, bios/np2kai/2608_sd.wav
+    96a4ead13f364734f79b0c58af2f0e1f, bios/np2kai/2608_tom.wav
+    593cff6597ab9380d822b8f824fd2c28, bios/np2kai/2608_top.wav
+    38d32748ae49d1815b0614970849fd40, bios/np2kai/FONT.ROM
+    cd237e16e7e77c06bb58540e9e9fca68, bios/np2kai/bios.rom
+    72ea51443070f0e9212bfc9b793ee28e, bios/np2kai/itf.rom
+    7da1e5b7c482d4108d22a5b09631d967, bios/np2kai/font.bmp
+    fddbb37ae82c03788fb6b9d8c642efbe, bios/np2kai/memory.bin
+    524473c1a5a03b17e21d86a0408ff827, bios/np2kai/sound.rom"
 
 
 #### Nintendo ####
@@ -488,22 +513,33 @@ BIOS[ps2]="ps2,                       Sony Playstation 2
     44552702b05697a14ccbe2ca22ee7139, bios/rom1.bin
     b406d05922dac2eaf3c2e68157b1b468, bios/ROM2.BIN"
 
+BIOS[ps3]="ps3,                       Sony Playstation 3
+    00000000000000000000000000000000, bios/PS3UPDAT.PUP"
+    # https://www.playstation.com/en-us/support/hardware/ps3/system-software
 
-### NEC PC-98 ####
-
-BIOS[pc98]="pc98,                     NEC PC-98
-    d94546e70f17fd899be8df3544ab6cbb, bios/np2kai/2608_bd.wav
-    08c54a0c1f774a5538a848a6665a34b4, bios/np2kai/2608_hh.wav
-    465ea0768b27da404aec45dfc501404b, bios/np2kai/2608_rim.wav
-    d71004351c8bbfdad53b18222c061d49, bios/np2kai/2608_sd.wav
-    96a4ead13f364734f79b0c58af2f0e1f, bios/np2kai/2608_tom.wav
-    593cff6597ab9380d822b8f824fd2c28, bios/np2kai/2608_top.wav
-    38d32748ae49d1815b0614970849fd40, bios/np2kai/FONT.ROM
-    cd237e16e7e77c06bb58540e9e9fca68, bios/np2kai/bios.rom
-    72ea51443070f0e9212bfc9b793ee28e, bios/np2kai/itf.rom
-    7da1e5b7c482d4108d22a5b09631d967, bios/np2kai/font.bmp
-    fddbb37ae82c03788fb6b9d8c642efbe, bios/np2kai/memory.bin
-    524473c1a5a03b17e21d86a0408ff827, bios/np2kai/sound.rom"
+BIOS[psp]="psp,                       Sony Playstation Portable
+    1955bcc4957c4900e0e5885cd557e28c, bios/PPSSPP/flash0/font/arib.pgf
+    3522de0822ea504d0a5f0c8fa4c1164c, bios/PPSSPP/flash0/font/gb3s1518.bwfon
+    f17392890e8895826b06596e9dc54fde, bios/PPSSPP/flash0/font/imagefont.bin
+    0ed527caf6befe752f759e5de14cf025, bios/PPSSPP/flash0/font/jpn0.pgf
+    63a947ffcd5b1bbb524d41556ed5ee65, bios/PPSSPP/flash0/font/kr0.pgf
+    90df7a7c5aaa500b7e1d14789f094afd, bios/PPSSPP/flash0/font/ltn0.pgf
+    43933d4f25f380ab619fd4031108fcce, bios/PPSSPP/flash0/font/ltn1.pgf
+    0ff6d2e40360a74ddf347e1d498085f9, bios/PPSSPP/flash0/font/ltn10.pgf
+    c4205f75e74457f7890d2bf344fe5de1, bios/PPSSPP/flash0/font/ltn11.pgf
+    24e2b96dd6f32ac8ad2a11c6c69eddef, bios/PPSSPP/flash0/font/ltn12.pgf
+    80f8268c5bd57182138214b2bed1ef47, bios/PPSSPP/flash0/font/ltn13.pgf
+    b4c11f3326c5a7d9d740860dea1de24c, bios/PPSSPP/flash0/font/ltn14.pgf
+    7bc20212ca1e703bbe497dc24e12f77c, bios/PPSSPP/flash0/font/ltn15.pgf
+    7e6e4924cedee424f0e4dbb50133c531, bios/PPSSPP/flash0/font/ltn2.pgf
+    f2bb7f170c3ad50b3be57082761440d9, bios/PPSSPP/flash0/font/ltn3.pgf
+    faafbb188141564c4d8e1b08de90ec04, bios/PPSSPP/flash0/font/ltn4.pgf
+    1adfe7797dfea78b964a75ea265d3117, bios/PPSSPP/flash0/font/ltn5.pgf
+    bbc58f1214372bd1604875b3b5e7a764, bios/PPSSPP/flash0/font/ltn6.pgf
+    404f92e373272745c15b4ab2f5a936e8, bios/PPSSPP/flash0/font/ltn7.pgf
+    525c68b5fb073d82df65f30d979a21ac, bios/PPSSPP/flash0/font/ltn8.pgf
+    56129bbac3f8e5187a5a9c775d71d35d, bios/PPSSPP/flash0/font/ltn9.pgf
+    dc81fa82d26d511e976c41a9191ba541, bios/PPSSPP/flash0/font/shadow.pgf"
 
 
 #### Fairchild Channel F ####
