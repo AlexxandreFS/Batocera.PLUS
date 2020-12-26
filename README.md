@@ -20,18 +20,16 @@ No princípio, pelas comunidades na internet eu compartilhava alguns programas, 
 
 ### Como compilar
 
-Faça o download do código fonte ou clone o repositório
+Faça o download do código fonte ou clone o repositório.
 
-git clone https://github.com/AlexxandreFS/Batocera.PLUS.git
+    git clone https://github.com/AlexxandreFS/Batocera.PLUS.git
 
-Faça o download da imagem do batocera.linux e adicione a imagem na pasta img, não descompacte a imagem, exemplo:
+O Batocera.PLUS é compilado usando a versão anterior do próprio Batocera.PLUS, a compilação em outros sistema operacionais pode ocasionar erros de compilação.
 
-img/batocera-5.24-x86_64-20191105.img.gz
+A pasta temporária usada na compilação precisa ficar em uma partição do tipo Linux (ext4, btrfs, etc)
 
-O Batocera.PLUS é compilado dentro do próprio Batocera.PLUS a pasta usada temporária usada na compilação precisa ficar em uma partição do tipo Linux (ext4, btrfs, etc)
-Acesse a pasta onde estão os arquivos pelo terminal (win + f4) ou (f1 e depois f4) e execute o script de criação da imagem
+Acesse a pasta onde estão os arquivos pelo terminal (win + f4) ou (f1 e depois f4) e execute o script de criação da imagem.
 
-./build-batocera.plus
+    ./build-batocera.plus
 
-Durante a compilação alguns pacotes extras serão baixados.
-
+Durante a compilação vários pacotes extras serão baixados, seja paciente.

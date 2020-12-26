@@ -11,8 +11,6 @@ VERSION=2.08
 
 # Nvidia Driver
 NVIDIA_LEGACY=0
-NVIDIA_DRIVER=450.66
-NVIDIA_LEGACY_DRIVER=390.138
 
 # Demora mais tempo para compilar
 SQUASHFS_MAX_COMPRESSION=1
@@ -23,12 +21,6 @@ TEMP_DIR='./tmp'
 #TEMP_DIR='/media/NO_LABEL_1/tmp'
 #TEMP_DIR='/media/NO_LABEL_2/tmp'
 #TEMP_DIR='/mnt/tmp'
-
-# Imagem oficial do batocera.linux.
-# https://batocera.org/upgrades/x86_64/stable/last/archives/20201001/batocera-5.27.2-x86_64-20201001.img.gz
-# https://batocera.org/users/alexxandrefs/5.27-nvidia-legacy/batocera-5.27-x86_64-20200919.img.gz
-IMG_OFICIAL_NORMAL='img/batocera-5.27.2-x86_64-20201001.img.gz'
-IMG_OFICIAL_NVIDIA='img/batocera-5.27-x86_64-20200919.img.gz'
 
 # BatoceraZero.
 IMG_ZERO='img/BatoceraZero3.3GB.7z'
@@ -143,7 +135,13 @@ if [ -z "${RELEASE}" ]; then
     )
 fi
 
-################################################################################
+if [ "${NVIDIA_LEGACY}" == '1' ]; then
+    URL_BATOCERA_LINUX='https://batocera.org/users/alexxandrefs/5.27-nvidia-legacy/batocera-5.27-x86_64-20200919.img.gz'
+    URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/390.138/NVIDIA-Linux-x86_64-390.138.run'
+else
+    URL_BATOCERA_LINUX='https://batocera.org/upgrades/x86_64/stable/last/archives/20201001/batocera-5.27.2-x86_64-20201001.img.gz'
+    URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/450.66/NVIDIA-Linux-x86_64-450.66.run'
+fi
 
 URL_THEME_A="https://github.com/BatoceraPLUS/Theme-batocera-plus/archive/master.zip#/Theme-batocera-plus-${VERSION}${RELEASE}.zip"
 URL_FIREFOX="https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US#/firefox-esr-${VERSION}${RELEASE}.tar.bz2"
@@ -164,12 +162,6 @@ if ! [ "${URL_FLASH}" ]; then
 fi
 URL_FLASH="https://fpdownload.adobe.com/get/flashplayer/pdc/${URL_FLASH}/flash_player_npapi_linux.x86_64.tar.gz#/flash_player_npapi_linux.x86_64_${URL_FLASH}.tar.gz"
 
-if [ "${NVIDIA_LEGACY}" == '1' ]; then
-    URL_NVIDIA=http://download.nvidia.com/XFree86/Linux-x86_64/${NVIDIA_LEGACY_DRIVER}/NVIDIA-Linux-x86_64-${NVIDIA_LEGACY_DRIVER}.run
-else
-    URL_NVIDIA=http://download.nvidia.com/XFree86/Linux-x86_64/${NVIDIA_DRIVER}/NVIDIA-Linux-x86_64-${NVIDIA_DRIVER}.run
-fi
-
 ################################################################################
 
 # DOWNLOAD
@@ -177,7 +169,8 @@ fi
 mkdir -p "${DOWNLOAD_DIR}"
 
 for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
-           "${URL_NVIDIA}" \
+           "${URL_BATOCERA_LINUX}" \
+           "${URL_NVIDIA_DRIVER}" \
            "${URL_WINE_MONO}" \
            "${URL_WINE_DXVK}" \
            "${URL_WINE_VKD3D_PROTON}" \
@@ -191,47 +184,28 @@ do
     PKG_NAME="$(basename "${URL}")"
     echo -e "\nBaixando ${PKG_NAME}..."
     if ! [ -f "${DOWNLOAD_DIR}/${PKG_NAME}" ]; then
-        curl -L -C - "${URL}" -o "${DOWNLOAD_DIR}/${PKG_NAME}" || exit 0
+        curl -L -C - "${URL}" -o "${DOWNLOAD_DIR}/${PKG_NAME}" || exit $?
     fi
 done
 
 ################################################################################
 
-echo 'Descompactando Batocera oficial...'
+echo '\nDescompactando Batocera.Linux...'
 
-if [ "${NVIDIA_LEGACY}" == '0' ]; then
-    echo 'ALVO: IMAGEM NORMAL'
-    IMG_OFICIAL="${IMG_OFICIAL_NORMAL}"
-elif ! [ "${NVIDIA_LEGACY}" ]; then
-    echo 'ALVO: IMAGEM NORMAL'
-    IMG_OFICIAL="${IMG_OFICIAL_NORMAL}"
-elif [ "${NVIDIA_LEGACY}" == '1' ]; then
-    echo 'ALVO: IMAGEM NVIDIA LEGACY'
-    IMG_OFICIAL="${IMG_OFICIAL_NVIDIA}"
-else
-    echo 'Erro: Valor desconhecido para NVIDIA LEGACY'
-    exit 1
-fi
-
-mkdir -p "$TEMP_DIR"
-
-if ! [ -f "$IMG_OFICIAL" ]; then
-    echo "A imagem $IMG_OFICIAL não foi encontrada!"
-    exit $?
-fi
-
-gunzip -k "$IMG_OFICIAL" -c > "$TEMP_DIR/batocera.linux.img" || exit $?
+PKG_NAME="$(basename "${URL_BATOCERA_LINUX}")"
+mkdir -p "${TEMP_DIR}"
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c > "${TEMP_DIR}/batocera.linux.img" || exit $?
 
 echo 'Adicionando imagem oficial do batocera.linux ao disposivo loop...'
 losetup -f
-losetup /dev/loop7 -o $((512 * 2048)) "$TEMP_DIR/batocera.linux.img" || exit $?
+losetup /dev/loop7 -o $((512 * 2048)) "${TEMP_DIR}/batocera.linux.img" || exit $?
 
 echo 'Montando imagem oficial do batcera.linux...'
-mkdir "$TEMP_DIR/BATOCERA"
-mount -o rw /dev/loop7 "$TEMP_DIR/BATOCERA" || exit $?
+mkdir "${TEMP_DIR}/BATOCERA"
+mount -o rw /dev/loop7 "${TEMP_DIR}/BATOCERA" || exit $?
 
 echo 'Descompactando arquivo squashfs...'
-unsquashfs -d "$TEMP_DIR/squashfs-root" "$TEMP_DIR/BATOCERA/boot/batocera" || exit $?
+unsquashfs -d "${TEMP_DIR}/squashfs-root" "$TEMP_DIR/BATOCERA/boot/batocera" || exit $?
 
 ################################################################################
 
@@ -362,7 +336,7 @@ mv "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/
 rmdir "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}"
 
 echo 'Descompactando nvidia driver...'
-PKG_NAME="$(basename "${URL_NVIDIA}")"
+PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"
 chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
 "${DOWNLOAD_DIR}/${PKG_NAME}" -x --target "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}" || exit $?
 mkdir -p "${TEMP_DIR}/squashfs-root/usr/share/nvidia"
