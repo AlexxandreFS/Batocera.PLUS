@@ -125,6 +125,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/imlib2-1.5.1-1.7z'    # dep: tint2
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/librsvg-2.40.20-1.7z' # dep: tint2, jgmenu
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libcroco-0.6-1.7z'    # dep: tint2, jgmenu
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/adwaita-blue-light-167841-1.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/user-manual-2.7z'
 )
@@ -193,7 +194,7 @@ done
 
 ################################################################################
 
-echo '\nDescompactando Batocera.Linux...'
+echo -e '\nDescompactando Batocera.Linux...'
 
 PKG_NAME="$(basename "${URL_BATOCERA_LINUX}")"
 mkdir -p "${TEMP_DIR}"
@@ -213,7 +214,6 @@ unsquashfs -d "${TEMP_DIR}/squashfs-root" "$TEMP_DIR/BATOCERA/boot/batocera" || 
 ################################################################################
 
 echo 'Removendo arquivos desnecessários...'
-rm -r "$TEMP_DIR/squashfs-root/usr/share/icons/Adwaita"    || exit $?
 rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/music"   || exit $?
 
 # Remova apenas se atualizar o pacote completo dos shaders para o retroarch.

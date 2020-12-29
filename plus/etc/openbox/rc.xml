@@ -10,28 +10,28 @@
 
     <theme>
         <name>Plastik Blue Crystal Box V2</name>
-        <titleLayout>NLMC</titleLayout>
+        <titleLayout>NLIMC</titleLayout>
         <keepBorder>no</keepBorder>
         <animateIconify>yes</animateIconify>
         <font place="ActiveWindow">
-            <size>10</size>
+            <size>12</size>
             <slant>Italic</slant>
         </font>
         <font place="InactiveWindow">
-            <size>10</size>
+            <size>12</size>
             <slant>Italic</slant>
         </font>
         <font place="MenuHeader">
-            <size>10</size>
+            <size>12</size>
             <slant>Italic</slant>
         </font>
         <font place="MenuItem">
             <name>Terminus</name>
-            <size>10</size>
+            <size>12</size>
             <slant>Italic</slant>
         </font>
         <font place="OnScreenDisplay">
-            <size>11</size>
+            <size>12</size>
             <slant>Italic</slant>
         </font>
     </theme>
