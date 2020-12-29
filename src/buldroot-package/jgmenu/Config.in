@@ -1,0 +1,4 @@
+config BR2_PACKAGE_JGMENU
+	bool "jgmenu"
+	help
+	  A start-menu
