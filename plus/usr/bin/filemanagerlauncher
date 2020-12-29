@@ -6,7 +6,7 @@ export XDG_CONFIG_DIRS=/etc/xdg
 # fix for exfat on HOME + pcmanfm
 export XDG_CACHE_HOME=/tmp/xdg_cache
 
-tint2 &
+tint2 -c /etc/xdg/tint2/tint2rc.plus.cfg &
 PID_TINT=$!
 
 mouse-pointer on
