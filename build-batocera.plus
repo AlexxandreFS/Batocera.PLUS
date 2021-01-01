@@ -5,27 +5,27 @@
 
 ################################################################################
 
-# Versão do Batocera.PLUS
+# Batocera.PLUS Version 
 VERSION=2.08
 #RELEASE='dev'
 
 # Nvidia Driver
 NVIDIA_LEGACY=0
 
-# Demora mais tempo para compilar
+# Compression level, squash file
 SQUASHFS_MAX_COMPRESSION=1
 
-# Pasta temporária em uma partição Linux
+# Temporary folder on a linux partition
 TEMP_DIR='./tmp'
 #TEMP_DIR='/media/NO_LABEL/tmp'
 #TEMP_DIR='/media/NO_LABEL_1/tmp'
 #TEMP_DIR='/media/NO_LABEL_2/tmp'
 #TEMP_DIR='/mnt/tmp'
 
-# BatoceraZero.
+# BatoceraZero image
 IMG_ZERO='img/BatoceraZero3.3GB.7z'
 
-# Arquivos extras do Batocera.PLUS
+# Batocera.PLUS extra files
 PLUS_DIR='plus'
 UPDATE_DIR='update'
 BOOT_DIR='boot'

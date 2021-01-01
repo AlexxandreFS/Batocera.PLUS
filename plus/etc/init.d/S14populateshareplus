@@ -29,24 +29,6 @@ if ! [ -d "${SHARE}/system/configs/retroarch" ]; then
     cp -r "${SHARE_INIT}/system/configs/retroarch" "${SHARE}/system/configs"
 fi
 
-### Configurações personalizadas para o xterm
-if ! [ -f "$SHARE/system/.Xdefaults" ]; then
-    cp "$SHARE_INIT/system/.Xdefaults" "$SHARE/system/.Xdefaults"
-fi
-
-### Configuração personalizada do genciador de arquivos.
-if ! [ -f "$SHARE/system/.gtk-bookmarks" ]; then
-    cp "$SHARE_INIT/system/.gtk-bookmarks" "$SHARE/system/.gtk-bookmarks"
-fi
-if ! [ -f "$SHARE/system/.config/pcmanfm/default/pcmanfm.conf" ]; then
-    mkdir -p "$SHARE/system/.config/pcmanfm/default"
-    cp "$SHARE_INIT/system/.config/pcmanfm/default/pcmanfm.conf" "$SHARE/system/.config/pcmanfm/default/pcmanfm.conf"
-fi
-if ! [ -f "$SHARE/system/.config/libfm/libfm.conf" ]; then
-    mkdir -p "$SHARE/system/.config/libfm"
-    cp  "$SHARE_INIT/system/.config/libfm/libfm.conf" "$SHARE/system/.config/libfm/libfm.conf"
-fi
-
 ### Corrige problemas com fontes Chinesas.
 if [ "$(grep system.language=zh_TW ${SHARE}/system/batocera.conf)" ] || [ "$(grep system.language=zh_CN ${SHARE}/system/batocera.conf)" ]; then
     ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjh.ttf'   '/usr/share/libretro/assets/xmb/monochrome/font.ttf'
@@ -56,8 +38,5 @@ if [ "$(grep system.language=zh_TW ${SHARE}/system/batocera.conf)" ] || [ "$(gre
     ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjh.ttf'   '/usr/share/fonts/dejavu/DejaVuSansMono.ttf'
     ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjhbd.ttf' '/usr/share/fonts/dejavu/DejaVuSansMono-Bold.ttf'
 fi
-
-# Limpa Arquivos temporários
-# rm $SHARE/system/.serverauth.* 2> /dev/null
 
 exit 0

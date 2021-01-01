@@ -1,0 +1,19 @@
+###
+### XTerm Config - Batocera.PLUS
+###
+
+# Enable read profile
+xterm*.loginShell: True
+
+# Colors
+xterm*background: #04082A
+xterm*foreground: #EEEEEE
+
+# Fonts
+xterm*faceName: "DejaVu Sans Mono":antialias=true
+xterm*faceNameDoublesize: "WenQuanYi WenQuanYi Bitmap Song"
+xterm*faceSize: 13
+xterm*renderFont: True
+
+# Special caracters
+xterm*locale: UTF-16

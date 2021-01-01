@@ -3,11 +3,23 @@
 export XDG_MENU_PREFIX=batocera-
 export XDG_CONFIG_DIRS=/etc/xdg
 
-# fix for exfat on HOME + pcmanfm
-export XDG_CACHE_HOME=/tmp/xdg_cache
+# Fix for exfat on HOME + pcmanfm
+export XDG_CACHE_HOME=/userdata/system/.cache/xdg_cache
 
+
+# Default bookmarks (extra folders)
+if ! [ -f "${HOME}/.gtk-bookmarks" ]; then
+    cp "${XDG_CONFIG_DIRS}/libfm/bookmarks.conf" "${HOME}/.gtk-bookmarks"
+fi
+
+# Start Menu, default theme.
+if ! [ -f "${HOME}/.config/jgmenu/jgmenurc" ] ; then
+    jgmenu_run init --theme=greeneye
+fi
+
+# Taskbar
 tint2 -c /etc/xdg/tint2/tint2rc.plus.cfg &
-PID_TINT=$!
+PID_TINT=${!}
 
 mouse-pointer on
 
