@@ -1,7 +1,86 @@
 #!/bin/bash
+##
+## Batocera.PLUS
+##
+## Código escrito por: Sérgio de Carvalho Júnior
+## Colaborador: Alexandre Freire dos Santos
+## 
+################################################################################
+
+FW="${1}"
+DL="${HOME}/../downloads"
 
 export XDG_CONFIG_HOME="${HOME}/configs"
 export XDG_CACHE_HOME="${HOME}/../saves"
 export QT_QPA_PLATFORM=xcb
 
-exec /usr/bin/rpcs3
+if [ "${FW}" == '--firmware' ]; then
+   mouse-pointer on
+   # Criando o arquivo básico de configuração
+   mkdir -p "${HOME}/configs/rpcs3/GuiConfigs"
+   touch "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   touch "${HOME}/configs/rpcs3/config.yml"
+   
+   echo '[GameList]' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'hidden_list=@Invalid()' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'iconColor=@Variant(\0\0\0\x43\x1\xff\xff\xf0\xf0\xf0\xf0\xf0\xf0\0\0)' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'marginFactor=0.09' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'textFactor=2' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo '[Localization]' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'language=en' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo '[Logger]' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'level=4' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'stack=true' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo '[main_window]' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'infoBoxEnabledInstallPUP=false' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'infoBoxEnabledWelcome=false' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'lastExplorePathPUP=/userdata/system/../bios' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   
+   echo 'Audio:' >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  Audio Channels: Downmix to Stereo' >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  Renderer: ALSA' >> "${HOME}/configs/rpcs3/config.yml"
+   echo 'Core:' >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  PPU Decoder: Recompiler (LLVM)' >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  PPU LLVM Accurate Vector NaN values: true' >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  SPU Decoder: Recompiler (LLVM)' >> "${HOME}/configs/rpcs3/config.yml"
+   echo 'Miscellaneous:' >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  Exit RPCS3 when process finishes: true' >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  Start games in fullscreen mode: true' >> "${HOME}/configs/rpcs3/config.yml"
+   echo 'Video:' >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  Frame limit: 60' >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  Renderer: Vulkan' >> "${HOME}/configs/rpcs3/config.yml"
+   
+   # Download do firmware
+   if [ -f "${HOME}/../bios/PS3UPDAT.PUP" ]; then
+       FILE="${HOME}/../bios/PS3UPDAT.PUP"
+   else
+       rm -f "${DL}/PS3UPDAT.PUP" # apaga download incompleto se houver
+	   FILE="${DL}/PS3UPDAT.PUP"
+       /opt/Downloader/downloader.sh 'http://dbr01.ps3.update.playstation.net/update/ps3/image/br/2020_1203_03373a581934f0d2b796156d2fb28b39/PS3UPDAT.PUP' "${DL}"	  
+   fi
+   
+   # Instalando o firmware
+   exec /usr/bin/rpcs3 --installfw "${FILE}" &
+   
+   for i in {1..100}; do
+       if [ $(pidof -s rpcs3) ]; then
+		  sleep 5		  
+		  continue &
+	   fi
+	   
+	   # Esse arquivo sempre é o último a ser feito o cache pelo rpcs3
+       if [ -f "${HOME}/../saves/rpcs3/cache/ppu-ogZ9XMwLZb70cCsiaswxN1kKG5ts-libpngenc.sprx/v3-kusa-GUaqd0R8vrnMWoH17WjSzY-00000s-haswell.obj.gz" ]; then
+	       killall rpcs3
+	       break
+	   fi
+   done
+   
+   #Apaga a firmware depois de instalada
+   rm -f "${DL}/PS3UPDAT.PUP"
+
+else
+   # Executa o rpcs3 se a firmware já estiver instalada
+   exec /usr/bin/rpcs3
+fi
+
+exit 0
