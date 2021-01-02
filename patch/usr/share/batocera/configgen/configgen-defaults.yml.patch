@@ -1,5 +1,5 @@
---- configgen-defaults.yml
-+++ configgen-defaults.yml.plus
+--- configgen-defaults.yml.original
++++ configgen-defaults.yml.modificado
 @@ -77,7 +77,7 @@
    core:     genesisplusgx
  saturn:
@@ -24,6 +24,15 @@
  fbneo:
    emulator: libretro
    core:     fbneo
+@@ -142,7 +142,7 @@
+   core:     '81'
+ dos:
+   emulator: libretro
+-  core: dosbox
++  core: dosbox_pure
+   options:
+     videomode: default
+ c64:
 @@ -252,11 +252,11 @@
    emulator: moonlight
    core: moonlight
