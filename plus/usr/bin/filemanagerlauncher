@@ -13,7 +13,7 @@ if ! [ -f "${HOME}/.gtk-bookmarks" ]; then
 fi
 
 # Start Menu, default theme.
-if ! [ -f "${HOME}/.config/jgmenu/jgmenurc" ] ; then
+if ! [ -f "${HOME}/.config/jgmenu/jgmenurc" ]; then
     jgmenu_run init --theme=greeneye
 fi
 

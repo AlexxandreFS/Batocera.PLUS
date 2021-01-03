@@ -218,5 +218,8 @@ fi
 ulimit -H -c unlimited
 ulimit -S -c unlimited emulationstation
 
+# dbus launch is required for the gio/gvfs/trash:///...
+eval `dbus-launch --sh-syntax --exit-with-session`
+
 cd /userdata # es needs a PWD
 openbox --config-file /etc/openbox/rc.xml --startup 'emulationstation --windowed --no-splash'
