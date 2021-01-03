@@ -104,6 +104,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/tic80_libretro-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/yabasanshiro_libretro-3.4.2-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/yabause_libretro-0.9.15-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/virtualjaguar_libretro-2.1.0-1.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dolphin-emu-5.0-3.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ppsspp-dee953a-dec-25-2020-1.7z'
