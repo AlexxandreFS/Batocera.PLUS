@@ -65,6 +65,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-batocera-shaders-1.9.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-batocera-plus-shaders-1.9.0-1.7z'
 
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/4do-libretro-1.3.2.4-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/beetle-saturn_libretro-1.22.2-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/blastem_libretro-0.6.3-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bsnes_libretro-115-1.7z'
@@ -94,6 +95,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mupen64plus-next_libretro-2.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nekop2_libretro-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/np2kai_libretro-rev22-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/opera_libretro-1.0.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/parallel_n64_libretro-2.0-rc2-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ppsspp_libretro-dee953a-dec-25-2020-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/quicknes_libretro-1.0-1.7z'
