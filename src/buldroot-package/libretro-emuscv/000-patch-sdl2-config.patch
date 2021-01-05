@@ -1,0 +1,17 @@
+diff --git a/Makefile.libretro b/Makefile.libretro
+index 3dc46d9..5a4fdda 100755
+--- a/Makefile.libretro
++++ b/Makefile.libretro
+@@ -75,9 +75,9 @@ ifneq (,$(findstring unix,$(platform)))
+ 	endif
+ 	CC = gcc
+ 	CXX = gcc
+-	LDFLAGS += -I/usr/include/SDL2 -L/usr/lib/x86_64-linux-gnu -lSDL2
+-	CFLAGS += -I/usr/include/SDL2 `sdl2-config --cflags`
+-	CXXFLAGS += -I/usr/include/SDL2 `sdl2-config --cflags`
++	LDFLAGS += -I. `pkg-config sdl2 --libs`
++	CFLAGS += -I. `pkg-config sdl2 --cflags`
++	CXXFLAGS += -I. `pkg-config sdl2 --cflags`
+ 
+ 	# Raspberry Pi
+ # ---FOR TEST ---
