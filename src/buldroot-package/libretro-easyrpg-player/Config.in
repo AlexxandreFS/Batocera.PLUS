@@ -1,0 +1,13 @@
+config BR2_PACKAGE_LIBRETRO_PLAYER_EASYRPG
+	bool "libretro-easyrpg-player"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_INSTALL_LIBSTDCPP
+	select BR2_PACKAGE_LIBRETRO_EASYRPG_LIBLCF
+
+    help
+      A libretro EasyRPG game engine.
+
+	  https://github.com/EasyRPG/Player
+
+comment "LIBRETRO_EASYRPG needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP

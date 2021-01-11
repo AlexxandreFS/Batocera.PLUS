@@ -1,0 +1,7 @@
+config BR2_PACKAGE_LIBRETRO_EASYRPG_LIBLCF
+	bool "libretro-easyrpg-liblcf"
+	select BR2_PACKAGE_ICU
+	help
+	  Library to handle RPG Maker 2000 and 2003 game data.
+
+	  https://github.com/EasyRPG/liblcf
