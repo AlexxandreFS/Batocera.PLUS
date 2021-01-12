@@ -126,7 +126,8 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mangohud-0.6.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/GOverlay-0.4.2-4.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vkBasalt-0.3.2.3-4.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/parsec-1.7z'
+
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/parsec-2.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/tint2-16.7-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/jgmenu-4.2.1-1.7z'
