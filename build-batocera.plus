@@ -158,7 +158,7 @@ else
     URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/450.66/NVIDIA-Linux-x86_64-450.66.run'
 fi
 
-URL_THEME_A="https://github.com/BatoceraPLUS/Theme-batocera-plus/archive/master.zip#/Theme-batocera-plus-${VERSION}${RELEASE}.zip"
+URL_THEME_A="https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS/archive/master.zip#/Theme-batocera-plus-${VERSION}${RELEASE}.zip"
 URL_FIREFOX="https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US#/firefox-esr-${VERSION}${RELEASE}.tar.bz2"
 URL_JAVA="https://javadl.oracle.com/webapps/download/AutoDL?BundleId=242050_3d5a2bb8f8d4428bbe94aed7ec7ae784#/java-jre-linux-x64-${VERSION}${RELEASE}.tar.gz"
 
