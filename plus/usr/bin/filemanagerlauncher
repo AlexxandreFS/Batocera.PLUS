@@ -15,6 +15,7 @@ fi
 # Start Menu, default theme.
 if ! [ -f "${HOME}/.config/jgmenu/jgmenurc" ]; then
     jgmenu_run init --theme=greeneye
+    cp -f /etc/jgmenu/jgmenurc "${HOME}/.config/jgmenu/jgmenurc"
 fi
 
 # Taskbar
