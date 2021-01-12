@@ -274,10 +274,9 @@ done
 
 echo 'Descompactando tema batocera.plus...'
 PKG_NAME="$(basename "${URL_THEME_A}")"
-unzip "${DOWNLOAD_DIR}/${PKG_NAME}" \
-      -d "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes" || exit $?
-mv "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/Theme-batocera-plus-master" \
-   "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus" || exit $?
+unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" || exit $?
+cp -rf "${TEMP_DIR}/pkg-xtract/ES-Theme-Batocera-PLUS-master" \
+       "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus" || exit $?
 
 echo "Descompactando Wine-Extra Libs..."
 # Remova a linha à baixo (mv) em uma futura atualização.
