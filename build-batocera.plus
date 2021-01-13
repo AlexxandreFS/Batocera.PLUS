@@ -80,6 +80,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/fbalpha2012_libretro-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/flycast_libretro-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/flycast2019_libretro-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/fmsx_libretro-4.9-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/freechaf_libretro-1.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gearsystem_libretro-3.1.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gpsp_libretro-0.91-1.7z'
