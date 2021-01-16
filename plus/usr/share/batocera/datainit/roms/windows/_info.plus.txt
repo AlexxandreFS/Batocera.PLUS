@@ -27,12 +27,18 @@ ________________________________________________________________________________
     UMA VISÃO GERAL SOBRE O WINE
 ________________________________________________________________________________
 
-    Antes de tudo, Leia o manual do wine, https://wiki.winehq.org/FAQ agora
-prossiga com a leitura deste guia.
+    Antes de tudo, Leia o manual do wine no site oficial agora prossiga com a
+leitura deste guia.
+    https://wiki.winehq.org/FAQ 
+    https://wiki.winehq.org/Wine_User's_Guide
 
-    O Batocea.PLUS usa uma versão "turbinada" do Wine chamada de Wine-Staging,
-compilada de forma que consegue executar jogos e programas tanto de 32 quanto de
-64 bits, Windows on Windows (WOW).
+    A fim de manter a maior compatibilidade possível com os mais variados jogos o
+Batocea.PLUS usa diversas versões do Wine, cada versão com um nível de
+compatibilidade diferente, compilada de forma que consegue executar jogos e
+programas tanto de 32 quanto de 64 bits, Windows on Windows (WOW).
+
+    O Batocera.PLUS é o pioneiro na implementação do Proton, uma versão "turbinada"
+do Wine criada pela Valve para rodar jogos de Windows diretamente pela Steam.
 
     Um menu no sistema (Emulationstation) foi adicionado para lançar os jogos
 diretamente pela interface do sistema facilitando assim a execução dos jogos,

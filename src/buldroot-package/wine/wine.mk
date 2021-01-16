@@ -13,46 +13,43 @@ HOST_WINE_DEPENDENCIES  = host-bison host-flex
 ################################################################################
 
 # Wine Stable
-WINE_VERSION = 5.0.2
-WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
-WINE_SITE = https://dl.winehq.org/wine/source/5.0
-WINE_FOLDER_INSTALL = /opt/Wine/wine-stable
+#WINE_VERSION = 6.0
+#WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
+#WINE_SITE = https://dl.winehq.org/wine/source/6.0
+#WINE_FOLDER_INSTALL = /opt/Wine/wine-stable
+
+# Wine Old Stable
+#WINE_VERSION = 5.0.3
+#WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
+#WINE_SITE = https://dl.winehq.org/wine/source/5.0
+#WINE_FOLDER_INSTALL = /opt/Wine/wine-old-stable
 
 # Wine Staging 
-#WINE_VERSION = 5.20
+#WINE_VERSION = 6.0
 #WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
-#WINE_SITE = https://dl.winehq.org/wine/source/5.x
+#WINE_SITE = https://dl.winehq.org/wine/source/6.x
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-staging
 
-# Wine Lutris 5.7-11 (Commits on Oct 15, 2020) (BR lutris-5.7-11)
-#WINE_VERSION = bf5291b6cfcc67762e7acdf1aec0bad7c3046ce1
+# Wine Lutris 6.0 (Commits on Jan 14, 2021) (BR lutris-6.0)
+#WINE_VERSION = f0df5a3e9d112998a64b5ddfee48442367cc38d5
 #WINE_SITE = $(call github,lutris,wine,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-lutris
 
-# Proton Valve 5.13 (Commits on Oct 13, 2020) (BR proton_5.13)
-#WINE_VERSION = b48ce9a2778a4ff7ee14067f0ea73693ed70c52d
+# Proton Valve 5.13 (Commits on Jan 14, 2021) (BR proton_5.13)
+#WINE_VERSION = 2117f849363107537dfc954451ed96237b5b3f9d
 #WINE_SITE = $(call github,ValveSoftware,wine,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/proton-valve
 
-# Proton GE Custom (Commits on Oct 19, 2020)
-#WINE_VERSION = 2c4dc16f26b94e416c999299d076228d4f45c242
+# Proton GE Custom (Commits on Jan 12, 2021)
+#WINE_VERSION = cf6b47c27e7d287ac3cf6efda99e88f04f136ae3
 #WINE_SITE = $(call github,GloriousEggroll,proton-ge-custom,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/proton-ge-custom
 
-# Proton GE Custom 5.9 (Commits on Aug 12, 2020) (BR ge-5.9)
-#WINE_VERSION = 536055316691a51dcf613fd9304b4ce351c0ef6c
-#WINE_SITE = $(call github,GloriousEggroll,wine,$(WINE_VERSION))
-#WINE_FOLDER_INSTALL = /opt/Wine/proton-ge-custom
-
-# Proton TKG 5.19r1 (Commits on Oct 11, 2020)
-#WINE_VERSION = d209174c8372f82b3c46c2242d29d2d5cd8d30df
+# Proton TKG 6.0rc2.r2 (Commits on Dec 15, 2020)
+#WINE_VERSION = f4d9f9e578fc9da54733921af9dd295d89376ad4
 #WINE_SITE = $(call github,Tk-Glitch,wine-proton-tkg,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/proton-tkg
 
-# Wine Media Fundation (Commits on Oct 27, 2020) (BR mfplat_cleanup)
-#WINE_VERSION = 33d71bfb289c8f2273ab2bafbf60e95098e7705f
-#WINE_SITE = $(call github,Guy1524,wine,$(WINE_VERSION))
-#WINE_FOLDER_INSTALL = /opt/Wine/wine-mfplat
 
 ################################################################################
 
@@ -90,11 +87,11 @@ WINE_CONF_OPTS += --with-vulkan
 #WINE_CONF_OPTS += --without-gnutls
 #HOST_WINE_CONF_OPTS += --without-gnutls
 
-ifeq ($(BR2_PACKAGE_FAUDIO),y)
+#ifeq ($(BR2_PACKAGE_FAUDIO),y)
     WINE_CONF_OPTS += --with-faudio
-else
-    WINE_CONF_OPTS += --without-faudio
-endif
+#else
+#    WINE_CONF_OPTS += --without-faudio
+#endif
 
 ################################################################################
 
