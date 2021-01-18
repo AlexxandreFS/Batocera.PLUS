@@ -13,10 +13,10 @@ HOST_WINE_DEPENDENCIES  = host-bison host-flex
 ################################################################################
 
 # Wine Stable
-#WINE_VERSION = 6.0
-#WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
-#WINE_SITE = https://dl.winehq.org/wine/source/6.0
-#WINE_FOLDER_INSTALL = /opt/Wine/wine-stable
+WINE_VERSION = 6.0
+WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
+WINE_SITE = https://dl.winehq.org/wine/source/6.0
+WINE_FOLDER_INSTALL = /opt/Wine/wine-stable
 
 # Wine Old Stable
 #WINE_VERSION = 5.0.3
@@ -30,12 +30,12 @@ HOST_WINE_DEPENDENCIES  = host-bison host-flex
 #WINE_SITE = https://dl.winehq.org/wine/source/6.x
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-staging
 
-# Wine Lutris 6.0 (Commits on Jan 14, 2021) (BR lutris-6.0)
-#WINE_VERSION = f0df5a3e9d112998a64b5ddfee48442367cc38d5
+# Wine Lutris 6.0 (Commits on Jan 15, 2021) (BR lutris-6.0)
+#WINE_VERSION = 256417fed85c0bdc2a1740a39971d564b543eb2d
 #WINE_SITE = $(call github,lutris,wine,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-lutris
 
-# Proton Valve 5.13 (Commits on Jan 14, 2021) (BR proton_5.13)
+# Proton Valve 5.13-5 (Commits on Jan 14, 2021) (BR proton_5.13)
 #WINE_VERSION = 2117f849363107537dfc954451ed96237b5b3f9d
 #WINE_SITE = $(call github,ValveSoftware,wine,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/proton-valve
@@ -44,12 +44,6 @@ HOST_WINE_DEPENDENCIES  = host-bison host-flex
 #WINE_VERSION = cf6b47c27e7d287ac3cf6efda99e88f04f136ae3
 #WINE_SITE = $(call github,GloriousEggroll,proton-ge-custom,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/proton-ge-custom
-
-# Proton TKG 6.0rc2.r2 (Commits on Dec 15, 2020)
-#WINE_VERSION = f4d9f9e578fc9da54733921af9dd295d89376ad4
-#WINE_SITE = $(call github,Tk-Glitch,wine-proton-tkg,$(WINE_VERSION))
-#WINE_FOLDER_INSTALL = /opt/Wine/proton-tkg
-
 
 ################################################################################
 
