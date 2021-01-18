@@ -38,11 +38,11 @@ PATCH_DIR='patch'
 
 URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-valve-5.13-5-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-ge-custom-5.9-5.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-ge-custom-6.0-rc6-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-tkg-5.19.r1-4.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-stable-6.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-staging-6.0-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-lutris-6.0-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-lutris-6.0-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-extra-libs-7.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/DX9Jun2010.7z'
