@@ -1,0 +1,62 @@
+#!/bin/sh
+###
+### Batocera.PLUS
+### Exibe o código dos botões configurados no ES que serão usados para atalhos no mugen.
+###
+
+ES_INPUT_FILES=("$HOME/configs/emulationstation/es_last_input.cfg"
+                "$HOME/configs/emulationstation/es_input.cfg"
+                '/usr/share/batocera/datainit/system/configs/emulationstation/es_input.cfg')
+ES_INPUT=''
+
+function getEsInput() {
+    for ES_INPUT_FILE in ${ES_INPUT_FILES[*]}; do
+        if [ -f "${ES_INPUT_FILE}" ]; then
+            if grep -q "deviceGUID=\"${1}\">" "${ES_INPUT_FILE}"; then
+                ES_INPUT="${ES_INPUT_FILE}"
+                return 0
+            fi
+        fi
+    done
+
+    return 1
+}
+
+if ! [ "${1}" ]; then
+   exit 1
+fi
+
+getEsInput "${1}"
+
+if [ "${?}" == '1' ]; then
+    exit 1
+fi
+
+BUTTONS="$(xml sel -T -t -m "/inputList/inputConfig[@deviceGUID='${1}']/*" -v "concat(@name,'|', @id)" -n "${ES_INPUT}")"
+
+if [ "${BUTTONS}" ]; then
+
+    HOTKEYS=''
+
+    for i in hotkey start select
+    do
+        HOTKEY="$(echo "${BUTTONS}" | grep -E "^${i}" | cut -d '|' -f 2)"
+
+        if ! [ "${HOTKEY}" ]
+        then
+            exit 1
+        fi
+
+        if [ -z "${HOTKEYS}" ]
+        then
+            HOTKEYS="${HOTKEY}"
+        else
+            HOTKEYS="${HOTKEYS} ${HOTKEY}"
+        fi
+    done
+
+    echo "${HOTKEYS}"
+    exit 0
+fi
+
+exit 1

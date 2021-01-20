@@ -1,0 +1,5 @@
+## SYSTEM MUGEN ##
+--------------------------------------------------------------------------------
+ROM files extensions accepted (Batocera.PLUS): ".plus .PLUS"
+--------------------------------------------------------------------------------
+Veja o sistema windows para mais detalhes.
