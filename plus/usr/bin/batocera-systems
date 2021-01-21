@@ -451,12 +451,18 @@ BIOS[neogeocd]="neogeocd,             Neo-Geo CD
     a147aeab5edeb1a9b652e7fb640f5bb3, bios/neocd-unibios.bin
     e255264d85d5765013b1b2fa8109dd53, bios/ng-lo.rom
     f39572af7584cb5b3f70ae8cc848aba2, bios/neocd_z.rom
-    fc7599f3f871578fe9a0453662d1c966, bios/neocd/000-lo.lo
-    e255264d85d5765013b1b2fa8109dd53, bios/neocd/ng-lo.rom
     5c2366f25ff92d71788468ca492ebeca, bios/neocd/front-sp1.bin
-    f39572af7584cb5b3f70ae8cc848aba2, bios/neocd/neocd.bin
     122aee210324c72e8a11116e6ef9c0d0, bios/neocd/top-sp1.bin
+    f39572af7584cb5b3f70ae8cc848aba2, bios/neocd/neocd.bin
+    e255264d85d5765013b1b2fa8109dd53, bios/neocd/ng-lo.rom
+    fc7599f3f871578fe9a0453662d1c966, bios/neocd/000-lo.lo
     a147aeab5edeb1a9b652e7fb640f5bb3, bios/neocd/uni-bioscd.rom
+    8834880c33164ccbe6476b559f3e37de, bios/neocd/neocd_f.rom
+    043d76d5f0ef836500700c34faef774d, bios/neocd/neocd_sf.rom
+    de3cf45d227ad44645b22aa83b49f450, bios/neocd/neocd_t.rom
+    f6325a33c6d63ea4b9162a3fa8c32727, bios/neocd/neocd_st.rom
+    11526d58d4c524daef7d5d677dc6b004, bios/neocd/neocd_z.rom
+    971ee8a36fb72da57aed01758f0a37f5, bios/neocd/neocd_sz.rom
     5a86cff2,                         bios/neogeo.zip/000-lo.lo
     dff6d41f,                         bios/neogeo.zip/japan-j3.bin
     c2ea0cfd,                         bios/neogeo.zip/sfix.sfix
@@ -490,12 +496,6 @@ BIOS[neogeocd]="neogeocd,             Neo-Geo CD
     24858466,                         bios/neogeo.zip/uni-bios_3_3.rom
     a7aab458,                         bios/neogeo.zip/uni-bios_4_0.rom
     f0e8f27d,                         bios/neogeo.zip/vs-bios.rom"
-   #a5f4a7a627b3083c979f6ebe1fabc5d2df6d083b bios/neocd/neocd_f.rom
-   #c99c44a43bded1bff4570b30b74975601bd3f94e bios/neocd/neocd_sf.rom
-   #cc92b54a18a8bff6e595aabe8e5c360ba9e62eb5 bios/neocd/neocd_t.rom
-   #d463b3a322b9674f9e227a21e43898019ce0e642 bios/neocd/neocd_st.rom
-   #b0f1c4fa8d4492a04431805f6537138b842b549f bios/neocd/neocd_z.rom
-   #41ca1c031b844a46387be783ac862c76e65afbb3 bios/neocd/neocd_sz.rom
 
 
 #### Sony Computer Entertainment
