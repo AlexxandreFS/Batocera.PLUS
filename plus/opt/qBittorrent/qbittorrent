@@ -1,0 +1,2 @@
+#!/bin/bash
+exec /opt/qBittorrent/qBittorrent-Enhanced-Edition.AppImage

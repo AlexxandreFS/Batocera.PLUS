@@ -6,7 +6,7 @@
 ################################################################################
 
 # Batocera.PLUS Version 
-VERSION=2.09
+VERSION=2.11
 #RELEASE='dev'
 
 # Nvidia Driver
@@ -172,11 +172,14 @@ URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Curren
 URL_CEMUFAKEFILES='https://github.com/sabotendarsama/fakefiles/releases/download/1.0/fakefiles.zip'
 URL_EXTRAFILES='https://github.com/sabotendarsama/cemuextras/releases/download/v1.0/cemuextras.zip'
 
+URL_QBITTORRENT="https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.3.3.10/qBittorrent-Enhanced-Edition.AppImage"
+
 URL_FLASH="$(curl -s 'https://fpdownload.macromedia.com/pub/flashplayer/masterversion/masterversion.xml' | grep 'NPAPI_linux version' | head -n 1 | cut -d '"' -f 2 | sed 's/,/./g')"
 if ! [ "${URL_FLASH}" ]; then
-    URL_FLASH='32.0.0.414'
+    URL_FLASH='32.0.0.465'
 fi
 URL_FLASH="https://fpdownload.adobe.com/get/flashplayer/pdc/${URL_FLASH}/flash_player_npapi_linux.x86_64.tar.gz#/flash_player_npapi_linux.x86_64_${URL_FLASH}.tar.gz"
+
 
 ################################################################################
 
@@ -192,6 +195,7 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_WINE_VKD3D_PROTON}" \
            "${URL_FIREFOX}" \
            "${URL_JAVA}" \
+           "${URL_QBITTORRENT}" \
            "${URL_FLASH}" \
            "${URL_THEME_A}" \
            "${URL_CEMU}" \
@@ -251,12 +255,12 @@ cp -r -f "$UPDATE_DIR/"* "$TEMP_DIR/squashfs-root" || exit $?
 
 ################################################################################
 
-echo 'Descompactando PKGs...'
+echo 'Install PKGs...'
 
 mkdir -p "${TEMP_DIR}/pkg-xtract"
 
 for PKG in "${URL_BATOCERA_PLUS_PKG[@]}"; do
-    echo -e "\nDescompactando ${PKG_NAME%.*}..."
+    echo -e "\nInstall ${PKG_NAME%.*}..."
     PKG_NAME="$(basename "${PKG}")"
 
     7zr x  "${DOWNLOAD_DIR}/${PKG_NAME}" -o"${TEMP_DIR}/pkg-xtract" || exit $?
@@ -273,24 +277,24 @@ done
 
 ################################################################################
 
-echo 'Descompactando tema batocera.plus...'
+echo 'Install batocera.plus theme...'
 PKG_NAME="$(basename "${URL_THEME_A}")"
 unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" || exit $?
 cp -rf "${TEMP_DIR}/pkg-xtract/ES-Theme-Batocera-PLUS-master" \
        "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus" || exit $?
 
-echo "Descompactando Wine-Extra Libs..."
+echo "Install Wine-Extra Libs..."
 # Remova a linha à baixo (mv) em uma futura atualização.
 mv "${TEMP_DIR}/squashfs-root/opt/Wine/linux" "${TEMP_DIR}"
 
-echo 'Descompactando Wine Mono...'
+echo 'Install Wine Mono...'
 PKG_NAME="$(basename "${URL_WINE_MONO}")"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
 xz -d -k -c -v "${DOWNLOAD_DIR}/${PKG_NAME}" | tar xv -C "${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
 mv "${TEMP_DIR}/squashfs-root/opt/Wine/apps/wine-mono-"* \
    "${TEMP_DIR}/squashfs-root/opt/Wine/apps/mono"
 
-echo 'Descompactando Wine DXVK...'
+echo 'Install Wine DXVK...'
 PKG_NAME="$(basename "${URL_WINE_DXVK}")"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract" || exit $?
@@ -299,7 +303,7 @@ ln -s '/opt/Wine/apps/vkd3d-proton/x32/d3d12.dll' "${TEMP_DIR}/squashfs-root/opt
 ln -s '/opt/Wine/apps/vkd3d-proton/x64/d3d12.dll' "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x64/d3d12.dll" || exit $?
 rm "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/setup_dxvk.sh"
 
-echo 'Descompactando Wine VKD3D_PROTON (DXVK12)...'
+echo 'Install Wine VKD3D_PROTON (DXVK12)...'
 PKG_NAME="$(basename "${URL_WINE_VKD3D_PROTON}")"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x32"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x64"
@@ -314,14 +318,14 @@ fi
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x86/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x32" || exit $?
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x64/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x64" || exit $?
 
-echo 'Descompactando Firefox...'
+echo 'Install Firefox...'
 PKG_NAME="$(basename "${URL_FIREFOX}")"
 bunzip2 -d -k -v -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar x -v -C "${TEMP_DIR}/squashfs-root/opt/Firefox" || exit $?
 mv    "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox/"* \
       "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-esr"
 rmdir "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox"
 
-echo 'Descompactando Flash Player...'
+echo 'Install Flash Player...'
 PKG_NAME="$(basename "${URL_FLASH}")"
 mkdir -p  "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins" || exit $?
@@ -329,19 +333,24 @@ rm -r "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/LGPL" \
       "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/usr"  \
       "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/license.pdf"
 
-echo 'Descompactando Java...'
+echo 'Install qBittorrent...'
+PKG_NAME="$(basename "${URL_QBITTORRENT}")"
+cp "${DOWNLOAD_DIR}/${PKG_NAME}" "${TEMP_DIR}/squashfs-root/opt/qBittorrent/qBittorrent-Enhanced-Edition.AppImage" || exit $?
+chmod +x "${TEMP_DIR}/squashfs-root/opt/qBittorrent/qBittorrent-Enhanced-Edition.AppImage"
+
+echo 'Install Java...'
 PKG_NAME="$(basename "${URL_JAVA}")"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/opt" || exit $?
 mv "${TEMP_DIR}/squashfs-root/opt/jre"*  "${TEMP_DIR}/squashfs-root/opt/Java"
 
-echo 'Descompactando Cemu...'
+echo 'Install Cemu...'
 PKG_NAME="$(basename "${URL_CEMU%.*}")"
 unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/squashfs-root/opt" || exit $?
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Cemu/emulator"
 mv    "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/Cemu/emulator"
 rm -r "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}"
 
-echo 'Descompactando CemuHook...'
+echo 'Install CemuHook...'
 PKG_NAME="$(basename "${URL_CEMUHOOK%.*}")"
 unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}" || exit $?
 mkdir -p  "${TEMP_DIR}/squashfs-root/opt/Cemu/cemuhook"
@@ -349,7 +358,7 @@ rm -r "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/Go to project website for updat
 mv "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/Cemu/cemuhook"
 rmdir "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}"
 
-echo 'Descompactando nvidia driver...'
+echo 'Install nvidia driver...'
 PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"
 chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
 "${DOWNLOAD_DIR}/${PKG_NAME}" -x --target "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}" || exit $?
