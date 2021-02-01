@@ -13,10 +13,10 @@ HOST_WINE_DEPENDENCIES  = host-bison host-flex
 ################################################################################
 
 # Wine Stable
-WINE_VERSION = 6.0
-WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
-WINE_SITE = https://dl.winehq.org/wine/source/6.0
-WINE_FOLDER_INSTALL = /opt/Wine/wine-stable
+#WINE_VERSION = 6.0
+#WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
+#WINE_SITE = https://dl.winehq.org/wine/source/6.0
+#WINE_FOLDER_INSTALL = /opt/Wine/wine-stable
 
 # Wine Old Stable
 #WINE_VERSION = 5.0.3
@@ -25,13 +25,13 @@ WINE_FOLDER_INSTALL = /opt/Wine/wine-stable
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-old-stable
 
 # Wine Staging 
-#WINE_VERSION = 6.0
+#WINE_VERSION = 6.1
 #WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
 #WINE_SITE = https://dl.winehq.org/wine/source/6.x
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-staging
 
-# Wine Lutris 6.0 (Commits on Jan 15, 2021) (BR lutris-6.0)
-#WINE_VERSION = 256417fed85c0bdc2a1740a39971d564b543eb2d
+# Wine Lutris 6.0 (Commits on Jan 25, 2021) (BR lutris-6.0)
+#WINE_VERSION = 089ba1707b877bf85a0dbb828809433fa92823c4
 #WINE_SITE = $(call github,lutris,wine,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-lutris
 
@@ -40,10 +40,10 @@ WINE_FOLDER_INSTALL = /opt/Wine/wine-stable
 #WINE_SITE = $(call github,ValveSoftware,wine,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/proton-valve
 
-# Proton GE Custom (Commits on Jan 12, 2021)
-#WINE_VERSION = cf6b47c27e7d287ac3cf6efda99e88f04f136ae3
-#WINE_SITE = $(call github,GloriousEggroll,proton-ge-custom,$(WINE_VERSION))
-#WINE_FOLDER_INSTALL = /opt/Wine/proton-ge-custom
+# Proton GE Custom Proton-6.0-GE-1 (Commits on Jan 31, 2021)
+WINE_VERSION = 0fd6b1b3b76d019b4f13a2e212c3f889c575f63c
+WINE_SITE = $(call github,GloriousEggroll,proton-ge-custom,$(WINE_VERSION))
+WINE_FOLDER_INSTALL = /opt/Wine/proton-ge-custom
 
 ################################################################################
 
@@ -82,9 +82,9 @@ WINE_CONF_OPTS += --with-vulkan
 #HOST_WINE_CONF_OPTS += --without-gnutls
 
 #ifeq ($(BR2_PACKAGE_FAUDIO),y)
-    WINE_CONF_OPTS += --with-faudio
+#    WINE_CONF_OPTS += --with-faudio
 #else
-#    WINE_CONF_OPTS += --without-faudio
+    WINE_CONF_OPTS += --without-faudio
 #endif
 
 ################################################################################
