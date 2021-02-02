@@ -4,6 +4,6 @@ Icon=/usr/share/icons/batocera/goverlay.png
 Exec=/bin/sh -c "/opt/GOverlay/goverlay"
 Terminal=false
 Type=Application
-Categories=games;batocera.linux;
+Categories=settings;games;batocera.linux;
 Name=goverlay-config
 NoDisplay=false
