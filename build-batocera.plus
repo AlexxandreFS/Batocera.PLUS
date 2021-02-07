@@ -148,7 +148,6 @@ if [ -z "${RELEASE}" ]; then
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/uzem_libretro-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mu_libretro-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/emuscv_libretro-1.7z'
-        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dolphin-ishiiruka-5.0-1.7z'
     )
 fi
 
