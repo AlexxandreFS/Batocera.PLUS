@@ -349,6 +349,38 @@ fi
 
 ################################################################################
 
+### AGUARDA O WINE ENCERRAR A EXECUÇÃO
+
+function wineWait() {
+    ${WINE_DIR}/${WINE_BUILD}/bin/wineserver -w
+
+    for i in {1..15}; do
+        if [ "${i}" == '15' ]; then
+            killwine
+            break
+        fi
+
+        if [ "$(pidof wineserver)" ]; then
+            sleep 1
+            continue
+        fi
+
+        if ! [ -e "${WINEPREFIX}/drive_c" ]; then
+            sleep 1
+            continue
+        fi
+
+        if [ ! -f "${WINEPREFIX}/user.reg" ] || [ ! -f "${WINEPREFIX}/system.reg" ]; then
+            sleep 1
+            continue
+        fi
+
+        break
+    done
+}
+
+################################################################################
+
 ### START WINE NORMALLY
 
 if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
@@ -356,22 +388,10 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
     WINE_VERSION_NEW="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
 
     if [ "${WINE_VERSION}" == "${WINE_VERSION_NEW}" ]; then
+        ${WINE_DIR}/${WINE_BUILD}/bin/wineserver -p0
         nice -n -10 ${MANGOHUD_CMD} "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" ${VIRTUAL_DESKTOP} "${@}"
-
-        # Stop wine
-
-        for i in {1..15}; do
-            if [ "$(pidof wineserver)" ]; then
-                sleep 0.5
-            else
-                exit 0
-            fi
-
-            if [ "${i}" == '15' ]; then
-                killwine
-                exit 1
-            fi
-        done
+        wineWait
+        exit 0
     fi
 fi
 
@@ -407,45 +427,26 @@ unset SAVE_DIR
 
 ### DIRECTX 9 + WINE-MONO (install)
 
-# Se o usuário definir o WINEPREFIX o DirectX e o mono não será instalado, útil para
+# Se o usuário definir o WINEPREFIX o DirectX e o Mono não será instalado, útil para
 # instalações em prefixos diferentes para evitar influências externas.
 
 if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ]; then
     ${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH} ${WINE_DIR}/apps/directx_Jun2010_redist/DXSETUP.exe /silent
+    ${WINE_DIR}/${WINE_BUILD}/bin/wineserver -p0
+    wineWait
 
     mkdir "${WINEPREFIX}/drive_c/windows/mono"
     ln -s "${WINE_DIR}/apps/mono" "${WINEPREFIX}/drive_c/windows/mono/mono-2.0"
 fi
 
-################################################################################
-
-### REINICIA O "WINDOWS"
-
-function wineWait() {
-    for i in {1..60}; do
-        if [ $(pidof -s wineserver) ]; then
-            sleep 1
-            continue
-        fi
-
-        if [ -f "${WINEPREFIX}/user.reg" ] && [ -f "${WINEPREFIX}/system.reg" ]; then
-            sleep 2
-            break
-        fi
-    done
-}
-
-wineWait
-
-"${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" wineboot
-
+${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH} wineboot
 wineWait
 
 ################################################################################
 
 ### USER FOLDERS
 
-for i in "${WINEPREFIX}/drive_c/users/root/"* "${WINEPREFIX}/drive_c/users/0/"* ; do
+for i in "${WINEPREFIX}/drive_c/users/root/"* "${WINEPREFIX}/drive_c/users/0/"*; do
     if [ -L "$i" ]; then
         rm -r "$i"
     fi
