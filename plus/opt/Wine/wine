@@ -431,7 +431,14 @@ unset SAVE_DIR
 # instalações em prefixos diferentes para evitar influências externas.
 
 if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ]; then
-    ${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH} ${WINE_DIR}/apps/directx_Jun2010_redist/DXSETUP.exe /silent
+
+    # O directx não pode ser instalado em refixo de 64 bits.
+    if [ "${WINEARCH}" == 'win64' ]; then
+        unset WINEARCH
+        exec "${WINE_BUILD}" "${@}"
+    fi
+
+    ${WINE_DIR}/${WINE_BUILD}/bin/wine ${WINE_DIR}/apps/directx_Jun2010_redist/DXSETUP.exe /silent
     ${WINE_DIR}/${WINE_BUILD}/bin/wineserver -p0
     wineWait
 
