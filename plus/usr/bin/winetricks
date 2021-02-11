@@ -1,29 +1,4 @@
 #!/bin/sh
-
-################################################################################
-
-### Batocera.PLUS
-
-WINE_BUILD="$(basename "${0}")"
-
-if [ "${WINE_BUILD}" == 'winetricks' ]; then
-    WINE_BUILD='wine-stable'
-else
-    WINE_BUILD="${WINE_BUILD#winetricks-}"
-fi
-
-if [ -z "${WINEPREFIX}" ]; then
-    WINEPREFIX="${HOME}/configs/wine/${WINE_BUILD}"
-fi
-
-export WINEPREFIX
-export PATH="${PATH}:/opt/Wine/${WINE_BUILD}/bin"
-export CORE="${WINE_BUILD}"
-
-unset WINE_BUILD
-
-################################################################################
-
 # shellcheck disable=SC2030,SC2031
 # SC2030: Modification of WINE is local (to subshell caused by (..) group).
 # SC2031: WINE was modified in a subshell. That change might be lost
@@ -3470,9 +3445,7 @@ winetricks_early_wine()
     # Gecko (winezeug bug 223).
     # The tr removes carriage returns so expanded variables don't have crud on the end
     # The grep works around using new wineprefixes with old wine
-    #WINEDEBUG=-all "${WINE}" "$@" 2> "${W_TMP_EARLY}"/early_wine.err.txt | ( sed 's/.*1h.=//' | tr -d '\r' | grep -v -e "Module not found" -e "Could not load wine-gecko" || true)
-
-    WINEDEBUG=-all wine "$@" 2> "${W_TMP_EARLY}"/early_wine.err.txt | ( sed 's/.*1h.=//' | tr -d '\r' | grep -v -e "Module not found" -e "Could not load wine-gecko" || true)
+    WINEDEBUG=-all "${WINE}" "$@" 2> "${W_TMP_EARLY}"/early_wine.err.txt | ( sed 's/.*1h.=//' | tr -d '\r' | grep -v -e "Module not found" -e "Could not load wine-gecko" || true)
 }
 
 # Wrapper around winetricks_early_wine()
@@ -5335,12 +5308,10 @@ winetricks_init()
         USERNAME="${LOGNAME}"
     fi
 
-    # Batocera.PLUS Start
     # Running Wine as root is (generally) bad, mmkay?
-    #if [ "$(id -u)" = 0 ]; then
-    #    w_warn "Running Wine/winetricks as root is highly discouraged. See https://wiki.winehq.org/FAQ#Should_I_run_Wine_as_root.3F"
-    #fi
-    # Batocera.PLUS Stop
+    if [ "$(id -u)" = 0 ]; then
+        w_warn "Running Wine/winetricks as root is highly discouraged. See https://wiki.winehq.org/FAQ#Should_I_run_Wine_as_root.3F"
+    fi
 
     # Ephemeral files for this run
     WINETRICKS_WORKDIR="${W_TMP_EARLY}/w.${LOGNAME}.$$"
@@ -5518,7 +5489,6 @@ winetricks_wine_setup()
     esac
 
     WINETRICKS_WINE_VERSION=${WINETRICKS_WINE_VERSION:-$(winetricks_early_wine --version | sed 's/.*wine/wine/')}
-
     WINETRICKS_ORIG_WINE_VERSION="${WINETRICKS_WINE_VERSION}"
 
     # Need to account for lots of variations:
@@ -5528,17 +5498,13 @@ winetricks_wine_setup()
     # wine-2.0 (Debian 2.0-1)
     # wine-2.0-rc1
     # wine-2.8
-
     _wine_version_stripped="$(echo "${WINETRICKS_WINE_VERSION}" | cut -d ' ' -f1 | sed -e 's/wine-//' -e 's/-rc.*//')"
 
     # If WINE is < 5.0, warn user:
     # 5.0 doesn't do what I thought it would
-
-    # Batocera.PLUS Start
-    #if w_wine_version_in ,4.99 ; then
-    #    w_warn "Your version of wine ${_wine_version_stripped} is no longer supported upstream. You should upgrade to 5.x"
-    #fi
-    # Batocera.PLUS Stop
+    if w_wine_version_in ,4.99 ; then
+        w_warn "Your version of wine ${_wine_version_stripped} is no longer supported upstream. You should upgrade to 5.x"
+    fi
 
     winetricks_set_wineprefix "$1"
 
