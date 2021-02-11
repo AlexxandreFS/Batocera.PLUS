@@ -1,0 +1,13 @@
+##
+## Corrige o problema de corromper o arquivo /boot/asound.state na partição de boot.
+##
+--- S01audio.original
++++ S01audio.modificado
+@@ -17,6 +17,7 @@
+ 	else
+ 		rm -f /boot/asoundrc
+ 	fi
++	sync
+ 	mount -o remount,ro /boot
+ 	echo "OK"
+ }
