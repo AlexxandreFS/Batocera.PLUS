@@ -8,15 +8,15 @@
 ################################################################################
 
 FW="${1}"
-DL="${HOME}/../downloads"
+BIOS="${HOME}/../bios"
 
 export XDG_CONFIG_HOME="${HOME}/configs"
 export XDG_CACHE_HOME="${HOME}/../saves"
 export QT_QPA_PLATFORM=xcb
 
 if [ "${FW}" == '--firmware' ]; then
-   mouse-pointer on
-   # Criando o arquivo básico de configuração
+
+   ### CREATE BASE CONFIG FOR THE FRIST RUN
    mkdir -p "${HOME}/configs/rpcs3/GuiConfigs"
    touch "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
    touch "${HOME}/configs/rpcs3/config.yml"
@@ -50,16 +50,39 @@ if [ "${FW}" == '--firmware' ]; then
    echo '  Frame limit: 60' >> "${HOME}/configs/rpcs3/config.yml"
    echo '  Renderer: Vulkan' >> "${HOME}/configs/rpcs3/config.yml"
    
-   # Download do firmware
-   if [ -f "${HOME}/../bios/PS3UPDAT.PUP" ]; then
-       FILE="${HOME}/../bios/PS3UPDAT.PUP"
-   else
-       rm -f "${DL}/PS3UPDAT.PUP" # apaga download incompleto se houver
-	   FILE="${DL}/PS3UPDAT.PUP"
-       /opt/Downloader/downloader.sh 'http://dbr01.ps3.update.playstation.net/update/ps3/image/br/2020_1203_03373a581934f0d2b796156d2fb28b39/PS3UPDAT.PUP' "${DL}"	  
+   ### FIRMWARE INSTALL
+   if [ -f "${BIOS}/PS3UPDAT.PUP" ]; then
+       FILE="${BIOS}/PS3UPDAT.PUP"
+   else       	   
+	   ### INTERNET CONNECTION CHECK
+	   wget -q --spider http://google.com
+	   if [ $? -eq 0 ]; then
+	   
+	       ### LOADING SCREEN
+           batocera-load-screen -t 600 -i /opt/Ps3/fd.png &
+           
+		   ### DOWNLOADING FIRMWARE
+		   rm -f "${BIOS}/PS3UPDAT.PUP" # apaga download incompleto se houver
+	       curl -L -C - 'http://dbr01.ps3.update.playstation.net/update/ps3/image/br/2020_1203_03373a581934f0d2b796156d2fb28b39/PS3UPDAT.PUP' -o "${BIOS}/PS3UPDAT.PUP"
+	       FILE="${BIOS}/PS3UPDAT.PUP"
+		   
+		   ### STOP LOADING SCREEN
+           if [ "$(pidof yad)" ]; then
+               killall yad
+           fi
+
+           wait
+
+	   else
+           ### ABORT FIRMWARE DOWNLOADING
+           batocera-load-screen -t 600 -i /opt/Ps3/fdf.png &
+		   sleep 5
+		   killall yad
+		   exit 0		   
+       fi
    fi
    
-   # Instalando o firmware
+   ### INSTALLS FIRMWARE
    exec /usr/bin/rpcs3 --installfw "${FILE}" &
    
    for i in {1..100}; do
@@ -68,18 +91,18 @@ if [ "${FW}" == '--firmware' ]; then
 		  continue &
 	   fi
 	   
-	   # Esse arquivo sempre é o último a ser feito o cache pelo rpcs3
+	   ### THIS THE LAST FILE MAKE BY RPCS3 DURING FW INSTALATION AND CACHE CREATION
        if [ -f "${HOME}/../saves/rpcs3/cache/ppu-ogZ9XMwLZb70cCsiaswxN1kKG5ts-libpngenc.sprx/v3-kusa-GUaqd0R8vrnMWoH17WjSzY-00000s-haswell.obj.gz" ]; then
 	       killall rpcs3
 	       break
 	   fi
    done
    
-   #Apaga a firmware depois de instalada
-   rm -f "${DL}/PS3UPDAT.PUP"
+   ### DELETE FIRMWARE AFTER INSTALATION, WHE DONT NEED ANYMORE
+   rm -f "${BIOS}/PS3UPDAT.PUP"
 
 else
-   # Executa o rpcs3 se a firmware já estiver instalada
+   ### RUN RPCS3 BY F1 MENU SHORTCUT
    exec /usr/bin/rpcs3
 fi
 
