@@ -178,7 +178,7 @@ fi
 
 ### VSYNC
 
-if [ "${VSYNC}" == 'off' ] || [ "${VSYNC}" == 'on' ]; then
+if [ "${VSYNC}" == 'auto' ] || [ "${VSYNC}" == 'on' ]; then
     sed -i s/'^ForceSync=.*/ForceSync=1/' "${MODEL2}/Emulator.ini"
 else
     sed -i s/'^ForceSync=.*/ForceSync=0/' "${MODEL2}/Emulator.ini"
@@ -193,12 +193,12 @@ if [ "${DRAWCROSS}" == 'auto' ] || [ "${DRAWCROSS}" == 'off' ]; then
     mouse-pointer off
     sed -i s/'^DrawCross=.*/DrawCross=0/' "${MODEL2}/Emulator.ini"
     sed -i s/'^RawDevP1=.*/RawDevP1=0/'   "${MODEL2}/Emulator.ini"
-    sed -i s/'^RawDevP2=.*/RawDevP1=0/'   "${MODEL2}/Emulator.ini"
+    sed -i s/'^RawDevP2=.*/RawDevP2=0/'   "${MODEL2}/Emulator.ini"
 else
     mouse-pointer on
     sed -i s/'^DrawCross=.*/DrawCross=1/' "${MODEL2}/Emulator.ini"
     sed -i s/'^RawDevP1=.*/RawDevP1=0/'   "${MODEL2}/Emulator.ini"
-    sed -i s/'^RawDevP2=.*/RawDevP1=1/'   "${MODEL2}/Emulator.ini"
+    sed -i s/'^RawDevP2=.*/RawDevP2=1/'   "${MODEL2}/Emulator.ini"
 fi
 
 ################################################################################
