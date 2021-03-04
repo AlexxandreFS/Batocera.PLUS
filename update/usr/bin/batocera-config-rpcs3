@@ -14,9 +14,8 @@ export XDG_CONFIG_HOME="${HOME}/configs"
 export XDG_CACHE_HOME="${HOME}/../saves"
 export QT_QPA_PLATFORM=xcb
 
-if [ "${FW}" == '--firmware' ]; then
-
-   ### CREATE BASE CONFIG FOR THE FRIST RUN
+function CreateConfigs()
+{
    mkdir -p "${HOME}/configs/rpcs3/GuiConfigs"
    touch "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
    touch "${HOME}/configs/rpcs3/config.yml"
@@ -49,6 +48,12 @@ if [ "${FW}" == '--firmware' ]; then
    echo 'Video:' >> "${HOME}/configs/rpcs3/config.yml"
    echo '  Frame limit: 60' >> "${HOME}/configs/rpcs3/config.yml"
    echo '  Renderer: Vulkan' >> "${HOME}/configs/rpcs3/config.yml"
+}
+
+if [ "${FW}" == '--firmware' ]; then
+
+   ### CREATE BASE CONFIG FOR THE FRIST RUN
+   CreateConfigs   
    
    ### FIRMWARE INSTALL
    if [ -f "${BIOS}/PS3UPDAT.PUP" ]; then
@@ -102,6 +107,10 @@ if [ "${FW}" == '--firmware' ]; then
    rm -f "${BIOS}/PS3UPDAT.PUP"
 
 else
+
+   if [ ! "$(ls -A "${HOME}/configs/rpcs3"  2> /dev/null)" ]; then
+       CreateConfigs
+   fi
    ### RUN RPCS3 BY F1 MENU SHORTCUT
    exec /usr/bin/rpcs3
 fi
