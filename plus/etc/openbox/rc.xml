@@ -112,6 +112,11 @@
             <fullscreen></fullscreen>
         </application>
 
+        <application name="rpcs3">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+        </application>
+
         <application name="parsecd">
             <decor>yes</decor>
             <fullscreen></fullscreen>

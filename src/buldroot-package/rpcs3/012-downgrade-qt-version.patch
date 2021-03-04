@@ -1,0 +1,136 @@
+diff --git a/3rdparty/qt5.cmake b/3rdparty/qt5.cmake
+index 914ba435..d0b4c46b 100644
+--- a/3rdparty/qt5.cmake
++++ b/3rdparty/qt5.cmake
+@@ -1,6 +1,6 @@
+ add_library(3rdparty_qt5 INTERFACE)
+ 
+-set(QT_MIN_VER 5.15.2)
++set(QT_MIN_VER 5.14.2)
+ 
+ find_package(Qt5 ${QT_MIN_VER} CONFIG COMPONENTS Widgets Concurrent)
+ if(WIN32)
+diff --git a/rpcs3/rpcs3qt/kernel_explorer.cpp b/rpcs3/rpcs3qt/kernel_explorer.cpp
+index f0c18756..ae9c9ec5 100644
+--- a/rpcs3/rpcs3qt/kernel_explorer.cpp
++++ b/rpcs3/rpcs3qt/kernel_explorer.cpp
+@@ -94,7 +94,7 @@ static QTreeWidgetItem* find_first_node(QTreeWidget* tree, QTreeWidgetItem *pare
+ {
+ 	if (tree && parent)
+ 	{
+-		for (auto item : tree->findItems(regexp, Qt::MatchFlag::MatchRegularExpression | Qt::MatchFlag::MatchRecursive))
++		for (auto item : tree->findItems(regexp, Qt::MatchFlag::MatchRegExp | Qt::MatchFlag::MatchRecursive))
+ 		{
+ 			if (item->parent() == parent && item->data(0, kernel_item_role::type_role).toInt() != kernel_item_type::leaf)
+ 			{
+@@ -109,7 +109,7 @@ static QTreeWidgetItem* find_node(QTreeWidget* tree, u32 id)
+ {
+ 	if (tree)
+ 	{
+-		for (auto item : tree->findItems(".*", Qt::MatchFlag::MatchRegularExpression | Qt::MatchFlag::MatchRecursive))
++		for (auto item : tree->findItems(".*", Qt::MatchFlag::MatchRegExp | Qt::MatchFlag::MatchRecursive))
+ 		{
+ 			if (item->data(0, kernel_item_role::type_role).toInt() == kernel_item_type::node &&
+ 				item->data(0, kernel_item_role::id_role).toUInt() == id)
+diff --git a/rpcs3/rpcs3qt/pad_settings_dialog.cpp b/rpcs3/rpcs3qt/pad_settings_dialog.cpp
+index 94961710..7099f0ed 100644
+--- a/rpcs3/rpcs3qt/pad_settings_dialog.cpp
++++ b/rpcs3/rpcs3qt/pad_settings_dialog.cpp
+@@ -223,7 +223,7 @@ pad_settings_dialog::pad_settings_dialog(std::shared_ptr<gui_settings> gui_setti
+ 	SubscribeTooltips();
+ 
+ 	// Repaint controller image
+-	ui->l_controller->setPixmap(gui::utils::get_colorized_pixmap(ui->l_controller->pixmap(Qt::ReturnByValue), QColor(), gui::utils::get_label_color("l_controller"), false, true));
++	ui->l_controller->setPixmap(gui::utils::get_colorized_pixmap(*ui->l_controller->pixmap(), QColor(), gui::utils::get_label_color("l_controller"), false, true));
+ 
+ 	// Show default widgets first in order to calculate the required size for the scroll area (see pad_settings_dialog::ResizeDialog)
+ 	ui->left_stack->setCurrentIndex(0);
+@@ -302,7 +302,7 @@ void pad_settings_dialog::InitButtons()
+ 	m_pad_buttons->addButton(ui->b_refresh, button_ids::id_refresh);
+ 	m_pad_buttons->addButton(ui->b_addProfile, button_ids::id_add_profile);
+ 
+-	connect(m_pad_buttons, &QButtonGroup::idClicked, this, &pad_settings_dialog::OnPadButtonClicked);
++	connect(m_pad_buttons, static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &pad_settings_dialog::OnPadButtonClicked);
+ 
+ 	connect(&m_timer, &QTimer::timeout, this, [this]()
+ 	{
+@@ -1272,7 +1272,7 @@ void pad_settings_dialog::ChangeInputType()
+ 	{
+ 		if (is_ldd_pad)
+ 		{
+-			ui->chooseDevice->setPlaceholderText(tr("Custom Controller"));
++			ui->chooseDevice->addItem(tr("Custom Controller"));
+ 			break;
+ 		}
+ 		[[fallthrough]];
+@@ -1336,11 +1336,11 @@ void pad_settings_dialog::ChangeInputType()
+ 	}
+ 	else
+ 	{
+-		ui->chooseProfile->setPlaceholderText(tr("No Profiles"));
++		ui->chooseProfile->addItem(tr("No Profiles"));
+ 
+ 		if (ui->chooseDevice->count() == 0)
+ 		{
+-			ui->chooseDevice->setPlaceholderText(tr("No Device Detected"));
++			ui->chooseDevice->addItem(tr("No Device Detected"));
+ 		}
+ 	}
+ 
+diff --git a/rpcs3/rpcs3qt/patch_manager_dialog.cpp b/rpcs3/rpcs3qt/patch_manager_dialog.cpp
+index 2a24d45b..469a937c 100644
+--- a/rpcs3/rpcs3qt/patch_manager_dialog.cpp
++++ b/rpcs3/rpcs3qt/patch_manager_dialog.cpp
+@@ -192,7 +192,7 @@ void patch_manager_dialog::populate_tree()
+ {
+ 	// "Reset" currently used items. Items that aren't persisted will be removed later.
+ 	// Using this logic instead of clearing the tree here should persist the expanded status of items.
+-	for (auto item : ui->patch_tree->findItems(".*", Qt::MatchFlag::MatchRegularExpression | Qt::MatchFlag::MatchRecursive))
++	for (auto item : ui->patch_tree->findItems(".*", Qt::MatchFlag::MatchRegExp | Qt::MatchFlag::MatchRecursive))
+ 	{
+ 		if (item)
+ 		{
+@@ -417,7 +417,7 @@ void patch_manager_dialog::filter_patches(const QString& term)
+ 	};
+ 
+ 	// Go through each top level item and try to find matches
+-	for (auto top_level_item : ui->patch_tree->findItems(".*", Qt::MatchRegularExpression))
++	for (auto top_level_item : ui->patch_tree->findItems(".*", Qt::MatchRegExp))
+ 	{
+ 		show_matches(top_level_item, false);
+ 	}
+diff --git a/rpcs3/rpcs3qt/screenshot_preview.cpp b/rpcs3/rpcs3qt/screenshot_preview.cpp
+index fa239efb..b1a6534a 100644
+--- a/rpcs3/rpcs3qt/screenshot_preview.cpp
++++ b/rpcs3/rpcs3qt/screenshot_preview.cpp
+@@ -37,7 +37,7 @@ void screenshot_preview::show_context_menu(const QPoint & pos)
+ 	menu->addSeparator();
+ 
+ 	QAction* reset_act = menu->addAction(tr("To &Normal Size"), [this]() { scale(m_image.size()); });
+-	reset_act->setEnabled(pixmap(Qt::ReturnByValue).size() != m_image.size());
++	reset_act->setEnabled(pixmap()->size() != m_image.size());
+ 
+ 	QAction* stretch_act = menu->addAction(tr("&Stretch to size"), [this]() { m_stretch = !m_stretch; scale(size()); });
+ 	stretch_act->setCheckable(true);
+diff --git a/rpcs3/rpcs3qt/settings_dialog.cpp b/rpcs3/rpcs3qt/settings_dialog.cpp
+index 953dcc89..fbfaf73a 100644
+--- a/rpcs3/rpcs3qt/settings_dialog.cpp
++++ b/rpcs3/rpcs3qt/settings_dialog.cpp
+@@ -245,7 +245,7 @@ settings_dialog::settings_dialog(std::shared_ptr<gui_settings> gui_settings, std
+ 	else
+ 	{
+ 		ui->enableTSX->setEnabled(false);
+-		ui->enableTSX->setPlaceholderText(tr("Not supported", "Enable TSX"));
++		ui->enableTSX->addItem(tr("Not supported", "Enable TSX"));
+ 		SubscribeTooltip(ui->enableTSX, tr("Unfortunately your CPU model does not support this instruction set.", "Enable TSX"));
+ 
+ 		m_emu_settings->SetSetting(emu_settings_type::EnableTSX, fmt::format("%s", tsx_usage::disabled));
+@@ -570,7 +570,7 @@ settings_dialog::settings_dialog(std::shared_ptr<gui_settings> gui_settings, std
+ 			if (!renderer.has_adapters)
+ 			{
+ 				ui->graphicsAdapterBox->clear();
+-				ui->graphicsAdapterBox->setPlaceholderText(tr("Not needed for %0 renderer", "Graphics adapter").arg(text));
++				ui->graphicsAdapterBox->addItem(tr("Not needed for %0 renderer", "Graphics adapter").arg(text));
+ 				return;
+ 			}
+ 

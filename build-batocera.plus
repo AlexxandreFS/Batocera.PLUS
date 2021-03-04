@@ -113,7 +113,7 @@ URL_BATOCERA_PLUS_PKG=(
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dolphin-emu-5.0-3.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ppsspp-dee953a-dec-25-2020-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3-2.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3-0.0.15-1.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bzip2-1.0.8.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/unrar-5.90-1.7z'
