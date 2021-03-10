@@ -1,0 +1,11 @@
+config BR2_PACKAGE_LIBRETRO_FBALPHA2012_CPS1
+        bool "libretro-fbalpha2012-cps1"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_INSTALL_LIBSTDCPP
+        help
+          A libretro FBA core.
+
+	  http://www.libretro.com
+
+comment "LIBRETRO_FBALPHA2012_CPS1 needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP

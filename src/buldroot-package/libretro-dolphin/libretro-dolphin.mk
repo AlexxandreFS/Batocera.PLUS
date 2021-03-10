@@ -4,9 +4,9 @@
 #
 ################################################################################
 
-# Version.: Commits on Oct 23, 2020
+# Version.: Commits on Feb 9, 2021
 # Libretro Dolphin
-LIBRETRO_DOLPHIN_VERSION = 7510bb279a371a1c53ebe8dd20214df2eb89794e
+LIBRETRO_DOLPHIN_VERSION = 2aa63c671241a8ea8502b654bb9c808fbbf6ce0b
 LIBRETRO_DOLPHIN_SITE = $(call github,libretro,dolphin,$(LIBRETRO_DOLPHIN_VERSION))
 
 # Libretro Ishiiruka

@@ -3,8 +3,8 @@
 # MAME2016
 #
 ################################################################################
-# Version.: Commits on Feb 7, 2020
-LIBRETRO_MAME2016_VERSION = 02987af9b81a9c3294af8fb9d5a34f9826a2cf4d
+# Version.: Commits on Jun 22, 2020
+LIBRETRO_MAME2016_VERSION = d53c379892b0bd91b4a52fc2de491e1199f03e32
 LIBRETRO_MAME2016_SITE = $(call github,libretro,mame2016-libretro,$(LIBRETRO_MAME2016_VERSION))
 LIBRETRO_MAME2016_LICENSE="MAME"
 

@@ -1,10 +1,10 @@
 ################################################################################
 #
-# FBNEO
+# FBA
 #
 ################################################################################
-# Version.: Commits on Oct 9, 2020
-LIBRETRO_FBALPHA2012_VERSION = e0c7990dd24f4c60324843b095566d0ac0d1a015
+# Version.: Commits on Feb 21, 2021
+LIBRETRO_FBALPHA2012_VERSION = a292dacd7249b3d8c1178d5c52c54d60f8099323
 LIBRETRO_FBALPHA2012_SITE = $(call github,libretro,fbalpha2012,$(LIBRETRO_FBALPHA2012_VERSION))
 LIBRETRO_FBALPHA2012_LICENSE = Non-commercial
 

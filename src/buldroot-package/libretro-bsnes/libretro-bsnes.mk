@@ -3,9 +3,9 @@
 # BSNES
 #
 ################################################################################
-# Version.: Commits on Nov 12, 2020
+# Version.: Commits on Mar 4, 2021
 # Batocera.PLUS Start
-LIBRETRO_BSNES_VERSION = 67d8586720c114cfbd44ac6c8eeb3f00492184ab
+LIBRETRO_BSNES_VERSION = 73b275a7d0fadcc777e1b344093687c84d02eddd
 LIBRETRO_BSNES_SITE = $(call github,bsnes-emu,bsnes,$(LIBRETRO_BSNES_VERSION))
 LIBRETRO_BSNES_LICENSE = GPLv3
 # Batocera.PLUS End

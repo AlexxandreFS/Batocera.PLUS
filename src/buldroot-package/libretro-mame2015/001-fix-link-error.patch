@@ -1,0 +1,13 @@
+diff --git a/Makefile b/Makefile
+index 4cdf716..c84cfc7 100644
+--- a/Makefile
++++ b/Makefile
+@@ -50,7 +50,7 @@ ifeq ($(TARGET),)
+ endif
+ 
+ EXE =
+-LIBS =
++LIBS = -lm
+ 
+ CORE_DIR := .
+ 

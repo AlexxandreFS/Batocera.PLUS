@@ -3,9 +3,9 @@
 # LIBRETRO DUCKSTATION
 #
 ################################################################################
-# Version.: Commits on Nov 19, 2020
-LIBRETRO_DUCKSTATION_VERSION = aa3ce14ef32a5c868e22a6f3beef836e55359c86
-LIBRETRO_DUCKSTATION_SITE = $(call github,stenzek,duckstation,$(LIBRETRO_DUCKSTATION_VERSION))
+# Version.: Commits on Feb 4, 2021
+LIBRETRO_DUCKSTATION_VERSION = abb76310c4fcefb86fb72b08482c332492e70c27
+LIBRETRO_DUCKSTATION_SITE = $(call github,libretro,duckstation,$(LIBRETRO_DUCKSTATION_VERSION))
 LIBRETRO_DUCKSTATION_LICENSE = GPLv3
 LIBRETRO_DUCKSTATION_SUPPORTS_IN_SOURCE_BUILD = NO
 LIBRETRO_DUCKSTATION_DEPENDENCIES = fmt boost ffmpeg sdl2

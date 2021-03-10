@@ -3,8 +3,8 @@
 # METEOR
 #
 ################################################################################
-# Version.: Commits on Oct 12, 2020
-LIBRETRO_METEOR_VERSION = bc6bbc06f00afd69803fe30a923be9bb95c73cb6
+# Version.: Commits on Dec 28, 2020
+LIBRETRO_METEOR_VERSION = e533d300d0561564451bde55a2b73119c768453c
 LIBRETRO_METEOR_SITE = $(call github,libretro,meteor-libretro,$(LIBRETRO_METEOR_VERSION))
 LIBRETRO_METEOR_LICENSE="GPLv3"
 

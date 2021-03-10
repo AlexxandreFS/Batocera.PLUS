@@ -1,0 +1,9 @@
+config BR2_PACKAGE_LIBRETRO_PLAY
+	bool "libretro-play"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_INSTALL_LIBSTDCPP
+	help
+          A libretro PS2 emulator core.
+
+comment "LIBRETRO_PLAY needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP

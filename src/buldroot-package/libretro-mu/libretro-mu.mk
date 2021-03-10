@@ -3,8 +3,8 @@
 # LIBRETRO_MU
 #
 ################################################################################
-# Version.: Commits on Jan 2, 2021
-LIBRETRO_MU_VERSION = e140a25c5b0d32682f107bc769f3ae78603a4187
+# Version.: Commits on Feb 14, 2021
+LIBRETRO_MU_VERSION = ff746b8196dbd9fa7ccb4f26b8f3089380f75116
 LIBRETRO_MU_SITE = $(call github,libretro,Mu,$(LIBRETRO_MU_VERSION))
 LIBRETRO_MU_LICENSE = Unknown
 

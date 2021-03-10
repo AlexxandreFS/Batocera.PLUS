@@ -18,7 +18,7 @@ endef
 
 define LIBRETRO_SIMCOUPE_INSTALL_TARGET_CMDS
 	$(INSTALL) -D $(@D)/libretro-simcp.so \
-		$(TARGET_DIR)/usr/lib/libretro/libretro-simcp.so
+		$(TARGET_DIR)/usr/lib/libretro/simcp_libretro.so
 endef
 
 $(eval $(generic-package))

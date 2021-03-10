@@ -3,8 +3,8 @@
 # LIBRETRO_UZEM
 #
 ################################################################################
-# Version.: Commits on Jan 2, 2021
-LIBRETRO_UZEM_VERSION = af018dd831ee55d443203ca3b877ab8eaaace709
+# Version.: Commits on Jan 8, 2021
+LIBRETRO_UZEM_VERSION = 1c4fe15dcfa821ff578f3d373162bc29bd4f90ff
 LIBRETRO_UZEM_SITE = $(call github,libretro,libretro-uzem,$(LIBRETRO_UZEM_VERSION))
 LIBRETRO_CROCODS_LICENSE = Unknown
 

@@ -3,8 +3,8 @@
 # MAME2003
 #
 ################################################################################
-# Version.: Commits on Jan 12, 2020 
-LIBRETRO_MAME2003_VERSION = 82596014905ad38c80c9eb322ab08c625d1d92cd
+# Version.: Commits on Feb 28, 2021
+LIBRETRO_MAME2003_VERSION = 67c10fa652bdcab7d6b3058b3adb1d5ae2d30b11
 LIBRETRO_MAME2003_SITE = $(call github,libretro,mame2003-libretro,$(LIBRETRO_MAME2003_VERSION))
 LIBRETRO_MAME2003_LICENSE="MAME"
 

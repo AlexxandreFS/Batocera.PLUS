@@ -1,0 +1,13 @@
+diff --git a/Makefile b/Makefile
+index c7d1745..015cab5 100644
+--- a/Makefile
++++ b/Makefile
+@@ -28,7 +28,7 @@ TARGET_NAME   := flycast
+ ifeq ($(HAVE_CLANG),1)
+ 	CXX      = ${CC_PREFIX}clang++
+ 	CC       = ${CC_PREFIX}clang
+-	SHARED   := -fuse-ld=lld
++	SHARED   :=
+ else
+ 	CXX      ?= ${CC_PREFIX}g++
+ 	CC       ?= ${CC_PREFIX}gcc

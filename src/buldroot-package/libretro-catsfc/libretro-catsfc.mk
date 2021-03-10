@@ -3,8 +3,8 @@
 # CATSFC
 #
 ################################################################################
-# Version.: Oct 22, 2020
-LIBRETRO_CATSFC_VERSION = cab0a74b89a3c57608149893ef1545cabf1f5a46
+# Version.: Feb 14, 2021
+LIBRETRO_CATSFC_VERSION = 218be8ef543fc25a603f20a2a3ee79fc7cdad611
 LIBRETRO_CATSFC_SITE = $(call github,libretro,snes9x2005,$(LIBRETRO_CATSFC_VERSION))
 LIBRETRO_CATSFC_LICENSE="Non-commercial"
 
