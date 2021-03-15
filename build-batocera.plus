@@ -207,7 +207,6 @@ if [ -z "${RELEASE}" ]; then
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame0199_libretro-jul-8-2018-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mu_libretro-feb-14-2021-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/play_libretro-mar-8-2021-1.7z'
-        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pocketsnes_libretro-feb-14-2021-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/simcp_libretro-aug-17-2019-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/uzem_libretro-jan-8-2021-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/x1_libretro-jan-8-2021-1.7z'
