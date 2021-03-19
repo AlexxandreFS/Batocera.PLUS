@@ -1,0 +1,10 @@
+--- configgen-defaults-arch.yml.original
++++ configgen-defaults-arch.yml.modificado
+@@ -14,5 +14,5 @@
+   emulator: libretro
+   core:     pce
+ dreamcast:
+-  emulator: flycast
++  emulator: libretro
+   core: flycast
+\ No newline at end of file
