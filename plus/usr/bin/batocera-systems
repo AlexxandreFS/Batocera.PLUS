@@ -162,8 +162,8 @@ BIOS[gba]="gba,                       Game Boy Advance
     d574d4f9c12f305074798f54c091a8b4, bios/sgb_bios.bin"
 
 BIOS[snes]="snes,                     Super Nintendo Entertainment System
-    d574d4f9c12f305074798f54c091a8b4, bios/SGB1.sfc
-    b4331a9e612b4738867a30af9c96df52, bios/SGB2.sfc
+    b15ddb15721c657d82c5bab6db982ee9, bios/SGB1.sfc
+    8ecd73eb4edf7ed7e81aef1be80031d5, bios/SGB2.sfc
     037ac4296b6b6a5c47c440188d3c72e3, bios/cx4.data.rom
     3d81b45fa0c2aa8b852dfb1ece7c0971, bios/dsp1.data.rom
     ae209fbe789fbf11a48aea5ab1197321, bios/dsp1.program.rom
