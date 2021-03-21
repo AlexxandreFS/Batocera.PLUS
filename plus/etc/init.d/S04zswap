@@ -1,0 +1,71 @@
+#!/bin/sh
+
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+
+SWAP_DEVS=''
+
+function findSwapDev()
+{
+    SWAP_DEVS="$(LC_ALL=C fdisk -l | grep 'Linux swap' | cut -d ' ' -f 1)"
+
+    if [ -z "${SWAP_DEVS}" ]
+    then
+        return
+    fi
+
+    for SWAP_DEV in ${SWAP_DEVS}
+    do
+        # Check if swap device exist.
+        if ! [ -e "${SWAP_DEV}" ]
+        then
+            return
+        fi
+    done
+}
+
+function zswapStart()
+{
+    findSwapDev
+
+    # Enable zswap.
+    echo 'Y'   > /sys/module/zswap/parameters/enabled
+    echo 'lz4' > /sys/module/zswap/parameters/compressor
+
+    # Enable swap.
+    for SWAP_DEV in ${SWAP_DEVS}
+    do
+        if ! swapon -e ${SWAP_DEV} 2> /dev/null
+        then
+            return
+        fi
+    done
+}
+
+function zswapStop()
+{
+    findSwapDev
+
+    for SWAP_DEV in ${SWAP_DEVS}
+    do
+        swapoff ${SWAP_DEV}
+    done
+}
+
+case "${1}" in
+    start)
+        zswapStart
+        ;;
+    stop)
+        zswapStop
+        ;;
+    restart|reload)
+        zswapStop
+        sleep 1
+        zswapStart
+        ;;
+    *)
+        echo "usage: ${0}  start|stop|restart"
+esac
+
+exit 0
