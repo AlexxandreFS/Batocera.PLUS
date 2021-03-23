@@ -65,7 +65,7 @@
    core:     wine
  windows_installers:
    emulator: wine
-@@ -302,3 +302,54 @@
+@@ -302,3 +302,57 @@
  ps3:
    emulator: rpcs3
    core:     rpcs3
@@ -120,3 +120,6 @@
 +megadrivemsu1:
 +  emulator: libretro
 +  core:     genesisplusgx
++tic80:
++  emulator: libretro
++  core:     tic80
