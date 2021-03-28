@@ -15,11 +15,17 @@ function zRamStart() {
     elif [[ ${MEM_TOTAL} < 2200000000 ]]; then
         MEM_TOTAL=512M
     elif [[ ${MEM_TOTAL} < 3200000000 ]]; then
-        MEM_TOTAL=1G
+        MEM_TOTAL=1024M
     elif [[ ${MEM_TOTAL} < 4200000000 ]]; then
-        MEM_TOTAL=1.5G
+        MEM_TOTAL=1536M
+    elif [[ ${MEM_TOTAL} < 6200000000 ]]; then
+        MEM_TOTAL=2048M
+    elif [[ ${MEM_TOTAL} < 8200000000 ]]; then
+        MEM_TOTAL=2560M
+    elif [[ ${MEM_TOTAL} < 10200000000 ]]; then
+        MEM_TOTAL=3072M
     else
-        MEM_TOTAL=2G
+        MEM_TOTAL=4096M
     fi
 
     modprobe zram || return 10
@@ -27,12 +33,12 @@ function zRamStart() {
 
     mkswap /dev/zram0 > /dev/null || return 20
 
-    swapon /dev/zram0 || return 25
+    swapon -p 32767 /dev/zram0 || return 25
 }
 
 function zRamStop() {
     if ! [ -e /dev/zram0 ]; then
-        return 27
+        return 3
     fi
 
     swapoff /dev/zram0 || return 30

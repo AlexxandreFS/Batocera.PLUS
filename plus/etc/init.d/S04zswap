@@ -35,7 +35,7 @@ function zswapStart()
     # Enable swap.
     for SWAP_DEV in ${SWAP_DEVS}
     do
-        if ! swapon -e ${SWAP_DEV} 2> /dev/null
+        if ! swapon -p 1 ${SWAP_DEV} 2> /dev/null
         then
             return
         fi
