@@ -1,0 +1,98 @@
+#!/bin/bash
+
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+
+set -e
+
+function zRamStop()
+{
+    if ! [ "$(lsmod | grep zram)" ]
+    then
+        return 0
+    fi
+
+    local CPUS=$(grep -c ^processor /proc/cpuinfo)
+
+    for CPU in $(seq ${CPUS})
+    do
+        CPU=$((CPU - 1))
+        swapoff /dev/zram${CPU}
+    done
+
+    modprobe -r zram
+
+    # Default values (/proc/sys/vm/)
+    sysctl -q -w \
+        vm.swappiness=60 \
+        vm.vfs_cache_pressure=100 \
+        vm.dirty_background_ratio=10 \
+        vm.dirty_ratio=20 \
+        vm.page-cluster=3
+}
+
+function zRamStart()
+{
+    if [ "$(lsmod | grep zram)" ]
+    then
+        return 0
+    fi
+
+    local PERCENT=$(grep "^[ ]*zram[ ]*=[ ]*" /boot/batocera-boot.conf | cut -d '=' -f 2)
+
+    if [ -z "${PERCENT}" ] || [ "${PERCENT}" -le '0' ]
+    then
+        return 0
+    fi
+
+    if ! let ${PERCENT}+0 2> /dev/null
+    then
+        PERCENT=50
+    fi
+
+    if  [ "${PERCENT}" -gt '100' ]
+    then
+        PERCENT=100
+    fi
+
+    local MEMORY=$(grep '^MemTotal: ' /proc/meminfo | awk '{print $2}')
+    local MEMORY=$(echo $((${MEMORY} * 1024)))
+    local CPUS=$(grep -c ^processor /proc/cpuinfo)
+
+    local ZRAM=$(echo $((${MEMORY} / 100 * ${PERCENT} / ${CPUS})))
+
+    modprobe zram num_devices=${CPUS}
+
+    for CPU in $(seq ${CPUS})
+    do
+        CPU=$((CPU - 1))
+        echo ${ZRAM} > /sys/block/zram${CPU}/disksize
+        mkswap /dev/zram${CPU} > /dev/null
+        swapon -p 32767 /dev/zram${CPU}
+    done
+
+    # Performance Tweaks (/proc/sys/vm/)
+    sysctl -q -w \
+        vm.swappiness=50 \
+        vm.vfs_cache_pressure=50 \
+        vm.dirty_ratio=50 \
+        vm.dirty_background_ratio=5 \
+        vm.page-cluster=2
+}
+
+case "$1" in
+    start)
+        zRamStart
+        ;;
+    stop)
+        zRamStop
+        ;;
+    restart|reload)
+        zRamStop
+        zRamStart
+        ;;
+    *)
+        echo "usage: ${0}  start|stop|restart"
+esac
+
+exit 0

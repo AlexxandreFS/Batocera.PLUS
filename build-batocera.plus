@@ -495,6 +495,15 @@ echo "$(
         echo "${FILE}"
         if [ "$(echo "${FILE}" | grep 'autoresize=')" ]; then
             echo
+            echo '# zram size in percent 0=disable (remove the # to enable it)'
+            echo 'zram=50'
+            echo
+            echo '# use swap partition, example: swap.partition=/dev/sda3 (remove the # to enable it)'
+            echo 'swap.partition=auto'
+            echo
+            echo '# create swapfile, 1024=1GB, example: swap.file.size=1024 (remove the # to enable it)'
+            echo '#swap.file.size=auto'
+            echo
             echo '# enable the splash video on startup /userdata/splashvideo (remove the # to enable video)'
             echo '#splash.video=true'
             echo

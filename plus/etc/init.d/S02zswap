@@ -1,17 +1,21 @@
-#!/bin/sh
+#!/bin/bash
 
 ### Batocera.PLUS
 ### Alexandre Freire dos Santos
 
-SWAP_DEVS=''
+SWAP_DEVS=$(grep "^[ ]*swap.partition[ ]*=[ ]*" /boot/batocera-boot.conf | cut -d '=' -f 2)
 
 function findSwapDev()
 {
-    SWAP_DEVS="$(LC_ALL=C fdisk -l | grep 'Linux swap' | cut -d ' ' -f 1)"
-
     if [ -z "${SWAP_DEVS}" ]
     then
         return
+    fi
+
+    # Find swap partitions
+    if [ "${SWAP_DEVS}" == 'auto' ]
+    then
+        SWAP_DEVS="$(LC_ALL=C fdisk -l | grep ' Linux swap$' | cut -d ' ' -f 1)"
     fi
 
     for SWAP_DEV in ${SWAP_DEVS}
@@ -35,7 +39,7 @@ function zswapStart()
     # Enable swap.
     for SWAP_DEV in ${SWAP_DEVS}
     do
-        if ! swapon -p 1 ${SWAP_DEV} 2> /dev/null
+        if ! swapon -p 2 ${SWAP_DEV} 2> /dev/null
         then
             return
         fi

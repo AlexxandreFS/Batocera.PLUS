@@ -18,7 +18,7 @@
 +        # Use link to bios in small partition share.
 +        if [ "${FILE}" == 'bios' ]
 +        then
-+            if [ $(df | grep /userdata | awk '{print $2}') -le 262144 ]
++            if [ $(df | grep " /userdata$" | awk '{print $2}') -le 262144 ]
 +            then
 +                ln -s "${IN}/bios" "${OUT}"
 +                continue

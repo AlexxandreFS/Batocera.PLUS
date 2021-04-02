@@ -1,0 +1,123 @@
+#!/bin/bash
+
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+
+SWAPFILE='/userdata/system/swapfile'
+
+function makeSwapfile()
+{
+    local HDFREE=$(df | grep ' /userdata$' | awk '{print $4}')
+    local MEMORY=$(grep '^MemTotal: ' /proc/meminfo | awk '{print $2}')
+    local SWAPSIZE=${1}
+
+    # Determina o tamanho do arquivo de swap.
+    if [ "${SWAPSIZE}" == 'auto' ]
+    then
+        if [ "${MEMORY}" -le 2200000 ]
+        then
+            SWAPSIZE=$(("${MEMORY}" * 2))
+        elif [ "${MEMORY}" -le 4200000 ]
+        then
+            SWAPSIZE="${MEMORY}"
+        else
+            SWAPSIZE=4096000
+        fi
+    else
+        SWAPSIZE=$(("${SWAPSIZE}" * 1024))
+    fi
+
+    # Verifica se o arquivo já foi criado anteriormente.
+    if [ "$(du -k "${SWAPFILE}" 2> /dev/null | awk '{print $1}')" == "${SWAPSIZE}" ]
+    then
+        return 0
+    fi
+
+    # Verifica se tem espaço em disco para criar o arquivo.
+    if [ "$((${HDFREE} - ${SWAPSIZE}))" -le '512000' ]
+    then
+        return 10
+    fi
+
+    # Cria o arquivo de swap
+    if ! dd if=/dev/zero of="${SWAPFILE}" bs=${SWAPSIZE} count=1K > /dev/null
+    then
+        return 11
+    fi
+
+    # Formata o arquivo de swap
+    if ! mkswap "${SWAPFILE}" > /dev/null
+    then
+        return 12
+    fi
+
+    return 0
+}
+
+function zswapfileStart()
+{
+    # Check if enabled in /boot/batocera-boot.conf
+    local ZSWAPSIZE="$(grep '^[ ]*swap.file.size[ ]*=[ ]*' /boot/batocera-boot.conf | cut -d '=' -f 2)"
+
+    if [ -z "${ZSWAPSIZE}" ]
+    then
+        if [ -e "${SWAPFILE}" ]
+        then
+            rm -f "${SWAPFILE}"
+        fi
+
+        return 0
+    fi
+
+    # Verifica se o swapfile já está em uso.
+    if [ "$(grep "^${SWAPFILE}" /proc/swaps)" ]
+    then
+        return 1
+    fi
+
+    # Cria o arquivo de swap
+    if ! makeSwapfile "${ZSWAPSIZE}"
+    then
+        return 2
+    fi
+
+    # Enable zswap
+    echo 'Y'   > /sys/module/zswap/parameters/enabled
+    echo 'lz4' > /sys/module/zswap/parameters/compressor
+
+    # Enable swap
+    if ! swapon -p 1 "${SWAPFILE}" 2> /dev/null
+    then
+        return 3
+    fi
+
+    return 0
+}
+
+function zswapfileStop()
+{
+    if ! swapoff "${SWAPFILE}" 2> /dev/null
+    then
+        return 1
+    fi
+
+    return 0
+}
+
+case "${1}" in
+    start)
+        zswapfileStart &
+        ;;
+    stop)
+        zswapfileStop
+        ;;
+    restart|reload)
+        zswapfileStop
+        sleep 1
+        zswapfileStart &
+        ;;
+    *)
+        echo "usage: ${0}  start|stop|restart"
+esac
+
+exit 0
