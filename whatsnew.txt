@@ -1,7 +1,7 @@
 ################################################################################
 
 BATOCERA.PLUS PRINCIPAIS MUDANÇAS
-
+a
     SYSTEMA
         * Alterado:   Tamanho da imagem do sistema 2.5GB
         * Adicionado: Wine Staging WOW (suporte à programas e jogos de 32 e 64 bits)
