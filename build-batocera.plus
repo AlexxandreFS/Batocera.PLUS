@@ -196,6 +196,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/librsvg-2.40.20-1.7z' # dep: tint2, jgmenu
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libcroco-0.6-1.7z'    # dep: tint2, jgmenu
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/adwaita-blue-light-167841-1.7z'
+    'https://github.com/edcarlosm/Batocera.PLUS-pkg/blob/fix-flash/flash_player_npapi_linux.x86_64_32.0.0.465.tar.gz'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/user-manual-2.7z'
 )
@@ -235,11 +236,11 @@ URL_EXTRAFILES='https://github.com/sabotendarsama/cemuextras/releases/download/v
 
 URL_QBITTORRENT="https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.3.3.10/qBittorrent-Enhanced-Edition.AppImage"
 
-URL_FLASH="$(curl -s 'https://fpdownload.macromedia.com/pub/flashplayer/masterversion/masterversion.xml' | grep 'NPAPI_linux version' | head -n 1 | cut -d '"' -f 2 | sed 's/,/./g')"
-if ! [ "${URL_FLASH}" ]; then
-    URL_FLASH='32.0.0.465'
-fi
-URL_FLASH="https://fpdownload.adobe.com/get/flashplayer/pdc/${URL_FLASH}/flash_player_npapi_linux.x86_64.tar.gz#/flash_player_npapi_linux.x86_64_${URL_FLASH}.tar.gz"
+#URL_FLASH="$(curl -s 'https://fpdownload.macromedia.com/pub/flashplayer/masterversion/masterversion.xml' | grep 'NPAPI_linux version' | head -n 1 | cut -d '"' -f 2 | sed 's/,/./g')"
+#if ! [ "${URL_FLASH}" ]; then
+#    URL_FLASH='32.0.0.465'
+#fi
+#URL_FLASH="https://fpdownload.adobe.com/get/flashplayer/pdc/${URL_FLASH}/flash_player_npapi_linux.x86_64.tar.gz#/flash_player_npapi_linux.x86_64_${URL_FLASH}.tar.gz"
 
 
 ################################################################################
