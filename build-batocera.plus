@@ -221,8 +221,15 @@ else
 fi
 
 URL_THEME_A="https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS/archive/master.zip#/Theme-batocera-plus-${VERSION}${RELEASE}.zip"
-URL_FIREFOX="https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US#/firefox-esr-${VERSION}${RELEASE}.tar.bz2"
-URL_JAVA="https://javadl.oracle.com/webapps/download/AutoDL?BundleId=242050_3d5a2bb8f8d4428bbe94aed7ec7ae784#/java-jre-linux-x64-${VERSION}${RELEASE}.tar.gz"
+
+URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
+URL_FLASH='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/flash_player_npapi_linux.x86_64_32.0.0.465.tar.gz'
+
+URL_QBITTORRENT='https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.3.3.10/qBittorrent-Enhanced-Edition.AppImage'
+URL_QBITTORRENT=$(echo ${URL_QBITTORRENT}#/$(basename ${URL_QBITTORRENT} | sed "s/.AppImage/-$(basename $(dirname ${URL_QBITTORRENT}) | cut -d '-' -f 2).AppImage/"))
+
+URL_JAVA="$(wget -S --spider --max-redirect 0 'https://javadl.oracle.com/webapps/download/AutoDL?BundleId=242050_3d5a2bb8f8d4428bbe94aed7ec7ae784' 2>&1 | grep -E '^  Location: ' | cut -d ' ' -f 4)"
+URL_JAVA="${URL_JAVA}#/$(echo ${URL_JAVA} | sed 's/File=/;/' | cut -d ';' -f 2 | cut -d '&' -f 1)"
 
 URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/5.1.1/wine-mono-5.1.1-x86.tar.xz'
 URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.8/dxvk-1.8.tar.gz'
@@ -232,15 +239,6 @@ URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 URL_CEMUFAKEFILES='https://github.com/sabotendarsama/fakefiles/releases/download/1.0/fakefiles.zip'
 URL_EXTRAFILES='https://github.com/sabotendarsama/cemuextras/releases/download/v1.0/cemuextras.zip'
-
-URL_QBITTORRENT="https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.3.3.10/qBittorrent-Enhanced-Edition.AppImage"
-
-URL_FLASH="$(curl -s 'https://fpdownload.macromedia.com/pub/flashplayer/masterversion/masterversion.xml' | grep 'NPAPI_linux version' | head -n 1 | cut -d '"' -f 2 | sed 's/,/./g')"
-if ! [ "${URL_FLASH}" ]; then
-    URL_FLASH='32.0.0.465'
-fi
-URL_FLASH="https://fpdownload.adobe.com/get/flashplayer/pdc/${URL_FLASH}/flash_player_npapi_linux.x86_64.tar.gz#/flash_player_npapi_linux.x86_64_${URL_FLASH}.tar.gz"
-
 
 ################################################################################
 
