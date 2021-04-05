@@ -8,10 +8,23 @@
  OVERLAYMOUNT="/overlay/saved"
  OVERLAYRAM="/overlay/overlay"
 -OVERLAYSIZE=50 # M
-+OVERLAYSIZE=128 # M
++OVERLAYSIZE=256 # M
  
  # fix for winscp running bash and then not sourcing /etc/profile
  PATH=$PATH:/sbin
+
+###
+### Diminui o tempo para salvar as alterações.
+###
+@@ -18,7 +18,7 @@
+ 
+     # X MB as ext4
+     echo "Creating an overlay file on the /boot filesystem..."
+-    dd if=/dev/zero of="${OVERLAYFILE}" bs=${COISIZE}M count=1 || return 1
++    dd if=/dev/zero of="${OVERLAYFILE}" bs=1 count=0 seek=${COISIZE}M || return 1
+     echo "Formating the overlay file in ext4..."
+     mkfs.ext4 "${OVERLAYFILE}"                         || return 1
+ }
 
 ###
 ### Desativa a montagem da unidade como somente leitura se estiver rodando pelo batocera-hd-dition.
