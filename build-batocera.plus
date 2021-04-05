@@ -196,6 +196,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/librsvg-2.40.20-1.7z' # dep: tint2, jgmenu
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libcroco-0.6-1.7z'    # dep: tint2, jgmenu
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/adwaita-blue-light-167841-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/flash-player-32.0.0.465-(FlashPatch-1.5)-1.7z' # dep: firefox
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/user-manual-2.7z'
 )
@@ -223,7 +224,6 @@ fi
 URL_THEME_A="https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS/archive/master.zip#/Theme-batocera-plus-${VERSION}${RELEASE}.zip"
 
 URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
-URL_FLASH='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/flash_player_npapi_linux.x86_64_32.0.0.465.tar.gz'
 
 URL_QBITTORRENT='https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.3.4.11/qBittorrent-Enhanced-Edition.AppImage'
 URL_QBITTORRENT=$(echo ${URL_QBITTORRENT}#/$(basename ${URL_QBITTORRENT} | sed "s/.AppImage/-$(basename $(dirname ${URL_QBITTORRENT}) | cut -d '-' -f 2).AppImage/"))
@@ -255,7 +255,6 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_FIREFOX}" \
            "${URL_JAVA}" \
            "${URL_QBITTORRENT}" \
-           "${URL_FLASH}" \
            "${URL_THEME_A}" \
            "${URL_CEMU}" \
            "${URL_CEMUHOOK}"
@@ -270,7 +269,6 @@ done
 ################################################################################
 
 echo -e '\nDescompactando Batocera.Linux...'
-
 PKG_NAME="$(basename "${URL_BATOCERA_LINUX}")"
 mkdir -p "${TEMP_DIR}"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c > "${TEMP_DIR}/batocera.linux.img" || exit $?
@@ -383,14 +381,6 @@ bunzip2 -d -k -v -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar x -v -C "${TEMP_DIR}/squ
 mv    "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox/"* \
       "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-esr"
 rmdir "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox"
-
-echo 'Install Flash Player...'
-PKG_NAME="$(basename "${URL_FLASH}")"
-mkdir -p  "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins"
-gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins" || exit $?
-rm -r "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/LGPL" \
-      "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/usr"  \
-      "${TEMP_DIR}/squashfs-root/usr/lib/mozilla/plugins/license.pdf"
 
 echo 'Install qBittorrent...'
 PKG_NAME="$(basename "${URL_QBITTORRENT}")"
