@@ -12,8 +12,8 @@ VERSION=2.12
 # Nvidia Driver
 NVIDIA_LEGACY=0
 
-# Compression level, squash file
-SQUASHFS_MAX_COMPRESSION=1
+# Squashfs compression level
+SQUASHFS_COMPRESSION=2
 
 # Temporary folder on a linux partition
 TEMP_DIR='./tmp'
@@ -448,11 +448,18 @@ sed -i 's/BATOCERA.LINUX/BATOCERA.PLUS /' "${TEMP_DIR}/squashfs-root/usr/bin/emu
 ################################################################################
 
 echo 'Compactando arquivo squashfs...'
-if [ "${SQUASHFS_MAX_COMPRESSION}" == '1' ]; then
-    mksquashfs "$TEMP_DIR/squashfs-root/"* "$TEMP_DIR/batocera" -b 1048576 -comp xz -Xdict-size 100% || exit $?
-else
-    mksquashfs "$TEMP_DIR/squashfs-root/"* "$TEMP_DIR/batocera" || exit $?
-fi
+
+case ${SQUASHFS_COMPRESSION} in
+    1)
+        mksquashfs "$TEMP_DIR/squashfs-root/"* "$TEMP_DIR/batocera" || exit $?
+        ;;
+    2)
+        mksquashfs "$TEMP_DIR/squashfs-root/"* "$TEMP_DIR/batocera" -b 512k -comp zstd -Xcompression-level 15 || exit $?
+        ;;
+    3)
+        mksquashfs "$TEMP_DIR/squashfs-root/"* "$TEMP_DIR/batocera" -b 1M -comp xz -Xdict-size 100% || exit $?
+        ;;
+esac
 
 echo 'Descompactando imagem do BatoceraZero...'
 7zr x "$IMG_ZERO" -o"$TEMP_DIR" || exit $?
