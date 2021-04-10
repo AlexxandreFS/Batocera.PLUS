@@ -1,0 +1,5 @@
+config BR2_PACKAGE_PRELOAD
+	bool "preload"
+	help
+	  Makes applications run faster by prefetching binaries and shared objects.
+

@@ -1,0 +1,46 @@
+#!/bin/bash
+
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+
+set -e
+
+function preloadStart()
+{
+    if pidof preload
+    then
+        return 1
+    fi
+
+    local LOG=/userdata/system/logs/preload.log
+    local STATE=/userdata/system/.cache/preload/preload.state
+    local CONFIG=/etc/preload.conf
+
+    mkdir -p $(dirname ${LOG}) $(dirname ${STATE})
+    touch ${LOG} ${STATE}
+
+    preload --logfile ${LOG} --statefile ${STATE} --conffile ${CONFIG} --nice 20
+}
+
+function preloadStop()
+{
+     killall -15 preload
+}
+
+
+case "$1" in
+    start)
+        preloadStart
+        ;;
+    stop)
+        preloadStop
+        ;;
+    restart|reload)
+        preloadStart
+        preloadStop
+        ;;
+    *)
+        echo "usage: ${0}  start|stop|restart"
+esac
+
+exit 0
