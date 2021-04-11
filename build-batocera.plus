@@ -6,8 +6,8 @@
 ################################################################################
 
 # Batocera.PLUS Version 
-VERSION=2.12
-#RELEASE='dev'
+VERSION=2.13
+RELEASE='dev'
 
 # Nvidia Driver
 NVIDIA_LEGACY=0
