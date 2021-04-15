@@ -16,6 +16,7 @@
 ## SHOWFPS = on, off ou auto
 ## MOUSE = on, off ou auto
 ## PIGUID = parâmetro do emulatorlauncher.sh
+## INTEL = use new intel graphics
 
 ################################################################################
 
@@ -29,8 +30,9 @@ DXVK="${5}"
 SHOWFPS="${6}"
 MOUSE="${7}"
 P1GUID="${8}"
+INTEL="${9}"
 
-#echo "${JOGO}" "${OPTIMIZATIONS}" "${RENDER}" "${SYNC}" "${DXVK}" "${SHOWFPS}" "${MOUSE}" "${P1GUID}" > "${HOME}/../COMANDO.txt"
+#echo "${JOGO}" "${OPTIMIZATIONS}" "${RENDER}" "${SYNC}" "${DXVK}" "${SHOWFPS}" "${MOUSE}" "${P1GUID}" "${INTEL}" > "${HOME}/../COMANDO.txt"
 
 ################################################################################
 
@@ -63,6 +65,7 @@ function help()
     echo " SHOWFPS = on, off ou auto"
     echo " MOUSE = on, off ou auto"
     echo " PIGUID = parâmetro do emulatorlauncher.sh (OPICIONAL)"
+	echo " INTEL = use new intel graphics"
     echo " "
 }
 
@@ -368,10 +371,16 @@ RES_START="$(batocera-resolution currentMode)"
 
 # Executa o Cemu com as configurações selecionadas
 if [ "${JOGO}" == '' ]; then
+    sed -i '/<Graphic>/!b;n;c\        <api>0</api>' "${CEMU}/settings.xml"
+    sed -i 's/<fullscreen>.*/<fullscreen>false<\/fullscreen>/'  "${CEMU}/settings.xml"
     wine-lutris "${CEMU}/Cemu.exe"
     sed -i 's/<check_update>true<\/check_update>/<check_update>false<\/check_update>/' "${CEMU}/settings.xml"
+elif [ "${JOGO}" != '' ] && [ "${INTEL}" == 'on' ]; then
+    sed -i 's/<fullscreen>.*/<fullscreen>true<\/fullscreen>/'  "${CEMU}/settings.xml"
+    wine-lutris "${CEMU}/Cemu.exe" -legacy -g "${JOGO}"
 else
-    wine-lutris "${CEMU}/Cemu.exe" -f -g "${JOGO}"
+    sed -i 's/<fullscreen>.*/<fullscreen>true<\/fullscreen>/'  "${CEMU}/settings.xml"
+    wine-lutris "${CEMU}/Cemu.exe" -g "${JOGO}"
 fi
 
 ################################################################################
