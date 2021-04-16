@@ -44,6 +44,12 @@ SAVE="$HOME/../saves/wiiu"
 
 ################################################################################
 
+### EXPORTS
+
+export WINEDLLOVERRIDES='keystone.dll=n,b;dbghelp.dll=n,b'
+export WINEPREFIX="${SAVE}/wine"
+
+################################################################################
 
 ### HELP
 
@@ -65,7 +71,7 @@ function help()
     echo " SHOWFPS = on, off ou auto"
     echo " MOUSE = on, off ou auto"
     echo " PIGUID = parâmetro do emulatorlauncher.sh (OPICIONAL)"
-	echo " INTEL = use new intel graphics"
+echo " INTEL = use new intel graphics"
     echo " "
 }
 
@@ -129,6 +135,17 @@ if [ ! "$(ls -A "${CEMU}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/nu
 
     # Criando links simbólicos para a pasta "system/configs/cemu"
     ln -sf "${SAVE}/"* "${CEMU}"
+fi
+
+################################################################################
+
+### INSTALA O DIRECTX E O MONO
+
+if [ ! "$(ls -A "${SAVE}/wine" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}/wine"  2> /dev/null)" ]; then
+    mkdir -p "${SAVE}/wine/drive_c/windows/mono"
+    ln -s "/opt/Wine/apps/mono" "${SAVE}/wine/drive_c/windows/mono/mono-2.0"
+    wine-lutris /opt/Wine/apps/directx_Jun2010_redist/DXSETUP.exe /silent
+wineWait
 fi
 
 ################################################################################
@@ -212,17 +229,17 @@ fi
 
 case ${SYNC} in
     esync)
-	     export WINEESYNC=1
-		 export WINEFSYNC=0
-	     ;;
+     export WINEESYNC=1
+ export WINEFSYNC=0
+     ;;
     fsync)
-	     export WINEFSYNC=1
-		 export WINEESYNC=0
-	     ;;
-	auto)
-	     export WINEESYNC=0
+     export WINEFSYNC=1
+ export WINEESYNC=0
+     ;;
+auto)
+     export WINEESYNC=0
          export WINEFSYNC=0
-	     ;;
+     ;;
 esac
 
 ################################################################################
@@ -330,10 +347,10 @@ if [ -d "${JOGO}" ]; then # Se o jogo for um diretório
    ROM_EXTENSION='.wud .wux .iso .wad .rpx .elf .WUD .WUX .ISO .WAD .RPX .ELF' 
    for i in $ROM_EXTENSION; do
         JOGO_NOME="$(find . -type f -iname *${i} -print -quit | cut -c2- )"
-		if [ "$(echo "${JOGO_NOME}" | grep "${i}")" ]; then			
+if [ "$(echo "${JOGO_NOME}" | grep "${i}")" ]; then
             JOGO="$(echo "Z:${JOGO}${JOGO_NOME}" | sed -e 's#/#\\#g')"
-		    break
-		fi
+    break
+fi
    done
 elif [ -f "${JOGO}" ]; then # Se o jogo for um arquivo
     JOGO="$(echo "Z:${JOGO}" | sed -e 's#/#\\#g')"
@@ -362,9 +379,6 @@ fi
 ################################################################################
 
 ### EXECUTA O JOGO OU O CONFIGURADOR
-
-# Habilita as dependências necessárias para o cemuhook
-export WINEDLLOVERRIDES='keystone.dll=n,b;dbghelp.dll=n,b'
 
 # Captura a resolução da tela antes de iniciar o jogo
 RES_START="$(batocera-resolution currentMode)"
