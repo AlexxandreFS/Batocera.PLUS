@@ -1,12 +1,12 @@
-diff --git a/dlls/mmdevapi/tests/mmdevenum.c b/dlls/mmdevapi/tests/mmdevenum.c
-index 11df1f0..588e99c 100644
---- a/dlls/mmdevapi/tests/mmdevenum.c
-+++ b/dlls/mmdevapi/tests/mmdevenum.c
-@@ -142,7 +142,6 @@ static HRESULT WINAPI async_activate_QueryInterface(
-         void **ppvObject)
- {
-     if(IsEqualIID(riid, &IID_IUnknown) ||
--            IsEqualIID(riid, &IID_IAgileObject) ||
-             IsEqualIID(riid, &IID_IActivateAudioInterfaceCompletionHandler)){
-         *ppvObject = iface;
-         IUnknown_AddRef((IUnknown*)*ppvObject);
+diff --git a/dlls/mfreadwrite/tests/mfplat.c b/dlls/mfreadwrite/tests/mfplat.c
+index 04d9590..394f474 100644
+--- a/dlls/mfreadwrite/tests/mfplat.c
++++ b/dlls/mfreadwrite/tests/mfplat.c
+@@ -902,6 +902,7 @@ static void test_source_reader_from_media_source(void)
+     IMFAttributes *attributes;
+     ULONG refcount;
+     int i;
++    PROPVARIANT pos;
+ 
+     source = create_test_source(3);
+     ok(!!source, "Failed to create test source.\n");
