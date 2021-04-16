@@ -171,8 +171,6 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dolphin-emu-5.0-3.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ppsspp-mar-2-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3-0.0.15-1.7z' # remove on update.
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-apr-15-2021-1.7z' # remove on update.
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-libs-(libgtk-3_libgdk_libaio)-1.7z' # dep: xemu # remove on update.
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bzip2-1.0.8.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/unrar-5.90-1.7z'
@@ -209,12 +207,16 @@ URL_BATOCERA_PLUS_PKG=(
 # Estes pacotes são compilados apenas nas imagens de desenvolvimento.
 if [ -z "${RELEASE}" ]; then
     URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}"
+        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-apr-15-2021-1.7z' # remove on update.
+        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-libs-(libgtk-3_libgdk_libaio)-1.7z' # dep: xemu # remove on update.
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/emuscv_libretro-mar-4-2021-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mu_libretro-feb-14-2021-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/play_libretro-mar-8-2021-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/simcp_libretro-aug-17-2019-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/uzem_libretro-jan-8-2021-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/x1_libretro-jan-8-2021-1.7z'
+
+        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wii-u-gc-adapter-mar-6-2021-1.7z'
     )
 fi
 
