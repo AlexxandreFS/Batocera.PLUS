@@ -38,7 +38,7 @@ PATCH_DIR='patch'
 
 URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-valve-5.13-5-3.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-ge-custom-6.1-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-ge-custom-6.5-GE-2-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-stable-6.0-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-staging-6.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-lutris-6.0-3.7z'
@@ -215,7 +215,6 @@ if [ -z "${RELEASE}" ]; then
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/simcp_libretro-aug-17-2019-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/uzem_libretro-jan-8-2021-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/x1_libretro-jan-8-2021-1.7z'
-
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wii-u-gc-adapter-mar-6-2021-1.7z'
     )
 fi
