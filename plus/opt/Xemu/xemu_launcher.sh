@@ -6,6 +6,7 @@
 ## 
 ################################################################################
 
+# external variables
 ROM="${1}"
 P1GUID="${2}"
 P2GUID="${3}"
@@ -14,12 +15,13 @@ P4GUID="${5}"
 RESOLUTION="${6}"
 SCALING="${7}"
 
+#local variables
 BIOS='/userdata/bios'
 SAVES='/userdata/saves/xbox'
 FILES='/opt/Xemu'
-
 export XDG_CONFIG_HOME="${HOME}/configs/xemu"
 
+# "batocera.files"
 function CreateConfigs()
 {    
    # copy the hdd if it doesn't exist
@@ -32,7 +34,7 @@ function CreateConfigs()
    if [ ! -f "${HOME}/configs/xemu/xemu.ini" ]; then
        mkdir -p "${HOME}/configs/xemu"
        touch "${HOME}/configs/xemu/xemu.ini"
-	   
+   
        # Fill system section
        echo '[system]'                                             >> "${HOME}/configs/xemu/xemu.ini"
        echo 'flash_path = '"${BIOS}/Complex_4627.bin"''            >> "${HOME}/configs/xemu/xemu.ini"
@@ -103,13 +105,13 @@ fi
 # scale
 case $SCALING in
         center)  sed -i "s|^scale = .*|scale = ${SCALING}|"   "${HOME}/configs/xemu/xemu.ini" ;;
-		scale)   sed -i "s|^scale = .*|scale = ${SCALING}|"   "${HOME}/configs/xemu/xemu.ini" ;;
-		stretch) sed -i "s|^scale = .*|scale = ${SCALING}|"   "${HOME}/configs/xemu/xemu.ini" ;;
-		*)       sed -i "s|^scale = .*|scale = scale|"        "${HOME}/configs/xemu/xemu.ini" ;;
+        scale)   sed -i "s|^scale = .*|scale = ${SCALING}|"   "${HOME}/configs/xemu/xemu.ini" ;;
+        stretch) sed -i "s|^scale = .*|scale = ${SCALING}|"   "${HOME}/configs/xemu/xemu.ini" ;;
+        *)       sed -i "s|^scale = .*|scale = scale|"        "${HOME}/configs/xemu/xemu.ini" ;;
 esac
 
 # launch game
-sed -i "s|^dvd_path = .*|dvd_path = ${ROM}|"   "${HOME}/configs/xemu/xemu.ini"
+sed -i "s|^dvd_path = .*|dvd_path = ${ROM}|"                        "${HOME}/configs/xemu/xemu.ini"
 sed -i "s|^controller_1_guid = .*|controller_1_guid = ${P1GUID}|"   "${HOME}/configs/xemu/xemu.ini"
 sed -i "s|^controller_2_guid = .*|controller_2_guid = ${P2GUID}|"   "${HOME}/configs/xemu/xemu.ini"
 sed -i "s|^controller_3_guid = .*|controller_3_guid = ${P3GUID}|"   "${HOME}/configs/xemu/xemu.ini"
@@ -122,3 +124,5 @@ RES_STOP="$(batocera-resolution currentResolution)"
 if [ "${RES_START}" != "${RES_STOP}" ]; then
     batocera-resolution setMode "${RES_START}"
 fi
+
+exit 0
