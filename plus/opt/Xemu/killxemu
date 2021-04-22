@@ -1,13 +1,23 @@
 #!/bin/sh
+##
+## Batocera.PLUS
+## Encerra a execução de todos os programas executados pelo wine.
+##
+## Código escrito por: Sérgio de Carvalho Júnior
+## 
+################################################################################
 
-### Batocera.PLUS
-### Encerra a execução de todos os programas executados pelo wine.
-### Alexandre Freire dos Santos
+XEMU_PID="$(pidof -s xemu)"
 
-kill -15 "$(pidof -s xemu)"
-        sleep 0.5
-killall xjoykill
+kill -15 ${XEMU_PID}
+sleep 0.2
 
-echo 'Xemu is dead!'
+if [ -z "${XEMU_PID}" ]; then
+    echo 'Xemu closed!'
+else
+    sleep 0.5
+    kill -9 ${XEMU_PID}
+    echo 'Xemu is dead!'
+fi
 
 exit 0
