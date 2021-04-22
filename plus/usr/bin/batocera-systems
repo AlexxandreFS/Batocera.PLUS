@@ -553,6 +553,11 @@ BIOS[channelf]="channelf,             Fairchild Channel F
     da98f4bb3242ab80d76629021bb27585, bios/sl31254.bin
     95d339631d867c8f1d15a5f2ec26069d, bios/sl90025.bin"
 
+#### Xbox Classic ####
+BIOS[xbox]="xbox,             Xbox Classic
+    d49c52a4102f6df7bcf8d0617ac475ed, bios/mcpx_1.0.bin
+	ec00e31e746de2473acfe7903c5a4cb7, bios/Complex_4627.bin"
+
 
 #------------------------------------------------------------------------------#
 

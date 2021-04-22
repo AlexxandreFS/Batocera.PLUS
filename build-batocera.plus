@@ -203,13 +203,13 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/user-manual-2.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xdriver_xf86-video-intel-1.7z' # remove on update.
+	'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-apr-15-2021-1.7z' # remove on update.
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-libs-(libgtk-3_libgdk_libaio)-1.7z' # dep: xemu # remove on update.
 )
 
 # Estes pacotes são compilados apenas nas imagens de desenvolvimento.
 if [ -z "${RELEASE}" ]; then
-    URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}"
-        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-apr-15-2021-1.7z' # remove on update.
-        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-libs-(libgtk-3_libgdk_libaio)-1.7z' # dep: xemu # remove on update.
+    URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}"        
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/emuscv_libretro-mar-4-2021-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mu_libretro-feb-14-2021-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/play_libretro-mar-8-2021-1.7z'
