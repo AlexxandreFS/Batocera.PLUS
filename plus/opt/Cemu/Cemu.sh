@@ -347,10 +347,10 @@ if [ -d "${JOGO}" ]; then # Se o jogo for um diretório
    ROM_EXTENSION='.wud .wux .iso .wad .rpx .elf .WUD .WUX .ISO .WAD .RPX .ELF' 
    for i in $ROM_EXTENSION; do
         JOGO_NOME="$(find . -type f -iname *${i} -print -quit | cut -c2- )"
-if [ "$(echo "${JOGO_NOME}" | grep "${i}")" ]; then
+        if [ "$(echo "${JOGO_NOME}" | grep "${i}")" ]; then
             JOGO="$(echo "Z:${JOGO}${JOGO_NOME}" | sed -e 's#/#\\#g')"
-    break
-fi
+            break
+        fi
    done
 elif [ -f "${JOGO}" ]; then # Se o jogo for um arquivo
     JOGO="$(echo "Z:${JOGO}" | sed -e 's#/#\\#g')"

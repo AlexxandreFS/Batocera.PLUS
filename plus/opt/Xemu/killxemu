@@ -1,0 +1,13 @@
+#!/bin/sh
+
+### Batocera.PLUS
+### Encerra a execução de todos os programas executados pelo wine.
+### Alexandre Freire dos Santos
+
+kill -15 "$(pidof -s xemu)"
+        sleep 0.5
+killall xjoykill
+
+echo 'Xemu is dead!'
+
+exit 0
