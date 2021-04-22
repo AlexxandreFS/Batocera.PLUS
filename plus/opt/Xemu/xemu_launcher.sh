@@ -27,7 +27,7 @@ function CreateConfigs()
    # copy the hdd if it doesn't exist
    if [ ! -d "${HOME}/../saves/xbox/xbox_hdd.qcow2" ]; then
        mkdir -p "${HOME}/../saves/xbox"
-       cp -f  "${FILES}/xbox_hdd.qcow2" "${HOME}/../saves/xbox"
+       cp -f  '/usr/share/xemu/data/xbox_hdd.qcow2' "${HOME}/../saves/xbox"
    fi
    
    # save the ini file
