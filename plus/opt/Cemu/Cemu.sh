@@ -41,6 +41,7 @@ INTEL="${9}"
 CEMU_DIR='/opt/Cemu'
 CEMU="$HOME/configs/cemu"
 SAVE="$HOME/../saves/wiiu"
+WINE="$HOME/../saves/wiiu/wine"
 
 ################################################################################
 
@@ -141,11 +142,11 @@ fi
 
 ### INSTALA O DIRECTX E O MONO
 
-if [ ! "$(ls -A "${SAVE}/wine" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}/wine"  2> /dev/null)" ]; then
-    mkdir -p "${SAVE}/wine/drive_c/windows/mono"
-    ln -s "/opt/Wine/apps/mono" "${SAVE}/wine/drive_c/windows/mono/mono-2.0"
+if [ ! "$(ls -A "${WINE}/drive_c/windows/mono" 2> /dev/null)" ]; then
+    mkdir -p "${WINE}/drive_c/windows/mono"
+    ln -s "/opt/Wine/apps/mono" "${WINE}/drive_c/windows/mono/mono-2.0"
     wine-lutris /opt/Wine/apps/directx_Jun2010_redist/DXSETUP.exe /silent
-wineWait
+    wineWait
 fi
 
 ################################################################################
