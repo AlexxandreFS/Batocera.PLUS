@@ -7,7 +7,7 @@ if [ "$1" != 'start' ]; then
 fi
 
 SHARE='/userdata'
-SHARE_INIT='/usr/share/batocera/datainit'
+DATAINIT='/usr/share/batocera/datainit'
 
 ### Cria pastas adicionais
 mkdir -p "$SHARE/downloads"
@@ -16,17 +16,12 @@ mkdir -p "$SHARE/system/configs/wine"
 
 ### Pasta splashvideos
 if ! [ -d "$SHARE/splashvideos" ]; then
-    cp -r "${SHARE_INIT}/splashvideos" "${SHARE}"
+    cp -r "${DATAINIT}/splashvideos" "${SHARE}"
 fi
 
 ### Arquivo de auto execução personalizado pelo usuário.
 if ! [ -f "$SHARE/system/custom.sh" ]; then
-    cp "$SHARE_INIT/system/custom.sh" "$SHARE/system/custom.sh"
-fi
-
-### Copiar arquivos de configurações específicas para o retroarch.
-if ! [ -d "${SHARE}/system/configs/retroarch" ]; then
-    cp -r "${SHARE_INIT}/system/configs/retroarch" "${SHARE}/system/configs"
+    cp "$DATAINIT/system/custom.sh" "$SHARE/system/custom.sh"
 fi
 
 ### Corrige problemas com fontes Chinesas.
