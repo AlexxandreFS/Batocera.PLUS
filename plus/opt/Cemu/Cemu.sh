@@ -140,13 +140,16 @@ fi
 
 ################################################################################
 
-### INSTALA O DIRECTX E O MONO
+### ATUALIZA OU CRIA O PREFIXO, SE NECESSÁRIO
 
-if [ ! "$(ls -A "${WINE}/drive_c/windows/mono" 2> /dev/null)" ]; then
-    mkdir -p "${WINE}/drive_c/windows/mono"
-    ln -s "/opt/Wine/apps/mono" "${WINE}/drive_c/windows/mono/mono-2.0"
-    wine-lutris /opt/Wine/apps/directx_Jun2010_redist/DXSETUP.exe /silent
-    wineWait
+WINE_VERSION="$(stat -t '/opt/Wine/wine-lutris/share/wine/wine.inf' | awk '{print $12}')"
+WINE_VERSION_NEW="$(cat -e "${WINE}/.update-timestamp" | cut -d '^' -f 1)"
+	
+if [ "${WINE_VERSION}" != "${WINE_VERSION_NEW}" ]; then
+    rm -rf "${WINE}"
+	mkdir -p "${WINE}/drive_c/windows/mono"
+	ln -s "/opt/Wine/apps/mono" "${WINE}/drive_c/windows/mono/mono-2.0"
+	wine-lutris /opt/Wine/apps/directx_Jun2010_redist/DXSETUP.exe /silent
 fi
 
 ################################################################################
