@@ -1,0 +1,42 @@
+#!/bin/sh
+
+ACTION="$1"
+
+case "${ACTION}" in
+	list)
+		printf '%s\n' auto custom
+		LANG=C aplay -l | grep -E '^card [0-9]*:' | sed -e s+'^card \([0-9]*\): \(.*\), device \([0-9]*\): [^\[]* \[\([^]]*\)].*$'+'\1,\3 \4 \2'+
+	;;
+
+	get)
+                batocera-settings -command load -key audio.device
+	;;
+
+	set)
+		MODE="$2"
+		case "${MODE}" in
+			# auto: no .asoundrc
+			# custom: don't touch .asoundrc
+			# any other, create .asoundrc
+			auto)
+				rm -f /userdata/system/.asoundrc
+			;;
+
+			custom)
+				# do nothing!
+			;;
+
+			*)
+				if echo "${MODE}" | grep -qE '^[0-9]*,[0-9]* '; then
+					cardnb="$(echo "${MODE}" | sed -e s+'^\([0-9]*\),.*$'+'\1'+)"
+					devicenb="$(echo "${MODE}" | sed -e s+'^[0-9]*,\([0-9]*\) .*$'+'\1'+)"
+					sed -e "s;%CARDNO%;${cardnb};g" -e "s;%DEVICENO%;${devicenb};g" /usr/share/batocera/alsa/asoundrc-dmix+softvol > /userdata/system/.asoundrc
+				fi
+			;;
+		esac
+	;;
+
+	test)
+		aplay "/usr/share/sounds/Mallet.wav"
+	;;
+esac

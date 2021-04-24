@@ -1,9 +1,24 @@
 ##
 ## Corrige o problema de corromper o arquivo /boot/asound.state na partição de boot.
 ##
+## Remova este patch ao atualizar.
+## https://github.com/batocera-linux/batocera.linux/commit/a85116497a3551fa43319e9f0fcb2dc90717efde#diff-aa28d7996fcdab7579cf22d6dbffcce1caa7ae61e9df30f1e71d0daee7fa027b
+## https://github.com/batocera-linux/batocera.linux/commit/1ad9ce027d370a6164bfa0750cf4cfe302495296#diff-aa28d7996fcdab7579cf22d6dbffcce1caa7ae61e9df30f1e71d0daee7fa027b
+##
 --- S01audio.original
 +++ S01audio.modificado
-@@ -17,6 +17,7 @@
+@@ -5,6 +5,10 @@
+ 
+ start_alsa() {
+ 	printf "Starting alsa: "
++	mode="$(/usr/bin/batocera-audio get)"
++	if ! test -z "${mode}"; then
++		/usr/bin/batocera-audio set ${mode} >/dev/null 2>&1
++	fi
+ 	echo "OK"
+ }
+ 
+@@ -17,6 +21,7 @@
  	else
  		rm -f /boot/asoundrc
  	fi
