@@ -1,0 +1,22 @@
+#!/bin/sh
+##
+## Batocera.PLUS
+## Encerra a execução do yuzu.
+##
+## 
+################################################################################
+
+YUZU_PID="$(pidof -s yuzu)"
+
+kill -15 ${YUZU_PID}
+sleep 0.2
+
+if [ -z "${YUZU_PID}" ]; then
+    echo 'Yuzu closed!'
+else
+    sleep 0.5
+    kill -9 ${YUZU_PID}
+    echo 'Yuzu is dead!'
+fi
+
+exit 0

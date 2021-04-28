@@ -7,7 +7,7 @@
 
 # Batocera.PLUS Version 
 VERSION=2.13
-RELEASE='dev'
+#RELEASE='dev'
 
 # Nvidia Driver
 NVIDIA_LEGACY=0
@@ -16,9 +16,9 @@ NVIDIA_LEGACY=0
 SQUASHFS_COMPRESSION=2
 
 # Temporary folder on a linux partition
-TEMP_DIR='./tmp'
+#TEMP_DIR='./tmp'
 #TEMP_DIR='/media/NO_LABEL/tmp'
-#TEMP_DIR='/media/NO_LABEL_1/tmp'
+TEMP_DIR='/media/NO_LABEL_1/tmp'
 #TEMP_DIR='/media/NO_LABEL_2/tmp'
 #TEMP_DIR='/mnt/tmp'
 
@@ -218,6 +218,8 @@ if [ -z "${RELEASE}" ]; then
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/x1_libretro-jan-8-2021-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wii-u-gc-adapter-mar-6-2021-1.7z'
     )
+
+    URL_YUZU='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-600/yuzu-20210427-cebacd9bb.AppImage'
 fi
 
 if [ "${NVIDIA_LEGACY}" == '1' ]; then
@@ -264,7 +266,8 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_QBITTORRENT}" \
            "${URL_THEME_A}" \
            "${URL_CEMU}" \
-           "${URL_CEMUHOOK}"
+           "${URL_CEMUHOOK}" \
+           "${URL_YUZU}"
 do
     PKG_NAME="$(basename "${URL}")"
     echo -e "\nBaixando ${PKG_NAME}..."
@@ -413,6 +416,18 @@ mkdir -p  "${TEMP_DIR}/squashfs-root/opt/Cemu/cemuhook"
 rm -r "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/Go to project website for updates.url"
 mv "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/Cemu/cemuhook"
 rmdir "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}"
+
+echo 'Install Yuzu...'
+PKG_NAME="$(basename "${URL_YUZU}")"
+chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
+mkdir -p "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
+CURRENT_DIR="$(pwd)"
+cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
+"${CURRENT_DIR}/${DOWNLOAD_DIR}/${PKG_NAME}" --appimage-extract
+cd "${CURRENT_DIR}"
+unset CURRENT_DIR
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu" "${TEMP_DIR}/squashfs-root/opt/Yuzu"
 
 echo 'Install nvidia driver...'
 PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"

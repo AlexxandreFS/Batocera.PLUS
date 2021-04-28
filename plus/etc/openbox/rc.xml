@@ -107,6 +107,11 @@
             <maximized>yes</maximized>
         </application>
 
+        <application name="yuzu">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+        </application>
+
         <application name="citra-qt">
             <decor>yes</decor>
             <fullscreen></fullscreen>

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=yuzu-config
+GenericName=Yuzu
+Comment=Nintendo switch emulator.
+Icon=/usr/share/icons/batocera/yuzu.png
+Categories=internet;Game;batocera.linux;
+Type=Application
+Terminal=false
+Exec=/opt/Yuzu/yuzu.sh
