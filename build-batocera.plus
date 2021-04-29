@@ -7,7 +7,7 @@
 
 # Batocera.PLUS Version 
 VERSION=2.13
-#RELEASE='dev'
+RELEASE='dev'
 
 # Nvidia Driver
 NVIDIA_LEGACY=0
@@ -16,9 +16,9 @@ NVIDIA_LEGACY=0
 SQUASHFS_COMPRESSION=2
 
 # Temporary folder on a linux partition
-#TEMP_DIR='./tmp'
+TEMP_DIR='./tmp'
 #TEMP_DIR='/media/NO_LABEL/tmp'
-TEMP_DIR='/media/NO_LABEL_1/tmp'
+#TEMP_DIR='/media/NO_LABEL_1/tmp'
 #TEMP_DIR='/media/NO_LABEL_2/tmp'
 #TEMP_DIR='/mnt/tmp'
 

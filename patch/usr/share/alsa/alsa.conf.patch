@@ -1,0 +1,15 @@
+##
+## Permite alterar a saída de som padrão sem precisar reiniciar o computador.
+##
+--- alsa.conf.original
++++ alsa.conf.modificado
+@@ -10,8 +10,8 @@
+ 		files [
+ 			"/etc/alsa/conf.d"
+ 			"/etc/asound.conf"
+-			"~/.asoundrc"
+ 			"/boot/asoundrc"
++			"~/.asoundrc"
+ 		]
+ 		errors false
+ 	}
