@@ -1,0 +1,5 @@
+## SYSTEM SUPER CASSETE VISION ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted: ".cart .rom .bin .hex"
+-------------------------------------------------------------------------------
+Extensions des fichiers ROMs permises: ".cart .rom .bin .hex"

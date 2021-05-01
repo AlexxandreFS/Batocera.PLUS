@@ -1,5 +1,5 @@
---- configgen-defaults.yml.original
-+++ configgen-defaults.yml.modificado
+--- configgen-defaults.yml
++++ configgen-defaults.yml.plus
 @@ -77,7 +77,7 @@
    core:     genesisplusgx
  saturn:
@@ -65,7 +65,7 @@
    core:     wine
  windows_installers:
    emulator: wine
-@@ -302,3 +302,63 @@
+@@ -302,3 +302,75 @@
  ps3:
    emulator: rpcs3
    core:     rpcs3
@@ -129,3 +129,15 @@
 +yuzu:
 +  emulator: yuzu
 +  core:     yuzu
++x1:
++  emulator: libretro
++  core:     x1
++scv:
++  emulator: libretro
++  core:     emuscv
++uzebox:
++  emulator: libretro
++  core:     uzem
++palmos:
++  emulator: libretro
++  core:     mu

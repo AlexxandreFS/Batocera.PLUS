@@ -1,0 +1,5 @@
+## SYSTEM PALMOS ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted: ".prc .pqa .img"
+-------------------------------------------------------------------------------
+Extensions des fichiers ROMs permises: ".prc .pqa .img"
