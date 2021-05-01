@@ -1,0 +1,5 @@
+## SYSTEM SHARP X1 ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted: ".dx1 .zip .2d .2hd .tfd .d88 .88d .hdm .xdf .dup .cmd .7z"
+-------------------------------------------------------------------------------
+Extensions des fichiers ROMs permises: ".dx1 .zip .2d .2hd .tfd .d88 .88d .hdm .xdf .dup .cmd .7z"
