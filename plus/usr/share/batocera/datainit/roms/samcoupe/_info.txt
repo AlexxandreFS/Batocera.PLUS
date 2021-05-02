@@ -1,0 +1,5 @@
+## SYSTEM MTG SAM COUPÉ ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted: ".dsk .mgt .sbt .sad"
+-------------------------------------------------------------------------------
+Extensions des fichiers ROMs permises: ".dsk .mgt .sbt .sad"
