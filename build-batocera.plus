@@ -417,6 +417,7 @@ rm -r "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/Go to project website for updat
 mv "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/Cemu/cemuhook"
 rmdir "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}"
 
+# remover comando if se os bugs forem corrigidos
 if [ -z "${RELEASE}" ]; then
     echo 'Install Yuzu...'
     PKG_NAME="$(basename "${URL_YUZU}")"
