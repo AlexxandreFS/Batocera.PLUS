@@ -246,8 +246,8 @@ URL_WINE_VKD3D_PROTON='https://github.com/HansKristian-Work/vkd3d-proton/release
 
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
-URL_CEMUFAKEFILES='https://github.com/sabotendarsama/fakefiles/releases/download/1.0/fakefiles.zip'
-URL_EXTRAFILES='https://github.com/sabotendarsama/cemuextras/releases/download/v1.0/cemuextras.zip'
+URL_CEMUFAKEFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
+URL_EXTRAFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.1.7z'
 
 ################################################################################
 
