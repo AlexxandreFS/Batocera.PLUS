@@ -65,7 +65,7 @@
    core:     wine
  windows_installers:
    emulator: wine
-@@ -302,3 +302,75 @@
+@@ -302,3 +302,78 @@
  ps3:
    emulator: rpcs3
    core:     rpcs3
@@ -141,3 +141,6 @@
 +palmos:
 +  emulator: libretro
 +  core:     mu
++samcoupe:
++  emulator: libretro
++  core:     simcp
