@@ -10,7 +10,7 @@ VERSION=2.13
 RELEASE='dev'
 
 # Nvidia Driver
-NVIDIA_LEGACY=0
+NVIDIA_LEGACY=1
 
 # Squashfs compression level
 SQUASHFS_COMPRESSION=2
@@ -214,7 +214,7 @@ URL_BATOCERA_PLUS_PKG=(
 
 # Estes pacotes são compilados apenas nas imagens de desenvolvimento.
 if [ -z "${RELEASE}" ]; then
-    URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}"        
+    URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}"
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/play_libretro-mar-8-2021-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wii-u-gc-adapter-mar-6-2021-1.7z'
     )
@@ -225,7 +225,8 @@ if [ "${NVIDIA_LEGACY}" == '1' ]; then
     URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/390.138/NVIDIA-Linux-x86_64-390.138.run'
 else
     URL_BATOCERA_LINUX='https://batocera.org/upgrades/x86_64/stable/last/archives/20201001/batocera-5.27.2-x86_64-20201001.img.gz'
-    URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/450.66/NVIDIA-Linux-x86_64-450.66.run'
+    URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/460.73.01/NVIDIA-Linux-x86_64-460.73.01.run'
+    URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" 'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-460.73.01-1.7z') # remove on update.
 fi
 
 URL_THEME_A="https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS/archive/master.zip#/Theme-batocera-plus-${VERSION}${RELEASE}.zip"
@@ -271,6 +272,7 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
 do
     PKG_NAME="$(basename "${URL}")"
     echo -e "\nBaixando ${PKG_NAME}..."
+
     if ! [ -f "${DOWNLOAD_DIR}/${PKG_NAME}" ]; then
         curl -L -C - "${URL}" -o "${DOWNLOAD_DIR}/${PKG_NAME}" || exit $?
     fi
@@ -287,7 +289,7 @@ echo 'Adicionando imagem oficial do batocera.linux ao disposivo loop...'
 losetup -f
 losetup /dev/loop7 -o $((512 * 2048)) "${TEMP_DIR}/batocera.linux.img" || exit $?
 
-echo 'Montando imagem oficial do batcera.linux...'
+echo 'Montando imagem do batocera.linux...'
 mkdir "${TEMP_DIR}/BATOCERA"
 mount -o rw /dev/loop7 "${TEMP_DIR}/BATOCERA" || exit $?
 
@@ -325,6 +327,7 @@ cp -r -f "$UPDATE_DIR/"* "$TEMP_DIR/squashfs-root" || exit $?
 echo 'Install PKGs...'
 
 mkdir -p "${TEMP_DIR}/pkg-xtract"
+mount -t tmpfs -o size=1G tmpfs "${TEMP_DIR}/pkg-xtract"
 
 for PKG in "${URL_BATOCERA_PLUS_PKG[@]}"; do
     echo -e "\nInstall ${PKG_NAME%.*}..."
@@ -340,7 +343,10 @@ for PKG in "${URL_BATOCERA_PLUS_PKG[@]}"; do
     fi
 
     cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* "${TEMP_DIR}/squashfs-root" || exit $?
+    rm -r "${TEMP_DIR}/pkg-xtract/"*
 done
+
+umount "${TEMP_DIR}/pkg-xtract"
 
 ################################################################################
 
@@ -443,14 +449,6 @@ cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-application-profiles-"*   "${
 if [ "${NVIDIA_LEGACY}" == '1' ]; then
     cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia_icd.json.template"    "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d/nvidia_icd.json" || exit $?
     sed -i 's/__NV_VK_ICD__/libGLX_nvidia.so.0/'                             "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d/nvidia_icd.json" || exit $?
-fi
-
-# Remova este bloco if durante a atualização do batocera.plus.
-if [ "${NVIDIA_LEGACY}" != '1' ]; then
-    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia_icd.json"             "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d"                 || exit $?
-    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia_layers.json"          "${TEMP_DIR}/squashfs-root/usr/share/vulkan/implicit_layer.d"      || exit $?
-    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-glvkspirv.so."*    "${TEMP_DIR}/squashfs-root/usr/lib"                                || exit $?
-    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/32/libnvidia-glvkspirv.so."* "${TEMP_DIR}/squashfs-root/lib32"                                  || exit $?
 fi
 
 ################################################################################
