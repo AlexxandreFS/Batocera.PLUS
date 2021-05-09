@@ -6,33 +6,32 @@
 ## Colaborador: Alexandre Freire dos Santos
 ## 
 ## Linha de comando:
-## Cemu.sh [ROM] [OTIMIZATIONS] [RENDER] [SYNC] [DXVK] [SHOWFPS] [MOUSE] [P1GUID]
+## Cemu.sh [ROM] [RENDER] [SYNC] [SHOWFPS] [MOUSE] [P1GUID]
 ##
 ## ROM = Caminho do jogo até a iso ou rpx
-## OTIMIZATIONS = nvidia, amd, intel ou auto
 ## RENDER = vulkan, opengl ou auto
 ## SYNC = esync, fsync ou auto
-## DXVK = on, off ou auto
 ## SHOWFPS = on, off ou auto
 ## MOUSE = on, off ou auto
 ## PIGUID = parâmetro do emulatorlauncher.sh
 ## INTEL = use new intel graphics
+##
+## SITE QUE AJUDOU NA MONTAGEM DESTE SCRIPT
+## https://synappsis.wordpress.com/category/qt/
 
 ################################################################################
 
 ### PARÂMETROS
 
 JOGO="${1}"
-OPTIMIZATIONS="${2}" 
-RENDER="${3}"
-SYNC="${4}"
-DXVK="${5}"
-SHOWFPS="${6}"
-MOUSE="${7}"
-P1GUID="${8}"
-INTEL="${9}"
+RENDER="${2}"
+SYNC="${3}"
+SHOWFPS="${4}"
+MOUSE="${5}"
+P1GUID="${6}"
+INTEL="${7}"
 
-#echo "${JOGO}" "${OPTIMIZATIONS}" "${RENDER}" "${SYNC}" "${DXVK}" "${SHOWFPS}" "${MOUSE}" "${P1GUID}" "${INTEL}" > "${HOME}/../COMANDO.txt"
+#echo "${JOGO}" "${RENDER}" "${SYNC}" "${SHOWFPS}" "${MOUSE}" "${P1GUID}" "${INTEL}" > "${HOME}/../COMANDO.txt"
 
 ################################################################################
 
@@ -49,6 +48,9 @@ WINE="$HOME/../saves/wiiu/wine"
 
 export WINEDLLOVERRIDES='keystone.dll=n,b;dbghelp.dll=n,b'
 export WINEPREFIX="${SAVE}/wine"
+export vblank_mode=0
+export mesa_glthread=true
+export __GL_THREADED_OPTIMIZATIONS=1
 
 ################################################################################
 
@@ -140,26 +142,14 @@ fi
 
 ################################################################################
 
-### ATUALIZA OU CRIA O PREFIXO, SE NECESSÁRIO
+### FORCE SOME SETTINGS
 
-WINE_VERSION="$(stat -t '/opt/Wine/wine-lutris/share/wine/wine.inf' | awk '{print $12}')"
-WINE_VERSION_NEW="$(cat -e "${WINE}/.update-timestamp" | cut -d '^' -f 1)"
-	
-if [ "${WINE_VERSION}" != "${WINE_VERSION_NEW}" ]; then
-    rm -rf "${WINE}"
-	mkdir -p "${WINE}/drive_c/windows/mono"
-	ln -s "/opt/Wine/apps/mono" "${WINE}/drive_c/windows/mono/mono-2.0"
-	wine-lutris /opt/Wine/apps/directx_Jun2010_redist/DXSETUP.exe /silent
-fi
-
-################################################################################
-
-### SANITY CHECK
-
-# Checa se a interface foi executada de forma correta na última vez
-# Esse site salvou minha vida https://dwaves.de/tools/escape/
-if [ "$(grep '<check_update>true<\/check_update>' "${CEMU}/settings.xml" )" ]; then
-    sed -i 's/<check_update>true<\/check_update>/<check_update>false<\/check_update>/' "${CEMU}/settings.xml"
+if [ "${JOGO}" == '' ]; then
+    sed -i 's/<fullscreen>.*/<fullscreen>false<\/fullscreen>/'       "${CEMU}/settings.xml"
+	sed -i 's/<check_update>.*/<check_update>true<\/check_update>/'  "${CEMU}/settings.xml"
+else
+    sed -i 's/<fullscreen>.*/<fullscreen>true<\/fullscreen>/'        "${CEMU}/settings.xml"
+	sed -i 's/<check_update>.*/<check_update>false<\/check_update>/' "${CEMU}/settings.xml"
 fi
 
 ################################################################################
@@ -178,53 +168,32 @@ case ${SLANG} in
     zh_CN)             sed -i 's/<language>.*/<language>44<\/language>/'  "${CEMU}/settings.xml" ;;
  esac
  
- ################################################################################
- 
-### OTIMIZAÇÕES
-### https://synappsis.wordpress.com/category/qt/
-
-case ${OPTIMIZATIONS} in
-    nvidia|nvidia_generic)
-        export __GL_THREADED_OPTIMIZATIONS=1
-        ;;
-    amd|amd_generic)
-        export R600_DEBUG=nohyperz
-        export mesa_glthread=true
-        ;;
-    intel|intel_generic)
-        export MESA_GL_VERSION_OVERRIDE=4.5COMPAT
-        ;;
-    none|auto)
-        ;;
-esac
-
-case ${OPTIMIZATIONS} in
-    generic|nvidia_generic|amd_generic|intel_generic)
-        export WINEDEBUG=-all
-        export STAGING_WRITECOPY=1
-        export STAGING_SHARED_MEMORY=1
-        export STAGING_RT_PRIORITY_BASE=90
-        export STAGING_RT_PRIORITY_SERVER=90
-        if [ "${CORE}" == 'auto' ]; then
-            for i in /opt/Wine/wine-*/bin/wineserver /opt/Wine/proton-*/bin/wineserver; do
-                setcap cap_sys_nice+ep ${i}
-            done
-         else
-            setcap cap_sys_nice+ep "/opt/Wine/${CORE}/bin/wineserver"
-         fi
-         ;;
-        none|auto)
-         ;;
-esac
-
 ################################################################################
 
 ### RENDER
 
-if [ "${RENDER}" == 'auto' ] || [ "${RENDER}" == 'opengl' ]; then
+if [ "${RENDER}" == 'auto' ] || [ "${RENDER}" == 'opengl' ] || [ "${RENDER}" == '' ]; then
     sed -i '/<Graphic>/!b;n;c\        <api>0</api>' "${CEMU}/settings.xml"
 else
     sed -i '/<Graphic>/!b;n;c\        <api>1</api>' "${CEMU}/settings.xml"
+fi
+
+################################################################################
+
+### ATUALIZA OU CRIA O PREFIXO SE NECESSÁRIO
+
+WINE_VERSION="$(stat -t '/opt/Wine/wine-lutris/share/wine/wine.inf' | awk '{print $12}')"
+WINE_VERSION_NEW="$(cat -e "${WINE}/.update-timestamp" | cut -d '^' -f 1)"
+	
+if [ "${WINE_VERSION}" != "${WINE_VERSION_NEW}" ]; then
+    rm -rf "${WINE}"
+	mkdir -p "${WINE}/drive_c/windows/mono"
+	ln -s "/opt/Wine/apps/mono" "${WINE}/drive_c/windows/mono/mono-2.0"
+	wine-lutris /opt/Wine/apps/directx_Jun2010_redist/DXSETUP.exe /silent
+
+	while [ "$(pidof wineserver)" ]; do
+        sleep 1
+    done
 fi
 
 ################################################################################
@@ -234,45 +203,16 @@ fi
 case ${SYNC} in
     esync)
      export WINEESYNC=1
- export WINEFSYNC=0
+     export WINEFSYNC=0
      ;;
     fsync)
      export WINEFSYNC=1
- export WINEESYNC=0
-     ;;
-auto)
      export WINEESYNC=0
-         export WINEFSYNC=0
      ;;
-esac
-
-################################################################################
-
-### DXVK
-
-# Se não ativar o DXVK as informações de VRAM utilizada não aparecem quando SHOW FPS está ativado (será resolvido de outra forma no futuro)
-
-case ${DXVK} in
-     dxvk)
-          export DXVK=1
-          export PBA_ENABLE=0
-          ;;
-     pba)
-          export vblank_mode=0
-          export __GL_SYNC_TO_VBLANK=0
-          export __GL_SHADER_CACHE=1
-          export __GL_SHADER_DISK_CACHE=1
-          export __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=1
-          export __GL_SHADER_DISK_CACHE_PATH=/userdata/system/.cache/shader_cache
-          export MESA_GLSL_CACHE_DISABLE=0
-          export MESA_GLSL_CACHE_DIR=/userdata/system/.cache/shader_cache
-          export PBA_ENABLE=1
-          ;;
-     default|auto)
-          export vblank_mode=1
-          export __GL_SYNC_TO_VBLANK=1
-          export PBA_ENABLE=0
-          ;;
+    auto)
+     export WINEESYNC=0
+     export WINEFSYNC=0
+     ;;
 esac
 
 ################################################################################
@@ -347,26 +287,17 @@ fi
 # Este também é o gatilho pra decidir se o GUI será aberto ou se o jogo será executado em linha de comando
 
 if [ -d "${JOGO}" ]; then # Se o jogo for um diretório
-   cd "${JOGO}"
-   ROM_EXTENSION='.wud .wux .iso .wad .rpx .elf .WUD .WUX .ISO .WAD .RPX .ELF' 
-   for i in $ROM_EXTENSION; do
+    cd "${JOGO}"
+    ROM_EXTENSION='.wud .wux .iso .wad .rpx .elf .WUD .WUX .ISO .WAD .RPX .ELF' 
+    for i in $ROM_EXTENSION; do
         JOGO_NOME="$(find . -type f -iname *${i} -print -quit | cut -c2- )"
         if [ "$(echo "${JOGO_NOME}" | grep "${i}")" ]; then
             JOGO="$(echo "Z:${JOGO}${JOGO_NOME}" | sed -e 's#/#\\#g')"
             break
         fi
-   done
+    done
 elif [ -f "${JOGO}" ]; then # Se o jogo for um arquivo
-    JOGO="$(echo "Z:${JOGO}" | sed -e 's#/#\\#g')"
-fi
-
-################################################################################
-
-### UPDATE
-
-# Ativa autoupdate do Cemu se ele for executado pelo menu F1
-if [ "$(grep '<check_update>false<\/check_update>' "${CEMU}/settings.xml" )" ] && [ "${JOGO}" == '' ]; then
-    sed -i 's/<check_update>false<\/check_update>/<check_update>true<\/check_update>/' "${CEMU}/settings.xml"
+      JOGO="$(echo "Z:${JOGO}" | sed -e 's#/#\\#g')"
 fi
 
 ################################################################################
@@ -389,15 +320,10 @@ RES_START="$(batocera-resolution currentMode)"
 
 # Executa o Cemu com as configurações selecionadas
 if [ "${JOGO}" == '' ]; then
-    sed -i '/<Graphic>/!b;n;c\        <api>0</api>' "${CEMU}/settings.xml"
-    sed -i 's/<fullscreen>.*/<fullscreen>false<\/fullscreen>/'  "${CEMU}/settings.xml"
     wine-lutris "${CEMU}/Cemu.exe"
-    sed -i 's/<check_update>true<\/check_update>/<check_update>false<\/check_update>/' "${CEMU}/settings.xml"
 elif [ "${JOGO}" != '' ] && [ "${INTEL}" == 'on' ]; then
-    sed -i 's/<fullscreen>.*/<fullscreen>true<\/fullscreen>/'  "${CEMU}/settings.xml"
     wine-lutris "${CEMU}/Cemu.exe" -legacy -g "${JOGO}"
 else
-    sed -i 's/<fullscreen>.*/<fullscreen>true<\/fullscreen>/'  "${CEMU}/settings.xml"
     wine-lutris "${CEMU}/Cemu.exe" -g "${JOGO}"
 fi
 
