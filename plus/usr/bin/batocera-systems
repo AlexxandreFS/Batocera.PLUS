@@ -114,15 +114,15 @@ BIOS[supergrafx]="supergrafx,         Supergrafx
     6d2cb14fc3e1f65ceb135633d1694122, bios/gexpress.pce"
 
 BIOS[pc88]="pc88,                     NEC PC-88
-    4f984e04a99d56c4cfe36115415d6eb8, bios/quasi88/n88.rom
-    2ff07b8769367321128e03924af668a0, bios/quasi88/n88n.rom
-    793f86784e5608352a5d7f03f03e0858, bios/quasi88/disk.rom
-    d675a2ca186c6efcd6277b835de4c7e5, bios/quasi88/n88_0.rom
-    e844534dfe5744b381444dbe61ef1b66, bios/quasi88/n88_1.rom
-    6548fa45061274dee1ea8ae1e9e93910, bios/quasi88/n88_2.rom
-    fc4b76a402ba501e6ba6de4b3e8b4273, bios/quasi88/n88_3.rom
-    d81c6d5d7ad1a4bbbd6ae22a01257603, bios/quasi88/n88knj1.rom
-    898a3b7b6c3326e8b2069765bca2b944, bios/quasi88/n88knj2.rom
+    4f984e04a99d56c4cfe36115415d6eb8, bios/quasi88/N88.ROM
+    2ff07b8769367321128e03924af668a0, bios/quasi88/N88N.ROM
+    793f86784e5608352a5d7f03f03e0858, bios/quasi88/DISK.ROM
+    d675a2ca186c6efcd6277b835de4c7e5, bios/quasi88/N88_0.ROM
+    e844534dfe5744b381444dbe61ef1b66, bios/quasi88/N88_1.ROM
+    6548fa45061274dee1ea8ae1e9e93910, bios/quasi88/N88_2.ROM
+    fc4b76a402ba501e6ba6de4b3e8b4273, bios/quasi88/N88_3.ROM
+    d81c6d5d7ad1a4bbbd6ae22a01257603, bios/quasi88/N88KNJ1.ROM
+    898a3b7b6c3326e8b2069765bca2b944, bios/quasi88/N88KNJ2.ROM
     2e548679423370262f36cbde38a22789, bios/quasi88/n88jisho.rom
     14bc9e267cf0cb56d22d5c470f582d53, bios/quasi88/font.rom"
 
