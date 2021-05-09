@@ -10,7 +10,7 @@ VERSION=2.13
 RELEASE='dev'
 
 # Nvidia Driver
-NVIDIA_LEGACY=1
+NVIDIA_LEGACY=0
 
 # Squashfs compression level
 SQUASHFS_COMPRESSION=2
@@ -217,6 +217,8 @@ if [ -z "${RELEASE}" ]; then
     URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}"
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/play_libretro-mar-8-2021-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wii-u-gc-adapter-mar-6-2021-1.7z'
+        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/obs-studio-27.0-rc3-1.7z'
+        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/obs-studio-extra-libs-1.7z' dep: obs-studio
     )
 fi
 
@@ -443,12 +445,14 @@ PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"
 chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
 "${DOWNLOAD_DIR}/${PKG_NAME}" -x --target "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}" || exit $?
 mkdir -p "${TEMP_DIR}/squashfs-root/usr/share/nvidia"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-settings"                 "${TEMP_DIR}/squashfs-root/usr/bin"                                || exit $?
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk2.so."*             "${TEMP_DIR}/squashfs-root/usr/lib"                                || exit $?
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-application-profiles-"*   "${TEMP_DIR}/squashfs-root/usr/share/nvidia"                       || exit $?
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-settings"               "${TEMP_DIR}/squashfs-root/usr/bin"                 || exit $?
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-application-profiles-"* "${TEMP_DIR}/squashfs-root/usr/share/nvidia"        || exit $?
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk2.so."*           "${TEMP_DIR}/squashfs-root/usr/lib"                 || exit $?
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-encode.so."*         "${TEMP_DIR}/squashfs-root/usr/lib/"                || exit $?
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvcuvid.so."*               "${TEMP_DIR}/squashfs-root/usr/lib/libnvcuvid.so.1" || exit $?
 if [ "${NVIDIA_LEGACY}" == '1' ]; then
-    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia_icd.json.template"    "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d/nvidia_icd.json" || exit $?
-    sed -i 's/__NV_VK_ICD__/libGLX_nvidia.so.0/'                             "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d/nvidia_icd.json" || exit $?
+    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia_icd.json.template"  "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d/nvidia_icd.json" || exit $?
+    sed -i 's/__NV_VK_ICD__/libGLX_nvidia.so.0/'                           "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d/nvidia_icd.json" || exit $?
 fi
 
 ################################################################################

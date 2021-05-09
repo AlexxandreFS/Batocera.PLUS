@@ -137,6 +137,11 @@
             <fullscreen></fullscreen>
         </application>
 
+        <application name="obs">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+        </application>
+
         <application class="Yad">
             <decor>yes</decor>
             <fullscreen></fullscreen>

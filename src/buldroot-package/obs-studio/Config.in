@@ -1,0 +1,10 @@
+config BR2_PACKAGE_OBS_STUDIO
+    bool "obs-studio"
+    depends on BR2_x86_64
+    depends on BR2_PACKAGE_XORG7
+    help
+      Video recording and live streaming.
+
+	    https://obsproject.com/
+
+

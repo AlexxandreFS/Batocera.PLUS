@@ -1,0 +1,23 @@
+#!/bin/sh
+###
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+###
+
+export HOME='/userdata/saves/obs-studio'
+
+export LD_LIBRARY_PATH="/opt/Obs-Studio/lib:${LD_LIBRARY_PATH}"
+
+export QT_QPA_PLATFORM=xcb
+export QT_PLUGIN_PATH='/opt/Obs-Studio/lib/qt/plugins:/usr/lib/qt/plugins'
+
+export XDG_DATA_HOME='/userdata/saves/obs-studio'
+export XDG_CONFIG_DIRS=/etc/xdg
+
+mkdir -p "${XDG_DATA_HOME}"
+
+cd /opt/Obs-Studio/bin/64bit
+
+./obs "$@"
+
+exit 0
