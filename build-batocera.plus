@@ -250,7 +250,7 @@ URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Curren
 URL_CEMUFAKEFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
 URL_EXTRAFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.1.7z'
 
-URL_YUZU='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-600/yuzu-20210427-cebacd9bb.AppImage'
+URL_YUZU='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-610/yuzu-20210507-f6bf40b3d.AppImage'
 
 ################################################################################
 
