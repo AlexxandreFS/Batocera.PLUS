@@ -74,7 +74,7 @@ function help()
     echo " SHOWFPS = on, off ou auto"
     echo " MOUSE = on, off ou auto"
     echo " PIGUID = parâmetro do emulatorlauncher.sh (OPICIONAL)"
-echo " INTEL = use new intel graphics"
+    echo " INTEL = use new intel graphics"
     echo " "
 }
 
