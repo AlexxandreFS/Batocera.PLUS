@@ -18,13 +18,26 @@ O conceito do Batocera.PLUS surgiu como uma resposta para um problema.
 No princípio, pelas comunidades na internet eu compartilhava alguns programas, scripts, emuladores, métodos de dualboot, entre outros para serem instalados pelo usuário no batocera.linux mas muitos usuários não conseguiam seguir os procedimentos para fazer as instalações, então surgiu a ideia de criar uma imagem com todas estas modificações já implementadas e assim surgiu o Batocera.PLUS.
 
 
-### Como compilar
+### Como baixar o código fonte
 
-Faça o download do código fonte ou clone o repositório.
+O Batocera.PLUS já vem com o git instalado. Faça clone o repositório.
 
     git clone https://github.com/AlexxandreFS/Batocera.PLUS.git
 
-O Batocera.PLUS é compilado usando a versão anterior do próprio Batocera.PLUS, a compilação em outros sistema operacionais pode ocasionar erros de compilação.
+Para atualizar um repositório clonado anteriormente, acesse o repositório clonado
+
+    cd Batocera.PLUS
+
+Atualize o repositório.
+
+    git reset --hard
+    git clean -f
+    git pull https://github.com/AlexxandreFS/Batocera.PLUS.git
+
+
+### Como compilar
+
+<b>A Imagem do Batocera.PLUS é compilada usando a versão anterior do próprio Batocera.PLUS.</b>
 
 A pasta temporária usada na compilação precisa ficar em uma partição do tipo Linux (ext4, btrfs, etc)
 
@@ -33,3 +46,32 @@ Acesse a pasta onde estão os arquivos pelo terminal (win + f4) ou (f1 e depois 
     ./build-batocera.plus
 
 Durante a compilação vários pacotes extras serão baixados, seja paciente.
+
+
+### Compilando no debian
+
+Não prestamos suporte para problemas de compilação em outros sistema operacionais.
+Instale os seguintes pacotes: (apt-get install)
+
+    p7zip
+    unzip
+    gzip
+    zstd
+    squashfs-tools
+ 	coreutils
+    wget
+    curl
+
+Execute o script de criação da imagem como usuário root, (su "sua senha de root") e siga com a compilação normal explicada no passo anterior.
+
+
+### Compilar a imagem Nvidia Legancy Driver 390
+
+Edite e altere o valor da variável NVIDIA_LEGACY para 1 no início do script de compilação "build-batocera.plus" e siga com a compilação normalmente.
+
+
+### Download de imagens de teste e suporte pela comunidade
+
+DISCORD
+https://discord.gg/ktyGckZ
+
