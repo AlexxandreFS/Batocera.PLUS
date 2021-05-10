@@ -348,6 +348,16 @@ fi
 
 ################################################################################
 
+### DISABLE BY DEFAULT GSTREAMER FOR WINE-OLD-STABLE
+
+if [ "${WINE_BUILD}" == 'wine-old-stable' ]; then
+    if [ -z "${WINEDLLOVERRIDES}" ]; then
+        WINEDLLOVERRIDES='winegstreamer=d'
+    fi
+fi
+
+################################################################################
+
 ### VIRTUAL_DESKTOP
 
 if [ "${VIRTUAL_DESKTOP}" == '1' ]; then

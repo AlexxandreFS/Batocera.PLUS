@@ -19,16 +19,16 @@ HOST_WINE_DEPENDENCIES  = host-bison host-flex
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-stable
 
 # Wine Old Stable
-#WINE_VERSION = 5.0.3
-#WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
-#WINE_SITE = https://dl.winehq.org/wine/source/5.0
-#WINE_FOLDER_INSTALL = /opt/Wine/wine-old-stable
+WINE_VERSION = 5.0.5
+WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
+WINE_SITE = https://dl.winehq.org/wine/source/5.0
+WINE_FOLDER_INSTALL = /opt/Wine/wine-old-stable
 
 # Wine Staging 
-WINE_VERSION = 6.8
-WINE_SOURCE = wine-staging-$(WINE_VERSION).tar.xz
-WINE_SITE = https://dl.winehq.org/wine/source/6.x
-WINE_FOLDER_INSTALL = /opt/Wine/wine-staging
+#WINE_VERSION = 6.8
+#WINE_SOURCE = wine-staging-$(WINE_VERSION).tar.xz
+#WINE_SITE = https://dl.winehq.org/wine/source/6.x
+#WINE_FOLDER_INSTALL = /opt/Wine/wine-staging
 
 # Wine Lutris 6.3 (Commits on Apr 11, 2021) (BR lutris-6.3)
 #WINE_VERSION = 399e8d3fd3697a95c1fd6d5b7e681f05a2ab3e4e
