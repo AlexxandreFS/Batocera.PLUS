@@ -25,25 +25,25 @@ HOST_WINE_DEPENDENCIES  = host-bison host-flex
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-old-stable
 
 # Wine Staging 
-#WINE_VERSION = 6.6
-#WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
-#WINE_SITE = https://dl.winehq.org/wine/source/6.x
-#WINE_FOLDER_INSTALL = /opt/Wine/wine-staging
+WINE_VERSION = 6.8
+WINE_SOURCE = wine-staging-$(WINE_VERSION).tar.xz
+WINE_SITE = https://dl.winehq.org/wine/source/6.x
+WINE_FOLDER_INSTALL = /opt/Wine/wine-staging
 
-# Wine Lutris 6.4 (Commits on Mar 30, 2021) (BR lutris-6.4)
-#WINE_VERSION = b5a7b937b395534115d8c5c0216ce74f926ddcee
+# Wine Lutris 6.3 (Commits on Apr 11, 2021) (BR lutris-6.3)
+#WINE_VERSION = 399e8d3fd3697a95c1fd6d5b7e681f05a2ab3e4e
 #WINE_SITE = $(call github,lutris,wine,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-lutris
 
-# Proton Valve 6.3-2 (Commits on Apr 5, 2021)
-#WINE_VERSION = 97f962cd469ee9b9b68d32e79849bf94cfe15581
+# Proton Valve experimental-wine-6.3-20210429 (Commits on Apr 29, 2021)
+#WINE_VERSION = c981c5928ac097fc8e9b45db0f57feac3d4744cc
 #WINE_SITE = $(call github,ValveSoftware,wine,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/proton-valve
 
-# Proton GE Custom 6.5-GE-2 (Commits on Apr 8, 2021)
-WINE_VERSION = 232f2253693e2c75d317049312ec10227c35a0c7
-WINE_SITE = $(call github,GloriousEggroll,proton-ge-custom,$(WINE_VERSION))
-WINE_FOLDER_INSTALL = /opt/Wine/proton-ge-custom
+# Proton GE Custom (Commits on Apr 26, 2021)
+#WINE_VERSION = 99e4fd04b51939dd0b492b83dfd9363b3d9ce9f8
+#WINE_SITE = $(call github,GloriousEggroll,proton-ge-custom,$(WINE_VERSION))
+#WINE_FOLDER_INSTALL = /opt/Wine/proton-ge-custom
 
 ################################################################################
 
@@ -404,11 +404,11 @@ endef
 
 # We are focused on the cross compiling tools, disable everything else
 HOST_WINE_CONF_OPTS += \
-    --disable-tests    \
+	--disable-tests    \
 	--without-gnutls   \
 	--without-capi     \
 	--without-cups     \
-    --without-oss      \
+	--without-oss      \
 	--without-pulse    \
 	--without-sane
 

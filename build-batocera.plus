@@ -7,6 +7,9 @@
 
 # Batocera.PLUS Version 
 VERSION=2.13
+
+# Remova esta linha para diminuir o tempo de compilação e adicionar pacotes
+# experimentais, a imagem nao será compactada em será gerado o md5sum
 RELEASE='dev'
 
 # Nvidia Driver
@@ -40,7 +43,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-valve-5.13-5-3.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-ge-custom-6.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-stable-6.0-2.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-staging-6.6-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-staging-6.8-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-lutris-6.3-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-old-stable-5.0.3-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-extra-libs-8.7z'
@@ -326,6 +329,8 @@ cp -r -f "$UPDATE_DIR/"* "$TEMP_DIR/squashfs-root" || exit $?
 
 ################################################################################
 
+### INSTALL PKGs
+
 echo 'Install PKGs...'
 
 mkdir -p "${TEMP_DIR}/pkg-xtract"
@@ -457,6 +462,8 @@ fi
 
 ################################################################################
 
+### PATCH
+
 echo 'Aplicando Patch...'
 cp -f "${TEMP_DIR}/squashfs-root/etc/samba/smb.conf" "${TEMP_DIR}/squashfs-root/etc/samba/smb-ps2smb.conf" || exit $?
 for i in $(du -a "${PATCH_DIR}" | grep -F '.patch' | awk '{print $2}' | sed "s#${PATCH_DIR}/##"); do
@@ -464,6 +471,8 @@ for i in $(du -a "${PATCH_DIR}" | grep -F '.patch' | awk '{print $2}' | sed "s#$
 done
 
 ################################################################################
+
+### VERSION FILE
 
 echo 'Criando arquivo de versão do Batocera.PLUS...'
 mv   "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" "$TEMP_DIR/squashfs-root/usr/share/batocera/recalbox.version" || exit $?
@@ -535,6 +544,11 @@ echo "$(
     done < "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 )" > "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 
+
+################################################################################
+
+### UMOUNT ALL IMAGES
+
 sync
 
 echo 'Desmontando imagens...'
@@ -546,6 +560,8 @@ losetup -d /dev/loop7 || exit $?
 losetup -d /dev/loop6 || exit $?
 
 sync
+
+################################################################################
 
 mv    "$TEMP_DIR/BatoceraZero.img" "$TEMP_DIR/Batocera.PLUS.img" || exit $?
 
@@ -565,6 +581,10 @@ if [ "${RELEASE}" ]; then
     echo 'Gerando Md5sum...'
     md5sum "${TEMP_DIR}/Batocera.PLUS-${VERSION}-${RELEASE}.7z" | cut -d ' ' -f 1 >> "${TEMP_DIR}/md5sum.txt" || exit $?
 fi
+
+################################################################################
+
+### CLEAR
 
 echo 'Removendo arquivos temporários...'
 rmdir "${TEMP_DIR}/BATOCERA"               || exit $?
