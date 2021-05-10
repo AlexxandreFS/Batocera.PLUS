@@ -196,7 +196,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dos2unix-7.4.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/util-linux-extras-2.35-1.7z' # cfdisk, swapon, whereis
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/preload-0.6.4-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mangohud-0.6.1-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mangohud-apr-25-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/GOverlay-0.4.2-4.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vkBasalt-0.3.2.3-4.7z'
 
@@ -352,8 +352,6 @@ for PKG in "${URL_BATOCERA_PLUS_PKG[@]}"; do
     cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* "${TEMP_DIR}/squashfs-root" || exit $?
     rm -r "${TEMP_DIR}/pkg-xtract/"*
 done
-
-sync
 
 umount "${TEMP_DIR}/pkg-xtract"
 
