@@ -10,7 +10,7 @@ VERSION=2.13
 
 # Remova esta linha para diminuir o tempo de compilação e adicionar pacotes
 # experimentais, a imagem nao será compactada em será gerado o md5sum
-RELEASE='dev'
+#RELEASE='dev'
 
 # Nvidia Driver
 NVIDIA_LEGACY=0
@@ -558,6 +558,8 @@ umount /dev/loop6 || exit $?
 echo 'Removendo imagens dos disposivos loop...'
 losetup -d /dev/loop7 || exit $?
 losetup -d /dev/loop6 || exit $?
+
+umount -l "${TEMP_DIR}/pkg-xtract"
 
 sync
 
