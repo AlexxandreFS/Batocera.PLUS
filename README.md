@@ -48,7 +48,7 @@ Acesse a pasta onde estão os arquivos pelo terminal (win + f4) ou (f1 e depois 
 Durante a compilação vários pacotes extras serão baixados, seja paciente.
 
 
-### Compilando no debian e derivados.
+### Compilando no debian e derivados
 
 Instale os seguintes pacotes: (apt-get install)
 
