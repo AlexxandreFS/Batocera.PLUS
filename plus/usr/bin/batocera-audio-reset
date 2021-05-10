@@ -1,0 +1,44 @@
+#!/bin/bash
+###
+### Batocera.PLUS
+### Restaura o audio para as configurações iniciais.
+###
+### Alexxandre Freire dos Santos
+###
+
+FILES=(
+    /boot/asound.state
+    /boot/asoundrc
+    ${HOME}/asound.state
+    ${HOME}/asoundrc
+    ${HOME}/.asoundrc
+    /etc/init/etc/init.d/???audio
+)
+
+echo 'Reseting Audio'
+
+if ! mount -o remount,rw /boot
+then
+    echo 'erro mounting /boot'
+fi
+
+for FILE in ${FILES[*]}
+do
+    if [ -e "${FILE}" ]
+    then
+        echo "deleting ${FILE}"
+        rm ${FILE}
+    fi
+done
+
+mount -o remount,ro /boot 2> /dev/null
+
+echo 'set ES audio to auto'
+batocera-settings --command write --key audio.device --value auto
+
+sync
+
+echo 'The system will reboot in 3 seconds...'
+sleep 3
+reboot
+exit 0
