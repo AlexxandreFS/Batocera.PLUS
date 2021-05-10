@@ -20,11 +20,11 @@ No princípio, pelas comunidades na internet eu compartilhava alguns programas, 
 
 ### Como baixar o código fonte
 
-O Batocera.PLUS já vem com o git instalado. Faça clone o repositório.
+O Batocera.PLUS já vem com o git instalado. Clone o repositório.
 
     git clone https://github.com/AlexxandreFS/Batocera.PLUS.git
 
-Para atualizar um repositório clonado anteriormente, acesse o repositório clonado
+Para atualizar um repositório anteriormente clonado, acesse o repositório local.
 
     cd Batocera.PLUS
 
@@ -48,9 +48,8 @@ Acesse a pasta onde estão os arquivos pelo terminal (win + f4) ou (f1 e depois 
 Durante a compilação vários pacotes extras serão baixados, seja paciente.
 
 
-### Compilando no debian
+### Compilando no debian e derivados.
 
-Não prestamos suporte para problemas de compilação em outros sistema operacionais.
 Instale os seguintes pacotes: (apt-get install)
 
     p7zip
@@ -58,11 +57,13 @@ Instale os seguintes pacotes: (apt-get install)
     gzip
     zstd
     squashfs-tools
- 	coreutils
+    coreutils
     wget
     curl
 
-Execute o script de criação da imagem como usuário root, (su "sua senha de root") e siga com a compilação normal explicada no passo anterior.
+Execute o script de criação da imagem como usuário root, (su "sua senha de root") e siga com a compilação normal conforme explicado no passo anterior.
+
+Não prestamos suporte para problemas de compilação em outros sistemas operacionais.
 
 
 ### Compilar a imagem Nvidia Legancy Driver 390
