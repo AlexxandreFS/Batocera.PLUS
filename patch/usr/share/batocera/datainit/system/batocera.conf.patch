@@ -1,5 +1,5 @@
---- batocera.conf
-+++ batocera.conf.plus
+--- batocera.conf.original
++++ batocera.conf.modificado
 @@ -21,7 +21,7 @@
  ## Start kodi at launch (0,1)
  kodi.atstartup=0
@@ -9,7 +9,15 @@
  
  ## Kodi can wait for a network component before starting
  ## waithost is the ip or hostname that must answer to a ping to validate the availability
-@@ -115,16 +115,21 @@
+@@ -111,20 +111,29 @@
+ ## XGaming's XArcade Tankstik and other compatible devices
+ controllers.xarcade.enabled=1
+ 
++# ------------ D4 - WII-U-GC-ADAPTER Controllers ------------ #
++## Disable driver loading to give dolphin exclusive access
++controllers.wii-u-gc-adapter.enabled=1
+ 
++
  # ------------ F - Language and keyboard ------------ #
  ## Set the language of the system (fr_FR,en_US,en_GB,de_DE,pt_BR,es_ES,it_IT,eu_ES,tr_TR,zh_CN)
  system.language=en_US
@@ -33,7 +41,7 @@
  # default : stable ; set to beta to get the next version currently being tested. set to unstable at your own risk to get the development version.
  updates.type=stable
  
-@@ -203,15 +208,15 @@
+@@ -203,15 +212,15 @@
  ## wiimotes
  ## real wiimotes must not be paired with batocera.linux system so that they can work with the wii emulator
  ## set emulatedwiimotes to 1 to emulate wiimotes with standard pads

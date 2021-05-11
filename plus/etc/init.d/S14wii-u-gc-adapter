@@ -1,0 +1,42 @@
+#!/bin/bash
+
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+
+function doStop()
+{
+    if [ "$(pidof wii-u-gc-adapter)" ]
+    then
+        killall wii-u-gc-adapter
+    fi
+}
+
+function doStart()
+{
+    if ! [ "$(pidof wii-u-gc-adapter)" ]
+    then
+        return 0
+    fi
+
+    if grep -qE "^[ ]*controllers.wii-u-gc-adapter.enabled[ ]*=[ ]*0[ ]*$" /userdata/system/batocera.conf
+    then
+        doStop
+    fi
+}
+
+case "$1" in
+    start)
+        doStart
+        ;;
+    stop)
+        doStop
+        ;;
+    restart|reload)
+        doStart
+        doStop
+        ;;
+    *)
+        echo "usage: ${0}  start|stop|restart"
+esac
+
+exit 0

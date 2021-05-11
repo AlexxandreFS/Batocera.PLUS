@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ "$(pidof wii-u-gc-adapter)" ]
+then
+    killall wii-u-gc-adapter
+fi
+
+if [ ! -f '/userdata/system/batocera.conf' ]
+then
+    nohup /usr/bin/wii-u-gc-adapter >/dev/null 2>/dev/null &
+    exit 0
+fi
+
+if grep -qE "^[ ]*controllers.wii-u-gc-adapter.enabled[ ]*=[ ]*1[ ]*$" /userdata/system/batocera.conf
+then
+    nohup /usr/bin/wii-u-gc-adapter >/dev/null 2>/dev/null &
+    exit 0
+fi
+
+exit 0
