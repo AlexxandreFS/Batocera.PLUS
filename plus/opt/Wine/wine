@@ -441,7 +441,8 @@ function wineHelp() {
             '      PBA_ENABLE=1                  Enable OpenGL optimizations\n' \
             '\n' \
             '      WINEFSYNC=1                   Enable FSYNC, improves load times but crashes some games\n' \
-            '      WINEESYNC=1                   Enable ESYNC, improves load times but crashes some games\n'
+            '      WINEESYNC=1                   Enable ESYNC, improves load times but crashes some games\n' \
+			'      DX_MONO=1                     Install directX and mono on a non default wineprefix\n'
 }
 
 
@@ -510,7 +511,6 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
 fi
 
 ################################################################################
-################################################################################
 
 ### LOADING SCREEN
 
@@ -544,7 +544,7 @@ unset SAVE_DIR
 # Se o usuário definir o WINEPREFIX o DirectX e o Mono não será instalado, útil para
 # instalações em prefixos diferentes para evitar influências externas.
 
-if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ]; then
+if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ] || [ "${DX_MONO}" == '1' ]; then
 
     # O directx não pode ser instalado em refixo de 64 bits.
     if [ "${WINEARCH}" == 'win64' ]; then
