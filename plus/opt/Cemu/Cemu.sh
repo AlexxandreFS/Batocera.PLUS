@@ -47,10 +47,11 @@ WINE="$HOME/../saves/wiiu/wine"
 ### EXPORTS
 
 export WINEDLLOVERRIDES='keystone.dll=n,b;dbghelp.dll=n,b'
-export WINEPREFIX="${SAVE}/wine"
+export WINEPREFIX="${WINE}"
 export vblank_mode=0
 export mesa_glthread=true
 export __GL_THREADED_OPTIMIZATIONS=1
+export DX_MONO=1
 
 ################################################################################
 
@@ -127,7 +128,7 @@ if [ ! "$(ls -A "${CEMU}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/nu
     cp -f  "${CEMU_DIR}/cemuextras/settings.xml"       "${CEMU}" || exit $?
 
     # Montando a pasta do usuário em "share/save/wiiu"
-    mkdir -p "${SAVE}/hfiomlc01"                                 || exit $?
+    mkdir -p "${SAVE}/hfiomlc01" "${WINE}"                       || exit $?
     cp -rf "${CEMU_DIR}/cemuextras/controllerProfiles" "${SAVE}" || exit $?
     cp -rf "${CEMU_DIR}/emulator/gameProfiles"         "${SAVE}" || exit $?
     cp -rf "${CEMU_DIR}/emulator/graphicPacks"         "${SAVE}" || exit $?
@@ -138,6 +139,14 @@ if [ ! "$(ls -A "${CEMU}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/nu
 
     # Criando links simbólicos para a pasta "system/configs/cemu"
     ln -sf "${SAVE}/"* "${CEMU}"
+fi
+
+################################################################################
+
+### ATUALIZA OU CRIA O PREFIXO SE NECESSÁRIO
+
+if [ ! "$(ls -A "${WINE}" 2> /dev/null)" ]; then
+    mkdir -p "${WINE}"
 fi
 
 ################################################################################
@@ -172,28 +181,10 @@ case ${SLANG} in
 
 ### RENDER
 
-if [ "${RENDER}" == 'auto' ] || [ "${RENDER}" == 'opengl' ] || [ "${RENDER}" == '' ]; then
-    sed -i '/<Graphic>/!b;n;c\        <api>0</api>' "${CEMU}/settings.xml"
-else
+if [ "${RENDER}" == 'vulkan' ]; then
     sed -i '/<Graphic>/!b;n;c\        <api>1</api>' "${CEMU}/settings.xml"
-fi
-
-################################################################################
-
-### ATUALIZA OU CRIA O PREFIXO SE NECESSÁRIO
-
-WINE_VERSION="$(stat -t '/opt/Wine/wine-lutris/share/wine/wine.inf' | awk '{print $12}')"
-WINE_VERSION_NEW="$(cat -e "${WINE}/.update-timestamp" | cut -d '^' -f 1)"
-	
-if [ "${WINE_VERSION}" != "${WINE_VERSION_NEW}" ]; then
-    rm -rf "${WINE}"
-	mkdir -p "${WINE}/drive_c/windows/mono"
-	ln -s "/opt/Wine/apps/mono" "${WINE}/drive_c/windows/mono/mono-2.0"
-	wine-lutris /opt/Wine/apps/directx_Jun2010_redist/DXSETUP.exe /silent
-
-	while [ "$(pidof wineserver)" ]; do
-        sleep 1
-    done
+else
+    sed -i '/<Graphic>/!b;n;c\        <api>0</api>' "${CEMU}/settings.xml"
 fi
 
 ################################################################################
