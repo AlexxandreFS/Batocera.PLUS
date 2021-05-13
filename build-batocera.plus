@@ -249,6 +249,8 @@ URL_JAVA="${URL_JAVA}#/$(echo ${URL_JAVA} | sed 's/File=/;/' | cut -d ';' -f 2 |
 URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/6.1.1/wine-mono-6.1.1-x86.tar.xz'
 URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.8.1/dxvk-1.8.1.tar.gz'
 URL_WINE_VKD3D_PROTON='https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.3.1/vkd3d-proton-2.3.1.tar.zst'
+URL_WINE_MF='388649a5ac65f558873ce4f6eef24702eb33902e'
+URL_WINE_MF="https://github.com/z0z0z/mf-install/archive/${URL_WINE_MF}.zip#/mf-install-${URL_WINE_MF}.zip"
 
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
@@ -269,6 +271,7 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_WINE_MONO}" \
            "${URL_WINE_DXVK}" \
            "${URL_WINE_VKD3D_PROTON}" \
+           "${URL_WINE_MF}" \
            "${URL_FIREFOX}" \
            "${URL_JAVA}" \
            "${URL_QBITTORRENT}" \
@@ -407,6 +410,14 @@ cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x86/d3d12.dll" "${TEMP_DIR}/squa
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x64/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x64" || exit $?
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
+echo 'Install Wine Media Fundation...'
+PKG_NAME="$(basename "${URL_WINE_MF}")"
+unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" || exit $?
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
+cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
+       "${TEMP_DIR}/squashfs-root/opt/Wine/apps/mf" || exit $?
+rm -r "${TEMP_DIR}/pkg-xtract/"*
+
 echo 'Install Firefox...'
 PKG_NAME="$(basename "${URL_FIREFOX}")"
 bunzip2 -d -k -v -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar x -v -C "${TEMP_DIR}/squashfs-root/opt/Firefox" || exit $?
@@ -467,7 +478,6 @@ if [ "${NVIDIA_LEGACY}" == '1' ]; then
     sed -i 's/__NV_VK_ICD__/libGLX_nvidia.so.0/'                           "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d/nvidia_icd.json" || exit $?
 fi
 rm -r "${TEMP_DIR}/pkg-xtract/"*
-
 
 ################################################################################
 
@@ -559,7 +569,6 @@ echo "$(
         fi
     done < "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 )" > "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
-
 
 ################################################################################
 
