@@ -219,7 +219,7 @@ URL_BATOCERA_PLUS_PKG=(
 if [ -z "${RELEASE}" ]; then
     URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}"
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/play_libretro-mar-8-2021-1.7z'
-        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wii-u-gc-adapter-mar-6-2021-3.7z'
+        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wii-u-gc-adapter-mar-6-2021-2.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/obs-studio-27.0-rc3-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/obs-studio-extra-libs-1.7z' #dep: obs-studio
     )
@@ -234,7 +234,8 @@ else
     URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" 'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-460.73.01-1.7z') # remove on update.
 fi
 
-URL_THEME_A="https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS/archive/master.zip#/Theme-batocera-plus-${VERSION}${RELEASE}.zip"
+URL_THEME_A='351e14f6ed6d5927b037d4e5598508b992582fb9'
+URL_THEME_A="https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS/archive/${URL_THEME_A}.zip#/ES-Theme-Batocera-PLUS-${URL_THEME_A}.zip"
 
 URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
 
@@ -329,12 +330,19 @@ cp -r -f "$UPDATE_DIR/"* "$TEMP_DIR/squashfs-root" || exit $?
 
 ################################################################################
 
-### INSTALL PKGs
+### CREATE RAM DISK
 
-echo 'Install PKGs...'
+echo 'criando disco ram...'
 
 mkdir -p "${TEMP_DIR}/pkg-xtract"
-mount -t tmpfs -o size=1G tmpfs "${TEMP_DIR}/pkg-xtract"
+mount -t tmpfs -o size=1G tmpfs "${TEMP_DIR}/pkg-xtract" || exit $?
+
+################################################################################
+
+### INSTALL PKGs
+
+
+echo 'Install PKGs...'
 
 for PKG in "${URL_BATOCERA_PLUS_PKG[@]}"; do
     echo -e "\nInstall ${PKG_NAME%.*}..."
@@ -353,15 +361,14 @@ for PKG in "${URL_BATOCERA_PLUS_PKG[@]}"; do
     rm -r "${TEMP_DIR}/pkg-xtract/"*
 done
 
-umount "${TEMP_DIR}/pkg-xtract"
-
 ################################################################################
 
 echo 'Install batocera.plus theme...'
 PKG_NAME="$(basename "${URL_THEME_A}")"
 unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" || exit $?
-cp -rf "${TEMP_DIR}/pkg-xtract/ES-Theme-Batocera-PLUS-master" \
+cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
        "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus" || exit $?
+rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo "Install Wine-Extra Libs..."
 # Remova a linha à baixo (mv) em uma futura atualização.
@@ -379,9 +386,10 @@ PKG_NAME="$(basename "${URL_WINE_DXVK}")"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract" || exit $?
 cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk" || exit $?
-ln -s '/opt/Wine/apps/vkd3d-proton/x32/d3d12.dll' "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x32/d3d12.dll" || exit $?
-ln -s '/opt/Wine/apps/vkd3d-proton/x64/d3d12.dll' "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x64/d3d12.dll" || exit $?
+ln -s '/opt/Wine/apps/vkd3d-proton/x32/d3d12.dll'  "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x32/d3d12.dll" || exit $?
+ln -s '/opt/Wine/apps/vkd3d-proton/x64/d3d12.dll'  "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x64/d3d12.dll" || exit $?
 rm "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/setup_dxvk.sh"
+rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Wine VKD3D_PROTON (DXVK12)...'
 PKG_NAME="$(basename "${URL_WINE_VKD3D_PROTON}")"
@@ -397,6 +405,7 @@ else
 fi
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x86/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x32" || exit $?
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x64/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x64" || exit $?
+rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Firefox...'
 PKG_NAME="$(basename "${URL_FIREFOX}")"
@@ -430,20 +439,18 @@ rm -r "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/Go to project website for updat
 mv "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/Cemu/cemuhook"
 rmdir "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}"
 
-# remover comando if se os bugs forem corrigidos
-if [ -z "${RELEASE}" ]; then
-    echo 'Install Yuzu...'
-    PKG_NAME="$(basename "${URL_YUZU}")"
-    chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
-    mkdir -p "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
-    CURRENT_DIR="$(pwd)"
-    cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
-    "${CURRENT_DIR}/${DOWNLOAD_DIR}/${PKG_NAME}" --appimage-extract
-    cd "${CURRENT_DIR}"
-    unset CURRENT_DIR
-    mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu"
-    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu" "${TEMP_DIR}/squashfs-root/opt/Yuzu"
-fi
+echo 'Install Yuzu...'
+PKG_NAME="$(basename "${URL_YUZU}")"
+chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
+mkdir -p "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
+CURRENT_DIR="$(pwd)"
+cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
+"${CURRENT_DIR}/${DOWNLOAD_DIR}/${PKG_NAME}" --appimage-extract
+cd "${CURRENT_DIR}"
+unset CURRENT_DIR
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu" "${TEMP_DIR}/squashfs-root/opt/Yuzu"
+rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install nvidia driver...'
 PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"
@@ -459,6 +466,15 @@ if [ "${NVIDIA_LEGACY}" == '1' ]; then
     cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia_icd.json.template"  "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d/nvidia_icd.json" || exit $?
     sed -i 's/__NV_VK_ICD__/libGLX_nvidia.so.0/'                           "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d/nvidia_icd.json" || exit $?
 fi
+rm -r "${TEMP_DIR}/pkg-xtract/"*
+
+
+################################################################################
+
+### DROP RAM DISK
+
+sync
+umount "${TEMP_DIR}/pkg-xtract/"
 
 ################################################################################
 
@@ -563,7 +579,7 @@ sync
 
 ################################################################################
 
-mv    "$TEMP_DIR/BatoceraZero.img" "$TEMP_DIR/Batocera.PLUS.img" || exit $?
+mv "$TEMP_DIR/BatoceraZero.img" "$TEMP_DIR/Batocera.PLUS.img" || exit $?
 
 if [ "${RELEASE}" ]; then
     echo 'Copiando arquivos extra para a release...'
@@ -591,7 +607,7 @@ rmdir "${TEMP_DIR}/BATOCERA"               || exit $?
 rmdir "${TEMP_DIR}/BatoceraZero"           || exit $?
 rm -r "${TEMP_DIR}/squashfs-root"          || exit $?
 rm    "${TEMP_DIR}/batocera.linux.img"     || exit $?
-rm -r "${TEMP_DIR}/pkg-xtract"             || exit $?
+rmdir "${TEMP_DIR}/pkg-xtract"             || exit $?
 if [ "${RELEASE}" ]; then
     rm -r "${TEMP_DIR}/Batocera.PLUS.img"  || exit $?
 fi
