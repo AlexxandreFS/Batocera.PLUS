@@ -19,10 +19,10 @@ HOST_WINE_DEPENDENCIES  = host-bison host-flex
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-stable
 
 # Wine Old Stable
-WINE_VERSION = 5.0.5
-WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
-WINE_SITE = https://dl.winehq.org/wine/source/5.0
-WINE_FOLDER_INSTALL = /opt/Wine/wine-old-stable
+#WINE_VERSION = 5.0.5
+#WINE_SOURCE = wine-$(WINE_VERSION).tar.xz
+#WINE_SITE = https://dl.winehq.org/wine/source/5.0
+#WINE_FOLDER_INSTALL = /opt/Wine/wine-old-stable
 
 # Wine Staging 
 #WINE_VERSION = 6.8
@@ -40,10 +40,10 @@ WINE_FOLDER_INSTALL = /opt/Wine/wine-old-stable
 #WINE_SITE = $(call github,ValveSoftware,wine,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/proton-valve
 
-# Proton GE Custom (Commits on Apr 26, 2021)
-#WINE_VERSION = 99e4fd04b51939dd0b492b83dfd9363b3d9ce9f8
-#WINE_SITE = $(call github,GloriousEggroll,proton-ge-custom,$(WINE_VERSION))
-#WINE_FOLDER_INSTALL = /opt/Wine/proton-ge-custom
+# Proton GE Custom (Commits on May 10, 2021)
+WINE_VERSION = ae63dc10b12b5c7457d800c82ad4892690c66402
+WINE_SITE = $(call github,GloriousEggroll,proton-ge-custom,$(WINE_VERSION))
+WINE_FOLDER_INSTALL = /opt/Wine/proton-ge-custom
 
 ################################################################################
 
