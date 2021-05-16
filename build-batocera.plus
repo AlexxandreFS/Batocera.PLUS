@@ -604,13 +604,13 @@ echo 'Compactando arquivo squashfs...'
 
 case ${SQUASHFS_COMPRESSION} in
     1)
-        mksquashfs "$TEMP_DIR/squashfs-root/"* "$TEMP_DIR/batocera" || exit $?
+        mksquashfs "${TEMP_DIR}/squashfs-root" "${TEMP_DIR}/batocera" || exit $?
         ;;
     2)
-        mksquashfs "$TEMP_DIR/squashfs-root/"* "$TEMP_DIR/batocera" -b 512k -comp zstd -Xcompression-level 15 || exit $?
+        mksquashfs "${TEMP_DIR}/squashfs-root" "${TEMP_DIR}/batocera" -b 512k -comp zstd -Xcompression-level 15 || exit $?
         ;;
     3)
-        mksquashfs "$TEMP_DIR/squashfs-root/"* "$TEMP_DIR/batocera" -b 1M -comp xz -Xdict-size 100% || exit $?
+        mksquashfs "${TEMP_DIR}/squashfs-root" "${TEMP_DIR}/batocera" -b 1M -comp xz -Xdict-size 100% || exit $?
         ;;
 esac
 
