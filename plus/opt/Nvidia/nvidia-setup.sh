@@ -2,8 +2,6 @@
 
 DRIVER_DIR=/opt/Nvidia/${1}
 
-${DRIVER_DIR}/../nvidia-clear.sh
-
 DIRS=$(find ${DRIVER_DIR} -type d | sed "s|${DRIVER_DIR}||")
 
 for DIR in ${DIRS[*]}
