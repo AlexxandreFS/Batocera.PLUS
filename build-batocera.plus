@@ -518,6 +518,8 @@ sed -i 's/BATOCERA.LINUX/BATOCERA.PLUS /' "${TEMP_DIR}/squashfs-root/usr/bin/emu
 
 ################################################################################
 
+### COMPRESS SQUASHFS
+
 echo 'Compactando arquivo squashfs...'
 
 case ${SQUASHFS_COMPRESSION} in
@@ -531,6 +533,8 @@ case ${SQUASHFS_COMPRESSION} in
         mksquashfs "$TEMP_DIR/squashfs-root/"* "$TEMP_DIR/batocera" -b 1M -comp xz -Xdict-size 100% || exit $?
         ;;
 esac
+
+################################################################################
 
 echo 'Descompactando imagem do BatoceraZero...'
 7zr x "${DOWNLOAD_DIR}/${BATOCERA_ZERO}" -o"${TEMP_DIR}" || exit $?
@@ -555,6 +559,10 @@ mv "$TEMP_DIR/batocera" "$TEMP_DIR/BatoceraZero/boot/batocera" || exit $?
 echo 'Copiando arquivos extras para o BatoceraZero...'
 cp -r -f "$BOOT_DIR/"* "$TEMP_DIR/BatoceraZero" || exit $?
 
+################################################################################
+
+### EDIT batocera-boot.conf
+
 echo 'Editando arquivo batocera-boot.conf...'
 echo "$(
     while read FILE; do
@@ -578,6 +586,9 @@ echo "$(
         fi
     done < "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 )" > "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
+
+sed -i 's/^# enable the nvidia driver.*/# enable the nvidia driver (auto, true, false)/' "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
+sed -i 's/^#nvidia-driver=true$/nvidia-driver=auto/'                                     "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 
 ################################################################################
 

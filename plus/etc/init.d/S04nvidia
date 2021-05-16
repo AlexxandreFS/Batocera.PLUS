@@ -1,0 +1,100 @@
+#!/bin/bash
+
+################################################################################
+
+if test "$1" != "start"
+then
+    exit 0
+fi
+
+################################################################################
+
+function main()
+{
+    local CONFIG_FILE=/boot/batocera-boot.conf
+
+    local NVIDIA_DRIVER=$(grep -E "^[ ]*nvidia-driver[ ]*=" ${CONFIG_FILE} | cut -d '=' -f 2 | xargs)
+
+    case ${NVIDIA_DRIVER} in
+        true)
+             enableDriver
+             ;;
+        false)
+            disableDriver
+            ;;
+        auto)
+             autoDetect
+             ;;
+        *)
+             autoDetect
+             ;;
+    esac
+}
+
+################################################################################
+
+function enableDriver()
+{
+    echo "blacklist nouveau"            > /etc/modprobe.d/blacklist-nouveau.conf
+    echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia-drm.conf
+    for i in nvidia.ko \
+             nvidia-modeset.ko \
+             nvidia-uvm.ko \
+             nvidia-drm.ko
+    do
+        insmod /lib/modules/*/extra/${i}
+    done
+}
+
+################################################################################
+
+function disableDriver()
+{
+    if [ -f /etc/modprobe.d/blacklist-nouveau.conf ]
+    then
+        rm /etc/modprobe.d/blacklist-nouveau.conf;
+    fi
+
+    if [ -f /etc/modprobe.d/nvidia-drm.conf ]
+    then
+        rm /etc/modprobe.d/nvidia-drm.conf;
+    fi
+}
+
+################################################################################
+
+function autoDetect()
+{
+    local GPU_DATABASE=/opt/Nvidia/supported-gpus.json
+
+    local DEVICE_ID="$(lspci -nd10de::0300 | egrep -o "[[:xdigit:]]{4}:[[:xdigit:]]{4}" | cut -d ":" -f 2 | sed '/^$/d' | head -n 1)"
+
+    if ! grep -iqF "\"devid\":\"0x${DEVICE_ID}\"" ${GPU_DATABASE};
+    then
+        disableDriver
+        return 0
+    fi
+
+    local DEVICE_NAME="$(lspci -vmm -d10de::0300 | sed -E '/^Device/!d;s/.*\[([^]]+)\].*/\1/' | head -n 1)"
+
+    if ! grep -iF "\"name\":\"${DEVICE_NAME}\"" ${GPU_DATABASE};
+    then
+        disableDriver
+        return 0
+    fi
+
+    local DEVICE_ID_HIBRID="$(lspci -d8086::0300)"
+
+    if [ "${DEVICE_ID_HIBRID}" ]
+    then
+        disableDriver
+        return 0
+    fi
+
+    enableDriver
+}
+
+################################################################################
+
+main
+exit 0

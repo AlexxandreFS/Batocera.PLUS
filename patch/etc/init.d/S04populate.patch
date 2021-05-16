@@ -1,0 +1,20 @@
+###
+### Desabilita o carregamento do driver da nvidia.
+### O driver será carregado por um outro serviço.
+###
+--- S04populate.original
++++ S04populate.modificado
+@@ -34,13 +34,3 @@
+ # xorg
+ mkdir -p /var/log
+ 
+-# nvidia-driver
+-if grep -qE "^[ ]*nvidia-driver[ ]*=[ ]*true[ ]*$" /boot/batocera-boot.conf
+-then
+-	echo "blacklist nouveau" > /etc/modprobe.d/blacklist-nouveau.conf
+-	echo "options nvidia-drm modeset=1" > /etc/modprobe.d/nvidia-drm.conf
+-	for m in nvidia nvidia_modeset nvidia_uvm nvidia_drm ; do modprobe $m ; done
+-else
+-	[ -f /etc/modprobe.d/blacklist-nouveau.conf ] && rm /etc/modprobe.d/blacklist-nouveau.conf;
+-	[ -f /etc/modprobe.d/nvidia-drm.conf ] && rm /etc/modprobe.d/nvidia-drm.conf;
+-fi
