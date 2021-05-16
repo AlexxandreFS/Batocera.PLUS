@@ -10,7 +10,7 @@ VERSION=2.13
 
 # Remova esta linha para diminuir o tempo de compilação e adicionar pacotes
 # experimentais, a imagem nao será compactada em será gerado o md5sum
-#RELEASE='dev'
+RELEASE='dev'
 
 # Nvidia Driver
 NVIDIA_LEGACY=0
@@ -19,11 +19,11 @@ NVIDIA_LEGACY=0
 SQUASHFS_COMPRESSION=2
 
 # Temporary folder on a linux partition
-#TEMP_DIR='./tmp'
+TEMP_DIR='./tmp'
 #TEMP_DIR='/media/NO_LABEL/tmp'
 #TEMP_DIR='/media/NO_LABEL_1/tmp'
 #TEMP_DIR='/media/NO_LABEL_2/tmp'
-TEMP_DIR='/mnt/tmp'
+#TEMP_DIR='/mnt/tmp'
 
 # BatoceraZero image
 BATOCERA_ZERO='BatoceraZero3.7GB-1.7z' # image size: 3655701504
@@ -265,7 +265,7 @@ URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Curren
 URL_CEMUFAKEFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
 URL_EXTRAFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.1.7z'
 
-URL_YUZU='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-610/yuzu-20210507-f6bf40b3d.AppImage'
+URL_YUZU='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-623/yuzu-20210515-4facd7650.AppImage'
 
 ################################################################################
 
