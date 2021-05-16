@@ -10,7 +10,7 @@ VERSION=2.13
 
 # Remova esta linha para diminuir o tempo de compilação e adicionar pacotes
 # experimentais, a imagem nao será compactada em será gerado o md5sum
-RELEASE='dev'
+#RELEASE='dev'
 
 # Nvidia Driver
 NVIDIA_LEGACY=0
@@ -19,14 +19,18 @@ NVIDIA_LEGACY=0
 SQUASHFS_COMPRESSION=2
 
 # Temporary folder on a linux partition
-TEMP_DIR='./tmp'
+#TEMP_DIR='./tmp'
 #TEMP_DIR='/media/NO_LABEL/tmp'
 #TEMP_DIR='/media/NO_LABEL_1/tmp'
 #TEMP_DIR='/media/NO_LABEL_2/tmp'
-#TEMP_DIR='/mnt/tmp'
+TEMP_DIR='/mnt/tmp'
 
 # BatoceraZero image
-IMG_ZERO='img/BatoceraZero3.3GB.7z'
+BATOCERA_ZERO='BatoceraZero3.7GB-1.7z' # image size: 3655701504
+#BATOCERA_ZERO='BatoceraZero4GB-1.7z'  # image size: 4G
+#BATOCERA_ZERO='BatoceraZero5GB-1.7z'  # image size: 5G
+#BATOCERA_ZERO='BatoceraZero6GB-1.7z'  # image size: 6G
+#BATOCERA_ZERO='BatoceraZero7GB-1.7z'  # image size: 7G
 
 # Batocera.PLUS extra files
 PLUS_DIR='plus'
@@ -237,6 +241,8 @@ else
     URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" 'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-460.73.01-1.7z') # remove on update.
 fi
 
+URL_BATOCERA_ZERO="https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/${BATOCERA_ZERO}"
+
 URL_THEME_A='351e14f6ed6d5927b037d4e5598508b992582fb9'
 URL_THEME_A="https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS/archive/${URL_THEME_A}.zip#/ES-Theme-Batocera-PLUS-${URL_THEME_A}.zip"
 
@@ -269,6 +275,7 @@ mkdir -p "${DOWNLOAD_DIR}"
 
 for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_BATOCERA_LINUX}" \
+           "${URL_BATOCERA_ZERO}" \
            "${URL_NVIDIA_DRIVER}" \
            "${URL_WINE_MONO}" \
            "${URL_WINE_DXVK}" \
@@ -526,7 +533,7 @@ case ${SQUASHFS_COMPRESSION} in
 esac
 
 echo 'Descompactando imagem do BatoceraZero...'
-7zr x "$IMG_ZERO" -o"$TEMP_DIR" || exit $?
+7zr x "${DOWNLOAD_DIR}/${BATOCERA_ZERO}" -o"${TEMP_DIR}" || exit $?
 
 echo 'Adicionando imagem BatoceraZero ao dispositivo loop...'
 losetup -o $((512 * 2048)) /dev/loop6 "$TEMP_DIR/BatoceraZero.img" || exit $?
