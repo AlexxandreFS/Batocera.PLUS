@@ -12,9 +12,6 @@ VERSION=2.13
 # experimentais, a imagem nao será compactada em será gerado o md5sum
 RELEASE='dev'
 
-# Nvidia Driver
-NVIDIA_LEGACY=0
-
 # Squashfs compression level
 SQUASHFS_COMPRESSION=2
 
@@ -232,16 +229,12 @@ if [ -z "${RELEASE}" ]; then
     )
 fi
 
-if [ "${NVIDIA_LEGACY}" == '1' ]; then
-    URL_BATOCERA_LINUX='https://batocera.org/users/alexxandrefs/5.27-nvidia-legacy/batocera-5.27-x86_64-20200919.img.gz'
-    URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/390.138/NVIDIA-Linux-x86_64-390.138.run'
-else
-    URL_BATOCERA_LINUX='https://batocera.org/upgrades/x86_64/stable/last/archives/20201001/batocera-5.27.2-x86_64-20201001.img.gz'
-    URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/460.73.01/NVIDIA-Linux-x86_64-460.73.01.run'
-    URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" 'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-460.73.01-1.7z') # remove on update.
-fi
+URL_BATOCERA_LINUX='https://batocera.org/upgrades/x86_64/stable/last/archives/20201001/batocera-5.27.2-x86_64-20201001.img.gz'
 
 URL_BATOCERA_ZERO="https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/${BATOCERA_ZERO}"
+
+#URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/390.143/NVIDIA-Linux-x86_64-390.138.run'
+URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/460.80/NVIDIA-Linux-x86_64-460.80.run'
 
 URL_THEME_A='351e14f6ed6d5927b037d4e5598508b992582fb9'
 URL_THEME_A="https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS/archive/${URL_THEME_A}.zip#/ES-Theme-Batocera-PLUS-${URL_THEME_A}.zip"
@@ -482,10 +475,6 @@ cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-application-profiles-"* "${TE
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk2.so."*           "${TEMP_DIR}/squashfs-root/usr/lib"                 || exit $?
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-encode.so."*         "${TEMP_DIR}/squashfs-root/usr/lib/"                || exit $?
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvcuvid.so."*               "${TEMP_DIR}/squashfs-root/usr/lib/libnvcuvid.so.1" || exit $?
-if [ "${NVIDIA_LEGACY}" == '1' ]; then
-    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia_icd.json.template"  "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d/nvidia_icd.json" || exit $?
-    sed -i 's/__NV_VK_ICD__/libGLX_nvidia.so.0/'                           "${TEMP_DIR}/squashfs-root/usr/share/vulkan/icd.d/nvidia_icd.json" || exit $?
-fi
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 ################################################################################
@@ -587,8 +576,8 @@ echo "$(
     done < "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 )" > "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 
-sed -i 's/^# enable the nvidia driver.*/# enable the nvidia driver (auto, true, false)/' "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
-sed -i 's/^#nvidia-driver=true$/nvidia-driver=auto/'                                     "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
+sed -i 's/^# enable the nvidia driver.*/# enable the nvidia driver (auto, true, false, legacy)/' "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
+sed -i 's/^#nvidia-driver=true$/nvidia-driver=auto/'                                             "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 
 ################################################################################
 
@@ -612,9 +601,6 @@ mv "$TEMP_DIR/BatoceraZero.img" "$TEMP_DIR/Batocera.PLUS.img" || exit $?
 
 if [ "${RELEASE}" ]; then
     echo 'Copiando arquivos extra para a release...'
-    if [ "${NVIDIA_LEGACY}" == '1' ]; then
-        RELEASE="${RELEASE}-Nvidia-Legacy"
-    fi
     cp -f  "${BOOT_DIR}/batocera-hd-edition/grub.cfg"                "${TEMP_DIR}"                      || exit $?
     cp -f  "${BOOT_DIR}/batocera-hd-edition/leia-me.txt"             "${TEMP_DIR}/dualboot-leia-me.txt" || exit $?
     #cp -f  "whatsnew.txt"                                            "${TEMP_DIR}"                      || exit $?
