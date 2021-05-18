@@ -2,6 +2,7 @@
 ##
 ## Batocera.PLUS
 ##
+set -e
 
 ################################################################################
 
@@ -297,26 +298,26 @@ done
 echo -e '\nDescompactando Batocera.Linux...'
 PKG_NAME="$(basename "${URL_BATOCERA_LINUX}")"
 mkdir -p "${TEMP_DIR}"
-gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c > "${TEMP_DIR}/batocera.linux.img" || exit $?
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c > "${TEMP_DIR}/batocera.linux.img"
 
 echo 'Adicionando imagem oficial do batocera.linux ao disposivo loop...'
 losetup -f
-losetup /dev/loop7 -o $((512 * 2048)) "${TEMP_DIR}/batocera.linux.img" || exit $?
+losetup /dev/loop7 -o $((512 * 2048)) "${TEMP_DIR}/batocera.linux.img"
 
 echo 'Montando imagem do batocera.linux...'
 mkdir "${TEMP_DIR}/BATOCERA"
-mount -o rw /dev/loop7 "${TEMP_DIR}/BATOCERA" || exit $?
+mount -o rw /dev/loop7 "${TEMP_DIR}/BATOCERA"
 
 echo 'Descompactando arquivo squashfs...'
-unsquashfs -d "${TEMP_DIR}/squashfs-root" "$TEMP_DIR/BATOCERA/boot/batocera" || exit $?
+unsquashfs -d "${TEMP_DIR}/squashfs-root" "$TEMP_DIR/BATOCERA/boot/batocera"
 
 ################################################################################
 
 echo 'Removendo arquivos desnecessários...'
-rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/music"   || exit $?
+rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/music"
 
 # Remova apenas se atualizar o pacote completo dos shaders para o retroarch.
-rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/shaders" || exit $?
+rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/shaders"
 
 for x in c64 cannonball gba megadrive mrboom nes pcengine prboom snes; do
     for y in "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/${x}/"*; do
@@ -418,14 +419,14 @@ done
 ################################################################################
 
 echo 'Desativando servicos...'
-mv    "$TEMP_DIR/squashfs-root/etc/init.d/S49ntp"          "$TEMP_DIR/squashfs-root/etc/init.d/K49ntp"          || exit $?
-mv    "$TEMP_DIR/squashfs-root/etc/init.d/S50triggerhappy" "$TEMP_DIR/squashfs-root/etc/init.d/K50triggerhappy" || exit $?
+mv    "$TEMP_DIR/squashfs-root/etc/init.d/S49ntp"          "$TEMP_DIR/squashfs-root/etc/init.d/K49ntp"
+mv    "$TEMP_DIR/squashfs-root/etc/init.d/S50triggerhappy" "$TEMP_DIR/squashfs-root/etc/init.d/K50triggerhappy"
 
 ################################################################################
 
 echo 'Copiando arquivos do batocera.plus...'
-cp -r -f "$PLUS_DIR/"*   "$TEMP_DIR/squashfs-root" || exit $?
-cp -r -f "$UPDATE_DIR/"* "$TEMP_DIR/squashfs-root" || exit $?
+cp -r -f "$PLUS_DIR/"*   "$TEMP_DIR/squashfs-root"
+cp -r -f "$UPDATE_DIR/"* "$TEMP_DIR/squashfs-root"
 
 ################################################################################
 
@@ -434,7 +435,7 @@ cp -r -f "$UPDATE_DIR/"* "$TEMP_DIR/squashfs-root" || exit $?
 echo 'criando disco ram...'
 
 mkdir -p "${TEMP_DIR}/pkg-xtract"
-mount -t tmpfs -o size=1G tmpfs "${TEMP_DIR}/pkg-xtract" || exit $?
+mount -t tmpfs -o size=1G tmpfs "${TEMP_DIR}/pkg-xtract"
 
 ################################################################################
 
@@ -463,9 +464,9 @@ done
 
 echo 'Install batocera.plus theme...'
 PKG_NAME="$(basename "${URL_THEME_A}")"
-unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" || exit $?
+unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract"
 cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
-       "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus" || exit $?
+       "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo "Install Wine-Extra Libs..."
@@ -475,17 +476,17 @@ mv "${TEMP_DIR}/squashfs-root/opt/Wine/linux" "${TEMP_DIR}"
 echo 'Install Wine Mono...'
 PKG_NAME="$(basename "${URL_WINE_MONO}")"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
-xz -d -k -c -v "${DOWNLOAD_DIR}/${PKG_NAME}" | tar xv -C "${TEMP_DIR}/squashfs-root/opt/Wine/apps" || exit $?
+xz -d -k -c -v "${DOWNLOAD_DIR}/${PKG_NAME}" | tar xv -C "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
 mv "${TEMP_DIR}/squashfs-root/opt/Wine/apps/wine-mono-"* \
    "${TEMP_DIR}/squashfs-root/opt/Wine/apps/mono"
 
 echo 'Install Wine DXVK...'
 PKG_NAME="$(basename "${URL_WINE_DXVK}")"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
-gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract" || exit $?
-cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk" || exit $?
-ln -s '/opt/Wine/apps/vkd3d-proton/x32/d3d12.dll'  "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x32/d3d12.dll" || exit $?
-ln -s '/opt/Wine/apps/vkd3d-proton/x64/d3d12.dll'  "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x64/d3d12.dll" || exit $?
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
+cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk"
+ln -s '/opt/Wine/apps/vkd3d-proton/x32/d3d12.dll'  "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x32/d3d12.dll"
+ln -s '/opt/Wine/apps/vkd3d-proton/x64/d3d12.dll'  "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x64/d3d12.dll"
 rm "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/setup_dxvk.sh"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
@@ -501,45 +502,45 @@ else
     # Não remova esta linha quando remover o bloco if.
     zstd -d -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar -xvC "${TEMP_DIR}/pkg-xtract" || exit $?
 fi
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x86/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x32" || exit $?
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x64/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x64" || exit $?
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x86/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x32"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x64/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x64"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Wine Media Fundation...'
 PKG_NAME="$(basename "${URL_WINE_MF}")"
-unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" || exit $?
+unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
 cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
-       "${TEMP_DIR}/squashfs-root/opt/Wine/apps/mf" || exit $?
+       "${TEMP_DIR}/squashfs-root/opt/Wine/apps/mf"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Firefox...'
 PKG_NAME="$(basename "${URL_FIREFOX}")"
-bunzip2 -d -k -v -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar x -v -C "${TEMP_DIR}/squashfs-root/opt/Firefox" || exit $?
+bunzip2 -d -k -v -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar x -v -C "${TEMP_DIR}/squashfs-root/opt/Firefox"
 mv    "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox/"* \
       "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-esr"
 rmdir "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox"
 
 echo 'Install qBittorrent...'
 PKG_NAME="$(basename "${URL_QBITTORRENT}")"
-cp "${DOWNLOAD_DIR}/${PKG_NAME}" "${TEMP_DIR}/squashfs-root/opt/qBittorrent/qBittorrent-Enhanced-Edition.AppImage" || exit $?
+cp "${DOWNLOAD_DIR}/${PKG_NAME}" "${TEMP_DIR}/squashfs-root/opt/qBittorrent/qBittorrent-Enhanced-Edition.AppImage"
 chmod +x "${TEMP_DIR}/squashfs-root/opt/qBittorrent/qBittorrent-Enhanced-Edition.AppImage"
 
 echo 'Install Java...'
 PKG_NAME="$(basename "${URL_JAVA}")"
-gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/opt" || exit $?
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/squashfs-root/opt"
 mv "${TEMP_DIR}/squashfs-root/opt/jre"*  "${TEMP_DIR}/squashfs-root/opt/Java"
 
 echo 'Install Cemu...'
 PKG_NAME="$(basename "${URL_CEMU%.*}")"
-unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/squashfs-root/opt" || exit $?
+unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/squashfs-root/opt"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Cemu/emulator"
 mv    "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/Cemu/emulator"
 rm -r "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}"
 
 echo 'Install CemuHook...'
 PKG_NAME="$(basename "${URL_CEMUHOOK%.*}")"
-unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}" || exit $?
+unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}"
 mkdir -p  "${TEMP_DIR}/squashfs-root/opt/Cemu/cemuhook"
 rm -r "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/Go to project website for updates.url"
 mv "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/Cemu/cemuhook"
@@ -561,22 +562,22 @@ rm -r "${TEMP_DIR}/pkg-xtract/"*
 echo 'Install nvidia driver...'
 PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"
 chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
-"${DOWNLOAD_DIR}/${PKG_NAME}" -x --target "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}" || exit $?
+"${DOWNLOAD_DIR}/${PKG_NAME}" -x --target "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}"
 mkdir -p "${TEMP_DIR}/squashfs-root/usr/share/nvidia"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-settings"               "${TEMP_DIR}/squashfs-root/usr/bin"                 || exit $?
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-application-profiles-"* "${TEMP_DIR}/squashfs-root/usr/share/nvidia"        || exit $?
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk2.so."*           "${TEMP_DIR}/squashfs-root/usr/lib"                 || exit $?
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk3.so."*           "${TEMP_DIR}/squashfs-root/usr/lib"                 || exit $?
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-encode.so."*         "${TEMP_DIR}/squashfs-root/usr/lib/"                || exit $?
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvcuvid.so."*               "${TEMP_DIR}/squashfs-root/usr/lib/libnvcuvid.so.1" || exit $?
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-settings"               "${TEMP_DIR}/squashfs-root/usr/bin"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-application-profiles-"* "${TEMP_DIR}/squashfs-root/usr/share/nvidia"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk2.so."*           "${TEMP_DIR}/squashfs-root/usr/lib"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk3.so."*           "${TEMP_DIR}/squashfs-root/usr/lib"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-encode.so."*         "${TEMP_DIR}/squashfs-root/usr/lib/"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvcuvid.so."*               "${TEMP_DIR}/squashfs-root/usr/lib/libnvcuvid.so.1"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install pci ids database...'
 PKG_NAME="$(basename "${URL_PCI_IDS}")"
 mkdir -p  "${TEMP_DIR}/squashfs-root/usr/share/hwdata"
-cp -f     "${DOWNLOAD_DIR}/${PKG_NAME}"      "${TEMP_DIR}/squashfs-root/usr/share/pci.ids.gz"     || exit $?
-gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c > "${TEMP_DIR}/squashfs-root/usr/share/hwdata/pci.ids" || exit $?
-ln -sf    '/usr/share/hwdata/pci.ids'        "${TEMP_DIR}/squashfs-root/usr/share/pci.ids"        || exit $?
+cp -f     "${DOWNLOAD_DIR}/${PKG_NAME}"      "${TEMP_DIR}/squashfs-root/usr/share/pci.ids.gz"
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c > "${TEMP_DIR}/squashfs-root/usr/share/hwdata/pci.ids"
+ln -sf    '/usr/share/hwdata/pci.ids'        "${TEMP_DIR}/squashfs-root/usr/share/pci.ids"
 
 ################################################################################
 
@@ -590,7 +591,7 @@ umount "${TEMP_DIR}/pkg-xtract/"
 ### PATCH
 
 echo 'Aplicando Patch...'
-cp -f "${TEMP_DIR}/squashfs-root/etc/samba/smb.conf" "${TEMP_DIR}/squashfs-root/etc/samba/smb-ps2smb.conf" || exit $?
+cp -f "${TEMP_DIR}/squashfs-root/etc/samba/smb.conf" "${TEMP_DIR}/squashfs-root/etc/samba/smb-ps2smb.conf"
 for i in $(du -a "${PATCH_DIR}" | grep -F '.patch' | awk '{print $2}' | sed "s#${PATCH_DIR}/##"); do
     patch -p1 "${TEMP_DIR}/squashfs-root/${i%.patch}" "${PATCH_DIR}/${i}" || exit $?
 done
@@ -600,8 +601,8 @@ done
 ### VERSION FILE
 
 echo 'Criando arquivo de versão do Batocera.PLUS...'
-mv   "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" "$TEMP_DIR/squashfs-root/usr/share/batocera/recalbox.version" || exit $?
-echo "$VERSION $(date +'%Y/%m/%d %H:%M')" >                        "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" || exit $?
+mv   "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version" "$TEMP_DIR/squashfs-root/usr/share/batocera/recalbox.version"
+echo "$VERSION $(date +'%Y/%m/%d %H:%M')" >                        "$TEMP_DIR/squashfs-root/usr/share/batocera/batocera.version"
 
 echo 'Adicionando versão BATOCERA.PLUS no ES'
 sed -i 's/BATOCERA.LINUX/BATOCERA.PLUS /' "${TEMP_DIR}/squashfs-root/usr/bin/emulationstation"
@@ -627,27 +628,27 @@ esac
 ################################################################################
 
 echo 'Descompactando imagem do BatoceraZero...'
-7zr x "${DOWNLOAD_DIR}/${BATOCERA_ZERO}" -o"${TEMP_DIR}" || exit $?
+7zr x "${DOWNLOAD_DIR}/${BATOCERA_ZERO}" -o"${TEMP_DIR}"
 
 echo 'Adicionando imagem BatoceraZero ao dispositivo loop...'
-losetup -o $((512 * 2048)) /dev/loop6 "$TEMP_DIR/BatoceraZero.img" || exit $?
+losetup -o $((512 * 2048)) /dev/loop6 "$TEMP_DIR/BatoceraZero.img"
 
 echo 'Montando imagem do BatoceraZero...'
 mkdir "$TEMP_DIR/BatoceraZero"
-mount /dev/loop6 "$TEMP_DIR/BatoceraZero" || exit $?
+mount /dev/loop6 "$TEMP_DIR/BatoceraZero"
 
 echo 'Movendo arquivos de boot para o BatoceraZero...'
-rm    "$TEMP_DIR/BATOCERA/boot/batocera"              || exit $?
-rm    "$TEMP_DIR/BATOCERA/boot/syslinux/ldlinux.sys"  || exit $?
-cp -r "$TEMP_DIR/BATOCERA/"* "$TEMP_DIR/BatoceraZero" || exit $?
+rm    "$TEMP_DIR/BATOCERA/boot/batocera"
+rm    "$TEMP_DIR/BATOCERA/boot/syslinux/ldlinux.sys"
+cp -r "$TEMP_DIR/BATOCERA/"* "$TEMP_DIR/BatoceraZero"
 # Remova a linha à baixo (mv) em uma futura atualização.
-mv -f "$TEMP_DIR/linux"      "$TEMP_DIR/BatoceraZero/boot" || exit $?
+mv -f "$TEMP_DIR/linux"      "$TEMP_DIR/BatoceraZero/boot"
 
 echo 'Movendo arquivo squashfs para o BatoceraZero...'
-mv "$TEMP_DIR/batocera" "$TEMP_DIR/BatoceraZero/boot/batocera" || exit $?
+mv "$TEMP_DIR/batocera" "$TEMP_DIR/BatoceraZero/boot/batocera"
 
 echo 'Copiando arquivos extras para o BatoceraZero...'
-cp -r -f "$BOOT_DIR/"* "$TEMP_DIR/BatoceraZero" || exit $?
+cp -r -f "$BOOT_DIR/"* "$TEMP_DIR/BatoceraZero"
 
 ################################################################################
 
@@ -687,23 +688,23 @@ sed -i 's/^#nvidia-driver=true$/nvidia-driver=auto/'                            
 sync
 
 echo 'Desmontando imagens...'
-umount /dev/loop7 || exit $?
-umount /dev/loop6 || exit $?
+umount /dev/loop7
+umount /dev/loop6
 
 echo 'Removendo imagens dos disposivos loop...'
-losetup -d /dev/loop7 || exit $?
-losetup -d /dev/loop6 || exit $?
+losetup -d /dev/loop7
+losetup -d /dev/loop6
 
 sync
 
 ################################################################################
 
-mv "$TEMP_DIR/BatoceraZero.img" "$TEMP_DIR/Batocera.PLUS.img" || exit $?
+mv "$TEMP_DIR/BatoceraZero.img" "$TEMP_DIR/Batocera.PLUS.img"
 
 if [ "${RELEASE}" ]; then
     echo 'Copiando arquivos extra para a release...'
-    cp -f  "${BOOT_DIR}/batocera-hd-edition/grub.cfg"                "${TEMP_DIR}"                      || exit $?
-    cp -f  "${BOOT_DIR}/batocera-hd-edition/leia-me.txt"             "${TEMP_DIR}/dualboot-leia-me.txt" || exit $?
+    cp -f  "${BOOT_DIR}/batocera-hd-edition/grub.cfg"                "${TEMP_DIR}"                       || exit $?
+    cp -f  "${BOOT_DIR}/batocera-hd-edition/leia-me.txt"             "${TEMP_DIR}/dualboot-leia-me.txt"  || exit $?
     #cp -f  "whatsnew.txt"                                            "${TEMP_DIR}"                      || exit $?
     #sed -i "1s/^/#### Batocera.PLUS-${VERSION}-${RELEASE} ####\n\n/" "${TEMP_DIR}/whatsnew.txt"         || exit $?
 
@@ -719,11 +720,11 @@ fi
 ### CLEAR
 
 echo 'Removendo arquivos temporários...'
-rmdir "${TEMP_DIR}/BATOCERA"               || exit $?
-rmdir "${TEMP_DIR}/BatoceraZero"           || exit $?
-rm -r "${TEMP_DIR}/squashfs-root"          || exit $?
-rm    "${TEMP_DIR}/batocera.linux.img"     || exit $?
-rmdir "${TEMP_DIR}/pkg-xtract"             || exit $?
+rmdir "${TEMP_DIR}/BATOCERA"
+rmdir "${TEMP_DIR}/BatoceraZero"
+rm -r "${TEMP_DIR}/squashfs-root"
+rm    "${TEMP_DIR}/batocera.linux.img"
+rmdir "${TEMP_DIR}/pkg-xtract"
 if [ "${RELEASE}" ]; then
     rm -r "${TEMP_DIR}/Batocera.PLUS.img"  || exit $?
 fi
