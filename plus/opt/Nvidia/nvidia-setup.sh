@@ -23,4 +23,6 @@ do
     cp -df ${DRIVER_DIR}${LINK} ${LINK}
 done
 
+ln -sf ${DRIVER_DIR}/../nvidia-config.desktop /usr/share/applications/nvidia-config.desktop
+
 exit 0

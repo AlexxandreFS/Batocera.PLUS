@@ -72,21 +72,18 @@ NVIDIA_FILES=(
     /usr/lib/xorg/modules/drivers/nvidia_drv.so
 
     /usr/share/glvnd/egl_vendor.d/10_nvidia.json
-
     /usr/share/vulkan/implicit_layer.d/nvidia_layers.json
-
     /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
-
-    /usr/share/nvidia/nvidia-application-profiles-${NVIDIA_VERSION}-rc
-    /usr/share/nvidia/nvidia-application-profiles-${NVIDIA_VERSION}-key-documentation
 
     # Batocera.PLUS only
     #/usr/bin/nvidia-settings
-    #/usr/lib/libnvidia-encode.so.${NVIDIA_VERSION}
     #/usr/lib/libnvidia-gtk2.so.${NVIDIA_VERSION}
-    #/usr/lib/libnvcuvid.so.1
     #/usr/share/nvidia/nvidia-application-profiles-${NVIDIA_VERSION}-key-documentation
     #/usr/share/nvidia/nvidia-application-profiles-${NVIDIA_VERSION}-rc
+    /usr/share/applications/nvidia-config.desktop
+
+    #/usr/lib/libnvidia-encode.so.${NVIDIA_VERSION}
+    #/usr/lib/libnvcuvid.so.1
 )
 
 NVIDIA_FILES_LAST=(
@@ -127,8 +124,6 @@ do
     if [ -e ${FILE} ]
     then
         rm ${FILE}
-    else
-        echo "not found: ${FILE}"
     fi
 done
 

@@ -233,8 +233,7 @@ URL_BATOCERA_LINUX='https://batocera.org/upgrades/x86_64/stable/last/archives/20
 
 URL_BATOCERA_ZERO="https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/${BATOCERA_ZERO}"
 
-#URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/390.143/NVIDIA-Linux-x86_64-390.138.run'
-URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/460.80/NVIDIA-Linux-x86_64-460.80.run'
+URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/390.143/NVIDIA-Linux-x86_64-390.138.run'
 
 URL_THEME_A='351e14f6ed6d5927b037d4e5598508b992582fb9'
 URL_THEME_A="https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS/archive/${URL_THEME_A}.zip#/ES-Theme-Batocera-PLUS-${URL_THEME_A}.zip"
@@ -556,7 +555,7 @@ mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu" "${TEMP_DIR}/squashfs-root/opt/Yuzu"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
-echo 'Install nvidia driver...'
+echo 'Install extra files to nvidia driver last...'
 PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"
 chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
 "${DOWNLOAD_DIR}/${PKG_NAME}" -x --target "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}" || exit $?
@@ -564,6 +563,7 @@ mkdir -p "${TEMP_DIR}/squashfs-root/usr/share/nvidia"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-settings"               "${TEMP_DIR}/squashfs-root/usr/bin"                 || exit $?
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-application-profiles-"* "${TEMP_DIR}/squashfs-root/usr/share/nvidia"        || exit $?
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk2.so."*           "${TEMP_DIR}/squashfs-root/usr/lib"                 || exit $?
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk3.so."*           "${TEMP_DIR}/squashfs-root/usr/lib"                 || exit $?
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-encode.so."*         "${TEMP_DIR}/squashfs-root/usr/lib/"                || exit $?
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvcuvid.so."*               "${TEMP_DIR}/squashfs-root/usr/lib/libnvcuvid.so.1" || exit $?
 rm -r "${TEMP_DIR}/pkg-xtract/"*
