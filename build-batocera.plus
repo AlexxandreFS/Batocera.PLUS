@@ -233,7 +233,9 @@ URL_BATOCERA_LINUX='https://batocera.org/upgrades/x86_64/stable/last/archives/20
 
 URL_BATOCERA_ZERO="https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/${BATOCERA_ZERO}"
 
-URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/390.143/NVIDIA-Linux-x86_64-390.138.run'
+URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/460.80/NVIDIA-Linux-x86_64-460.80.run'
+
+URL_PCI_IDS='http://pci-ids.ucw.cz/v2.2/pci.ids.gz'
 
 URL_THEME_A='351e14f6ed6d5927b037d4e5598508b992582fb9'
 URL_THEME_A="https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS/archive/${URL_THEME_A}.zip#/ES-Theme-Batocera-PLUS-${URL_THEME_A}.zip"
@@ -269,6 +271,7 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_BATOCERA_LINUX}" \
            "${URL_BATOCERA_ZERO}" \
            "${URL_NVIDIA_DRIVER}" \
+           "${URL_PCI_IDS}" \
            "${URL_WINE_MONO}" \
            "${URL_WINE_DXVK}" \
            "${URL_WINE_VKD3D_PROTON}" \
@@ -555,7 +558,7 @@ mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu" "${TEMP_DIR}/squashfs-root/opt/Yuzu"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
-echo 'Install extra files to nvidia driver last...'
+echo 'Install nvidia driver...'
 PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"
 chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
 "${DOWNLOAD_DIR}/${PKG_NAME}" -x --target "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}" || exit $?
@@ -567,6 +570,13 @@ cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk3.so."*           "${TE
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-encode.so."*         "${TEMP_DIR}/squashfs-root/usr/lib/"                || exit $?
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvcuvid.so."*               "${TEMP_DIR}/squashfs-root/usr/lib/libnvcuvid.so.1" || exit $?
 rm -r "${TEMP_DIR}/pkg-xtract/"*
+
+echo 'Install pci ids database...'
+PKG_NAME="$(basename "${URL_PCI_IDS}")"
+mkdir -p  "${TEMP_DIR}/squashfs-root/usr/share/hwdata"
+cp -f     "${DOWNLOAD_DIR}/${PKG_NAME}"      "${TEMP_DIR}/squashfs-root/usr/share/pci.ids.gz"     || exit $?
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c > "${TEMP_DIR}/squashfs-root/usr/share/hwdata/pci.ids" || exit $?
+ln -sf    '/usr/share/hwdata/pci.ids'        "${TEMP_DIR}/squashfs-root/usr/share/pci.ids"        || exit $?
 
 ################################################################################
 
