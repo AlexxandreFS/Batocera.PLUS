@@ -7,7 +7,12 @@
 ###
 
 KERNEL_VERSION="$(uname -r)"
-NVIDIA_VERSION="$(modinfo /lib/modules/5.6.7/extra/nvidia.ko | grep -E '^version: ' | awk '{print $2}')"
+
+if ! [ -f '/lib/modules/${KERNEL_VERSION}/extra/nvidia.ko" ]
+    exit 0
+fi
+
+NVIDIA_VERSION="$(modinfo /lib/modules/${KERNEL_VERSION}/extra/nvidia.ko | grep -E '^version: ' | awk '{print $2}')"
 
 NVIDIA_FILES=(
     /lib/modules/${KERNEL_VERSION}/extra/nvidia-drm.ko
