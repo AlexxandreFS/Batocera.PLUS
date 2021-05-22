@@ -216,6 +216,7 @@ elif [ ! "$(ls -A "${FP_SVDIR}/wine" 2> /dev/null)" ]; then # configura somente 
     fi
     applyConfig
 fi
+
 sync
 
 ################################################################################
