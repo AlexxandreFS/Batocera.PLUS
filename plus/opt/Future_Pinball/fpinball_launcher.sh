@@ -31,6 +31,8 @@ FP_DIR='/opt/Future_Pinball'
 FP_STDIR="$HOME/configs/Future Pinball"
 FP_SVDIR="$HOME/../saves/Future Pinball"
 RES_START="$(batocera-resolution currentMode)"
+OPT_WINE="$(stat -t '/opt/Wine/wine-lutris/share/wine/wine.inf' | awk '{print $12}')"
+SVDIR_VERSION="$(cat -e "${FP_SVDIR}/wine/.update-timestamp" | cut -d '^' -f 1)"
 
 ################################################################################
 
@@ -176,28 +178,32 @@ function applyConfig()
     wine-lutris regedit "Z:\userdata\system\configs\Future Pinball\config.reg"
 
     ### install deps for future pinball
-batocera-load-screen -t 600 -i '/opt/Wine/wine.png' &
+    batocera-load-screen -t 600 -i '/opt/Wine/wine.png' &
 
-cp -rf "${FP_DIR}/dll/"* "$WINEPREFIX/drive_c/windows/syswow64" && cp -rf "${FP_DIR}/dll/"* "$WINEPREFIX/drive_c/windows/system32"
+    cp -rf "${FP_DIR}/dll/"* "$WINEPREFIX/drive_c/windows/syswow64" && cp -rf "${FP_DIR}/dll/"* "$WINEPREFIX/drive_c/windows/system32"
 
     DLLS='dispex.dll jscript.dll scrobj.dll scrrun.dll vbscript.dll wshcon.dll wshext.dll'
 
-for i in $DLLS; do
-    wine-lutris regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/$i" 2>&1&> /dev/null
-    wine-lutris regsvr32 "$WINEPREFIX/drive_c/windows/system32/$i" 2>&1&> /dev/null
-    echo "$i Registrada com sucesso!"
-done
+    for i in $DLLS; do
+        wine-lutris regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/$i" 2>&1&> /dev/null
+        wine-lutris regsvr32 "$WINEPREFIX/drive_c/windows/system32/$i" 2>&1&> /dev/null
+        echo "$i Registrada com sucesso!"
+    done
 
-if [ "$(pidof yad)" ]; then
-    killall yad
-fi
+    if [ "$(pidof yad)" ]; then
+        killall yad
+    fi
 
-wait
+    wait
 }
 
 ################################################################################
 
 ### CHECK FOLDERS
+
+if [ "${OPT_WINE}" != "${SVDIR_VERSION}" ] && [ -d "${FP_SVDIR}/wine"]; then # se a versão do wine mudou
+    rm -r "${FP_SVDIR}/wine"
+fi
 
 if [ ! "$(ls -A "${FP_STDIR}" 2> /dev/null)" ] || [ ! "$(ls -A "${FP_SVDIR}"  2> /dev/null)" ]; then # configura do zero
     createFolders
