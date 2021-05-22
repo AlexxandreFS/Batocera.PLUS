@@ -155,11 +155,13 @@ fi
 
 if [ "${JOGO}" == '' ]; then
     sed -i 's/<fullscreen>.*/<fullscreen>false<\/fullscreen>/'       "${CEMU}/settings.xml"
-	sed -i 's/<check_update>.*/<check_update>true<\/check_update>/'  "${CEMU}/settings.xml"
+sed -i 's/<check_update>.*/<check_update>true<\/check_update>/'  "${CEMU}/settings.xml"
 else
     sed -i 's/<fullscreen>.*/<fullscreen>true<\/fullscreen>/'        "${CEMU}/settings.xml"
-	sed -i 's/<check_update>.*/<check_update>false<\/check_update>/' "${CEMU}/settings.xml"
+sed -i 's/<check_update>.*/<check_update>false<\/check_update>/' "${CEMU}/settings.xml"
 fi
+
+sync
 
 ################################################################################
 
@@ -177,6 +179,8 @@ case ${SLANG} in
     zh_CN)             sed -i 's/<language>.*/<language>44<\/language>/'  "${CEMU}/settings.xml" ;;
  esac
  
+ sync
+ 
 ################################################################################
 
 ### RENDER
@@ -186,6 +190,8 @@ if [ "${RENDER}" == 'vulkan' ]; then
 else
     sed -i '/<Graphic>/!b;n;c\        <api>0</api>' "${CEMU}/settings.xml"
 fi
+
+sync
 
 ################################################################################
 
