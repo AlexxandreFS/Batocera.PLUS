@@ -155,10 +155,10 @@ fi
 
 if [ "${JOGO}" == '' ]; then
     sed -i 's/<fullscreen>.*/<fullscreen>false<\/fullscreen>/'       "${CEMU}/settings.xml"
-sed -i 's/<check_update>.*/<check_update>true<\/check_update>/'  "${CEMU}/settings.xml"
+    sed -i 's/<check_update>.*/<check_update>true<\/check_update>/'  "${CEMU}/settings.xml"
 else
     sed -i 's/<fullscreen>.*/<fullscreen>true<\/fullscreen>/'        "${CEMU}/settings.xml"
-sed -i 's/<check_update>.*/<check_update>false<\/check_update>/' "${CEMU}/settings.xml"
+    sed -i 's/<check_update>.*/<check_update>false<\/check_update>/' "${CEMU}/settings.xml"
 fi
 
 sync

@@ -7,7 +7,7 @@
 ## Linha de comando:
 ## fpinball_launcher.sh [ROM] [RESOLUTION] [RATIO] [P1GUID] [P!NAME]
 ##
-## ROM = Caminho do jogo até a .iso ou .rpx
+## ROM = Caminho do jogo até a .fpt
 ## RESULUTION = auto ou algo que respeite a regra XXXXxXXXX ex: [1920x1080]
 ## RATIO = 4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3|auto|custom|squarepixel
 ## PIGUID = parâmetro do emulatorlauncher.sh (OPICIONAL)
@@ -55,7 +55,7 @@ function help()
     echo " Linha de comando:"
     echo " fpinball_launcher.sh [ROM] [RESOLUTION] [RATIO] [P1GUID] [P1NAME]"
     echo " "
-    echo " ROM = Caminho do jogo até a .iso ou .rpx"
+    echo " ROM = Caminho do jogo até a .fpt"
     echo " RESULUTION = auto ou algo que respeite a regra XXXXxXXXX ex: [1920x1080]"
     echo " RATIO = 4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3|auto|custom|squarepixel"
     echo " PIGUID = parâmetro do emulatorlauncher.sh (OPICIONAL)"
@@ -201,11 +201,11 @@ function applyConfig()
 
 ### CHECK FOLDERS
 
-if [ "${OPT_WINE}" != "${SVDIR_VERSION}" ] && [ -d "${FP_SVDIR}/wine"]; then # se a versão do wine mudou
+if [ "${OPT_WINE}" != "${SVDIR_VERSION}" ] && [ -e "${FP_SVDIR}/wine" ]; then # se a versão do wine mudou
     rm -r "${FP_SVDIR}/wine"
 fi
 
-if [ ! "$(ls -A "${FP_STDIR}" 2> /dev/null)" ] || [ ! "$(ls -A "${FP_SVDIR}"  2> /dev/null)" ]; then # configura do zero
+if [ ! "$(ls -A "${FP_STDIR}" 2> /dev/null)" ] || [ ! "$(ls -A "${FP_SVDIR}" 2> /dev/null)" ]; then # configura do zero
     createFolders
     createConfig
     applyConfig
