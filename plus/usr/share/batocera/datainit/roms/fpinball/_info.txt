@@ -1,0 +1,5 @@
+## SYSTEM FUTURE PINBALL ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted: ".fpt .FPT"
+-------------------------------------------------------------------------------
+Extensions des fichiers ROMs permises: ".fpt .FPT"
