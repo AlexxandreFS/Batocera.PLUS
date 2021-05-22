@@ -680,8 +680,8 @@ echo "$(
     done < "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 )" > "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 
-sed -i 's/^# enable the nvidia driver.*/# enable the nvidia driver (auto, true, false, legacy)/' "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
-sed -i 's/^#nvidia-driver=true$/nvidia-driver=auto/'                                             "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
+sed -i 's/^# enable the nvidia driver.*/# enable the nvidia driver (auto, last, 390, 340, false)/' "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
+sed -i 's/^#nvidia-driver=true$/nvidia-driver=auto/'                                               "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 
 ################################################################################
 
