@@ -297,6 +297,7 @@ JOGO="$(echo "Z:${JOGO}" | sed -e 's#/#\\#g')"
 ### EXECUTA O JOGO OU O CONFIGURADOR
 
 export VIRTUAL_DESKTOP=1
+
 if [ "${JOGO}" == '' ]; then
     wine-lutris "${FP_STDIR}/Future Pinball.exe"
 else
