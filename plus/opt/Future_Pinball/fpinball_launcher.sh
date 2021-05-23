@@ -113,69 +113,10 @@ function createFolders()
     ln -sf "${FP_SVDIR}/Libraries"        "${FP_STDIR}"
 }
 
-function createConfig()
-{
-    ### Cria config padrão
-    touch "${FP_STDIR}/config.reg"
-    echo 'Windows Registry Editor Version 5.00'                               >> "${FP_STDIR}/config.reg"
-    echo ''                                                                   >> "${FP_STDIR}/config.reg"
-    echo '[HKEY_CURRENT_USER\SOFTWARE\Future Pinball]'                        >> "${FP_STDIR}/config.reg"
-    echo ''                                                                   >> "${FP_STDIR}/config.reg"
-    echo '[HKEY_CURRENT_USER\SOFTWARE\Future Pinball\GamePlayer]'             >> "${FP_STDIR}/config.reg"
-    echo '"AspectRatio"=dword:0000002b'                                       >> "${FP_STDIR}/config.reg"
-    echo '"FullScreen"=dword:00000001'                                        >> "${FP_STDIR}/config.reg"
-    echo '"Width"=dword:00000280'                                             >> "${FP_STDIR}/config.reg"
-    echo '"Height"=dword:000001e0'                                            >> "${FP_STDIR}/config.reg"
-    echo '"JoypadNameNum"=dword:00000001'                                     >> "${FP_STDIR}/config.reg"
-    echo ''                                                                   >> "${FP_STDIR}/config.reg"
-    echo '[HKEY_CURRENT_USER\SOFTWARE\Future Pinball\GamePlayer\Joypads\'"${P1NAME}"' (js)]' >> "${FP_STDIR}/config.reg"
-    echo '"JoypadBackbox"=dword:00000001'                                     >> "${FP_STDIR}/config.reg"
-    echo '"JoypadDeadZone"=dword:00000064'                                    >> "${FP_STDIR}/config.reg"
-    echo '"JoypadDigitalPlunger"=dword:00000000'                              >> "${FP_STDIR}/config.reg"
-    echo '"JoypadExit"=dword:ffffffff'                                        >> "${FP_STDIR}/config.reg"
-    echo '"JoypadInsertCoin"=dword:00000006'                                  >> "${FP_STDIR}/config.reg"
-    echo '"JoypadInsertCoin2"=dword:ffffffff'                                 >> "${FP_STDIR}/config.reg"
-    echo '"JoypadInsertCoin3"=dword:ffffffff'                                 >> "${FP_STDIR}/config.reg"
-    echo '"JoypadLeft2ndFlipper"=dword:ffffffff'                              >> "${FP_STDIR}/config.reg"
-    echo '"JoypadLeftFlipper"=dword:00000004'                                 >> "${FP_STDIR}/config.reg"
-    echo '"JoypadMusicDown"=dword:ffffffff'                                   >> "${FP_STDIR}/config.reg"
-    echo '"JoypadMusicUp"=dword:ffffffff'                                     >> "${FP_STDIR}/config.reg"
-    echo '"JoypadNextCamera"=dword:00000008'                                  >> "${FP_STDIR}/config.reg"
-    echo '"JoypadNudgeAxisX"=dword:ffffffff'                                  >> "${FP_STDIR}/config.reg"
-    echo '"JoypadNudgeAxisY"=dword:ffffffff'                                  >> "${FP_STDIR}/config.reg"
-    echo '"JoypadNudgeGainX"=dword:000003e8'                                  >> "${FP_STDIR}/config.reg"
-    echo '"JoypadNudgeGainXMax"=dword:00000002'                               >> "${FP_STDIR}/config.reg"
-    echo '"JoypadNudgeGainY"=dword:000003e8'                                  >> "${FP_STDIR}/config.reg"
-    echo '"JoypadNudgeGainYMax"=dword:00000002'                               >> "${FP_STDIR}/config.reg"
-    echo '"JoypadPause"=dword:00000002'                                       >> "${FP_STDIR}/config.reg"
-    echo '"JoypadPinballRoller"=dword:ffffffff'                               >> "${FP_STDIR}/config.reg"
-    echo '"JoypadPinballRollerAxisX"=dword:ffffffff'                          >> "${FP_STDIR}/config.reg"
-    echo '"JoypadPinballRollerAxisY"=dword:ffffffff'                          >> "${FP_STDIR}/config.reg"
-    echo '"JoypadPinballRollerGainX"=dword:000003e8'                          >> "${FP_STDIR}/config.reg"
-    echo '"JoypadPinballRollerGainXMax"=dword:00000002'                       >> "${FP_STDIR}/config.reg"
-    echo '"JoypadPinballRollerGainY"=dword:000003e8'                          >> "${FP_STDIR}/config.reg"
-    echo '"JoypadPinballRollerGainYMax"=dword:00000002'                       >> "${FP_STDIR}/config.reg"
-    echo '"JoypadPlungerAxis"=dword:ffffffff'                                 >> "${FP_STDIR}/config.reg"
-    echo '"JoypadPlungerGain"=dword:000003e8'                                 >> "${FP_STDIR}/config.reg"
-    echo '"JoypadPlungerGainMax"=dword:00000002'                              >> "${FP_STDIR}/config.reg"
-    echo '"JoypadRight2ndFlipper"=dword:ffffffff'                             >> "${FP_STDIR}/config.reg"
-    echo '"JoypadRightFlipper"=dword:00000005'                                >> "${FP_STDIR}/config.reg"
-    echo '"JoypadService"=dword:ffffffff'                                     >> "${FP_STDIR}/config.reg"
-    echo '"JoypadSpecial1"=dword:ffffffff'                                    >> "${FP_STDIR}/config.reg"
-    echo '"JoypadSpecial2"=dword:ffffffff'                                    >> "${FP_STDIR}/config.reg"
-    echo '"JoypadStartGame"=dword:00000007'                                   >> "${FP_STDIR}/config.reg"
-    echo '"JoypadSupport"=dword:00000001'                                     >> "${FP_STDIR}/config.reg"
-    echo '"JoypadTest"=dword:ffffffff'                                        >> "${FP_STDIR}/config.reg"
-    echo '"JoypadToggleHud"=dword:ffffffff'                                   >> "${FP_STDIR}/config.reg"
-    echo '"JoypadVolumeDown"=dword:ffffffff'                                  >> "${FP_STDIR}/config.reg"
-    echo '"JoypadVolumeUp"=dword:ffffffff'                                    >> "${FP_STDIR}/config.reg"
-sync
-}
-
 function applyConfig()
 {
-    ### Aplica a config
-    wine-lutris regedit "Z:\userdata\system\configs\Future Pinball\config.reg"
+    ### Aplica a config padrão
+    wine-lutris regedit "${FP_DIR}/emulator/config.reg"
 
     ### install deps for future pinball
     batocera-load-screen -t 600 -i '/opt/Wine/wine.png' &
@@ -207,13 +148,9 @@ fi
 
 if [ ! "$(ls -A "${FP_STDIR}" 2> /dev/null)" ] || [ ! "$(ls -A "${FP_SVDIR}" 2> /dev/null)" ]; then # configura do zero
     createFolders
-    createConfig
     applyConfig
 elif [ ! "$(ls -A "${FP_SVDIR}/wine" 2> /dev/null)" ]; then # configura somente o prefixo do wine se ele for apagado
     mkdir -p "${FP_SVDIR}/wine"
-    if [ ! -f "${FP_STDIR}/config.reg" ]; then
-        createConfig
-    fi
     applyConfig
 fi
 
