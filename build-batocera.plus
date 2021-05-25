@@ -220,6 +220,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xdriver_xf86-video-intel-1.7z'    # remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-390.143-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-460.80-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-340.108-2.7z'
 )
 
 # Estes pacotes são compilados apenas nas imagens de desenvolvimento.
@@ -228,7 +229,6 @@ if [ -z "${RELEASE}" ]; then
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/play_libretro-mar-8-2021-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/obs-studio-27.0-rc3-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/obs-studio-extra-libs-1.7z' #dep: obs-studio
-        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-340.108-1.7z'
     )
 fi
 
