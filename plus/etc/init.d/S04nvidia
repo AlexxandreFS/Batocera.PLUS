@@ -13,8 +13,13 @@ CONFIG_FILE=/boot/batocera-boot.conf
 
 NVIDIA_DRIVER=$(grep -E "^[ ]*nvidia-driver[ ]*=" ${CONFIG_FILE} | cut -d '=' -f 2 | xargs)
 
+if [ -z "${NVIDIA_DRIVER}" ]
+then
+    exit 0
+fi
+
 case ${NVIDIA_DRIVER} in
-    auto)
+    auto|true)
         /opt/Nvidia/install.sh
         ;;
     last)

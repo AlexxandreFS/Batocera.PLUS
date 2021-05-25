@@ -27,10 +27,9 @@ DEVICE_HIBRID_ID="$(lspci -d8086::0300)"
 
 if [ "${DEVICE_HIBRID_ID}" ] && [ "${DEVICE_ID}" ]
 then
-    echo 'hibrid'
-    exit 0
+    echo "${DRIVER_VER} hybrid"
+else
+    echo ${DRIVER_VER}
 fi
-
-echo ${DRIVER_VER}
 
 exit 0

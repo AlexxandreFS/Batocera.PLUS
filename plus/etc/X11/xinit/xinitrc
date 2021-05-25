@@ -69,6 +69,15 @@ settings_output="`$systemsetting -command load -key global.dpi`"
 
 ################################################################################
 
+### Hybrid Nvidia
+
+if grep -q ' BusID ' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf; then
+    xrandr --setprovideroutputsource modesetting NVIDIA-0
+    xrandr --auto
+fi
+
+################################################################################
+
 ### Forces resolution
 
 # set user desired resolution

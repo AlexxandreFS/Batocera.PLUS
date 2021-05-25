@@ -14,12 +14,11 @@ then
     then
         exit 1
     else
-        DRIVER_DIR=/opt/Nvidia/${DRIVER_VERSION}
+        DRIVER_DIR=/opt/Nvidia/$(echo ${DRIVER_VERSION} | cut -d ' ' -f 1)
     fi
 else
     DRIVER_DIR=/opt/Nvidia/${1}
 fi
-
 
 ### UNINSTALL OLD DRIVER
 
@@ -76,5 +75,15 @@ do
         insmod "/lib/modules/${KERNEL_VERSION}/extra/${i}"
     fi
 done
+
+
+### HIBRID NVIDIA
+
+HYBRID_NVIDIA=$(echo ${DRIVER_VERSION} | cut -d ' ' -f 2)
+
+if [ "${HYBRID_NVIDIA}" == 'hybrid' ]
+then
+    /opt/Nvidia/hybrid-nvidia.sh
+fi
 
 exit 0
