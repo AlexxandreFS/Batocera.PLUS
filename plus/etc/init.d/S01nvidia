@@ -1,0 +1,21 @@
+#!/bin/sh
+###
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+###
+### Desistala o driver proprietário da Nvidia quando
+### o usuário salva as aterações usando o script
+### batocera-save-overlay
+###
+
+if [ "${1}" != 'start' ]
+then
+    exit 0
+fi
+
+if [ -e '/boot/boot/overlay' ]
+then
+    /opt/Nvidia/uninstall.sh
+fi
+
+exit 0

@@ -3,26 +3,41 @@
 ### Batocera.PLUS
 ### Alexxandre Freire dos Santos
 ###
+### Install Nvidia driver
+###
 
-### SET DRIVER FOLDER
+### PATH
 
-if [ -z "${1}" ]
-then
-    DRIVER_VERSION=$(/opt/Nvidia/auto-detect.sh)
+DRIVER_DIR="$(dirname $0)"
+XORG_CONF_IN=${DRIVER_DIR}/hybrid-nvidia-xorg.conf
+XORG_CONF_OUT=/usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
+CONFIG_FILE=/boot/batocera-boot.conf
+DRIVER_VERSION=$(grep -E "^[ ]*nvidia-driver[ ]*=" ${CONFIG_FILE} | cut -d '=' -f 2 | xargs)
 
-    if [ -z "${DRIVER_VERSION}" ]
-    then
-        exit 1
-    else
-        DRIVER_DIR=/opt/Nvidia/$(echo ${DRIVER_VERSION} | cut -d ' ' -f 1)
-    fi
-else
-    DRIVER_DIR=/opt/Nvidia/${1}
-fi
+case ${DRIVER_VERSION} in
+    auto|true)
+        DRIVER_DIR="${DRIVER_DIR}/${1}"
+        ;;
+    last)
+        DRIVER_DIR="${DRIVER_DIR}/last"
+        ;;
+    390)
+        DRIVER_DIR="${DRIVER_DIR}/v390"
+        ;;
+    340)
+        DRIVER_DIR="${DRIVER_DIR}/v340"
+        ;;
+    *)
+        exit 0
+esac
 
-### UNINSTALL OLD DRIVER
+### DISABLE NOUVEAU DRIVER
 
-${DRIVER_DIR}/../uninstall.sh
+ln -s ${DRIVER_DIR}/../nvidia-modprobe.conf \
+      /etc/modprobe.d/nvidia-driver.conf
+
+ln -s ${DRIVER_DIR}/../nvidia-config.desktop \
+      /usr/share/applications/nvidia-config.desktop
 
 
 ### CREATE FOLDERS
@@ -43,12 +58,6 @@ for FILE in ${FILES[*]}
 do
     ln -sf ${DRIVER_DIR}${FILE} ${FILE}
 done
-
-ln -s ${DRIVER_DIR}/../nvidia-modprobe.conf \
-      /etc/modprobe.d/nvidia-driver.conf
-
-ln -s ${DRIVER_DIR}/../nvidia-config.desktop \
-      /usr/share/applications/nvidia-config.desktop
 
 
 ### COPY LINKS
@@ -72,18 +81,41 @@ for i in nvidia.ko \
 do
     if [ -e "/lib/modules/${KERNEL_VERSION}/extra/${i}" ]
     then
-        insmod "/lib/modules/${KERNEL_VERSION}/extra/${i}"
+        modprobe ${i}
     fi
 done
 
 
-### HIBRID NVIDIA
+### HYBRID NVIDIA
 
-HYBRID_NVIDIA=$(echo ${DRIVER_VERSION} | cut -d ' ' -f 2)
-
-if [ "${HYBRID_NVIDIA}" == 'hybrid' ]
+if ! [ "$(lspci -d8086::0300)" ]
 then
-    /opt/Nvidia/hybrid-nvidia.sh
+    exit 0
 fi
+
+function convert()
+{
+    local A=$(echo "${1}" | cut -d ':' -f 1)
+    local B=$(echo "${1}" | cut -d ':' -f 2)
+    local C=$(echo "${1}" | cut -d ':' -f 3)
+
+    local OA=$(printf "%d" "0x${A}")
+    local OB=$(printf "%d" "0x${B}")
+    local OC=$(printf "%d" "0x${C}")
+
+    echo -n "${OA}:${OB}:${OC}"
+}
+
+BUSID=$(lspci | grep -E 'controller: NVIDIA' | cut -d ' ' -f 1 | sed s/[.]/:/g)
+
+if [ -z "${BUSID}" ]
+then
+    exit 1
+fi
+
+PCIID="PCI:$(convert "${BUSID}")"
+
+cp  -f "${XORG_CONF_IN}"    "${XORG_CONF_OUT}"
+sed -i "s/%PCIID%/${PCIID}/" ${XORG_CONF_OUT}
 
 exit 0

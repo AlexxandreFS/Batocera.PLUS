@@ -31,6 +31,7 @@ DRIVER_FILES=(
     /usr/share/applications/nvidia-config.desktop
 )
 
+
 for DRIVER_FILE in ${DRIVER_FILES[@]}
 do
     FILE=$(echo ${DRIVER_FILE} | sed "s|/opt/Nvidia/${DRIVER_VERSION}||")

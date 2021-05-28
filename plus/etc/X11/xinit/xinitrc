@@ -71,9 +71,19 @@ settings_output="`$systemsetting -command load -key global.dpi`"
 
 ### Hybrid Nvidia
 
-if grep -q ' BusID ' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf; then
-    xrandr --setprovideroutputsource modesetting NVIDIA-0
-    xrandr --auto
+if [ -e "/lib/modules/$(uname -r)/extra/nvidia.ko" ]; then
+    if grep -q ' BusID ' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf; then
+        # https://us.download.nvidia.com/XFree86/Linux-x86_64/450.57/README/primerenderoffload.html
+        # Nvidia Driver >= 435.17
+        export __NV_PRIME_RENDER_OFFLOAD=1
+        export __VK_LAYER_NV_optimus=NVIDIA_only
+        export __GLX_VENDOR_LIBRARY_NAME=nvidia
+
+        # All
+        xrandr --setprovideroutputsource modesetting NVIDIA-0
+        xrandr --setprovideroffloadsink Intel
+        xrandr --auto
+    fi
 fi
 
 ################################################################################
