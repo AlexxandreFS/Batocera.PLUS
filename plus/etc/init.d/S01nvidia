@@ -3,8 +3,8 @@
 ### Batocera.PLUS
 ### Alexandre Freire dos Santos
 ###
-### Desistala o driver proprietário da Nvidia quando
-### o usuário salva as aterações usando o script
+### Desinstala o driver proprietário da Nvidia quando
+### o usuário salva as alterações usando o script
 ### batocera-save-overlay
 ###
 
