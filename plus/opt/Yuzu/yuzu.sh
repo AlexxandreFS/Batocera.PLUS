@@ -7,6 +7,8 @@
 
 ### DIRECTORIES, FILES AND PARAMETERS
 
+YUZU_DIR="$(dirname ${0})"
+
 HOME_DIR="${HOME}/configs/yuzu"
 SAVE_DIR=/userdata/saves/switch
 BIOS_DIR=/userdata/bios/yuzu
@@ -30,7 +32,7 @@ fi
 
 if [ "${P1GUID}" ]
 then
-    BOTOES=$(/opt/Yuzu/getHotkeyStart ${P1GUID})
+    BOTOES="$(${YUZU_DIR}/Yuzu/getHotkeyStart ${P1GUID})"
     BOTAO_HOTKEY=$(echo "${BOTOES}" | cut -d ' ' -f 1)
     BOTAO_START=$(echo "${BOTOES}"  | cut -d ' ' -f 2)
 
@@ -39,7 +41,7 @@ then
         # Impede que o xjoykill seja encerrado enquanto o jogo está em execução.
         while :
         do
-            nice -n 20 xjoykill -hotkey ${BOTAO_HOTKEY} -start ${BOTAO_START} -kill /opt/Yuzu/killyuzu
+            nice -n 20 xjoykill -hotkey ${BOTAO_HOTKEY} -start ${BOTAO_START} -kill "${YUZU_DIR}/killyuzu"
             if ! [ "$(pidof yuzu)" ]
             then
                   break
@@ -60,16 +62,18 @@ export HOME="${HOME_DIR}"
 export XDG_DATA_HOME="${SAVE_DIR}"
 export QT_QPA_PLATFORM=xcb
 
+export LD_LIBRARY_PATH="${YUZU_DIR}/lib:${LD_LIBRARY_PATH}"
+
 ################################################################################
 
 ### EXEC EMULATOR
 
 if [ -e "${ROM}" ]
 then
-    /opt/Yuzu/yuzu -f -g "${ROM}"
+    "${YUZU_DIR}/yuzu" -f -g "${ROM}"
 else
     # APPS (F1)
-    /opt/Yuzu/yuzu
+    "${YUZU_DIR}/yuzu"
 fi
 
 ################################################################################

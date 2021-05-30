@@ -183,7 +183,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ppsspp-mar-2-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3-0.0.15-1.7z' # remove on update.
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/hypseus-singe-apr-17-2021-1.7z' # remove on update.
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-apr-15-2021-1.7z' # remove on update.
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-may-25-2021-1.7z' # remove on update.
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-libs-(libgtk-3_libgdk_libaio)-1.7z' # dep: xemu # remove on update.
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bzip2-1.0.8.7z'
@@ -248,7 +248,7 @@ URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?
 URL_QBITTORRENT='https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.3.5.10/qBittorrent-Enhanced-Edition.AppImage'
 URL_QBITTORRENT=$(echo ${URL_QBITTORRENT}#/$(basename ${URL_QBITTORRENT} | sed "s/.AppImage/-$(basename $(dirname ${URL_QBITTORRENT}) | cut -d '-' -f 2).AppImage/"))
 
-URL_JAVA="$(wget -S --spider --max-redirect 0 'https://javadl.oracle.com/webapps/download/AutoDL?BundleId=242050_3d5a2bb8f8d4428bbe94aed7ec7ae784' 2>&1 | grep -E '^  Location: ' | cut -d ' ' -f 4)"
+URL_JAVA="$(wget -S --spider --max-redirect 0 'https://javadl.oracle.com/webapps/download/AutoDL?BundleId=244575_d7fc238d0cbf4b0dac67be84580cfb4b' 2>&1 | grep -E '^  Location: ' | cut -d ' ' -f 4)"
 URL_JAVA="${URL_JAVA}#/$(echo ${URL_JAVA} | sed 's/File=/;/' | cut -d ';' -f 2 | cut -d '&' -f 1)"
 
 URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/6.1.1/wine-mono-6.1.1-x86.tar.xz'
@@ -262,8 +262,8 @@ URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Curren
 URL_CEMUFAKEFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
 URL_EXTRAFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.1.7z'
 
-URL_YUZU='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-636/yuzu-20210527-2e0e69104.AppImage'
-
+URL_YUZU='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1734/Yuzu-EA-1734.AppImage'
+          
 
 ################################################################################
 
@@ -558,8 +558,9 @@ cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
 "${CURRENT_DIR}/${DOWNLOAD_DIR}/${PKG_NAME}" --appimage-extract
 cd "${CURRENT_DIR}"
 unset CURRENT_DIR
-mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu" "${TEMP_DIR}/squashfs-root/opt/Yuzu"
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu"                  "${TEMP_DIR}/squashfs-root/opt/Yuzu"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/libboost_context.so."* "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install nvidia driver...'
