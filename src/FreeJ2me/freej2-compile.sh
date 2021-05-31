@@ -9,7 +9,7 @@ fi
 
 if ! [ -e java.tar.gz ]
 then
-    curl -L -C - https://javadl.oracle.com/webapps/download/AutoDL?BundleId=244575_d7fc238d0cbf4b0dac67be84580cfb4b -o java.tar.gz
+    curl -L -C - https://javadl.oracle.com/webapps/download/AutoDL?BundleId=244563_d7fc238d0cbf4b0dac67be84580cfb4b -o java.tar.gz
 fi
 
 gunzip -k java.tar.gz -c | tar -xvC .
@@ -28,9 +28,13 @@ git clone https://github.com/hex007/freej2me.git
 cd freej2me
 git checkout 518cca4ae11260b7aeb4aafc128e560ac7f3e5b3
 
+sed -i 's|/usr/local/bin/sdl_interface|./sdl_interface|' src/org/recompile/freej2me/Anbu.java
+
 ant
 
 mv -f build/freej2me.jar     ..
+mv -f build/freej2me-lr.jar  ..
+mv -f build/freej2me-sdl.jar ..
 
 cd ..
 

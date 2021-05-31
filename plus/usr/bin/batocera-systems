@@ -561,11 +561,18 @@ BIOS[channelf]="channelf,             Fairchild Channel F
 BIOS[xbox]="xbox,                     Xbox Classic
     d49c52a4102f6df7bcf8d0617ac475ed, bios/mcpx_1.0.bin
     ec00e31e746de2473acfe7903c5a4cb7, bios/Complex_4627.bin"
-	
+
+
+#### Java ME ####
+
+BIOS[palmos]="j2me,                   Java ME
+    00000000000000000000000000000000, bios/freej2me-lr.jar"
+
+
 #### PalmOS ####
 
 BIOS[palmos]="palmos,                 PalmOS
-    83cb1d1c76e568b916dc2e7c0bf669f6, /bios/palmos41-en-m515.rom"
+    83cb1d1c76e568b916dc2e7c0bf669f6, bios/palmos41-en-m515.rom"
 
 
 #------------------------------------------------------------------------------#
