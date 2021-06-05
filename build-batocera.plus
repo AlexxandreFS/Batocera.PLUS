@@ -53,7 +53,6 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/DX9Jun2010.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/msttcorefonts-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk-1.5.1-2.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvapi-0.3.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk-proton-ge-custom-6.6-1.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model2-1.1.7z'
@@ -241,6 +240,8 @@ URL_BATOCERA_ZERO="https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/${
 
 URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/460.80/NVIDIA-Linux-x86_64-460.80.run'
 
+URL_NVIDIA_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.3/dxvk-nvapi-v0.3.tar.gz'
+
 URL_PCI_IDS='http://pci-ids.ucw.cz/v2.2/pci.ids.gz'
 
 URL_THEME_A='2757bd13e652bf35d357c154d747be8a8f26a95a'
@@ -278,6 +279,7 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_BATOCERA_LINUX}" \
            "${URL_BATOCERA_ZERO}" \
            "${URL_NVIDIA_DRIVER}" \
+           "${URL_NVIDIA_NVAPI}" \
            "${URL_PCI_IDS}" \
            "${URL_WINE_MONO}" \
            "${URL_WINE_DXVK}" \
@@ -494,6 +496,15 @@ cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}" "${TEMP_DIR}/squashfs-root/op
 ln -s '/opt/Wine/apps/vkd3d-proton/x32/d3d12.dll'  "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x32/d3d12.dll"
 ln -s '/opt/Wine/apps/vkd3d-proton/x64/d3d12.dll'  "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x64/d3d12.dll"
 rm "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/setup_dxvk.sh"
+rm -r "${TEMP_DIR}/pkg-xtract/"*
+
+echo 'Install nvidia NVAPI...'
+PKG_NAME="$(basename "${URL_NVIDIA_NVAPI}")"
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi"
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
+cp -r "${TEMP_DIR}/pkg-xtract/"* "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi"
+rm "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi/README.md"
+rm "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi/LICENSE"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Wine VKD3D_PROTON (DXVK12)...'
