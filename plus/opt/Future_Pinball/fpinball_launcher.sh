@@ -39,7 +39,7 @@ SVDIR_VERSION="$(cat -e "${FP_SVDIR}/wine/.update-timestamp" | cut -d '^' -f 1)"
 ### EXPORTS
 
 export WINEPREFIX="${FP_SVDIR}/wine"
-export DX_MONO=1
+export INSTALL_EXTRAS=1
 
 ################################################################################
 

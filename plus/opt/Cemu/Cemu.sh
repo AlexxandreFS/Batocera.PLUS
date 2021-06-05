@@ -51,7 +51,7 @@ export WINEPREFIX="${WINE}"
 export vblank_mode=0
 export mesa_glthread=true
 export __GL_THREADED_OPTIMIZATIONS=1
-export DX_MONO=1
+export INSTALL_EXTRAS=1
 
 ################################################################################
 
