@@ -243,7 +243,7 @@ URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/460.80/NVIDIA
 
 URL_PCI_IDS='http://pci-ids.ucw.cz/v2.2/pci.ids.gz'
 
-URL_THEME_A='0187586eb8a9390558f9e411ca48ec2114f29b89'
+URL_THEME_A='2757bd13e652bf35d357c154d747be8a8f26a95a'
 URL_THEME_A="https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS/archive/${URL_THEME_A}.zip#/ES-Theme-Batocera-PLUS-${URL_THEME_A}.zip"
 
 URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
