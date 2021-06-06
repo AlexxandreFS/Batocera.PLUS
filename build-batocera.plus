@@ -7,10 +7,11 @@ set -e
 ################################################################################
 
 # Batocera.PLUS Version 
-VERSION=2.13
+VERSION=2.14
 
-# Remova esta linha para diminuir o tempo de compilação e adicionar pacotes
-# experimentais, a imagem nao será compactada em será gerado o md5sum
+# Remova esta linha para diminuir o tempo de compilação.
+# A imagem não será compactada e nem gerado o md5sum.
+# Serão dicionados pacotes experimentais.
 RELEASE='dev'
 
 # Squashfs compression level
