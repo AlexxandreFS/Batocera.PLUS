@@ -483,6 +483,26 @@ function wineCheckLibs() {
     done
 }
 
+
+################################################################################
+
+### HELP
+
+case "${@}" in
+    --help)
+        wineHelp
+        exit 0
+        ;;
+    --version)
+        "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" --version
+        exit 0
+        ;;
+    --check-libs)
+        wineCheckLibs
+        exit 0
+        ;;
+esac
+
 ################################################################################
 
 ### START WINE NORMALLY
@@ -492,19 +512,8 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
     WINE_VERSION_NEW="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
 
     if [ "${WINE_VERSION}" == "${WINE_VERSION_NEW}" ]; then
-        case "${@}" in
-            --version|--help)
-                wineHelp
-                ;;
-            --check-libs)
-                wineCheckLibs
-                ;;
-            *)
-               ${WINE_DIR}/${WINE_BUILD}/bin/wineserver -p0
-               nice -n -10 ${MANGOHUD_CMD} "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" ${VIRTUAL_DESKTOP} "${@}"
-               ;;
-        esac
-
+        ${WINE_DIR}/${WINE_BUILD}/bin/wineserver -p0
+        nice -n -10 ${MANGOHUD_CMD} "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" ${VIRTUAL_DESKTOP} "${@}"
         wineWait
         exit 0
     fi

@@ -170,13 +170,13 @@ function readList()
         do
             if [ -f "${WINE_PREFIX}/${INDEX}/.update-timestamp" ]
             then
-                VERSION="$(${INDEX} --version)"
+                VERSION="$(${WINE_DIR}/${INDEX}/bin/wine64 --version)"
             else
                 VERSION=''
             fi
             echo "${INDEX}-version=${VERSION}" >> "${CACHE_FILE}"
 
-            COMPILATION="$(date -d @$(cat -e ${WINE_DIR}/${INDEX}/.update-timestamp | cut -d '^' -f 1))"
+            COMPILATION="$(date -Id @$(stat -t "${WINE_DIR}/${INDEX}/share/wine/wine.inf" | awk '{print $12}'))"
             echo "${INDEX}-compilation=${COMPILATION}" >> "${CACHE_FILE}"
         done
     fi
