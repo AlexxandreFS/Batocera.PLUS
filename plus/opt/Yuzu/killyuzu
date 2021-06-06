@@ -1,22 +1,38 @@
-#!/bin/sh
+#!/bin/bash
 ##
 ## Batocera.PLUS
-## Encerra a execução do yuzu.
+## Alexxandre Freire dos Santos
 ##
+## Encerra a execução do yuzu.
 ## 
-################################################################################
 
 YUZU_PID="$(pidof -s yuzu)"
+
+if [ -z "${YUZU_PID}" ]
+then
+    YUZU_PID="$(pidof -s yuzu-mainline)"
+
+    if [ -z "${YUZU_PID}" ]
+    then
+        YUZU_PID="$(pidof -s yuzu-early-access)"
+
+        if [ -z "${YUZU_PID}" ]
+        then
+            exit 0
+        fi
+    fi
+fi
 
 kill -15 ${YUZU_PID}
 sleep 0.2
 
-if [ -z "${YUZU_PID}" ]; then
-    echo 'Yuzu closed!'
+if [ -z "${YUZU_PID}" ]
+then
+    echo 'closed!'
 else
     sleep 0.5
     kill -9 ${YUZU_PID}
-    echo 'Yuzu is dead!'
+    echo 'dead!'
 fi
 
 exit 0

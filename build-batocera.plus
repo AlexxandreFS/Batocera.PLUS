@@ -264,8 +264,8 @@ URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Curren
 URL_CEMUFAKEFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
 URL_EXTRAFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.1.7z'
 
-URL_YUZU='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1734/Yuzu-EA-1734.AppImage'
-          
+URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-644/yuzu-20210605-8a2408ad1.AppImage'
+URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1753/Yuzu-EA-1753.AppImage'
 
 ################################################################################
 
@@ -288,7 +288,9 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_THEME_A}" \
            "${URL_CEMU}" \
            "${URL_CEMUHOOK}" \
-           "${URL_YUZU}"
+           "${URL_YUZU_MAINLINE}" \
+           "${URL_YUZU_EARLY_ACCESS}"
+
 do
     PKG_NAME="$(basename "${URL}")"
     echo -e "\nBaixando ${PKG_NAME}..."
@@ -551,8 +553,8 @@ rm -r "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/Go to project website for updat
 mv "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/Cemu/cemuhook"
 rmdir "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}"
 
-echo 'Install Yuzu...'
-PKG_NAME="$(basename "${URL_YUZU}")"
+echo 'Install Yuzu Mainline...'
+PKG_NAME="$(basename "${URL_YUZU_MAINLINE}")"
 chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
 mkdir -p "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
 CURRENT_DIR="$(pwd)"
@@ -561,7 +563,20 @@ cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
 cd "${CURRENT_DIR}"
 unset CURRENT_DIR
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu"                  "${TEMP_DIR}/squashfs-root/opt/Yuzu"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu" "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-mainline"
+rm -r "${TEMP_DIR}/pkg-xtract/"*
+
+echo 'Install Yuzu EA...'
+PKG_NAME="$(basename "${URL_YUZU_EARLY_ACCESS}")"
+chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
+mkdir -p "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
+CURRENT_DIR="$(pwd)"
+cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
+"${CURRENT_DIR}/${DOWNLOAD_DIR}/${PKG_NAME}" --appimage-extract
+cd "${CURRENT_DIR}"
+unset CURRENT_DIR
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu"                  "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/libboost_context.so."* "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 

@@ -112,6 +112,16 @@
             <fullscreen></fullscreen>
         </application>
 
+        <application name="yuzu-mainline">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+        </application>
+
+        <application name="yuzu-early-access">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+        </application>
+
         <application name="citra-qt">
             <decor>yes</decor>
             <fullscreen></fullscreen>
