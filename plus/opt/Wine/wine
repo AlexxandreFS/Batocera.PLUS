@@ -562,8 +562,8 @@ if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ] || [ "${INSTALL_E
     # Install Nvidia dlls
     ln -sf "${WINE_DIR}/apps/nvapi/x32/nvapi.dll"   "${WINEPREFIX}/drive_c/windows/syswow64/nvapi.dll"
     ln -sf "${WINE_DIR}/apps/nvapi/x64/nvapi64.dll" "${WINEPREFIX}/drive_c/windows/system32/nvapi64.dll"
-    ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi"   /t REG_SZ /d "native" 2>&1&> /dev/null
-    ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi64" /t REG_SZ /d "native" 2>&1&> /dev/null
+    ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi"   /t REG_SZ /d "native,builtin" 2>&1&> /dev/null
+    ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi64" /t REG_SZ /d "native,builtin" 2>&1&> /dev/null
 
     wineWait
     ${WINE_DIR}/${WINE_BUILD}/bin/wineserver -p0
