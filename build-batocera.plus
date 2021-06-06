@@ -240,8 +240,6 @@ URL_BATOCERA_ZERO="https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/${
 
 URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/460.80/NVIDIA-Linux-x86_64-460.80.run'
 
-URL_NVIDIA_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.3/dxvk-nvapi-v0.3.tar.gz'
-
 URL_PCI_IDS='http://pci-ids.ucw.cz/v2.2/pci.ids.gz'
 
 URL_THEME_A='2757bd13e652bf35d357c154d747be8a8f26a95a'
@@ -260,6 +258,7 @@ URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.8.1/dxvk-1
 URL_WINE_VKD3D_PROTON='https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.3.1/vkd3d-proton-2.3.1.tar.zst'
 URL_WINE_MF='388649a5ac65f558873ce4f6eef24702eb33902e'
 URL_WINE_MF="https://github.com/z0z0z/mf-install/archive/${URL_WINE_MF}.zip#/mf-install-${URL_WINE_MF}.zip"
+URL_NVIDIA_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.3/dxvk-nvapi-v0.3.tar.gz'
 
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
@@ -279,12 +278,12 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_BATOCERA_LINUX}" \
            "${URL_BATOCERA_ZERO}" \
            "${URL_NVIDIA_DRIVER}" \
-           "${URL_NVIDIA_NVAPI}" \
            "${URL_PCI_IDS}" \
            "${URL_WINE_MONO}" \
            "${URL_WINE_DXVK}" \
            "${URL_WINE_VKD3D_PROTON}" \
            "${URL_WINE_MF}" \
+           "${URL_NVIDIA_NVAPI}" \
            "${URL_FIREFOX}" \
            "${URL_JAVA}" \
            "${URL_QBITTORRENT}" \
@@ -500,15 +499,6 @@ ln -s '/opt/Wine/apps/vkd3d-proton/x64/d3d12.dll'  "${TEMP_DIR}/squashfs-root/op
 rm "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/setup_dxvk.sh"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
-echo 'Install nvidia NVAPI...'
-PKG_NAME="$(basename "${URL_NVIDIA_NVAPI}")"
-mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi"
-gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
-cp -r "${TEMP_DIR}/pkg-xtract/"* "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi"
-rm "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi/README.md"
-rm "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi/LICENSE"
-rm -r "${TEMP_DIR}/pkg-xtract/"*
-
 echo 'Install Wine VKD3D_PROTON (DXVK12)...'
 PKG_NAME="$(basename "${URL_WINE_VKD3D_PROTON}")"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x32"
@@ -531,6 +521,15 @@ unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
 cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
        "${TEMP_DIR}/squashfs-root/opt/Wine/apps/mf"
+rm -r "${TEMP_DIR}/pkg-xtract/"*
+
+echo 'Install Wine Nvidia NVAPI...'
+PKG_NAME="$(basename "${URL_NVIDIA_NVAPI}")"
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi"
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
+rm "${TEMP_DIR}/pkg-xtract/README.md"
+rm "${TEMP_DIR}/pkg-xtract/LICENSE"
+cp -r "${TEMP_DIR}/pkg-xtract/"* "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Firefox...'
@@ -578,7 +577,7 @@ mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu" "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-mainline"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
-echo 'Install Yuzu EA...'
+echo 'Install Yuzu Early Access...'
 PKG_NAME="$(basename "${URL_YUZU_EARLY_ACCESS}")"
 chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
 mkdir -p "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
@@ -592,7 +591,7 @@ cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu"              
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/libboost_context.so."* "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
-echo 'Install nvidia driver...'
+echo 'Install Nvidia Driver...'
 PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"
 chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
 "${DOWNLOAD_DIR}/${PKG_NAME}" -x --target "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}"
