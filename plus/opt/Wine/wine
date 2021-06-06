@@ -442,7 +442,7 @@ function wineHelp() {
             '\n' \
             '      WINEFSYNC=1                   Enable FSYNC, improves load times but crashes some games\n' \
             '      WINEESYNC=1                   Enable ESYNC, improves load times but crashes some games\n' \
-			'      DX_MONO=1                     Install directX and mono on a non default wineprefix\n'
+            '      INSTALL_EXTRAS=1              Install directX, mono end extra files on a non default wineprefix\n'
 }
 
 
@@ -544,7 +544,7 @@ unset SAVE_DIR
 # Se o usuário definir o WINEPREFIX o DirectX e o Mono não será instalado, útil para
 # instalações em prefixos diferentes para evitar influências externas.
 
-if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ] || [ "${DX_MONO}" == '1' ]; then
+if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ] || [ "${INSTALL_EXTRAS}" == '1' ]; then
 
     # O directx não pode ser instalado em refixo de 64 bits.
     if [ "${WINEARCH}" == 'win64' ]; then
@@ -553,10 +553,14 @@ if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ] || [ "${DX_MONO}"
     fi
 
     ${WINE_DIR}/${WINE_BUILD}/bin/wine ${WINE_DIR}/apps/directx_Jun2010_redist/DXSETUP.exe /silent
+	ln -sf "${WINE_DIR}/apps/nvapi/x32/nvapi.dll" "${WINEPREFIX}/drive_c/windows/syswow64/nvapi.dll"
+	ln -sf "${WINE_DIR}/apps/nvapi/x64/nvapi64.dll" "${WINEPREFIX}/drive_c/windows/system32/nvapi64.dll"
+	${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi" /t REG_SZ /d "native" 2>&1&> /dev/null
+    ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi64" /t REG_SZ /d "native" 2>&1&> /dev/null
     wineWait
 
     ${WINE_DIR}/${WINE_BUILD}/bin/wineserver -p0
-
+	
     mkdir "${WINEPREFIX}/drive_c/windows/mono"
     ln -s "${WINE_DIR}/apps/mono" "${WINEPREFIX}/drive_c/windows/mono/mono-2.0"
 fi
