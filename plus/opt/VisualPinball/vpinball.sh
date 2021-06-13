@@ -43,7 +43,8 @@
 
 JOGO="${1}"
 RESOLUTION="${2}"
-P1GUID="${3}"
+RATIO="${3}"
+P1GUID="${4}"
 
 ################################################################################
 
@@ -252,19 +253,16 @@ fi
 if [ "${RESOLUTION}" == 'auto' ] || [ "${RESOLUTION}" == '' ]; then
     XRES="$(echo "${RES_START}" | cut -d 'x' -f 1)"
     YRES="$(echo "${RES_START}" | cut -d 'x' -f 2)"
-    XRES="$( printf "%x\n" "${XRES}")"
-    YRES="$( printf "%x\n" "${YRES}")"
-    sed -i s'/"Width"=.*/"Width"=dword:00000'"${XRES}"'/'   "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"Height"=.*/"Height"=dword:00000'"${YRES}"'/' "${VP_SDIR}/wine/user.reg"
 else
     batocera-resolution setMode "${RESOLUTION}"
     XRES="$(echo "${RESOLUTION}" | cut -d 'x' -f 1)"
     YRES="$(echo "${RESOLUTION}" | cut -d 'x' -f 2)"
-    XRES="$( printf "%x\n" "${XRES}")"
-    YRES="$( printf "%x\n" "${YRES}")"
-    sed -i s'/"Width"=.*/"Width"=dword:00000'"${XRES}"'/'   "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"Height"=.*/"Height"=dword:00000'"${YRES}"'/' "${VP_SDIR}/wine/user.reg"
 fi
+
+XRES="$( printf "%x\n" "${XRES}")"
+YRES="$( printf "%x\n" "${YRES}")"
+sed -i s'/"Width"=.*/"Width"=dword:00000'"${XRES}"'/'   "${VP_SDIR}/wine/user.reg"
+sed -i s'/"Height"=.*/"Height"=dword:00000'"${YRES}"'/' "${VP_SDIR}/wine/user.reg"
 
 ################################################################################
 
