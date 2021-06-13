@@ -1,7 +1,6 @@
-## SYSTEM VISUAL PINBALL / VPinMAME ##
+## SYSTEM VISUAL PINBALL ##
 -------------------------------------------------------------------------------
 ROM files extensions accepted: ".vpt .VPT .vpx .VPX"
-ROM files extensions accepted for VPinMAME: ".zip .ZIP"
 -------------------------------------------------------------------------------
 
     O Visual Pinball simula mesas reais de pinball por este motivo ele também
@@ -18,3 +17,5 @@ em "/saves/vpinball/Scripts"
 
     Algumas mesa precisam de musicas para funcionarem, elas podem ser colocadas em
 "/saves/vpinball/Music"
+
+    Mesas desenvolvidas no Visual Pinball X 10.7.0 não irão funcionar

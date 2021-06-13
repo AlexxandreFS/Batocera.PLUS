@@ -1,0 +1,10 @@
+## SUB-SYSTEM VPinMAME ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted for VPinMAME: ".zip .ZIP"
+-------------------------------------------------------------------------------
+
+    O Visual Pinball simula mesas reais de pinball por este motivo ele também
+precisa da rom da mesa real sendo emulada, essa rom precisa ser colocada na pasta 
+VPinMAME, Visual Pinball funciona em conjunto com o Visual PinMAME uma versão
+especial do MAME voltada pra emular estas roms, note que roms de jogo do MAME
+não funcionam nesse release.

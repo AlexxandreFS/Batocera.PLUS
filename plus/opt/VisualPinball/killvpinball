@@ -27,7 +27,7 @@ elif [ "${VPINBALL995_PID}" != '' ]; then
 else
     sleep 0.5
     kill -9 ${VPINBALLX_PID}
-	echo 'Visual Pinball is dead!'
+    echo 'Visual Pinball is dead!'
 fi
 
 exit 0

@@ -44,6 +44,7 @@
 JOGO="${1}"
 RESOLUTION="${2}"
 P1GUID="${3}"
+LOG_GAME="${JOGO}"
 
 ################################################################################
 
@@ -91,7 +92,7 @@ fi
 ### NÃO EXECUTA O EMULADOR DUAS VEZES
 
 if [ "$(pidof wineserver)" ]; then
-    echo " Visual Pinball Launcher ja esta sendo executado"
+    echo " Visual Pinball Launcher já esta sendo executado"
     exit 1
 fi
 
@@ -111,7 +112,7 @@ echo
 
 function createFolders()
 {
-    ### Creat work dir
+    ### Create work dir
     mkdir -p "${VP_CDIR}"
     cp -rf "${VP_DIR}/emulator/VPinMAME" "${VP_CDIR}"
     cp -rf "${VP_DIR}/emulator/0995"     "${VP_CDIR}"
@@ -128,7 +129,7 @@ function createFolders()
 
     ### Create folders
     DIRS='artwork cfg diff hi inp memcard snap sta wave Scripts Music User'
-    for i in $DIRS; do
+    for i in ${DIRS}; do
         case ${i} in
             Scripts|User|Music)
                 ln -sf "${VP_SDIR}/$i" "${VP_CDIR}/0995"
@@ -155,7 +156,7 @@ function applyConfig()
     echo 'Installing MS Windows Script Host 5.7...'
     ln -sf "${VP_DIR}/deps/wsh57/"* "$WINEPREFIX/drive_c/windows/syswow64"
     DLLS='dispex.dll jscript.dll scrobj.dll scrrun.dll vbscript.dll wshcon.dll wshext.dll'
-    for i in $DLLS; do
+    for i in ${DLLS}; do
         wine-lutris regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/$i" 2>&1&> /dev/null
         echo "$i Successfully registered!"
     done
@@ -164,7 +165,7 @@ function applyConfig()
     echo 'Installing Visual C++ 6 runtime libraries...'
     ln -sf "${VP_DIR}/deps/vcrun6/x64/"* "$WINEPREFIX/drive_c/windows/syswow64"
     DLLS='asycfilt.dll comcat.dll mfc42.dll mfc42u.dll msvcirt.dll msvcp60.dll msvcrt.dll oleaut32.dll olepro32.dll'
-    for i in $DLLS; do
+    for i in ${DLLS}; do
         wine-lutris regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/$i" 2>&1&> /dev/null
         echo "$i Successfully registered!"
     done
@@ -172,7 +173,7 @@ function applyConfig()
     ### Install PinMAME.dll
     echo 'Installing VPinMAME...'
     wine-lutris regsvr32 "${VP_CDIR}/VPinMAME/VPinMAME.dll" 2>&1&> /dev/null
-    echo "VPinMAME.dll Successfully registered!"
+    echo 'VPinMAME.dll Successfully registered!'
 
     while [ "$(pidof wineserver)" ]; do
            sleep 1
@@ -236,6 +237,7 @@ if [ -e "${VP_SDIR}/wine/user.reg" ]; then
     sed -i s'/"PlungerKey"=.*/"PlungerKey"=dword:0000001c/'   "${VP_SDIR}/wine/user.reg"
     sed -i s'/"LRAxis"=.*/"LRAxis"=dword:00000000/'           "${VP_SDIR}/wine/user.reg"
     sed -i s'/"LRAxisFlip"=.*/"LRAxisFlip"=dword:00000000/'   "${VP_SDIR}/wine/user.reg"
+
     # PinMAME fix settings
     sed -i s'/"cabinet_mode"=.*/"cabinet_mode"=dword:00000001/'      "${VP_SDIR}/wine/user.reg"
     sed -i s'/"showpindmd"=.*/"showpindmd"=dword:00000000/'          "${VP_SDIR}/wine/user.reg"
@@ -246,7 +248,7 @@ if [ -e "${VP_SDIR}/wine/user.reg" ]; then
 fi
 
 ################################################################################
-
+    
 ### RESOLUTION
 
 if [ "${RESOLUTION}" == 'auto' ] || [ "${RESOLUTION}" == '' ]; then
@@ -269,7 +271,7 @@ sed -i s'/"Height"=.*/"Height"=dword:00000'"${YRES}"'/' "${VP_SDIR}/wine/user.re
 
 if [ "${JOGO}" != '' ]; then
     ROM_EXTENSION='.vpt .VPT .vpx .VPX'
-    for i in $ROM_EXTENSION; do
+    for i in ${ROM_EXTENSION}; do
         if [ "$(echo "${JOGO}" | grep "${i}")" ]; then
             JOGO="$(echo "Z:${JOGO}" | sed -e 's#/#\\#g')"
             case $i in
@@ -327,7 +329,7 @@ fi
 
 ### LOGS
 
-echo "received: /opt/VirtualPinball/vpinball.sh ${JOGO} ${RESOLUTION} ${RATIO} ${P1GUID}" > "${HOME}/logs/vpinball.log"
+echo "received: /opt/VirtualPinball/vpinball.sh ${LOG_GAME} ${RESOLUTION} ${RATIO} ${P1GUID}" > "${HOME}/logs/vpinball.log"
 if [ "${EMU_EXE}" == 'gui' ]; then
     echo "running: /opt/VirtualPinball/vpinball.sh ${EMU_EXE}" >> "${HOME}/logs/vpinball.log"
 else
@@ -352,19 +354,19 @@ esac
 
 ################################################################################
 
-### FINALIZA A EXECUÇÃO DO JOGO
+### END OF EMULATOR EXECUTION
 
-# Aguarda o emulador encerrar a execução
+# Wait the emulator to finish execution
 while [ "$(pidof wineserver)" ]; do
     sleep 1
 done
 
-# Mata o emulador de teclado
+# Kill keyboard emulator
 if [ "$(pidof -s xjoypad)" ]; then
     killall -9 xjoypad
 fi
 
-# Restaura a resolução do jogo caso tenha mudado
+# Restore resolution if it changed
 RES_STOP="$(batocera-resolution currentResolution)"
 if [ "${RES_START}" != "${RES_STOP}" ]; then
     batocera-resolution setMode "${RES_START}"
