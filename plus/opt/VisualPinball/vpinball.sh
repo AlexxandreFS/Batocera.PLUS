@@ -5,7 +5,7 @@
 # Código escrito por: Sérgio de Carvalho Júnior
 #
 # COMMAND LINE
-# vpinball.sh [ROM] [RESOLUTION] [RATIO] [P1GUID]
+# vpinball.sh [ROM] [RESOLUTION] [P1GUID]
 #
 # XJOYPAD LEGEND
 # Keyboard - xinput
@@ -43,7 +43,8 @@
 
 JOGO="${1}"
 RESOLUTION="${2}"
-P1GUID="${3}"
+RATIO="${3}"
+P1GUID="${4}"
 
 ################################################################################
 
@@ -73,11 +74,10 @@ function help()
     echo " Codigo escrito por: Sérgio de Carvalho Júnior"
     echo
     echo " Linha de comando:"
-    echo " vpinball.sh [ROM] [RESOLUTION] [RATIO] [P1GUID]"
+    echo " vpinball.sh [ROM] [RESOLUTION] [P1GUID]"
     echo
     echo " ROM = Caminho do jogo até a .vpt ou .vpx"
     echo " RESULUTION = auto ou algo que respeite a regra XXXXxXXXX ex: [1920x1080]"
-    echo " RATIO = 4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3|auto|custom|squarepixel"
     echo " PIGUID = parâmetro do emulatorlauncher.sh (OPICIONAL)"
     echo
 }
@@ -314,10 +314,8 @@ fi
 
 ### PAD TO KEYBOARD
 
-if [ -e '/dev/input/js0' ]
-then
-    while :
-    do
+if [ -e '/dev/input/js0' ]; then
+    while :; do
         nice -n -15 xjoypad \
             -device /dev/input/js0 \
             -up 42 -down 42 -left 42 -right 42 \
@@ -366,8 +364,7 @@ while [ "$(pidof wineserver)" ]; do
 done
 
 # Mata o emulador de teclado
-if [ "$(pidof -s xjoypad)" ]
-then
+if [ "$(pidof -s xjoypad)" ]; then
     killall -9 xjoypad
 fi
 
