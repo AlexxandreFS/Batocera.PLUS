@@ -69,9 +69,16 @@ settings_output="`$systemsetting -command load -key global.dpi`"
 
 ################################################################################
 
-### Hybrid Nvidia
+### Nvidia Driver
 
 if [ -e "/lib/modules/$(uname -r)/extra/nvidia.ko" ]; then
+    # Default DPI
+    settings_output="`$systemsetting -command load -key global.dpi`"
+    if [ -z "${settings_output}" ]; then
+        batocera-resolution setDPI 96
+    fi
+
+    # Hybrid Nvidia
     if grep -q ' BusID ' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf; then
         # https://us.download.nvidia.com/XFree86/Linux-x86_64/450.57/README/primerenderoffload.html
         # Nvidia Driver >= 435.17

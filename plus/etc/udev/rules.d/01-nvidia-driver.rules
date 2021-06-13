@@ -2,6 +2,9 @@
 # Batocera.PLUS
 # Alexandre Freire dos Santos
 #
+# Database:
+# https://download.nvidia.com/XFree86/Linux-x86_64/460.84/README/supportedchips.html
+#
 ACTION=="add", SUBSYSTEM=="pci", ATTRS{vendor}=="0x10de", ATTR{class}=="0x030000", GOTO="nvidia"
 ACTION=="add", SUBSYSTEM=="pci", ATTRS{vendor}=="0x10de", ATTR{class}=="0x030200", GOTO="nvidia"
 GOTO="exit"
@@ -171,6 +174,7 @@ ATTRS{device}=="0x12d2", GOTO="nvidia_last"
 ATTRS{device}=="0x12d9", GOTO="nvidia_last"
 ATTRS{device}=="0x12db", GOTO="nvidia_last"
 ATTRS{device}=="0x12eb", GOTO="nvidia_last"
+ATTRS{device}=="0x12f4", GOTO="nvidia_last"
 ATTRS{device}=="0x1302", GOTO="nvidia_last"
 ATTRS{device}=="0x1306", GOTO="nvidia_last"
 ATTRS{device}=="0x1307", GOTO="nvidia_last"
@@ -513,6 +517,8 @@ ATTRS{device}=="0x21c4", GOTO="nvidia_last"
 ATTRS{device}=="0x21d1", GOTO="nvidia_last"
 ATTRS{device}=="0x2204", GOTO="nvidia_last"
 ATTRS{device}=="0x2206", GOTO="nvidia_last"
+ATTRS{device}=="0x2208", GOTO="nvidia_last"
+ATTRS{device}=="0x2216", GOTO="nvidia_last"
 ATTRS{device}=="0x2225", GOTO="nvidia_last"
 ATTRS{device}=="0x2230", GOTO="nvidia_last"
 ATTRS{device}=="0x2231", GOTO="nvidia_last"
@@ -533,6 +539,8 @@ ATTRS{device}=="0x22c0", GOTO="nvidia_last"
 ATTRS{device}=="0x22c1", GOTO="nvidia_last"
 ATTRS{device}=="0x2484", GOTO="nvidia_last"
 ATTRS{device}=="0x2486", GOTO="nvidia_last"
+ATTRS{device}=="0x2488", GOTO="nvidia_last"
+ATTRS{device}=="0x2489", GOTO="nvidia_last"
 ATTRS{device}=="0x249c", GOTO="nvidia_last"
 ATTRS{device}=="0x249d", GOTO="nvidia_last"
 ATTRS{device}=="0x24b0", GOTO="nvidia_last"
