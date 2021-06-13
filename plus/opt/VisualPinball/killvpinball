@@ -1,0 +1,33 @@
+#!/bin/sh
+##
+## Batocera.PLUS
+## Encerra a execução de todos os programas executados pelo wine.
+##
+## Código escrito por: Sérgio de Carvalho Júnior
+## 
+################################################################################
+
+VPINBALLX_PID="$(pidof -s 'VPinballX.exe')"
+VPINBALL995_PID="$(pidof -s 'VPinball995.exe')"
+
+if [ "${VPINBALL995_PID}" != '' ]; then
+    kill -15 ${VPINBALL995_PID}
+    sleep 0.2
+else
+    kill -15 ${VPINBALLX_PID}
+    sleep 0.2
+fi
+
+if [ -z "${VPINBALLX_PID}" ] || [ -z "${VPINBALL995_PID}" ]; then
+    echo 'Visual Pinball closed!'
+elif [ "${VPINBALL995_PID}" != '' ]; then
+    sleep 0.5
+    kill -9 ${VPINBALL995_PID}
+    echo 'Visual Pinball is dead!'
+else
+    sleep 0.5
+    kill -9 ${VPINBALLX_PID}
+	echo 'Visual Pinball is dead!'
+fi
+
+exit 0
