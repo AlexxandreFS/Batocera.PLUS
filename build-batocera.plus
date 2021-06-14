@@ -12,7 +12,7 @@ VERSION=2.14
 # Remova esta linha para diminuir o tempo de compilação.
 # A imagem não será compactada e nem gerado o md5sum.
 # Serão dicionados pacotes experimentais.
-#RELEASE='dev'
+RELEASE='dev'
 
 # Squashfs compression level
 SQUASHFS_COMPRESSION=2
@@ -62,7 +62,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model3-1.1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/Future_Pinball-1.1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/Future_Pinball-1.1.7z' # remove on update.
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-1.9.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-assets-1.9.0-1.7z'
