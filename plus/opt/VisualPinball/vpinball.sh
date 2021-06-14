@@ -36,6 +36,7 @@
 # https://github.com/vpinball/pinmame
 # https://www.vpforums.org/
 # https://vpuniverse.com/forums/
+# https://www.vpforums.org/
 
 ################################################################################
 
@@ -69,16 +70,16 @@ export WINEPREFIX="${VP_SDIR}/wine"
 function help()
 {
     echo
-    echo " Visual Pinball Launcher for Batocera.PLUS"
+    echo ' Visual Pinball Launcher for Batocera.PLUS'
     echo
-    echo " Codigo escrito por: Sérgio de Carvalho Júnior"
+    echo ' Codigo escrito por: Sérgio de Carvalho Júnior'
     echo
-    echo " Linha de comando:"
-    echo " vpinball.sh [ROM] [RESOLUTION] [P1GUID]"
+    echo ' Linha de comando:'
+    echo ' vpinball.sh [ROM] [RESOLUTION] [P1GUID]'
     echo
-    echo " ROM = Caminho do jogo até a .vpt ou .vpx"
-    echo " RESULUTION = auto ou algo que respeite a regra XXXXxXXXX ex: [1920x1080]"
-    echo " PIGUID = parâmetro do emulatorlauncher.sh (OPICIONAL)"
+    echo ' ROM = Caminho do jogo até a .vpt ou .vpx'
+    echo ' RESULUTION = auto ou algo que respeite a regra XXXXxXXXX ex: [1920x1080]'
+    echo ' PIGUID = parâmetro do emulatorlauncher.sh (OPICIONAL)'
     echo
 }
 
@@ -92,7 +93,7 @@ fi
 ### NÃO EXECUTA O EMULADOR DUAS VEZES
 
 if [ "$(pidof wineserver)" ]; then
-    echo " Visual Pinball Launcher já esta sendo executado"
+    echo ' Visual Pinball Launcher já esta sendo executado'
     exit 1
 fi
 
@@ -101,9 +102,9 @@ fi
 ### LAUNCHER INFO
 
 echo
-echo " Visual Pinball Launcher for Batocera.PLUS"
+echo ' Visual Pinball Launcher for Batocera.PLUS'
 echo
-echo " Codigo escrito por: Sergio de Carvalho Junior"
+echo ' Codigo escrito por: Sergio de Carvalho Junior'
 echo
 
 ################################################################################
