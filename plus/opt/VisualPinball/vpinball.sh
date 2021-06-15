@@ -145,13 +145,14 @@ function applyConfig()
 {
     ### Install wine extras on wine prefix
     export INSTALL_EXTRAS=1
+    export WINE_LOADINGSCREEN=0
+
+    ### install deps for future pinball
+    batocera-load-screen -t 600 -i '/opt/VisualPinball/pinball_loading.jpg' &
 
     ### Apply default configs
     echo 'Apply visual pinball default configs...'
     wine-lutris regedit "${VP_DIR}/emulator/config.reg"
-
-    ### install deps for future pinball
-    batocera-load-screen -t 600 -i '/opt/VisualPinball/pinball_loading.jpg' &
 
     ### Install wsh57
     echo 'Installing MS Windows Script Host 5.7...'
@@ -183,6 +184,8 @@ function applyConfig()
     if [ "$(pidof yad)" ]; then
         killall yad
     fi
+
+    wait
 }
 
 function choseEmu()

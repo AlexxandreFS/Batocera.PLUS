@@ -442,7 +442,8 @@ function wineHelp() {
             '\n' \
             '      WINEFSYNC=1                   Enable FSYNC, improves load times but crashes some games\n' \
             '      WINEESYNC=1                   Enable ESYNC, improves load times but crashes some games\n' \
-            '      INSTALL_EXTRAS=1              Install DirectX, Mono end extra files on a non default WINEPREFIX\n'
+            '      INSTALL_EXTRAS=1              Install DirectX, Mono end extra files on a non default WINEPREFIX\n' \
+            '      WINE_LOADINGSCREEN=0          Disable default wine instalation screen image'
 }
 
 
@@ -523,7 +524,9 @@ fi
 
 ### LOADING SCREEN
 
-batocera-load-screen -t 600 -i "${WINE_DIR}/wine.png" &
+if [ -z "${WINE_LOADINGSCREEN}" ]; then
+    batocera-load-screen -t 600 -i "${WINE_DIR}/wine.png" &
+fi
 
 ################################################################################
 
@@ -641,7 +644,7 @@ echo '"Enable"="N"'                           >> "${WINEPREFIX}/user.reg"
 
 ### STOP LOADING SCREEN
 
-if [ "$(pidof yad)" ]; then
+if [ "$(pidof yad)" ] && [ -z "${WINE_LOADINGSCREEN}" ]; then
     killall yad
 fi
 
