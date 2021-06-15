@@ -55,8 +55,6 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/msttcorefonts-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk-1.5.1-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk-proton-ge-custom-6.6-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/Visual_Pinball-1.0.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vpinball_fonts-1.0.7z' # dep: visual pinball
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model2-1.1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model3-1.1.7z'
@@ -188,6 +186,8 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ppsspp-mar-2-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3-0.0.15-1.7z' # remove on update.
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/hypseus-singe-apr-17-2021-1.7z' # remove on update.
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/Visual_Pinball-1.0.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vpinball_fonts-1.0.7z' # dep: visual pinball
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-may-25-2021-1.7z' # remove on update.
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-libs-(libgtk-3_libgdk_libaio)-1.7z' # dep: xemu # remove on update.
 
@@ -256,12 +256,12 @@ URL_QBITTORRENT=$(echo ${URL_QBITTORRENT}#/$(basename ${URL_QBITTORRENT} | sed "
 URL_JAVA="$(wget -S --spider --max-redirect 0 'https://javadl.oracle.com/webapps/download/AutoDL?BundleId=244575_d7fc238d0cbf4b0dac67be84580cfb4b' 2>&1 | grep -E '^  Location: ' | cut -d ' ' -f 4)"
 URL_JAVA="${URL_JAVA}#/$(echo ${URL_JAVA} | sed 's/File=/;/' | cut -d ';' -f 2 | cut -d '&' -f 1)"
 
-URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/6.1.1/wine-mono-6.1.1-x86.tar.xz'
+URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/6.2.0/wine-mono-6.2.0-x86.tar.xz'
 URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.8.1/dxvk-1.8.1.tar.gz'
 URL_WINE_VKD3D_PROTON='https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.3.1/vkd3d-proton-2.3.1.tar.zst'
 URL_WINE_MF='388649a5ac65f558873ce4f6eef24702eb33902e'
 URL_WINE_MF="https://github.com/z0z0z/mf-install/archive/${URL_WINE_MF}.zip#/mf-install-${URL_WINE_MF}.zip"
-URL_NVIDIA_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.3/dxvk-nvapi-v0.3.tar.gz'
+URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.3/dxvk-nvapi-v0.3.tar.gz'
 
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
@@ -286,7 +286,7 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_WINE_DXVK}" \
            "${URL_WINE_VKD3D_PROTON}" \
            "${URL_WINE_MF}" \
-           "${URL_NVIDIA_NVAPI}" \
+           "${URL_WINE_NVAPI}" \
            "${URL_FIREFOX}" \
            "${URL_JAVA}" \
            "${URL_QBITTORRENT}" \
@@ -527,7 +527,7 @@ cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Wine Nvidia NVAPI...'
-PKG_NAME="$(basename "${URL_NVIDIA_NVAPI}")"
+PKG_NAME="$(basename "${URL_WINE_NVAPI}")"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
 rm "${TEMP_DIR}/pkg-xtract/README.md"
