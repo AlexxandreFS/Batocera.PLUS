@@ -36,7 +36,6 @@
 # https://github.com/vpinball/pinmame
 # https://www.vpforums.org/
 # https://vpuniverse.com/forums/
-# https://www.vpforums.org/
 
 ################################################################################
 
@@ -45,6 +44,7 @@
 JOGO="${1}"
 RESOLUTION="${2}"
 P1GUID="${3}"
+CTRL_TYPE="${4}"
 LOG_GAME="${JOGO}"
 
 ################################################################################
@@ -233,7 +233,7 @@ fi
 ### FORCE SOME SETTINGS
 
 if [ -e "${VP_SDIR}/wine/user.reg" ]; then
-    # Visual Pinball fix settings
+    # fix Visual Pinball settings
     sed -i s'/"FullScreen"=.*/"FullScreen"=dword:00000001/'   "${VP_SDIR}/wine/user.reg"
     sed -i s'/"UDAxis"=.*/"UDAxis"=dword:00000000/'           "${VP_SDIR}/wine/user.reg"
     sed -i s'/"UDAxisFlip"=.*/"UDAxisFlip"=dword:00000000/'   "${VP_SDIR}/wine/user.reg"
@@ -241,6 +241,14 @@ if [ -e "${VP_SDIR}/wine/user.reg" ]; then
     sed -i s'/"PlungerKey"=.*/"PlungerKey"=dword:0000001c/'   "${VP_SDIR}/wine/user.reg"
     sed -i s'/"LRAxis"=.*/"LRAxis"=dword:00000000/'           "${VP_SDIR}/wine/user.reg"
     sed -i s'/"LRAxisFlip"=.*/"LRAxisFlip"=dword:00000000/'   "${VP_SDIR}/wine/user.reg"
+
+    # fix Keyboard settings ( if user change this setting )
+    sed -i s'/"PlungerKey"=.*/"PlungerKey"=dword:0000001c/' "${VP_SDIR}/wine/user.reg"
+    sed -i s'/"RFlipKey"=.*/"RFlipKey"=dword:00000036/'     "${VP_SDIR}/wine/user.reg"
+    sed -i s'/"LFlipKey"=.*/"LFlipKey"=dword:0000002a/'     "${VP_SDIR}/wine/user.reg"
+    sed -i s'/"RTiltKey"=.*/"RTiltKey"=dword:00000035/'     "${VP_SDIR}/wine/user.reg"
+    sed -i s'/"LTiltKey"=.*/"LTiltKey"=dword:0000002c/'     "${VP_SDIR}/wine/user.reg"
+    sed -i s'/"MechTilt"=.*/"MechTilt"=dword:00000014/'     "${VP_SDIR}/wine/user.reg"
 
     # PinMAME fix settings
     sed -i s'/"cabinet_mode"=.*/"cabinet_mode"=dword:00000001/'      "${VP_SDIR}/wine/user.reg"
@@ -316,24 +324,33 @@ fi
 
 ### PAD TO KEYBOARD
 
-if [ -e '/dev/input/js0' ]; then
-    while :; do
-        nice -n -15 xjoypad \
-            -device /dev/input/js0 \
-            -up 42 -down 42 -left 42 -right 42 \
-            -buttons 36 42 42 42 50 62 14 10 42 42 42 52 97 28 65 42
-        if [ ! "$(pidof "${EMU_PID}")" ]; then
-            break
-        fi
-        sleep 5
-    done &
+case ${CTRL_TYPE} in
+        auto|xbox)
+            KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 14 10 42 42 42 52 97 28 65 42 00' ;;
+        psx)
+            KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 42 42 14 10 42 42 42 52 97 28 65' ;;
+        generic)
+            KEY_PAD='-device /dev/input/js0 -up 52 -down 65 -left 97 -right 28 -buttons 42 42 36 42 50 62 42 42 14 10 42 42 42 52 65 97 28' ;;
+        *)
+esac
+
+if [ "${CTRL_TYPE}" != 'manual' ]; then
+    if [ -e '/dev/input/js0' ]; then
+        while :; do
+            nice -n -15 xjoypad ${KEY_PAD}
+            if [ ! "$(pidof "${EMU_PID}")" ]; then
+                break
+            fi
+            sleep 5
+        done &
+    fi
 fi
 
 ################################################################################
 
 ### LOGS
 
-echo "received: /opt/VirtualPinball/vpinball.sh ${LOG_GAME} ${RESOLUTION} ${RATIO} ${P1GUID}" > "${HOME}/logs/vpinball.log"
+echo "received: /opt/VirtualPinball/vpinball.sh ${LOG_GAME} ${RESOLUTION} ${RATIO} ${P1GUID} ${CTRL_TYPE}" > "${HOME}/logs/vpinball.log"
 if [ "${EMU_EXE}" == 'gui' ]; then
     echo "running: /opt/VirtualPinball/vpinball.sh ${EMU_EXE}" >> "${HOME}/logs/vpinball.log"
 else
