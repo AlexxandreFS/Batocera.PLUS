@@ -242,14 +242,6 @@ if [ -e "${VP_SDIR}/wine/user.reg" ]; then
     sed -i s'/"LRAxis"=.*/"LRAxis"=dword:00000000/'           "${VP_SDIR}/wine/user.reg"
     sed -i s'/"LRAxisFlip"=.*/"LRAxisFlip"=dword:00000000/'   "${VP_SDIR}/wine/user.reg"
 
-    # fix Keyboard settings ( if user change this setting )
-    sed -i s'/"PlungerKey"=.*/"PlungerKey"=dword:0000001c/' "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"RFlipKey"=.*/"RFlipKey"=dword:00000036/'     "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"LFlipKey"=.*/"LFlipKey"=dword:0000002a/'     "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"RTiltKey"=.*/"RTiltKey"=dword:00000035/'     "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"LTiltKey"=.*/"LTiltKey"=dword:0000002c/'     "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"MechTilt"=.*/"MechTilt"=dword:00000014/'     "${VP_SDIR}/wine/user.reg"
-
     # PinMAME fix settings
     sed -i s'/"cabinet_mode"=.*/"cabinet_mode"=dword:00000001/'      "${VP_SDIR}/wine/user.reg"
     sed -i s'/"showpindmd"=.*/"showpindmd"=dword:00000000/'          "${VP_SDIR}/wine/user.reg"
