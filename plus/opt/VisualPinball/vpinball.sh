@@ -324,17 +324,32 @@ fi
 
 ### PAD TO KEYBOARD
 
-case ${CTRL_TYPE} in
-        auto|xbox)
-            KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 14 10 42 42 42 52 97 28 65 42 00' ;;
-        psx)
-            KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 42 42 14 10 42 42 42 52 97 28 65' ;;
-        generic)
-            KEY_PAD='-device /dev/input/js0 -up 52 -down 65 -left 97 -right 28 -buttons 42 42 36 42 50 62 42 42 14 10 42 42 42 52 65 97 28' ;;
-        *)
-esac
+if [ "${JOYPAD}" != 'off' ]; then
+    # Visual Pinball keyboard fix settings ( if user change this setting )
+    sed -i s'/"PlungerKey"=.*/"PlungerKey"=dword:0000001c/' "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+    sed -i s'/"RFlipKey"=.*/"RFlipKey"=dword:00000036/'     "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+    sed -i s'/"LFlipKey"=.*/"LFlipKey"=dword:0000002a/'     "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+    sed -i s'/"RTiltKey"=.*/"RTiltKey"=dword:00000035/'     "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+    sed -i s'/"LTiltKey"=.*/"LTiltKey"=dword:0000002c/'     "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+    sed -i s'/"MechTilt"=.*/"MechTilt"=dword:00000014/'     "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
 
-if [ "${CTRL_TYPE}" != 'manual' ]; then
+    # Auto detect controller
+    BRAND='Xbox X-Box PS3 PLAYSTATION another'
+    for i in ${BRAND}; do
+        if [ "$(echo "${P1NAME}" | grep "${i}")" ]; then
+            echo "${P1NAME} find ${i}" > "${HOME}/../controll.txt"
+            case $i in
+                PS3|PLAYSTATION)
+                    KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 42 42 14 10 42 42 42 52 97 28 65' ;;
+                X-Box|Xbox)
+                    KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 14 10 42 42 42 52 97 28 65 42 00' ;;
+                another)
+                    KEY_PAD='-device /dev/input/js0 -up 52 -down 65 -left 97 -right 28 -buttons 42 42 36 42 50 62 42 42 14 10 42 42 42 52 65 97 28' ;;
+            esac 
+            break
+        fi
+    done
+
     if [ -e '/dev/input/js0' ]; then
         while :; do
             nice -n -15 xjoypad ${KEY_PAD}
