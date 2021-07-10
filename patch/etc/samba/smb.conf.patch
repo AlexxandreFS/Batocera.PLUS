@@ -13,7 +13,7 @@
 +
 +[storage]
 +comment = Batocera.PLUS storage system
-+path = /tmp/storage
++path = /mnt/storage
 +writeable = yes
 +guest ok = yes
 +create mask = 0744

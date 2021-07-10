@@ -6,6 +6,9 @@
 ################################################################################
 
 start() {
+
+    stop
+
 	for HD in /media/* 
     do
         FOLDER="${HD}"
@@ -13,21 +16,23 @@ start() {
 		if [ -f "/media/${FOLDER}/system/batocera.conf" ] || [ -f "/media/${FOLDER}/boot/boot/batocera" ]; then
             continue
         else
-            mkdir -p "/tmp/storage/${FOLDER}"
-            mount --bind "/media/${FOLDER}" "/tmp/storage/${FOLDER}"
+            mkdir -p "/mnt/storage/${FOLDER}"
+            mount --bind "/media/${FOLDER}" "/mnt/storage/${FOLDER}"
         fi
     done
 }	
 
 stop() {
-	for HD in /tmp/storage/* 
+	for HD in /mnt/storage/* 
     do
         FOLDER="${HD}"
         FOLDER="$(basename "${FOLDER}")"
-        umount "/tmp/storage/${FOLDER}" 2>&1&> /dev/null
-		rmdir "/tmp/storage/${FOLDER}" 2>&1&> /dev/null
+        umount "/mnt/storage/${FOLDER}" 2>&1&> /dev/null
+		if [ ! "$(ls -A "/mnt/storage/${FOLDER}" 2> /dev/null)" ]; then
+		    rmdir "/mnt/storage/${FOLDER}" 2>&1&> /dev/null
+        fi
     done
-    rmdir /tmp/storage
+    rmdir /mnt/storage 2>&1&> /dev/null
 }	
 
 restart() {
@@ -52,3 +57,4 @@ case "$1" in
 esac
 
 exit $?
+
