@@ -7,13 +7,15 @@
 
 start() {
 
-    stop
+    if [ -d '/mnt/storage' ]; then
+        stop
+    fi
 
-	for HD in /media/* 
+    for HD in /media/* 
     do
-        FOLDER="${HD}"
+        local FOLDER="${HD}"
         FOLDER="$(basename "${FOLDER}")"
-		if [ -f "/media/${FOLDER}/system/batocera.conf" ] || [ -f "/media/${FOLDER}/boot/boot/batocera" ]; then
+        if [ -f "/media/${FOLDER}/system/batocera.conf" ] || [ -f "/media/${FOLDER}/boot/boot/batocera" ]; then
             continue
         else
             mkdir -p "/mnt/storage/${FOLDER}"
@@ -25,14 +27,12 @@ start() {
 stop() {
 	for HD in /mnt/storage/* 
     do
-        FOLDER="${HD}"
+        local FOLDER="${HD}"
         FOLDER="$(basename "${FOLDER}")"
         umount "/mnt/storage/${FOLDER}" 2>&1&> /dev/null
-		if [ ! "$(ls -A "/mnt/storage/${FOLDER}" 2> /dev/null)" ]; then
-		    rmdir "/mnt/storage/${FOLDER}" 2>&1&> /dev/null
-        fi
+        rmdir "/mnt/storage/${FOLDER}" 2>&1&> /dev/null
     done
-    rmdir /mnt/storage 2>&1&> /dev/null
+    rmdir /mnt/storage
 }	
 
 restart() {
