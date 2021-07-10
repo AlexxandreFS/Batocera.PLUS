@@ -1,0 +1,54 @@
+#!/bin/bash
+###
+### Batocera.PLUS
+### Sérgio de Carvalho Júnuior
+###
+################################################################################
+
+start() {
+	for HD in /media/* 
+    do
+        FOLDER="${HD}"
+        FOLDER="$(basename "${FOLDER}")"
+		if [ -f "/media/${FOLDER}/system/batocera.conf" ] || [ -f "/media/${FOLDER}/boot/boot/batocera" ]; then
+            continue
+        else
+            mkdir -p "/tmp/storage/${FOLDER}"
+            mount --bind "/media/${FOLDER}" "/tmp/storage/${FOLDER}"
+        fi
+    done
+}	
+
+stop() {
+	for HD in /tmp/storage/* 
+    do
+        FOLDER="${HD}"
+        FOLDER="$(basename "${FOLDER}")"
+        umount "/tmp/storage/${FOLDER}" 2>&1&> /dev/null
+		rmdir "/tmp/storage/${FOLDER}" 2>&1&> /dev/null
+    done
+    rmdir /tmp/storage
+}	
+
+restart() {
+	stop
+	start
+	/etc/init.d/S91smb restart 2>&1&> /dev/null
+}	
+
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+  	stop
+	;;
+  restart)
+  	restart
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?
