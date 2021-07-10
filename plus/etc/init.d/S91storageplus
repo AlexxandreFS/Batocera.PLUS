@@ -29,12 +29,12 @@ stop() {
     do
         local FOLDER="${HD}"
         FOLDER="$(basename "${FOLDER}")"
-		if ! umount "/mnt/storage/${FOLDER}" 2>&1&> /dev/null; then
-		    /etc/init.d/S91smb stop  2>&1&> /dev/null
+        if ! umount "/mnt/storage/${FOLDER}" 2>&1&> /dev/null; then
+            /etc/init.d/S91smb stop  2>&1&> /dev/null
             if ! umount -f "/mnt/storage/${FOLDER}" 2>&1&> /dev/null; then
                 /etc/init.d/S91smb start 2>&1&> /dev/null
             fi
-		fi
+        fi
         rmdir "/mnt/storage/${FOLDER}" 2>&1&> /dev/null
     done
     rmdir /mnt/storage  2>&1&> /dev/null
