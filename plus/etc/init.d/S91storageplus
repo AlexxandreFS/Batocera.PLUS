@@ -5,39 +5,56 @@
 ###
 ################################################################################
 
+stop() {
+
+    for HD in /mnt/storage/* 
+    do
+        local FOLDER="$(basename "${HD}")"
+        if [ "${FOLDER}" == '*' ]; then
+            return 1
+        fi
+        if ! umount "/mnt/storage/${FOLDER}"; then
+            /etc/init.d/S91smb stop
+            if ! umount -f -l "/mnt/storage/${FOLDER}"; then
+                echo "forçando a desmontagem da pasta compartilhada ${FOLDER}"
+                echo "forçando a desmontagem da pasta compartilhada ${FOLDER}" >> /var/log/storageplus.log
+                /etc/init.d/S91smb start
+                #return 1
+            fi
+            /etc/init.d/S91smb start
+            echo 'Samba iniciado...' >> /var/log/storageplus.log
+        fi
+        rmdir "/mnt/storage/${FOLDER}"
+        echo "Compartilhamento ${FOLDER} desmontado" >> /var/log/storageplus.log
+    done
+
+    rmdir /mnt/storage
+    echo "Compartilhamento 'storage' desativado" >> /var/log/storageplus.log
+
+}	
+
 start() {
 
     if [ -d '/mnt/storage' ]; then
-        stop
+        if ! stop; then
+            echo "Erro ao executar a função 'stop'" >> /var/log/storageplus.log
+            return 2
+        fi
     fi
 
     for HD in /media/* 
     do
-        local FOLDER="${HD}"
-        FOLDER="$(basename "${FOLDER}")"
-        if [ -f "/media/${FOLDER}/system/batocera.conf" ] || [ -f "/media/${FOLDER}/boot/boot/batocera" ]; then
-            continue
-        else
+        local FOLDER="$(basename "${HD}")"
+        if [ ! -f "/media/${FOLDER}/system/batocera.conf" ] || [ ! -f "/media/${FOLDER}/boot/boot/batocera" ]; then
             mkdir -p "/mnt/storage/${FOLDER}"
-            mount --bind "/media/${FOLDER}" "/mnt/storage/${FOLDER}"
-        fi
-    done
-}	
-
-stop() {
-	for HD in /mnt/storage/* 
-    do
-        local FOLDER="${HD}"
-        FOLDER="$(basename "${FOLDER}")"
-        if ! umount "/mnt/storage/${FOLDER}" 2>&1&> /dev/null; then
-            /etc/init.d/S91smb stop  2>&1&> /dev/null
-            if ! umount -f "/mnt/storage/${FOLDER}" 2>&1&> /dev/null; then
-                /etc/init.d/S91smb start 2>&1&> /dev/null
+            if ! mount --bind "/media/${FOLDER}" "/mnt/storage/${FOLDER}"; then
+                echo "Erro ao montar o compartilhamento da pasta ${FOLDER}"
+                echo "Erro na função 'start' ao montar o compartilhamento da pasta ${FOLDER}" >> /var/log/storageplus.log
+                return 3
             fi
         fi
-        rmdir "/mnt/storage/${FOLDER}" 2>&1&> /dev/null
     done
-    rmdir /mnt/storage  2>&1&> /dev/null
+
 }	
 
 restart() {
