@@ -12,7 +12,7 @@ VERSION=2.14
 # Remova esta linha para diminuir o tempo de compilação.
 # A imagem não será compactada e nem gerado o md5sum.
 # Serão dicionados pacotes experimentais.
-RELEASE='dev'
+#RELEASE='dev'
 
 # Squashfs compression level
 SQUASHFS_COMPRESSION=2
@@ -268,8 +268,8 @@ URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Curren
 URL_CEMUFAKEFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
 URL_EXTRAFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.1.7z'
 
-URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-659/yuzu-20210615-01a7c561f.AppImage'
-URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1788/Yuzu-EA-1788.AppImage'
+URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-682/yuzu-20210709-f3467ab1b.AppImage'
+URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1865/Yuzu-EA-1865.AppImage'
 
 ################################################################################
 

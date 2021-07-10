@@ -1,13 +1,21 @@
-#
-# Ativa a permissão de execução para arquivos copiados por rede.
-#
 --- smb.conf
-+++ smb.conf
-@@ -341,7 +341,7 @@
++++ smb.conf.plus
+@@ -341,7 +341,18 @@
  path = /userdata
  writeable = yes
  guest ok = yes
 -create mask = 0644
++create mask = 0744
++directory mask = 0755
++force user = root
++veto files = /._*/.DS_Store/
++delete veto files = yes
++
++[storage]
++comment = Batocera.PLUS storage system
++path = /tmp/storage
++writeable = yes
++guest ok = yes
 +create mask = 0744
  directory mask = 0755
  force user = root
