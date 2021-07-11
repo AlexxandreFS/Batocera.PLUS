@@ -19,16 +19,19 @@ stop() {
                 echo "forçando a desmontagem da pasta compartilhada ${FOLDER}"
                 echo "forçando a desmontagem da pasta compartilhada ${FOLDER}" >> /var/log/storageplus.log
                 /etc/init.d/S91smb start
-                #return 1
+                return 1
             fi
             /etc/init.d/S91smb start
-            echo 'Samba iniciado...' >> /var/log/storageplus.log
+            echo 'Samba iniciado' >> /var/log/storageplus.log
         fi
         rmdir "/mnt/storage/${FOLDER}"
-        echo "Compartilhamento ${FOLDER} desmontado" >> /var/log/storageplus.log
+        echo "Pasta ${FOLDER} removida" >> /var/log/storageplus.log
     done
 
-    rmdir /mnt/storage
+    if [ -e /mnt/storage ]; then
+        rmdir /mnt/storage
+    fi
+
     echo "Compartilhamento 'storage' desativado" >> /var/log/storageplus.log
 
 }	
@@ -54,6 +57,8 @@ start() {
             fi
         fi
     done
+
+    echo "Compartilhamento 'storage' ativado" >> /var/log/storageplus.log
 
 }	
 
