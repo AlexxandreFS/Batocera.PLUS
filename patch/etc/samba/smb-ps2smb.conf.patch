@@ -1,6 +1,6 @@
---- smb.conf.original
-+++ smb.conf.modificado
-@@ -346,3 +346,14 @@
+--- smb.conf
++++ smb-ps2smb.conf.plus
+@@ -346,3 +346,25 @@
  force user = root
  veto files = /._*/.DS_Store/
  delete veto files = yes
@@ -8,6 +8,17 @@
 +[ps2smb]
 +comment = Open PS2 Loader
 +path = /userdata/roms/ps2smb
++writeable = yes
++guest ok = yes
++create mask = 0744
++directory mask = 0755
++force user = root
++veto files = /._*/.DS_Store/
++delete veto files = yes
++
++[storage]
++comment = Batocera.PLUS storage system
++path = /mnt/storage
 +writeable = yes
 +guest ok = yes
 +create mask = 0744

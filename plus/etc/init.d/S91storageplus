@@ -1,0 +1,86 @@
+#!/bin/bash
+###
+### Batocera.PLUS
+### Sérgio de Carvalho Júnuior
+###
+################################################################################
+
+stop() {
+
+    for HD in /mnt/storage/* 
+    do
+        local FOLDER="$(basename "${HD}")"
+        if [ "${FOLDER}" == '*' ]; then
+            return 1
+        fi
+        if ! umount "/mnt/storage/${FOLDER}"; then
+            /etc/init.d/S91smb stop
+            if ! umount -f -l "/mnt/storage/${FOLDER}"; then
+                echo "forçando a desmontagem da pasta compartilhada ${FOLDER}"
+                echo "forçando a desmontagem da pasta compartilhada ${FOLDER}" >> /var/log/storageplus.log
+                /etc/init.d/S91smb start
+                return 1
+            fi
+            /etc/init.d/S91smb start
+            echo 'Samba iniciado' >> /var/log/storageplus.log
+        fi
+        rmdir "/mnt/storage/${FOLDER}"
+        echo "Pasta ${FOLDER} removida" >> /var/log/storageplus.log
+    done
+
+    if [ -e /mnt/storage ]; then
+        rmdir /mnt/storage
+    fi
+
+    echo "Compartilhamento 'storage' desativado" >> /var/log/storageplus.log
+
+}	
+
+start() {
+
+    if [ -d '/mnt/storage' ]; then
+        if ! stop; then
+            echo "Erro ao executar a função 'stop'" >> /var/log/storageplus.log
+            return 2
+        fi
+    fi
+
+    for HD in /media/* 
+    do
+        local FOLDER="$(basename "${HD}")"
+        if [ ! -f "/media/${FOLDER}/system/batocera.conf" ] || [ ! -f "/media/${FOLDER}/boot/boot/batocera" ]; then
+            mkdir -p "/mnt/storage/${FOLDER}"
+            if ! mount --bind "/media/${FOLDER}" "/mnt/storage/${FOLDER}"; then
+                echo "Erro ao montar o compartilhamento da pasta ${FOLDER}"
+                echo "Erro na função 'start' ao montar o compartilhamento da pasta ${FOLDER}" >> /var/log/storageplus.log
+                return 3
+            fi
+        fi
+    done
+
+    echo "Compartilhamento 'storage' ativado" >> /var/log/storageplus.log
+
+}	
+
+restart() {
+	stop
+	start
+}	
+
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+  	stop
+	;;
+  restart)
+  	restart
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?
+
