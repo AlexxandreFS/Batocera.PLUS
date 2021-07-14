@@ -10,17 +10,7 @@ YUZU_PID="$(pidof -s yuzu)"
 
 if [ -z "${YUZU_PID}" ]
 then
-    YUZU_PID="$(pidof -s yuzu-mainline)"
-
-    if [ -z "${YUZU_PID}" ]
-    then
-        YUZU_PID="$(pidof -s yuzu-early-access)"
-
-        if [ -z "${YUZU_PID}" ]
-        then
-            exit 0
-        fi
-    fi
+    exit 0
 fi
 
 kill -15 ${YUZU_PID}

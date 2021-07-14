@@ -20,6 +20,15 @@ MOUSE="${4}"
 
 ################################################################################
 
+### YUZU VERSION
+
+if [ "${CORE}" != 'yuzu-mainline' ]
+then
+    CORE=yuzu-early-access
+fi
+
+################################################################################
+
 ### NINTENDO SWITCH KEYS
 
 if [ ! -e "${SAVE_DIR}/yuzu/keys" ] && [ -d "${BIOS_DIR}/keys" ]
@@ -68,7 +77,7 @@ then
         while :
         do
             nice -n 20 xjoykill -hotkey ${BOTAO_HOTKEY} -start ${BOTAO_START} -kill "${YUZU_DIR}/killyuzu"
-            if ! [ "$(pidof yuzu yuzu-mainline yuzu-early-access)" ]
+            if ! [ "$(pidof yuzu)" ]
             then
                 break
             fi
@@ -82,18 +91,32 @@ fi
 ### WORKING PATHS 
 
 mkdir -p "${HOME_DIR}"
-mkdir -p "${SAVE_DIR}/yuzu"
-
 export HOME="${HOME_DIR}"
+
+function xdg-mime() { :; }
+export -f xdg-mime
+export XDG_RUNTIME_DIR=/run/root
+
+mkdir -p "${SAVE_DIR}/yuzu"
 export XDG_DATA_HOME="${SAVE_DIR}"
+
 export QT_QPA_PLATFORM=xcb
 
-export LD_LIBRARY_PATH="${YUZU_DIR}/lib:${LD_LIBRARY_PATH}"
+if [ -d "${YUZU_DIR}/${CORE}/lib" ]
+then
+    export LD_LIBRARY_PATH="${YUZU_DIR}/${CORE}/lib:${LD_LIBRARY_PATH}"
+fi
 
-#https://github.com/yuzu-emu/yuzu/issues/6388
-#https://github.com/yuzu-emu/yuzu/issues/6343
-#https://github.com/yuzu-emu/yuzu-mainline/commit/648bef235ea7a7eb183c6aac52bdd63f921b7b22#diff-1e7de1ae2d059d21e1dd75d5812d5a34b0222cef273b7c3a2af62eb747f9d20a
+if [ -d "${YUZU_DIR}/${CORE}/lib/plugins" ]
+then
+    export QT_PLUGIN_PATH="${YUZU_DIR}/${CORE}/lib/plugins"
+fi
+
+# https://github.com/yuzu-emu/yuzu/issues/6388
+# https://github.com/yuzu-emu/yuzu/issues/6343
+# https://github.com/yuzu-emu/yuzu-mainline/commit/648bef235ea7a7eb183c6aac52bdd63f921b7b22#diff-1e7de1ae2d059d21e1dd75d5812d5a34b0222cef273b7c3a2af62eb747f9d20a
 export SDL_JOYSTICK_HIDAPI=0
+
 
 ################################################################################
 
@@ -101,15 +124,10 @@ export SDL_JOYSTICK_HIDAPI=0
 
 if [ -e "${ROM}" ]
 then
-    if [ "${CORE}" == 'auto' ]
-    then
-        "${YUZU_DIR}/yuzu"    -f -g "${ROM}"
-    else
-        "${YUZU_DIR}/${CORE}" -f -g "${ROM}"
-    fi
+    "${YUZU_DIR}/${CORE}/bin/yuzu" -f -g "${ROM}"
 else
     # APPS (F1)
-    "${YUZU_DIR}/yuzu" "${@}"
+    "${YUZU_DIR}/${CORE}/bin/yuzu" "${@}"
 fi
 
 ################################################################################

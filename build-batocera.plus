@@ -7,7 +7,7 @@ set -e
 ################################################################################
 
 # Batocera.PLUS Version 
-VERSION=2.14
+VERSION='2.14'
 
 # Remova esta linha para diminuir o tempo de compilação.
 # A imagem não será compactada e nem gerado o md5sum.
@@ -15,14 +15,14 @@ VERSION=2.14
 RELEASE='dev'
 
 # Squashfs compression level
-SQUASHFS_COMPRESSION=2
+SQUASHFS_COMPRESSION='2'
 
 # Temporary folder on a linux partition
 TEMP_DIR='./tmp'
-#TEMP_DIR='/media/NO_LABEL/tmp'
-#TEMP_DIR='/media/NO_LABEL_1/tmp'
-#TEMP_DIR='/media/NO_LABEL_2/tmp'
+#TEMP_DIR='/media/Linux/tmp'
 #TEMP_DIR='/mnt/tmp'
+#TEMP_DIR='/media/NO_LABEL/tmp'
+#TEMP_DIR='/userdata/extractions'
 
 # BatoceraZero image
 BATOCERA_ZERO='BatoceraZero3.7GB-1.7z' # image size: 3655701504
@@ -268,8 +268,8 @@ URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Curren
 URL_CEMUFAKEFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
 URL_EXTRAFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.1.7z'
 
-URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-682/yuzu-20210709-f3467ab1b.AppImage'
-URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1865/Yuzu-EA-1865.AppImage'
+URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-687/yuzu-20210714-31679dc53.AppImage'
+URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1877/Yuzu-EA-1877.AppImage'
 
 ################################################################################
 
@@ -576,8 +576,8 @@ cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
 "${CURRENT_DIR}/${DOWNLOAD_DIR}/${PKG_NAME}" --appimage-extract
 cd "${CURRENT_DIR}"
 unset CURRENT_DIR
-mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu" "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-mainline"
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-mainline/bin"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu" "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-mainline/bin"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Yuzu Early Access...'
@@ -589,9 +589,27 @@ cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
 "${CURRENT_DIR}/${DOWNLOAD_DIR}/${PKG_NAME}" --appimage-extract
 cd "${CURRENT_DIR}"
 unset CURRENT_DIR
-mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu"                  "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/libboost_context.so."* "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access/bin"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu"                       "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access/bin"
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access/lib"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/optional/libstdc++/libstdc++."* "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access/lib"
+YUZU_FILES=(
+    libboost_context
+    libicudata
+    libicui18n
+    libicuuc
+    libQt5Core
+    libQt5DBus
+    libQt5Gui
+    libQt5Widgets
+    libQt5XcbQpa
+    libxcb-render-util
+)
+for FILE in ${YUZU_FILES[*]}
+do
+    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access/lib"
+done
+cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/plugins"        "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Nvidia Driver...'
