@@ -1,12 +1,26 @@
-diff --git a/dlls/mfreadwrite/tests/mfplat.c b/dlls/mfreadwrite/tests/mfplat.c
-index 04d9590..394f474 100644
---- a/dlls/mfreadwrite/tests/mfplat.c
-+++ b/dlls/mfreadwrite/tests/mfplat.c
-@@ -902,6 +902,7 @@ static void test_source_reader_from_media_source(void)
-     IMFAttributes *attributes;
-     ULONG refcount;
-     int i;
-+    PROPVARIANT pos;
+diff --git a/dlls/ddraw/tests/ddraw4.c b/dlls/ddraw/tests/ddraw4.c
+index 1ae4875..b7abceb 100644
+--- a/dlls/ddraw/tests/ddraw4.c
++++ b/dlls/ddraw/tests/ddraw4.c
+@@ -18363,7 +18363,7 @@ static void test_texture_wrong_caps(const GUID *device_guid)
+     HRESULT hr;
  
-     source = create_test_source(3);
-     ok(!!source, "Failed to create test source.\n");
+     window = create_window();
+-    if (!(device = create_device_ex(window, DDSCL_NORMAL, device_guid)))
++    if (!(device = create_device(window, DDSCL_NORMAL)))
+     {
+         skip("Failed to create a 3D device, skipping test.\n");
+         DestroyWindow(window);
+diff --git a/dlls/ddraw/tests/ddraw7.c b/dlls/ddraw/tests/ddraw7.c
+index 2c17952..7507af2 100644
+--- a/dlls/ddraw/tests/ddraw7.c
++++ b/dlls/ddraw/tests/ddraw7.c
+@@ -18606,7 +18606,7 @@ static void test_texture_wrong_caps(const GUID *device_guid)
+     HRESULT hr;
+ 
+     window = create_window();
+-    if (!(device = create_device_ex(window, DDSCL_NORMAL, device_guid)))
++    if (!(device = create_device(window, DDSCL_NORMAL)))
+     {
+         skip("Failed to create a 3D device, skipping test.\n");
+         DestroyWindow(window);
