@@ -553,22 +553,20 @@ unset SAVE_DIR
 
 ### DIRECTX 9 + WINE-MONO (install)
 
-# Se o usuário definir o WINEPREFIX o DirectX e o Mono não será instalado, útil para
+# Install Mono
+# (bug) As novas versões do wine só funcionam se o Mono for instalado antes da criação do prefixo
+# sem o Mono o directx não instala e o prefixo fica corrompido.
+mkdir -p "${WINEPREFIX}/drive_c/windows/mono"
+ln -s "${WINE_DIR}/apps/mono" "${WINEPREFIX}/drive_c/windows/mono/mono-2.0"
+
+# Se o usuário definir um WINEPREFIX o DirectX não será instalado, útil para
 # instalações em prefixos diferentes para evitar influências externas.
-
 if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ] || [ "${INSTALL_EXTRAS}" == '1' ]; then
-
     # O directx não pode ser instalado em refixo de 64 bits.
     if [ "${WINEARCH}" == 'win64' ]; then
         unset WINEARCH
         exec "${WINE_BUILD}" "${@}"
     fi
-
-    # Install Mono
-    # (bug) As novas versões do wine só funcionam se o Mono for instalado antes da criação do prefixo
-    # sem o Mono o directx nem instala e o prefixo fica corrompido.
-    mkdir -p "${WINEPREFIX}/drive_c/windows/mono"
-    ln -s "${WINE_DIR}/apps/mono" "${WINEPREFIX}/drive_c/windows/mono/mono-2.0"
 
     # Install Direct X
     ${WINE_DIR}/${WINE_BUILD}/bin/wine ${WINE_DIR}/apps/directx_Jun2010_redist/DXSETUP.exe /silent
@@ -576,8 +574,8 @@ if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ] || [ "${INSTALL_E
     # Install Nvidia dlls
     ln -sf "${WINE_DIR}/apps/nvapi/x32/nvapi.dll"   "${WINEPREFIX}/drive_c/windows/syswow64/nvapi.dll"
     ln -sf "${WINE_DIR}/apps/nvapi/x64/nvapi64.dll" "${WINEPREFIX}/drive_c/windows/system32/nvapi64.dll"
-    ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi"   /t REG_SZ /d "native,builtin" 2>&1&> /dev/null
-    ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi64" /t REG_SZ /d "native,builtin" 2>&1&> /dev/null
+    ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi"   /t REG_SZ /d "native,builtin"
+    ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi64" /t REG_SZ /d "native,builtin"
 
     wineWait
 fi
@@ -585,6 +583,15 @@ fi
 ${WINE_DIR}/${WINE_BUILD}/bin/wineserver -p0
 ${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH} wineboot
 wineWait
+
+################################################################################
+
+### PROTON VALVE, ENABLE GENERIC CONTROLLERS
+
+if [ "${WINE_BUILD}" == 'proton-valve' ]; then
+    ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus" /f /v "DisableHidraw" /t REG_DWORD /d "1"
+    wineWait
+fi
 
 ################################################################################
 
