@@ -145,7 +145,15 @@ fi
 
 ### ATUALIZA OU CRIA O PREFIXO SE NECESSÁRIO
 
-if [ ! "$(ls -A "${WINE}" 2> /dev/null)" ]; then
+if [ -e "${WINE}/.update-timestamp" ]; then # if wine version has changed
+    SDIR_VERSION="$(cat -e "${WINE}/.update-timestamp" | cut -d '^' -f 1)"
+    OPT_WINE="$(stat -t '/opt/Wine/wine-lutris/share/wine/wine.inf' | awk '{print $12}')"
+    if [ "${OPT_WINE}" != "${SDIR_VERSION}" ] && [ -e "${WINE}" ]; then
+        rm -r "${WINE}"
+    fi
+fi
+
+if [ ! "$(ls -A "${WINE}" 2> /dev/null)" ]; then # if wineprefix if does not exist
     mkdir -p "${WINE}"
 fi
 
