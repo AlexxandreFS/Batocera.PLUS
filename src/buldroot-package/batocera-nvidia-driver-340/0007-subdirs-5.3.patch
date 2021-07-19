@@ -1,0 +1,11 @@
+--- a/kernel/Makefile.kbuild
++++ b/kernel/Makefile.kbuild
+@@ -231,7 +231,7 @@
+ endif
+ 
+ KBUILD_PARAMS += KBUILD_VERBOSE=$(NV_VERBOSE)
+-KBUILD_PARAMS += -C $(KERNEL_SOURCES) SUBDIRS=$(PWD)
++KBUILD_PARAMS += -C $(KERNEL_SOURCES) M=$(PWD)
+ KBUILD_PARAMS += ARCH=$(ARCH)
+ 
+ #

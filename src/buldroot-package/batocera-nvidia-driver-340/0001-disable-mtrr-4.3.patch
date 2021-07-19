@@ -1,0 +1,13 @@
+--- a/kernel/nv-linux.h
++++ b/kernel/nv-linux.h
+@@ -275,6 +275,10 @@
+ #include <linux/seq_file.h>
+ #endif
+ 
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(4,3,0)
++#undef CONFIG_MTRR
++#endif
++
+ #if !defined(NV_VMWARE) && defined(CONFIG_MTRR)
+ #include <asm/mtrr.h>
+ #endif

@@ -1,0 +1,221 @@
+--- a/kernel/conftest.sh
++++ b/kernel/conftest.sh
+@@ -1151,6 +1151,22 @@
+             compile_check_conftest "$CODE" "NV_IOREMAP_CACHE_PRESENT" "" "functions"
+         ;;
+ 
++        ioremap_nocache)
++            #
++            # Determine if the ioremap_nocache() function is present.
++            #
++            # Removed by commit 4bdc0d676a64 ("remove ioremap_nocache and
++            # devm_ioremap_nocache") in v5.6 (2020-01-06)
++            #
++            CODE="
++            #include <asm/io.h>
++            void conftest_ioremap_nocache(void) {
++                ioremap_nocache();
++            }"
++
++            compile_check_conftest "$CODE" "NV_IOREMAP_NOCACHE_PRESENT" "" "functions"
++        ;;
++
+         ioremap_wc)
+             #
+             # Determine if the ioremap_wc() function is present.
+@@ -1359,6 +1375,16 @@
+             compile_check_conftest "$CODE" "NV_FILE_OPERATIONS_HAS_COMPAT_IOCTL" "" "types"
+         ;;
+ 
++        proc_ops)
++            CODE="
++            #include <linux/proc_fs.h>
++            int conftest_proc_ops(void) {
++                return offsetof(struct proc_ops, proc_open);
++            }"
++
++            compile_check_conftest "$CODE" "NV_HAVE_PROC_OPS" "" "types"
++        ;;
++
+         sg_init_table)
+             #
+             # Determine if the sg_init_table() function is present.
+--- a/kernel/Makefile.kbuild
++++ b/kernel/Makefile.kbuild
+@@ -165,6 +165,7 @@
+ 	vmm_support \
+ 	acpi_evaluate_integer \
+ 	ioremap_cache \
++	ioremap_nocache \
+ 	ioremap_wc \
+ 	proc_dir_entry \
+ 	INIT_WORK \
+@@ -174,6 +175,7 @@
+ 	pci_domain_nr \
+ 	pci_dma_mapping_error \
+ 	file_operations \
++	proc_ops \
+ 	sg_init_table \
+ 	pci_get_domain_bus_and_slot \
+ 	get_num_physpages \
+--- a/kernel/nv-drm.c
++++ b/kernel/nv-drm.c
+@@ -140,8 +140,35 @@
+ #if defined(NV_DRM_AVAILABLE)
+ #if LINUX_VERSION_CODE < KERNEL_VERSION(4, 14, 0)
+     ret = drm_pci_init(&nv_drm_driver, pci_driver);
+-#else
++#elif LINUX_VERSION_CODE < KERNEL_VERSION(5, 6, 0)
+     ret = drm_legacy_pci_init(&nv_drm_driver, pci_driver);
++#else
++    struct pci_dev *pdev = NULL;
++    const struct pci_device_id *pid;
++    int i;
++
++    INIT_LIST_HEAD(&nv_drm_driver.legacy_dev_list);
++        for (i = 0; pci_driver->id_table[i].vendor != 0; i++) {
++                pid = &pci_driver->id_table[i];
++
++        /* Loop around setting up a DRM device for each PCI device
++         * matching our ID and device class.  If we had the internal
++         * function that pci_get_subsys and pci_get_class used, we'd
++         * be able to just pass pid in instead of doing a two-stage
++         * thing.
++         */
++                pdev = NULL;
++                while ((pdev =
++                        pci_get_subsys(pid->vendor, pid->device, pid->subvendor,
++                                       pid->subdevice, pdev)) != NULL) {
++                        if ((pdev->class & pid->class_mask) != pid->class)
++                                continue;
++
++                        /* stealth mode requires a manual probe */
++                        pci_dev_get(pdev);
++                        drm_get_pci_dev(pdev, pid, &nv_drm_driver);
++                }
++        }
+ #endif
+ #endif
+     return ret;
+@@ -154,8 +181,15 @@
+ #if defined(NV_DRM_AVAILABLE)
+ #if LINUX_VERSION_CODE < KERNEL_VERSION(4, 14, 0)
+     drm_pci_exit(&nv_drm_driver, pci_driver);
+-#else
++#elif LINUX_VERSION_CODE < KERNEL_VERSION(5, 6, 0)
+     drm_legacy_pci_exit(&nv_drm_driver, pci_driver);
++#else
++    struct drm_device *dev, *tmp;
++    list_for_each_entry_safe(dev, tmp, &nv_drm_driver.legacy_dev_list, legacy_dev_list) {
++        list_del(&dev->legacy_dev_list);
++        drm_put_dev(dev);
++    }
++    DRM_INFO("Module unloaded\n");
+ #endif
+ #endif
+ }
+--- a/kernel/nv-linux.h
++++ b/kernel/nv-linux.h
+@@ -772,11 +772,15 @@
+         VM_ALLOC_RECORD(ptr, size, "vm_ioremap"); \
+     }
+ 
++#if defined(NV_IOREMAP_NOCACHE_PRESENT)
+ #define NV_IOREMAP_NOCACHE(ptr, physaddr, size) \
+     { \
+         (ptr) = ioremap_nocache(physaddr, size); \
+         VM_ALLOC_RECORD(ptr, size, "vm_ioremap_nocache"); \
+     }
++#else
++#define NV_IOREMAP_NOCACHE NV_IOREMAP
++#endif
+ 
+ #if defined(NV_IOREMAP_CACHE_PRESENT)
+ #define NV_IOREMAP_CACHE(ptr, physaddr, size)            \
+--- a/kernel/nv-procfs.c
++++ b/kernel/nv-procfs.c
+@@ -69,6 +69,19 @@
+     })
+ #endif
+ 
++#if defined(NV_HAVE_PROC_OPS)
++#define NV_CREATE_PROC_FILE(filename,parent,__name,__data)               \
++   ({                                                                    \
++        struct proc_dir_entry *__entry;                                  \
++        int __mode = (S_IFREG | S_IRUGO);                                \
++        const struct proc_ops *fops = &nv_procfs_##__name##_fops;        \
++        if (fops->proc_write != 0)                                       \
++            __mode |= S_IWUSR;                                           \
++        __entry = proc_create_data(filename, __mode, parent, fops,       \
++            __data);                                                     \
++        __entry;                                                         \
++    })
++#else
+ #define NV_CREATE_PROC_FILE(filename,parent,__name,__data)               \
+    ({                                                                    \
+         struct proc_dir_entry *__entry;                                  \
+@@ -80,6 +93,7 @@
+             __data);                                                     \
+         __entry;                                                         \
+     })
++#endif
+ 
+ /*
+  * proc_mkdir_mode exists in Linux 2.6.9, but isn't exported until Linux 3.0.
+@@ -113,6 +127,24 @@
+ # define NV_PDE_DATA(inode) PDE(inode)->data
+ #endif
+ 
++#if defined(NV_HAVE_PROC_OPS)
++#define NV_DEFINE_PROCFS_SINGLE_FILE(__name)                                  \
++    static int nv_procfs_open_##__name(                                       \
++        struct inode *inode,                                                  \
++        struct file *filep                                                    \
++    )                                                                         \
++    {                                                                         \
++        return single_open(filep, nv_procfs_read_##__name,                    \
++            NV_PDE_DATA(inode));                                              \
++    }                                                                         \
++                                                                              \
++    static const struct proc_ops nv_procfs_##__name##_fops = {                \
++        .proc_open       = nv_procfs_open_##__name,                           \
++        .proc_read       = seq_read,                                          \
++        .proc_lseek      = seq_lseek,                                         \
++        .proc_release    = single_release,                                    \
++    };
++#else
+ #define NV_DEFINE_PROCFS_SINGLE_FILE(__name)                                  \
+     static int nv_procfs_open_##__name(                                       \
+         struct inode *inode,                                                  \
+@@ -130,6 +162,7 @@
+         .llseek     = seq_lseek,                                              \
+         .release    = single_release,                                         \
+     };
++#endif
+ 
+ static int nv_procfs_read_registry(struct seq_file *s, void *v);
+ 
+@@ -660,6 +693,15 @@
+     return ((status < 0) ? status : (int)count);
+ }
+ 
++#if defined(NV_HAVE_PROC_OPS)
++static struct proc_ops nv_procfs_registry_fops = {
++    .proc_open    = nv_procfs_open_registry,
++    .proc_read    = seq_read,
++    .proc_write   = nv_procfs_write_registry,
++    .proc_lseek   = seq_lseek,
++    .proc_release = nv_procfs_close_registry,
++};
++#else
+ static struct file_operations nv_procfs_registry_fops = {
+     .owner   = THIS_MODULE,
+     .open    = nv_procfs_open_registry,
+@@ -668,6 +710,7 @@
+     .llseek  = seq_lseek,
+     .release = nv_procfs_close_registry,
+ };
++#endif
+ 
+ static int
+ nv_procfs_read_text_file(

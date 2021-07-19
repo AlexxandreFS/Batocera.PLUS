@@ -1,0 +1,59 @@
+--- a/kernel/conftest.sh
++++ b/kernel/conftest.sh
+@@ -1493,6 +1493,9 @@
+             CODE="
+             #if defined(NV_DRM_DRMP_H_PRESENT)
+             #include <drm/drmP.h>
++            #else
++            #include <drm/drm_drv.h>
++            #include <drm/drm_prime.h>
+             #endif
+             #if !defined(CONFIG_DRM) && !defined(CONFIG_DRM_MODULE)
+             #error DRM not enabled
+@@ -1940,6 +1943,8 @@
+             CODE="
+             #if defined(NV_DRM_DRMP_H_PRESENT)
+             #include <drm/drmP.h>
++            #else
++            #include <drm/drm_drv.h>
+             #endif
+             void conftest_drm_pci_set_busid(void) {
+                 drm_pci_set_busid();
+@@ -2098,8 +2103,11 @@
+             #   2017-01-06  11b3c20bdd15d17382068be569740de1dccb173d
+             #
+             CODE="
++            #if defined(NV_DRM_DRMP_H_PRESENT)
+             #include <drm/drmP.h>
+-
++            #else
++            #include <drm/drm_drv.h>
++            #endif
+             int conftest_drm_driver_unload_has_int_return_type(struct drm_driver *drv) {
+                 return drv->unload(NULL /* dev */);
+             }"
+--- a/kernel/nv-drm.c
++++ b/kernel/nv-drm.c
+@@ -16,7 +16,22 @@
+ 
+ #if defined(NV_DRM_AVAILABLE)
+ 
++#if defined(NV_DRM_DRMP_H_PRESENT)
+ #include <drm/drmP.h>
++#else
++#include <uapi/drm/drm.h>
++#include <uapi/drm/drm_mode.h>
++
++#include <drm/drm_agpsupport.h>
++#include <drm/drm_crtc.h>
++#include <drm/drm_drv.h>
++#include <drm/drm_prime.h>
++#include <drm/drm_pci.h>
++#include <drm/drm_ioctl.h>
++#include <drm/drm_sysfs.h>
++#include <drm/drm_vblank.h>
++#include <drm/drm_device.h>
++#endif
+ 
+ #if defined(NV_DRM_DRM_GEM_H_PRESENT)
+ #include <drm/drm_gem.h>

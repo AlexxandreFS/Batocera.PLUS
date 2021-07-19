@@ -1,0 +1,77 @@
+--- a/kernel/nv-linux.h
++++ b/kernel/nv-linux.h
+@@ -1375,6 +1375,7 @@
+ 
+ #define NV_PAGE_MASK    (NvU64)(long)PAGE_MASK
+ 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 12, 0)
+ #define NV_PGD_OFFSET(address, kernel, mm)              \
+    ({                                                   \
+         struct mm_struct *__mm = (mm);                  \
+@@ -1385,6 +1386,18 @@
+             __pgd = pgd_offset_k(address);              \
+         __pgd;                                          \
+     })
++#else
++#define NV_PGD_OFFSET(address, kernel, mm)              \
++   ({                                                   \
++        struct mm_struct *__mm = (mm);                  \
++        pgd_t *__pgd;                                   \
++        if (!kernel)                                    \
++            __pgd = pgd_offset(__mm, address);          \
++        else                                            \
++            __pgd = NULL;                               \
++        __pgd;                                          \
++    })
++#endif
+ 
+ #define NV_PGD_PRESENT(pgd)                             \
+    ({                                                   \
+@@ -1402,7 +1415,23 @@
+    })
+ #define NV_PMD_UNMAP(pmd) pmd_unmap(pmd);
+ #else
+-#if defined(PUD_SHIFT) /* 4-level pgtable */
++#if defined(P4D_SHIFT) /* 5-level pgtable */
++#define NV_PMD_OFFSET(address, pgd)                     \
++   ({                                                   \
++        pmd_t *__pmd = NULL;                            \
++        pud_t *__pud;                                   \
++        p4d_t *__p4d;                                   \
++        __p4d = p4d_offset(pgd, address);               \
++        if ((__p4d != NULL) &&                          \
++            !(p4d_bad(*__p4d) || p4d_none(*__p4d))) {   \
++            __pud = pud_offset(__p4d, address);         \
++            if ((__pud != NULL) &&                      \
++                !(pud_bad(*__pud) || pud_none(*__pud))) \
++                __pmd = pmd_offset(__pud, address);     \
++        }                                               \
++        __pmd;                                          \
++    })
++#elif defined(PUD_SHIFT) /* 4-level pgtable */
+ #define NV_PMD_OFFSET(address, pgd)                     \
+    ({                                                   \
+         pmd_t *__pmd = NULL;                            \
+--- a/kernel/nv-vtophys.c
++++ b/kernel/nv-vtophys.c
+@@ -81,10 +81,20 @@
+ #endif
+ 
+     /* direct-mapped kernel address */
++#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 12, 0)
+     if ((address > PAGE_OFFSET) && (address < VMALLOC_START))
++#else
++    if (virt_addr_valid(address))
++#endif
+         return __pa(address);
+ 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 12, 0)
+     return nv_get_phys_address(address, TRUE);
++#else
++    nv_printf(NV_DBG_ERRORS,
++        "NVRM: can't translate address in %s()!\n", __FUNCTION__);
++    return 0;
++#endif
+ }
+ 
+ NvU64 NV_API_CALL nv_get_user_address(NvU64 address)

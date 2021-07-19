@@ -1,0 +1,39 @@
+--- a/kernel/nv.c
++++ b/kernel/nv.c
+@@ -874,7 +874,11 @@
+     NV_SPIN_LOCK_INIT(&km_lock);
+ #endif
+ 
++#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 16, 0)
+     NV_KMEM_CACHE_CREATE(nv_stack_t_cache, "nv_stack_t", nv_stack_t);
++#else
++    NV_KMEM_CACHE_CREATE_USERCOPY(nv_stack_t_cache, "nv_stack_t", nv_stack_t);
++#endif
+     if (nv_stack_t_cache == NULL)
+     {
+         nv_printf(NV_DBG_ERRORS, "NVRM: stack cache allocation failed!\n");
+--- a/kernel/nv-linux.h
++++ b/kernel/nv-linux.h
+@@ -844,12 +844,22 @@
+         kmem_cache = kmem_cache_create(name, sizeof(type),      \
+                         0, 0, NULL, NULL);                      \
+     }
++#define NV_KMEM_CACHE_CREATE_USERCOPY(kmem_cache, name, type)            \
++    {                                                                    \
++        kmem_cache = kmem_cache_create_usercopy(name, sizeof(type),      \
++                        0, 0, 0, sizeof(type), NULL, NULL);              \
++    }
+ #elif (NV_KMEM_CACHE_CREATE_ARGUMENT_COUNT == 5)
+ #define NV_KMEM_CACHE_CREATE(kmem_cache, name, type)            \
+     {                                                           \
+         kmem_cache = kmem_cache_create(name, sizeof(type),      \
+                         0, 0, NULL);                            \
+     }
++#define NV_KMEM_CACHE_CREATE_USERCOPY(kmem_cache, name, type)            \
++    {                                                                    \
++        kmem_cache = kmem_cache_create_usercopy(name, sizeof(type),      \
++                        0, 0, 0, sizeof(type), NULL);                    \
++    }
+ #else
+ #error "NV_KMEM_CACHE_CREATE_ARGUMENT_COUNT value unrecognized!"
+ #endif
