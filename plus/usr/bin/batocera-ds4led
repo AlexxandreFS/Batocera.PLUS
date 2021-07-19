@@ -1,0 +1,85 @@
+#!/bin/bash
+###
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+###
+### Changes the color of the playstation 4 control led
+###
+################################################################################
+
+RED=$1
+GREEN=$2
+BLUE=$3
+
+################################################################################
+
+### SANITY CHECK
+
+HELP="Use $(basename $0) RED GREEN BLUE
+Values accept [0 - 255], example:
+$(basename $0) 20 40 255"
+
+# 3 parameters
+if [ "${#}" != '3' ]
+then
+    echo "${HELP}"
+    exit 1
+fi
+
+# isnumeric
+if ! [ ${RED}   -eq ${RED} ]   2> /dev/null ||
+   ! [ ${GREEN} -eq ${GREEN} ] 2> /dev/null ||
+   ! [ ${BLUE}  -eq ${BLUE} ]  2> /dev/null
+then
+    echo "${HELP}"
+    exit 2
+fi
+
+# values 0 ~ 255
+if [ ${RED}   -le '-1' ] || [ ${RED}   -gt 255 ] ||
+   [ ${GREEN} -le '-1' ] || [ ${GREEN} -gt 255 ] ||
+   [ ${BLUE}  -le '-1' ] || [ ${BLUE}  -gt 255 ]
+then
+    echo "${HELP}"
+    exit 3
+fi
+
+################################################################################
+
+### CONTROLLER ID
+
+DS4_IDS=(
+    ????:054C:05C4.*
+    ????:054C:09CC.*
+    ????:054C:0BA0.*
+)
+
+################################################################################
+
+### CHANGE COLORS
+
+for I in ${DS4_IDS[*]}
+do
+    for J in /sys/class/leds/${I}
+    do
+        LED=$(echo ${J}/brightness | grep -v '*' | grep -v 'global')
+
+        if [ -z "${LED}" ]
+        then
+            continue
+        fi
+
+        if echo "${LED}" | grep -q 'red'
+        then
+            echo ${RED} > ${LED}
+        elif echo "${LED}" | grep -q 'green'
+        then
+            echo ${GREEN} > ${LED}
+        elif echo "${LED}" | grep -q 'blue'
+        then
+            echo ${BLUE} > ${LED}
+        fi
+    done
+done
+
+exit 0

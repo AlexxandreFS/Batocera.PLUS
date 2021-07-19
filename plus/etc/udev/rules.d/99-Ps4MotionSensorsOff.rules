@@ -1,3 +1,0 @@
-SUBSYSTEMS=="input", ATTRS{name}=="Sony Interactive Entertainment Wireless Controller Motion Sensors", MODE="0666", RUN+="/bin/sh /recalbox/scripts/Ps4MotionSensorsOff.sh"
-SUBSYSTEMS=="input", ATTRS{name}=="Sony Interactive Entertainment DUALSHOCK®4 USB Wireless Adaptor Motion Sensors", MODE="0666", RUN+="/bin/sh /recalbox/scripts/Ps4MotionSensorsOff.sh"
-SUBSYSTEMS=="input", ATTRS{name}=="Wireless Controller Motion Sensors", MODE="0666", RUN+="/bin/sh /recalbox/scripts/Ps4MotionSensorsOff.sh"
