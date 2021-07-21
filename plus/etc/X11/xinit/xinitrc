@@ -95,6 +95,18 @@ fi
 
 ################################################################################
 
+### PIPEWARE
+
+mkdir -p /var/run
+export XDG_RUNTIME_DIR=/var/run
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/dbus/system_bus_socket"
+
+pipewire &
+pipewire-media-session &
+pipewire-pulse &
+
+################################################################################
+
 ### Forces resolution
 
 # set user desired resolution
