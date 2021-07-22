@@ -59,8 +59,9 @@ mouse-pointer on
 #ln -s -f $APP_DIR/extra-libs/libgtk-3-original.so.0    $APP_DIR/extra-libs/libgtk-3.so.0
 ln -s -f $APP_DIR/extra-libs/libgtk-3-alternative.so.0 $APP_DIR/extra-libs/libgtk-3.so.0
 
-export LD_LIBRARY_PATH="${APP_DIR}/extra-libs:${LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="${APP_DIR}/extra-libs:${APP_DIR}/apulse:${LD_LIBRARY_PATH}"
 export XDG_DATA_DIRS="/usr/share:$APP_DIR/extra-libs"
+
 
 ################################################################################
 
