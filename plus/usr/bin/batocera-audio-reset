@@ -6,16 +6,17 @@
 ### Alexxandre Freire dos Santos
 ###
 
+echo 'set audio output to auto'
+batocera-settings --command write --key audio.device --value auto
+
 FILES=(
     /boot/asound.state
-    /boot/asoundrc
-    ${HOME}/asound.state
     ${HOME}/asoundrc
     ${HOME}/.asoundrc
-    /etc/init/etc/init.d/???audio
+    ${HOME}/asound.state
+    /boot/asoundrc
+    /etc/init.d/???audio
 )
-
-echo 'Reseting Audio'
 
 if ! mount -o remount,rw /boot
 then
@@ -31,12 +32,9 @@ do
     fi
 done
 
-mount -o remount,ro /boot 2> /dev/null
-
-echo 'set ES audio to auto'
-batocera-settings --command write --key audio.device --value auto
-
 sync
+
+mount -o remount,ro /boot
 
 echo 'The system will reboot in 3 seconds...'
 sleep 3
