@@ -6,7 +6,6 @@ export XDG_CONFIG_DIRS=/etc/xdg
 # Fix for exfat on HOME + pcmanfm
 export XDG_CACHE_HOME=/userdata/system/.cache/xdg_cache
 
-
 # Default bookmarks (extra folders)
 if ! [ -f "${HOME}/.gtk-bookmarks" ]; then
     cp "${XDG_CONFIG_DIRS}/libfm/bookmarks.conf" "${HOME}/.gtk-bookmarks"
@@ -24,7 +23,10 @@ PID_TINT=${!}
 
 mouse-pointer on
 
-DISPLAY=:0.0 pcmanfm /userdata
+export DISPLAY=:0.0 pcmanfm /userdata
+
+#pcmanfm --set-wallpaper=/usr/share/batocera/splash/logo-version.png
+#xsetroot -solid '#000000'
 
 mouse-pointer off
 
