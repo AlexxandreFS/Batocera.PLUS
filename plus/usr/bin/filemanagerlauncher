@@ -23,7 +23,7 @@ PID_TINT=${!}
 
 mouse-pointer on
 
-export DISPLAY=:0.0 pcmanfm /userdata
+DISPLAY=:0.0 pcmanfm /userdata
 
 #pcmanfm --set-wallpaper=/usr/share/batocera/splash/logo-version.png
 #xsetroot -solid '#000000'
