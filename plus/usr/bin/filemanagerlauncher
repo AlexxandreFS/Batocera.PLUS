@@ -1,35 +1,83 @@
 #!/bin/bash
+###
+### Batocera.PLUS
+### Make a Desktop
+### Alexandre Freire dos Santos
+###
+################################################################################
 
 export XDG_MENU_PREFIX=batocera-
 export XDG_CONFIG_DIRS=/etc/xdg
 
-# Fix for exfat on HOME + pcmanfm
+################################################################################
+
+### Fix for exfat on HOME + pcmanfm
+
 export XDG_CACHE_HOME=/userdata/system/.cache/xdg_cache
 
-# Default bookmarks (extra folders)
-if ! [ -f "${HOME}/.gtk-bookmarks" ]; then
-    cp "${XDG_CONFIG_DIRS}/libfm/bookmarks.conf" "${HOME}/.gtk-bookmarks"
+### Fix Keyboard HotKeys
+
+if [ ! "$(pidof -s thd)" ]
+then
+    /etc/init.d/???triggerhappy restart
 fi
 
-# Start Menu, default theme.
-if ! [ -f "${HOME}/.config/jgmenu/jgmenurc" ]; then
+################################################################################
+
+### Desktop
+
+DISPLAY=:0.0 XDG_CACHE_HOME=${XDG_CACHE_HOME}/.. pcmanfm --desktop &
+PID_DESKTOP=${!}
+
+# wallpaper
+if ! [ -f "$HOME/.config/pcmanfm/default/desktop-items-0.conf" ]
+then
+    sleep 1 && DISPLAY=:0.0 XDG_CACHE_HOME=${XDG_CACHE_HOME}/.. pcmanfm --set-wallpaper=/usr/share/emulationstation/themes/batocera-plus/loadscreen/wallpaper.png &
+fi
+
+mouse-pointer on
+
+################################################################################
+
+### Start Menu default theme.
+
+if ! [ -f "${HOME}/.config/jgmenu/jgmenurc" ]
+then
     jgmenu_run init --theme=greeneye
     cp -f /etc/jgmenu/jgmenurc "${HOME}/.config/jgmenu/jgmenurc"
 fi
 
-# Taskbar
+################################################################################
+
+### Taskbar
+
 tint2 -c /etc/xdg/tint2/tint2rc.plus.cfg &
 PID_TINT=${!}
 
-mouse-pointer on
+################################################################################
+
+### File Manager
+
+# Default bookmarks (extra folders)
+if ! [ -f "${HOME}/.gtk-bookmarks" ]
+then
+    cp "${XDG_CONFIG_DIRS}/libfm/bookmarks.conf" "${HOME}/.gtk-bookmarks"
+fi
+
+sleep 1
 
 DISPLAY=:0.0 pcmanfm /userdata
 
-#pcmanfm --set-wallpaper=/usr/share/batocera/splash/logo-version.png
-#xsetroot -solid '#000000'
+################################################################################
+
+### Kill Desktop
+
+kill -9  ${PID_DESKTOP}
+kill -15 ${PID_TINT}
+
+# set wallpaper to black
+xsetroot -solid '#000000'
 
 mouse-pointer off
-
-kill -15 ${PID_TINT}
 
 exit 0
