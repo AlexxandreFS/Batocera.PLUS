@@ -242,7 +242,7 @@ URL_BATOCERA_LINUX='https://batocera.org/upgrades/x86_64/stable/last/archives/20
 
 URL_BATOCERA_ZERO="https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/${BATOCERA_ZERO}"
 
-URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/460.80/NVIDIA-Linux-x86_64-460.80.run'
+URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/470.57.02/NVIDIA-Linux-x86_64-470.57.02.run'
 
 URL_PCI_IDS='http://pci-ids.ucw.cz/v2.2/pci.ids.gz'
 
