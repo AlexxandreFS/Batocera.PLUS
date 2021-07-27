@@ -12,7 +12,7 @@ VERSION='2.14'
 # Remova esta linha para diminuir o tempo de compilação.
 # A imagem não será compactada e nem gerado o md5sum.
 # Serão dicionados pacotes experimentais.
-#RELEASE='dev'
+RELEASE='dev'
 
 # Squashfs compression level
 SQUASHFS_COMPRESSION='2'
@@ -306,8 +306,6 @@ do
         curl -L -C - "${URL}" -o "${DOWNLOAD_DIR}/${PKG_NAME}" || exit $?
     fi
 done
-
-exit 0
 
 ################################################################################
 
