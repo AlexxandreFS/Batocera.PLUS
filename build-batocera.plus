@@ -267,7 +267,7 @@ URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.3/dxvk
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 URL_CEMUFAKEFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
-URL_EXTRAFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.1.7z'
+URL_EXTRAFILES='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.2.7z'
 
 URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-701/yuzu-20210726-fb9b5898b.AppImage'
 URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1926/Yuzu-EA-1926.AppImage'
@@ -333,6 +333,7 @@ rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/music"
 rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/shaders"
 
 # Remove atalhos desnecessários.
+rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/dolphin-emu.desktop"
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/rpcs3.desktop"
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/scummvm.desktop"
 

@@ -46,4 +46,4 @@ Icon=leafpad
 Terminal=false
 Type=Application
 MimeType=text/plain
-Categories=GTK;Utility;TextEditor;
+Categories=GTK;Utility;TextEditor;Office;

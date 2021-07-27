@@ -8,5 +8,5 @@ Categories=settings;games;batocera.linux;
 Name=NVIDIA X Server Settings
 GenericName=NVIDIA Settings
 Comment=An configurator for nvidia drivers
-Keywords=System;NVIDIA;Settings;
+Keywords=System;NVIDIA;Settings;Graphics;
 NoDisplay=false
