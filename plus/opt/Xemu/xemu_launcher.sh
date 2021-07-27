@@ -14,6 +14,7 @@ P3GUID="${4}"
 P4GUID="${5}"
 RESOLUTION="${6}"
 SCALING="${7}"
+BOOTANIM="${8}"
 
 #local variables
 BIOS='/userdata/bios'
@@ -100,6 +101,14 @@ fi
 RES_START="$(batocera-resolution currentResolution)"
 if [ "${RESOLUTION}" != 'auto' ]; then
     batocera-resolution setMode "${RESOLUTION}"
+fi
+
+# bootanim
+echo "${BOOTANIM}" > "${HOME}/../BOOTANIM.txt"
+if [ "${BOOTANIM}" == '0' ]; then
+    sed -i s/'^shortanim = .*/shortanim = true/'   "${HOME}/configs/xemu/xemu.ini"
+else
+    sed -i s/'^shortanim = .*/shortanim = false/'   "${HOME}/configs/xemu/xemu.ini"
 fi
 
 # scale
