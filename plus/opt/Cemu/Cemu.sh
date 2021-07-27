@@ -15,6 +15,7 @@
 ## MOUSE = on, off ou auto
 ## PIGUID = parâmetro do emulatorlauncher.sh
 ## INTEL = use new intel graphics
+## SHADER = 0 - auto, 1 - enable, 2 - disable
 ##
 ## SITE QUE AJUDOU NA MONTAGEM DESTE SCRIPT
 ## https://synappsis.wordpress.com/category/qt/
@@ -30,6 +31,7 @@ SHOWFPS="${4}"
 MOUSE="${5}"
 P1GUID="${6}"
 INTEL="${7}"
+SHADER="${8}"
 
 #echo "${JOGO}" "${RENDER}" "${SYNC}" "${SHOWFPS}" "${MOUSE}" "${P1GUID}" "${INTEL}" > "${HOME}/../COMANDO.txt"
 
@@ -40,14 +42,14 @@ INTEL="${7}"
 CEMU_DIR='/opt/Cemu'
 CEMU="$HOME/configs/cemu"
 SAVE="$HOME/../saves/wiiu"
-WINE="$HOME/../saves/wiiu/wine"
+WINE='wine-lutris'
 
 ################################################################################
 
 ### EXPORTS
 
 export WINEDLLOVERRIDES='keystone.dll=n,b;dbghelp.dll=n,b'
-export WINEPREFIX="${WINE}"
+export WINEPREFIX="${SAVE}/wine"
 export vblank_mode=0
 export mesa_glthread=true
 export __GL_THREADED_OPTIMIZATIONS=1
@@ -59,24 +61,25 @@ export INSTALL_EXTRAS=1
 
 function help()
 {
-    echo " Cemu launcher for Batocera.PLUS"
-    echo " "
-    echo " Codigo escrito por: Sergio de Carvalho Junior"
-    echo " Colaborador: Alexandre Freire dos Santos"
-    echo " "
-    echo " Linha de comando:"
-    echo " Cemu.sh [ROM] [OTIMIZATIONS] [RENDER] [SYNC] [DXVK] [SHOWFPS] [MOUSE] [P1GUID]"
-    echo " "
-    echo " ROM = Caminho do jogo até a .iso ou .rpx"
-    echo " OTIMIZATIONS = nvidia, amd, intel ou auto"
-    echo " RENDER = vulkan, opengl ou auto"
-    echo " SYNC = esync, fsync ou auto"
-    echo " DXVK = on, off ou auto"
-    echo " SHOWFPS = on, off ou auto"
-    echo " MOUSE = on, off ou auto"
-    echo " PIGUID = parâmetro do emulatorlauncher.sh (OPICIONAL)"
-    echo " INTEL = use new intel graphics"
-    echo " "
+    echo ' Cemu launcher for Batocera.PLUS'
+    echo ''
+    echo ' Codigo escrito por: Sergio de Carvalho Junior'
+    echo ' Colaborador: Alexandre Freire dos Santos'
+    echo ' '
+    echo ' Linha de comando:'
+    echo ' Cemu.sh [ROM] [OTIMIZATIONS] [RENDER] [SYNC] [DXVK] [SHOWFPS] [MOUSE] [P1GUID]'
+    echo ' '
+    echo ' ROM = Caminho do jogo até a .iso ou .rpx'
+    echo ' OTIMIZATIONS = nvidia, amd, intel ou auto'
+    echo ' RENDER = vulkan, opengl ou auto'
+    echo ' SYNC = esync, fsync ou auto'
+    echo ' DXVK = on, off ou auto'
+    echo ' SHOWFPS = on, off ou auto'
+    echo ' MOUSE = on, off ou auto'
+    echo ' PIGUID = parâmetro do emulatorlauncher.sh (OPICIONAL)'
+    echo ' INTEL = use new intel graphics'
+    echo ' SHADER = 0 - auto, 1 - enable, 2 - disable'
+    echo ''
 }
 
 if [ "${1}" == '--help' ]; then
@@ -89,7 +92,7 @@ fi
 ### NÃO EXECUTA O EMULADOR DUAS VEZES
 
 if [ "$(pidof wineserver)" ]; then
-    echo " Cemu launcher ja esta sendo executado"
+    echo ' Cemu launcher ja esta sendo executado'
     exit 1
 fi
 
@@ -97,15 +100,15 @@ fi
 
 ### LAUNCHER INFO
 
-echo " Cemu launcher for Batocera.PLUS"
-echo " "
-echo " Codigo escrito por: Sergio de Carvalho Junior"
-echo " Colaborador: Alexandre Freire dos Santos"
-echo " "
+echo ' Cemu launcher for Batocera.PLUS'
+echo ' '
+echo ' Codigo escrito por: Sergio de Carvalho Junior'
+echo ' Colaborador: Alexandre Freire dos Santos'
+echo ' '
 
 if [ "${2}" == ' ' ]; then
     echo " Ulimit ativo com limite de $(ulimit -Hn) arquivos abertos"
-    echo " Cemu sendo executado com as configurações default"
+    echo ' Cemu sendo executado com as configurações default'
 fi
 
 ################################################################################
@@ -128,7 +131,7 @@ if [ ! "$(ls -A "${CEMU}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/nu
     cp -f  "${CEMU_DIR}/cemuextras/settings.xml"       "${CEMU}" || exit $?
 
     # Montando a pasta do usuário em "share/save/wiiu"
-    mkdir -p "${SAVE}/hfiomlc01" "${WINE}"                       || exit $?
+    mkdir -p "${SAVE}/hfiomlc01" "${WINEPREFIX}"                 || exit $?
     cp -rf "${CEMU_DIR}/cemuextras/controllerProfiles" "${SAVE}" || exit $?
     cp -rf "${CEMU_DIR}/emulator/gameProfiles"         "${SAVE}" || exit $?
     cp -rf "${CEMU_DIR}/emulator/graphicPacks"         "${SAVE}" || exit $?
@@ -145,16 +148,16 @@ fi
 
 ### ATUALIZA OU CRIA O PREFIXO SE NECESSÁRIO
 
-if [ -e "${WINE}/.update-timestamp" ]; then # if wine version has changed
-    SDIR_VERSION="$(cat -e "${WINE}/.update-timestamp" | cut -d '^' -f 1)"
-    OPT_WINE="$(stat -t '/opt/Wine/wine-lutris/share/wine/wine.inf' | awk '{print $12}')"
-    if [ "${OPT_WINE}" != "${SDIR_VERSION}" ] && [ -e "${WINE}" ]; then
-        rm -r "${WINE}"
+if [ -e "${WINEPREFIX}/.update-timestamp" ]; then # if wine version has changed
+    SDIR_VERSION="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
+    OPT_WINE="$(stat -t "/opt/Wine/$WINE/share/wine/wine.inf" | awk '{print $12}')"
+    if [ "${OPT_WINE}" != "${SDIR_VERSION}" ] && [ -e "${WINEPREFIX}" ]; then
+        rm -r "${WINEPREFIX}"
     fi
 fi
 
-if [ ! "$(ls -A "${WINE}" 2> /dev/null)" ]; then # if wineprefix if does not exist
-    mkdir -p "${WINE}"
+if [ ! "$(ls -A "${WINEPREFIX}" 2> /dev/null)" ]; then # if wineprefix if does not exist
+    mkdir -p "${WINEPREFIX}"
 fi
 
 ################################################################################
@@ -188,6 +191,18 @@ case ${SLANG} in
  esac
  
  sync
+ 
+ ################################################################################
+
+### PRE COMPILED SHADERS
+
+case ${SHADER} in
+    1) sed -i 's/<PrecompiledShaders>.*/<PrecompiledShaders>1<\/PrecompiledShaders>/'  "${CEMU}/settings.xml" ;;
+    2) sed -i 's/<PrecompiledShaders>.*/<PrecompiledShaders>2<\/PrecompiledShaders>/'  "${CEMU}/settings.xml" ;;
+    *) sed -i 's/<PrecompiledShaders>.*/<PrecompiledShaders>0<\/PrecompiledShaders>/'  "${CEMU}/settings.xml"
+esac
+
+sync
  
 ################################################################################
 
@@ -325,11 +340,11 @@ RES_START="$(batocera-resolution currentMode)"
 
 # Executa o Cemu com as configurações selecionadas
 if [ "${JOGO}" == '' ]; then
-    wine-lutris "${CEMU}/Cemu.exe"
+    "$WINE" "${CEMU}/Cemu.exe"
 elif [ "${JOGO}" != '' ] && [ "${INTEL}" == 'on' ]; then
-    wine-lutris "${CEMU}/Cemu.exe" -legacy -g "${JOGO}"
+    "$WINE" "${CEMU}/Cemu.exe" -legacy -g "${JOGO}"
 else
-    wine-lutris "${CEMU}/Cemu.exe" -g "${JOGO}"
+    "$WINE" "${CEMU}/Cemu.exe" -g "${JOGO}"
 fi
 
 ################################################################################
