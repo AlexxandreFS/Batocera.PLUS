@@ -12,7 +12,7 @@ VERSION='2.14'
 # Remova esta linha para diminuir o tempo de compilação.
 # A imagem não será compactada e nem gerado o md5sum.
 # Serão dicionados pacotes experimentais.
-RELEASE='dev'
+#RELEASE='dev'
 
 # Squashfs compression level
 SQUASHFS_COMPRESSION='2'
@@ -332,11 +332,6 @@ rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/music"
 
 # Remova apenas se atualizar o pacote completo dos shaders para o retroarch.
 rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/shaders"
-
-# Remove atalhos desnecessários.
-rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/dolphin-emu.desktop"
-rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/rpcs3.desktop"
-rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/scummvm.desktop"
 
 for x in c64 cannonball gba megadrive mrboom nes pcengine prboom snes; do
     for y in "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/${x}/"*; do
