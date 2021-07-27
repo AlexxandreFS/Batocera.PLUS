@@ -6,4 +6,7 @@ Terminal=false
 Type=Application
 Categories=internet;batocera.linux;
 Name=qBittorrent
+GenericName=qBittorrent Client
+Comment=An open-source software alternative to µTorrent
+Keywords=Torrent;qbittorrent;
 NoDisplay=false

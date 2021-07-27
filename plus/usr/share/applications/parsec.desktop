@@ -1,10 +1,12 @@
 [Desktop Entry]
 Version=1.0
-Name=parsec
-GenericName=Parsec
-Comment=Simple, low-latency game streaming.
 Icon=/usr/share/icons/batocera/parsecd.png
-Categories=internet;Game;batocera.linux;
-Type=Application
-Terminal=false
 Exec=/usr/bin/parsecd
+Terminal=false
+Type=Application
+Categories=internet;Game;batocera.linux;
+Name=PARSEC
+GenericName=PARSEC Frontend
+Comment=Simple, low-latency game streaming.
+Keywords=parsec;internet;
+NoDisplay=false

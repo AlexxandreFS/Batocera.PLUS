@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Icon=/usr/share/icons/batocera/dolphin.png
+Exec=/usr/bin/batocera-config-dolphin
+Terminal=false
+Type=Application
+Categories=games;batocera.linux;
+Name=Dolphin
+GenericName=Wii and GameCube Emulator
+Comment=A Wii and GameCube Emulator
+Keywords=Wii;GameCube;Nintendo;
+NoDisplay=false

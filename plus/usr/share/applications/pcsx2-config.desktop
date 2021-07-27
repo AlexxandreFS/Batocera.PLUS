@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Icon=/usr/share/icons/batocera/pcsx2.png
+Exec=/usr/bin/batocera-config-pcsx2
+Terminal=false
+Type=Application
+Categories=Game;batocera.linux;
+Name=PCSX2
+GenericName=PlayStation 2 Emulator
+Comment=An Playstation 2 emulator for linux
+Keywords=PS2;Playstation;Sony;
+NoDisplay=false

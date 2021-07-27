@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Icon=/usr/share/icons/batocera/scummvm.png
+Exec=/usr/bin/batocera-config-scummvm
+Terminal=false
+Type=Application
+Categories=games;batocera.linux;
+Name=ScummVM
+GenericName=ScummVM Emulator
+Comment=Is a program which allows you to run certain classic graphical adventure and role-playing games
+Keywords=ScummVM;
+NoDisplay=false
