@@ -33,7 +33,7 @@ P1GUID="${6}"
 INTEL="${7}"
 SHADER="${8}"
 
-#echo "${JOGO}" "${RENDER}" "${SYNC}" "${SHOWFPS}" "${MOUSE}" "${P1GUID}" "${INTEL}" > "${HOME}/../COMANDO.txt"
+#echo "${JOGO}" "${RENDER}" "${SYNC}" "${SHOWFPS}" "${MOUSE}" "${P1GUID}" "${INTEL}" "${SHADER}" > "${HOME}/../COMANDO.txt"
 
 ################################################################################
 
@@ -50,10 +50,6 @@ WINE='wine-lutris'
 
 export WINEDLLOVERRIDES='keystone.dll=n,b;dbghelp.dll=n,b'
 export WINEPREFIX="${SAVE}/wine"
-export vblank_mode=0
-export mesa_glthread=true
-export __GL_THREADED_OPTIMIZATIONS=1
-export INSTALL_EXTRAS=1
 
 ################################################################################
 
@@ -157,6 +153,7 @@ if [ -e "${WINEPREFIX}/.update-timestamp" ]; then # if wine version has changed
 fi
 
 if [ ! "$(ls -A "${WINEPREFIX}" 2> /dev/null)" ]; then # if wineprefix if does not exist
+    export INSTALL_EXTRAS=1
     mkdir -p "${WINEPREFIX}"
 fi
 
@@ -223,16 +220,13 @@ sync
 case ${SYNC} in
     esync)
      export WINEESYNC=1
-     export WINEFSYNC=0
-     ;;
+    ;;
     fsync)
      export WINEFSYNC=1
-     export WINEESYNC=0
-     ;;
+    ;;
     auto)
-     export WINEESYNC=0
-     export WINEFSYNC=0
-     ;;
+     continue
+    ;;
 esac
 
 ################################################################################
