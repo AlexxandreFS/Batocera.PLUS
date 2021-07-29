@@ -175,11 +175,11 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/x1_libretro-jan-8-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/simcp_libretro-aug-17-2019-1.7z'
 
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dolphin-emu-5.0-13603-feb-3-2021-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dolphin-emu-5.0-13603-feb-3-2021-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/freej2me-may-22-2021-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/hypseus-singe-apr-17-2021-1.7z' # remove on update.
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ppsspp-mar-2-2021-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3-0.0.15-1.7z' # remove on update.
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3-0.0.15-2.7z' # remove on update.
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-may-25-2021-1.7z' # remove on update.
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-libs-(libgtk-3_libgdk_libaio)-1.7z' # dep: xemu # remove on update.
 
@@ -267,8 +267,8 @@ URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.3/dxvk
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 
-URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-701/yuzu-20210726-fb9b5898b.AppImage'
-URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1926/Yuzu-EA-1926.AppImage'
+URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-702/yuzu-20210728-09f9788d8.AppImage'
+URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1939/Yuzu-EA-1939.AppImage'
 
 ################################################################################
 
@@ -330,7 +330,16 @@ rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/music"
 # Remova apenas se atualizar o pacote completo dos shaders para o retroarch.
 rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/shaders"
 
-for x in c64 cannonball gba megadrive mrboom nes pcengine prboom snes; do
+# Esta parte remove icones duplicados e fora do padrão para um próximo update.
+rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/scummvm.desktop"
+rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/dolphin-emu.desktop"
+rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/retroarch.desktop"
+
+# Cannonball
+rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/cannonball/images"
+rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/cannonball/gamelist.xml"
+
+for x in c64 gba megadrive mrboom nes pcengine prboom snes; do
     for y in "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/${x}/"*; do
         if [ "${y}" != "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/${x}/_info.txt" ]; then
             rm -r "${y}" || exit $?
