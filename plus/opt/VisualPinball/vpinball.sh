@@ -47,6 +47,7 @@ P1GUID="${3}"
 JOYPAD="${4}"
 P1NAME="${5}"
 LOG_GAME="${JOGO}"
+WINE='wine-lutris'
 
 
 ################################################################################
@@ -57,7 +58,6 @@ VP_DIR='/opt/VisualPinball'
 VP_SDIR="$HOME/../saves/vpinball"
 VP_CDIR="$HOME/configs/vpinball"
 RES_START="$(batocera-resolution currentMode)"
-OPT_WINE="$(stat -t '/opt/Wine/wine-lutris/share/wine/wine.inf' | awk '{print $12}')"
 
 ################################################################################
 
@@ -154,14 +154,14 @@ function applyConfig()
 
     ### Apply default configs
     echo 'Apply visual pinball default configs...'
-    wine-lutris regedit "${VP_DIR}/emulator/config.reg"
+    $WINE regedit "${VP_DIR}/emulator/config.reg"
 
     ### Install wsh57
     echo 'Installing MS Windows Script Host 5.7...'
     ln -sf "${VP_DIR}/deps/wsh57/"* "$WINEPREFIX/drive_c/windows/syswow64"
     DLLS='dispex.dll jscript.dll scrobj.dll scrrun.dll vbscript.dll wshcon.dll wshext.dll'
     for i in ${DLLS}; do
-        wine-lutris regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/$i" 2>&1&> /dev/null
+        $WINE regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/$i" 2>&1&> /dev/null
         echo "$i Successfully registered!"
     done
 
@@ -170,13 +170,13 @@ function applyConfig()
     ln -sf "${VP_DIR}/deps/vcrun6/x64/"* "$WINEPREFIX/drive_c/windows/syswow64"
     DLLS='asycfilt.dll comcat.dll mfc42.dll mfc42u.dll msvcirt.dll msvcp60.dll msvcrt.dll oleaut32.dll olepro32.dll'
     for i in ${DLLS}; do
-        wine-lutris regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/$i" 2>&1&> /dev/null
+        $WINE regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/$i" 2>&1&> /dev/null
         echo "$i Successfully registered!"
     done
 
     ### Install PinMAME.dll
     echo 'Installing VPinMAME...'
-    wine-lutris regsvr32 "${VP_CDIR}/VPinMAME/VPinMAME.dll" 2>&1&> /dev/null
+    $WINE regsvr32 "${VP_CDIR}/VPinMAME/VPinMAME.dll" 2>&1&> /dev/null
     echo 'VPinMAME.dll Successfully registered!'
 
     while [ "$(pidof wineserver)" ]; do
@@ -217,6 +217,7 @@ function choseEmu()
 
 if [ -e "${VP_SDIR}/wine/.update-timestamp" ]; then # if wine version has changed
     SDIR_VERSION="$(cat -e "${VP_SDIR}/wine/.update-timestamp" | cut -d '^' -f 1)"
+    OPT_WINE="$(stat -t "/opt/Wine/${WINE}/share/wine/wine.inf" | awk '{print $12}')"
     if [ "${OPT_WINE}" != "${SDIR_VERSION}" ] && [ -e "${VP_SDIR}/wine" ]; then
         rm -r "${VP_SDIR}/wine"
     fi
@@ -273,7 +274,7 @@ sed -i s'/"Height"=.*/"Height"=dword:00000'"${YRES}"'/' "${VP_SDIR}/wine/user.re
 
 ################################################################################
 
-### TRY TO FIND THE RIGH EMULATOR FOR THE RIGHT ROM
+### ROM/EMULATOR DETECTION
 
 if [ "${JOGO}" != '' ]; then
     ROM_EXTENSION='.vpt .VPT .vpx .VPX'
@@ -303,7 +304,7 @@ if [ "${P1GUID}" != '' ]; then
     BOTAO_START="$(echo "${BOTOES}"  | cut -d ' ' -f 2)"
 
     if [ "${BOTAO_HOTKEY}" ] && [ "${BOTAO_START}" ]; then
-        # Impede que o xjoykill seja encerrado enquanto o jogo está em execução.
+        # persistent mode for hotkey detection
         while : ; do
             nice -n 20 xjoykill -hotkey "${BOTAO_HOTKEY}" -start "${BOTAO_START}" -kill /opt/VisualPinball/killvpinball
             if [ ! "$(pidof "${EMU_PID}")" ]; then
@@ -327,7 +328,7 @@ if [ "${JOYPAD}" != 'off' ]; then
     sed -i s'/"LTiltKey"=.*/"LTiltKey"=dword:0000002c/'     "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
     sed -i s'/"MechTilt"=.*/"MechTilt"=dword:00000014/'     "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
 
-    # Auto detect controller
+    # Auto detect pluged controller
     BRAND='Xbox X-Box PS3 PLAYSTATION another'
     for i in ${BRAND}; do
         if [ "$(echo "${P1NAME}" | grep "${i}")" ]; then
@@ -344,6 +345,7 @@ if [ "${JOYPAD}" != 'off' ]; then
         fi
     done
 
+    # persistent mode gamepad detection
     if [ -e '/dev/input/js0' ]; then
         while :; do
             nice -n -15 xjoypad ${KEY_PAD}
@@ -373,12 +375,12 @@ fi
 export VIRTUAL_DESKTOP=1
 case ${EMU_EXE} in
     "${VP_CDIR}/1062/VPinballX.exe")    
-        wine-lutris "${VP_CDIR}/run.exe" "${EMU_EXE}" "${JOGO}" ;;
+        $WINE "${VP_CDIR}/run.exe" "${EMU_EXE}" "${JOGO}" ;;  # run visual pinball X
     "${VP_CDIR}/0995/VPinball995.exe")
-        wine-lutris "${VP_CDIR}/run.exe" "${EMU_EXE}" "${JOGO}" ;;
+        $WINE "${VP_CDIR}/run.exe" "${EMU_EXE}" "${JOGO}" ;;  # run visual pinball 9
     gui)
-        choseEmu
-        wine-lutris "${GUI}" ;;
+        choseEmu                                              # opens selection menu
+        $WINE "${GUI}" ;;                                     # execute selected
     *) exit 0
 esac
 
