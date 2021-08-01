@@ -226,6 +226,8 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-470.57.2-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-390.143-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-340.108-2.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-64bits-21.1.6-1.7z'        # remove on update
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-32bits-21.1.6-1.7z'        # remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pipewire-0.3.31-1.7z'             # remove on update
 )
 
@@ -455,7 +457,7 @@ cp -r -f "$UPDATE_DIR/"* "$TEMP_DIR/squashfs-root"
 echo 'criando disco ram...'
 
 mkdir -p "${TEMP_DIR}/pkg-xtract"
-mount -t tmpfs -o size=1G tmpfs "${TEMP_DIR}/pkg-xtract"
+mount -t tmpfs -o size=1536M tmpfs "${TEMP_DIR}/pkg-xtract"
 
 ################################################################################
 
