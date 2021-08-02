@@ -34,4 +34,16 @@ if [ "$(grep system.language=zh_TW ${SHARE}/system/batocera.conf)" ] || [ "$(gre
     ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjhbd.ttf' '/usr/share/fonts/dejavu/DejaVuSansMono-Bold.ttf'
 fi
 
+### Corrige problemas com o vulkan em placas de vídeo Intel.
+if grep -qE "^[ ]*intel-i965-driver[ ]*=[ ]*true[ ]*$" /boot/batocera-boot.conf; then
+    rm -f '/etc/X11/xorg.conf.d/20-intel.conf'
+elif lsmod | grep -q '^i915 '; then
+    echo -e \
+        'Section "Device"\n' \
+        '    Identifier  "Intel Graphics"\n' \
+        '    Driver      "intel"\n' \
+        '    Option      "DRI"    "3"\n' \
+        'EndSection\n' > /etc/X11/xorg.conf.d/20-intel.conf
+fi
+
 exit 0
