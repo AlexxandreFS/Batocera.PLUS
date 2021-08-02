@@ -42,14 +42,18 @@ SHADER="${8}"
 CEMU_DIR='/opt/Cemu'
 CEMU="$HOME/configs/cemu"
 SAVE="$HOME/../saves/wiiu"
-WINE='wine-lutris'
+WINE=proton-valve
+WINERUN="${WINE}-64"
 
 ################################################################################
 
 ### EXPORTS
 
-export WINEDLLOVERRIDES='keystone.dll=n,b;dbghelp.dll=n,b'
 export WINEPREFIX="${SAVE}/wine"
+export WINEDLLOVERRIDES='keystone.dll=n,b;dbghelp.dll=n,b;cemuhook.dll=n,b' # Remove 'dbghelp.dll=n,b' on cemu 1.25.1
+export vblank_mode=0
+export mesa_glthread=true
+export __GL_THREADED_OPTIMIZATIONS=1
 
 ################################################################################
 
@@ -120,7 +124,8 @@ if [ ! "$(ls -A "${CEMU}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/nu
     cp -f  "${CEMU_DIR}/cemuhook/keystone.dll"         "${CEMU}" || exit $?
     cp -f  "${CEMU_DIR}/emulator/Cemu.exe"             "${CEMU}" || exit $?
     cp -f  "${CEMU_DIR}/cemuextras/cemuhook.ini"       "${CEMU}" || exit $?
-    cp -f  "${CEMU_DIR}/cemuhook/dbghelp.dll"          "${CEMU}" || exit $?
+    cp -f  "${CEMU_DIR}/cemuhook/dbghelp.dll"          "${CEMU}" || exit $? # Remove on cemu 1.25.1
+    #cp -f  "${CEMU_DIR}/cemuhook/cemuhook.dll"         "${CEMU}" || exit $? # Uncoment on cemu 1.25.1
     cp -f  "${CEMU_DIR}/cemuextras/keys.txt"           "${CEMU}" || exit $?
     cp -f  "${CEMU_DIR}/fakefiles/otp.bin"             "${CEMU}" || exit $?
     cp -f  "${CEMU_DIR}/fakefiles/seeprom.bin"         "${CEMU}" || exit $?
@@ -131,7 +136,7 @@ if [ ! "$(ls -A "${CEMU}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/nu
     cp -rf "${CEMU_DIR}/cemuextras/controllerProfiles" "${SAVE}" || exit $?
     cp -rf "${CEMU_DIR}/emulator/gameProfiles"         "${SAVE}" || exit $?
     cp -rf "${CEMU_DIR}/emulator/graphicPacks"         "${SAVE}" || exit $?
-    cp -rf "${CEMU_DIR}/cemuhook/graphicPacks"         "${SAVE}" || exit $?
+    cp -rf "${CEMU_DIR}/cemuhook/graphicPacks"         "${SAVE}" || exit $? # Remove on cemu 1.25.1
     cp -rf "${CEMU_DIR}/cemuextras/graphicPacks"       "${SAVE}" || exit $?
     cp -rf "${CEMU_DIR}/fakefiles/mlc01"               "${SAVE}" || exit $?
     cp -rf "${CEMU_DIR}/emulator/shaderCache"          "${SAVE}" || exit $?
@@ -334,11 +339,11 @@ RES_START="$(batocera-resolution currentMode)"
 
 # Executa o Cemu com as configurações selecionadas
 if [ "${JOGO}" == '' ]; then
-    "$WINE" "${CEMU}/Cemu.exe"
+    "$WINERUN" "${CEMU}/Cemu.exe"
 elif [ "${JOGO}" != '' ] && [ "${INTEL}" == 'on' ]; then
-    "$WINE" "${CEMU}/Cemu.exe" -legacy -g "${JOGO}"
+    "$WINERUN" "${CEMU}/Cemu.exe" -legacy -g "${JOGO}"
 else
-    "$WINE" "${CEMU}/Cemu.exe" -g "${JOGO}"
+    "$WINERUN" "${CEMU}/Cemu.exe" -g "${JOGO}"
 fi
 
 ################################################################################

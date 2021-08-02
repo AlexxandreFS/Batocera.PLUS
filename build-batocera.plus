@@ -267,7 +267,8 @@ URL_WINE_MF="https://github.com/z0z0z/mf-install/archive/${URL_WINE_MF}.zip#/mf-
 URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.3/dxvk-nvapi-v0.3.tar.gz'
 
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
-URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
+#URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)" uncoment on cemu 1.25.1
+URL_CEMUHOOK='https://files.sshnuke.net/cemuhook_1159_0573.zip' # remove on cemu 1.25.1
 
 URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-702/yuzu-20210728-09f9788d8.AppImage'
 URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1939/Yuzu-EA-1939.AppImage'
