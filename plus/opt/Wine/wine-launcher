@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# http://smokey01.com/yad/
+# https://www.systutorials.com/docs/linux/man/1-yad/
+# https://www.dicas-l.com.br/arquivo/yad_yet_another_dialog.php
+
+LANG="$(batocera-settings -command load -key system.language)"
+case $LANG in
+    pt_BR) MSG='\n SELECIONE UMA VERSÃO DO WINE PARA EXECUTAR A APLICAÇÃO \n' ;;
+    es_ES) MSG='\n SELECCIONE UNA VERSIÓN DE VINO PARA EJECUTAR LA APLICACIÓN \n' ;;
+    *)     MSG='\n SELECT A WINE VERSION TO RUN THE APPLICATION \n'
+esac
+ 
+yad --form \
+    --title='WINE LAUNCHER' \
+    --window-icon='/usr/share/icons/batocera/wine.png' \
+    --text=''"${MSG}"'' \
+    --text-align=center \
+    --button='WINE-STABLE:0' \
+    --button='WINE-OLD-STABLE:1' \
+    --button='WINE-STAGING:2' \
+    --button='WINE-LUTRIS:3' \
+    --button='PROTON-GE-CUSTOM:4' \
+    --button='PROTON-VALVE:5' \
+    --fixed --center \
+    --close-on-unfocus
+
+case ${?} in
+    0) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/wine-stable "$@" ;;
+    1) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/wine-old-stable "$@" ;;
+    2) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/wine-staging "$@" ;;
+    3) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/wine-lutris "$@" ;;
+    4) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/proton-ge-custom "$@" ;;
+    5) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/proton-valve "$@" ;;
+    *) exit 0
+esac
+
+exit 0

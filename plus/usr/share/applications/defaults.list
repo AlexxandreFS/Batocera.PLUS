@@ -1,0 +1,4 @@
+[Default Applications]
+text/plain=leafpad.desktop
+x-scheme-handler/http=firefox.desktop
+application/octet-stream=wine-launcher.desktop
