@@ -3,23 +3,40 @@
 # LIBRETRO-KRONOS
 #
 ################################################################################
-# Version.: Commits on May 14, 2020
-# Ultima versão
-# Não precisa do patch 000-fix-cue.patch
-#LIBRETRO_KRONOS_VERSION = a66f55a88b092f9aaff6814329fbd3d3c8460dc0
-
-# Version.: Commits on Feb 22, 2020
-# Versão mais antiga que funciona 100%
-# Precisa do patch 000-fix-cue.patch para corrigir problemas com alguns arquivos .cue
-LIBRETRO_KRONOS_VERSION = 7fe1ac0c6234180fe1bd50a897d8e49f61b6e8e6
-
-LIBRETRO_KRONOS_VERSION = a66f55a88b092f9aaff6814329fbd3d3c8460dc0
-LIBRETRO_KRONOS_SITE = $(call github,libretro,yabause,$(LIBRETRO_KRONOS_VERSION))
+# Version.: Commits on Jul 28, 2021
+LIBRETRO_KRONOS_VERSION = 0903968e2ffa9cef2ab513ad87de1faf8db8f6a5
+LIBRETRO_KRONOS_SITE = $(call github,FCare,kronos,$(LIBRETRO_KRONOS_VERSION))
 LIBRETRO_KRONOS_LICENSE = BSD-3-Clause
 
+LIBRETRO_KRONOS_PLATFORM = $(LIBRETRO_PLATFORM)
+
+ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_XU4),y)
+        LIBRETRO_KRONOS_PLATFORM = odroid
+        LIBRETRO_KRONOS_EXTRA_ARGS += BOARD=ODROID-XU4 FORCE_GLES=1
+endif
+
+ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_ODROIDN2)$(BR2_PACKAGE_BATOCERA_TARGET_VIM3),y)
+        LIBRETRO_KRONOS_PLATFORM = odroid-n2
+        LIBRETRO_KRONOS_EXTRA_ARGS += FORCE_GLES=1
+endif
+
+ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_ROCKPRO64),y)
+        LIBRETRO_KRONOS_PLATFORM = rockpro64
+        LIBRETRO_KRONOS_EXTRA_ARGS += FORCE_GLES=1
+endif
+
+ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_ODROIDC4)$(BR2_PACKAGE_BATOCERA_TARGET_S905GEN3),y)
+        LIBRETRO_KRONOS_PLATFORM = odroid-c4
+        LIBRETRO_KRONOS_EXTRA_ARGS += FORCE_GLES=1
+endif
+
+### Batocera.PLUS Start
+LIBRETRO_KRONOS_EXTRA_ARGS += USE_RTHREADS=1
+### Batocera.PLUS Stop
+
 define LIBRETRO_KRONOS_BUILD_CMDS
-	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" \
-    -C $(@D)/yabause/src/libretro -f Makefile platform="$(LIBRETRO_PLATFORM)" RTHREADS=1
+	$(MAKE) -C $(@D)/yabause/src/libretro -f Makefile generate-files && \
+	$(TARGET_CONFIGURE_OPTS) $(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D)/yabause/src/libretro -f Makefile platform="$(LIBRETRO_KRONOS_PLATFORM)" $(LIBRETRO_KRONOS_EXTRA_ARGS)
 endef
 
 define LIBRETRO_KRONOS_INSTALL_TARGET_CMDS

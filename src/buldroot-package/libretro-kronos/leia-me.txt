@@ -1,1 +1,0 @@
-se o novo core funcionar pode remover este pacote.
