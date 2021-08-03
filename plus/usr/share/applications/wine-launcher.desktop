@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Exec=/opt/Wine/wine-launcher
+Terminal=false
+Type=Application
+Name=Wine Lutris
+MimeType=application/octect-stream
+NoDisplay=true
+StartupNotify=true

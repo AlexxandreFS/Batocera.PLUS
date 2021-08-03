@@ -530,7 +530,28 @@ fi
 ### LOADING SCREEN
 
 if [ -z "${WINE_LOADINGSCREEN}" ]; then
-    batocera-load-screen -t 600 -i "${WINE_DIR}/wine.png" &
+    DESKTOP="$(pidof pcmanfm)"
+    if [ "${DESKTOP}" != '' ]; then
+        LANG="$(batocera-settings -command load -key system.language)"
+        case $LANG in
+            pt_BR) PICTURE=/opt/Wine/launcher_ptbr.png ;;
+            es_ES) PICTURE=/opt/Wine/launcher_eses.png ;;
+            *)     PICTURE=/opt/Wine/launcher_default.png ;;
+        esac
+        
+        yad --title='WINE LAUNCHER' \
+            --window-icon='/usr/share/icons/batocera/wine.png' \
+            --image="${PICTURE}" \
+            --image-on-top \
+            --undecorated \
+            --on-top \
+            --fixed \
+            --center \
+            --no-escape \
+            --no-buttons &
+    else
+        batocera-load-screen -t 600 -i "${WINE_DIR}/wine.png" &
+    fi
 fi
 
 ################################################################################
