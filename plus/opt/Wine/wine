@@ -530,12 +530,12 @@ fi
 ### LOADING SCREEN
 
 if [ -z "${WINE_LOADINGSCREEN}" ]; then
-    DESKTOP="$(pidof pcmanfm)"
-    if [ "${DESKTOP}" != '' ]; then
+
+    if [ "$(pidof pcmanfm)" ]; then
         LANG="$(batocera-settings -command load -key system.language)"
         case $LANG in
-            pt_BR) PICTURE=/opt/Wine/launcher_ptbr.png ;;
-            es_ES) PICTURE=/opt/Wine/launcher_eses.png ;;
+            pt_BR) PICTURE=/opt/Wine/launcher_ptbr.png    ;;
+            es_ES) PICTURE=/opt/Wine/launcher_eses.png    ;;
             *)     PICTURE=/opt/Wine/launcher_default.png ;;
         esac
         
@@ -552,6 +552,7 @@ if [ -z "${WINE_LOADINGSCREEN}" ]; then
     else
         batocera-load-screen -t 600 -i "${WINE_DIR}/wine.png" &
     fi
+
 fi
 
 ################################################################################

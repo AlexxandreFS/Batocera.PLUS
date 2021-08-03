@@ -11,7 +11,6 @@
 WINE_DIR=/opt/Wine
 WINE_PREFIX=/userdata/system/configs/wine
 WINE_BUILDS=$(ls -1r ${WINE_DIR} | grep -E '^wine-|^proton-')
-LOAD_IMAGE=${WINE_DIR}/winecfg.png
 WINDOW_ICON=/usr/share/icons/batocera/wine.png
 
 CACHE_FILE="${HOME}/.cache/wine-version.cfg"
@@ -328,7 +327,6 @@ function loadSreen()
         --no-buttons \
         --close-on-unfocus \
         --image-on-top \
-        --image="${LOAD_IMAGE}" \
         --text-align=center \
         --text="${MSG}" &
 }
