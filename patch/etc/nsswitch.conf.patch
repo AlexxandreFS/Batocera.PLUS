@@ -1,0 +1,14 @@
+#
+# Ativa o wins dns
+#
+--- nsswitch.conf.original
++++ nsswitch.conf.modificado
+@@ -4,7 +4,7 @@
+ group:          files
+ shadow:         files
+ 
+-hosts:          files dns
++hosts:          files wins dns
+ networks:       files dns
+ 
+ protocols:      files
