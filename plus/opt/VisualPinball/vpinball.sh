@@ -332,7 +332,6 @@ if [ "${JOYPAD}" != 'off' ]; then
     BRAND='Xbox X-Box PS3 PLAYSTATION another'
     for i in ${BRAND}; do
         if [ "$(echo "${P1NAME}" | grep "${i}")" ]; then
-            echo "${P1NAME} find ${i}" > "${HOME}/../controll.txt"
             case $i in
                 PS3|PLAYSTATION)
                     KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 42 42 14 10 42 42 42 52 97 28 65' ;;
