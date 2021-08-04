@@ -168,19 +168,17 @@ sync
 if [ "${RESOLUTION}" == 'auto' ] || [ -z "${RESOLUTION}" ] ; then
     XRES="$(echo "${RES_START}" | cut -d 'x' -f 1)"
     YRES="$(echo "${RES_START}" | cut -d 'x' -f 2)"
-    XRES="$( printf "%x\n" "${XRES}")"
-    YRES="$( printf "%x\n" "${YRES}")"
-    sed -i s'/"Width"=.*/"Width"=dword:00000'"${XRES}"'/'   "${FP_SVDIR}/wine/user.reg"
-    sed -i s'/"Height"=.*/"Height"=dword:00000'"${YRES}"'/' "${FP_SVDIR}/wine/user.reg"
 else
     batocera-resolution setMode "${RESOLUTION}"
     XRES="$(echo "${RESOLUTION}" | cut -d 'x' -f 1)"
     YRES="$(echo "${RESOLUTION}" | cut -d 'x' -f 2)"
-    XRES="$( printf "%x\n" "${XRES}")"
-    YRES="$( printf "%x\n" "${YRES}")"
-    sed -i s'/"Width"=.*/"Width"=dword:00000'"${XRES}"'/'   "${FP_SVDIR}/wine/user.reg"
-    sed -i s'/"Height"=.*/"Height"=dword:00000'"${YRES}"'/' "${FP_SVDIR}/wine/user.reg"
 fi
+
+sed -i s'/"FullScreen"=.*/"FullScreen"=dword:00000001/'   "${FP_SVDIR}/wine/user.reg"
+XRES="$( printf "%x\n" "${XRES}")"
+YRES="$( printf "%x\n" "${YRES}")"
+sed -i s'/"Width"=.*/"Width"=dword:00000'"${XRES}"'/'   "${FP_SVDIR}/wine/user.reg"
+sed -i s'/"Height"=.*/"Height"=dword:00000'"${YRES}"'/' "${FP_SVDIR}/wine/user.reg"
 
 sync
 
@@ -206,7 +204,44 @@ sync
 
 ### CONTROLES
 
-sed -i s'/\[Software\\\\Future Pinball\\\\GamePlayer\\\\Joypads\\\\.*/\[Software\\\\Future Pinball\\\\GamePlayer\\\\Joypads\\\\'"${P1NAME}"' (js)\]/' "${FP_SVDIR}/wine/user.reg"
+if [ "${P1NAME}" != '' ]; then
+    # Future Pinball keyboard fix settings ( if user change this setting )
+    sed -i s'/"InsertCoinKey"=.*/"InsertCoinKey"=dword:00000006/'   "${FP_SVDIR}/wine/user.reg"
+    sed -i s'/"JoypadNameNum"=.*/"JoypadNameNum"=dword:00000000/'   "${FP_SVDIR}/wine/user.reg"
+    sed -i s'/"LeftFlipperKey"=.*/"LeftFlipperKey"=dword:0000002a/' "${FP_SVDIR}/wine/user.reg"
+    sed -i s'/"NudgeLeftKey"=.*/"NudgeLeftKey"=dword:0000002c/'     "${FP_SVDIR}/wine/user.reg"
+    sed -i s'/"NudgeRightKey"=.*/"NudgeRightKey"=dword:00000056/'   "${FP_SVDIR}/wine/user.reg"
+    sed -i s'/"NudgeUpKey"=.*/"NudgeUpKey"=dword:00000014/'         "${FP_SVDIR}/wine/user.reg"
+    sed -i s'/"PlungerKey"=.*/"PlungerKey"=dword:0000001c/'         "${FP_SVDIR}/wine/user.reg"
+    sed -i s'/"StartGameKey"=.*/"StartGameKey"=dword:00000002/'     "${FP_SVDIR}/wine/user.reg"
+
+    # Auto detect pluged controller
+    BRAND='Xbox X-Box PS3 PLAYSTATION another'
+    for i in ${BRAND}; do
+        if [ "$(echo "${P1NAME}" | grep "${i}")" ]; then
+            case $i in
+                PS3|PLAYSTATION)
+                    KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 42 42 14 10 73 42 42 52 97 28 65' ;;
+                X-Box|Xbox)
+                    KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 14 10 73 42 42 52 97 28 65 42 00' ;;
+                another)
+                    KEY_PAD='-device /dev/input/js0 -up 52 -down 65 -left 97 -right 28 -buttons 42 42 36 42 50 62 42 42 14 10 73 42 42 52 65 97 28' ;;
+            esac 
+            break
+        fi
+    done
+
+    # persistent mode gamepad detection
+    if [ -e '/dev/input/js0' ]; then
+        while :; do
+            nice -n -15 xjoypad ${KEY_PAD}
+            if [ ! "$(pidof Future Pinball.exe)" ]; then
+                break
+            fi
+            sleep 5
+        done &
+    fi
+fi
 
 sync
 
@@ -254,6 +289,11 @@ fi
 while [ "$(pidof wineserver)" ]; do
     sleep 1
 done
+
+# Kill keyboard emulator
+if [ "$(pidof -s xjoypad)" ]; then
+    killall -9 xjoypad
+fi
 
 # Restaura a resolução do jogo caso tenha mudado
 RES_STOP="$(batocera-resolution currentResolution)"

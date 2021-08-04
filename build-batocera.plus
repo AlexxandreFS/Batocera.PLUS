@@ -185,7 +185,7 @@ URL_BATOCERA_PLUS_PKG=(
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/Future_Pinball-1.1.7z' # remove on update.
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/Future_Pinball-1.2.7z' # remove on update.
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model2-1.1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model3-1.1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/Visual_Pinball-1.0.7z'
@@ -270,8 +270,8 @@ URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"
 #URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)" uncoment on cemu 1.25.1
 URL_CEMUHOOK='https://files.sshnuke.net/cemuhook_1159_0573.zip' # remove on cemu 1.25.1
 
-URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-702/yuzu-20210728-09f9788d8.AppImage'
-URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1939/Yuzu-EA-1939.AppImage'
+URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-708/yuzu-20210804-a6e759f8e.AppImage'
+URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1962/Yuzu-EA-1962.AppImage'
 
 ################################################################################
 
