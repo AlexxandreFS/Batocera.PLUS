@@ -4,16 +4,17 @@
 # https://www.systutorials.com/docs/linux/man/1-yad/
 # https://www.dicas-l.com.br/arquivo/yad_yet_another_dialog.php
 
+if [ "$(echo "$@" | grep '.exe')" ]; then
+   continue
+else
+   exit 0
+fi
+
 LANG="$(batocera-settings -command load -key system.language)"
 case $LANG in
-    pt_BR) MSG[1]='\n SELECIONE UMA VERSÃO DO WINE PARA EXECUTAR A APLICAÇÃO \n'
-           MSG[2]='\n APLICAÇÃO NÃO SUPORTADA PELO WINE LAUNCHER \n'
-           ;;
-    es_ES) MSG[1]='\n SELECCIONE UNA VERSIÓN DE VINO PARA EJECUTAR LA APLICACIÓN \n'
-           MSG[2]='\n APLICACIÓN NO APOYADA POR WINE LAUNCHER \n'
-           ;;
-    *)     MSG[1]='\n SELECT A WINE VERSION TO RUN THE APPLICATION \n'
-           MSG[2]='\n APPLICATION NOT SUPPORTED BY WINE LAUNCHER \n'
+    pt_BR) MSG='\n SELECIONE UMA VERSÃO DO WINE PARA EXECUTAR A APLICAÇÃO \n' ;;
+    es_ES) MSG='\n SELECCIONE UNA VERSIÓN DE VINO PARA EJECUTAR LA APLICACIÓN \n' ;;
+    *)     MSG='\n SELECT A WINE VERSION TO RUN THE APPLICATION \n'
 esac
  
 yad --form \
@@ -30,27 +31,14 @@ yad --form \
     --fixed --center \
     --close-on-unfocus
 
-if [ "$(echo "$@" | grep '.exe')" ]; then
-    case ${?} in
-        0) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/wine-stable "$@" ;;
-        1) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/wine-old-stable "$@" ;;
-        2) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/wine-staging "$@" ;;
-        3) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/wine-lutris "$@" ;;
-        4) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/proton-ge-custom "$@" ;;
-        5) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/proton-valve "$@" ;;
-        *) exit 0
-    esac
-else
-    yad --form \
-        --title='ERROR' \
-        --window-icon='/usr/share/icons/batocera/wine.png' \
-        --fixed \
-        --center \
-        --button=gtk-ok \
-        --close-on-unfocus \
-        --text-align=center \
-        --timeout=3 \
-        --text=''"${MSG[2]}"''
-fi
+case ${?} in
+    0) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/wine-stable "$@" ;;
+    1) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/wine-old-stable "$@" ;;
+    2) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/wine-staging "$@" ;;
+    3) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/wine-lutris "$@" ;;
+    4) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/proton-ge-custom "$@" ;;
+    5) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/proton-valve "$@" ;;
+    *) exit 0
+esac
 
 exit 0
