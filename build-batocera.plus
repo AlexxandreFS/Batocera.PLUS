@@ -12,7 +12,7 @@ VERSION='2.15'
 # Remova esta linha para diminuir o tempo de compilação.
 # A imagem não será compactada e nem gerado o md5sum.
 # Serão dicionados pacotes experimentais.
-RELEASE='alpha'
+#RELEASE='alpha'
 
 # Squashfs compression level
 SQUASHFS_COMPRESSION='2'
@@ -337,6 +337,7 @@ rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/shaders"
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/scummvm.desktop"
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/dolphin-emu.desktop"
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/retroarch.desktop"
+rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/pcmanfm-desktop-pref.desktop"
 
 # Cannonball
 rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/cannonball/images"
