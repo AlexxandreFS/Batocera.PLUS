@@ -72,8 +72,8 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/beetle-saturn_libretro-jun-9-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/blastem_libretro-feb-21-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bluemsx_libretro-feb-14-2021-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bsnes_hd_libretro-feb-24-2021-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bsnes_libretro-mar-4-2021-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bsnes_hd_libretro-jun-18-2021-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bsnes_libretro-aug-1-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cap32_libretro-mar-3-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/catsfc_libretro-feb-14-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/citra_libretro-jan-28-2021-1.7z'
@@ -140,7 +140,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pce_fast_libretro-apr-8-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pce_libretro-apr-9-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pcfx_libretro-feb-14-2021-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pcsx_rearmed_libretro-feb-21-2021-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pcsx_rearmed_libretro-jul-31-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/picodrive_libretro-apr-10-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pokemini_libretro-feb-14-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ppsspp_libretro-mar-2-2021-1.7z'
@@ -271,7 +271,7 @@ URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"
 URL_CEMUHOOK='https://files.sshnuke.net/cemuhook_1159_0573.zip' # remove on cemu 1.25.1
 
 URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-708/yuzu-20210804-a6e759f8e.AppImage'
-URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1968/Yuzu-EA-1968.AppImage'
+URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1962/Yuzu-EA-1962.AppImage'
 
 ################################################################################
 
@@ -337,6 +337,7 @@ rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/shaders"
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/scummvm.desktop"
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/dolphin-emu.desktop"
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/retroarch.desktop"
+rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/pcmanfm-desktop-pref.desktop"
 
 # Cannonball
 rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/cannonball/images"
