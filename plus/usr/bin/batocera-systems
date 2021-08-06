@@ -574,6 +574,12 @@ BIOS[palmos]="j2me,                   Java ME
 BIOS[palmos]="palmos,                 PalmOS
     83cb1d1c76e568b916dc2e7c0bf669f6, bios/palmos41-en-m515.rom"
 
+#### Super Cassette Vision ####
+
+BIOS[scv]="super cassette vision,     Super Cassette Vision
+    929617bc739e58e550fe9025cae4158b, bios/epochtv.chr
+    635a978fd40db9a18ee44eff449fc126, bios/upd7801g.s01"
+
 
 #------------------------------------------------------------------------------#
 
