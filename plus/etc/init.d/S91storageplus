@@ -7,22 +7,22 @@
 
 stop() {
 
-    for HD in /mnt/storage/* 
+    for HD in /var/storage/* 
     do
         local FOLDER="$(basename "${HD}")"
         if [ "${FOLDER}" == '*' ]; then
             return 1
         fi
-        if ! umount "/mnt/storage/${FOLDER}"; then
-            echo "Desmontando a pasta compartilhada /mnt/storage/${FOLDER} ..." >> /var/log/storageplus.log
+        if ! umount "/var/storage/${FOLDER}"; then
+            echo "Desmontando a pasta compartilhada /var/storage/${FOLDER} ..." >> /var/log/storageplus.log
             /etc/init.d/S91smb stop
-            if ! umount -f -l "/mnt/storage/${FOLDER}"; then
-                echo "Forçando a desmontagem da pasta compartilhada /mnt/storage/${FOLDER} ..." >> /var/log/storageplus.log
-                if [ -d "/mnt/storage/${FOLDER}" ] && [ -z "$(ls -A "/mnt/storage/${FOLDER}" )" ]; then
-                    rmdir "/mnt/storage/${FOLDER}"
-                    echo "Pasta /mnt/storage/${FOLDER} desmontada!" >> /var/log/storageplus.log
+            if ! umount -f -l "/var/storage/${FOLDER}"; then
+                echo "Forçando a desmontagem da pasta compartilhada /var/storage/${FOLDER} ..." >> /var/log/storageplus.log
+                if [ -d "/var/storage/${FOLDER}" ] && [ -z "$(ls -A "/var/storage/${FOLDER}" )" ]; then
+                    rmdir "/var/storage/${FOLDER}"
+                    echo "Pasta /var/storage/${FOLDER} desmontada!" >> /var/log/storageplus.log
                 else
-                    echo "Falha ao desmontar a pasta compartilhada /mnt/storage/${FOLDER}"
+                    echo "Falha ao desmontar a pasta compartilhada /var/storage/${FOLDER}"
                     /etc/init.d/S91smb start
                     return 1
                 fi
@@ -30,15 +30,15 @@ stop() {
             /etc/init.d/S91smb start
             echo 'Samba reiniciado' >> /var/log/storageplus.log
         fi
-        if [ -d "/mnt/storage/${FOLDER}" ]; then
-            rmdir "/mnt/storage/${FOLDER}"
-            echo "Pasta /mnt/storage/${FOLDER} desmontada!" >> /var/log/storageplus.log
+        if [ -d "/var/storage/${FOLDER}" ]; then
+            rmdir "/var/storage/${FOLDER}"
+            echo "Pasta /var/storage/${FOLDER} desmontada!" >> /var/log/storageplus.log
         fi
-        echo "Pasta /mnt/storage/${FOLDER} removida" >> /var/log/storageplus.log
+        echo "Pasta /var/storage/${FOLDER} removida" >> /var/log/storageplus.log
     done
 
-    if [ -e /mnt/storage ]; then
-        rmdir /mnt/storage
+    if [ -e /var/storage ]; then
+        rmdir /var/storage
     fi
 
     echo "Função 'storage' desativada" >> /var/log/storageplus.log
@@ -47,7 +47,7 @@ stop() {
 
 start() {
 
-    if [ -d '/mnt/storage' ]; then
+    if [ -d '/var/storage' ]; then
         if ! stop; then
             echo "Erro ao executar a função 'stop'" >> /var/log/storageplus.log
             return 2
@@ -57,9 +57,11 @@ start() {
     for HD in /media/* 
     do
         local FOLDER="$(basename "${HD}")"
-        if [ ! -f "/media/${FOLDER}/system/batocera.conf" ] || [ ! -f "/media/${FOLDER}/boot/boot/batocera" ]; then
-            mkdir -p "/mnt/storage/${FOLDER}"
-            if ! mount --bind "/media/${FOLDER}" "/mnt/storage/${FOLDER}"; then
+        if [ "${FOLDER}" == 'SHARE' ] || [ "${FOLDER}" == 'BATOCERA' ] || [ -f "/media/${FOLDER}/batocera/system/batocera.conf" ]; then
+            continue
+        else
+            mkdir -p "/var/storage/${FOLDER}"
+            if ! mount --bind "/media/${FOLDER}" "/var/storage/${FOLDER}"; then
                 echo "Erro ao montar o compartilhamento da pasta ${FOLDER}"
                 echo "Erro na função 'start' ao montar o compartilhamento da pasta ${FOLDER}" >> /var/log/storageplus.log
                 return 3
@@ -92,4 +94,3 @@ case "$1" in
 esac
 
 exit $?
-
