@@ -12,7 +12,7 @@ VERSION='2.15'
 # Remova esta linha para diminuir o tempo de compilação.
 # A imagem não será compactada e nem gerado o md5sum.
 # Serão dicionados pacotes experimentais.
-#RELEASE='alpha'
+RELEASE='alpha'
 
 # Squashfs compression level
 SQUASHFS_COMPRESSION='2'
@@ -271,7 +271,7 @@ URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"
 URL_CEMUHOOK='https://files.sshnuke.net/cemuhook_1159_0573.zip' # remove on cemu 1.25.1
 
 URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-708/yuzu-20210804-a6e759f8e.AppImage'
-URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1962/Yuzu-EA-1962.AppImage'
+URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1968/Yuzu-EA-1968.AppImage'
 
 ################################################################################
 
