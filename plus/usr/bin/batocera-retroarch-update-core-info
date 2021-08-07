@@ -93,19 +93,35 @@ supports_no_game = "false"
 EOF
 
 cat << EOF >                                                libretro_info/emuscv_libretro.info
+# Software Information
 display_name = "Super Cassette Vision"
 authors = "TAKEDA toshiya"
 supported_extensions = "cart|rom|bin|hex"
 corename = "emuscv"
-manufacturer = "Epoch Co."
 categories = "Emulator"
-systemname = "SCV"
-systemid = "scv"
-database = "Epoch - Super Cassette Vision"
 license = "GPLv3"
 permissions = ""
+
+# Hardware Information
+manufacturer = "Epoch Co."
+systemname = "SCV"
+systemid = "scv"
+
+# Libretro Features
+database = "Epoch - Super Cassette Vision"
 display_version = "Git"
 supports_no_game = "false"
+
+# BIOS / Firmware
+firmware_count = 2
+firmware0_desc = "upd7801g.s01"
+firmware0_path = "upd7801g.s01"
+firmware0_opt = "true"
+firmware1_desc = "epochtv.chr"
+firmware1_path = "epochtv.chr"
+firmware1_opt = "true"
+notes = "(!) upd7801g.s01 (md5): 635a978fd40db9a18ee44eff449fc126|(!) epochtv.chr (md5): 929617bc739e58e550fe9025cae4158b"
+
 EOF
 
 ################################################################################
