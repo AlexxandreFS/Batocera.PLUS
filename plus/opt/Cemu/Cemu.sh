@@ -15,7 +15,6 @@
 ## MOUSE = on, off ou auto
 ## PIGUID = parâmetro do emulatorlauncher.sh
 ## INTEL = use new intel graphics
-## SHADER = 0 - auto, 1 - enable, 2 - disable
 ##
 ## SITE QUE AJUDOU NA MONTAGEM DESTE SCRIPT
 ## https://synappsis.wordpress.com/category/qt/
@@ -31,9 +30,6 @@ SHOWFPS="${4}"
 MOUSE="${5}"
 P1GUID="${6}"
 INTEL="${7}"
-SHADER="${8}"
-
-#echo "${JOGO}" "${RENDER}" "${SYNC}" "${SHOWFPS}" "${MOUSE}" "${P1GUID}" "${INTEL}" "${SHADER}" > "${HOME}/../COMANDO.txt"
 
 ################################################################################
 
@@ -42,15 +38,17 @@ SHADER="${8}"
 CEMU_DIR='/opt/Cemu'
 CEMU="$HOME/configs/cemu"
 SAVE="$HOME/../saves/wiiu"
-WINE=proton-valve
+WINE=proton-ge-custom
 WINERUN="${WINE}-64"
+
+#echo ["$(date +%T)"] "Running: ${WINE} cemu.exe ${JOGO} ${RENDER} ${SYNC} ${SHOWFPS} ${MOUSE} ${P1GUID} ${INTEL}" > "${HOME}/logs/cemu_launch.log"
 
 ################################################################################
 
 ### EXPORTS
 
 export WINEPREFIX="${SAVE}/wine"
-export WINEDLLOVERRIDES='keystone.dll=n,b;dbghelp.dll=n,b;cemuhook.dll=n,b' # Remove 'dbghelp.dll=n,b' on cemu 1.25.1
+export WINEDLLOVERRIDES='keystone.dll=n,b;cemuhook.dll=n,b'
 export vblank_mode=0
 export mesa_glthread=true
 export __GL_THREADED_OPTIMIZATIONS=1
@@ -117,15 +115,12 @@ fi
 
 if [ ! "$(ls -A "${CEMU}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/null)" ]; then
     # Montando o cemu em "system/configs/cemu"
-    mkdir -p "$(dirname "${CEMU}/log.txt")"                      || exit $?
-    ln -sf "${CEMU}/log.txt" "${HOME}/logs/cemu.log"
+    mkdir -p "$(dirname "${CEMU}/log.txt")" "${CEMU}/sharedFonts"|| exit $?
     cp -rf "${CEMU_DIR}/emulator/resources"            "${CEMU}" || exit $?
-    cp -rf "${CEMU_DIR}/cemuextras/sharedFonts"        "${CEMU}" || exit $?
     cp -f  "${CEMU_DIR}/cemuhook/keystone.dll"         "${CEMU}" || exit $?
     cp -f  "${CEMU_DIR}/emulator/Cemu.exe"             "${CEMU}" || exit $?
     cp -f  "${CEMU_DIR}/cemuextras/cemuhook.ini"       "${CEMU}" || exit $?
-    cp -f  "${CEMU_DIR}/cemuhook/dbghelp.dll"          "${CEMU}" || exit $? # Remove on cemu 1.25.1
-    #cp -f  "${CEMU_DIR}/cemuhook/cemuhook.dll"         "${CEMU}" || exit $? # Uncoment on cemu 1.25.1
+    cp -f  "${CEMU_DIR}/cemuhook/cemuhook.dll"         "${CEMU}" || exit $?
     cp -f  "${CEMU_DIR}/cemuextras/keys.txt"           "${CEMU}" || exit $?
     cp -f  "${CEMU_DIR}/fakefiles/otp.bin"             "${CEMU}" || exit $?
     cp -f  "${CEMU_DIR}/fakefiles/seeprom.bin"         "${CEMU}" || exit $?
@@ -135,14 +130,21 @@ if [ ! "$(ls -A "${CEMU}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/nu
     mkdir -p "${SAVE}/hfiomlc01" "${WINEPREFIX}"                 || exit $?
     cp -rf "${CEMU_DIR}/cemuextras/controllerProfiles" "${SAVE}" || exit $?
     cp -rf "${CEMU_DIR}/emulator/gameProfiles"         "${SAVE}" || exit $?
-    cp -rf "${CEMU_DIR}/emulator/graphicPacks"         "${SAVE}" || exit $?
-    cp -rf "${CEMU_DIR}/cemuhook/graphicPacks"         "${SAVE}" || exit $? # Remove on cemu 1.25.1
     cp -rf "${CEMU_DIR}/cemuextras/graphicPacks"       "${SAVE}" || exit $?
     cp -rf "${CEMU_DIR}/fakefiles/mlc01"               "${SAVE}" || exit $?
     cp -rf "${CEMU_DIR}/emulator/shaderCache"          "${SAVE}" || exit $?
 
     # Criando links simbólicos para a pasta "system/configs/cemu"
-    ln -sf "${SAVE}/"* "${CEMU}"
+    FOLDERS='controllerProfiles gameProfiles graphicPacks mlc01 shaderCache'
+    for i in $FOLDERS; do
+        ln -sf "${SAVE}/${i}" "${CEMU}"
+    done
+
+    ln -sf "${CEMU}/log.txt" "${HOME}/logs/cemu.log"
+    ln -sf '/usr/share/fonts/truetype/msttcorefonts/CafeCn.ttf'  "${CEMU}/sharedFonts"
+    ln -sf '/usr/share/fonts/truetype/msttcorefonts/CafeKr.ttf'  "${CEMU}/sharedFonts"
+    ln -sf '/usr/share/fonts/truetype/msttcorefonts/CafeStd.ttf' "${CEMU}/sharedFonts"
+    ln -sf '/usr/share/fonts/truetype/msttcorefonts/CafeTw.ttf'  "${CEMU}/sharedFonts"
 fi
 
 ################################################################################
@@ -182,26 +184,14 @@ sync
 
 SLANG="$(batocera-settings -command load -key system.language)"
 case ${SLANG} in
-    fr_FR)             sed -i 's/<language>.*/<language>79<\/language>/'  "${CEMU}/settings.xml" ;;
+    fr_FR)             sed -i 's/<language>.*/<language>80<\/language>/'  "${CEMU}/settings.xml" ;;
     en_US|en_GB|eu_ES) sed -i 's/<language>.*/<language>57<\/language>/'  "${CEMU}/settings.xml" ;;
-    de_DE)             sed -i 's/<language>.*/<language>88<\/language>/'  "${CEMU}/settings.xml" ;;
-    pt_BR)             sed -i 's/<language>.*/<language>153<\/language>/' "${CEMU}/settings.xml" ;;
-    es_ES)             sed -i 's/<language>.*/<language>179<\/language>/' "${CEMU}/settings.xml" ;;
-    it_IT)             sed -i 's/<language>.*/<language>109<\/language>/' "${CEMU}/settings.xml" ;;
-    tr_TR)             sed -i 's/<language>.*/<language>214<\/language>/' "${CEMU}/settings.xml" ;;
+    de_DE)             sed -i 's/<language>.*/<language>89<\/language>/'  "${CEMU}/settings.xml" ;;
+    pt_BR)             sed -i 's/<language>.*/<language>154<\/language>/' "${CEMU}/settings.xml" ;;
+    es_ES)             sed -i 's/<language>.*/<language>180<\/language>/' "${CEMU}/settings.xml" ;;
+    it_IT)             sed -i 's/<language>.*/<language>110<\/language>/' "${CEMU}/settings.xml" ;;
+    tr_TR)             sed -i 's/<language>.*/<language>215<\/language>/' "${CEMU}/settings.xml" ;;
     zh_CN)             sed -i 's/<language>.*/<language>44<\/language>/'  "${CEMU}/settings.xml" ;;
- esac
- 
- sync
- 
- ################################################################################
-
-### PRE COMPILED SHADERS
-
-case ${SHADER} in
-    1) sed -i 's/<PrecompiledShaders>.*/<PrecompiledShaders>1<\/PrecompiledShaders>/'  "${CEMU}/settings.xml" ;;
-    2) sed -i 's/<PrecompiledShaders>.*/<PrecompiledShaders>2<\/PrecompiledShaders>/'  "${CEMU}/settings.xml" ;;
-    *) sed -i 's/<PrecompiledShaders>.*/<PrecompiledShaders>0<\/PrecompiledShaders>/'  "${CEMU}/settings.xml"
 esac
 
 sync
