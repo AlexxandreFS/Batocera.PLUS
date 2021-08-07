@@ -59,7 +59,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-1.9.7-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-assets-1.9.7-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-cheats-1.9.7-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-info-1.9.7-2.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-info-1.9.7-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-slang-shaders-1.9.7-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-glsl-shaders-1.9.7-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-common-shaders-1.9.7-1.7z'
@@ -183,7 +183,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-jul-26-2021-1.7z' # remove on update.
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-libs-(libgtk-3_libgdk_libaio)-1.7z' # dep: xemu # remove on update.
 
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.2.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.3.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/Future_Pinball-1.2.7z' # remove on update.
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model2-1.1.7z'
@@ -267,8 +267,7 @@ URL_WINE_MF="https://github.com/z0z0z/mf-install/archive/${URL_WINE_MF}.zip#/mf-
 URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.3/dxvk-nvapi-v0.3.tar.gz'
 
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
-#URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)" uncoment on cemu 1.25.1
-URL_CEMUHOOK='https://files.sshnuke.net/cemuhook_1159_0573.zip' # remove on cemu 1.25.1
+URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 
 URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-708/yuzu-20210804-a6e759f8e.AppImage'
 URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1962/Yuzu-EA-1962.AppImage'
@@ -568,6 +567,7 @@ echo 'Install Cemu...'
 PKG_NAME="$(basename "${URL_CEMU%.*}")"
 unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/squashfs-root/opt"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Cemu/emulator"
+rm -r "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/graphicPacks"
 mv    "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}/"* "${TEMP_DIR}/squashfs-root/opt/Cemu/emulator"
 rm -r "${TEMP_DIR}/squashfs-root/opt/${PKG_NAME}"
 
