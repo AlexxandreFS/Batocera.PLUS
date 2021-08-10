@@ -49,28 +49,28 @@ SAVE="${HOME}/../saves/model2"
 
 function help()
 {
-    echo " Sega Model 2 launcher for Batocera.PLUS"
-    echo " "
-    echo " Codigo escrito por: Sergio de Carvalho Junior"
-    echo " Colaborador: Alexandre Freire dos Santos"
-    echo " "
-    echo " Linha de comando:"
-    echo " Model2.sh [ROM] [CORE] [RESOLUTION] [WIDESCREEN] [ANTIALIASING] [VSYNC] [ANISOTROPICFILTER] [DRAWCROSS] [RUMBLE] [P1GUID]"
-    echo " "
-    echo " ROM = Caminho do jogo até o .zip do jogo"
-    echo " CORE = singlecore, multicore ou auto"
-    echo " RESULUTION = auto ou algo que respeite a regra XXXXxXXXX ex: [1920x1080]"
-    echo " WIDESCREEN = 4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3|auto|custom|squarepixel"
-    echo " ANTIALIASING = auto, on ou off"
-    echo " VSYNC = auto, on ou off"
-    echo " ANISOTROPICFILTER = bilinear, trilinear, auto ou off"
-    echo " DRAWCROSS = on, off ou auto"
-    echo " RUMBLE = on, off ou auto"
-    echo " PIGUID = parâmetro do emulatorlauncher.sh"
-    echo " "
+    echo ' Sega Model 2 launcher for Batocera.PLUS'
+    echo
+    echo ' Codigo escrito por: Sergio de Carvalho Junior'
+    echo ' Colaborador: Alexandre Freire dos Santos'
+    echo
+    echo ' Linha de comando:'
+    echo ' Model2.sh [ROM] [CORE] [RESOLUTION] [WIDESCREEN] [ANTIALIASING] [VSYNC] [ANISOTROPICFILTER] [DRAWCROSS] [RUMBLE] [P1GUID]'
+    echo
+    echo ' ROM               = Caminho do jogo até o .zip do jogo'
+    echo ' CORE              = singlecore, multicore ou auto'
+    echo ' RESULUTION        = auto ou algo que respeite a regra XXXXxXXXX ex: [1920x1080]'
+    echo ' WIDESCREEN        = 4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3|auto|custom|squarepixel'
+    echo ' ANTIALIASING      = auto, on ou off'
+    echo ' VSYNC             = auto, on ou off'
+    echo ' ANISOTROPICFILTER = bilinear, trilinear, auto ou off'
+    echo ' DRAWCROSS         = on, off ou auto'
+    echo ' RUMBLE            = on, off ou auto'
+    echo ' PIGUID            = parâmetro do emulatorlauncher.sh'
+    echo
 }
 
-if [ "${1}" == '--help' ]; then
+if [ "${JOGO}" == '--help' ]; then
     help
     exit 0
 fi
@@ -81,7 +81,7 @@ fi
 
 # Executa o Model2/Wine se não estiver sendo executado
 if [ "$(pidof emulator.exe)" ] || [ "$(pidof emulator_multicpu.exe)" ]; then
-    echo " Sega Model 2 launcher ja esta sendo executado"
+    echo ' Sega Model 2 launcher já esta sendo executado'
     exit 1
 fi
 
@@ -89,11 +89,11 @@ fi
 
 ### LAUNCHER INFO
 
-echo " Sega Model 2 launcher for Batocera.PLUS"
-echo " "
-echo " Codigo escrito por: Sergio de Carvalho Junior"
-echo " Colaborador: Alexandre Freire dos Santos"
-echo " "
+echo ' Sega Model 2 launcher for Batocera.PLUS'
+echo
+echo ' Código escrito por: Sérgio de Carvalho Junior'
+echo ' Colaborador: Alexandre Freire dos Santos'
+echo
 
 
 ################################################################################
@@ -186,23 +186,6 @@ fi
 
 ################################################################################
 
-### DRAWCROSS
-
-# Para jogos de tiro, seria interessante portar o demulshooter
-if [ "${DRAWCROSS}" == 'auto' ] || [ "${DRAWCROSS}" == 'off' ]; then
-    mouse-pointer off
-    sed -i s/'^DrawCross=.*/DrawCross=0/' "${MODEL2}/Emulator.ini"
-    sed -i s/'^RawDevP1=.*/RawDevP1=0/'   "${MODEL2}/Emulator.ini"
-    sed -i s/'^RawDevP2=.*/RawDevP2=0/'   "${MODEL2}/Emulator.ini"
-else
-    mouse-pointer on
-    sed -i s/'^DrawCross=.*/DrawCross=1/' "${MODEL2}/Emulator.ini"
-    sed -i s/'^RawDevP1=.*/RawDevP1=0/'   "${MODEL2}/Emulator.ini"
-    sed -i s/'^RawDevP2=.*/RawDevP2=1/'   "${MODEL2}/Emulator.ini"
-fi
-
-################################################################################
-
 ### FORCE FEEDBACK
 
 if [ "${RUMBLE}" == 'auto' ] || [ "${RUMBLE}" == 'on' ]; then
@@ -211,6 +194,22 @@ if [ "${RUMBLE}" == 'auto' ] || [ "${RUMBLE}" == 'on' ]; then
 else
     sed -i s/'^EnableFF=.*/EnableFF=0/'             "${MODEL2}/Emulator.ini"
     sed -i s/'^Force Feedback=.*/Force Feedback=0/' "${MODEL2}/Emulator.ini"
+fi
+
+################################################################################
+
+### DRAWCROSS
+
+# Para jogos de tiro, seria interessante portar o demulshooter
+if [ "${DRAWCROSS}" == 'on' ]; then
+    mouse-pointer on
+    sed -i s/'^DrawCross=.*/DrawCross=1/' "${MODEL2}/Emulator.ini"
+    sed -i s/'^RawDevP1=.*/RawDevP1=0/'   "${MODEL2}/Emulator.ini"
+    sed -i s/'^RawDevP2=.*/RawDevP2=1/'   "${MODEL2}/Emulator.ini"
+else
+    sed -i s/'^DrawCross=.*/DrawCross=0/' "${MODEL2}/Emulator.ini"
+    sed -i s/'^RawDevP1=.*/RawDevP1=0/'   "${MODEL2}/Emulator.ini"
+    sed -i s/'^RawDevP2=.*/RawDevP2=0/'   "${MODEL2}/Emulator.ini"
 fi
 
 ################################################################################
@@ -233,7 +232,7 @@ if [ "${BOTAO_HOTKEY}" ] && [ "${BOTAO_START}" ]; then
     while : ; do
         nice -n 20 xjoykill -hotkey "${BOTAO_HOTKEY}" -start "${BOTAO_START}" -kill /usr/bin/killwine
         if ! [ "$(pidof wineserver)" ]; then
-              break
+            break
         fi
         sleep 5
     done &
@@ -244,7 +243,6 @@ fi
 ### EXECUTA O JOGO
 
 cd "${MODEL2}" || exit $?
-
 
 if [ "${JOGO}" == "${JOGO%zip}zip" ] || [ "${JOGO}" == "${JOGO%ZIP}ZIP" ]; then
     JOGO="$(basename "${JOGO}" .zip )"
