@@ -6,13 +6,11 @@
 ## Colaborador: Alexandre Freire dos Santos
 ## 
 ## Linha de comando:
-## Cemu.sh [ROM] [RENDER] [SYNC] [SHOWFPS] [MOUSE] [P1GUID]
+## Cemu.sh [ROM] [RENDER] [SYNC] [P1GUID]
 ##
 ## ROM = Caminho do jogo até a iso ou rpx
 ## RENDER = vulkan, opengl ou auto
 ## SYNC = esync, fsync ou auto
-## SHOWFPS = on, off ou auto
-## MOUSE = on, off ou auto
 ## PIGUID = parâmetro do emulatorlauncher.sh
 ## INTEL = use new intel graphics
 ##
@@ -26,10 +24,8 @@
 JOGO="${1}"
 RENDER="${2}"
 SYNC="${3}"
-SHOWFPS="${4}"
-MOUSE="${5}"
-P1GUID="${6}"
-INTEL="${7}"
+P1GUID="${4}"
+INTEL="${5}"
 
 ################################################################################
 
@@ -41,7 +37,7 @@ SAVE="$HOME/../saves/wiiu"
 WINE=proton-ge-custom
 WINERUN="${WINE}-64"
 
-#echo ["$(date +%T)"] "Running: ${WINE} cemu.exe ${JOGO} ${RENDER} ${SYNC} ${SHOWFPS} ${MOUSE} ${P1GUID} ${INTEL}" > "${HOME}/logs/cemu_launch.log"
+#echo ["$(date +%T)"] "Running: ${WINE} cemu.exe ${JOGO} ${RENDER} ${SYNC} ${P1GUID} ${INTEL}" > "${HOME}/logs/cemu_launch.log"
 
 ################################################################################
 
@@ -60,27 +56,25 @@ export __GL_THREADED_OPTIMIZATIONS=1
 function help()
 {
     echo ' Cemu launcher for Batocera.PLUS'
-    echo ''
+    echo
     echo ' Codigo escrito por: Sergio de Carvalho Junior'
     echo ' Colaborador: Alexandre Freire dos Santos'
-    echo ' '
+    echo
     echo ' Linha de comando:'
-    echo ' Cemu.sh [ROM] [OTIMIZATIONS] [RENDER] [SYNC] [DXVK] [SHOWFPS] [MOUSE] [P1GUID]'
-    echo ' '
-    echo ' ROM = Caminho do jogo até a .iso ou .rpx'
+    echo ' Cemu.sh [ROM] [OTIMIZATIONS] [RENDER] [SYNC] [DXVK] [P1GUID]'
+    echo
+    echo ' ROM          = Caminho do jogo até a .iso ou .rpx'
     echo ' OTIMIZATIONS = nvidia, amd, intel ou auto'
-    echo ' RENDER = vulkan, opengl ou auto'
-    echo ' SYNC = esync, fsync ou auto'
-    echo ' DXVK = on, off ou auto'
-    echo ' SHOWFPS = on, off ou auto'
-    echo ' MOUSE = on, off ou auto'
-    echo ' PIGUID = parâmetro do emulatorlauncher.sh (OPICIONAL)'
-    echo ' INTEL = use new intel graphics'
-    echo ' SHADER = 0 - auto, 1 - enable, 2 - disable'
-    echo ''
+    echo ' RENDER       = vulkan, opengl ou auto'
+    echo ' SYNC         = esync, fsync ou auto'
+    echo ' DXVK         = on, off ou auto'
+    echo ' PIGUID       = parâmetro do emulatorlauncher.sh (OPICIONAL)'
+    echo ' INTEL        = use new intel graphics'
+    echo ' SHADER       = 0 - auto, 1 - enable, 2 - disable'
+    echo
 }
 
-if [ "${1}" == '--help' ]; then
+if [ "${JOGO}" == '--help' ]; then
     help
     exit 0
 fi
@@ -104,7 +98,7 @@ echo ' Codigo escrito por: Sergio de Carvalho Junior'
 echo ' Colaborador: Alexandre Freire dos Santos'
 echo ' '
 
-if [ "${2}" == ' ' ]; then
+if [ "${RENDER}" == ' ' ]; then
     echo " Ulimit ativo com limite de $(ulimit -Hn) arquivos abertos"
     echo ' Cemu sendo executado com as configurações default'
 fi
@@ -214,60 +208,15 @@ sync
 
 case ${SYNC} in
     esync)
-     export WINEESYNC=1
-    ;;
+        export WINEESYNC=1
+        ;;
     fsync)
-     export WINEFSYNC=1
-    ;;
+        export WINEFSYNC=1
+        ;;
     auto)
-     continue
-    ;;
+        continue
+        ;;
 esac
-
-################################################################################
-
-### SHOWFPS
-
-if [ "${SHOWFPS}" != 'auto' ]; then
-    case ${SHOWFPS} in
-        mangohud_default)
-            export MANGOHUD=1
-            export MANGOHUD_CONFIGFILE=/opt/MangoHud/profiles/default.conf
-            ;;
-        mangohud_more_info)
-            export MANGOHUD=1
-            export MANGOHUD_CONFIGFILE=/opt/MangoHud/profiles/more_info.conf
-            ;;
-        mangohud_smarty)
-            export MANGOHUD=1
-            export MANGOHUD_CONFIGFILE=/opt/MangoHud/profiles/smarty.conf
-            ;;
-        goverlay) #user-config
-            export MANGOHUD=1
-            if [ -f "${HOME}/.config/goverlay/MangoHud.conf" ]; then
-                export MANGOHUD_CONFIGFILE="${HOME}/.config/goverlay/MangoHud.conf"
-            else
-                export MANGOHUD_CONFIGFILE=/opt/MangoHud/profiles/default.conf
-            fi
-            ;;
-        dxvk_hud)
-            # Execute este código deve ser executado sempre depois do bloco do DirectX Engine.
-            if [ "${DXVK}" == '1' ]; then
-                export DXVK=2
-            else
-                export MANGOHUD=1
-                export MANGOHUD_CONFIGFILE=/opt/MangoHud/profiles/default.conf
-            fi
-            ;;
-    esac
- fi
-################################################################################
-
-### MOUSE POINTER
-
-if [ "${MOUSE}" == 'on' ] || [ "${JOGO}" == '' ]; then
-    mouse-pointer on
-fi
 
 ################################################################################
 
@@ -282,7 +231,7 @@ if [ "${BOTAO_HOTKEY}" ] && [ "${BOTAO_START}" ]; then
     while : ; do
         nice -n 20 xjoykill -hotkey "${BOTAO_HOTKEY}" -start "${BOTAO_START}" -kill /usr/bin/killwine
         if ! [ "$(pidof wineserver)" ]; then
-              break
+            break
         fi
         sleep 5
     done &
@@ -306,7 +255,7 @@ if [ -d "${JOGO}" ]; then # Se o jogo for um diretório
         fi
     done
 elif [ -f "${JOGO}" ]; then # Se o jogo for um arquivo
-      JOGO="$(echo "Z:${JOGO}" | sed -e 's#/#\\#g')"
+    JOGO="$(echo "Z:${JOGO}" | sed -e 's#/#\\#g')"
 fi
 
 ################################################################################
@@ -315,9 +264,9 @@ fi
 
 # Salva um perfil de controle padrão se nenhum for achado
 if ! [ "$(ls -1 "${CEMU}/controllerProfiles" | grep '.txt' | tail -n 1)" ]; then
-      mkdir -p "${SAVE}/controllerProfiles"
-      cp -rf "${CEMU_DIR}/cemuextras/controllerProfiles/"* "${SAVE}/controllerProfiles"
-      ln -sf "${SAVE}/controllerProfiles" "${CEMU}"
+    mkdir -p "${SAVE}/controllerProfiles"
+    cp -rf "${CEMU_DIR}/cemuextras/controllerProfiles/"* "${SAVE}/controllerProfiles"
+    ln -sf "${SAVE}/controllerProfiles" "${CEMU}"
 fi
 
 ################################################################################

@@ -374,22 +374,6 @@ fi
 
 ################################################################################
 
-### MANGOHUD
-
-if [ "${MANGOHUD}" == '1' ]; then
-    if [ -z ${MANGOHUD_CONFIGFILE} ]; then
-        if [ -f '/opt/MangoHud/profiles/smarty.conf' ]; then
-            export MANGOHUD_CONFIGFILE=/opt/MangoHud/profiles/smarty.conf
-        else
-            echo 'not found /opt/MangoHud/profiles/smarty.conf'
-            exit 1
-        fi
-    fi
-    MANGOHUD_CMD='/opt/MangoHud/mangohud --dlsym'
-fi
-
-################################################################################
-
 ### VKBASALT
 
 if [ "${ENABLE_VKBASALT}" == '1' ]; then
@@ -488,7 +472,6 @@ function wineCheckLibs() {
         ldd ${WINE_DIR}/${DEP}/* 2> /dev/null | grep 'not found'
     done
 }
-
 
 ################################################################################
 
@@ -601,7 +584,6 @@ if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ] || [ "${INSTALL_E
     # Install Nvidia dlls
     ln -sf "${WINE_DIR}/apps/nvapi/x32/nvapi.dll"   "${WINEPREFIX}/drive_c/windows/syswow64/nvapi.dll"
     ln -sf "${WINE_DIR}/apps/nvapi/x64/nvapi64.dll" "${WINEPREFIX}/drive_c/windows/system32/nvapi64.dll"
-    ln -sf "${WINE_DIR}/apps/nvapi/x64/nvapi64-tests.exe" "${WINEPREFIX}/drive_c/windows/system32/nvapi64-tests.exe"
     ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi"   /t REG_SZ /d "native,builtin"
     ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi64" /t REG_SZ /d "native,builtin"
 
