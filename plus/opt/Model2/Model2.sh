@@ -261,10 +261,12 @@ fi
 
 ### FINALIZA A EXECUÇÃO DO JOGO
 
-# Aguarda o Cemu encerrar a execução
-while [ "$(pidof wineserver)" ]; do
-    sleep 1
-done
+# Mata o emulador de teclado ###
+if [ "$(pidof -s xjoykill)" ]; then
+    killall -9 xjoykill
+elif [ "$(pidof -s xjoykill-mugen)" ]; then
+    killall -9 xjoykill-mugen
+fi
 
 # Restaura a resolução do jogo caso tenha mudado
 RES_STOP="$(batocera-resolution currentResolution)"
