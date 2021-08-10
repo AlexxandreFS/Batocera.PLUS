@@ -41,7 +41,7 @@ fi
 
 ### MOUSE POINTER
 
-if [ "${MOUSE}" == 'on' ] || [ "${MOUSE}" == 'auto' ] || [ -z "${MOUSE}" ]
+if [ "${MOUSE}" == 'auto' ] || [ -z "${MOUSE}" ]
 then
     mouse-pointer on
 fi
@@ -124,7 +124,7 @@ export SDL_JOYSTICK_HIDAPI=0
 
 if [ -e "${ROM}" ]
 then
-    "${YUZU_DIR}/${CORE}/bin/yuzu" -f -g "${ROM}"
+    ${MANGOHUD_CMD} "${YUZU_DIR}/${CORE}/bin/yuzu" -f -g "${ROM}"
 else
     # APPS (F1)
     "${YUZU_DIR}/${CORE}/bin/yuzu" "${@}"
