@@ -48,7 +48,7 @@ if ! [ -f "${DOLPHIN_CFG_DIR}/batocera.plus" ]; then
     
     echo 'NOT ERASE' > "${DOLPHIN_CFG_DIR}/batocera.plus"
 
-    rm -r "${DOLPHIN_CFG_DIR}/retroarch" 2> /dev/null
+    rm -r "${DOLPHIN_CFG_DIR}/retroarch"
 fi
 
 ################################################################################
@@ -57,13 +57,17 @@ fi
 
 if [ "${ROM}" == 'batocera.plus' ]; then
     exit 0
-else
-    unset BATOCERA_CONF
-    unset DOLPHIN_CFG
-    unset DOLPHIN_CFG_DIR
-    unset FULLBOOT
-    unset SYSTEM
-    unset ROM
-
-    exec /usr/bin/dolphin-emu "${@}"   
 fi
+
+unset BATOCERA_CONF
+unset DOLPHIN_CFG
+unset DOLPHIN_CFG_DIR
+unset FULLBOOT
+unset SYSTEM
+unset ROM
+
+################################################################################
+
+### EXECUTA O JOGO
+
+exec ${MANGOHUD_CMD} /usr/bin/dolphin-emu "${@}"
