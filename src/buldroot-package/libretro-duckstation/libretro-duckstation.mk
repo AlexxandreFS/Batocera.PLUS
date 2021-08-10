@@ -3,8 +3,8 @@
 # LIBRETRO DUCKSTATION
 #
 ################################################################################
-# Version.: Commits on Feb 4, 2021
-LIBRETRO_DUCKSTATION_VERSION = abb76310c4fcefb86fb72b08482c332492e70c27
+# Version.: Commits on Aug 1, 2021
+LIBRETRO_DUCKSTATION_VERSION = d29d64e4859391eaf36a632e787265af61db0a11
 LIBRETRO_DUCKSTATION_SITE = $(call github,libretro,duckstation,$(LIBRETRO_DUCKSTATION_VERSION))
 LIBRETRO_DUCKSTATION_LICENSE = GPLv3
 LIBRETRO_DUCKSTATION_SUPPORTS_IN_SOURCE_BUILD = NO
@@ -26,8 +26,8 @@ LIBRETRO_DUCKSTATION_CONF_ENV += LDFLAGS=-lpthread
 
 
 define LIBRETRO_DUCKSTATION_INSTALL_TARGET_CMDS
-	$(INSTALL) -D $(@D)/buildroot-build/duckstation_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro
+	$(INSTALL) -D $(@D)/buildroot-build/swanstation_libretro.so \
+		$(TARGET_DIR)/usr/lib/libretro/duckstation_libretro.so
 endef
 
 $(eval $(cmake-package))
