@@ -350,11 +350,14 @@ export HOME='/tmp/raine'
 cd "${RAINE_DIR}/RaineEmu"
 
 case ${CORE} in
-    raine2020|auto) ./raine2020 -video 0 -dbuf 1 -fullscreen 1 -nogui "${ROM}"
-    ;;
-    raine2015)      ./raine2015 -video 0 -dbuf 1 -fullscreen 1 -nogui "${ROM}"
-    ;;
-    *)              exit 1
+    raine2020|auto)
+        ${MANGOHUD_CMD} ./raine2020 -video 0 -dbuf 1 -fullscreen 1 -nogui "${ROM}"
+        ;;
+    raine2015)
+        ${MANGOHUD_CMD} ./raine2015 -video 0 -dbuf 1 -fullscreen 1 -nogui "${ROM}"
+        ;;
+    *)
+        exit 1
 esac
 
 rm -r '/tmp/raine'
