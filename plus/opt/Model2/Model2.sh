@@ -268,10 +268,4 @@ elif [ "$(pidof -s xjoykill-mugen)" ]; then
     killall -9 xjoykill-mugen
 fi
 
-# Restaura a resolução do jogo caso tenha mudado
-RES_STOP="$(batocera-resolution currentResolution)"
-if [ "${RES_START}" != "${RES_STOP}" ]; then
-    batocera-resolution setMode "${RES_START}"
-fi
-
 exit 0

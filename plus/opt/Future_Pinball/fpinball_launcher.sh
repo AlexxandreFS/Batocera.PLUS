@@ -31,7 +31,6 @@ WINE=wine-lutris
 FP_DIR='/opt/Future_Pinball'
 FP_STDIR="$HOME/configs/Future Pinball"
 FP_SVDIR="$HOME/../saves/Future Pinball"
-RES_START="$(batocera-resolution currentMode)"
 
 ################################################################################
 
@@ -165,6 +164,8 @@ sync
 
 ### RESOLUTION
 
+RES_START="$(batocera-resolution currentMode)"
+
 if [ "${RESOLUTION}" == 'auto' ] || [ -z "${RESOLUTION}" ] ; then
     XRES="$(echo "${RES_START}" | cut -d 'x' -f 1)"
     YRES="$(echo "${RES_START}" | cut -d 'x' -f 2)"
@@ -293,12 +294,6 @@ done
 # Kill keyboard emulator
 if [ "$(pidof -s xjoypad)" ]; then
     killall -9 xjoypad
-fi
-
-# Restaura a resolução do jogo caso tenha mudado
-RES_STOP="$(batocera-resolution currentResolution)"
-if [ "${RES_START}" != "${RES_STOP}" ]; then
-    batocera-resolution setMode "${RES_START}"
 fi
 
 exit 0

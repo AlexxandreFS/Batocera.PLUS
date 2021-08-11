@@ -273,9 +273,6 @@ fi
 
 ### EXECUTA O JOGO OU O CONFIGURADOR
 
-# Captura a resolução da tela antes de iniciar o jogo
-RES_START="$(batocera-resolution currentMode)"
-
 # Executa o Cemu com as configurações selecionadas
 if [ "${JOGO}" == '' ]; then
     "$WINERUN" "${CEMU}/Cemu.exe"
@@ -293,11 +290,5 @@ fi
 while [ "$(pidof wineserver)" ]; do
     sleep 1
 done
-
-# Restaura a resolução do jogo caso tenha mudado
-RES_STOP="$(batocera-resolution currentResolution)"
-if [ "${RES_START}" != "${RES_STOP}" ]; then
-    batocera-resolution setMode "${RES_START}"
-fi
 
 exit 0

@@ -57,7 +57,6 @@ WINE='wine-lutris'
 VP_DIR='/opt/VisualPinball'
 VP_SDIR="$HOME/../saves/vpinball"
 VP_CDIR="$HOME/configs/vpinball"
-RES_START="$(batocera-resolution currentMode)"
 
 ################################################################################
 
@@ -258,6 +257,8 @@ fi
     
 ### RESOLUTION
 
+RES_START="$(batocera-resolution currentMode)"
+
 if [ "${RESOLUTION}" == 'auto' ] || [ "${RESOLUTION}" == '' ]; then
     XRES="$(echo "${RES_START}" | cut -d 'x' -f 1)"
     YRES="$(echo "${RES_START}" | cut -d 'x' -f 2)"
@@ -395,12 +396,6 @@ done
 # Kill keyboard emulator
 if [ "$(pidof -s xjoypad)" ]; then
     killall -9 xjoypad
-fi
-
-# Restore resolution if it changed
-RES_STOP="$(batocera-resolution currentResolution)"
-if [ "${RES_START}" != "${RES_STOP}" ]; then
-    batocera-resolution setMode "${RES_START}"
 fi
 
 exit 0
