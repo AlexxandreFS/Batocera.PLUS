@@ -59,33 +59,33 @@ SAVE="${HOME}/../saves/model3"
 
 function help()
 {
-    echo " Sega Model 3 launcher for Batocera.PLUS"
-    echo " "
-    echo " Codigo escrito por: Sergio de Carvalho Junior"
-    echo " Colaborador: Alexandre Freire dos Santos"
-    echo " "
-    echo " Linha de comando:"
-    echo " Model3.sh [ROM] [CORE] [RESOLUTION] [WIDESCREEN] [MULTITEXTURE] [MULTITHREAD] [QUADRENDERING] [SYNC] [NEW3DENGINE] [THROTTLE] [STRETCH] [INTEGERSCALE] [POWERPCFREQUENCY] [RUMBLE] [EMULATENET]"
-    echo " ROM = Caminho do jogo até o .zip do jogo"
-    echo " CORE = singlecore, multicore ou auto"
-    echo " RESULUTION = auto ou algo que respeite a regra XXXXxXXXX ex: [1920x1080]"
-    echo " WIDESCREEN = 4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3|auto|custom|squarepixel"
-    echo " MULTITEXTURE = auto, on ou off"
-    echo " MULTITHREAD = auto, on ou off"
-    echo " QUADRENDERING= = auto, on ou off"
-    echo " VSYNC = auto, on ou off"
-    echo " NEW3DENGINE  = auto, on ou off"
-    echo " THROTTLE = auto, on ou off"
-    echo " STRETCH = auto, on ou off (pixel perfect off)"
-    echo " INTEGERSCALE = auto, on ou off"
-    echo " POWERPCFREQUENCY] = 10,20,30,40,50,60,70,80,90,100 (mhz)"
-    echo " RUMBLE = on, off ou auto"
-    echo " EMULATENET = auto, on ou off"
-    echo " PIGUID = parâmetro do emulatorlauncher.sh"
-    echo " "
+    echo ' Sega Model 3 launcher for Batocera.PLUS'
+    echo
+    echo ' Código escrito por: Ségio de Carvalho Junior'
+    echo ' Colaborador: Alexandre Freire dos Santos'
+    echo
+    echo ' Linha de comando:'
+    echo ' Model3.sh [ROM] [CORE] [RESOLUTION] [WIDESCREEN] [MULTITEXTURE] [MULTITHREAD] [QUADRENDERING] [SYNC] [NEW3DENGINE] [THROTTLE] [STRETCH] [INTEGERSCALE] [POWERPCFREQUENCY] [RUMBLE] [EMULATENET]'
+    echo ' ROM = Caminho do jogo até o .zip do jogo'
+    echo ' CORE = singlecore, multicore ou auto'
+    echo ' RESULUTION = auto ou algo que respeite a regra XXXXxXXXX ex: [1920x1080]'
+    echo ' WIDESCREEN = 4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3|auto|custom|squarepixel'
+    echo ' MULTITEXTURE = auto, on ou off'
+    echo ' MULTITHREAD = auto, on ou off'
+    echo ' QUADRENDERING= = auto, on ou off'
+    echo ' VSYNC = auto, on ou off'
+    echo ' NEW3DENGINE  = auto, on ou off'
+    echo ' THROTTLE = auto, on ou off'
+    echo ' STRETCH = auto, on ou off (pixel perfect off)'
+    echo ' INTEGERSCALE = auto, on ou off'
+    echo ' POWERPCFREQUENCY] = 10,20,30,40,50,60,70,80,90,100 (mhz)'
+    echo ' RUMBLE = on, off ou auto'
+    echo ' EMULATENET = auto, on ou off'
+    echo ' PIGUID = parâmetro do emulatorlauncher.sh'
+    echo
 }
 
-if [ "${1}" == '--help' ]; then
+if [ "${JOGO}" == '--help' ]; then
     help
     exit 0
 fi
@@ -96,7 +96,7 @@ fi
 
 # Executa o Model2/Wine se não estiver sendo executado
 if [ "$(pidof supermodel.exe)" ]; then
-    echo " Sega Model 3 launcher ja esta sendo executado"
+    echo " Sega Model 3 launcher já esta sendo executado"
     exit 1
 fi
 
@@ -104,12 +104,11 @@ fi
 
 ### LAUNCHER INFO
 
-echo " Sega Model 3 launcher for Batocera.PLUS"
-echo " "
-echo " Codigo escrito por: Sergio de Carvalho Junior"
-echo " Colaborador: Alexandre Freire dos Santos"
-echo " "
-
+echo ' Sega Model 3 launcher for Batocera.PLUS'
+echo
+echo ' Codigo escrito por: Sergio de Carvalho Junior'
+echo ' Colaborador: Alexandre Freire dos Santos'
+echo
 
 ################################################################################
 
@@ -307,10 +306,12 @@ fi
 
 ### FINALIZA A EXECUÇÃO DO JOGO
 
-# Aguarda o Cemu encerrar a execução
-while [ "$(pidof wineserver)" ]; do
-    sleep 1
-done
+# Mata o emulador de teclado ###
+if [ "$(pidof -s xjoykill)" ]; then
+    killall -9 xjoykill
+elif [ "$(pidof -s xjoykill-mugen)" ]; then
+    killall -9 xjoykill-mugen
+fi
 
 # Restaura a resolução do jogo caso tenha mudado
 RES_STOP="$(batocera-resolution currentResolution)"
