@@ -158,20 +158,10 @@ function applyConfig()
     ### Install wsh57
     echo 'Installing MS Windows Script Host 5.7...'
     ln -sf "${VP_DIR}/deps/wsh57/"* "$WINEPREFIX/drive_c/windows/syswow64"
-    DLLS='dispex.dll jscript.dll scrobj.dll scrrun.dll vbscript.dll wshcon.dll wshext.dll'
-    for i in ${DLLS}; do
-        $WINE regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/$i" 2>&1&> /dev/null
-        echo "$i Successfully registered!"
-    done
 
     ### Install vcrun6
     echo 'Installing Visual C++ 6 runtime libraries...'
     ln -sf "${VP_DIR}/deps/vcrun6/x64/"* "$WINEPREFIX/drive_c/windows/syswow64"
-    DLLS='asycfilt.dll comcat.dll mfc42.dll mfc42u.dll msvcirt.dll msvcp60.dll msvcrt.dll oleaut32.dll olepro32.dll'
-    for i in ${DLLS}; do
-        $WINE regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/$i" 2>&1&> /dev/null
-        echo "$i Successfully registered!"
-    done
 
     ### Install PinMAME.dll
     echo 'Installing VPinMAME...'
