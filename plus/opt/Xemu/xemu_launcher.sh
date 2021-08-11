@@ -126,7 +126,7 @@ sed -i "s|^controller_2_guid = .*|controller_2_guid = ${P2GUID}|"   "${HOME}/con
 sed -i "s|^controller_3_guid = .*|controller_3_guid = ${P3GUID}|"   "${HOME}/configs/xemu/xemu.ini"
 sed -i "s|^controller_4_guid = .*|controller_4_guid = ${P4GUID}|"   "${HOME}/configs/xemu/xemu.ini"
 
-xemu -config_path "${HOME}/configs/xemu/xemu.ini"
+${MANGOHUD_CMD} xemu -config_path "${HOME}/configs/xemu/xemu.ini"
 
 # restore resolution if changed
 RES_STOP="$(batocera-resolution currentResolution)"
