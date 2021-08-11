@@ -22,7 +22,7 @@ RESOLUTION="${2}"
 RATIO="${3}"
 P1GUID="${4}"
 P1NAME="${5}"
-WINE=wine-lutris
+WINE=wine-old-stable
 
 ################################################################################
 
@@ -121,15 +121,7 @@ function applyConfig()
     ### Aplica a config padrão
     "$WINE" regedit "${FP_DIR}/emulator/config.reg"
 
-    cp -rf "${FP_DIR}/dll/"* "$WINEPREFIX/drive_c/windows/syswow64" && cp -rf "${FP_DIR}/dll/"* "$WINEPREFIX/drive_c/windows/system32"
-
-    DLLS='dispex.dll jscript.dll scrobj.dll scrrun.dll vbscript.dll wshcon.dll wshext.dll'
-
-    for i in $DLLS; do
-        "$WINE" regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/$i" 2>&1&> /dev/null
-        "$WINE" regsvr32 "$WINEPREFIX/drive_c/windows/system32/$i" 2>&1&> /dev/null
-        echo "$i Registrada com sucesso!"
-    done
+    cp -rf "${FP_DIR}/dll/"* "$WINEPREFIX/drive_c/windows/syswow64"
 
     if [ "$(pidof yad)" ]; then
         killall yad
