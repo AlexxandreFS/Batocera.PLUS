@@ -45,20 +45,20 @@ export INSTALL_EXTRAS=1
 
 function help()
 {
-    echo " "
-    echo " Future Pinball launcher for Batocera.PLUS"
-    echo " "
-    echo " Codigo escrito por: Sergio de Carvalho Junior"
-    echo " "
-    echo " Linha de comando:"
-    echo " fpinball_launcher.sh [ROM] [RESOLUTION] [RATIO] [P1GUID] [P1NAME]"
-    echo " "
-    echo " ROM = Caminho do jogo até a .fpt"
-    echo " RESULUTION = auto ou algo que respeite a regra XXXXxXXXX ex: [1920x1080]"
-    echo " RATIO = 4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3|auto|custom|squarepixel"
-    echo " PIGUID = parâmetro do emulatorlauncher.sh (OPICIONAL)"
-    echo " P1NAME = parâmetro do emulatorlauncher.sh (OPICIONAL)"
-    echo " "
+    echo '' 
+    echo ' Future Pinball launcher for Batocera.PLUS'
+    echo ' '
+    echo ' Codigo escrito por: Sergio de Carvalho Junior'
+    echo ' '
+    echo ' Linha de comando:'
+    echo ' fpinball_launcher.sh [ROM] [RESOLUTION] [RATIO] [P1GUID] [P1NAME]'
+    echo ' '
+    echo ' ROM = Caminho do jogo até a .fpt'
+    echo ' RESULUTION = auto ou algo que respeite a regra XXXXxXXXX ex: [1920x1080]'
+    echo ' RATIO = 4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3|auto|custom|squarepixel'
+    echo ' PIGUID = parâmetro do emulatorlauncher.sh (OPICIONAL)'
+    echo ' P1NAME = parâmetro do emulatorlauncher.sh (OPICIONAL)'
+    echo ' '
 }
 
 if [ "${1}" == '--help' ]; then
@@ -71,7 +71,7 @@ fi
 ### NÃO EXECUTA O EMULADOR DUAS VEZES
 
 if [ "$(pidof wineserver)" ]; then
-    echo " Future Pinball launcher ja esta sendo executado"
+    echo ' Future Pinball launcher ja esta sendo executado'
     exit 1
 fi
 
@@ -79,10 +79,10 @@ fi
 
 ### LAUNCHER INFO
 
-echo " "
-echo " Future Pinball launcher for Batocera.PLUS"
-echo " Codigo escrito por: Sergio de Carvalho Junior"
-echo " "
+echo ' '
+echo ' Future Pinball launcher for Batocera.PLUS'
+echo ' Codigo escrito por: Sergio de Carvalho Junior'
+echo ' '
 
 ################################################################################
 
@@ -96,6 +96,7 @@ function createFolders()
     cp -f  "${FP_DIR}/emulator/devil.dll"           "${FP_STDIR}"
     cp -f  "${FP_DIR}/emulator/fmod.dll"            "${FP_STDIR}"
     cp -f  "${FP_DIR}/emulator/Future Pinball.exe"  "${FP_STDIR}"
+    cp -f  "${FP_DIR}/emulator/run.exe"             "${FP_STDIR}"
     cp -f  "${FP_DIR}/emulator/ilu.dll"             "${FP_STDIR}"
     cp -f  "${FP_DIR}/emulator/ilut.dll"            "${FP_STDIR}"
     cp -f  "${FP_DIR}/emulator/libcurl.dll"         "${FP_STDIR}"
@@ -120,15 +121,7 @@ function applyConfig()
     ### Aplica a config padrão
     "$WINE" regedit "${FP_DIR}/emulator/config.reg"
 
-    cp -rf "${FP_DIR}/dll/"* "$WINEPREFIX/drive_c/windows/syswow64" && cp -rf "${FP_DIR}/dll/"* "$WINEPREFIX/drive_c/windows/system32"
-
-    DLLS='dispex.dll jscript.dll scrobj.dll scrrun.dll vbscript.dll wshcon.dll wshext.dll'
-
-    for i in $DLLS; do
-        "$WINE" regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/$i" 2>&1&> /dev/null
-        "$WINE" regsvr32 "$WINEPREFIX/drive_c/windows/system32/$i" 2>&1&> /dev/null
-        echo "$i Registrada com sucesso!"
-    done
+    cp -rf "${FP_DIR}/dll/"* "$WINEPREFIX/drive_c/windows/syswow64"
 
     if [ "$(pidof yad)" ]; then
         killall yad
@@ -279,6 +272,7 @@ export VIRTUAL_DESKTOP=1
 if [ "${JOGO}" == '' ]; then
     "$WINE" "${FP_STDIR}/Future Pinball.exe"
 else
+    "$WINE" "${FP_STDIR}/run.exe" &
     "$WINE" "${FP_STDIR}/Future Pinball.exe" /open "${JOGO}" /play /exit
 fi
 
