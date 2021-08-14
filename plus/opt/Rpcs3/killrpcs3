@@ -1,0 +1,23 @@
+#!/bin/sh
+##
+## Batocera.PLUS
+## Encerra a execução do emulador rpcs3.
+##
+## Código escrito por: Sérgio de Carvalho Júnior
+## 
+################################################################################
+
+RPCS3_PID="$(pidof -s rpcs3)"
+
+kill -15 ${RPCS3_PID}
+sleep 0.2
+
+if [ -z "${RPCS3_PID}" ]; then
+    echo 'RPCS3 closed!'
+else
+    sleep 0.5
+    kill -9 ${RPCS3_PID}
+    echo 'RPCS3 is dead!'
+fi
+
+exit 0
