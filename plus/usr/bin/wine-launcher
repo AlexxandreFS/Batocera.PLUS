@@ -20,7 +20,7 @@ esac
 yad --form \
     --title='WINE LAUNCHER' \
     --window-icon='/usr/share/icons/batocera/wine.png' \
-    --text=''"${MSG[1]}"'' \
+    --text=''"${MSG}"'' \
     --text-align=center \
     --button='WINE-STABLE:0' \
     --button='WINE-OLD-STABLE:1' \
