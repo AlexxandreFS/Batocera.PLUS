@@ -75,13 +75,30 @@ function CreateConfigs()
    echo '  Renderer: Vulkan' >> "${HOME_DIR}/.config/rpcs3/config.yml"
 }
 
+function TextWarning()
+{
+   LANG="$(batocera-settings -command load -key system.language)"
+   case $LANG in
+      pt_BR) MSG[1]='\n NENHUMA CONFIGURAÇÃO DE CONTROLE FOI FEITA, FAÇA UMA ANTES DE EXECUTAR O JOGO. \n'
+             MSG[2]='\n NENHUM FIRMWARE FOI INSTALADO, INSTALE ANTES DE EXECUTAR O JOGO. \n'
+             MSG[3]='\n ESCOLHA UMA OPÇÃO. \n' ;;
+      es_ES) MSG[1]='\n NO SE HAN REALIZADO AJUSTES DE CONTROL, HAGA UNO ANTES DE EJECUTAR EL JUEGO. \n'
+             MSG[2]='\n NO SE HA INSTALADO FIRMWARE, INSTALAR ANTES DE EJECUTAR UN JUEGO. \n'
+             MSG[3]='\n ESCOGE UNA OPCIÓN. \n' ;;
+      *)     MSG[1]='\n NO CONTROLLER CONFIG HAS BEEN MADE, MAKE ONE BEFORE RUN A GAME.\n'
+             MSG[2]='\n NO FIRMWARE HAS BEEN INSTALLED, INSTALL BEFORE RUN A GAME. \n'
+             MSG[3]='\n CHOOSE A OPTION. \n'
+   esac
+}
+
 function ControllerWarning()
 {
    yad --form \
    --title='WARNING' \
    --window-icon='/usr/share/icons/batocera/vpinball.png' \
-   --text='\n NO CONTROLLER CONFIG HAS BEEN MADE, MAKE ONE BEFORE RUN A GAME.\n' \
+   --text=''"${MSG[1]}"'' \
    --undecorated \
+   --text-align=center \
    --on-top \
    --fixed \
    --center \
@@ -96,8 +113,9 @@ function FimwareWarning()
    yad --form \
    --title='WARNING' \
    --window-icon='/usr/share/icons/batocera/vpinball.png' \
-   --text='\n NO FIRMWARE HAS BEEN INSTALLED, INSTALL BEFORE RUN A GAME.\n' \
+   --text=''"${MSG[2]}"'' \
    --undecorated \
+   --text-align=center \
    --on-top \
    --fixed \
    --center \
@@ -105,8 +123,71 @@ function FimwareWarning()
    --timeout=3 \
    --no-buttons &
    exit 0
-
 }
+
+function choseEmu()
+{
+    yad --form \
+    --title='RPCS3 CONFIGURATOR' \
+    --window-icon='/usr/share/icons/batocera/rpcs3.png' \
+    --text=''"${MSG[3]}"'' \
+    --text-align=center \
+    --button='RPCS3:0' \
+    --button='RPCS3-USER-CONFIG:1' \
+    --fixed \
+    --center \
+    --close-on-unfocus
+
+    case ${?} in
+        0) exec /usr/bin/batocera-config-rpcs3 ;;
+        1) GUI='1' ;;
+        *) exit 0
+    esac
+}
+
+################################################################################
+### DIR CHANGE DETECTION
+
+if [ ! -e "${GAME}" ] && [ ! -e "${P1GUID}" ]; then
+   TextWarning
+   choseEmu
+fi
+
+if [ ! "$(ls -A "${HOME_DIR}/.config/rpcs3" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE_DIR}/rpcs3"  2> /dev/null)" ]; then
+   CreateFolders
+   CreateConfigs
+fi
+
+if [ ! -f "${HOME_DIR}/.config/rpcs3/config_input.yml" ] && [ "${GAME}" != '' ]; then
+   TextWarning
+   ControllerWarning
+fi
+
+if [ ! -d "${SAVE_DIR}/rpcs3/cache/ppu-ogZ9XMwLZb70cCsiaswxN1kKG5ts-libpngenc.sprx" ] && [ "${GAME}" != '' ]; then
+   TextWarning
+   FimwareWarning
+fi
+
+################################################################################
+### HOTKEY
+
+if [ "${P1GUID}" ]; then
+
+   BOTOES="$(${RPCS3_DIR}/getHotkeyStart ${P1GUID})"
+   BOTAO_HOTKEY=$(echo "${BOTOES}" | cut -d ' ' -f 1)
+   BOTAO_START=$(echo  "${BOTOES}" | cut -d ' ' -f 2)
+
+   if [ "${BOTAO_HOTKEY}" ] && [ "${BOTAO_START}" ]; then
+      # Impede que o xjoykill seja encerrado enquanto o jogo está em execução.
+      while : ; do
+         nice -n 20 xjoykill -hotkey ${BOTAO_HOTKEY} -start ${BOTAO_START} -kill "${RPCS3_DIR}/killrpcs3"
+         if ! [ "$(pidof rpcs3)" ]; then
+            break
+         fi
+         sleep 5
+      done &
+   fi
+fi
 
 ################################################################################
 ### EXPORTS
@@ -120,48 +201,11 @@ export XDG_CACHE_HOME="${SAVE_DIR}"
 export -f xdg-mime
 
 ################################################################################
-### DIR CHANGE DETECTION
-
-if [ ! "$(ls -A "${HOME_DIR}/.config/rpcs3" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE_DIR}/rpcs3"  2> /dev/null)" ]; then
-   CreateFolders
-   CreateConfigs
-fi
-
-if [ ! -f "${HOME_DIR}/.config/rpcs3/config_input.yml" ] && [ "${GAME}" != '' ]; then
-   ControllerWarning
-fi
-
-if [ ! -f "${SAVE_DIR}/rpcs3/cache/ppu-ogZ9XMwLZb70cCsiaswxN1kKG5ts-libpngenc.sprx/v3-kusa-GUaqd0R8vrnMWoH17WjSzY-00000s-haswell.obj.gz" ] && [ "${GAME}" != '' ]; then
-   FimwareWarning
-fi
-
-################################################################################
-### HOTKEY
-
-if [ "${P1GUID}" != '' ]; then
-   BOTOES="$(/opt/Wine/getHotkeyStart "${P1GUID}")"
-   BOTAO_HOTKEY="$(echo "${BOTOES}" | cut -d ' ' -f 1)"
-   BOTAO_START="$(echo "${BOTOES}"  | cut -d ' ' -f 2)"
-
-   if [ "${BOTAO_HOTKEY}" ] && [ "${BOTAO_START}" ]; then
-      # Impede que o xjoykill seja encerrado enquanto o jogo está em execução.
-      while : ; do
-         nice -n 20 xjoykill -hotkey "${BOTAO_HOTKEY}" -start "${BOTAO_START}" -kill /opt/Rpcs3/killrpcs3
-         if ! [ "$(pidof rpcs3)" ]; then
-            break
-         fi
-         sleep 5
-      done &
-   fi
-
-fi
-
-################################################################################
 ### RUN
 
-if [ "${GAME}" != '' ]; then
-   "${RPCS3_DIR}/bin/rpcs3" "${GAME}/PS3_GAME/USRDIR/EBOOT.BIN"
-else
+if [ -e "${GAME}" ]; then
+   ${MANGOHUD_CMD} "${RPCS3_DIR}/bin/rpcs3" "${GAME}/PS3_GAME/USRDIR/EBOOT.BIN"
+elif [ "${GUI}" ]; then
    "${RPCS3_DIR}/bin/rpcs3"
 fi
 
