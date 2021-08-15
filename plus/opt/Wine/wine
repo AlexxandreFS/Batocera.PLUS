@@ -501,17 +501,14 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
     WINE_VERSION_NEW="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
 
     if [ "${WINE_VERSION}" == "${WINE_VERSION_NEW}" ]; then
-        # Captura a resolução da área de trabalho antes do jogo ser carregado
-        RES_START="$(batocera-resolution currentMode)"
-
         ${WINE_DIR}/${WINE_BUILD}/bin/wineserver -p1
         nice -n -10 ${MANGOHUD_CMD} "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" ${VIRTUAL_DESKTOP} "${@}"
         wineWait
 
-        # Restaura a resolução da área de trabalho caso o jogo tenha alterado
+        # Restaura a resolução da área de trabalho.
         RES_STOP="$(batocera-resolution currentResolution)"
-        if [ "${RES_START}" != "${RES_STOP}" ]; then
-           batocera-resolution setMode "${RES_START}"
+        if [ "${DEFAULT_RESOLUTION}" != "${RES_STOP}" ]; then
+           batocera-resolution setMode "${DEFAULT_RESOLUTION}"
         fi
 
         exit 0

@@ -109,6 +109,8 @@ fi
 
 batocera-resolution minTomaxResolution
 
+export DEFAULT_RESOLUTION="$(batocera-resolution currentMode)"
+
 ################################################################################
 
 ### Force vsync

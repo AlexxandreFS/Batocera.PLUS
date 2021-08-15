@@ -104,14 +104,14 @@ function closeWine() {
 
 if ! setWinePrefix; then
     killWine
-    exit 2
-fi
-
-if ! closeWine; then
+elif ! closeWine; then
     killWine
-    exit 3
 fi
 
-echo 'wine is dead'
+# Restaura a resolução da área de trabalho.
+RES_STOP="$(batocera-resolution currentResolution)"
+if [ "${DEFAULT_RESOLUTION}" != "${RES_STOP}" ]; then
+    batocera-resolution setMode "${DEFAULT_RESOLUTION}"
+fi
 
 exit 0
