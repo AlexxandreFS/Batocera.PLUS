@@ -95,7 +95,7 @@ function ControllerWarning()
 {
    yad --form \
    --title='WARNING' \
-   --window-icon='/usr/share/icons/batocera/vpinball.png' \
+   --window-icon='/usr/share/icons/batocera/rpcs3.png' \
    --text=''"${MSG[1]}"'' \
    --undecorated \
    --text-align=center \
@@ -112,7 +112,7 @@ function FimwareWarning()
 {
    yad --form \
    --title='WARNING' \
-   --window-icon='/usr/share/icons/batocera/vpinball.png' \
+   --window-icon='/usr/share/icons/batocera/rpcs3.png' \
    --text=''"${MSG[2]}"'' \
    --undecorated \
    --text-align=center \
@@ -133,7 +133,7 @@ function choseEmu()
     --text=''"${MSG[3]}"'' \
     --text-align=center \
     --button='RPCS3:0' \
-    --button='RPCS3-USER-CONFIG:1' \
+    --button='RPCS3-MAINLINE:1' \
     --fixed \
     --center \
     --close-on-unfocus
