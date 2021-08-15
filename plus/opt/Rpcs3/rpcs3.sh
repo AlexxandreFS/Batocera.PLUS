@@ -1,8 +1,10 @@
 #!/bin/bash
-###
-###
-###
-###
+##
+## Batocera.PLUS
+##
+## Código escrito por: Sérgio de Carvalho Júnior
+## Supervisão: Alexandre Freire dos Santos
+##
 ################################################################################
 
 ### DIRECTORIES, FILES AND PARAMETERS
@@ -13,6 +15,11 @@ P1GUID="${2}"
 RPCS3_DIR=/opt/Rpcs3
 HOME_DIR="${HOME}/configs/rpcs3"
 SAVE_DIR=/userdata/saves
+
+if [ "$(pidof rpcs3)" ]; then
+   echo ' RPCS3 launcher ja está em execução'
+   exit 1
+fi
 
 ################################################################################
 ### FUNCTIONS
@@ -32,6 +39,9 @@ function CreateFolders()
    ln -sf "${HOME_DIR}/dev_hdd0/home/00000001/savedata" "${HOME_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
    ln -sf "${HOME_DIR}/dev_hdd0/home/00000001/trophy" "${HOME_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
    ln -sf "${HOME_DIR}/dev_hdd0/home/00000001/exdata" "${HOME_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
+   ln -sf "/usr/share/rpcs3/GuiConfigs/"* "${HOME_DIR}/.config/rpcs3/GuiConfigs"
+   ln -sf "${HOME_DIR}/dev_hdd0/game" "${HOME_DIR}/.config/rpcs3/dev_hdd0"
+   ln -sf /usr/share/rpcs3/Icons "${HOME_DIR}/.config/rpcs3"
    ln -sf "${HOME_DIR}/dev_flash" "${HOME_DIR}/.config/rpcs3"
 }
 
@@ -60,22 +70,12 @@ function CreateConfigs()
    echo 'infoBoxEnabledWelcome=false' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
    echo 'lastExplorePathPUP=/userdata/system/../bios' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
 
-   echo 'Audio:' >> "${HOME_DIR}/.config/rpcs3/config.yml"
-   echo '  Audio Channels: Downmix to Stereo' >> "${HOME_DIR}/.config/rpcs3/config.yml"
-   echo '  Renderer: ALSA' >> "${HOME_DIR}/.config/rpcs3/config.yml"
-   echo 'Core:' >> "${HOME_DIR}/.config/rpcs3/config.yml"
-   echo '  PPU Decoder: Recompiler (LLVM)' >> "${HOME_DIR}/.config/rpcs3/config.yml"
-   echo '  PPU LLVM Accurate Vector NaN values: true' >> "${HOME_DIR}/.config/rpcs3/config.yml"
-   echo '  SPU Decoder: Recompiler (LLVM)' >> "${HOME_DIR}/.config/rpcs3/config.yml"
    echo 'Miscellaneous:' >> "${HOME_DIR}/.config/rpcs3/config.yml"
    echo '  Exit RPCS3 when process finishes: true' >> "${HOME_DIR}/.config/rpcs3/config.yml"
    echo '  Start games in fullscreen mode: true' >> "${HOME_DIR}/.config/rpcs3/config.yml"
-   echo 'Video:' >> "${HOME_DIR}/.config/rpcs3/config.yml"
-   echo '  Frame limit: 60' >> "${HOME_DIR}/.config/rpcs3/config.yml"
-   echo '  Renderer: Vulkan' >> "${HOME_DIR}/.config/rpcs3/config.yml"
 }
 
-function TextWarning()
+function TextLocalization()
 {
    LANG="$(batocera-settings -command load -key system.language)"
    case $LANG in
@@ -145,13 +145,44 @@ function choseEmu()
     esac
 }
 
+function help()
+{
+   echo ' Linha de comando:'
+   echo ' rpcs3.sh [ROM] [P1GUID]'
+   echo
+   echo ' ROM          = Caminho do jogo até a pasta do jogo'
+   echo ' PIGUID       = parâmetro do emulatorlauncher.sh (OPICIONAL)'
+   echo
+}
+
 ################################################################################
-### DIR CHANGE DETECTION
+### LAUNCHER INFO
+
+echo
+echo ' RPCS3 launcher for Batocera.PLUS'
+echo
+echo ' Codigo escrito por: Sérgio de Carvalho Júnior'
+echo ' Supervisão: Alexandre Freire dos Santos'
+echo
+
+################################################################################
+### CALL HELP
+
+if [ "${GAME}" == '--help' ]; then
+   help
+   exit 0
+fi
+
+################################################################################
+### MENU
 
 if [ ! -e "${GAME}" ] && [ ! -e "${P1GUID}" ]; then
-   TextWarning
+   TextLocalization
    choseEmu
 fi
+
+################################################################################
+### BUILD FOLDERS AND FILES
 
 if [ ! "$(ls -A "${HOME_DIR}/.config/rpcs3" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE_DIR}/rpcs3"  2> /dev/null)" ]; then
    CreateFolders
@@ -159,12 +190,12 @@ if [ ! "$(ls -A "${HOME_DIR}/.config/rpcs3" 2> /dev/null)" ] || [ ! "$(ls -A "${
 fi
 
 if [ ! -f "${HOME_DIR}/.config/rpcs3/config_input.yml" ] && [ "${GAME}" != '' ]; then
-   TextWarning
+   TextLocalization
    ControllerWarning
 fi
 
 if [ ! -d "${SAVE_DIR}/rpcs3/cache/ppu-ogZ9XMwLZb70cCsiaswxN1kKG5ts-libpngenc.sprx" ] && [ "${GAME}" != '' ]; then
-   TextWarning
+   TextLocalization
    FimwareWarning
 fi
 
@@ -215,6 +246,13 @@ fi
 
 if [ "$(pidof -s xjoykill)" ]; then
    killall -9 xjoykill
+fi
+
+################################################################################
+### WAIT RPCS3 TO FINISH
+
+if [ "$(pidof rpcs3)" ]; then
+   sleep 1
 fi
 
 exit 0
