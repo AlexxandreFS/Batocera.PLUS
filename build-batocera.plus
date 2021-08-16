@@ -345,10 +345,6 @@ rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/dolphin-emu.desktop"
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/retroarch.desktop"
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/pcmanfm-desktop-pref.desktop"
 
-# Cannonball
-rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/cannonball/images"
-rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/cannonball/gamelist.xml"
-
 for x in c64 gba megadrive mrboom nes pcengine prboom snes; do
     for y in "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/${x}/"*; do
         if [ "${y}" != "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/${x}/_info.txt" ]; then
