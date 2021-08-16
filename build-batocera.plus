@@ -339,13 +339,14 @@ rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/music"
 # Remova apenas se atualizar o pacote completo dos shaders para o retroarch.
 rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/shaders"
 
-# Esta parte remove icones duplicados e fora do padrão para um próximo update.
+# Remove icones duplicados e fora do padrão para um próximo update.
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/scummvm.desktop"
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/dolphin-emu.desktop"
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/retroarch.desktop"
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/pcmanfm-desktop-pref.desktop"
 
-for x in c64 gba megadrive mrboom nes pcengine prboom snes; do
+# Remove roms que por padrão já vem com o sistema
+for x in c64 gba megadrive nes pcengine prboom snes; do
     for y in "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/${x}/"*; do
         if [ "${y}" != "$TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/${x}/_info.txt" ]; then
             rm -r "${y}" || exit $?
@@ -353,6 +354,11 @@ for x in c64 gba megadrive mrboom nes pcengine prboom snes; do
     done
 done
 
+# Desativa por padrão o jogo MrBoom
+mv $TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/mrboom/MrBoom.libretro \
+   $TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/mrboom/MrBoom.libretro.disable \
+
+# Remove o driver antigo do Nvidia
 KERNEL_VERSION="$(ls ${TEMP_DIR}/squashfs-root/lib/modules)"
 NVIDIA_VERSION="$(modinfo "${TEMP_DIR}/squashfs-root/lib/modules/${KERNEL_VERSION}/extra/nvidia.ko" | grep -E '^version: ' | awk '{print $2}')"
 
