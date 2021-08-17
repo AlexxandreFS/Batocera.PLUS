@@ -206,8 +206,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dos2unix-7.4.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/util-linux-extras-2.35-1.7z' # cfdisk, swapon, whereis
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/preload-0.6.4-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mangohud-apr-25-2021-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/GOverlay-0.4.2-4.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/GOverlay-libs.7z' # dep: goverlay
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vkBasalt-0.3.2.3-4.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/parsec-2.7z'
@@ -273,6 +272,9 @@ URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.4/dxvk
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 
+URL_GOVERLAY='https://github.com/benjamimgois/goverlay/releases/download/0.6.1/goverlay_0_6_1.tar.xz'
+URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.5/MangoHud-0.6.5.r0.ge42002c.tar.gz'
+
 URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-711/yuzu-20210808-caebd3f1c.AppImage'
 URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1978/Yuzu-EA-1978.AppImage'
 
@@ -302,6 +304,8 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_CEMUHOOK}" \
            "${URL_YUZU_MAINLINE}" \
            "${URL_YUZU_EARLY_ACCESS}" \
+           "${URL_GOVERLAY}" \
+           "${URL_MANGOHUD}" \
            "${URL_RPCS3}"
 
 do
@@ -553,6 +557,18 @@ gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract
 rm "${TEMP_DIR}/pkg-xtract/README.md"
 rm "${TEMP_DIR}/pkg-xtract/LICENSE"
 cp -r "${TEMP_DIR}/pkg-xtract/"* "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi"
+rm -r "${TEMP_DIR}/pkg-xtract/"*
+
+echo 'Install GOverlay...'
+PKG_NAME="$(basename "${URL_GOVERLAY}")"
+xz -d -k -c -v "${DOWNLOAD_DIR}/${PKG_NAME}" | tar xv -C "${TEMP_DIR}/squashfs-root/opt/GOverlay/bin"
+
+echo 'Install MangoHud...'
+PKG_NAME="$(basename "${URL_MANGOHUD}")"
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
+tar -xvf "${TEMP_DIR}/pkg-xtract/MangoHud/MangoHud-package.tar" -C "${TEMP_DIR}/pkg-xtract/MangoHud"
+mv "${TEMP_DIR}/pkg-xtract/MangoHud/usr/lib/mangohud/lib" "${TEMP_DIR}/squashfs-root/opt/MangoHud/lib64"
+mv "${TEMP_DIR}/pkg-xtract/MangoHud/usr/lib/mangohud/lib32" "${TEMP_DIR}/squashfs-root/opt/MangoHud/lib"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Firefox...'
