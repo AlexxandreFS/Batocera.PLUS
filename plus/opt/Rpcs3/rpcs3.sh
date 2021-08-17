@@ -33,6 +33,7 @@ function CreateFolders()
             "${HOME_DIR}/dev_hdd0/home/00000001/savedata" \
             "${HOME_DIR}/dev_hdd0/home/00000001/trophy" \
             "${HOME_DIR}/dev_hdd0/home/00000001/exdata" \
+            "${HOME_DIR}/dev_hdd0/game" \
             "${HOME_DIR}/dev_flash" \
             "${SAVE_DIR}/rpcs3"
 
@@ -40,9 +41,13 @@ function CreateFolders()
    ln -sf "${HOME_DIR}/dev_hdd0/home/00000001/trophy" "${HOME_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
    ln -sf "${HOME_DIR}/dev_hdd0/home/00000001/exdata" "${HOME_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
    ln -sf "/usr/share/rpcs3/GuiConfigs/"* "${HOME_DIR}/.config/rpcs3/GuiConfigs"
-   ln -sf "${HOME_DIR}/dev_hdd0/game" "${HOME_DIR}/.config/rpcs3/dev_hdd0"
+   ln -sf "${HOME_DIR}/dev_hdd0/game" "${HOME_DIR}/.config/rpcs3/dev_hdd0/"
    ln -sf /usr/share/rpcs3/Icons "${HOME_DIR}/.config/rpcs3"
    ln -sf "${HOME_DIR}/dev_flash" "${HOME_DIR}/.config/rpcs3"
+
+   if [ -e "${HOME_DIR}/games.yml" ];then
+      cp -f "${HOME_DIR}/games.yml" "${HOME_DIR}/.config/rpcs3"
+   fi
 }
 
 function CreateConfigs()
@@ -58,6 +63,7 @@ function CreateConfigs()
    echo '[Localization]' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
    echo 'language=en' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
    echo '[Meta]' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'currentStylesheet=Skyline' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
    echo 'showDebugTab=true' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
    echo 'useRichPresence=true' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
    echo 'discordState=' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
