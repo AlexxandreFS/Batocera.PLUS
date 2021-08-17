@@ -35,7 +35,7 @@ function CreateFolders()
             "${HOME_DIR}/dev_hdd0/home/00000001/exdata" \
             "${HOME_DIR}/dev_hdd0/game" \
             "${HOME_DIR}/dev_flash" \
-            "${SAVE_DIR}/rpcs3"
+            "${SAVE_DIR}/rpcs3_mainline"
 
    ln -sf "${HOME_DIR}/dev_hdd0/home/00000001/savedata" "${HOME_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
    ln -sf "${HOME_DIR}/dev_hdd0/home/00000001/trophy" "${HOME_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
@@ -44,10 +44,6 @@ function CreateFolders()
    ln -sf "${HOME_DIR}/dev_hdd0/game" "${HOME_DIR}/.config/rpcs3/dev_hdd0/"
    ln -sf /usr/share/rpcs3/Icons "${HOME_DIR}/.config/rpcs3"
    ln -sf "${HOME_DIR}/dev_flash" "${HOME_DIR}/.config/rpcs3"
-
-   if [ -e "${HOME_DIR}/games.yml" ];then
-      cp -f "${HOME_DIR}/games.yml" "${HOME_DIR}/.config/rpcs3"
-   fi
 }
 
 function CreateConfigs()
@@ -200,7 +196,7 @@ if [ ! -f "${HOME_DIR}/.config/rpcs3/config_input.yml" ] && [ "${GAME}" != '' ];
    ControllerWarning
 fi
 
-if [ ! -d "${SAVE_DIR}/rpcs3/cache/ppu-ogZ9XMwLZb70cCsiaswxN1kKG5ts-libpngenc.sprx" ] && [ "${GAME}" != '' ]; then
+if [ ! -d "${SAVE_DIR}/rpcs3_mainline/rpcs3/cache/ppu-ogZ9XMwLZb70cCsiaswxN1kKG5ts-libpngenc.sprx" ] && [ "${GAME}" != '' ]; then
    TextLocalization
    FimwareWarning
 fi
@@ -209,7 +205,6 @@ fi
 ### HOTKEY
 
 if [ "${P1GUID}" ]; then
-
    BOTOES="$(${RPCS3_DIR}/getHotkeyStart ${P1GUID})"
    BOTAO_HOTKEY=$(echo "${BOTOES}" | cut -d ' ' -f 1)
    BOTAO_START=$(echo  "${BOTOES}" | cut -d ' ' -f 2)
@@ -234,7 +229,7 @@ export LD_LIBRARY_PATH="${RPCS3_DIR}/lib:${LD_LIBRARY_PATH}"
 export QT_QPA_PLATFORM=xcb
 export QT_PLUGIN_PATH="${RPCS3_DIR}/plugins"
 export XDG_RUNTIME_DIR=/run/root
-export XDG_CACHE_HOME="${SAVE_DIR}"
+export XDG_CACHE_HOME="${SAVE_DIR}/rpcs3_mainline"
 export -f xdg-mime
 
 ################################################################################
@@ -246,19 +241,11 @@ elif [ "${GUI}" ]; then
    "${RPCS3_DIR}/bin/rpcs3"
 fi
 
-
 ################################################################################
 ### CLOSE XJOYKILL
 
 if [ "$(pidof -s xjoykill)" ]; then
    killall -9 xjoykill
-fi
-
-################################################################################
-### WAIT RPCS3 TO FINISH
-
-if [ "$(pidof rpcs3)" ]; then
-   sleep 1
 fi
 
 exit 0
