@@ -68,7 +68,7 @@ if [ "${FW}" == '--firmware' ]; then
            
 		   ### DOWNLOADING FIRMWARE
 		   rm -f "${BIOS}/PS3UPDAT.PUP" # apaga download incompleto se houver
-	       curl -L -C - 'http://dbr01.ps3.update.playstation.net/update/ps3/image/br/2020_1203_03373a581934f0d2b796156d2fb28b39/PS3UPDAT.PUP' -o "${BIOS}/PS3UPDAT.PUP"
+	       curl -L -C - 'http://dbr01.ps3.update.playstation.net/update/ps3/image/br/2021_0601_a0b63a3e4ae92ed176d6b9a67ce447f0/PS3UPDAT.PUP' -o "${BIOS}/PS3UPDAT.PUP"
 	       FILE="${BIOS}/PS3UPDAT.PUP"
 		   
 		   ### STOP LOADING SCREEN
@@ -97,8 +97,8 @@ if [ "${FW}" == '--firmware' ]; then
 	   fi
 	   
 	   ### THIS THE LAST FILE MAKE BY RPCS3 DURING FW INSTALATION AND CACHE CREATION
-       if [ -f "${HOME}/../saves/rpcs3/cache/ppu-ogZ9XMwLZb70cCsiaswxN1kKG5ts-libpngenc.sprx/v3-kusa-GUaqd0R8vrnMWoH17WjSzY-00000s-haswell.obj.gz" ]; then
-	       killall rpcs3
+       if [ -f "${HOME}/../saves/rpcs3/cache/ppu-ogZ9XMwLZb70cCsiaswxN1kKG5ts-libpngenc.sprx/v4-kusa-2sifYkmozGepFHvTeGKMcS-00000s-haswell.obj.gz" ]; then
+	       /opt/Rpcs3/killrpcs3
 	       break
 	   fi
    done
