@@ -96,7 +96,7 @@ cat << EOF >                                                libretro_info/emuscv
 # Software Information
 display_name = "Super Cassette Vision"
 authors = "TAKEDA toshiya"
-supported_extensions = "cart|rom|bin|hex"
+supported_extensions = "cart|rom|bin|hex|0"
 corename = "emuscv"
 categories = "Emulator"
 license = "GPLv3"
