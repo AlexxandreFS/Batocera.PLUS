@@ -2,7 +2,7 @@
 -------------------------------------------------------------------------------
 Roms com extensão .0 e .1 devem ter exatamente o mesmo nome, diferenciando-se
 apenas pela extensão, o emulador ao carregar o arquivo .0 irá procurar pelo
-arquivo .1 aumáticamente.
+arquivo .1 automáticamente.
 
 Exemplo:
 Doraemon (Japan).0
