@@ -1,6 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-export LD_LIBRARY_PATH="/opt/GOverlay/lib:${LD_LIBRARY_PATH}"
-export PATH="/opt/GOverlay/bin:${PATH}"
+MANGOHUD_DIR=/opt/MangoHud
+GOVERLAY_DIR=/opt/GOverlay
+
+export PATH="${GOVERLAY_DIR}/bin:${MANGOHUD_DIR}:${PATH}"
+export LD_LIBRARY_PATH="${GOVERLAY_DIR}/lib:${LD_LIBRARY_PATH}"
 export QT_QPA_PLATFORM=xcb
-exec /opt/GOverlay/bin/goverlay --style fusion
+exec goverlay --style fusion
