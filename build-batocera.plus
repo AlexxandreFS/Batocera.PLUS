@@ -263,7 +263,7 @@ URL_JAVA="$(wget -S --spider --max-redirect 0 'https://javadl.oracle.com/webapps
 URL_JAVA="${URL_JAVA}#/$(echo ${URL_JAVA} | sed 's/File=/;/' | cut -d ';' -f 2 | cut -d '&' -f 1)"
 
 URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/6.3.0/wine-mono-6.3.0-x86.tar.xz'
-URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.9/dxvk-1.9.tar.gz'
+URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.9.1/dxvk-1.9.1.tar.gz'
 URL_WINE_VKD3D_PROTON='https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.4/vkd3d-proton-2.4.tar.zst'
 URL_WINE_MF='388649a5ac65f558873ce4f6eef24702eb33902e'
 URL_WINE_MF="https://github.com/z0z0z/mf-install/archive/${URL_WINE_MF}.zip#/mf-install-${URL_WINE_MF}.zip"
