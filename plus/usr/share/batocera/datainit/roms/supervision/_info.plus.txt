@@ -1,0 +1,5 @@
+## SYSTEM SUPER SUPERVISION ##
+-------------------------------------------------------------------------------
+ROM files extensions accepted: ".sv .SV .bin .BIN .zip .ZIP"
+-------------------------------------------------------------------------------
+Extensions des fichiers ROMs permises: ".sv .SV .bin .BIN .zip .ZIP"
