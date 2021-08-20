@@ -16,7 +16,7 @@
  gbc:
    shader: handheld/lcd-grid-v2
  fds:
-@@ -106,3 +110,32 @@
+@@ -106,3 +110,56 @@
    shader: interpolation/sharp-bilinear-scanlines
  x68000:
    shader: interpolation/sharp-bilinear-scanlines
@@ -27,8 +27,14 @@
 +  shader: crt/crt-pi
 +fba_libretro:
 +  shader: interpolation/sharp-bilinear-scanlines
++gamecube:
++  shader: interpolation/sharp-bilinear-scanlines
 +hbmame:
 +  shader: interpolation/sharp-bilinear-scanlines
++j2me:
++  shader: crt/crt-pi
++megadrivemsu1:
++  shader: crt/crt-pi
 +n64dd:
 +  shader: interpolation/sharp-bilinear-scanlines
 +neogeomini:
@@ -37,15 +43,33 @@
 +  shader: interpolation/sharp-bilinear-scanlines
 +nesmini:
 +  shader: crt/crt-pi
++palmos:
++  shader: crt/crt-pi
++pico8:
++  shader: crt/crt-pi
++psp:
++  shader: crt/crt-pi
 +pspminis:
 +  shader: crt/crt-pi
 +psxmini:
 +  shader: crt/crt-pi
 +pc98:
 +  shader: crt/crt-pi
++samcoupe:
++  shader: crt/crt-pi
++scv:
++  shader: crt/crt-pi
 +snesmini:
 +  shader: crt/crt-pi
 +snescd:
 +  shader: crt/crt-pi
++supervision:
++  shader: crt/crt-pi
 +thomson:
++  shader: crt/crt-pi
++tic80:
++  shader: crt/crt-pi
++wii:
++  shader: crt/crt-pi
++uzebox:
 +  shader: crt/crt-pi

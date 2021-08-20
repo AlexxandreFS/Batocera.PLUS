@@ -3,7 +3,7 @@
 #
 --- rendering-defaults.yml.original
 +++ rendering-defaults.yml.modificado
-@@ -106,3 +106,32 @@
+@@ -106,3 +106,56 @@
    shader: interpolation/sharp-bilinear-simple
  x68000:
    shader: interpolation/sharp-bilinear-simple
@@ -14,9 +14,15 @@
 +  shader: interpolation/sharp-bilinear-simple
 +fba_libretro:
 +  shader: interpolation/sharp-bilinear-simple
++gamecube:
++  shader: interpolation/sharp-bilinear-simple
 +hbmame:
 +  shader: interpolation/sharp-bilinear-simple
++j2me:
++  shader: interpolation/sharp-bilinear-simple
 +n64dd:
++  shader: interpolation/sharp-bilinear-simple
++megadrivemsu1:
 +  shader: interpolation/sharp-bilinear-simple
 +neogeomini:
 +  shader: interpolation/sharp-bilinear-simple
@@ -24,15 +30,33 @@
 +  shader: interpolation/sharp-bilinear-simple
 +nesmini:
 +  shader: interpolation/sharp-bilinear-simple
++palmos:
++  shader: interpolation/sharp-bilinear-simple
++psp:
++  shader: interpolation/sharp-bilinear-simple
 +pspminis:
 +  shader: interpolation/sharp-bilinear-simple
 +psxmini:
 +  shader: interpolation/sharp-bilinear-simple
 +pc98:
 +  shader: interpolation/sharp-bilinear-simple
++pico8:
++  shader: interpolation/sharp-bilinear-simple
++samcoupe:
++  shader: interpolation/sharp-bilinear-simple
++scv:
++  shader: interpolation/sharp-bilinear-simple
 +snesmini:
 +  shader: interpolation/sharp-bilinear-simple
 +snescd:
 +  shader: interpolation/sharp-bilinear-simple
++supervision:
++  shader: interpolation/sharp-bilinear-simple
 +thomson:
++  shader: interpolation/sharp-bilinear-simple
++tic80:
++  shader: interpolation/sharp-bilinear-simple
++wii:
++  shader: interpolation/sharp-bilinear-simple
++uzebox:
 +  shader: interpolation/sharp-bilinear-simple

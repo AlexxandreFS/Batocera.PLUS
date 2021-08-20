@@ -3,7 +3,7 @@
 #
 --- rendering-defaults.yml.original
 +++ rendering-defaults.yml.modificado
-@@ -106,3 +106,32 @@
+@@ -106,3 +106,56 @@
    shader: anti-aliasing/advanced-aa
  x68000:
    shader: anti-aliasing/advanced-aa
@@ -14,8 +14,14 @@
 +  shader: anti-aliasing/advanced-aa
 +fba_libretro:
 +  shader: scalehq/2xScaleHQ
++gamecube:
++  shader: anti-aliasing/advanced-aa
 +hbmame:
 +  shader: scalehq/2xScaleHQ
++j2me:
++  shader: anti-aliasing/advanced-aa
++megadrivemsu1:
++  shader: anti-aliasing/advanced-aa
 +n64dd:
 +  shader: anti-aliasing/advanced-aa
 +neogeomini:
@@ -24,15 +30,33 @@
 +  shader: scalehq/2xScaleHQ
 +nesmini:
 +  shader: anti-aliasing/advanced-aa
++palmos:
++  shader: anti-aliasing/advanced-aa
++pico8:
++  shader: anti-aliasing/advanced-aa
++psp:
++  shader: anti-aliasing/advanced-aa
 +pspminis:
 +  shader: anti-aliasing/advanced-aa
 +psxmini:
 +  shader: scalehq/2xScaleHQ
 +pc98:
 +  shader: anti-aliasing/advanced-aa
++samcoupe:
++  shader: anti-aliasing/advanced-aa
++scv:
++  shader: anti-aliasing/advanced-aa
 +snesmini:
 +  shader: anti-aliasing/advanced-aa
 +snescd:
 +  shader: anti-aliasing/advanced-aa
++supervision:
++  shader: anti-aliasing/advanced-aa
 +thomson:
++  shader: anti-aliasing/advanced-aa
++tic80:
++  shader: anti-aliasing/advanced-aa
++wii:
++  shader: anti-aliasing/advanced-aa
++uzebox:
 +  shader: anti-aliasing/advanced-aa

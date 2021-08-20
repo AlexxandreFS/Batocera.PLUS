@@ -3,7 +3,7 @@
 #
 --- rendering-defaults.yml.original
 +++ rendering-defaults.yml.modificado
-@@ -106,3 +106,32 @@
+@@ -106,3 +106,56 @@
    shader: crt/zfast-crt
  x68000:
    shader: crt/zfast-crt
@@ -12,11 +12,17 @@
 +  shader: crt/zfast-crt
 +channelf:
 +  shader: crt/zfast-crt
++gamecube:
++  shader: crt/zfast-crt
 +fba_libretro:
 +  shader: crt/zfast-crt
 +hbmame:
 +  shader: crt/zfast-crt
++j2me:
++  shader: crt/zfast-crt
 +n64dd:
++  shader: crt/zfast-crt
++megadrivemsu1:
 +  shader: crt/zfast-crt
 +neogeomini:
 +  shader: crt/zfast-crt
@@ -24,15 +30,33 @@
 +  shader: crt/zfast-crt
 +nesmini:
 +  shader: crt/zfast-crt
++palmos:
++  shader: crt/zfast-crt
++pico8:
++  shader: crt/zfast-crt
++psp:
++  shader: crt/zfast-crt
 +pspminis:
 +  shader: crt/zfast-crt
 +psxmini:
 +  shader: crt/zfast-crt
 +pc98:
 +  shader: crt/zfast-crt
++samcoupe:
++  shader: crt/zfast-crt
++scv:
++  shader: crt/zfast-crt
 +snesmini:
 +  shader: crt/zfast-crt
 +snescd:
 +  shader: crt/zfast-crt
++supervision:
++  shader: crt/zfast-crt
 +thomson:
++  shader: crt/zfast-crt
++tic80:
++  shader: crt/zfast-crt
++wii:
++  shader: crt/zfast-crt
++uzebox:
 +  shader: crt/zfast-crt

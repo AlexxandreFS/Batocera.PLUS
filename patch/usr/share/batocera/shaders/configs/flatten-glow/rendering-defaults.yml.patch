@@ -3,7 +3,7 @@
 #
 --- rendering-defaults.yml.original
 +++ rendering-defaults.yml.modificado
-@@ -106,3 +106,32 @@
+@@ -106,3 +106,56 @@
    shader: blurs/kawase_glow
  x68000:
    shader: blurs/kawase_glow
@@ -14,7 +14,13 @@
 +  shader: blurs/kawase_glow
 +fba_libretro:
 +  shader: blurs/kawase_glow
++gamecube:
++  shader: blurs/kawase_glow
 +hbmame:
++  shader: blurs/kawase_glow
++j2me:
++  shader: blurs/kawase_glow
++megadrivemsu1:
 +  shader: blurs/kawase_glow
 +n64dd:
 +  shader: blurs/kawase_glow
@@ -24,15 +30,33 @@
 +  shader: blurs/kawase_glow
 +nesmini:
 +  shader: blurs/kawase_glow
++palmos:
++  shader: blurs/kawase_glow
++pico8:
++  shader: blurs/kawase_glow
++psp:
++  shader: blurs/kawase_glow
 +pspminis:
 +  shader: blurs/kawase_glow
 +psxmini:
 +  shader: blurs/kawase_glow
 +pc98:
 +  shader: blurs/kawase_glow
++samcoupe:
++  shader: blurs/kawase_glow
++scv:
++  shader: blurs/kawase_glow
 +snesmini:
 +  shader: blurs/kawase_glow
 +snescd:
 +  shader: blurs/kawase_glow
++supervision:
++  shader: blurs/kawase_glow
 +thomson:
++  shader: blurs/kawase_glow
++tic80:
++  shader: blurs/kawase_glow
++wii:
++  shader: blurs/kawase_glow
++uzebox:
 +  shader: blurs/kawase_glow

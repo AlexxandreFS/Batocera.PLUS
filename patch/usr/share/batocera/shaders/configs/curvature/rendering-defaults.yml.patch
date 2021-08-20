@@ -3,7 +3,7 @@
 #
 --- rendering-defaults.yml.original
 +++ rendering-defaults.yml.modificado
-@@ -106,3 +106,32 @@
+@@ -106,3 +106,56 @@
    shader: crt/fakelottes
  x68000:
    shader: crt/fakelottes
@@ -14,7 +14,13 @@
 +  shader: crt/fakelottes
 +fba_libretro:
 +  shader: crt/fakelottes
++gamecube:
++  shader: crt/fakelottes
 +hbmame:
++  shader: crt/fakelottes
++j2me:
++  shader: crt/fakelottes
++megadrivemsu1:
 +  shader: crt/fakelottes
 +n64dd:
 +  shader: crt/fakelottes
@@ -24,15 +30,33 @@
 +  shader: crt/fakelottes
 +nesmini:
 +  shader: crt/fakelottes
++palmos:
++  shader: crt/fakelottes
++pico8:
++  shader: crt/fakelottes
++psp:
++  shader: crt/fakelottes
 +pspminis:
 +  shader: crt/fakelottes
 +psxmini:
 +  shader: crt/fakelottes
 +pc98:
 +  shader: crt/fakelottes
++samcoupe:
++  shader: crt/fakelottes
++scv:
++  shader: crt/fakelottes
 +snesmini:
 +  shader: crt/fakelottes
 +snescd:
 +  shader: crt/fakelottes
++supervision:
++  shader: crt/fakelottes
 +thomson:
++  shader: crt/fakelottes
++tic80:
++  shader: crt/fakelottes
++wii:
++  shader: crt/fakelottes
++uzebox:
 +  shader: crt/fakelottes
