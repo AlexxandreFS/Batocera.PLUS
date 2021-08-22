@@ -17,6 +17,9 @@ RELEASE='alpha'
 # Squashfs compression level
 SQUASHFS_COMPRESSION='2'
 
+# Add all bios to image
+ALL_BIOS=true
+
 # Temporary folder on a linux partition
 TEMP_DIR='./tmp'
 #TEMP_DIR='/media/Linux/tmp'
@@ -247,12 +250,14 @@ URL_BATOCERA_LINUX='https://batocera.org/upgrades/x86_64/stable/last/archives/20
 
 URL_BATOCERA_ZERO="https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/${BATOCERA_ZERO}"
 
-URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/470.57.02/NVIDIA-Linux-x86_64-470.57.02.run'
-
 URL_PCI_IDS='http://pci-ids.ucw.cz/v2.2/pci.ids.gz'
+URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/470.57.02/NVIDIA-Linux-x86_64-470.57.02.run'
 
 URL_THEME_A='0611dda9ffcfcfe8d8c17bdda2a19021c0ac6c40'
 URL_THEME_A="https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS/archive/${URL_THEME_A}.zip#/ES-Theme-Batocera-PLUS-${URL_THEME_A}.zip"
+
+URL_ALL_BIOS='8f0e0bf90fdc101ff6fa4416ea37c699e204d25c'
+URL_ALL_BIOS="https://github.com/BatoceraPLUS/Batocera.PLUS-bios/archive/${URL_ALL_BIOS}.zip#/Batocera.PLUS-bios-${URL_ALL_BIOS}.zip"
 
 URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
 
@@ -289,6 +294,8 @@ mkdir -p "${DOWNLOAD_DIR}"
 for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_BATOCERA_LINUX}" \
            "${URL_BATOCERA_ZERO}" \
+           "${URL_THEME_A}" \
+           "${URL_ALL_BIOS}" \
            "${URL_NVIDIA_DRIVER}" \
            "${URL_PCI_IDS}" \
            "${URL_WINE_MONO}" \
@@ -299,7 +306,6 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_FIREFOX}" \
            "${URL_JAVA}" \
            "${URL_QBITTORRENT}" \
-           "${URL_THEME_A}" \
            "${URL_CEMU}" \
            "${URL_CEMUHOOK}" \
            "${URL_YUZU_MAINLINE}" \
@@ -307,7 +313,6 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_GOVERLAY}" \
            "${URL_MANGOHUD}" \
            "${URL_RPCS3}"
-
 do
     PKG_NAME="$(basename "${URL}")"
     echo -e "\nBaixando ${PKG_NAME}..."
@@ -505,7 +510,17 @@ cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
        "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
-echo "Install Wine-Extra Libs..."
+if [ "${ALL_BIOS}" == 'true' ]; then
+    echo 'Install All Bios...'
+    PKG_NAME="$(basename "${URL_ALL_BIOS}")"
+    busybox unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" || exit $?
+    rm -rf "${TEMP_DIR}/squashfs-root/usr/share/batocera/datainit/bios/"*
+    cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* \
+           "${TEMP_DIR}/squashfs-root/usr/share/batocera/datainit/bios" || exit $?
+    rm -r "${TEMP_DIR}/pkg-xtract/"*
+fi
+
+echo 'Install Wine-Extra Libs...'
 # Remova a linha à baixo (mv) em uma futura atualização.
 mv "${TEMP_DIR}/squashfs-root/opt/Wine/linux" "${TEMP_DIR}"
 
