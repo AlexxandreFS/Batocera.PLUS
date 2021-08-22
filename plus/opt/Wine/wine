@@ -594,6 +594,25 @@ if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ] || [ "${INSTALL_E
     ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi"   /t REG_SZ /d "native,builtin"
     ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi64" /t REG_SZ /d "native,builtin"
 
+    # Install Microsoft Fonts
+    if [ -e "${HOME}/../bios/wine/msttcorefonts" ]; then
+        MS_FONTS_DIR="${HOME}/../bios/wine/msttcorefonts"
+    elif [ -d '/usr/share/fonts/truetype/msttcorefonts' ]; then
+        MS_FONTS_DIR='/usr/share/fonts/truetype/msttcorefonts'
+    else
+        MS_FONTS_DIR="${WINE_DIR}/${WINE_BUILD}/share/wine/fonts"
+    fi
+
+    for MS_FONT in "${MS_FONTS_DIR}/"*; do
+        if [ -L "${MS_FONT}" ]; then
+            cp -df "${MS_FONT}" "${WINEPREFIX}/drive_c/windows/Fonts"
+        else
+            ln -sf "${MS_FONT}" "${WINEPREFIX}/drive_c/windows/Fonts"
+        fi
+    done
+
+    unset MS_FONTS_DIR MS_FONT
+
     wineWait
 fi
 
