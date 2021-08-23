@@ -12,7 +12,7 @@ VERSION='2.17'
 # Remova esta linha para diminuir o tempo de compilação.
 # A imagem não será compactada e nem gerado o md5sum.
 # Serão dicionados pacotes experimentais.
-RELEASE='alpha'
+#RELEASE='alpha'
 
 # Squashfs compression level
 SQUASHFS_COMPRESSION='2'
@@ -21,8 +21,8 @@ SQUASHFS_COMPRESSION='2'
 ALL_BIOS=true
 
 # Temporary folder on a linux partition
-TEMP_DIR='./tmp'
-#TEMP_DIR='/media/Linux/tmp'
+#TEMP_DIR='./tmp'
+TEMP_DIR='/media/Linux/tmp'
 #TEMP_DIR='/mnt/tmp'
 #TEMP_DIR='/media/NO_LABEL/tmp'
 #TEMP_DIR='/userdata/extractions'
@@ -253,8 +253,8 @@ URL_BATOCERA_ZERO="https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/${
 URL_PCI_IDS='http://pci-ids.ucw.cz/v2.2/pci.ids.gz'
 URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/470.57.02/NVIDIA-Linux-x86_64-470.57.02.run'
 
-URL_THEME_A='0611dda9ffcfcfe8d8c17bdda2a19021c0ac6c40'
-URL_THEME_A="https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS/archive/${URL_THEME_A}.zip#/ES-Theme-Batocera-PLUS-${URL_THEME_A}.zip"
+URL_ES_THEME_A='0611dda9ffcfcfe8d8c17bdda2a19021c0ac6c40'
+URL_ES_THEME_A="https://github.com/AlexxandreFS/Batocera.PLUS-es-theme/archive/${URL_ES_THEME_A}.zip#/Batocera.PLUS-es-theme-${URL_ES_THEME_A}.zip"
 
 URL_MUSIC='2920d01d9953d9b2c9b183d980fd688f1c1d77b2'
 URL_MUSIC="https://github.com/BatoceraPLUS/Batocera.PLUS-music/archive/${URL_MUSIC}.zip#/Batocera.PLUS-music-${URL_MUSIC}.zip"
@@ -297,7 +297,7 @@ mkdir -p "${DOWNLOAD_DIR}"
 for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_BATOCERA_LINUX}" \
            "${URL_BATOCERA_ZERO}" \
-           "${URL_THEME_A}" \
+           "${URL_ES_THEME_A}" \
            "${URL_ALL_BIOS}" \
            "${URL_MUSIC}" \
            "${URL_NVIDIA_DRIVER}" \
@@ -507,7 +507,7 @@ done
 ################################################################################
 
 echo 'Install batocera.plus theme...'
-PKG_NAME="$(basename "${URL_THEME_A}")"
+PKG_NAME="$(basename "${URL_ES_THEME_A}")"
 unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract"
 cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
        "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus"
