@@ -256,13 +256,11 @@ URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/470.57.02/NVI
 URL_THEME_A='0611dda9ffcfcfe8d8c17bdda2a19021c0ac6c40'
 URL_THEME_A="https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS/archive/${URL_THEME_A}.zip#/ES-Theme-Batocera-PLUS-${URL_THEME_A}.zip"
 
+URL_MUSIC='2920d01d9953d9b2c9b183d980fd688f1c1d77b2'
+URL_MUSIC="https://github.com/BatoceraPLUS/Batocera.PLUS-music/archive/${URL_MUSIC}.zip#/Batocera.PLUS-music-${URL_MUSIC}.zip"
+
 URL_ALL_BIOS='8f0e0bf90fdc101ff6fa4416ea37c699e204d25c'
 URL_ALL_BIOS="https://github.com/BatoceraPLUS/Batocera.PLUS-bios/archive/${URL_ALL_BIOS}.zip#/Batocera.PLUS-bios-${URL_ALL_BIOS}.zip"
-
-URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
-
-URL_QBITTORRENT='https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.3.7.10/qBittorrent-Enhanced-Edition.AppImage'
-URL_QBITTORRENT=$(echo ${URL_QBITTORRENT}#/$(basename ${URL_QBITTORRENT} | sed "s/.AppImage/-$(basename $(dirname ${URL_QBITTORRENT}) | cut -d '-' -f 2).AppImage/"))
 
 URL_JAVA="$(wget -S --spider --max-redirect 0 'https://javadl.oracle.com/webapps/download/AutoDL?BundleId=244575_d7fc238d0cbf4b0dac67be84580cfb4b' 2>&1 | grep -E '^  Location: ' | cut -d ' ' -f 4)"
 URL_JAVA="${URL_JAVA}#/$(echo ${URL_JAVA} | sed 's/File=/;/' | cut -d ';' -f 2 | cut -d '&' -f 1)"
@@ -277,13 +275,18 @@ URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.4/dxvk
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 
-URL_GOVERLAY='https://github.com/benjamimgois/goverlay/releases/download/0.6.1/goverlay_0_6_1.tar.xz'
-URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.5/MangoHud-0.6.5.r0.ge42002c.tar.gz'
-
 URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-711/yuzu-20210808-caebd3f1c.AppImage'
 URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1978/Yuzu-EA-1978.AppImage'
 
 URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-b928cb02236f961e64d9903bf807c212a3e948cc/rpcs3-v0.0.17-12634-b928cb02_linux64.AppImage'
+
+URL_GOVERLAY='https://github.com/benjamimgois/goverlay/releases/download/0.6.1/goverlay_0_6_1.tar.xz'
+URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.5/MangoHud-0.6.5.r0.ge42002c.tar.gz'
+
+URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
+
+URL_QBITTORRENT='https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.3.7.10/qBittorrent-Enhanced-Edition.AppImage'
+URL_QBITTORRENT=$(echo ${URL_QBITTORRENT}#/$(basename ${URL_QBITTORRENT} | sed "s/.AppImage/-$(basename $(dirname ${URL_QBITTORRENT}) | cut -d '-' -f 2).AppImage/"))
 
 ################################################################################
 
@@ -296,6 +299,7 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_BATOCERA_ZERO}" \
            "${URL_THEME_A}" \
            "${URL_ALL_BIOS}" \
+           "${URL_MUSIC}" \
            "${URL_NVIDIA_DRIVER}" \
            "${URL_PCI_IDS}" \
            "${URL_WINE_MONO}" \
@@ -343,7 +347,6 @@ unsquashfs -d "${TEMP_DIR}/squashfs-root" "$TEMP_DIR/BATOCERA/boot/batocera"
 ################################################################################
 
 echo 'Removendo arquivos desnecessários...'
-rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/music"
 
 # Remova apenas se atualizar o pacote completo dos shaders para o retroarch.
 rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/shaders"
@@ -519,6 +522,14 @@ if [ "${ALL_BIOS}" == 'true' ]; then
            "${TEMP_DIR}/squashfs-root/usr/share/batocera/datainit/bios" || exit $?
     rm -r "${TEMP_DIR}/pkg-xtract/"*
 fi
+
+echo 'Install Music...'
+PKG_NAME="$(basename "${URL_MUSIC}")"
+unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" || exit $?
+rm -rf "${TEMP_DIR}/squashfs-root/usr/share/batocera/music/"*
+cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* \
+       "${TEMP_DIR}/squashfs-root/usr/share/batocera/music" || exit $?
+rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Wine-Extra Libs...'
 # Remova a linha à baixo (mv) em uma futura atualização.
