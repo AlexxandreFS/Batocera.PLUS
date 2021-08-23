@@ -1,5 +1,5 @@
 /img/*.img.gz
-/tmp
+/output
 /refulgo
 /download
 Thumbs.db
