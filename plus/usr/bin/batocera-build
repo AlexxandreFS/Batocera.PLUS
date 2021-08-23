@@ -1,0 +1,76 @@
+#!/bin/bash
+# Batocera.PLUS
+# Alexxandre Freire dos Santos
+# Noob build script
+#################################################################################
+
+# GET COMMIT
+
+REPO=https://github.com/AlexxandreFS/Batocera.PLUS
+
+COMMIT=$1
+
+if [ -z ${COMMIT} ]
+then
+    GIT_PROJECT="$(basename ${REPO})"
+    GIT_USER="$(dirname ${REPO})"
+    GIT_USER="$(basename ${GIT_USER})"
+    COMMIT=$(wget -qO- http://api.github.com/repos/${GIT_USER}/${GIT_PROJECT}/commits/master | grep '^  "sha": "' | cut -d '"' -f 4)
+fi
+
+################################################################################
+
+# PATH
+
+TMP="$(pwd)"
+URL="${REPO}/archive/${COMMIT}.zip"
+DOWNLOAD='/userdata/downloads/BATOCERA_PLUS_SOURCE'
+SOURCE="${DOWNLOAD}/Batocera.PLUS-${COMMIT}.zip"
+BUILD="${TMP}/$(basename ${SOURCE%.zip})"
+
+################################################################################
+
+# DOWNLOAD
+
+echo "Donload: ${URL}"
+echo "Save as: ${SOURCE}"
+
+if ! [ -f "${SOURCE}" ]
+then
+    mkdir -p "${DOWNLOAD}"
+    curl -L -C - "${URL}" -o "${SOURCE}" || exit $?
+fi
+
+################################################################################
+
+# EXTRACT
+
+if ! [ -d "${BUILD}" ]
+then
+    busybox unzip "${SOURCE}" -d "${TMP}" || exit $?
+    ln -s "${DOWNLOAD}" "${BUILD}/download"
+    #sed -i 's|^RELEASE=|#RELEASE=|' "${BUILD}/build-batocera.plus"
+fi
+
+################################################################################
+
+# CLEAN
+
+umount /dev/loop6 2> /dev/null
+umount /dev/loop7 2> /dev/null
+
+losetup -d /dev/loop6 2> /dev/null
+losetup -d /dev/loop7 2> /dev/null
+
+umount "${BUILD}/pkg-xtract" 2> /dev/null
+rm -rf "${BUILD}/output/"*
+
+################################################################################
+
+# BUILD
+
+cd "${BUILD}" || exit $?
+./build-batocera.plus || exit $? 
+mv -f output/* ..
+
+exit 0
