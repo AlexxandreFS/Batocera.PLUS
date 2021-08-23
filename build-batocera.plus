@@ -259,6 +259,9 @@ URL_MUSIC="https://github.com/BatoceraPLUS/Batocera.PLUS-music/archive/${URL_MUS
 URL_ALL_BIOS='8f0e0bf90fdc101ff6fa4416ea37c699e204d25c'
 URL_ALL_BIOS="https://github.com/BatoceraPLUS/Batocera.PLUS-bios/archive/${URL_ALL_BIOS}.zip#/Batocera.PLUS-bios-${URL_ALL_BIOS}.zip"
 
+URL_WINDOWS_TOOLS='e5f2a8c02390a6fe78106c84960cb6d2326ddfda'
+URL_WINDOWS_TOOLS="https://github.com/AlexxandreFS/Batocera.PLUS-tools/archive/${URL_WINDOWS_TOOLS}.zip#/Batocera.PLUS-tools-${URL_WINDOWS_TOOLS}.zip"
+
 URL_JAVA="$(wget -S --spider --max-redirect 0 'https://javadl.oracle.com/webapps/download/AutoDL?BundleId=244575_d7fc238d0cbf4b0dac67be84580cfb4b' 2>&1 | grep -E '^  Location: ' | cut -d ' ' -f 4)"
 URL_JAVA="${URL_JAVA}#/$(echo ${URL_JAVA} | sed 's/File=/;/' | cut -d ';' -f 2 | cut -d '&' -f 1)"
 
@@ -297,23 +300,24 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_ES_THEME_A}" \
            "${URL_ALL_BIOS}" \
            "${URL_MUSIC}" \
-           "${URL_NVIDIA_DRIVER}" \
+           "${URL_WINDOWS_TOOLS}" \
            "${URL_PCI_IDS}" \
+           "${URL_NVIDIA_DRIVER}" \
+           "${URL_JAVA}" \
            "${URL_WINE_MONO}" \
            "${URL_WINE_DXVK}" \
            "${URL_WINE_VKD3D_PROTON}" \
            "${URL_WINE_MF}" \
            "${URL_WINE_NVAPI}" \
-           "${URL_FIREFOX}" \
-           "${URL_JAVA}" \
-           "${URL_QBITTORRENT}" \
            "${URL_CEMU}" \
            "${URL_CEMUHOOK}" \
            "${URL_YUZU_MAINLINE}" \
            "${URL_YUZU_EARLY_ACCESS}" \
            "${URL_GOVERLAY}" \
            "${URL_MANGOHUD}" \
-           "${URL_RPCS3}"
+           "${URL_RPCS3}" \
+           "${URL_FIREFOX}" \
+           "${URL_QBITTORRENT}"
 do
     PKG_NAME="$(basename "${URL}")"
     echo -e "\nBaixando ${PKG_NAME}..."
@@ -508,7 +512,7 @@ PKG_NAME="$(basename "${URL_ES_THEME_A}")"
 unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract"
 cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
        "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus"
-rm -r "${TEMP_DIR}/pkg-xtract/"*
+rm -r  "${TEMP_DIR}/pkg-xtract/"*
 
 if [ "${ALL_BIOS}" == 'true' ]; then
     echo 'Install All Bios...'
@@ -831,18 +835,26 @@ echo 'Montando imagem do BatoceraZero...'
 mkdir "$TEMP_DIR/BatoceraZero"
 mount /dev/loop6 "$TEMP_DIR/BatoceraZero"
 
-echo 'Movendo arquivos de boot para o BatoceraZero...'
-rm    "$TEMP_DIR/BATOCERA/boot/batocera"
-rm    "$TEMP_DIR/BATOCERA/boot/syslinux/ldlinux.sys"
-cp -r "$TEMP_DIR/BATOCERA/"* "$TEMP_DIR/BatoceraZero"
-# Remova a linha à baixo (mv) em uma futura atualização.
-mv -f "$TEMP_DIR/linux"      "$TEMP_DIR/BatoceraZero/boot"
-
-echo 'Movendo arquivo squashfs para o BatoceraZero...'
+echo 'Movendo arquivo compactado squashfs para o BatoceraZero...'
+rm "$TEMP_DIR/BATOCERA/boot/batocera"
 mv "$TEMP_DIR/batocera" "$TEMP_DIR/BatoceraZero/boot/batocera"
 
+echo 'Copiando arquivos da pasta boot para o BatoceraZero...'
+rm    "$TEMP_DIR/BATOCERA/boot/syslinux/ldlinux.sys"
+cp -r "$TEMP_DIR/BATOCERA/"* "$TEMP_DIR/BatoceraZero"
+
 echo 'Copiando arquivos extras para o BatoceraZero...'
-cp -r -f "$BOOT_DIR/"* "$TEMP_DIR/BatoceraZero"
+cp -rf "$BOOT_DIR/"* "$TEMP_DIR/BatoceraZero"
+
+echo 'Copiando programas de windows (tools) para o BatoceraZero...'
+PKG_NAME="$(basename "${URL_WINDOWS_TOOLS}")"
+unzip  "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" || exit $?
+cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* \
+       "${TEMP_DIR}/BatoceraZero/tools" || exit $?
+rm -r  "${TEMP_DIR}/pkg-xtract/"*
+
+# Remova a linha à baixo (mv) em uma futura atualização.
+mv -f "$TEMP_DIR/linux"      "$TEMP_DIR/BatoceraZero/boot"
 
 ################################################################################
 
