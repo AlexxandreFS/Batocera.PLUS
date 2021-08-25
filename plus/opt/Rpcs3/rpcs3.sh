@@ -12,6 +12,7 @@
 GAME="${1}"
 P1GUID="${2}"
 
+MAINLINE_DIR="${HOME}/configs/rpcs3_mainline"
 RPCS3_DIR=/opt/Rpcs3
 HOME_DIR="${HOME}/configs/rpcs3"
 SAVE_DIR=/userdata/saves
@@ -24,12 +25,10 @@ fi
 ################################################################################
 ### FUNCTIONS
 
-function xdg-mime() { :; }
-
 function CreateFolders()
 {
-   mkdir -p "${HOME_DIR}/.config/rpcs3/GuiConfigs" \
-            "${HOME_DIR}/.config/rpcs3/dev_hdd0/home/00000001" \
+   mkdir -p "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs" \
+            "${MAINLINE_DIR}/.config/rpcs3/dev_hdd0/home/00000001" \
             "${HOME_DIR}/dev_hdd0/home/00000001/savedata" \
             "${HOME_DIR}/dev_hdd0/home/00000001/trophy" \
             "${HOME_DIR}/dev_hdd0/home/00000001/exdata" \
@@ -37,44 +36,45 @@ function CreateFolders()
             "${HOME_DIR}/dev_flash" \
             "${SAVE_DIR}/rpcs3_mainline"
 
-   ln -sf "${HOME_DIR}/dev_hdd0/home/00000001/savedata" "${HOME_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
-   ln -sf "${HOME_DIR}/dev_hdd0/home/00000001/trophy" "${HOME_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
-   ln -sf "${HOME_DIR}/dev_hdd0/home/00000001/exdata" "${HOME_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
-   ln -sf "/usr/share/rpcs3/GuiConfigs/"* "${HOME_DIR}/.config/rpcs3/GuiConfigs"
-   ln -sf "${HOME_DIR}/dev_hdd0/game" "${HOME_DIR}/.config/rpcs3/dev_hdd0/"
-   ln -sf /usr/share/rpcs3/Icons "${HOME_DIR}/.config/rpcs3"
-   ln -sf "${HOME_DIR}/dev_flash" "${HOME_DIR}/.config/rpcs3"
+   ln -sf "${HOME_DIR}/dev_hdd0/home/00000001/savedata" "${MAINLINE_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
+   ln -sf "${HOME_DIR}/dev_hdd0/home/00000001/trophy"   "${MAINLINE_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
+   ln -sf "${HOME_DIR}/dev_hdd0/home/00000001/exdata"   "${MAINLINE_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
+   ln -sf "/usr/share/rpcs3/GuiConfigs/"*               "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs"
+   ln -sf "${HOME_DIR}/dev_hdd0/game"                   "${MAINLINE_DIR}/.config/rpcs3/dev_hdd0/"
+   ln -sf /usr/share/rpcs3/Icons                        "${MAINLINE_DIR}/.config/rpcs3"
+   ln -sf "${HOME_DIR}/dev_flash"                       "${MAINLINE_DIR}/.config/rpcs3"
 }
 
 function CreateConfigs()
 {
-   touch "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini" \
-         "${HOME_DIR}/.config/rpcs3/config.yml"
+   touch "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini" \
+         "${MAINLINE_DIR}/.config/rpcs3/config.yml"
 
-   echo '[GameList]' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'hidden_list=@Invalid()' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'iconColor=@Variant(\0\0\0\x43\x1\xff\xff\xf0\xf0\xf0\xf0\xf0\xf0\0\0)' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'marginFactor=0.09' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'textFactor=2' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo '[Localization]' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'language=en' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo '[Meta]' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'currentStylesheet=Skyline' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'showDebugTab=true' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'useRichPresence=true' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'discordState=' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo '[Logger]' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'level=4' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'stack=true' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo '[main_window]' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'confirmationBoxExitGame=false' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'infoBoxEnabledInstallPUP=false' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'infoBoxEnabledWelcome=false' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'lastExplorePathPUP=/userdata/system/../bios' >> "${HOME_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo '[GameList]'                                  >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'hidden_list=@Invalid()'                      >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'iconColor=@Variant(\0\0\0\x43\x1\xff\xff\xf0\xf0\xf0\xf0\xf0\xf0\0\0)' >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'marginFactor=0.09'                           >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'textFactor=2'                                >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo '[Localization]'                              >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'language=en'                                 >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo '[Meta]'                                      >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'checkUpdateStart=false'                      >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'currentStylesheet=Skyline'                   >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'showDebugTab=true'                           >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'useRichPresence=false'                       >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'discordState='                               >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo '[Logger]'                                    >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'level=4'                                     >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'stack=true'                                  >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo '[main_window]'                               >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'confirmationBoxExitGame=false'               >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'infoBoxEnabledInstallPUP=false'              >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'infoBoxEnabledWelcome=false'                 >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'lastExplorePathPUP=/userdata/system/../bios' >> "${MAINLINE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
 
-   echo 'Miscellaneous:' >> "${HOME_DIR}/.config/rpcs3/config.yml"
-   echo '  Exit RPCS3 when process finishes: true' >> "${HOME_DIR}/.config/rpcs3/config.yml"
-   echo '  Start games in fullscreen mode: true' >> "${HOME_DIR}/.config/rpcs3/config.yml"
+   echo 'Miscellaneous:'                              >> "${MAINLINE_DIR}/.config/rpcs3/config.yml"
+   echo '  Exit RPCS3 when process finishes: true'    >> "${MAINLINE_DIR}/.config/rpcs3/config.yml"
+   echo '  Start games in fullscreen mode: true'      >> "${MAINLINE_DIR}/.config/rpcs3/config.yml"
 }
 
 function TextLocalization()
@@ -129,22 +129,22 @@ function FimwareWarning()
 
 function choseEmu()
 {
-    yad --form \
-    --title='RPCS3 CONFIGURATOR' \
-    --window-icon='/usr/share/icons/batocera/rpcs3.png' \
-    --text=''"${MSG[3]}"'' \
-    --text-align=center \
-    --button='RPCS3:0' \
-    --button='RPCS3-MAINLINE:1' \
-    --fixed \
-    --center \
-    --close-on-unfocus
+   yad --form \
+   --title='RPCS3 CONFIGURATOR' \
+   --window-icon='/usr/share/icons/batocera/rpcs3.png' \
+   --text=''"${MSG[3]}"'' \
+   --text-align=center \
+   --button='RPCS3:0' \
+   --button='RPCS3-MAINLINE:1' \
+   --fixed \
+   --center \
+   --close-on-unfocus
 
-    case ${?} in
-        0) exec /usr/bin/batocera-config-rpcs3 ;;
-        1) GUI='1' ;;
-        *) exit 0
-    esac
+   case ${?} in
+      0) exec /usr/bin/batocera-config-rpcs3 ;;
+      1) GUI='1' ;;
+      *) exit 0
+   esac
 }
 
 function help()
@@ -186,12 +186,12 @@ fi
 ################################################################################
 ### BUILD FOLDERS AND FILES
 
-if [ ! "$(ls -A "${HOME_DIR}/.config/rpcs3" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE_DIR}/rpcs3"  2> /dev/null)" ]; then
+if [ ! "$(ls -A "${MAINLINE_DIR}/.config/rpcs3" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE_DIR}/rpcs3_mainline"  2> /dev/null)" ] || [ ! "$(ls -A "${HOME_DIR}/rpcs3"  2> /dev/null)" ]; then
    CreateFolders
    CreateConfigs
 fi
 
-if [ ! -f "${HOME_DIR}/.config/rpcs3/config_input.yml" ] && [ "${GAME}" != '' ]; then
+if [ ! -f "${MAINLINE_DIR}/.config/rpcs3/config_input.yml" ] && [ "${GAME}" != '' ]; then
    TextLocalization
    ControllerWarning
 fi
@@ -224,24 +224,23 @@ fi
 ################################################################################
 ### EXPORTS
 
-export HOME="${HOME_DIR}"
+export HOME="${MAINLINE_DIR}"
 export LD_LIBRARY_PATH="${RPCS3_DIR}/lib:${LD_LIBRARY_PATH}"
-export QT_QPA_PLATFORM=xcb
-export QT_PLUGIN_PATH="${RPCS3_DIR}/plugins"
-export XDG_RUNTIME_DIR=/run/root
 export XDG_CACHE_HOME="${SAVE_DIR}/rpcs3_mainline"
-export -f xdg-mime
+export QT_PLUGIN_PATH="${RPCS3_DIR}/plugins"
+export QT_QPA_PLATFORM=xcb
 
 ################################################################################
 ### RUN
 
 if [ -e "${GAME}" ]; then
-   ${MANGOHUD_CMD} "${RPCS3_DIR}/bin/rpcs3" "${GAME}/PS3_GAME/USRDIR/EBOOT.BIN"
+   ${MANGOHUD_CMD} "${RPCS3_DIR}/bin/rpcs3" "${GAME}/PS3_GAME/USRDIR/EBOOT.BIN" --no-gui
 elif [ "${GUI}" ]; then
    "${RPCS3_DIR}/bin/rpcs3"
 fi
 
 ################################################################################
+
 ### CLOSE XJOYKILL
 
 if [ "$(pidof -s xjoykill)" ]; then
