@@ -107,9 +107,9 @@ then
     export LD_LIBRARY_PATH="${YUZU_DIR}/${CORE}/lib:${LD_LIBRARY_PATH}"
 fi
 
-if [ -d "${YUZU_DIR}/${CORE}/lib/plugins" ]
+if [ -d "${YUZU_DIR}/${CORE}/plugins" ]
 then
-    export QT_PLUGIN_PATH="${YUZU_DIR}/${CORE}/lib/plugins"
+    export QT_PLUGIN_PATH="${YUZU_DIR}/${CORE}/plugins"
 fi
 
 # https://github.com/yuzu-emu/yuzu/issues/6388
