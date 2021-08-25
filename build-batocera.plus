@@ -275,10 +275,10 @@ URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.4/dxvk
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 
-URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-711/yuzu-20210808-caebd3f1c.AppImage'
-URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-1978/Yuzu-EA-1978.AppImage'
+URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-727/yuzu-20210825-f81aa7a17.AppImage'
+URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-2011/Yuzu-EA-2011.AppImage'
 
-URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-b928cb02236f961e64d9903bf807c212a3e948cc/rpcs3-v0.0.17-12634-b928cb02_linux64.AppImage'
+URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-4e139ee080c2166b4c2472b0a1f7f7a9ec63baa2/rpcs3-v0.0.17-12665-4e139ee0_linux64.AppImage'
 
 URL_GOVERLAY='https://github.com/benjamimgois/goverlay/releases/download/0.6.1/goverlay_0_6_1.tar.xz'
 URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.5/MangoHud-0.6.5.r0.ge42002c.tar.gz'
