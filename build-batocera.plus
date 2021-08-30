@@ -576,6 +576,8 @@ mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
 cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
        "${TEMP_DIR}/squashfs-root/opt/Wine/apps/mf"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
+rm "${TEMP_DIR}/squashfs-root/opt/Wine/apps/mf/mf-install.sh"
+rm "${TEMP_DIR}/squashfs-root/opt/Wine/apps/mf/README.md"
 
 echo 'Install Wine Nvidia NVAPI...'
 PKG_NAME="$(basename "${URL_WINE_NVAPI}")"
