@@ -269,32 +269,41 @@ fi
 
 ################################################################################
 
-### WINE MF
+### MEDIA FUNDATION
 
 function mfInstall()
 {    
-    #dll que não existem no wine 'colorcnv.dll msmpeg2adec.dll msmpeg2vdec.dll sqmapi.dll'
-    #dll que existem no wine     'mf.dll mferror.dll mfplat.dll mfplay.dll mfreadwrite.dll'
+    #this dll files does not exist default wine prefix 'colorcnv.dll msmpeg2adec.dll msmpeg2vdec.dll sqmapi.dll'
+    #this dll files exist default wine prefix     'mf.dll mferror.dll mfplat.dll mfplay.dll mfreadwrite.dll'
 
-    if ! [ "$( grep 'msmpeg2adec-AACDecoderV2AddInEnable' "${WINEPREFIX}/system.reg" )" ]; then
-        ${WINE_DIR}/${WINE_BUILD}/bin/wine regedit "${WINE_DIR}/apps/mf/mf.reg"
-        ${WINE_DIR}/${WINE_BUILD}/bin/wine regedit "${WINE_DIR}/apps/mf/wmf.reg"
-
-        ${WINE_DIR}/${WINE_BUILD}/bin/wine64 regedit "${WINE_DIR}/apps/mf/mf.reg"
-        ${WINE_DIR}/${WINE_BUILD}/bin/wine64 regedit "${WINE_DIR}/apps/mf/wmf.reg"
+    if ! [ "$(grep "^[ ]*\"msmpeg2adec-AACDecoderV2AddInEnable\"=dword:00000001" "${WINEPREFIX}/system.reg")" ]; then
+        if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
+            ${WINE_DIR}/${WINE_BUILD}/bin/wine   regedit "${WINE_DIR}/apps/mf/mf.reg"
+            ${WINE_DIR}/${WINE_BUILD}/bin/wine   regedit "${WINE_DIR}/apps/mf/wmf.reg"
+            ${WINE_DIR}/${WINE_BUILD}/bin/wine64 regedit "${WINE_DIR}/apps/mf/mf.reg"
+            ${WINE_DIR}/${WINE_BUILD}/bin/wine64 regedit "${WINE_DIR}/apps/mf/wmf.reg"
+        else
+            ${WINE_DIR}/${WINE_BUILD}/bin/wine   regedit "${WINE_DIR}/apps/mf/mf.reg"
+            ${WINE_DIR}/${WINE_BUILD}/bin/wine   regedit "${WINE_DIR}/apps/mf/wmf.reg"
+        fi
     fi
     
     for DLL in ${MF_DLL}; do
-
         # Extra DLLs for Media foundation
-        if [ "${DLL}" == 'colorcnv.dll' ] || [ "${DLL}" == 'msmpeg2adec.dll' ] || [ "${DLL}" == 'msmpeg2vdec.dll' ] || [ "${DLL}" == 'sqmapi.dll' ]; then
-            if ! [ -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" ]; then
-                cp -f "${WINE_DIR}/apps/mf/syswow64/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64"
+        case "${DLL}" in colorcnv.dll|msmpeg2adec.dll|msmpeg2vdec.dll|sqmapi.dll)
+            if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
+                if ! [ -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" ]; then
+                    cp -f "${WINE_DIR}/apps/mf/syswow64/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64"
+                fi
+                if ! [ -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}" ]; then
+                    cp -f "${WINE_DIR}/apps/mf/system32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32"
+                fi
+            else
+                if ! [ -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}" ]; then
+                    cp -f "${WINE_DIR}/apps/mf/syswow64/${DLL}" "${WINEPREFIX}/drive_c/windows/system32"
+                fi
             fi
-            if ! [ -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}" ]; then
-                cp -f "${WINE_DIR}/apps/mf/system32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32"
-            fi
-        fi
+        esac
 
         # Backup
         if ! [ -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}.backup" ]; then
@@ -323,36 +332,24 @@ function mfInstall()
             fi
         else
             # Win32
-            if [ "$(readlink "${WINEPREFIX}/drive_c/windows/system32/${DLL}")" != "${WINE_DIR}/apps/mf/system32/${DLL}" ]; then
-                ln -sf "${WINE_DIR}/apps/mf/system32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+            if [ "$(readlink "${WINEPREFIX}/drive_c/windows/system32/${DLL}")" != "${WINE_DIR}/apps/mf/syswow64/${DLL}" ]; then
+                ln -sf "${WINE_DIR}/apps/mf/syswow64/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
             fi
         fi
 
-        case ${DLL} in
-            colorcnv.dll)
-                if ! [ "$( grep 'colorcnv.dll' "${WINEPREFIX}/system.reg" )" ]; then
-                    ${WINE_DIR}/${WINE_BUILD}/bin/wine    regsvr32 "${WINEPREFIX}/drive_c/windows/syswow64/colorcnv.dll"
-                    ${WINE_DIR}/${WINE_BUILD}/bin/wine64  regsvr32 "${WINEPREFIX}/drive_c/windows/system32/colorcnv.dll"
+        case ${DLL} in colorcnv.dll|msmpeg2adec.dll|msmpeg2vdec.dll)
+            if ! [ "$( grep "${DLL}" "${WINEPREFIX}/system.reg" )" ]; then
+                if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
+                    ${WINE_DIR}/${WINE_BUILD}/bin/wine    regsvr32 "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
+                    ${WINE_DIR}/${WINE_BUILD}/bin/wine64  regsvr32 "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+                else
+                    ${WINE_DIR}/${WINE_BUILD}/bin/wine    regsvr32 "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
                 fi
-            ;;
-            msmpeg2adec.dll)
-                if ! [ "$( grep 'msmpeg2adec.dll' "${WINEPREFIX}/system.reg" )" ]; then
-                    ${WINE_DIR}/${WINE_BUILD}/bin/wine    regsvr32 "${WINEPREFIX}/drive_c/windows/syswow64/msmpeg2adec.dll"
-                    ${WINE_DIR}/${WINE_BUILD}/bin/wine64  regsvr32 "${WINEPREFIX}/drive_c/windows/system32/msmpeg2adec.dll"
-                fi
-            ;;
-            msmpeg2vdec.dll)
-                if ! [ "$( grep 'msmpeg2vdec.dll' "${WINEPREFIX}/system.reg" )" ]; then
-                    ${WINE_DIR}/${WINE_BUILD}/bin/wine    regsvr32 "${WINEPREFIX}/drive_c/windows/syswow64/msmpeg2vdec.dll"
-                    ${WINE_DIR}/${WINE_BUILD}/bin/wine64  regsvr32 "${WINEPREFIX}/drive_c/windows/system32/msmpeg2vdec.dll"
-                fi
-            ;;
+            fi
         esac
-    
     done
     
     sync
-
 }
 
 function mfUninstall()
@@ -367,14 +364,14 @@ function mfUninstall()
         fi
 
         # Extra DLLs for Media foundation
-        if [ "${DLL}" == 'colorcnv.dll' ] || [ "${DLL}" == 'msmpeg2adec.dll' ] || [ "${DLL}" == 'msmpeg2vdec.dll' ] || [ "${DLL}" == 'sqmapi.dll' ]; then
+        case "${DLL}" in colorcnv.dll|msmpeg2adec.dll|msmpeg2vdec.dll|sqmapi.dll)
             if [ -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" ]; then
-                rm -r "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
+                rm -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
             fi
             if [ -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}" ]; then
-                rm -r "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+                rm -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
             fi
-        fi
+        esac
 
     done
 }
@@ -391,7 +388,6 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
     fi
 
     unset MF_DLL
-
 fi
 
 ################################################################################
