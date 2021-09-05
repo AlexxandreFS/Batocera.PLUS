@@ -15,7 +15,7 @@ function findSwapDev()
     # Find swap partitions
     if [ "${SWAP_DEVS}" == 'auto' ]
     then
-        SWAP_DEVS="$(LC_ALL=C fdisk -l | grep ' Linux swap$' | cut -d ' ' -f 1)"
+        SWAP_DEVS="$(blkid | grep -E '^/dev/sd' | grep -E '[ ]TYPE=\"swap\"$' | cut -d ':' -f 1)"
     fi
 
     for SWAP_DEV in ${SWAP_DEVS}
