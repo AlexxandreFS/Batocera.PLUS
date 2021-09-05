@@ -88,7 +88,7 @@ done
 
 ### HYBRID NVIDIA
 
-if [ ! "$(lspci -d8086::0300)" ] && [ ! "$(lspci -d1002::0300") ]
+if [ ! "$(lspci -d8086::0300)" ] && [ ! "$(lspci -d1002::0300)" ]
 then
     exit 0
 fi
