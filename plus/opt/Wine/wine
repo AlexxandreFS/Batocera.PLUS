@@ -289,8 +289,9 @@ function mfInstall()
     fi
     
     for DLL in ${MF_DLL}; do
+
         # Extra DLLs for Media foundation
-        case "${DLL}" in colorcnv.dll|msmpeg2adec.dll|msmpeg2vdec.dll|sqmapi.dll)
+        case "${DLL}" in colorcnv.dll|msmpeg2adec.dll|msmpeg2vdec.dll|sqmapi.dll|mfps.dll|wmadmod.dll|wmvdecod.dll)
             if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
                 if ! [ -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" ]; then
                     cp -f "${WINE_DIR}/apps/mf/syswow64/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64"
@@ -337,7 +338,7 @@ function mfInstall()
             fi
         fi
 
-        case ${DLL} in colorcnv.dll|msmpeg2adec.dll|msmpeg2vdec.dll)
+        case ${DLL} in colorcnv.dll|msmpeg2adec.dll|msmpeg2vdec.dll|mfps.dll|wmadmod.dll|wmvdecod.dll)
             if ! [ "$( grep "${DLL}" "${WINEPREFIX}/system.reg" )" ]; then
                 if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
                     ${WINE_DIR}/${WINE_BUILD}/bin/wine    regsvr32 "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
@@ -347,6 +348,7 @@ function mfInstall()
                 fi
             fi
         esac
+
     done
     
     sync
