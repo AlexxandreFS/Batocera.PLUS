@@ -3,21 +3,16 @@
 # retroarch
 #
 ################################################################################
-# Version.: Release on Jul 26, 2021
-RETROARCH_VERSION = v1.9.7
+# Version.: Release on Sep 5, 2021
+RETROARCH_VERSION = v1.9.9
 RETROARCH_SITE = $(call github,libretro,RetroArch,$(RETROARCH_VERSION))
 RETROARCH_LICENSE = GPLv3+
 RETROARCH_DEPENDENCIES = host-pkgconf dejavu retroarch-assets flac
 # install in staging for debugging (gdb)
 RETROARCH_INSTALL_STAGING = YES
 
-RETROARCH_CONF_OPTS =  --disable-oss --enable-zlib --disable-qt --enable-threads --enable-ozone --enable-xmb --disable-discord
-RETROARCH_CONF_OPTS += --enable-flac --enable-lua --enable-networking --enable-translate --enable-rgui
-
-### Batocera.PLUS Start
-RETROARCH_CONF_OPTS += --enable-cdrom --disable-pulse --enable-sse --disable-wayland
-### Batocera.PLUS Stop
-
+RETROARCH_CONF_OPTS = --disable-oss --enable-zlib --disable-qt --enable-threads --enable-ozone --enable-xmb --disable-discord
+RETROARCH_CONF_OPTS += --enable-flac --enable-lua --enable-networking --enable-translate --enable-rgui --enable-cdrom --disable-pulse --enable-sse --disable-xvideo --disable-v4l2
 
 ifeq ($(BR2_PACKAGE_FFMPEG),y)
 	RETROARCH_CONF_OPTS += --enable-ffmpeg

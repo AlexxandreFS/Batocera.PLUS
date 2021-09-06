@@ -4,7 +4,7 @@
   *  If not, see <http://www.gnu.org/licenses/>.
   */
  
-+const char retroarch_git_version[] = "v1.9.7-Batocera.PLUS";
++const char retroarch_git_version[] = "v1.9.9-Batocera.PLUS";
 +
  #ifdef _WIN32
  #ifdef _XBOX
