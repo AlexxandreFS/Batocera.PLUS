@@ -306,7 +306,6 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_WINE_MONO}" \
            "${URL_WINE_DXVK}" \
            "${URL_WINE_VKD3D_PROTON}" \
-           "${URL_WINE_MF}" \
            "${URL_WINE_NVAPI}" \
            "${URL_CEMU}" \
            "${URL_CEMUHOOK}" \
