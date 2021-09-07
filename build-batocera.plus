@@ -55,6 +55,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/msttcorefonts-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk-1.5.1-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk-proton-ge-custom-6.15-ge-2-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine_mf-1.0.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-1.9.9-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-assets-1.9.9-1.7z'
@@ -268,8 +269,6 @@ URL_JAVA="${URL_JAVA}#/$(echo ${URL_JAVA} | sed 's/File=/;/' | cut -d ';' -f 2 |
 URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/6.3.0/wine-mono-6.3.0-x86.tar.xz'
 URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.9.1/dxvk-1.9.1.tar.gz'
 URL_WINE_VKD3D_PROTON='https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.4/vkd3d-proton-2.4.tar.zst'
-URL_WINE_MF='388649a5ac65f558873ce4f6eef24702eb33902e'
-URL_WINE_MF="https://github.com/z0z0z/mf-install/archive/${URL_WINE_MF}.zip#/mf-install-${URL_WINE_MF}.zip"
 URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.4/dxvk-nvapi-v0.4.tar.gz'
 
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
@@ -568,16 +567,6 @@ fi
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x86/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x32"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x64/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x64"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
-
-echo 'Install Wine Media Fundation...'
-PKG_NAME="$(basename "${URL_WINE_MF}")"
-unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract"
-mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
-cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
-       "${TEMP_DIR}/squashfs-root/opt/Wine/apps/mf"
-rm -r "${TEMP_DIR}/pkg-xtract/"*
-rm "${TEMP_DIR}/squashfs-root/opt/Wine/apps/mf/mf-install.sh"
-rm "${TEMP_DIR}/squashfs-root/opt/Wine/apps/mf/README.md"
 
 echo 'Install Wine Nvidia NVAPI...'
 PKG_NAME="$(basename "${URL_WINE_NVAPI}")"
