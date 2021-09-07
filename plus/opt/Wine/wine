@@ -557,6 +557,7 @@ function wineHelp() {
             '      WINEFSYNC=1                   Enable FSYNC, improves load times but crashes some games\n' \
             '      WINEESYNC=1                   Enable ESYNC, improves load times but crashes some games\n' \
             '      INSTALL_EXTRAS=1              Install DirectX, Mono end extra files on a non default WINEPREFIX\n' \
+            '      WINE_MF=1                     Enable support for some media foundation based games\n' \
             '      WINE_LOADINGSCREEN=0          Disable default wine instalation screen image'
 }
 
