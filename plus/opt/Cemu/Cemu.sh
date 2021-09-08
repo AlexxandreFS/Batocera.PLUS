@@ -34,7 +34,7 @@ INTEL="${5}"
 CEMU_DIR='/opt/Cemu'
 CEMU="$HOME/configs/cemu"
 SAVE="$HOME/../saves/wiiu"
-WINE=proton-ge-custom
+WINE=proton-valve
 WINERUN="${WINE}-64"
 
 #echo ["$(date +%T)"] "Running: ${WINE} cemu.exe ${JOGO} ${RENDER} ${SYNC} ${P1GUID} ${INTEL}" > "${HOME}/logs/cemu_launch.log"
