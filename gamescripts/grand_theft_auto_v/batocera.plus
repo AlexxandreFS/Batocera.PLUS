@@ -1,0 +1,16 @@
+#!/bin/sh
+
+### Grand Theft Auto V (Batocera.PLUS)
+
+#### SAVE /userdata/saves/windows/wine-profiles/ProgramData/Steam/Player/271590
+
+if [ "${CORE}" == 'wine' ]; then
+   CORE=wine-stable
+fi
+
+if ! [ "$(grep "Grand Theft Auto V" "${HOME}/configs/wine/${CORE}/system.reg")" ]; then
+   $CORE regedit "GTA5.exe"
+   sleep 1
+fi
+
+$CORE "GTAVLauncher.exe"

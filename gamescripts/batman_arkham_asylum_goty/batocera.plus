@@ -1,0 +1,22 @@
+#!/bin/sh
+
+GAMEFOLDER="${HOME}/../roms/windows/Batman Arkham Asylum - Game of the Year Edition.plus"
+
+export WINEPREFIX="${HOME}/../saves/windows/Batman Arkham Asylum - Game of the Year Edition/wine"
+
+if [ ! -d "${WINEPREFIX}" ]; then	
+    export INSTALL_EXTRAS=1
+
+	mkdir -p "${WINEPREFIX}"
+
+    mouse-pointer on
+
+	exec wine "${GAMEFOLDER}/linux_installer/PhysX_9.08.14_9.09.0814_SystemSoftware.exe"
+	exec wine "${GAMEFOLDER}/linux_installer/tradutor.exe"
+    ln -sf "${GAMEFOLDER}/linux_installer/KernelBase.dll" "${GAMESAVE}/wine/drive_c/windows/system32/KernelBase.dll"
+    exec wine regsvr32 "${GAMESAVE}/wine/drive_c/windows/system32/KernelBase.dll"
+
+	mouse-pointer off
+fi
+
+$CORE ./Binaries/ShippingPC-BmGame.exe

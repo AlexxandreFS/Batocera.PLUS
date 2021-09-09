@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ "${DXVK}" ]; then
+   unset DXVK
+   $CORE "./x64vk/Hades.exe"
+else
+   $CORE "./x64/Hades.exe"
+fi
+
+exit 0
