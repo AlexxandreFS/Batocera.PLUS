@@ -273,7 +273,7 @@ fi
 
 function mfInstall()
 {    
-    #this dll files does not exist default wine prefix 'colorcnv.dll msmpeg2adec.dll msmpeg2vdec.dll sqmapi.dll mpfs.dll wmadmod.dll wmvdecod.dll'
+    #this dll files does not exist default wine prefix 'colorcnv.dll msmpeg2adec.dll msmpeg2vdec.dll sqmapi.dll mfps.dll wmadmod.dll wmvdecod.dll'
     #this dll files exist default wine prefix          'mf.dll mferror.dll mfplat.dll mfplay.dll mfreadwrite.dll'
 
     if ! [ "$(grep "^[ ]*\"msmpeg2adec-AACDecoderV2AddInEnable\"=dword:00000001" "${WINEPREFIX}/system.reg")" ]; then
@@ -338,7 +338,7 @@ function mfInstall()
             fi
         fi
 
-        case ${DLL} in colorcnv.dll|msmpeg2adec.dll|msmpeg2vdec.dll|sqmapi.dll|mfps.dll|wmadmod.dll|wmvdecod.dll)
+        case ${DLL} in colorcnv.dll|msmpeg2adec.dll|msmpeg2vdec.dll|mfps.dll|wmadmod.dll|wmvdecod.dll)
             if ! [ "$( grep "${DLL}" "${WINEPREFIX}/system.reg" )" ]; then
                 if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
                     ${WINE_DIR}/${WINE_BUILD}/bin/wine    regsvr32 "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
@@ -379,7 +379,7 @@ function mfUninstall()
 }
 
 if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
-    MF_DLL='colorcnv.dll sqmapi.dll msmpeg2adec.dll msmpeg2vdec.dll mf.dll mferror.dll mfplat.dll mfplay.dll mfreadwrite.dll wmadmod.dll wmvdecod.dll'
+    MF_DLL='colorcnv.dll sqmapi.dll msmpeg2adec.dll msmpeg2vdec.dll mf.dll mferror.dll mfplat.dll mfplay.dll mfreadwrite.dll mfps.dll wmadmod.dll wmvdecod.dll'
 
     if [ "${WINE_MF}" == '1' ]; then
         if ! [ -f "${WINEPREFIX}/drive_c/windows/syswow64/msmpeg2adec.dll" ]; then
