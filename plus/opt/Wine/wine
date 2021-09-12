@@ -366,7 +366,7 @@ function mfUninstall()
         fi
 
         # Extra DLLs for Media foundation
-        case "${DLL}" in colorcnv.dll|msmpeg2adec.dll|msmpeg2vdec.dll|sqmapi.dll|wmadmod.dll|wmvdecod.dll)
+        case "${DLL}" in colorcnv.dll|msmpeg2adec.dll|msmpeg2vdec.dll|mfps.dll|wmadmod.dll|wmvdecod.dll)
             if [ -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" ]; then
                 rm -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
             fi
