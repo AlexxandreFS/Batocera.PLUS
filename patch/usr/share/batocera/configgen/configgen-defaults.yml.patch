@@ -141,9 +141,6 @@
 +palmos:
 +  emulator: libretro
 +  core:     mu
-+samcoupe:
-+  emulator: libretro
-+  core:     simcp
 +j2me:
 +  emulator: j2me
 +  core:     j2me

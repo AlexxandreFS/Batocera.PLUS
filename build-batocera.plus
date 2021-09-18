@@ -159,7 +159,6 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/redream_libretro-jun-7-2020-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retro8_libretro-jan-14-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/scummvm_libretro-mar-5-2021-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/simcp_libretro-aug-17-2019-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/smsplus_libretro-jan-24-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/snes9x_libretro-may-27-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/snes9x_next_libretro-feb-14-2021-1.7z'
