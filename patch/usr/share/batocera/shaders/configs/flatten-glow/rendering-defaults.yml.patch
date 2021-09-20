@@ -32,6 +32,8 @@
 +  shader: blurs/kawase_glow
 +palmos:
 +  shader: blurs/kawase_glow
++pcsx2:
++  shader: blurs/kawase_glow
 +pico8:
 +  shader: blurs/kawase_glow
 +psp:

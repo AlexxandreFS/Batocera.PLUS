@@ -32,6 +32,8 @@
 +  shader: crt/zfast-crt
 +palmos:
 +  shader: crt/zfast-crt
++pcsx2:
++  shader: crt/zfast-crt
 +pico8:
 +  shader: crt/zfast-crt
 +psp:

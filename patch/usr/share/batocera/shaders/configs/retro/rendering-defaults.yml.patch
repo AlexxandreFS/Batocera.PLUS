@@ -32,6 +32,8 @@
 +  shader: interpolation/sharp-bilinear-simple
 +palmos:
 +  shader: interpolation/sharp-bilinear-simple
++pcsx2:
++  shader: interpolation/sharp-bilinear-simple
 +psp:
 +  shader: interpolation/sharp-bilinear-simple
 +pspminis:
