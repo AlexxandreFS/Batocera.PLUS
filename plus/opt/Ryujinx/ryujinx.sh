@@ -126,7 +126,7 @@ fi
 ### EXECUTION
 
 if [ -e "${ROM}" ]; then
-   $RYUJINX_EMU --fullscreen "${ROM}"
+   $MANGOHUD_CMD $RYUJINX_EMU --fullscreen "${ROM}"
 else
    $RYUJINX_EMU
 fi
