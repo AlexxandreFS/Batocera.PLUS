@@ -1,6 +1,5 @@
-/img/*.img.gz
 /output
-/refulgo
 /download
+/refulgo
 Thumbs.db
 authorized_keys
