@@ -518,7 +518,9 @@ BIOS[ps2]="ps2,                       Sony Playstation 2
     3faf7c064a4984f53e2ef5e80ed543bc, bios/scph39001.MEC
     9a9e8ed7668e6adfc8f7766c08ab9cd0, bios/EROM.BIN
     44552702b05697a14ccbe2ca22ee7139, bios/rom1.bin
-    b406d05922dac2eaf3c2e68157b1b468, bios/ROM2.BIN"
+    b406d05922dac2eaf3c2e68157b1b468, bios/ROM2.BIN
+    9a9e8ed7668e6adfc8f7766c08ab9cd0, bios/pcsx2/bios/EROM.BIN
+    44552702b05697a14ccbe2ca22ee7139, bios/pcsx2/bios/rom1.bin"
 
 BIOS[ps3]="ps3,                       Sony Playstation 3
     00000000000000000000000000000000, bios/PS3UPDAT.PUP"
