@@ -32,7 +32,7 @@
 +  shader: crt/fakelottes
 +palmos:
 +  shader: crt/fakelottes
-+pcsx2:
++ps2:
 +  shader: crt/fakelottes
 +pico8:
 +  shader: crt/fakelottes

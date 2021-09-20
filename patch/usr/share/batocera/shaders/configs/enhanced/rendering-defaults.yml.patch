@@ -32,7 +32,7 @@
 +  shader: anti-aliasing/advanced-aa
 +palmos:
 +  shader: anti-aliasing/advanced-aa
-+pcsx2:
++ps2:
 +  shader: anti-aliasing/advanced-aa
 +pico8:
 +  shader: anti-aliasing/advanced-aa

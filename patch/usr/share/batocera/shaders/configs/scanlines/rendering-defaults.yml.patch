@@ -45,7 +45,7 @@
 +  shader: crt/crt-pi
 +palmos:
 +  shader: crt/crt-pi
-+pcsx2:
++ps2:
 +  shader: crt/crt-pi
 +pico8:
 +  shader: crt/crt-pi
