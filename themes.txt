@@ -9,3 +9,4 @@ Fundamental       https://github.com/BatoceraPLUS/Theme-Fundamental
 Neon-Magenta      https://github.com/BatoceraPLUS/Theme-Neon-Magenta
 UniFlyered        https://github.com/BatoceraPLUS/Theme-UniFlyered-PLUS
 Zoid              https://github.com/BatoceraPLUS/Theme-Zoid
+ES-PLUS           https://github.com/marciorenato87/ES-PLUS
