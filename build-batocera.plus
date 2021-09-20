@@ -12,7 +12,7 @@ VERSION='2.17'
 # Remova esta linha para diminuir o tempo de compilação.
 # A imagem não será compactada e nem gerado o md5sum.
 # Serão dicionados pacotes experimentais.
-RELEASE='alpha'
+#RELEASE='alpha'
 
 # Squashfs compression level
 SQUASHFS_COMPRESSION='2'
@@ -193,6 +193,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/Visual_Pinball-1.0.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vpinball_fonts-1.0.7z' # dep: visual pinball
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3_extra_libs-1.1.7z' # dep: rpcs3
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ryujinx_extras-1.1.7z' # dep: ryujinx
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bzip2-1.0.8.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/unrar-5.90-1.7z'
@@ -276,7 +277,9 @@ URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Curren
 URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-753/yuzu-20210918-1b2e2d4d0.AppImage'
 URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-2071/Yuzu-EA-2071.AppImage'
 
-URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-7bb830a2285b2ce67489a16bfefc738e57251c19/rpcs3-v0.0.18-12717-7bb830a2_linux64.AppImage'
+URL_RYUJINX='https://ci.appveyor.com/api/buildjobs/tjpbl945yxq8rtr0/artifacts/ryujinx-1.0.7047-linux_x64.tar.gz'
+
+URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-e307a1b4bda48fb8f3f99bf37455fcbab321a214/rpcs3-v0.0.18-12794-e307a1b4_linux64.AppImage'
 
 URL_GOVERLAY='https://github.com/benjamimgois/goverlay/releases/download/0.6.1/goverlay_0_6_1.tar.xz'
 URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.5/MangoHud-0.6.5.r0.ge42002c.tar.gz'
@@ -310,6 +313,7 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_CEMUHOOK}" \
            "${URL_YUZU_MAINLINE}" \
            "${URL_YUZU_EARLY_ACCESS}" \
+           "${URL_RYUJINX}" \
            "${URL_GOVERLAY}" \
            "${URL_MANGOHUD}" \
            "${URL_RPCS3}" \
@@ -745,6 +749,14 @@ do
 done
 cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/plugins"        "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
+
+echo 'Install Ryujinx...'
+PKG_NAME="$(basename "${URL_RYUJINX}")"
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
+rm "${TEMP_DIR}/pkg-xtract/publish/LICENSE-Ryujinx.Audio.txt"
+rm "${TEMP_DIR}/pkg-xtract/publish/THIRDPARTY.md"
+mv "${TEMP_DIR}/pkg-xtract/publish" "${TEMP_DIR}/squashfs-root/opt/Ryujinx"
+ln -sf "${HOME}/logs/ryujinx" "${TEMP_DIR}/squashfs-root/opt/Ryujinx/publish/Logs"
 
 echo 'Install Nvidia Driver...'
 PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"
