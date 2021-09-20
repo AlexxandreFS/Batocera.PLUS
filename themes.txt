@@ -1,6 +1,6 @@
 ARTFLIXforPLUS    https://github.com/fagnerpc/Alekfull-ARTFLIXforPLUS
 Alekfull-SOLO     https://github.com/fagnerpc/Alekfull-SOLO
-Alekfull-NX-PLUS  https://github.com/BatoceraPLUS/Theme-Alekfull-NX-PLUS.git
+Alekfull-NX-PLUS  https://github.com/BatoceraPLUS/Theme-Alekfull-NX-PLUS
 Art-Book          https://github.com/BatoceraPLUS/Theme-Art-Book
 Batocera-PLUS-dev https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS
 Bluray            https://github.com/BatoceraPLUS/Theme-Bluray
