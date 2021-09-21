@@ -16,6 +16,9 @@
 
 ################### VISUAL ###################
 
+### Custom text centered useful for a header
+# custom_text_center =
+
 ### Legacy layout
 # legacy_layout = false
 
@@ -57,6 +60,15 @@ frame_timing
 ### Display the current system time
 # time
 
+### Display the current resolution
+# resolution
+
+### Show current fps limit
+#  show_fps_limit
+
+### Display custom text
+# custom_text
+
 ### Time formatting examples
 # time_format = %H:%M
 # time_format = [ %T %F ]
@@ -86,14 +98,16 @@ position=top-left
 
 ### Display the current CPU load & frequency for each core
 # core_load
+# core_load_change
 
 ### IO read and write for the app (not system)
 # io_read
 # io_write
 # io_stats
 
-### Display system RAM / VRAM usage
+### Display system ram / swap space / vram usage
 # ram
+# swap
 # vram
 
 ### Display MangoHud, engine or Wine version
@@ -101,7 +115,7 @@ position=top-left
 # engine_version
 # wine
 
-### Disable / hide the hud by deafult
+### Disable / hide the hud by default
 # no_display
 
 ### Hud position offset
@@ -142,6 +156,17 @@ background_alpha=0.5
 
 ### Blacklist
 # blacklist =
+
+################## WORKAROUNDS #################
+### Options starting with "gl_*" are for OpenGL.
+### Specify what to use for getting display size. Options are "viewport", "scissorbox" or disabled. Defaults to using glXQueryDrawable.
+# gl_size_query = viewport
+
+### (Re)bind given framebuffer before MangoHud gets drawn. Helps with Crusader Kings III.
+# gl_bind_framebuffer = 0
+
+### Don't swap origin if using GL_UPPER_LEFT. Helps with Ryujinx.
+# gl_dont_flip = 1
 
 ################## INTERACTION #################
 
