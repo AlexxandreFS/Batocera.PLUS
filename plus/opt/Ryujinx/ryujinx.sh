@@ -1,15 +1,14 @@
-#!/bin/bash
 ##
 ## Batocera.PLUS
 ##
 ## Código escrito por: Sérgio de Carvalho Júnior
 ## Colaborador: Alexandre Freire dos Santos
 ##
-##  https://discord.com/channels/410208534861447168/790357964749406249/855828176215080960
-##  https://unix.stackexchange.com/questions/57658/how-to-utilize-xdg-directories-and-paths-in-bash
-##  https://darthsternie.net/switch-firmwares/
-##  https://github.com/Ryujinx/Ryujinx/wiki/Ryujinx-Setup-&-Configuration-Guide
-##  https://emulation.gametechwiki.com/index.php/Shader_caches
+## https://discord.com/channels/410208534861447168/790357964749406249/855828176215080960
+## https://unix.stackexchange.com/questions/57658/how-to-utilize-xdg-directories-and-paths-in-bash
+## https://darthsternie.net/switch-firmwares/
+## https://github.com/Ryujinx/Ryujinx/wiki/Ryujinx-Setup-&-Configuration-Guide
+## https://emulation.gametechwiki.com/index.php/Shader_caches
 
 ################################################################################
 
@@ -112,8 +111,7 @@ if [ "${P1GUID}" ]; then
         # Impede que o xjoykill seja encerrado enquanto o jogo está em execução.
         while : ; do
             nice -n 20 xjoykill -hotkey ${BOTAO_HOTKEY} -start ${BOTAO_START} -kill "${RYUJINX_DIR}/killryujinx"
-            if ! [ "$(pidof Ryujinx)" ]
-            then
+            if ! [ "$(pidof Ryujinx)" ]; then
                 break
             fi
             sleep 5

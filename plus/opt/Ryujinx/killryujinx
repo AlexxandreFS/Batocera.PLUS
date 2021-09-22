@@ -1,26 +1,25 @@
 #!/bin/bash
 ##
 ## Batocera.PLUS
-## Alexxandre Freire dos Santos
 ##
-## Encerra a execução do yuzu.
+## Código escrito por: Sérgio de Carvalho Júnior
+## Colaborador: Alexandre Freire dos Santos
+##
+## Encerra a execução do Ryujinx.
 ## 
 
 RYUJINX_PID="$(pidof -s Ryujinx)"
 
-if [ -z "${RYUJINX_PID}" ]
-then
+if [ -z "${RYUJINX_PID}" ]; then
     exit 0
 fi
 
 kill -15 ${RYUJINX_PID}
 sleep 0.2
 
-if [ -z "${RYUJINX_PID}" ]
-then
+if [ -z "${RYUJINX_PID}" ]; then
     echo 'closed!'
-elif [ "$(pidof Ryujinx)" ]
-then
+elif [ "$(pidof Ryujinx)" ]; then
     sleep 0.5
     kill -9 ${RYUJINX_PID}
     echo 'dead!'

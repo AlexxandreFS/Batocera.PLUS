@@ -122,6 +122,12 @@
             <fullscreen></fullscreen>
         </application>
 
+        <application name="Ryujinx">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+            <maximized>yes</maximized>
+        </application>
+
         <application name="citra-qt">
             <decor>yes</decor>
             <fullscreen></fullscreen>
