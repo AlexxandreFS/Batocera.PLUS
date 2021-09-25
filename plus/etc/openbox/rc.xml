@@ -158,6 +158,16 @@
             <fullscreen></fullscreen>
         </application>
 
+        <application name="antimicrox">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+            <maximized></maximized>
+            <size>
+               <width>650</width>
+               <height>725</height>
+            </size>
+        </application>
+
         <application class="Yad">
             <decor>yes</decor>
             <fullscreen></fullscreen>
