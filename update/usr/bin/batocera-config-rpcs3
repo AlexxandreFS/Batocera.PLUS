@@ -10,45 +10,53 @@
 FW="${1}"
 BIOS="${HOME}/../bios"
 
+RPCS3_SAVE_DIR="${HOME}/../saves/ps3"            # export HOME
+
 export XDG_CONFIG_HOME="${HOME}/configs"
 export XDG_CACHE_HOME="${HOME}/../saves"
 export QT_QPA_PLATFORM=xcb
 
 function CreateConfigs()
 {
-   mkdir -p "${HOME}/configs/rpcs3/GuiConfigs"
+   mkdir -p "${RPCS3_SAVE_DIR}/GuiConfigs"
+   ln -sf "${RPCS3_SAVE_DIR}" "${HOME}/configs/rpcs3"
+
    touch "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
    touch "${HOME}/configs/rpcs3/config.yml"
    
-   echo '[GameList]' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'hidden_list=@Invalid()' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo '[GameList]'                                                            >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'hidden_list=@Invalid()'                                                >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
    echo 'iconColor=@Variant(\0\0\0\x43\x1\xff\xff\xf0\xf0\xf0\xf0\xf0\xf0\0\0)' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'marginFactor=0.09' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'textFactor=2' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo '[Localization]' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'language=en' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo '[Logger]' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'level=4' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'stack=true' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo '[main_window]' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'infoBoxEnabledInstallPUP=false' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'infoBoxEnabledWelcome=false' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'lastExplorePathPUP=/userdata/system/../bios' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'marginFactor=0.09'                                                     >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'textFactor=2'                                                          >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo '[Localization]'                                                        >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'language=en'                                                           >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo '[Logger]'                                                              >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'level=4'                                                               >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'stack=true'                                                            >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo '[main_window]'                                                         >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'infoBoxEnabledInstallPUP=false'                                        >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'infoBoxEnabledWelcome=false'                                           >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+   echo 'lastExplorePathPUP=/userdata/system/../bios'                           >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
    
-   echo 'Audio:' >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  Audio Channels: Downmix to Stereo' >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  Renderer: ALSA' >> "${HOME}/configs/rpcs3/config.yml"
-   echo 'Core:' >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  PPU Decoder: Recompiler (LLVM)' >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  PPU LLVM Accurate Vector NaN values: true' >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  SPU Decoder: Recompiler (LLVM)' >> "${HOME}/configs/rpcs3/config.yml"
-   echo 'Miscellaneous:' >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  Exit RPCS3 when process finishes: true' >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  Start games in fullscreen mode: true' >> "${HOME}/configs/rpcs3/config.yml"
-   echo 'Video:' >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  Frame limit: 60' >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  Renderer: Vulkan' >> "${HOME}/configs/rpcs3/config.yml"
+   echo 'Audio:'                                                                >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  Audio Channels: Downmix to Stereo'                                   >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  Renderer: ALSA'                                                      >> "${HOME}/configs/rpcs3/config.yml"
+   echo 'Core:'                                                                 >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  PPU Decoder: Recompiler (LLVM)'                                      >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  PPU LLVM Accurate Vector NaN values: true'                           >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  SPU Decoder: Recompiler (LLVM)'                                      >> "${HOME}/configs/rpcs3/config.yml"
+   echo 'Miscellaneous:'                                                        >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  Exit RPCS3 when process finishes: true'                              >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  Start games in fullscreen mode: true'                                >> "${HOME}/configs/rpcs3/config.yml"
+   echo 'Video:'                                                                >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  Frame limit: 60'                                                     >> "${HOME}/configs/rpcs3/config.yml"
+   echo '  Renderer: Vulkan'                                                    >> "${HOME}/configs/rpcs3/config.yml"
 }
+
+if [ ! "$(ls -A "${HOME}/configs/rpcs3"  2> /dev/null)" ]; then
+    CreateConfigs
+fi
 
 if [ "${FW}" == '--firmware' ]; then
 
@@ -91,13 +99,13 @@ if [ "${FW}" == '--firmware' ]; then
    exec /usr/bin/rpcs3 --installfw "${FILE}" &
    
    for i in {1..100}; do
-       if [ $(pidof -s rpcs3) ]; then
-		  sleep 5		  
+       if [ "$(pidof -s rpcs3)" ]; then
+		  sleep 5
 		  continue &
 	   fi
 	   
-	   ### THIS THE LAST FILE MAKE BY RPCS3 DURING FW INSTALATION AND CACHE CREATION
-       if [ -f "${HOME}/../saves/rpcs3/cache/ppu-ogZ9XMwLZb70cCsiaswxN1kKG5ts-libpngenc.sprx/v4-kusa-2sifYkmozGepFHvTeGKMcS-00000s-haswell.obj.gz" ]; then
+       ### THIS THE LAST FILE MAKE BY RPCS3 DURING FW INSTALATION AND CACHE CREATION
+       if [ -f "${HOME}/../saves/rpcs3/cache/ppu-eLWQCfQ8qmSdw23gQR64uFJJVNbG-libavcenc_small.sprx/v4-kusa-VH8ciyP099htKknrbZvUsj-00000s-haswell.obj.gz" ]; then
 	       /opt/Rpcs3/killrpcs3
 	       break
 	   fi
@@ -106,12 +114,8 @@ if [ "${FW}" == '--firmware' ]; then
    ### DELETE FIRMWARE AFTER INSTALATION, WHE DONT NEED ANYMORE
    rm -f "${BIOS}/PS3UPDAT.PUP"
 
-else
-
-   if [ ! "$(ls -A "${HOME}/configs/rpcs3"  2> /dev/null)" ]; then
-       CreateConfigs
-   fi
-   ### RUN RPCS3 BY F1 MENU SHORTCUT
+else 
+   ### RUN RPCS3 BY F1 MENU SHORTCUT   
    exec /usr/bin/rpcs3
 fi
 
