@@ -146,21 +146,24 @@ function dxvkInstall() {
         fi
 
         # Install
-        if [ ! -e "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" ] || [ ! -e "${WINE_DIR}/apps/${DXVK_VERSION}/x64/${DLL}" ]; then
-            continue
-        fi
         if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
             # Win WOW
-            if [ "$(readlink "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}")" != "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" ]; then
-                ln -sf "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
+            if [ -e "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" ]; then
+                if [ "$(readlink "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}")" != "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" ]; then
+                    ln -sf "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
+                fi
             fi
-            if [ "$(readlink "${WINEPREFIX}/drive_c/windows/system32/${DLL}")" != "${WINE_DIR}/apps/${DXVK_VERSION}/x64/${DLL}" ]; then
-                ln -sf "${WINE_DIR}/apps/${DXVK_VERSION}/x64/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+            if [ -e "${WINE_DIR}/apps/${DXVK_VERSION}/x64/${DLL}" ]; then
+                if [ "$(readlink "${WINEPREFIX}/drive_c/windows/system32/${DLL}")" != "${WINE_DIR}/apps/${DXVK_VERSION}/x64/${DLL}" ]; then
+                    ln -sf "${WINE_DIR}/apps/${DXVK_VERSION}/x64/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+                fi
             fi
         else
             # Win32
-            if [ "$(readlink "${WINEPREFIX}/drive_c/windows/system32/${DLL}")" != "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" ]; then
-                ln -sf "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+            if [ -e "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" ]; then
+                if [ "$(readlink "${WINEPREFIX}/drive_c/windows/system32/${DLL}")" != "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" ]; then
+                    ln -sf "${WINE_DIR}/apps/${DXVK_VERSION}/x32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+                fi
             fi
         fi
     done
@@ -199,12 +202,12 @@ function dxvkExport() {
         fi
     done
 
-    export WINEDLLOVERRIDES="${WINEDLLOVERRIDES}=n,b;nvapi64,nvapi="
+    export WINEDLLOVERRIDES="${WINEDLLOVERRIDES}=n,b"
 }
 
 if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
 
-    DXVK_DLL='d3d12.dll d3d11.dll d3d10core.dll d3d10.dll d3d10_1.dll d3d9.dll dxgi.dll dxvk_config.dll'
+    DXVK_DLL='nvapi64.dll nvapi.dll d3d12.dll d3d11.dll d3d10core.dll d3d10.dll d3d10_1.dll d3d9.dll dxgi.dll dxvk_config.dll'
 
     if [ "${DXVK}" ]; then
         if ! [ ${DXVK_HUD} ]; then
@@ -713,12 +716,6 @@ if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ] || [ "${INSTALL_E
 
     # Install Direct X
     ${WINE_DIR}/${WINE_BUILD}/bin/wine ${WINE_DIR}/apps/directx_Jun2010_redist/DXSETUP.exe /silent
-
-    # Install Nvidia dlls
-    ln -sf "${WINE_DIR}/apps/nvapi/x32/nvapi.dll"   "${WINEPREFIX}/drive_c/windows/syswow64/nvapi.dll"
-    ln -sf "${WINE_DIR}/apps/nvapi/x64/nvapi64.dll" "${WINEPREFIX}/drive_c/windows/system32/nvapi64.dll"
-    ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi"   /t REG_SZ /d "native,builtin"
-    ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_CURRENT_USER\SOFTWARE\Wine\DllOverrides" /f /v "nvapi64" /t REG_SZ /d "native,builtin"
 
     # Install Microsoft Fonts
     if [ -e "${HOME}/../bios/wine/msttcorefonts" ]; then
