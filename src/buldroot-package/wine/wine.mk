@@ -25,23 +25,23 @@ HOST_WINE_DEPENDENCIES  = host-bison host-flex
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-old-stable
 
 # Wine Staging 
-#WINE_VERSION = 6.15
+#WINE_VERSION = 6.18
 #WINE_SOURCE = wine-staging-$(WINE_VERSION).tar.xz
 #WINE_SITE = https://dl.winehq.org/wine/source/6.x
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-staging
 
-# Wine Lutris 6.14-3 (Commits on Aug 7, 2021) (BR lutris-6.10.7)
+# Wine Lutris 6.14-3 (Commits on Aug 10, 2021) (BR lutris-6.10.7)
 #WINE_VERSION = fd901db6e95c46e9d04776f071c9b84bfa46dd39
 #WINE_SITE = $(call github,lutris,wine,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/wine-lutris
 
-# Proton Valve proton_6.3-6-rc4 (Commits on Aug 17, 2021)
-#WINE_VERSION = 3083b57f002a84b858ca6a093e90527665f61d94
+# Proton Valve proton_6.3-7 (Commits on Sep 24, 2021)
+#WINE_VERSION = 5848899423dbbf763997577e476cf630689c59c6
 #WINE_SITE = $(call github,ValveSoftware,wine,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/proton-valve
 
-# Proton GE Custom 6.15-GE-2"  (Commits on Aug 17, 2021)
-#WINE_VERSION = f0ab74112aefeaf372a7d280e7aaa84c9e43107a
+# Proton GE Custom 6.18-GE-2"  (Commits on Sep 26, 2021)
+#WINE_VERSION = 8ca6792496df0142c6dd9333b6dbe6b76f5f57c8
 #WINE_SITE = $(call github,GloriousEggroll,proton-ge-custom,$(WINE_VERSION))
 #WINE_FOLDER_INSTALL = /opt/Wine/proton-ge-custom
 
@@ -71,6 +71,13 @@ WINE_CONF_OPTS += --with-x
 ifeq ($(BR2_TOOLCHAIN_EXTERNAL),y)
 WINE_CONF_OPTS += TARGETFLAGS="-b $(TOOLCHAIN_EXTERNAL_PREFIX)"
 endif
+
+# Configure Proton
+define WINE_AUTOGEN
+	cd $(@D); ./dlls/winevulkan/make_vulkan
+	cd $(@D); ./tools/make_requests
+	cd $(@D); autoreconf -f
+endef
 
 # Suport DXVK
 WINE_CONF_OPTS += --with-vkd3d
@@ -411,6 +418,8 @@ HOST_WINE_CONF_OPTS += \
 	--without-oss      \
 	--without-pulse    \
 	--without-sane
+
+WINE_PRE_CONFIGURE_HOOKS += WINE_AUTOGEN
 
 $(eval $(autotools-package))
 $(eval $(host-autotools-package))

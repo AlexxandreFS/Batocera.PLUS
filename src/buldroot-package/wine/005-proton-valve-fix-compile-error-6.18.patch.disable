@@ -1,0 +1,13 @@
+diff --git a/dlls/ole32/tests/clipboard.c b/dlls/ole32/tests/clipboard.c
+index cef79ad..204a33b 100644
+--- a/dlls/ole32/tests/clipboard.c
++++ b/dlls/ole32/tests/clipboard.c
+@@ -30,7 +30,7 @@
+ #include "objbase.h"
+ 
+ #include "wine/test.h"
+-
++#include "urlmon.h"
+ #define InitFormatEtc(fe, cf, med) \
+         {\
+         (fe).cfFormat=cf;\
