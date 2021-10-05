@@ -38,10 +38,10 @@ function CreateConfigs()
    
        # Fill system section
        echo '[system]'                                             >> "${HOME}/configs/xemu/xemu.ini"
-       echo "flash_path = \"${BIOS}/Complex_4627.bin\""            >> "${HOME}/configs/xemu/xemu.ini"
-       echo "bootrom_path = \"${BIOS}/mcpx_1.0.bin\""              >> "${HOME}/configs/xemu/xemu.ini"
-       echo "hdd_path = \"${SAVES}/xbox_hdd.qcow2\""               >> "${HOME}/configs/xemu/xemu.ini"
-       echo "eeprom_path = \"${SAVES}/xbox/xemu_eeprom.bin\""      >> "${HOME}/configs/xemu/xemu.ini"
+       echo "flash_path = ${BIOS}/Complex_4627.bin"                >> "${HOME}/configs/xemu/xemu.ini"
+       echo "bootrom_path = ${BIOS}/mcpx_1.0.bin"                  >> "${HOME}/configs/xemu/xemu.ini"
+       echo "hdd_path = ${SAVES}/xbox_hdd.qcow2"                   >> "${HOME}/configs/xemu/xemu.ini"
+       echo "eeprom_path = ${SAVES}/xbox/xemu_eeprom.bin"          >> "${HOME}/configs/xemu/xemu.ini"
        echo 'dvd_path = '                                          >> "${HOME}/configs/xemu/xemu.ini"
        echo 'memory = 64'                                          >> "${HOME}/configs/xemu/xemu.ini"
        echo 'shortanim = false'                                    >> "${HOME}/configs/xemu/xemu.ini"
@@ -58,10 +58,10 @@ function CreateConfigs()
 
        # Fill input section
        echo '[input]'                                              >> "${HOME}/configs/xemu/xemu.ini"
-       echo "controller_1_guid = \"${P1GUID}\""                    >> "${HOME}/configs/xemu/xemu.ini"
-       echo "controller_2_guid = \"${P2GUID}\""                    >> "${HOME}/configs/xemu/xemu.ini"
-       echo "controller_3_guid = \"${P3GUID}\""                    >> "${HOME}/configs/xemu/xemu.ini"
-       echo "controller_4_guid = \"${P4GUID}\""                    >> "${HOME}/configs/xemu/xemu.ini"
+       echo 'controller_1_guid = '                                 >> "${HOME}/configs/xemu/xemu.ini"
+       echo 'controller_2_guid = '                                 >> "${HOME}/configs/xemu/xemu.ini"
+       echo 'controller_3_guid = '                                 >> "${HOME}/configs/xemu/xemu.ini"
+       echo 'controller_4_guid = '                                 >> "${HOME}/configs/xemu/xemu.ini"
 
        # Fill network section
        echo '[network]'                                            >> "${HOME}/configs/xemu/xemu.ini"
