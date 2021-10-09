@@ -53,12 +53,18 @@ fi
 if ! [ -e "${HOME_DIR}/.config/yuzu/qt-config.ini" ]
 then
     mkdir -p "${HOME_DIR}/.config/yuzu"
+    (
+        # User interface config
+        echo '[UI]'
+        echo 'calloutFlags=1'
+        echo 'calloutFlags\default=false'
+        echo 'confirmClose=false\n'
+        echo 'confirmClose\default=false'
 
-    (echo '[UI]'
-     echo 'calloutFlags=1'
-     echo 'calloutFlags\default=false'
-     echo 'confirmClose=false\n'
-     echo 'confirmClose\default=false') > "${HOME_DIR}/.config/yuzu/qt-config.ini"	
+       # Controller config
+       echo '[Controls]'
+       ${YUZU_DIR}/gamepad-autoconf.sh 0 ${P1GUID}
+    ) > "${HOME_DIR}/.config/yuzu/qt-config.ini"
 fi
 
 ################################################################################
