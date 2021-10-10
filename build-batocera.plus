@@ -186,7 +186,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-sep-27-2021-1.7z' # remove on update.
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-libs-(libgtk-3_libgdk_libaio)-1.7z' # dep: xemu # remove on update.
 
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.3.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.4.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/Future_Pinball-1.3.7z' # remove on update.
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model2-1.1.7z'
