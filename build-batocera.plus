@@ -275,12 +275,12 @@ URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.4/dxvk
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 
-URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-753/yuzu-20210918-1b2e2d4d0.AppImage'
-URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-2071/Yuzu-EA-2071.AppImage'
+URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-772/yuzu-20211008-126758953.AppImage'
+URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-2118/Yuzu-EA-2118.AppImage'
 
-URL_RYUJINX='https://ci.appveyor.com/api/buildjobs/tjpbl945yxq8rtr0/artifacts/ryujinx-1.0.7047-linux_x64.tar.gz'
+URL_RYUJINX='https://ci.appveyor.com/api/buildjobs/2vqev6rku1s7vxwr/artifacts/ryujinx-1.0.7066-linux_x64.tar.gz'
 
-URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-e307a1b4bda48fb8f3f99bf37455fcbab321a214/rpcs3-v0.0.18-12794-e307a1b4_linux64.AppImage'
+URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-8e3112734e0f436db9ac6401499285b14f576e21/rpcs3-v0.0.18-12869-8e311273_linux64.AppImage'
 
 URL_GOVERLAY='https://github.com/benjamimgois/goverlay/releases/download/0.6.1/goverlay_0_6_1.tar.xz'
 URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.5/MangoHud-0.6.5.r0.ge42002c.tar.gz'
@@ -290,7 +290,7 @@ URL_ANTIMICRO="https://github.com/AntiMicroX/antimicrox/releases/download/${URL_
 
 URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
 
-URL_QBITTORRENT='https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.3.7.10/qBittorrent-Enhanced-Edition.AppImage'
+URL_QBITTORRENT='https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.3.8.10/qBittorrent-Enhanced-Edition.AppImage'
 URL_QBITTORRENT=$(echo ${URL_QBITTORRENT}#/$(basename ${URL_QBITTORRENT} | sed "s/.AppImage/-$(basename $(dirname ${URL_QBITTORRENT}) | cut -d '-' -f 2).AppImage/"))
 
 ################################################################################
