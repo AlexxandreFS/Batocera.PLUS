@@ -1,20 +1,20 @@
-#!/bin/sh
+#!/bin/bash
 #
 # http://smokey01.com/yad/
 # https://www.systutorials.com/docs/linux/man/1-yad/
 # https://www.dicas-l.com.br/arquivo/yad_yet_another_dialog.php
 
-if [ "$(echo "$@" | grep '.exe')" ]; then
-   continue
+if [ "$(echo "$@" | grep ".exe$")" ]; then
+    cd "$(dirname "$@")"
 else
-   exit 0
+    exit 1
 fi
 
 LANG="$(batocera-settings -command load -key system.language)"
-case $LANG in
-    pt_BR) MSG='\n SELECIONE UMA VERSÃO DO WINE PARA EXECUTAR A APLICAÇÃO \n' ;;
-    es_ES) MSG='\n SELECCIONE UNA VERSIÓN DE VINO PARA EJECUTAR LA APLICACIÓN \n' ;;
-    *)     MSG='\n SELECT A WINE VERSION TO RUN THE APPLICATION \n'
+case ${LANG} in
+    pt_BR) MSG='\n SELECIONE UMA VERSÃO DO WINE/PROTON PARA EXECUTAR A APLICAÇÃO \n' ;;
+    es_ES) MSG='\n SELECCIONE UNA VERSIÓN DE WINE/PROTON PARA EJECUTAR LA APLICACIÓN \n' ;;
+    *)     MSG='\n SELECT A WINE/PROTON VERSION TO RUN THE APPLICATION \n'
 esac
  
 yad --form \
@@ -38,7 +38,7 @@ case ${?} in
     3) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/wine-lutris "$@" ;;
     4) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/proton-ge-custom "$@" ;;
     5) /usr/bin/xterm -T 'WINE LOG' -iconic -e /usr/bin/proton-valve "$@" ;;
-    *) exit 0
+    *) exit 2
 esac
 
 exit 0
