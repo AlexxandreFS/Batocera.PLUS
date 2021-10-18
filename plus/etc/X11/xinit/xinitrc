@@ -29,8 +29,6 @@ export HOME=/userdata/system
 export LC_ALL="${settings_lang}.UTF-8"
 export LANG=${LC_ALL}
 
-export TERM=xterm
-
 # because of xinerama breaking es, enable only one screen at a time
 settings_output="`$systemsetting -command load -key global.videooutput`"
 batocera-resolution setOutput "${settings_output}" # empty or invalid values defaults to the first valid
