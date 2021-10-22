@@ -28,10 +28,11 @@
 +
  ## Set you local time
  ## Select your timezone from : ls /usr/share/zoneinfo/ (string)
-+## This option was deactivated in Batocera.PLUS to activate execute this command in the terminal (win + f4)
-+##   mv /etc/init.d/K49ntp /etc/init.d/S49ntp
-+##   batocera-save-overlay
- #system.timezone=Europe/Paris
++## Run this command on a terminal (win + f4) to display your location, you need internet connection.
++## batocera-timezone detect
++## the output will be something like this America/Sao_Paulo
+-#system.timezone=Europe/Paris
++system.timezone=UTC
  
  
  # ------------ G - UPDATES ------------ #

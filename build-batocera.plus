@@ -470,7 +470,6 @@ done
 ################################################################################
 
 echo 'Desativando servicos...'
-mv    "$TEMP_DIR/squashfs-root/etc/init.d/S49ntp"          "$TEMP_DIR/squashfs-root/etc/init.d/K49ntp"
 mv    "$TEMP_DIR/squashfs-root/etc/init.d/S50triggerhappy" "$TEMP_DIR/squashfs-root/etc/init.d/K50triggerhappy"
 
 ################################################################################

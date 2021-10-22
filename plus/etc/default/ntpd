@@ -1,0 +1,14 @@
+###
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+###
+### Desativa o serviço UTP caso o tempo esteja definido como UTC
+### O Batocera.PLUS usará o mesmo horário da bios.
+###
+### Veja o serviço /etc/init.d/S49ntp para mais detalhes.
+###
+
+if [ "$(batocera-settings -command load --key system.timezone)" == 'UTC' ]
+then
+    exit 0
+fi
