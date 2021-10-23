@@ -108,15 +108,8 @@ export XDG_DATA_HOME="${SAVE_DIR}"
 
 export QT_QPA_PLATFORM=xcb
 
-if [ -d "${YUZU_DIR}/${CORE}/lib" ]
-then
-    export LD_LIBRARY_PATH="${YUZU_DIR}/${CORE}/lib:${LD_LIBRARY_PATH}"
-fi
-
-if [ -d "${YUZU_DIR}/${CORE}/plugins" ]
-then
-    export QT_PLUGIN_PATH="${YUZU_DIR}/${CORE}/plugins"
-fi
+export LD_LIBRARY_PATH="${YUZU_DIR}/lib:${LD_LIBRARY_PATH}"
+export QT_PLUGIN_PATH="${YUZU_DIR}/plugins"
 
 # https://github.com/yuzu-emu/yuzu/issues/6388
 # https://github.com/yuzu-emu/yuzu/issues/6343

@@ -275,12 +275,12 @@ URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.4/dxvk
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 
-URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-772/yuzu-20211008-126758953.AppImage'
-URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-2118/Yuzu-EA-2118.AppImage'
+URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-786/yuzu-20211021-7488bc293.AppImage'
+URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-2149/Yuzu-EA-2149.AppImage'
 
-URL_RYUJINX='https://ci.appveyor.com/api/buildjobs/2vqev6rku1s7vxwr/artifacts/ryujinx-1.0.7066-linux_x64.tar.gz'
+URL_RYUJINX='https://ci.appveyor.com/api/buildjobs/ctbgceq24p9gqb5t/artifacts/ryujinx-1.0.7082-linux_x64.tar.gz'
 
-URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-8e3112734e0f436db9ac6401499285b14f576e21/rpcs3-v0.0.18-12869-8e311273_linux64.AppImage'
+URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-fff0c96bf38d1ada075e524c4753a7f263c06449/rpcs3-v0.0.18-12817-fff0c96b_linux64.AppImage'
 
 URL_GOVERLAY='https://github.com/benjamimgois/goverlay/releases/download/0.6.1/goverlay_0_6_1.tar.xz'
 URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.5/MangoHud-0.6.5.r0.ge42002c.tar.gz'
@@ -748,8 +748,8 @@ cd "${CURRENT_DIR}"
 unset CURRENT_DIR
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access/bin"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu"                       "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access/bin"
-mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access/lib"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/optional/libstdc++/libstdc++."* "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access/lib"
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
+cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/optional/libstdc++/libstdc++."* "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
 YUZU_FILES=(
     libboost_context
     libicudata
@@ -764,9 +764,9 @@ YUZU_FILES=(
 )
 for FILE in ${YUZU_FILES[*]}
 do
-    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access/lib"
+    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
 done
-cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/plugins"        "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access"
+cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/plugins"        "${TEMP_DIR}/squashfs-root/opt/Yuzu"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Ryujinx...'
