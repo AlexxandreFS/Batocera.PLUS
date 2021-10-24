@@ -762,19 +762,6 @@ for i in "${WINEPREFIX}/drive_c/users/root/"* "${WINEPREFIX}/drive_c/users/0/"*;
     fi
 done
 
-mkdir -p "${WINEPREFIX}/drive_c/users/0/Desktop"         \
-         "${WINEPREFIX}/drive_c/users/0/My Documents"    \
-         "${WINEPREFIX}/drive_c/users/0/My Music"        \
-         "${WINEPREFIX}/drive_c/users/0/My Pictures"     \
-         "${WINEPREFIX}/drive_c/users/0/My Videos"       \
-         "${WINEPREFIX}/drive_c/users/0/Personal"        \
-         "${WINEPREFIX}/drive_c/users/root/Desktop"      \
-         "${WINEPREFIX}/drive_c/users/root/My Documents" \
-         "${WINEPREFIX}/drive_c/users/root/My Music"     \
-         "${WINEPREFIX}/drive_c/users/root/My Pictures"  \
-         "${WINEPREFIX}/drive_c/users/root/My Videos"    \
-         "${WINEPREFIX}/drive_c/users/root/Personal"
-
 # Configure default directories for the main user folders in the windows registry.
 sed -i s'/\"Desktop\"=\"C:\\\\users\\\\0\\\\.*/\"Desktop\"=\"C:\\\\users\\\\0\\\\Desktop\"/'                     "${WINEPREFIX}/user.reg"
 sed -i s'/\"Personal\"=\"C:\\\\users\\\\0\\\\.*/\"Personal\"=\"C:\\\\users\\\\0\\\\Personal\"/'                  "${WINEPREFIX}/user.reg"

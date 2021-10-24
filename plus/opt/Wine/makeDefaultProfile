@@ -102,7 +102,7 @@ FOLDERS=(
     'users/root/AppData/Local/Microsoft/Windows/History'
     'users/root/AppData/Local/Microsoft/Windows/INetCookies'
     'users/root/AppData/Local/Microsoft/Windows/INetCache'
-    'users/root/AppData/Roaming/Microsoft/Windows/Templates'USER FOLDERS
+    'users/root/AppData/Roaming/Microsoft/Windows/Templates'
     'users/root/AppData/Roaming/Microsoft/Windows/Themes'
     'users/root/AppData/Roaming/Microsoft/Windows/Printer Shortcuts'
     'users/root/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Administrative Tools'
