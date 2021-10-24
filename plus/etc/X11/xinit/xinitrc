@@ -78,6 +78,9 @@ if [ -e "/lib/modules/$(uname -r)/extra/nvidia.ko" ]; then
         batocera-resolution setDPI 96
     fi
 
+    # Force use vulkan nvidia_icd, fix conflict problems.
+    export VK_ICD_FILENAMES='/usr/share/vulkan/icd.d/nvidia_icd.i686.json:/usr/share/vulkan/icd.d/nvidia_icd.x86_64.json'
+
     # Hybrid Nvidia
     if grep -q ' BusID ' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf; then
         # https://us.download.nvidia.com/XFree86/Linux-x86_64/450.57/README/primerenderoffload.html
