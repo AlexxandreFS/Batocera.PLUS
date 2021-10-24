@@ -3,6 +3,9 @@
 ## Batocera.PLUS
 ##
 ## Código escrito por: Sérgio de Carvalho Júnior
+## Aprendizado
+## https://www.youtube.com/watch?v=RdnhiXPdlgE
+## https://xemu.app/docs/ftp/
 ## 
 ################################################################################
 
@@ -15,6 +18,7 @@ P4GUID="${5}"
 RESOLUTION="${6}"
 SCALING="${7}"
 BOOTANIM="${8}"
+RSCALE="${9}"
 
 #local variables
 BIOS='/userdata/bios'
@@ -55,6 +59,7 @@ function CreateConfigs()
        echo '[display]'                                            >> "${HOME}/configs/xemu/xemu.ini"
        echo 'scale = scale'                                        >> "${HOME}/configs/xemu/xemu.ini"
        echo 'ui_scale = 1'                                         >> "${HOME}/configs/xemu/xemu.ini"
+       echo 'render_scale = 1'                                     >> "${HOME}/configs/xemu/xemu.ini"
 
        # Fill input section
        echo '[input]'                                              >> "${HOME}/configs/xemu/xemu.ini"
@@ -104,23 +109,32 @@ if [ "${RESOLUTION}" != 'auto' ]; then
 fi
 
 # bootanim
-echo "${BOOTANIM}" > "${HOME}/../BOOTANIM.txt"
 if [ "${BOOTANIM}" == '0' ]; then
     sed -i s/'^shortanim = .*/shortanim = true/'   "${HOME}/configs/xemu/xemu.ini"
 else
-    sed -i s/'^shortanim = .*/shortanim = false/'   "${HOME}/configs/xemu/xemu.ini"
+    sed -i s/'^shortanim = .*/shortanim = false/'  "${HOME}/configs/xemu/xemu.ini"
 fi
 
-# scale
-case $SCALING in
-        center)  sed -i "s|^scale = .*|scale = ${SCALING}|"   "${HOME}/configs/xemu/xemu.ini" ;;
-        scale)   sed -i "s|^scale = .*|scale = ${SCALING}|"   "${HOME}/configs/xemu/xemu.ini" ;;
-        stretch) sed -i "s|^scale = .*|scale = ${SCALING}|"   "${HOME}/configs/xemu/xemu.ini" ;;
-        *)       sed -i "s|^scale = .*|scale = scale|"        "${HOME}/configs/xemu/xemu.ini" ;;
-esac
+# scaling
+if [ "${SCALING}" != 'auto' ]; then
+    sed -i "s|^scale = .*|scale = ${SCALING}|"   "${HOME}/configs/xemu/xemu.ini"
+else
+    sed -i "s|^scale = .*|scale = scale|"        "${HOME}/configs/xemu/xemu.ini"
+fi
+
+#rendering scale
+if [ "${RSCALE}" != 'auto' ]; then
+    sed -i "s|^render_scale = .*|render_scale = ${RSCALE}|"         "${HOME}/configs/xemu/xemu.ini"
+else
+    sed -i "s|^render_scale = .*|render_scale = 1|"                 "${HOME}/configs/xemu/xemu.ini"
+fi
 
 # launch game
-sed -i "s|^dvd_path = .*|dvd_path = ${ROM}|"                        "${HOME}/configs/xemu/xemu.ini"
+if [ -e "${ROM}" ]; then
+   sed -i "s|^dvd_path = .*|dvd_path = ${ROM}|"                     "${HOME}/configs/xemu/xemu.ini"
+else
+   sed -i "s|^dvd_path = .*|dvd_path = |"                           "${HOME}/configs/xemu/xemu.ini"
+fi
 sed -i "s|^controller_1_guid = .*|controller_1_guid = ${P1GUID}|"   "${HOME}/configs/xemu/xemu.ini"
 sed -i "s|^controller_2_guid = .*|controller_2_guid = ${P2GUID}|"   "${HOME}/configs/xemu/xemu.ini"
 sed -i "s|^controller_3_guid = .*|controller_3_guid = ${P3GUID}|"   "${HOME}/configs/xemu/xemu.ini"
