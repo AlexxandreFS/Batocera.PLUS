@@ -427,7 +427,7 @@ fi
 SAVE_DIR='/userdata/saves/windows/wine-profiles'
 
 if [ ! -d "${SAVE_DIR}/ProgramData" ] || [ ! -d "${SAVE_DIR}/users" ]; then
-    "${WINE_DIR}/makeDefaultProfile" "${SAVE_DIR}"
+    "${WINE_DIR}/default-profile.sh" "${SAVE_DIR}"
 fi
 
 unset SAVE_DIR
