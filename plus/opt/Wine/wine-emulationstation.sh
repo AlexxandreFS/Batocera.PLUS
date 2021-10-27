@@ -59,11 +59,8 @@ elif [ -f "${ROM}" ]; then
     UPPER_DIR="${OVERLAY_DIR}/upperdir"
     WORK_DIR="${OVERLAY_DIR}/workdir"
 
-    GAME_SAVE_DIR="${SAVES_DIR}/${SYSTEM}/$(basename "${ROM}")/ROM-CHANGES"
-
-    if [ "${SYSTEM}" == 'mugen' ]; then
-        GAME_SAVE_DIR="${GAME_SAVE_DIR%/ROM-CHANGES}"
-    fi
+    GAME_SAVE_DIR="${SAVES_DIR}/${SYSTEM}/$(basename "${ROM}" .plus)"
+    GAME_SAVE_DIR="${GAME_SAVE_DIR%.PLUS}"
 
     mkdir -p "${MOUNT_DIR}" \
              "${LOWER_DIR}" \
