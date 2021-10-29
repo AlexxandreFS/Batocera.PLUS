@@ -20,6 +20,36 @@ MOUSE="${4}"
 
 ################################################################################
 
+function TextLocalization()
+{
+   LANG="$(batocera-settings -command load -key system.language)"
+   case $LANG in
+      pt_BR) MSG[1]='\n ESCOLHA UMA OPÇÃO. \n' ;;
+      es_ES) MSG[1]='\n ESCOGE UNA OPCIÓN. \n' ;;
+      *)     MSG[1]='\n CHOOSE A OPTION. \n'
+   esac
+}
+
+function choseEmu()
+{
+   yad --form \
+   --title='YUZU CONFIGURATOR' \
+   --window-icon='/usr/share/icons/batocera/yuzu.png' \
+   --text=''"${MSG[1]}"'' \
+   --text-align=center \
+   --button='YUZU-MAINLINE:0' \
+   --button='YUZU-EA:1' \
+   --fixed \
+   --center \
+   --close-on-unfocus
+
+   case ${?} in
+      0) "${YUZU_DIR}/yuzu-mainline/bin/yuzu" "${@}" ;;
+      1) "${YUZU_DIR}/yuzu-early-access/bin/yuzu" "${@}" ;;
+      *) exit 0
+   esac
+}
+
 ### YUZU VERSION
 
 if [ "${CORE}" != 'yuzu-mainline' ]
@@ -126,7 +156,8 @@ then
     ${MANGOHUD_CMD} "${YUZU_DIR}/${CORE}/bin/yuzu" -f -g "${ROM}"
 else
     # APPS (F1)
-    "${YUZU_DIR}/${CORE}/bin/yuzu" "${@}"
+    TextLocalization
+    choseEmu
 fi
 
 ################################################################################
