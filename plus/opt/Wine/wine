@@ -763,17 +763,23 @@ for i in "${WINEPREFIX}/drive_c/users/root/"* "${WINEPREFIX}/drive_c/users/0/"*;
 done
 
 # Configure default directories for the main user folders in the windows registry.
-sed -i s'/\"Desktop\"=\"C:\\\\users\\\\0\\\\.*/\"Desktop\"=\"C:\\\\users\\\\0\\\\Desktop\"/'                     "${WINEPREFIX}/user.reg"
-sed -i s'/\"Personal\"=\"C:\\\\users\\\\0\\\\.*/\"Personal\"=\"C:\\\\users\\\\0\\\\Personal\"/'                  "${WINEPREFIX}/user.reg"
-sed -i s'/\"My Music\"=\"C:\\\\users\\\\0\\\\.*/\"My Music\"=\"C:\\\\users\\\\0\\\\My Music\"/'                  "${WINEPREFIX}/user.reg"
-sed -i s'/\"My Pictures\"=\"C:\\\\users\\\\0\\\\.*/\"My Pictures\"=\"C:\\\\users\\\\0\\\\My Pictures\"/'         "${WINEPREFIX}/user.reg"
-sed -i s'/\"My Videos\"=\"C:\\\\users\\\\0\\\\.*/\"My Videos\"=\"C:\\\\users\\\\0\\\\My Videos\"/'               "${WINEPREFIX}/user.reg"
+sed -i s'|\"Desktop\"=\"C:\\\\users\\\\root\\\\.*|\"Desktop\"=\"C:\\\\users\\\\root\\\\Desktop\"|'                   "${WINEPREFIX}/user.reg"
+sed -i s'|\"Personal\"=\"C:\\\\users\\\\root\\\\.*|\"Personal\"=\"C:\\\\users\\\\root\\\\Documents\"|'               "${WINEPREFIX}/user.reg"
+sed -i s'|\"My Music\"=\"C:\\\\users\\\\root\\\\.*|\"My Music\"=\"C:\\\\users\\\\root\\\\Music\"|'                   "${WINEPREFIX}/user.reg"
+sed -i s'|\"My Pictures\"=\"C:\\\\users\\\\root\\\\.*|\"My Pictures\"=\"C:\\\\users\\\\root\\\\Pictures\"|'          "${WINEPREFIX}/user.reg"
+sed -i s'|\"My Videos\"=\"C:\\\\users\\\\root\\\\.*|\"My Videos\"=\"C:\\\\users\\\\root\\\\Videos\"|'                "${WINEPREFIX}/user.reg"
 
-sed -i s'/\"Desktop\"=str(2):\"%USERPROFILE%\\\\.*/\"Desktop\"=str(2):\"%USERPROFILE%\\\\Desktop\"/'             "${WINEPREFIX}/user.reg"
-sed -i s'/\"Personal\"=str(2):\"%USERPROFILE%\\\\.*/\"Personal\"=str(2):\"%USERPROFILE%\\\\Personal\"/'          "${WINEPREFIX}/user.reg"
-sed -i s'/\"My Music\"=str(2):\"%USERPROFILE%\\\\.*/\"My Music\"=str(2):\"%USERPROFILE%\\\\My Music\"/'          "${WINEPREFIX}/user.reg"
-sed -i s'/\"My Pictures\"=str(2):\"%USERPROFILE%\\\\.*/\"My Pictures\"=str(2):\"%USERPROFILE%\\\\My Pictures\"/' "${WINEPREFIX}/user.reg"
-sed -i s'/\"My Videos\"=str(2):\"%USERPROFILE%\\\\.*/\"My Videos\"=str(2):\"%USERPROFILE%\\\\My Videos\"/'       "${WINEPREFIX}/user.reg"
+sed -i s'|\"Desktop\"=\"C:\\\\users\\\\steamuser\\\\.*|\"Desktop\"=\"C:\\\\steamuser\\\\root\\\\Desktop\"|'          "${WINEPREFIX}/user.reg"
+sed -i s'|\"Personal\"=\"C:\\\\users\\\\steamuser\\\\.*|\"Personal\"=\"C:\\\\steamuser\\\\root\\\\Documents\"|'      "${WINEPREFIX}/user.reg"
+sed -i s'|\"My Music\"=\"C:\\\\users\\\\steamuser\\\\.*|\"My Music\"=\"C:\\\\steamuser\\\\root\\\\Music\"|'          "${WINEPREFIX}/user.reg"
+sed -i s'|\"My Pictures\"=\"C:\\\\users\\\\steamuser\\\\.*|\"My Pictures\"=\"C:\\\\steamuser\\\\root\\\\Pictures\"|' "${WINEPREFIX}/user.reg"
+sed -i s'|\"My Videos\"=\"C:\\\\users\\\\steamuser\\\\.*|\"My Videos\"=\"C:\\\\steamuser\\\\root\\\\Videos\"|'       "${WINEPREFIX}/user.reg"
+
+sed -i s'|\"Desktop\"=str(2):\"%USERPROFILE%\\\\.*|\"Desktop\"=str(2):\"%USERPROFILE%\\\\Desktop\"|'                 "${WINEPREFIX}/user.reg"
+sed -i s'|\"Personal\"=str(2):\"%USERPROFILE%\\\\.*|\"Personal\"=str(2):\"%USERPROFILE%\\\\Documents\"|'             "${WINEPREFIX}/user.reg"
+sed -i s'|\"My Music\"=str(2):\"%USERPROFILE%\\\\.*|\"My Music\"=str(2):\"%USERPROFILE%\\\\Music\"|'                 "${WINEPREFIX}/user.reg"
+sed -i s'|\"My Pictures\"=str(2):\"%USERPROFILE%\\\\.*|\"My Pictures\"=str(2):\"%USERPROFILE%\\\\Pictures\"|'        "${WINEPREFIX}/user.reg"
+sed -i s'|\"My Videos\"=str(2):\"%USERPROFILE%\\\\.*|\"My Videos\"=str(2):\"%USERPROFILE%\\\\Videos\"|'              "${WINEPREFIX}/user.reg"
 
 ################################################################################
 
