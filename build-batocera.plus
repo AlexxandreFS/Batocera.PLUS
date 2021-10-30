@@ -219,6 +219,8 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/imlib2-1.5.1-1.7z'    # dep: tint2
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/librsvg-2.40.20-1.7z' # dep: tint2, jgmenu
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libcroco-0.6-1.7z'    # dep: tint2, jgmenu
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libfm-gtk-4.1.2-1.7z' # dep: pcmanfm (add new folders)
+
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/adwaita-blue-light-167841-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/flash-player-32.0.0.465-(FlashPatch-1.5)-1.7z' # dep: firefox
 
