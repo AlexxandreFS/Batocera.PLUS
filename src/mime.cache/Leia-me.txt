@@ -1,0 +1,17 @@
+Como criar o cache.
+
+Copie os arquivos .xml da seguinte pasta de compilação do batocera.linux
+output/x86_64/host/x86_64-buildroot-linux-gnu/sysroot/usr/share/mime/packages
+
+para a seguinte pasta do Batocera.PLUS NÃO substitua os arquivos.
+/usr/share/mime/packages
+
+Para a associação de arquivos .exe no wine (mouse pusher) funcionar precisa desativar
+algumas linhas no arquivo freedesktop.org.xml veja o patch incluso para mais detalhes.
+
+Para criar o cache use o programa update-mime-database, este programa é criado
+no host do buildroot output/x86_64/host/x86_64-buildroot-linux-gnu/sysroot/usr/bin
+update-mime-database /usr/share/mime
+
+o cache será criado nesta mesma pasta, junto com outros arquivos temporários, só
+nos interessa o arquivo mime.cache os demais arquivos podem ser excuídos.
