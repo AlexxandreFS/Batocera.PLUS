@@ -786,6 +786,12 @@ sed -i s'|\"My Videos\"=str(2):\"%USERPROFILE%\\\\.*|\"My Videos\"=str(2):\"%USE
 ### DRIVES ADICIONAIS (D: E: Z: etc...)
 
 ln -s "/userdata/roms/windows" "${WINEPREFIX}/dosdevices/d:"
+ln -s "/media"                 "${WINEPREFIX}/dosdevices/e:"
+
+(echo '[Software\\Wine\\Drives]'
+ echo '"d:"="hd"'
+ echo '"e:"="hd"'
+ echo '"z:"="hd"') >> "${WINEPREFIX}/system.reg"
 
 ################################################################################
 
