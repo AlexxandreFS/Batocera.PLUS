@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Action
+Tooltip=Terminal
+Name=Terminal
+Profiles=profile-zero;
+Icon=utilities-terminal
+
+[X-Action-Profile profile-zero]
+MimeTypes=inode/directory;
+Exec=/usr/bin/xterm
+Name=Default profile
