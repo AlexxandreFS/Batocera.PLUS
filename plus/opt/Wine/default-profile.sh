@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ##
 ## Batocera.PLUS
@@ -92,29 +92,37 @@ FOLDERS=(
 
 PROFILE_DIR="${1}"
 
-if ! [ "${PROFILE_DIR}" ]
-then
-    PROFILE_DIR=/userdata/saves/windows/wine-profiles
-fi
+## Teste de sanidade.
 
-mkdir -p "${PROFILE_DIR}"
-
-if ! [ -e "${PROFILE_DIR}" ]
+if [ -z "${1}" ]
 then
     exit 1
 fi
 
+## Cria a estrutura de pastas.
+
 for FOLDER in "${FOLDERS[@]}"
 do
-    # A Pasta pode existir, talvez um link criado pelo usuário ou
-    # por um outro script neste caso a pasta não será criada.
-    if ! [ -e "${PROFILE_DIR}/${FOLDER}" ]
+    mkdir -p "${PROFILE_DIR}/${FOLDER}"
+done
+
+## Remove links simbólicos para pasta que foram criadas pelo wine.
+
+for FILE in "${PROFILE_DIR}/users/root/"* \
+            "${PROFILE_DIR}/users/0/"* \
+            "${PROFILE_DIR}/users/wine/"*
+do
+    if [ -L "${FILE}" ]
     then
-        mkdir -p "${PROFILE_DIR}/${FOLDER}"
+        rm "${FILE}"
     fi
 done
 
-# Ativa a compatibilidade dos saves do wine com o proton.
-ln -sf wine "${PROFILE_DIR}/users/steamuser"
+## Ativa a compatibilidade dos saves do wine com o proton.
+
+if ! [ -e "${PROFILE_DIR}/users/steamuser" ]
+then
+    ln -sf wine "${PROFILE_DIR}/users/steamuser"
+fi
 
 exit 0

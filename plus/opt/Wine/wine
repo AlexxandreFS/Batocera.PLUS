@@ -6,7 +6,7 @@
 
 ################################################################################
 
-WINE_DIR='/opt/Wine'
+readonly WINE_DIR='/opt/Wine'
 
 ################################################################################
 
@@ -122,6 +122,32 @@ if ! [ "${WINEPREFIX}" ]; then
 elif ! [ -d "${WINEPREFIX}" ]; then
     echo "Error ${WINEPREFIX} not found."
     exit 1
+fi
+
+################################################################################
+
+### UPDATE WINEPREFIX
+
+readonly SAVE_DIR='/userdata/saves/windows/wine-profiles'
+
+if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
+    WINE_VERSION="$(stat -t "${WINE_DIR}/${WINE_BUILD}/share/wine/wine.inf" | awk '{print $12}')"
+    WINE_VERSION_NEW="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
+
+    if [ "${WINE_VERSION}" != "${WINE_VERSION_NEW}" ]; then
+        "${WINE_DIR}/default-profile.sh" "${SAVE_DIR}"
+        "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" wineboot -u
+    fi
+
+    unset WINE_VERSION WINE_VERSION_NEW
+fi
+
+################################################################################
+
+### BUILD DEFAULT PROFILE (SAVES)
+
+if [ ! -d "${SAVE_DIR}/ProgramData" ] || [ ! -d "${SAVE_DIR}/users" ]; then
+    "${WINE_DIR}/default-profile.sh" "${SAVE_DIR}"
 fi
 
 ################################################################################
@@ -422,18 +448,6 @@ fi
 
 ################################################################################
 
-### DEFAULT PROFILE
-
-SAVE_DIR='/userdata/saves/windows/wine-profiles'
-
-if [ ! -d "${SAVE_DIR}/ProgramData" ] || [ ! -d "${SAVE_DIR}/users" ]; then
-    "${WINE_DIR}/default-profile.sh" "${SAVE_DIR}"
-fi
-
-unset SAVE_DIR
-
-################################################################################
-
 ### MAXIMUM NUMBER OF OPEN FILES
 
 ulimit -n 1048576
@@ -626,22 +640,19 @@ esac
 ### START WINE NORMALLY
 
 if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
-    WINE_VERSION="$(stat -t "${WINE_DIR}/${WINE_BUILD}/share/wine/wine.inf" | awk '{print $12}')"
-    WINE_VERSION_NEW="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
+    ${WINE_DIR}/${WINE_BUILD}/bin/wineserver -p1
 
-    if [ "${WINE_VERSION}" == "${WINE_VERSION_NEW}" ]; then
-        ${WINE_DIR}/${WINE_BUILD}/bin/wineserver -p1
-        nice -n -15 ${MANGOHUD_CMD} "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" ${VIRTUAL_DESKTOP} "${@}"
-        wineWait
+    nice -n -15 ${MANGOHUD_CMD} "${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH}" ${VIRTUAL_DESKTOP} "${@}"
+    wineWait
 
-        # Restaura a resolução da área de trabalho.
-        RES_STOP="$(batocera-resolution currentResolution)"
-        if [ "${DEFAULT_RESOLUTION}" != "${RES_STOP}" ]; then
-           batocera-resolution setMode "${DEFAULT_RESOLUTION}"
-        fi
+    # Restaura a resolução da área de trabalho.
+    RES_STOP="$(batocera-resolution currentResolution)"
 
-        exit 0
+    if [ "${DEFAULT_RESOLUTION}" != "${RES_STOP}" ]; then
+        batocera-resolution setMode "${DEFAULT_RESOLUTION}"
     fi
+
+    exit 0
 fi
 
 ################################################################################
@@ -680,20 +691,14 @@ fi
 
 echo "info: creating new wineprefix ${WINEPREFIX}"
 
-if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
-    rm -rf "${WINEPREFIX}"
-fi
+"${WINE_DIR}/default-profile.sh" "${SAVE_DIR}"
 
-SAVE_DIR='/userdata/saves/windows/wine-profiles'
+# Direciona as pasta de perfil do usuário para a pasta de saves.
 
-mkdir -p "${SAVE_DIR}/ProgramData" \
-         "${SAVE_DIR}/users" \
-         "${WINEPREFIX}/drive_c"
+mkdir -p "${WINEPREFIX}/drive_c"
 
 ln -s "${SAVE_DIR}/ProgramData" "${WINEPREFIX}/drive_c/ProgramData"
 ln -s "${SAVE_DIR}/users"       "${WINEPREFIX}/drive_c/users"
-
-unset SAVE_DIR
 
 ################################################################################
 
@@ -755,12 +760,6 @@ fi
 ################################################################################
 
 ### USER FOLDERS
-
-for i in "${WINEPREFIX}/drive_c/users/root/"* "${WINEPREFIX}/drive_c/users/0/"*; do
-    if [ -L "$i" ]; then
-        rm -r "$i"
-    fi
-done
 
 # Configure default directories for the main user folders in the windows registry.
 sed -i s'|\"Desktop\"=\"C:\\\\users\\\\root\\\\.*|\"Desktop\"=\"C:\\\\users\\\\root\\\\Desktop\"|'                   "${WINEPREFIX}/user.reg"
