@@ -24,6 +24,12 @@ if ! [ -f "$SHARE/system/custom.sh" ]; then
     cp "$DATAINIT/system/custom.sh" "$SHARE/system/custom.sh"
 fi
 
+### Atalhos para a área de trabalho
+if [ ! -e "${SHARE}/system/Desktop" ]; then
+    mkdir -p "${SHARE}/system/Desktop"
+    cp /usr/share/applications/firefox.desktop "${SHARE}/system/Desktop/Firefox.desktop"
+fi
+
 ### Corrige problemas com fontes Chinesas.
 if [ "$(grep system.language=zh_TW ${SHARE}/system/batocera.conf)" ] || [ "$(grep system.language=zh_CN ${SHARE}/system/batocera.conf)" ]; then
     ln -sf '/usr/share/fonts/truetype/msttcorefonts/msjh.ttf'   '/usr/share/libretro/assets/xmb/monochrome/font.ttf'
