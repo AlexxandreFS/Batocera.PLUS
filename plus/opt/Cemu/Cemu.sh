@@ -134,6 +134,10 @@ if [ ! "$(ls -A "${CEMU}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/nu
         ln -sf "${SAVE}/${i}" "${CEMU}"
     done
 
+    # Compatibilidade com a instalação de DLC e UPDATES pela interface com cemu
+    mkdir -p "{HOME}/../saves/windows/wine-profiles/users/cemu"
+    ln -sf "${SAVE}/mlc01" "{HOME}/../saves/windows/wine-profiles/users/cemu"
+
     ln -sf "${CEMU}/log.txt" "${HOME}/logs/cemu.log"
     ln -sf '/usr/share/fonts/truetype/msttcorefonts/CafeCn.ttf'  "${CEMU}/sharedFonts"
     ln -sf '/usr/share/fonts/truetype/msttcorefonts/CafeKr.ttf'  "${CEMU}/sharedFonts"
