@@ -944,7 +944,7 @@ if [ "${RELEASE}" ]; then
     #sed -i "1s/^/#### Batocera.PLUS-${VERSION}-${RELEASE} ####\n\n/" "${TEMP_DIR}/whatsnew.txt"         || exit $?
 
     echo 'Compactando imagem final...'
-    7zr a -mx=9 "${TEMP_DIR}/Batocera.PLUS-${VERSION}-${RELEASE}.7z" "${TEMP_DIR}/Batocera.PLUS.img" || exit $?
+    7zr a -m0=lzma2 -mx=9 -myx=9 -md=256M -mfb=256 -ms=on -mmt=on "${TEMP_DIR}/Batocera.PLUS-${VERSION}-${RELEASE}.7z" "${TEMP_DIR}/Batocera.PLUS.img" || exit $?
 
     echo 'Gerando Md5sum...'
     md5sum "${TEMP_DIR}/Batocera.PLUS-${VERSION}-${RELEASE}.7z" | cut -d ' ' -f 1 >> "${TEMP_DIR}/md5sum.txt" || exit $?
