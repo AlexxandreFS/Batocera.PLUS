@@ -209,6 +209,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/util-linux-extras-2.35-1.7z' # cfdisk, swapon, whereis
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/preload-0.6.4-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/yad-0.40.0-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/strace-5.13-1.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/GOverlay-libs.7z' # dep: goverlay
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vkBasalt-0.3.2.3-4.7z'
