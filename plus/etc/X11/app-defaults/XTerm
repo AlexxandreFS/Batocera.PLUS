@@ -10,7 +10,7 @@ xterm*background: #04082A
 xterm*foreground: #EEEEEE
 
 # Fonts
-xterm*faceName: "DejaVu Sans Mono":antialias=true
+xterm*faceName: DejaVuSansMono:antialias=true
 xterm*faceNameDoublesize: "WenQuanYi WenQuanYi Bitmap Song"
 xterm*faceSize: 13
 xterm*renderFont: True
