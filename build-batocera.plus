@@ -12,7 +12,7 @@ VERSION='2.18'
 # Remova esta linha para diminuir o tempo de compilação.
 # A imagem não será compactada e nem gerado o md5sum.
 # Serão dicionados pacotes experimentais.
-RELEASE='alpha'
+#RELEASE='alpha'
 
 # Squashfs compression level
 SQUASHFS_COMPRESSION='2'
@@ -294,6 +294,8 @@ URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6
 URL_ANTIMICRO='3.1.7'
 URL_ANTIMICRO="https://github.com/AntiMicroX/antimicrox/releases/download/${URL_ANTIMICRO}/AntiMicroX-x86_64.AppImage#/AntiMicroX-${URL_ANTIMICRO}.AppImage"
 
+URL_PEAZIP='https://github.com/peazip/PeaZip/releases/download/8.2.0/peazip_portable-8.2.0.LINUX.GTK2.x86_64.tar.gz'
+
 URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
 
 URL_QBITTORRENT='https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.3.8.10/qBittorrent-Enhanced-Edition.AppImage'
@@ -327,6 +329,7 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_GOVERLAY}" \
            "${URL_MANGOHUD}" \
            "${URL_ANTIMICRO}" \
+           "${URL_PEAZIP}" \
            "${URL_RPCS3}" \
            "${URL_FIREFOX}" \
            "${URL_QBITTORRENT}"
@@ -615,6 +618,15 @@ unset CURRENT_DIR
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/AntiMicroX"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/antimicrox" "${TEMP_DIR}/squashfs-root/opt/AntiMicroX"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
+
+if [ -z "${RELEASE}" ]; then
+    echo 'Install Peazip...'
+    PKG_NAME="$(basename "${URL_PEAZIP}")"
+    gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
+    mkdir -p "${TEMP_DIR}/squashfs-root/opt/Peazip"
+    cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/"* "${TEMP_DIR}/squashfs-root/opt/Peazip"
+    rm -r "${TEMP_DIR}/pkg-xtract/"*
+fi
 
 echo 'Install Firefox...'
 PKG_NAME="$(basename "${URL_FIREFOX}")"
