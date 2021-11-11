@@ -64,7 +64,7 @@ then
     cp "${XDG_CONFIG_DIRS}/libfm/bookmarks.conf" "${HOME}/.gtk-bookmarks"
 fi
 
-sleep 1
+sleep 0.3
 
 DISPLAY=:0.0 pcmanfm /userdata
 
