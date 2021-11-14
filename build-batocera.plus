@@ -196,6 +196,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3_extra_libs-1.1.7z' # dep: rpcs3
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ryujinx_extras-1.1.7z' # dep: ryujinx
 
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/p7zip-full-17.04-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bzip2-1.0.8.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/unrar-5.90-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/zstd-1.4.3-1.7z'

@@ -1,0 +1,115 @@
+#
+# Batocera.PLUS
+# Alexandre Freire dos Santos
+#
+diff --git a/CPP/7zip/UI/GUI/CompressDialog.cpp b/CPP/7zip/UI/GUI/CompressDialog.cpp
+index ea0cb87..42aa067 100644
+--- a/CPP/7zip/UI/GUI/CompressDialog.cpp
++++ b/CPP/7zip/UI/GUI/CompressDialog.cpp
+@@ -106,7 +106,8 @@ enum EMethodID
+   kBZip2,
+   kDeflate,
+   kDeflate64,
+-  kPPMdZip
++  kPPMdZip,
++  kZSTD
+ };
+ 
+ static const LPCWSTR kMethodsNames[] =
+diff --git a/CPP/Windows/Control/Controls.cpp b/CPP/Windows/Control/Controls.cpp
+index db974e2..ff21c60 100644
+--- a/CPP/Windows/Control/Controls.cpp
++++ b/CPP/Windows/Control/Controls.cpp
+@@ -83,7 +83,7 @@ namespace NWindows {
+                     exit(-1);
+                 }
+             }
+-            s = str;
++            s = static_cast<const char *>(str);
+             return true;
+         }
+     }
+@@ -122,7 +122,7 @@ namespace NWindows {
+             void CComboBox::GetText(CSysString &s) {
+                 LockGUI lock;
+                 wxString str = _choice->GetValue();
+-                s = str;
++                s = static_cast<const char *>(str);
+             }
+ 
+             int CComboBox::GetCount() const  {
+@@ -133,7 +133,7 @@ namespace NWindows {
+             void CComboBox::GetLBText(int index, CSysString &s) {
+                 LockGUI lock;
+                 wxString str = _choice->GetString(index);
+-                s = str;
++                s = static_cast<const char *>(str);
+             }
+ 
+             void CComboBox::SetCurSel(int index) {
+@@ -208,7 +208,7 @@ namespace NWindows {
+                 LockGUI lock;
+                 str = ((wxTextCtrl *)_window)->GetValue();
+             }
+-            s = str;
++            s = static_cast<const char *>(str);
+             return true;
+         }
+ 
+diff --git a/CPP/Windows/Control/Dialog.cpp b/CPP/Windows/Control/Dialog.cpp
+index aef1123..5449bb5 100644
+--- a/CPP/Windows/Control/Dialog.cpp
++++ b/CPP/Windows/Control/Dialog.cpp
+@@ -306,7 +306,7 @@ namespace NWindows {
+ 					LockGUI lock;
+ 	  				str = _window->GetTitle();
+ 				}
+-	  			s = str;
++	  			s = static_cast<const char *>(str);
+ 	  			return true;
+ 		       	}
+ 
+@@ -441,7 +441,7 @@ static int myCreateHandle2(int n)
+ 			       	g_tabCreate[n].title, defaultDir);
+ 		dirDialog.SetIcon(wxICON(p7zip_32));
+ 		int ret = dirDialog.ShowModal();
+-		if (ret == wxID_OK) g_tabCreate[n].resultPath = dirDialog.GetPath();
++		if (ret == wxID_OK) g_tabCreate[n].resultPath = static_cast<const char *>(dirDialog.GetPath());
+ 		return ret;
+ 	}
+ 
+@@ -462,7 +462,7 @@ static int myCreateHandle2(int n)
+ 				dir, name, wxT("All Files (*.*)|*.*"), wxFD_SAVE|wxFD_OVERWRITE_PROMPT);
+ 		fileDialog.SetIcon(wxICON(p7zip_32));
+ 		int ret = fileDialog.ShowModal();
+-		if (ret == wxID_OK) g_tabCreate[n].resultPath = fileDialog.GetPath();
++		if (ret == wxID_OK) g_tabCreate[n].resultPath = static_cast<const char *>(fileDialog.GetPath());
+ 		return ret;
+ 	}
+ 
+diff --git a/CPP/Windows/Registry.cpp b/CPP/Windows/Registry.cpp
+index 1cc8be9..633b4f1 100644
+--- a/CPP/Windows/Registry.cpp
++++ b/CPP/Windows/Registry.cpp
+@@ -135,7 +135,7 @@ LONG CKey::QueryValue(LPCTSTR name, CSysString &value)
+ 	wxString val;
+ 	bool ret = g_config->Read(name,&val);
+ 	if (ret) {
+-		value = val;
++		value = static_cast<const char *>(val);
+ 		return ERROR_SUCCESS;
+ 	}
+ 	return ERROR_GET_VALUE;
+diff --git a/CPP/Windows/Window.cpp b/CPP/Windows/Window.cpp
+index e92228c..4d4a4d9 100644
+--- a/CPP/Windows/Window.cpp
++++ b/CPP/Windows/Window.cpp
+@@ -72,7 +72,7 @@ void MySetWindowText(HWND wnd, LPCWSTR s)
+ 			LockGUI lock;
+ 	  		str = _window->GetLabel();
+ 		}
+-	  	s = str;
++	  	s = static_cast<const char *>(str);
+ 	  	return true;
+ 	}
+ 
