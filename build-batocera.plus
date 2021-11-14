@@ -226,7 +226,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libfm-gtk-4.1.2-2.7z'      # dep: pcmanfm (add new folders to left menu)
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libgtk3-3.24-1.7z'         # remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libaio-0.3.111-1.7z'       # remove on update
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wxwidgets-gtk3-3.1.0-1.7z' # remove on update
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wxwidgets-gtk3-3.1.0-1.7z' # dep: tint2 #remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mime-cache-2.7z'           # dep: pcmanfm (show icons in files)
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gvfs-1.44-2.7z'            # remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/adwaita-blue-light-167841-1.7z'

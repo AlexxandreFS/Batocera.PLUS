@@ -1,0 +1,2 @@
+#!/bin/bash
+exec /usr/lib/p7zip/7zG "$@"

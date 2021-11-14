@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ -z "$@" ]
+then
+    exec /usr/lib/p7zip/7zFM /userdata
+else
+    exec /usr/lib/p7zip/7zFM "$@"
+fi

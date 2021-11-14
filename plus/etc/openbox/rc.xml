@@ -168,6 +168,16 @@
             </size>
         </application>
 
+        <application name="7zFM">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+        </application>
+
+        <application name="7zG">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+        </application>
+
         <application class="Yad">
             <decor>yes</decor>
             <fullscreen></fullscreen>
