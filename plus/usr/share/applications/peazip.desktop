@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Icon=/usr/share/icons/batocera/peazip.png
+Exec=/opt/Peazip/peazip.sh %f
+Terminal=false
+Type=Application
+Categories=settings;batocera.linux;
+Name=Peazip
+GenericName=Peazip
+Comment=Peazip File Manager
+Keywords=system;process;task;
+NoDisplay=false

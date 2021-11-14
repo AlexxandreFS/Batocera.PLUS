@@ -178,6 +178,11 @@
             <fullscreen></fullscreen>
         </application>
 
+        <application name="peazip">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+        </application>
+
         <application class="Yad">
             <decor>yes</decor>
             <fullscreen></fullscreen>
