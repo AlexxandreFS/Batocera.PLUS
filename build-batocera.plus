@@ -624,14 +624,12 @@ mkdir -p "${TEMP_DIR}/squashfs-root/opt/AntiMicroX"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/antimicrox" "${TEMP_DIR}/squashfs-root/opt/AntiMicroX"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
-if [ -z "${RELEASE}" ]; then
-    echo 'Install Peazip...'
-    PKG_NAME="$(basename "${URL_PEAZIP}")"
-    gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
-    mkdir -p "${TEMP_DIR}/squashfs-root/opt/Peazip"
-    cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/"* "${TEMP_DIR}/squashfs-root/opt/Peazip"
-    rm -r "${TEMP_DIR}/pkg-xtract/"*
-fi
+echo 'Install Peazip...'
+PKG_NAME="$(basename "${URL_PEAZIP}")"
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Peazip"
+cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/"* "${TEMP_DIR}/squashfs-root/opt/Peazip"
+rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Firefox...'
 PKG_NAME="$(basename "${URL_FIREFOX}")"
