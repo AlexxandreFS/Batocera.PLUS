@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Peazip
+Type=Action
+Tooltip=Peazip
+
+Profiles=profile-zero;
+Icon=/usr/share/icons/batocera/peazip.png
+
+[X-Action-Profile profile-zero]
+Name=Default profile
+MimeTypes=all/all;inode/directory;
+Exec=/opt/Peazip/peazip.sh %f
+
