@@ -182,14 +182,14 @@ sync
 
 SLANG="$(batocera-settings -command load -key system.language)"
 case ${SLANG} in
-    fr_FR)             sed -i 's/<language>.*/<language>80<\/language>/'  "${CEMU}/settings.xml" ;;
-    en_US|en_GB|eu_ES) sed -i 's/<language>.*/<language>57<\/language>/'  "${CEMU}/settings.xml" ;;
-    de_DE)             sed -i 's/<language>.*/<language>89<\/language>/'  "${CEMU}/settings.xml" ;;
-    pt_BR)             sed -i 's/<language>.*/<language>154<\/language>/' "${CEMU}/settings.xml" ;;
-    es_ES)             sed -i 's/<language>.*/<language>180<\/language>/' "${CEMU}/settings.xml" ;;
-    it_IT)             sed -i 's/<language>.*/<language>110<\/language>/' "${CEMU}/settings.xml" ;;
-    tr_TR)             sed -i 's/<language>.*/<language>215<\/language>/' "${CEMU}/settings.xml" ;;
-    zh_CN)             sed -i 's/<language>.*/<language>44<\/language>/'  "${CEMU}/settings.xml" ;;
+    fr_FR)       sed -i 's/<language>.*/<language>80<\/language>/'  "${CEMU}/settings.xml" ;;
+    en_US|en_GB) sed -i 's/<language>.*/<language>57<\/language>/'  "${CEMU}/settings.xml" ;;
+    de_DE)       sed -i 's/<language>.*/<language>89<\/language>/'  "${CEMU}/settings.xml" ;;
+    pt_BR)       sed -i 's/<language>.*/<language>154<\/language>/' "${CEMU}/settings.xml" ;;
+    es_ES)       sed -i 's/<language>.*/<language>180<\/language>/' "${CEMU}/settings.xml" ;;
+    it_IT)       sed -i 's/<language>.*/<language>110<\/language>/' "${CEMU}/settings.xml" ;;
+    tr_TR)       sed -i 's/<language>.*/<language>215<\/language>/' "${CEMU}/settings.xml" ;;
+    zh_CN)       sed -i 's/<language>.*/<language>44<\/language>/'  "${CEMU}/settings.xml" ;;
 esac
 
 sync
