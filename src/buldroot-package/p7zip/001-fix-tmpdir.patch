@@ -1,0 +1,23 @@
+diff --git a/CPP/Windows/FileDir.cpp b/CPP/Windows/FileDir.cpp
+index c27e9a1..58b494f 100644
+--- a/CPP/Windows/FileDir.cpp
++++ b/CPP/Windows/FileDir.cpp
+@@ -709,7 +709,17 @@ bool GetOnlyDirPrefix(CFSTR path, FString &resDirPrefix)
+ 
+ bool MyGetTempPath(FString &path)
+ {
+-  path = L"c:/tmp/"; // final '/' is needed
++  const char *tmpdir = getenv("TMPDIR");
++
++  if (tmpdir)
++  {
++    path = tmpdir;
++  }
++  else
++  {
++    path = L"/userdata/extractions/"; // final '/' is needed
++  }
++
+   return true;
+ }
+ 
