@@ -1,0 +1,116 @@
+#!/bin/bash
+###
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+###
+
+################################################################################
+
+ACTION=
+
+case ${1} in
+    --extract)
+        ACTION='extract-to'
+        ;;
+    --batch)
+        if [ "${2}" == '--dialog' ]; then
+            ACTION='extract-to'
+        elif [ "${2}" == '--destination' ]; then
+            ACTION='extract-here'
+        fi
+        shift
+        ;;
+    --extract-to)
+        ACTION='extract-here'
+        ;;
+    --add-to|new)
+        ACTION='add'
+        ;;
+    --add)
+        if [ "${2}" == '--dialog' ]; then
+            shift
+        fi
+        ACTION='add'
+        ;;
+    *)
+        exit 1
+esac
+
+shift
+
+################################################################################
+
+case ${ACTION} in
+    add)
+        if [ -z "${2}" ]; then
+            # Compacta apenas 1 arquivo/pasta.
+            FILE_OUT="${1}"
+        else
+            # Compacta mais de 1 arquivo/pasta.
+            FILE_OUT="$(dirname "${1}")"
+            FILE_OUT="${FILE_OUT}/$(basename "${FILE_OUT}")"
+        fi
+
+        LIST="/tmp/7zip-list-$$.txt"
+
+        while [ "${1}" ]; do
+            echo "${1}"  >> "${LIST}"
+            shift
+        done
+
+        export TMPDIR="$(dirname "${FILE_OUT}")/"
+
+        7zG a -ad -slp- -saa -i"@${LIST}" "${FILE_OUT}"
+
+        rm -f "${LIST}"
+        ;;
+    extract-to)
+        DIR_OUT="$(dirname "${1}")"
+
+        LIST="/tmp/7zip-list-$$.txt"
+
+        while [ "${1}" ]; do
+            echo "${1}"  >> "${LIST}"
+            shift
+        done
+
+        7zG x -ad -slp- -an -ai"@${LIST}" -o"${DIR_OUT}"
+
+        rm -f "${LIST}"
+        ;;
+    extract-here)
+        FILE=$(echo "${1}" | sed s'|^file://||')
+        cd "${FILE}"
+        7zG x -slp- -- "${FILE}"
+        ;;
+    *)
+        exit 2
+esac
+
+exit 0
+
+################################################################################
+
+### REFULGO
+
+#extract here = xarchiver   --extract-to          /userdata/minha-pasta          /userdata/meu-arquivo.zip
+#extract to   = xarchiver   --extract             /userdata/meu-arquivo.zip
+#compress     = xarchiver   --add-to              /userdata/meu-arquivo-ou-pasta
+
+#extract here = file-roller --extract-to          file:///userdata/minha-pasta   /userdata/meu-arquivo.zip
+#extract to   = file-roller --extract             /userdata/meu-arquivo.zip
+#compress     = file-roller --add                 /userdata/meu-arquivo-ou-pasta
+
+#extract here = squeeze     --extract-to          /userdata/minha-pasta          /userdata/meu-arquivo.zip
+#extract to   = squeeze     --extract             /userdata/meu-arquivo.zip
+#compress     = squeeze     --new                 /userdata/meu-arquivo-ou-pasta
+
+#extract here = engrampa    --extract-to          file:///userdata/minha-pasta   /userdata/meu-arquivo.zip
+#extract to   = engrampa    --extract             /userdata/meu-arquivo.zip
+#compress     = engrampa    --add                 /userdata/meu-arquivo-ou-pasta
+
+#extract here = ark         --batch --destination /userdata/minha-pasta          /userdata/meu-arquivo.zip
+#extract to   = ark         --batch --dialog      /userdata/meu-arquivo.zip
+#compress     = ark         --add   --dialog      /userdata/meu-arquivo-ou-pasta
+
+################################################################################

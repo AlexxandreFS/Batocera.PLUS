@@ -7,7 +7,7 @@ set -e
 ################################################################################
 
 # Batocera.PLUS Version 
-VERSION='2.19'
+VERSION='2.18'
 
 # Remova esta linha para diminuir o tempo de compilação.
 # A imagem não será compactada e nem gerado o md5sum.

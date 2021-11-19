@@ -2,7 +2,6 @@
 Name=Peazip
 Type=Action
 Tooltip=Peazip
-
 Profiles=profile-zero;
 Icon=/usr/share/icons/batocera/peazip.png
 
@@ -10,4 +9,3 @@ Icon=/usr/share/icons/batocera/peazip.png
 Name=Default profile
 MimeTypes=all/all;inode/directory;
 Exec=/opt/Peazip/peazip.sh %f
-
