@@ -226,7 +226,6 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libfm-gtk-4.1.2-2.7z'      # dep: pcmanfm (add new folders to left menu)
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libgtk3-3.24-1.7z'         # remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libaio-0.3.111-1.7z'       # remove on update
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libsoundtouch-1.0-1.7z'    # remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wxwidgets-gtk2-3.1.0-1.7z' # dep: p7zip
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wxwidgets-gtk3-3.1.0-1.7z' # dep: tint2 #remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mime-cache-2.7z'           # dep: pcmanfm (show icons in files)
@@ -251,6 +250,8 @@ URL_BATOCERA_PLUS_PKG=(
 if [ -z "${RELEASE}" ]; then
     URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}"
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pcsx2-legacy-apr-10-2021-1.7z'
+        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libsoundtouch-1.0-1.7z'    # remove on update
+        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libyaml-cpp-0.6.3-1.7z'    # remove on update
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/play_libretro-mar-8-2021-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/obs-studio-27.0.1-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/obs-studio-extra-libs-1.7z' #dep: obs-studio
