@@ -1,0 +1,28 @@
+diff --git a/pcsx2/gui/AppConfig.cpp b/pcsx2/gui/AppConfig.cpp
+index 7cdcdc2..acdd951 100644
+--- a/pcsx2/gui/AppConfig.cpp
++++ b/pcsx2/gui/AppConfig.cpp
+@@ -188,12 +188,12 @@ namespace PathDefs
+ 
+ 	wxDirName GetSnapshots()
+ 	{
+-		return GetDocuments() + Base::Snapshots();
++		return wxDirName("/userdata/screenshots");
+ 	}
+ 
+ 	wxDirName GetBios()
+ 	{
+-		return GetDocuments() + Base::Bios();;
++		return wxDirName("/userdata/bios");
+ 	}
+ 
+ 	wxDirName GetCheats()
+@@ -213,7 +213,7 @@ namespace PathDefs
+ 
+ 	wxDirName GetSavestates()
+ 	{
+-		return GetDocuments() + Base::Savestates();
++		return wxDirName("/userdata/saves/ps2");
+ 	}
+ 
+ 	wxDirName GetMemoryCards()
