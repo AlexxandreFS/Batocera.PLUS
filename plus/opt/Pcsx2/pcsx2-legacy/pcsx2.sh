@@ -5,10 +5,8 @@
 ###
 ################################################################################
 
-readonly ROM="${2}"
-readonly P1GUID="${1}"
-
-readonly PCSX2_DIR=/opt/Pcsx2/pcsx2-legacy
+readonly ROM="${1}"
+readonly PCSX2_DIR="$(dirname ${0})"
 
 ################################################################################
 
@@ -16,7 +14,7 @@ readonly PCSX2_DIR=/opt/Pcsx2/pcsx2-legacy
 
 function main()
 {
-    makeFolders
+    populate
 
     if [ -e "${ROM}" ]
     then
@@ -28,17 +26,40 @@ function main()
 
 ################################################################################
 
-## Cria algumas pastas usadas pelo pcsx2
+## Cria algumas pastas e arquivos usados pelo pcsx2.
 
-function makeFolders()
+function populate()
 {
-    mkdir -p ${HOME}/configs/pcsx2-legacy /
-             ${HOME}/../saves/ps2/pcsx2-legacy/sstates \
-             ${HOME}/../saves/userdata/saves/ps2/pcsx2/Slot 1 \
-             ${HOME}/../saves/userdata/saves/ps2/pcsx2/Slot 2
+    mkdir -p "${HOME}/../system/configs/pcsx2-legacy" \
+             "${HOME}/../saves/ps2/pcsx2-legacy/sstates" \
+             "${HOME}/../saves/ps2/pcsx2/Slot 1" \
+             "${HOME}/../saves/ps2/pcsx2/Slot 2"
 
-    touch "${HOME}/../saves/userdata/saves/ps2/pcsx2/Slot 1/Shared Memory Card (8 MB).ps2" \
-          "${HOME}/../saves/userdata/saves/ps2/pcsx2/Slot 2/Shared Memory Card (8 MB).ps2"
+    touch "${HOME}/../saves/ps2/pcsx2/Slot 1/Shared Memory Card (8 MB).ps2" \
+          "${HOME}/../saves/ps2/pcsx2/Slot 2/Shared Memory Card (8 MB).ps2"
+
+    if ! [ -e "${HOME}/../system/configs/pcsx2-legacy/PCSX2_ui.ini" ]
+    then
+        cat << '        EOF' > "${HOME}/../system/configs/pcsx2-legacy/PCSX2_ui.ini"
+            [Filenames]
+            BIOS=scph39001.bin
+
+            [ProgramLog]
+            Visible=disabled
+
+            [GSWindow]
+            AspectRatio=4:3
+        EOF
+    fi
+
+    if ! [ -e "${HOME}/../system/configs/pcsx2-legacy/GS.ini" ]
+    then
+        cat << '        EOF' > "${HOME}/../system/configs/pcsx2-legacy/GS.ini"
+            vsync = 0
+            upscale_multiplier = 1
+            MaxAnisotropy = 0
+        EOF
+    fi
 }
 
 ################################################################################
@@ -72,8 +93,6 @@ function execByES()
 {
     makeTheme
 
-    exitHotkeyStart
-
     ${PCSX2_DIR}/PCSX2 \
         --portable \
         --nogui \
@@ -92,36 +111,6 @@ function execByF1()
     ${PCSX2_DIR}/PCSX2 \
         --gs=${PCSX2_DIR}/plugins/libGSdx.so \
         "${@}" > $HOME/logs/pcsx2-legacy.log 2>&1
-}
-
-################################################################################
-
-## Exit game (hotkey + start)
-
-function exitHotkeyStart()
-{
-    if [ -z "${P1GUID}" ]
-    then
-        return 1
-    fi
-
-    local BOTOES="$(${PCSX2_DIR}/../getHotkeyStart ${P1GUID})"
-    local BOTAO_HOTKEY=$(echo "${BOTOES}" | cut -d ' ' -f 1)
-    local BOTAO_START=$(echo  "${BOTOES}" | cut -d ' ' -f 2)
-
-    if [ "${BOTAO_HOTKEY}" ] && [ "${BOTAO_START}" ]
-    then
-        # Impede que o xjoykill seja encerrado enquanto o jogo está em execução.
-        while :
-        do
-            nice -n 20 xjoykill -hotkey ${BOTAO_HOTKEY} -start ${BOTAO_START} -kill "${PCSX2_DIR}/../killpcsx2"
-            if ! [ "$(pidof PCSX2)" ]
-            then
-                break
-            fi
-            sleep 5
-        done &
-    fi
 }
 
 ################################################################################

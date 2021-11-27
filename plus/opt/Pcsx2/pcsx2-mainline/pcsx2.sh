@@ -126,27 +126,6 @@ fi
 
 ################################################################################
 
-### HOTKEY
-
-if [ "${P1GUID}" ]; then
-   BOTOES="$(${EMU_DIR}/../getHotkeyStart ${P1GUID})"
-   BOTAO_HOTKEY=$(echo "${BOTOES}" | cut -d ' ' -f 1)
-   BOTAO_START=$(echo  "${BOTOES}" | cut -d ' ' -f 2)
-
-   if [ "${BOTAO_HOTKEY}" ] && [ "${BOTAO_START}" ]; then
-      # Impede que o xjoykill seja encerrado enquanto o jogo está em execução.
-      while : ; do
-         nice -n 20 xjoykill -hotkey ${BOTAO_HOTKEY} -start ${BOTAO_START} -kill "${EMU_DIR}/../killpcsx2"
-         if ! [ "$(pidof PCSX2)" ]; then
-            break
-         fi
-         sleep 5
-      done &
-   fi
-fi
-
-################################################################################
-
 ### RUN
 
 # $EMU_DIR/bin/PCSX2
@@ -159,11 +138,4 @@ fi
 
 ################################################################################
 
-### CLOSE XJOYKILL
-
-if [ "$(pidof -s xjoykill)" ]; then
-   killall -9 xjoykill
-fi
-
 exit 0
-
