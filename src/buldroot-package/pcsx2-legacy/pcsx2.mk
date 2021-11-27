@@ -42,8 +42,8 @@ PCSX2_CONF_OPTS += -DUSE_VTUNE=OFF
 
 ### Batocera.PLUS Start
 define PCSX2_INSTALL_TARGET_CMDS
-	mkdir -p                                $(TARGET_DIR)/opt/Pcsx2-legacy/Plugins
-	cp -pr $(@D)/plugins/GSdx/libGSdx*      $(TARGET_DIR)/opt/Pcsx2-legacy/Plugins
+	mkdir -p                                $(TARGET_DIR)/opt/Pcsx2-legacy/plugins
+	cp -pr $(@D)/plugins/GSdx/libGSdx*      $(TARGET_DIR)/opt/Pcsx2-legacy/plugins
 	cp -pr $(@D)/bin/*                      $(TARGET_DIR)/opt/Pcsx2-legacy
 	$(INSTALL) -m 0755 -D $(@D)/pcsx2/PCSX2 $(TARGET_DIR)/opt/Pcsx2-legacy/PCSX2
 endef
