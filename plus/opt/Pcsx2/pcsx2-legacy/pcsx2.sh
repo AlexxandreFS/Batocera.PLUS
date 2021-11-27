@@ -16,12 +16,29 @@ readonly PCSX2_DIR=/opt/Pcsx2/pcsx2-legacy
 
 function main()
 {
+    makeFolders
+
     if [ -e "${ROM}" ]
     then
         execByES
     else
         execByF1
     fi
+}
+
+################################################################################
+
+## Cria algumas pastas usadas pelo pcsx2
+
+function makeFolders()
+{
+    mkdir -p ${HOME}/configs/pcsx2-legacy /
+             ${HOME}/../saves/ps2/pcsx2-legacy/sstates \
+             ${HOME}/../saves/userdata/saves/ps2/pcsx2/Slot 1 \
+             ${HOME}/../saves/userdata/saves/ps2/pcsx2/Slot 2
+
+    touch "${HOME}/../saves/userdata/saves/ps2/pcsx2/Slot 1/Shared Memory Card (8 MB).ps2" \
+          "${HOME}/../saves/userdata/saves/ps2/pcsx2/Slot 2/Shared Memory Card (8 MB).ps2"
 }
 
 ################################################################################
