@@ -133,6 +133,16 @@
             <fullscreen></fullscreen>
         </application>
 
+        <application name="PCSX2">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+            <maximized></maximized>
+            <position type="normal">
+                <x>center</x>
+                <y>center</y>
+            </position>
+        </application>
+
         <application name="rpcs3">
             <decor>yes</decor>
             <fullscreen></fullscreen>
