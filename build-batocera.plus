@@ -194,6 +194,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vpinball_fonts-1.0.7z' # dep: visual pinball
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3_extra_libs-1.1.7z' # dep: rpcs3
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ryujinx_extras-1.1.7z' # dep: ryujinx
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pcsx2_schemas.7z' # dep: pcsx2-mainline
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/p7zip-full-17.04-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/p7zip-gui-17.04-2.7z'
@@ -291,10 +292,12 @@ URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.4/dxvk
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 
-URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-794/yuzu-20211029-90342a4ec.AppImage'
-URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-2172/Yuzu-EA-2172.AppImage'
+URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-827/yuzu-20211126-e56915b00.AppImage'
+URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/continuous/yuzu-x86_64.AppImage'
 
-URL_RYUJINX='https://ci.appveyor.com/api/buildjobs/2x1y6pdi08tx38sq/artifacts/ryujinx-1.0.7094-linux_x64.tar.gz'
+URL_RYUJINX='https://ci.appveyor.com/api/buildjobs/i002p2xhggua52n5/artifacts/ryujinx-1.0.7108-linux_x64.tar.gz'
+
+URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.2083/pcsx2-v1.7.2083-linux-AppImage-64bit.AppImage'
 
 URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-e31173e33e4448632c5e74a46dd7deb354167a10/rpcs3-v0.0.18-12970-e31173e3_linux64.AppImage'
 
@@ -340,6 +343,7 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_MANGOHUD}" \
            "${URL_ANTIMICRO}" \
            "${URL_PEAZIP}" \
+           "${URL_PCSX2}" \
            "${URL_RPCS3}" \
            "${URL_FIREFOX}" \
            "${URL_QBITTORRENT}"
@@ -680,6 +684,45 @@ cd "${CURRENT_DIR}"
 unset CURRENT_DIR
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-mainline/bin"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu" "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-mainline/bin"
+rm -r "${TEMP_DIR}/pkg-xtract/"*
+
+echo 'Install PCSX2...'
+PKG_NAME="$(basename "${URL_PCSX2}")"
+chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
+mkdir -p "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
+CURRENT_DIR="$(pwd)"
+cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
+"${CURRENT_DIR}/${DOWNLOAD_DIR}/${PKG_NAME}" --appimage-extract
+cd "${CURRENT_DIR}"
+unset CURRENT_DIR
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/lib"
+mv "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/PCSX2"  "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline"
+mv "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/Langs"  "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline"
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/lib"
+ln -sf    '/usr/lib/libpcap.so.1'                      "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/lib/libpcap.so.0.8"
+ln -sf    '/userdata/bios'                             "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/bios"
+ln -sf    '/userdata/saves/ps2/pcsx2-mainline/inis'    "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/inis"
+ln -sf    '/userdata/saves/ps2/pcsx2-mainline/snaps'   "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/snaps"
+ln -sf    '/userdata/saves/ps2/pcsx2-mainline/sstates' "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/sstates"
+ln -sf    '/userdata/system/configs/PCSX2/cheats'      "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/cheats"
+ln -sf    '/userdata/system/configs/PCSX2/cheats_ws'   "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/cheats_ws"
+ln -sf    '/userdata/system/configs/PCSX2/logs'        "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/logs"
+ln -sf    '/userdata/system/configs/PCSX2/memcards'    "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/memcards"
+ln -sf    '/userdata/saves/ps2/pcsx2-mainline/inis'    "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/inis"
+touch "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/portable.ini"
+echo 'RunWizard=0' >> "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/portable.ini"
+PCSX2_FILES=(
+    libjbig.so.0
+    libnotify.so.4
+    libtiff.so.5
+    libwx_baseu-3.0.so.0
+    libwx_gtk3u_adv-3.0.so.0
+    libwx_gtk3u_core-3.0.so.0
+)
+for FILE in ${PCSX2_FILES[@]}
+do
+    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}" "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/lib"
+done
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 # Batocera.PLUS do not have this lib required for RPCS3
