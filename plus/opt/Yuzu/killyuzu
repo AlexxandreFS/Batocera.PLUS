@@ -16,6 +16,8 @@ fi
 kill -15 ${YUZU_PID}
 sleep 0.2
 
+YUZU_PID="$(pidof -s yuzu)"
+
 if [ -z "${YUZU_PID}" ]
 then
     echo 'closed!'
