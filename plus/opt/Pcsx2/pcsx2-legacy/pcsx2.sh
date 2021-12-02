@@ -26,18 +26,10 @@ function main()
 
 ################################################################################
 
-## Cria algumas pastas e arquivos usados pelo pcsx2.
+## DEFAULT CONFIG
 
 function populate()
 {
-    mkdir -p "${HOME}/../system/configs/pcsx2-legacy" \
-             "${HOME}/../saves/ps2/pcsx2-legacy/sstates" \
-             "${HOME}/../saves/ps2/pcsx2/Slot 1" \
-             "${HOME}/../saves/ps2/pcsx2/Slot 2"
-
-    touch "${HOME}/../saves/ps2/pcsx2/Slot 1/Shared Memory Card (8 MB).ps2" \
-          "${HOME}/../saves/ps2/pcsx2/Slot 2/Shared Memory Card (8 MB).ps2"
-
     if ! [ -e "${HOME}/../system/configs/pcsx2-legacy/PCSX2_ui.ini" ]
     then
         cat << '        EOF' > "${HOME}/../system/configs/pcsx2-legacy/PCSX2_ui.ini"

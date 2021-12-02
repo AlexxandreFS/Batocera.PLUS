@@ -19,13 +19,14 @@ A_FILT="${6}"      #anisotropic_filtering
 WSCRH="${7}"       #widescreen hack
 PRESET="${8}"      #speed hacks
 
-echo "${ROM}" "${RESOLUTION}" "${WIDESCREEN}" "${BOOTANIM}" "${I_RES}" "${A_FILT}" "${WSCRH}" "${PRESET}" > "${HOME}/../PARAMETROS.TXT"
-
+#echo "${ROM} ${RESOLUTION} ${WIDESCREEN} ${BOOTANIM} ${I_RES} ${A_FILT} ${WSCRH} ${PRESET}" > "${HOME}/../PARAMETROS.TXT"
 #exit 0
 
 EMU_DIR='/opt/Pcsx2/pcsx2-mainline'
 SAVE_DIR='/userdata/saves/ps2'
 CONFIG_DIR="${HOME}/configs/pcsx2-mainline"
+
+################################################################################
 
 ### EXPORTS
 
@@ -37,79 +38,45 @@ export GSETTINGS_SCHEMA_DIR="${EMU_DIR}/schemas"
 
 ################################################################################
 
-function CreateDirs()
+### DEFAULT CONFIG
+
+function createInis()
 {
- # Create folders to batocera.plus pcsx2
- mkdir -p "${HOME}/logs/pcsx2-mainline"
- DIRS='memcards cheats cheats_ws sstates-mainline custom-inis-mainline'
- for i in ${DIRS}; do
-   if [ ! -e "${SAVE_DIR}/${i}" ]; then
-      mkdir -p "${SAVE_DIR}/${i}"
-   fi 
- done
+    mkdir -p "${CONFIG_DIR}"
  
- # Memcards from pcsx2 libretro
- if [ -f "${SAVE_DIR}/pcsx2/slot1/Shared Memory Card (8 MB).ps2" ] ; then
-     ln -s "${SAVE_DIR}/pcsx2/slot1/Shared Memory Card (8 MB).ps2" "${SAVE_DIR}/pcsx2/memcards/Mcd001.ps2"
- else
-     touch "${SAVE_DIR}/pcsx2/slot1/Shared Memory Card (8 MB).ps2"
-     ln -s "${SAVE_DIR}/pcsx2/slot1/Shared Memory Card (8 MB).ps2" "${SAVE_DIR}/pcsx2/memcards/Mcd001.ps2"
- fi
- 
- if [ -f "${SAVE_DIR}/pcsx2/slot2/Shared Memory Card (8 MB).ps2" ] ; then
-     ln -s "${SAVE_DIR}/pcsx2/slot2/Shared Memory Card (8 MB).ps2" "${SAVE_DIR}/pcsx2/memcards/Mcd002.ps2"
- else
-     touch "${SAVE_DIR}/pcsx2/slot2/Shared Memory Card (8 MB).ps2"
-     ln -s "${SAVE_DIR}/pcsx2/slot2/Shared Memory Card (8 MB).ps2" "${SAVE_DIR}/pcsx2/memcards/Mcd002.ps2"
- fi
- 
-}
+    echo '[EmuCore]'                        >> "${CONFIG_DIR}/PCSX2_vm.ini"
+    echo 'EnableWideScreenPatches=disabled' >> "${CONFIG_DIR}/PCSX2_vm.ini"
+    echo '[EmuCore/Speedhacks]'             >> "${CONFIG_DIR}/PCSX2_vm.ini"
+    echo 'EECycleRate=0'                    >> "${CONFIG_DIR}/PCSX2_vm.ini"
+    echo 'EECycleSkip=0'                    >> "${CONFIG_DIR}/PCSX2_vm.ini"
+    echo 'fastCDVD=disabled'                >> "${CONFIG_DIR}/PCSX2_vm.ini"
+    echo 'IntcStat=enabled'                 >> "${CONFIG_DIR}/PCSX2_vm.ini"
+    echo 'WaitLoop=enabled'                 >> "${CONFIG_DIR}/PCSX2_vm.ini"
+    echo 'vuFlagHack=enabled'               >> "${CONFIG_DIR}/PCSX2_vm.ini"
+    echo 'vuThread=disabled'                >> "${CONFIG_DIR}/PCSX2_vm.ini"
+    echo 'vu1Instant=enabled'               >> "${CONFIG_DIR}/PCSX2_vm.ini"
 
-function CreateInis()
-{
- mkdir -p "${CONFIG_DIR}"
- 
- touch "${CONFIG_DIR}/PCSX2_ui.ini"
- echo 'PresetIndex=1'      >> "${CONFIG_DIR}/PCSX2_ui.ini"
- echo '[Filenames]'        >> "${CONFIG_DIR}/PCSX2_ui.ini"
- echo 'BIOS=scph39001.bin' >> "${CONFIG_DIR}/PCSX2_ui.ini"
- echo '[ProgramLog]'       >> "${CONFIG_DIR}/PCSX2_ui.ini"
- echo 'Visible=disabled'   >> "${CONFIG_DIR}/PCSX2_ui.ini"
- echo '[GSWindow]'         >> "${CONFIG_DIR}/PCSX2_ui.ini"
- echo 'AspectRatio=4:3'    >> "${CONFIG_DIR}/PCSX2_ui.ini"
+    echo 'PresetIndex=1'                    >> "${CONFIG_DIR}/PCSX2_ui.ini"
+    echo '[Filenames]'                      >> "${CONFIG_DIR}/PCSX2_ui.ini"
+    echo 'BIOS=scph39001.bin'               >> "${CONFIG_DIR}/PCSX2_ui.ini"
+    echo '[ProgramLog]'                     >> "${CONFIG_DIR}/PCSX2_ui.ini"
+    echo 'Visible=disabled'                 >> "${CONFIG_DIR}/PCSX2_ui.ini"
+    echo '[GSWindow]'                       >> "${CONFIG_DIR}/PCSX2_ui.ini"
+    echo 'AspectRatio=4:3'                  >> "${CONFIG_DIR}/PCSX2_ui.ini"
 
- touch "${CONFIG_DIR}/GS.ini"
- echo 'vsync = 0'              >> "${CONFIG_DIR}/GS.ini"
- echo 'upscale_multiplier = 1' >> "${CONFIG_DIR}/GS.ini"
- echo 'MaxAnisotropy = 0'      >> "${CONFIG_DIR}/GS.ini"
- echo 'UserHacks = 0'          >> "${CONFIG_DIR}/GS.ini"
+    echo 'vsync = 0'                        >> "${CONFIG_DIR}/GS.ini"
+    echo 'upscale_multiplier = 1'           >> "${CONFIG_DIR}/GS.ini"
+    echo 'MaxAnisotropy = 0'                >> "${CONFIG_DIR}/GS.ini"
+    echo 'UserHacks = 0'                    >> "${CONFIG_DIR}/GS.ini"
 
- touch "${CONFIG_DIR}/PCSX2_vm.ini"
- echo '[EmuCore]'                        >> "${CONFIG_DIR}/PCSX2_vm.ini"
- echo 'EnableWideScreenPatches=disabled' >> "${CONFIG_DIR}/PCSX2_vm.ini"
- echo '[EmuCore/Speedhacks]'             >> "${CONFIG_DIR}/PCSX2_vm.ini"
- echo 'EECycleRate=0'                    >> "${CONFIG_DIR}/PCSX2_vm.ini"
- echo 'EECycleSkip=0'                    >> "${CONFIG_DIR}/PCSX2_vm.ini"
- echo 'fastCDVD=disabled'                >> "${CONFIG_DIR}/PCSX2_vm.ini"
- echo 'IntcStat=enabled'                 >> "${CONFIG_DIR}/PCSX2_vm.ini"
- echo 'WaitLoop=enabled'                 >> "${CONFIG_DIR}/PCSX2_vm.ini"
- echo 'vuFlagHack=enabled'               >> "${CONFIG_DIR}/PCSX2_vm.ini"
- echo 'vuThread=disabled'                >> "${CONFIG_DIR}/PCSX2_vm.ini"
- echo 'vu1Instant=enabled'               >> "${CONFIG_DIR}/PCSX2_vm.ini"
-
- touch "${CONFIG_DIR}/PAD.ini"
- echo 'first_time_wizard = 0'  >> "${CONFIG_DIR}/PAD.ini"
- echo 'options = 1'            >> "${CONFIG_DIR}/PAD.ini"
+    echo 'first_time_wizard = 0'            >> "${CONFIG_DIR}/PAD.ini"
+    echo 'options = 1'                      >> "${CONFIG_DIR}/PAD.ini"
 }
 
 ################################################################################
 
-if [ ! "$(ls -A "${HOME}/configs/pcsx2-mainline"  2> /dev/null)" ]; then
-   CreateInis
-fi
-
-if [ ! "$(ls -A "${SAVE_DIR}/custom-inis-mainline" 2> /dev/null)" ]; then
-   CreateDirs
+if [ ! "$(ls   -A "${HOME}/configs/pcsx2-mainline"  2> /dev/null)" ]; then
+   createInis
 fi
 
 ################################################################################
@@ -118,13 +85,14 @@ fi
 
 if [ "${CUSTOM}" == '1' ]; then
    if [ ! "$(ls -A "${HOME}/configs/pcsx2-mainline"  2> /dev/null)" ]; then
-      CreateDirs
-      CreateInis
+      createInis
    fi
-   GAME_NAME="${SAVE_DIR}/custom-inis-mainline/$(basename "${ROM%.*}" )"
-   mkdir -p "${SAVE_DIR}/custom-inis-mainline/$(basename "${ROM%.*}" )"
-   cp -r -f "${HOME}/configs/pcsx2-mainline/"* "${SAVE_DIR}/custom-inis-mainline/${GAME_NAME}"
-   INIS="--cfgpath ${SAVE_DIR}/custom-inis-mainline/${GAME_NAME}"
+
+   GAME_NAME="${SAVE_DIR}/inis-custom-pcsx2-mainline/$(basename "${ROM%.*}")"
+
+   mkdir -p "${SAVE_DIR}/inis-custom-pcsx2-mainline/$(basename "${ROM%.*}" )"
+   cp -r -f "${HOME}/configs/pcsx2-mainline/"* "${SAVE_DIR}/inis-custom-pcsx2-mainline/${GAME_NAME}"
+   INIS="--cfgpath ${SAVE_DIR}/inis-custom-pcsx2-mainline/${GAME_NAME}"
 fi
 
 ################################################################################
@@ -248,16 +216,17 @@ case ${PRESET} in
 esac
 
 ################################################################################
+
 ### RUN
 
 if [ -e "${ROM}" ]; then
-   $MANGOHUD_CMD $EMU_DIR/PCSX2 \
+    ${MANGOHUD_CMD} ${EMU_DIR}/PCSX2 \
         --nogui \
         --fullscreen \
-        $FULLBOOT \
-        "${ROM}" > $HOME/logs/pcsx2-mainline.log 2>&1
+        "${FULLBOOT}" \
+        "${ROM}"  > ${HOME}/logs/pcsx2-mainline.log 2>&1
 else
-   $EMU_DIR/PCSX2 > $HOME/logs/pcsx2-mainline.log 2>&1
+   ${EMU_DIR}/PCSX2 > ${HOME}/logs/pcsx2-mainline.log 2>&1
 fi
 
 ################################################################################
