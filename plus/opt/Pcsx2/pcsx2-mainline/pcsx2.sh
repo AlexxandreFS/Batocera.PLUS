@@ -47,6 +47,22 @@ function CreateDirs()
       mkdir -p "${SAVE_DIR}/${i}"
    fi 
  done
+ 
+ # Memcards from pcsx2 libretro
+ if [ -f "${SAVE_DIR}/pcsx2/slot1/Shared Memory Card (8 MB).ps2" ] ; then
+     ln -s "${SAVE_DIR}/pcsx2/slot1/Shared Memory Card (8 MB).ps2" "${SAVE_DIR}/pcsx2/memcards/Mcd001.ps2"
+ else
+     touch "${SAVE_DIR}/pcsx2/slot1/Shared Memory Card (8 MB).ps2"
+     ln -s "${SAVE_DIR}/pcsx2/slot1/Shared Memory Card (8 MB).ps2" "${SAVE_DIR}/pcsx2/memcards/Mcd001.ps2"
+ fi
+ 
+ if [ -f "${SAVE_DIR}/pcsx2/slot2/Shared Memory Card (8 MB).ps2" ] ; then
+     ln -s "${SAVE_DIR}/pcsx2/slot2/Shared Memory Card (8 MB).ps2" "${SAVE_DIR}/pcsx2/memcards/Mcd002.ps2"
+ else
+     touch "${SAVE_DIR}/pcsx2/slot2/Shared Memory Card (8 MB).ps2"
+     ln -s "${SAVE_DIR}/pcsx2/slot2/Shared Memory Card (8 MB).ps2" "${SAVE_DIR}/pcsx2/memcards/Mcd002.ps2"
+ fi
+ 
 }
 
 function CreateInis()
@@ -82,15 +98,17 @@ function CreateInis()
  echo 'vu1Instant=enabled'               >> "${CONFIG_DIR}/PCSX2_vm.ini"
 
  touch "${CONFIG_DIR}/PAD.ini"
- echo 'first_time_wizard = 0'   >> "${CONFIG_DIR}/PAD.ini"
- echo 'options = 1'             >> "${CONFIG_DIR}/PAD.ini"
+ echo 'first_time_wizard = 0'  >> "${CONFIG_DIR}/PAD.ini"
+ echo 'options = 1'            >> "${CONFIG_DIR}/PAD.ini"
 }
 
 ################################################################################
 
 if [ ! "$(ls -A "${HOME}/configs/pcsx2-mainline"  2> /dev/null)" ]; then
    CreateInis
-elif [ ! "$(ls -A "${SAVE_DIR}/custom-inis-mainline" 2> /dev/null)" ]; then
+fi
+
+if [ ! "$(ls -A "${SAVE_DIR}/custom-inis-mainline" 2> /dev/null)" ]; then
    CreateDirs
 fi
 
@@ -233,9 +251,13 @@ esac
 ### RUN
 
 if [ -e "${ROM}" ]; then
-   $MANGOHUD_CMD $EMU_DIR/PCSX2 --fullscreen --nogui $FULLBOOT "${ROM}"
+   $MANGOHUD_CMD $EMU_DIR/PCSX2 \
+        --nogui \
+        --fullscreen \
+        $FULLBOOT \
+        "${ROM}" > $HOME/logs/pcsx2-mainline.log 2>&1
 else
-   $EMU_DIR/PCSX2
+   $EMU_DIR/PCSX2 > $HOME/logs/pcsx2-mainline.log 2>&1
 fi
 
 ################################################################################
