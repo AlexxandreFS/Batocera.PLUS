@@ -88,11 +88,11 @@ if [ "${CUSTOM}" == '1' ]; then
       createInis
    fi
 
-   GAME_NAME="${SAVE_DIR}/inis-custom-pcsx2-mainline/$(basename "${ROM%.*}")"
+   mkdir -p "${SAVE_DIR}/inis-custom-pcsx2-mainline/$(basename "${ROM%.*}")"
+   PGAME="$(basename "${ROM%.*}")"
 
-   mkdir -p "${SAVE_DIR}/inis-custom-pcsx2-mainline/$(basename "${ROM%.*}" )"
-   cp -r -f "${HOME}/configs/pcsx2-mainline/"* "${SAVE_DIR}/inis-custom-pcsx2-mainline/${GAME_NAME}"
-   INIS="--cfgpath ${SAVE_DIR}/inis-custom-pcsx2-mainline/${GAME_NAME}"
+   cp -r -f "${HOME}/configs/pcsx2-mainline/"* "${SAVE_DIR}/inis-custom-pcsx2-mainline/${PGAME}"
+   CUSTOM_INIS="--cfgpath ${SAVE_DIR}/inis-custom-pcsx2-mainline/${PGAME}"
 fi
 
 ################################################################################
@@ -223,7 +223,8 @@ if [ -e "${ROM}" ]; then
     ${MANGOHUD_CMD} ${EMU_DIR}/PCSX2 \
         --nogui \
         --fullscreen \
-        "${FULLBOOT}" \
+        ${FULLBOOT} \
+        ${CUSTOM_INIS} \
         "${ROM}"  > ${HOME}/logs/pcsx2-mainline.log 2>&1
 else
    ${EMU_DIR}/PCSX2 > ${HOME}/logs/pcsx2-mainline.log 2>&1

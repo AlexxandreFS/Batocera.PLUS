@@ -99,17 +99,34 @@ function killXjoyKill()
 
 function populate()
 {
-    mkdir -p "${HOME}/configs/${CORE}"
+    mkdir -p "${HOME}/configs/pcsx2-mainline" \
+             "${HOME}/configs/pcsx2-legacy"
 
     mkdir -p "${PCSX2_SAVE_DIR}/pcsx2/Slot 1" \
              "${PCSX2_SAVE_DIR}/pcsx2/Slot 2" \
-             "${PCSX2_SAVE_DIR}/sstates" \
+             "${PCSX2_SAVE_DIR}/sstates-mainline" \
+             "${PCSX2_SAVE_DIR}/sstates-legacy" \
              "${PCSX2_SAVE_DIR}/cheats" \
              "${PCSX2_SAVE_DIR}/cheats_ws" \
-             "${PCSX2_SAVE_DIR}/inis-custom-${CORE}"
+             "${PCSX2_SAVE_DIR}/memcards" \
+             "${PCSX2_SAVE_DIR}/inis-custom-pcsx2-mainline"
 
-    touch    "${PCSX2_SAVE_DIR}/pcsx2/Slot 1/Shared Memory Card (8 MB).ps2" \
-             "${PCSX2_SAVE_DIR}/pcsx2/Slot 2/Shared Memory Card (8 MB).ps2"
+    if [ -f "${PCSX2_SAVE_DIR}/pcsx2/slot1/Shared Memory Card (8 MB).ps2" ]
+    then
+        ln -s "${PCSX2_SAVE_DIR}/pcsx2/slot1/Shared Memory Card (8 MB).ps2" "${PCSX2_SAVE_DIR}/pcsx2/memcards/Mcd001.ps2"
+    else
+       touch "${PCSX2_SAVE_DIR}/pcsx2/slot1/Shared Memory Card (8 MB).ps2"
+       ln -s "${PCSX2_SAVE_DIR}/pcsx2/slot1/Shared Memory Card (8 MB).ps2" "${PCSX2_SAVE_DIR}/pcsx2/memcards/Mcd001.ps2"
+    fi
+
+    if [ -f "${PCSX2_SAVE_DIR}/pcsx2/slot2/Shared Memory Card (8 MB).ps2" ]
+    then
+        ln -s "${PCSX2_SAVE_DIR}/pcsx2/slot2/Shared Memory Card (8 MB).ps2" "${PCSX2_SAVE_DIR}/pcsx2/memcards/Mcd002.ps2"
+    else
+        touch "${PCSX2_SAVE_DIR}/pcsx2/slot2/Shared Memory Card (8 MB).ps2"
+        ln -s "${PCSX2_SAVE_DIR}/pcsx2/slot2/Shared Memory Card (8 MB).ps2" "${PCSX2_SAVE_DIR}/pcsx2/memcards/Mcd002.ps2"
+    fi
+
 }
 
 ################################################################################
@@ -126,7 +143,6 @@ then
     then
         /opt/Pcsx2/pcsx2-mainline/pcsx2.sh \
             "${ROM}" \
-            "${P1GUID}" \
             "${RESOLUTION}" \
             "${WIDESCREEN}" \
             "${BOOTANIM}" \
