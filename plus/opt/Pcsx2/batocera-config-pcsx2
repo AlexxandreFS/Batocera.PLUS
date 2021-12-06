@@ -1,0 +1,28 @@
+#!/bin/bash
+
+case ${LANG%.*} in
+    pt_BR) MSG='ESCOLHA UMA OPÇÃO' ;;
+    es_ES) MSG='ESCOGE UNA OPCIÓN' ;;
+    *)     MSG='CHOOSE A OPTION'
+esac
+
+yad --form \
+    --title='PCSX2 CONFIGURATOR' \
+    --window-icon='/usr/share/icons/batocera/pcsx2.png' \
+    --text=''"\n${MSG}\n"'' \
+    --text-align=center \
+    --button='PCSX2:0' \
+    --button='PCSX2-LEGACY:1' \
+    --button='PCSX2-MAINLINE:2' \
+    --fixed \
+    --center \
+    --close-on-unfocus
+
+case ${?} in
+    0) /usr/bin/batocera-config-pcsx2                    ;;
+    1) /opt/Pcsx2/pcsx2-legacy/pcsx2.sh   pcsx2-legacy   ;;
+    2) /opt/Pcsx2/pcsx2-mainline/pcsx2.sh pcsx2-mainline ;;
+    *) exit 0
+esac
+
+exit 0

@@ -8,48 +8,16 @@ readonly CORE="${1}"
 readonly P1GUID="${2}"
 readonly ROM="${3}"
 
-RESOLUTION="${4}"  #videomode
-WIDESCREEN="${5}"  #ratio
-BOOTANIM="${6}"    #fullboot
-I_RES="${7}"       #internal_resolution
-A_FILT="${8}"      #anisotropic_filtering
-WSCRH="${9}"       #widescreen hack
-SPEEDHACKS="${10}" #speedhacks
+readonly RESOLUTION="${4}"  #videomode
+readonly WIDESCREEN="${5}"  #ratio
+readonly BOOTANIM="${6}"    #fullboot
+readonly I_RES="${7}"       #internal_resolution
+readonly A_FILT="${8}"      #anisotropic_filtering
+readonly WSCRH="${9}"       #widescreen hack
+readonly SPEEDHACKS="${10}" #speedhacks
 
 readonly PCSX2_DIR="$(dirname ${0})"
 readonly PCSX2_SAVE_DIR='/userdata/saves/ps2'
-
-################################################################################
-
-function guiChoseEmu()
-{
-    local LANG="$(batocera-settings -command load -key system.language)"
-
-    case ${LANG} in
-        pt_BR) MSG[1]='\n ESCOLHA UMA OPÇÃO. \n' ;;
-        es_ES) MSG[1]='\n ESCOGE UNA OPCIÓN. \n' ;;
-        *)     MSG[1]='\n CHOOSE A OPTION. \n'
-    esac
-
-    yad --form \
-        --title='PCSX2 CONFIGURATOR' \
-        --window-icon='/usr/share/icons/batocera/pcsx2.png' \
-        --text=''"${MSG[1]}"'' \
-        --text-align=center \
-        --button='PCSX2:0' \
-        --button='PCSX2-LEGACY:1' \
-        --button='PCSX2-MAINLINE:2' \
-        --fixed \
-        --center \
-        --close-on-unfocus
-
-    case ${?} in
-        0) /usr/bin/batocera-config-pcsx2     ;;
-        1) /opt/Pcsx2/pcsx2-legacy/pcsx2.sh   ;;
-        2) /opt/Pcsx2/pcsx2-mainline/pcsx2.sh ;;
-        *) return 0
-    esac
-}
 
 ################################################################################
 
@@ -99,6 +67,8 @@ function killXjoyKill()
 
 function populate()
 {
+    local INDEX=''
+
     mkdir -p "${HOME}/configs/pcsx2-mainline" \
              "${HOME}/configs/pcsx2-legacy"
 
@@ -111,22 +81,16 @@ function populate()
              "${PCSX2_SAVE_DIR}/memcards" \
              "${PCSX2_SAVE_DIR}/inis-custom-pcsx2-mainline"
 
-    if [ -f "${PCSX2_SAVE_DIR}/pcsx2/slot 1/Shared Memory Card (8 MB).ps2" ]
-    then
-        ln -s "${PCSX2_SAVE_DIR}/pcsx2/Slot 1/Shared Memory Card (8 MB).ps2" "${PCSX2_SAVE_DIR}/memcards/Mcd001.ps2"
-    else
-       touch "${PCSX2_SAVE_DIR}/pcsx2/slot 1/Shared Memory Card (8 MB).ps2"
-       ln -s "${PCSX2_SAVE_DIR}/pcsx2/Slot 1/Shared Memory Card (8 MB).ps2" "${PCSX2_SAVE_DIR}/memcards/Mcd001.ps2"
-    fi
+    for INDEX in {1..2}
+    do
+        touch "${PCSX2_SAVE_DIR}/pcsx2/slot ${INDEX}/Shared Memory Card (8 MB).ps2"
 
-    if [ -f "${PCSX2_SAVE_DIR}/pcsx2/slot 2/Shared Memory Card (8 MB).ps2" ]
-    then
-        ln -s "${PCSX2_SAVE_DIR}/pcsx2/Slot 2/Shared Memory Card (8 MB).ps2" "${PCSX2_SAVE_DIR}/memcards/Mcd002.ps2"
-    else
-        touch "${PCSX2_SAVE_DIR}/pcsx2/slot 2/Shared Memory Card (8 MB).ps2"
-        ln -s "${PCSX2_SAVE_DIR}/pcsx2/Slot 2/Shared Memory Card (8 MB).ps2" "${PCSX2_SAVE_DIR}/memcards/Mcd002.ps2"
-    fi
-
+        if ! [ -e "${PCSX2_SAVE_DIR}/memcards/Mcd00${INDEX}.ps2" ]
+        then
+            ln -s "${PCSX2_SAVE_DIR}/pcsx2/Slot ${INDEX}/Shared Memory Card (8 MB).ps2" \
+                  "${PCSX2_SAVE_DIR}/memcards/Mcd00${INDEX}.ps2"
+        fi
+    done
 }
 
 ################################################################################
@@ -135,29 +99,27 @@ function populate()
 
 populate
 
-if [ -e "${ROM}" ]
+if [ "${CORE}" == 'pcsx2-mainline' ]
 then
     exitHotkeyStart
-
-    if [ "${CORE}" == 'pcsx2-mainline' ]
-    then
-        /opt/Pcsx2/pcsx2-mainline/pcsx2.sh \
-            "${ROM}" \
-            "${RESOLUTION}" \
-            "${WIDESCREEN}" \
-            "${BOOTANIM}" \
-            "${I_RES}" \
-            "${A_FILT}" \
-            "${WSCRH}" \
-            "${SPEEDHACKS}"
-    else
-        /opt/Pcsx2/pcsx2-legacy/pcsx2.sh "${ROM}"
-    fi
-
-    killXjoyKill
+    /opt/Pcsx2/pcsx2-mainline/pcsx2.sh \
+        "${ROM}" \
+        "${RESOLUTION}" \
+        "${WIDESCREEN}" \
+        "${BOOTANIM}" \
+        "${I_RES}" \
+        "${A_FILT}" \
+        "${WSCRH}" \
+        "${SPEEDHACKS}"
+elif [ "${CORE}" == 'pcsx2-legacy' ]
+then
+    exitHotkeyStart
+    /opt/Pcsx2/pcsx2-legacy/pcsx2.sh "${ROM}"
 else
-    guiChoseEmu
+    exit 1
 fi
+
+killXjoyKill
 
 ################################################################################
 
