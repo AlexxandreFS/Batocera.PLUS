@@ -69,17 +69,14 @@ function populate()
 {
     local INDEX=''
 
-    mkdir -p "${HOME}/configs/pcsx2-mainline" \
-             "${HOME}/configs/pcsx2-legacy"
-
     mkdir -p "${PCSX2_SAVE_DIR}/pcsx2/Slot 1" \
              "${PCSX2_SAVE_DIR}/pcsx2/Slot 2" \
-             "${PCSX2_SAVE_DIR}/sstates-mainline" \
-             "${PCSX2_SAVE_DIR}/sstates-legacy" \
+             "${PCSX2_SAVE_DIR}/sstates" \
              "${PCSX2_SAVE_DIR}/cheats" \
              "${PCSX2_SAVE_DIR}/cheats_ws" \
              "${PCSX2_SAVE_DIR}/memcards" \
-             "${PCSX2_SAVE_DIR}/inis-custom-pcsx2-mainline"
+             "${PCSX2_SAVE_DIR}/inis-custom-${CORE}" \
+             "${HOME}/configs/${CORE}"
 
     for INDEX in {1..2}
     do
@@ -95,6 +92,19 @@ function populate()
 
 ################################################################################
 
+### WIDESCREEN
+
+case "${WIDESCREEN}" in
+    4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|auto|custom|squarepixel)
+        sed -i 's/^[ ]*AspectRatio=.*/AspectRatio=4:3/'  "${HOME}/configs/${CORE}/PCSX2_ui.ini"
+        ;;
+    16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3)
+        sed -i 's/^[ ]*AspectRatio=.*/AspectRatio=16:9/' "${HOME}/configs/${CORE}/PCSX2_ui.ini"
+        ;;
+esac
+
+################################################################################
+
 ### MAIN
 
 populate
@@ -102,10 +112,9 @@ populate
 if [ "${CORE}" == 'pcsx2-mainline' ]
 then
     exitHotkeyStart
-    /opt/Pcsx2/pcsx2-mainline/pcsx2.sh \
+    ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-mainline/pcsx2.sh \
         "${ROM}" \
         "${RESOLUTION}" \
-        "${WIDESCREEN}" \
         "${BOOTANIM}" \
         "${I_RES}" \
         "${A_FILT}" \
@@ -114,7 +123,7 @@ then
 elif [ "${CORE}" == 'pcsx2-legacy' ]
 then
     exitHotkeyStart
-    /opt/Pcsx2/pcsx2-legacy/pcsx2.sh "${ROM}"
+    ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-legacy/pcsx2.sh "${ROM}"
 else
     exit 1
 fi

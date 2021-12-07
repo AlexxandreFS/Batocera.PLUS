@@ -14,12 +14,11 @@
 
 ROM="${1}"
 RESOLUTION="${2}"  #videomode
-WIDESCREEN="${3}"  #ratio
-BOOTANIM="${4}"    #fullboot
-I_RES="${5}"       #internal_resolution
-A_FILT="${6}"      #anisotropic_filtering
-WSCRH="${7}"       #widescreen hack
-PRESET="${8}"      #speed hacks
+BOOTANIM="${3}"    #fullboot
+I_RES="${4}"       #internal_resolution
+A_FILT="${5}"      #anisotropic_filtering
+WSCRH="${6}"       #widescreen hack
+PRESET="${7}"      #speed hacks
 
 #echo "${ROM} ${RESOLUTION} ${WIDESCREEN} ${BOOTANIM} ${I_RES} ${A_FILT} ${WSCRH} ${PRESET}" > "${HOME}/../PARAMETROS.TXT"
 #exit 0
@@ -104,19 +103,6 @@ fi
 if [ "${BOOTANIM}" == '1' ] || [ "${BOOTANIM}" == 'auto' ]; then
     FULLBOOT='--fullboot'
 fi
-
-################################################################################
-
-### WIDESCREEN
-
-case "${WIDESCREEN}" in
-    4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|auto|custom|squarepixel)
-        sed -i 's/^AspectRatio=.*/AspectRatio=4:3/'  "${CONFIG_DIR}/PCSX2_ui.ini"
-        ;;
-    16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3)
-        sed -i 's/^AspectRatio=.*/AspectRatio=16:9/' "${CONFIG_DIR}/PCSX2_ui.ini"
-        ;;
-esac
 
 ################################################################################
 
@@ -227,7 +213,7 @@ esac
 ### RUN
 
 if [ -e "${ROM}" ]; then
-    ${MANGOHUD_CMD} ${EMU_DIR}/PCSX2 \
+    ${EMU_DIR}/PCSX2 \
         --nogui \
         --fullscreen \
         ${FULLBOOT} \
