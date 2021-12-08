@@ -13,15 +13,11 @@
 ### DIRECTORIES, FILES AND PARAMETERS
 
 ROM="${1}"
-RESOLUTION="${2}"  #videomode
-BOOTANIM="${3}"    #fullboot
-I_RES="${4}"       #internal_resolution
-A_FILT="${5}"      #anisotropic_filtering
-WSCRH="${6}"       #widescreen hack
-PRESET="${7}"      #speed hacks
-
-#echo "${ROM} ${RESOLUTION} ${WIDESCREEN} ${BOOTANIM} ${I_RES} ${A_FILT} ${WSCRH} ${PRESET}" > "${HOME}/../PARAMETROS.TXT"
-#exit 0
+FULLBOOT="${2}"
+I_RES="${3}"       #internal_resolution
+A_FILT="${4}"      #anisotropic_filtering
+WSCRH="${5}"       #widescreen hack
+PRESET="${6}"      #speed hacks
 
 EMU_DIR='/opt/Pcsx2/pcsx2-mainline'
 SAVE_DIR='/userdata/saves/ps2'
@@ -98,14 +94,6 @@ fi
 
 ################################################################################
 
-### FULLBOOT
-
-if [ "${BOOTANIM}" == '1' ] || [ "${BOOTANIM}" == 'auto' ]; then
-    FULLBOOT='--fullboot'
-fi
-
-################################################################################
-
 ### VSYNC
 
 if [ "${VSYNC}" == '1' ] || [ "${VSYNC}" == 'auto' ]; then
@@ -162,7 +150,7 @@ case ${PRESET} in
         sed -i 's/^vsync =.*/vsync = 1/'                     "${CONFIG_DIR}/GS.ini"
         ;;
     balanced)
-        sed -i 's/^EnablePresets=.*/EnablePresets=enabled/'  "${CONFIG_DIR}/PCSX2_ui.ini"
+       sed -i 's/^EnablePresets=.*/EnablePresets=enabled/'  "${CONFIG_DIR}/PCSX2_ui.ini"
         sed -i 's/^PresetIndex=.*/PresetIndex=2/'            "${CONFIG_DIR}/PCSX2_ui.ini"
         sed -i 's/UserHacks =.*/UserHacks = 1/'              "${CONFIG_DIR}/GS.ini"
         sed -i 's/^vsync =.*/vsync = 1/'                     "${CONFIG_DIR}/GS.ini"

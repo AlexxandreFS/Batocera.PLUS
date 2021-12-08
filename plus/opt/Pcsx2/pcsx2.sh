@@ -4,20 +4,20 @@
 ###
 ################################################################################
 
-readonly CORE="${1}"
-readonly P1GUID="${2}"
-readonly ROM="${3}"
+CORE="${1}"
+P1GUID="${2}"
+ROM="${3}"
+RATIO="${4}"
+VIDEOMODE="${5}"
+FULLBOOT="${6}"
+INTERNALRESOLUTION="${7}"
+ANISOTROPIC_FILTERING="${8}"
+VSYNC="${9}"
+WSCRH="${10}"
+SPEEDHACKS="${11}"
 
-readonly RESOLUTION="${4}"  #videomode
-readonly WIDESCREEN="${5}"  #ratio
-readonly BOOTANIM="${6}"    #fullboot
-readonly I_RES="${7}"       #internal_resolution
-readonly A_FILT="${8}"      #anisotropic_filtering
-readonly WSCRH="${9}"       #widescreen hack
-readonly SPEEDHACKS="${10}" #speedhacks
-
-readonly PCSX2_DIR="$(dirname ${0})"
-readonly PCSX2_SAVE_DIR='/userdata/saves/ps2'
+PCSX2_DIR="$(dirname ${0})"
+PCSX2_SAVE_DIR='/userdata/saves/ps2'
 
 ################################################################################
 
@@ -92,9 +92,9 @@ function populate()
 
 ################################################################################
 
-### WIDESCREEN
+### GAME RATION (WIDESCREEN)
 
-case "${WIDESCREEN}" in
+case "${RATIO}" in
     4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|auto|custom|squarepixel)
         sed -i 's/^[ ]*AspectRatio=.*/AspectRatio=4:3/'  "${HOME}/configs/${CORE}/PCSX2_ui.ini"
         ;;
@@ -102,6 +102,28 @@ case "${WIDESCREEN}" in
         sed -i 's/^[ ]*AspectRatio=.*/AspectRatio=16:9/' "${HOME}/configs/${CORE}/PCSX2_ui.ini"
         ;;
 esac
+
+################################################################################
+
+### RESOLUTION
+
+if [ "${VIDEOMODE}" == 'auto' ]
+then
+    sed -i "s/^[ ]*WindowSize=.*/WindowSize=640,480/"          "${HOME}/configs/${CORE}/PCSX2_ui.ini"
+else
+    sed -i "s/^[ ]*WindowSize=.*/WindowSize=${VIDEOMODE/x/,}/" "${HOME}/configs/${CORE}/PCSX2_ui.ini"
+fi
+
+################################################################################
+
+### FULLBOOT
+
+if [ "${FULLBOOT}" == '1' ] || [ "${FULLBOOT}" == 'auto' ]
+then
+    FULLBOOT='--fullboot'
+else
+    FULLBOOT=''
+fi
 
 ################################################################################
 
@@ -113,17 +135,14 @@ if [ "${CORE}" == 'pcsx2-mainline' ]
 then
     exitHotkeyStart
     ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-mainline/pcsx2.sh \
-        "${ROM}" \
-        "${RESOLUTION}" \
-        "${BOOTANIM}" \
-        "${I_RES}" \
-        "${A_FILT}" \
-        "${WSCRH}" \
-        "${SPEEDHACKS}"
+        "${ROM}"                "${FULLBOOT}" \
+        "${INTERNALRESOLUTION}" "${ANISOTROPIC_FILTERING}" \
+        "${WSCRH}"              "${SPEEDHACKS}"
 elif [ "${CORE}" == 'pcsx2-legacy' ]
 then
     exitHotkeyStart
-    ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-legacy/pcsx2.sh "${ROM}"
+    ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-legacy/pcsx2.sh \
+        "${ROM}"                "${FULLBOOT}"
 else
     exit 1
 fi

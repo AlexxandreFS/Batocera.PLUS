@@ -6,6 +6,7 @@
 ################################################################################
 
 readonly ROM="${1}"
+readonly FULLBOOT="${2}"
 readonly PCSX2_DIR="$(dirname ${0})"
 
 ################################################################################
@@ -89,7 +90,7 @@ function execByES()
         --portable \
         --nogui \
         --fullscreen \
-        --fullboot \
+        ${FULLBOOT} \
         --gs=${PCSX2_DIR}/plugins/libGSdx.so \
         "${ROM}" > $HOME/logs/pcsx2-legacy.log 2>&1
 }
