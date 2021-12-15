@@ -104,16 +104,6 @@ fi
 
 ################################################################################
 
-### INTERNAL RESOLUTION
-
-if [ "${I_RES}" != 'auto' ]; then
-    sed -i "s/^upscale_multiplier =.*/upscale_multiplier = '${I_RES}'/" "${CONFIG_DIR}/GS.ini"
-else
-    sed -i "s/^upscale_multiplier =.*/upscale_multiplier = 1/"          "${CONFIG_DIR}/GS.ini"
-fi
-
-################################################################################
-
 ### WIDE SCREEN HACK
 
 if [ "${WSCRH}" == '0' ] || [ "${WSCRH}" == 'auto' ]; then
@@ -150,7 +140,7 @@ case ${PRESET} in
         sed -i 's/^vsync =.*/vsync = 1/'                     "${CONFIG_DIR}/GS.ini"
         ;;
     balanced)
-       sed -i 's/^EnablePresets=.*/EnablePresets=enabled/'  "${CONFIG_DIR}/PCSX2_ui.ini"
+        sed -i 's/^EnablePresets=.*/EnablePresets=enabled/'  "${CONFIG_DIR}/PCSX2_ui.ini"
         sed -i 's/^PresetIndex=.*/PresetIndex=2/'            "${CONFIG_DIR}/PCSX2_ui.ini"
         sed -i 's/UserHacks =.*/UserHacks = 1/'              "${CONFIG_DIR}/GS.ini"
         sed -i 's/^vsync =.*/vsync = 1/'                     "${CONFIG_DIR}/GS.ini"

@@ -19,9 +19,9 @@ yad --form \
     --close-on-unfocus
 
 case ${?} in
-    0) /usr/bin/batocera-config-pcsx2                    ;;
-    1) /opt/Pcsx2/pcsx2-legacy/pcsx2.sh   pcsx2-legacy   ;;
-    2) /opt/Pcsx2/pcsx2-mainline/pcsx2.sh pcsx2-mainline ;;
+    0) /usr/bin/batocera-config-pcsx2     ;;
+    1) /opt/Pcsx2/pcsx2.sh pcsx2-legacy   ;;
+    2) /opt/Pcsx2/pcsx2.sh pcsx2-mainline ;;
     *) exit 0
 esac
 
