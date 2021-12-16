@@ -94,36 +94,6 @@ fi
 
 ################################################################################
 
-### VSYNC
-
-if [ "${VSYNC}" == '1' ] || [ "${VSYNC}" == 'auto' ]; then
-    sed -i 's/^vsync =.*/vsync = 1/' "${CONFIG_DIR}/GS.ini"
-else
-    sed -i 's/^vsync =.*/vsync = 0/' "${CONFIG_DIR}/GS.ini"
-fi
-
-################################################################################
-
-### WIDE SCREEN HACK
-
-if [ "${WSCRH}" == '0' ] || [ "${WSCRH}" == 'auto' ]; then
-    sed -i 's/^EnableWideScreenPatches=.*/EnableWideScreenPatches=disabled/' "${CONFIG_DIR}/PCSX2_vm.ini"
-else
-    sed -i 's/^EnableWideScreenPatches=.*/EnableWideScreenPatches=enabled/'  "${CONFIG_DIR}/PCSX2_vm.ini"
-fi
-
-################################################################################
-
-### ANISOTROPIC FILTERING
-
-if [ "${A_FILT}" != 'auto' ]; then
-    sed -i 's/^MaxAnisotropy =.*/MaxAnisotropy = '"${A_FILT}"'/' "${CONFIG_DIR}/GS.ini"
-else
-    sed -i 's/^MaxAnisotropy =.*/MaxAnisotropy = 0/'             "${CONFIG_DIR}/GS.ini"
-fi
-
-################################################################################
-
 ### SPEED HACKS
 
 case ${PRESET} in

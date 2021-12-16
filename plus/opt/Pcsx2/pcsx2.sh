@@ -18,6 +18,14 @@ SPEEDHACKS="${11}"
 
 PCSX2_DIR="$(dirname ${0})"
 PCSX2_SAVE_DIR='/userdata/saves/ps2'
+PCSX2_UI_FILE="${HOME}/configs/${CORE}/PCSX2_ui.ini"
+PCSX2_VM_FILE="${HOME}/configs/${CORE}/PCSX2_vm.ini"
+PCSX2_GS_FILE="${HOME}/configs/${CORE}/GS.ini"
+
+if [ "${CORE}" == 'pcsx2-legacy' ]
+then
+    PCSX2_GS_FILE="${HOME}/configs/${CORE}/GSdx.ini"
+fi
 
 ################################################################################
 
@@ -96,10 +104,10 @@ function populate()
 
 case "${RATIO}" in
     4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|auto|custom|squarepixel)
-        sed -i 's/^[ ]*AspectRatio=.*/AspectRatio=4:3/'  "${HOME}/configs/${CORE}/PCSX2_ui.ini"
+        sed -i 's/^[ ]*AspectRatio=.*/AspectRatio=4:3/'  "${PCSX2_UI_FILE}"
         ;;
     16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3)
-        sed -i 's/^[ ]*AspectRatio=.*/AspectRatio=16:9/' "${HOME}/configs/${CORE}/PCSX2_ui.ini"
+        sed -i 's/^[ ]*AspectRatio=.*/AspectRatio=16:9/' "${PCSX2_UI_FILE}"
         ;;
 esac
 
@@ -109,9 +117,9 @@ esac
 
 if [ "${VIDEOMODE}" == 'auto' ]
 then
-    sed -i "s/^[ ]*WindowSize=.*/WindowSize=640,480/"          "${HOME}/configs/${CORE}/PCSX2_ui.ini"
+    sed -i "s/^[ ]*WindowSize=.*/WindowSize=640,480/"          "${PCSX2_UI_FILE}"
 else
-    sed -i "s/^[ ]*WindowSize=.*/WindowSize=${VIDEOMODE/x/,}/" "${HOME}/configs/${CORE}/PCSX2_ui.ini"
+    sed -i "s/^[ ]*WindowSize=.*/WindowSize=${VIDEOMODE/x/,}/" "${PCSX2_UI_FILE}"
 fi
 
 ################################################################################
@@ -124,6 +132,52 @@ then
 else
     FULLBOOT=''
 fi
+
+################################################################################
+
+### INTERNAL RESOLUTION
+
+if [ "${INTERNALRESOLUTION}" == 'auto' ] || [ "${INTERNALRESOLUTION}" == '0' ]
+then
+    INTERNALRESOLUTION=1
+fi
+
+sed -i "s/^[ ]*upscale_multiplier[ ]*=.*/upscale_multiplier = ${INTERNALRESOLUTION}/" "${PCSX2_GS_FILE}"
+
+################################################################################
+
+### ANISOTROPIC FILTERING
+
+if [ "${ANISOTROPIC_FILTERING}" == 'auto' ]
+then
+    ANISOTROPIC_FILTERING=0
+fi
+
+sed -i "s/^[ ]*MaxAnisotropy[ ]*=.*/MaxAnisotropy = ${ANISOTROPIC_FILTERING}/" "${PCSX2_GS_FILE}"
+
+################################################################################
+
+### VSYNC
+
+if [ "${VSYNC}" == 'auto' ]
+then
+    VSYNC=1
+fi
+
+sed -i "s/^[ ]*vsync[ ]*=.*/vsync = ${VSYNC}/" "${PCSX2_GS_FILE}"
+
+################################################################################
+
+### WIDE SCREEN HACK
+
+if [ "${WSCRH}" == '0' ] || [ "${WSCRH}" == 'auto' ]
+then
+    WSCRH=disabled
+else
+    WSCRH=enabled
+fi
+
+sed -i "s/^[ ]*EnableWideScreenPatches=.*/EnableWideScreenPatches=${WSCRH}/" "${PCSX2_VM_FILE}"
 
 ################################################################################
 

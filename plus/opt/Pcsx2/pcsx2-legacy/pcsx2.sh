@@ -45,14 +45,14 @@ function populate()
         EOF
     fi
 
-    #if ! [ -e "${HOME}/../system/configs/pcsx2-legacy/GS.ini" ]
-    #then
-    #    cat << '        EOF' > "${HOME}/../system/configs/pcsx2-legacy/GSdx.ini"
-    #        vsync = 0
-    #        upscale_multiplier = 1
-    #        MaxAnisotropy = 0
-    #    EOF
-    #fi
+    if ! [ -e "${HOME}/../system/configs/pcsx2-legacy/GSdx.ini" ]
+    then
+        cat << '        EOF' > "${HOME}/../system/configs/pcsx2-legacy/GSdx.ini"
+            vsync = 0
+            upscale_multiplier = 1
+            MaxAnisotropy = 0
+        EOF
+    fi
 }
 
 ################################################################################
