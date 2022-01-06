@@ -2,7 +2,7 @@
 
 ### O que é o Batocera.PLUS?
 
-O Batocera.PLUS é um sistema operacional minimalista (filmware) que transforma um PC 64 bits  em um console dedicado a retro emulação.
+O Batocera.PLUS é um sistema operacional minimalista (firmware) que transforma um PC 64 bits  em um console dedicado a retro emulação.
 
 O Batocera.PLUS é uma versão modificada do batocera.linux que adiciona diversos recursos extras ao sistema, bem como correções de erros e personalizações.
 
