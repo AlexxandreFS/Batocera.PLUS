@@ -323,10 +323,18 @@ fi
 
 case "${INGAME_VIDEOS}" in 
     auto)
-        export WINEDLLOVERRIDES='winegstreamer=b'
+        if [ "${CORE}" == 'wine-old-stable' ]; then
+            # Desativa os vídeos por padrão somente no wine-old-stable
+            export WINEDLLOVERRIDES='winegstreamer=d'
+        else
+            export WINEDLLOVERRIDES='winegstreamer=b'
+        fi
         ;;
     skip)
         export WINEDLLOVERRIDES='winegstreamer=d'
+        ;;
+    enable)
+        export WINEDLLOVERRIDES='winegstreamer=b'
         ;;
     mf)
         export WINE_MF=1
