@@ -1,0 +1,61 @@
+diff --git a/dlls/ddraw/tests/ddraw4.c b/dlls/ddraw/tests/ddraw4.c
+index 1ae4875..b7abceb 100644
+--- a/dlls/ddraw/tests/ddraw4.c
++++ b/dlls/ddraw/tests/ddraw4.c
+@@ -18363,7 +18363,7 @@ static void test_texture_wrong_caps(const GUID *device_guid)
+     HRESULT hr;
+ 
+     window = create_window();
+-    if (!(device = create_device_ex(window, DDSCL_NORMAL, device_guid)))
++    if (!(device = create_device(window, DDSCL_NORMAL)))
+     {
+         skip("Failed to create a 3D device, skipping test.\n");
+         DestroyWindow(window);
+diff --git a/dlls/ddraw/tests/ddraw7.c b/dlls/ddraw/tests/ddraw7.c
+index 2c17952..7507af2 100644
+--- a/dlls/ddraw/tests/ddraw7.c
++++ b/dlls/ddraw/tests/ddraw7.c
+@@ -18606,7 +18606,7 @@ static void test_texture_wrong_caps(const GUID *device_guid)
+     HRESULT hr;
+ 
+     window = create_window();
+-    if (!(device = create_device_ex(window, DDSCL_NORMAL, device_guid)))
++    if (!(device = create_device(window, DDSCL_NORMAL)))
+     {
+         skip("Failed to create a 3D device, skipping test.\n");
+         DestroyWindow(window);
+diff --git a/dlls/ole32/tests/clipboard.c b/dlls/ole32/tests/clipboard.c
+index cef79ad..204a33b 100644
+--- a/dlls/ole32/tests/clipboard.c
++++ b/dlls/ole32/tests/clipboard.c
+@@ -30,7 +30,7 @@
+ #include "objbase.h"
+ 
+ #include "wine/test.h"
+-
++#include "urlmon.h"
+ #define InitFormatEtc(fe, cf, med) \
+         {\
+         (fe).cfFormat=cf;\
+diff --git a/dlls/oleacc/tests/main.c b/dlls/oleacc/tests/main.c
+index 62346ff..a34ca45 100644
+--- a/dlls/oleacc/tests/main.c
++++ b/dlls/oleacc/tests/main.c
+@@ -1369,7 +1369,7 @@ static void test_CreateStdAccessibleObject_classes(void)
+ 
+     for(i=0; i<ARRAY_SIZE(tests); i++)
+     {
+-        winetest_push_context("class = %s", wine_dbgstr_w(tests[i].class));
++        // winetest_push_context("class = %s", wine_dbgstr_w(tests[i].class));
+         hwnd = CreateWindowW(tests[i].class, L"name", WS_OVERLAPPEDWINDOW,
+                 0, 0, 0, 0, NULL, NULL, NULL, NULL);
+         ok(hwnd != NULL, "CreateWindow failed\n");
+@@ -1393,7 +1393,7 @@ static void test_CreateStdAccessibleObject_classes(void)
+ 
+         SetWindowLongPtrW(hwnd, GWLP_WNDPROC, (LONG_PTR)win_proc);
+         CloseWindow(hwnd);
+-        winetest_pop_context();
++        // winetest_pop_context();
+     }
+ }
+ 

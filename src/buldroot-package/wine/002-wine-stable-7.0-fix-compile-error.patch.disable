@@ -1,0 +1,12 @@
+diff --git a/dlls/l3codeca.acm/mpegl3.c b/dlls/l3codeca.acm/mpegl3.c
+index 336e706..2051ef7 100644
+--- a/dlls/l3codeca.acm/mpegl3.c
++++ b/dlls/l3codeca.acm/mpegl3.c
+@@ -18,6 +18,7 @@
+  * License along with this library; if not, write to the Free Software
+  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
+  */
++#define mpg123_feedseek_64 mpg123_feedseek
+ 
+ #include <assert.h>
+ #include <stdarg.h>
