@@ -22,32 +22,32 @@ MOUSE="${4}"
 
 function TextLocalization()
 {
-   LANG="$(batocera-settings -command load -key system.language)"
-   case $LANG in
-      pt_BR) MSG[1]='\n ESCOLHA UMA OPÇÃO. \n' ;;
-      es_ES) MSG[1]='\n ESCOGE UNA OPCIÓN. \n' ;;
-      *)     MSG[1]='\n CHOOSE A OPTION. \n'
-   esac
+    LANG="$(batocera-settings -command load -key system.language)"
+    case $LANG in
+        pt_BR) MSG[1]='\n ESCOLHA UMA OPÇÃO. \n' ;;
+        es_ES) MSG[1]='\n ESCOGE UNA OPCIÓN. \n' ;;
+        *)     MSG[1]='\n CHOOSE A OPTION. \n'
+    esac
 }
 
 function choseEmu()
 {
-   yad --form \
-   --title='YUZU CONFIGURATOR' \
-   --window-icon='/usr/share/icons/batocera/yuzu.png' \
-   --text=''"${MSG[1]}"'' \
-   --text-align=center \
-   --button='YUZU-MAINLINE:0' \
-   --button='YUZU-EA:1' \
-   --fixed \
-   --center \
-   --close-on-unfocus
+    yad --form \
+        --title='YUZU CONFIGURATOR' \
+        --window-icon='/usr/share/icons/batocera/yuzu.png' \
+        --text=''"${MSG[1]}"'' \
+        --text-align=center \
+        --button='YUZU-MAINLINE:0' \
+        --button='YUZU-EA:1' \
+        --fixed \
+        --center \
+        --close-on-unfocus
 
-   case ${?} in
-      0) "${YUZU_DIR}/yuzu-mainline/bin/yuzu" "${@}" ;;
-      1) "${YUZU_DIR}/yuzu-early-access/bin/yuzu" "${@}" ;;
-      *) exit 0
-   esac
+    case ${?} in
+        0) "${YUZU_DIR}/yuzu-mainline/bin/yuzu" "${@}" ;;
+        1) "${YUZU_DIR}/yuzu-early-access/bin/yuzu" "${@}" ;;
+        *) exit 0
+    esac
 }
 
 ### YUZU VERSION
@@ -145,7 +145,6 @@ export QT_PLUGIN_PATH="${YUZU_DIR}/plugins"
 # https://github.com/yuzu-emu/yuzu/issues/6343
 # https://github.com/yuzu-emu/yuzu-mainline/commit/648bef235ea7a7eb183c6aac52bdd63f921b7b22#diff-1e7de1ae2d059d21e1dd75d5812d5a34b0222cef273b7c3a2af62eb747f9d20a
 export SDL_JOYSTICK_HIDAPI=0
-
 
 ################################################################################
 
