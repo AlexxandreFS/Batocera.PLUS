@@ -750,15 +750,6 @@ wineWait
 
 ################################################################################
 
-### PROTON VALVE, ENABLE GENERIC CONTROLLERS
-
-if [ "${WINE_BUILD}" == 'proton-valve' ]; then
-    ${WINE_DIR}/${WINE_BUILD}/bin/wine reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus" /f /v "DisableHidraw" /t REG_DWORD /d "1"
-    wineWait
-fi
-
-################################################################################
-
 ### USER FOLDERS
 
 # Configure default directories for the main user folders in the windows registry.

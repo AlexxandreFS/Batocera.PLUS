@@ -26,7 +26,7 @@ readonly MANGOHUD="${13}"
 readonly VKBASALT="${14}"
 readonly OPTIMIZATIONS="${15}"
 readonly INGAME_VIDEOS="${16}"
-readonly EMULATE_JOYPAD="${17}"
+readonly JOYPAD="${17}"
 readonly VIDEOMODE="${18}"
 
 ################################################################################
@@ -346,28 +346,6 @@ esac
 
 ################################################################################
 
-### Ativa a emulação do controle pelo teclado.
-
-if [ "${EMULATE_JOYPAD}" == 'on' ] && [ -e '/dev/input/js0' ]; then
-    # Não executa o xjoypad se não for encontrado nenhum controle conectado.
-    # Impede que o xjoypad seja encerrado enquanto o jogo está em execução.
-    if [ -e '/dev/input/js0' ]; then
-        while : ; do
-            nice -n -15 xjoypad -device /dev/input/js0 \
-                                -up 111 -down 116 -left 113 -right 114 \
-                                -buttons 25 27 28 29 30 31 32 42 44 45 46 55 56 57 58
-
-            if ! [ "$(pidof wineserver)" ]; then
-                break
-            fi
-
-            sleep 5
-        done &
-    fi
-fi
-
-################################################################################
-
 ### Exibe o ponteiro do mouse no gerenciador de arquivos.
 
 if [ "${GAME_EXE}" == 'explorer' ]; then
@@ -390,6 +368,39 @@ if [ "${VIDEOMODE}" != 'auto' ]; then
     export VIRTUAL_DESKTOP=1
     batocera-resolution setMode ${OPTION}
 fi
+
+################################################################################
+
+### Joypad 
+
+echo ${JOYPAD} > /userdata/teste.txt
+
+case ${JOYPAD} in
+    emulate)
+        # Ativa a emulação do controle pelo teclado.
+        # Não executa o xjoypad se não for encontrado nenhum controle conectado.
+        if [ -e '/dev/input/js0' ]; then
+            # Impede que o xjoypad seja encerrado enquanto o jogo está em execução.
+            while :; do
+                nice -n -15 xjoypad -device /dev/input/js0 \
+                                    -up 111 -down 116 -left 113 -right 114 \
+                                    -buttons 25 27 28 29 30 31 32 42 44 45 46 55 56 57 58
+
+                if ! [ "$(pidof wineserver)" ]; then
+                    break
+                fi
+
+                sleep 5
+            done &
+        fi
+        ;;
+    hidraw)
+        ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus" /f /v "DisableHidraw" /t REG_DWORD /d "1"
+        ;;
+    *)
+        ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus" /f /v "DisableHidraw" /t REG_DWORD /d "0"
+        ;;
+esac
 
 ################################################################################
 
