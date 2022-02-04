@@ -295,7 +295,7 @@ URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Curren
 URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-890/yuzu-20220125-4f518b554.AppImage'
 URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-2435/Yuzu-EA-2435.AppImage'
 
-URL_RYUJINX='https://ci.appveyor.com/api/buildjobs/i002p2xhggua52n5/artifacts/ryujinx-1.0.7108-linux_x64.tar.gz'
+URL_RYUJINX='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ryujinx-1.0.7108-linux_x64.tar.gz' #Link provisório
 
 URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.2083/pcsx2-v1.7.2083-linux-AppImage-64bit.AppImage'
 
