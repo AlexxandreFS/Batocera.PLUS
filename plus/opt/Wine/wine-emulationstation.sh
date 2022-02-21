@@ -371,9 +371,7 @@ fi
 
 ################################################################################
 
-### Joypad 
-
-echo ${JOYPAD} > /userdata/teste.txt
+### Emulate Joypad (xjoypad)
 
 case ${JOYPAD} in
     emulate)
@@ -395,11 +393,25 @@ case ${JOYPAD} in
         fi
         ;;
     hidraw)
-        ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus" /f /v "DisableHidraw" /t REG_DWORD /d "1"
+        # Joystick Alternative Driver
+        # https://wiki.winehq.org/Useful_Registry_Keys
+
+        ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus"     /f /v "DisableHidraw" /t REG_DWORD /d "0"
+
+        if [ "${CORE}" == 'proton-valve' ]; then
+            ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus" /f /v "Enable SDL"    /t REG_DWORD /d "1"
+        else
+            ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus" /f /v "Enable SDL"    /t REG_DWORD /d "0"
+        fi
         ;;
     *)
-        ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus" /f /v "DisableHidraw" /t REG_DWORD /d "0"
-        ;;
+        ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus"     /f /v "Enable SDL"    /t REG_DWORD /d "1"
+
+        if [ "${CORE}" == 'proton-valve' ]; then
+            ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus" /f /v "DisableHidraw" /t REG_DWORD /d "1"
+        else
+            ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus" /f /v "DisableHidraw" /t REG_DWORD /d "0"
+        fi
 esac
 
 ################################################################################
