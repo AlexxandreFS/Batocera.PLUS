@@ -272,7 +272,7 @@ URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/470.74/NVIDIA
 URL_ES_THEME_A='0611dda9ffcfcfe8d8c17bdda2a19021c0ac6c40'
 URL_ES_THEME_A="https://github.com/AlexxandreFS/Batocera.PLUS-es-theme/archive/${URL_ES_THEME_A}.zip#/Batocera.PLUS-es-theme-${URL_ES_THEME_A}.zip"
 
-URL_MUSIC='33f2c6a0ff94057ef0792281e1aff50734559789'
+URL_MUSIC='1ecb8421c17d9514e32218bdc830068eba2ba02a'
 URL_MUSIC="https://github.com/BatoceraPLUS/Batocera.PLUS-music/archive/${URL_MUSIC}.zip#/Batocera.PLUS-music-${URL_MUSIC}.zip"
 
 URL_ALL_BIOS='5f66d96e155aa549970070de694dba103dff9b92'
