@@ -21,6 +21,9 @@ case ${DRIVER_VERSION} in
     last)
         DRIVER_DIR="${DRIVER_DIR}/last"
         ;;
+    470)
+        DRIVER_DIR="${DRIVER_DIR}/v470"
+        ;;
     390)
         DRIVER_DIR="${DRIVER_DIR}/v390"
         ;;

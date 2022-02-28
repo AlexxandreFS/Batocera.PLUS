@@ -244,6 +244,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xow-apr-8-2021-1.7z'              # remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xdriver_xf86-video-intel-1.7z'    # remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-510.54-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-470.103.01-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-390.147-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-340.108-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-64bits-21.1.6-1.7z'        # remove on update
@@ -267,7 +268,7 @@ URL_BATOCERA_LINUX='https://batocera.org/upgrades/x86_64/stable/last/archives/20
 URL_BATOCERA_ZERO="https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/${BATOCERA_ZERO}"
 
 URL_PCI_IDS='http://pci-ids.ucw.cz/v2.2/pci.ids.gz'
-URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/470.74/NVIDIA-Linux-x86_64-470.74.run'
+URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/510.54/NVIDIA-Linux-x86_64-510.54.run'
 
 URL_ES_THEME_A='0611dda9ffcfcfe8d8c17bdda2a19021c0ac6c40'
 URL_ES_THEME_A="https://github.com/AlexxandreFS/Batocera.PLUS-es-theme/archive/${URL_ES_THEME_A}.zip#/Batocera.PLUS-es-theme-${URL_ES_THEME_A}.zip"
@@ -400,7 +401,7 @@ done
 mv $TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/mrboom/MrBoom.libretro \
    $TEMP_DIR/squashfs-root/usr/share/batocera/datainit/roms/mrboom/MrBoom.libretro.disable \
 
-# Remove o driver antigo do Nvidia
+# Remove o driver antigo da Nvidia
 KERNEL_VERSION="$(ls ${TEMP_DIR}/squashfs-root/lib/modules)"
 NVIDIA_VERSION="$(modinfo "${TEMP_DIR}/squashfs-root/lib/modules/${KERNEL_VERSION}/extra/nvidia.ko" | grep -E '^version: ' | awk '{print $2}')"
 
@@ -963,8 +964,8 @@ echo "$(
     done < "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 )" > "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 
-sed -i 's/^# enable the nvidia driver.*/# enable the nvidia driver (auto, last, 390, 340, false)/' "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
-sed -i 's/^#nvidia-driver=true$/nvidia-driver=auto/'                                               "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
+sed -i 's/^# enable the nvidia driver.*/# enable the nvidia driver (auto, last, 470, 390, 340, false)/' "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
+sed -i 's/^#nvidia-driver=true$/nvidia-driver=auto/'                                                    "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 
 ################################################################################
 

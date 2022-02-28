@@ -18,12 +18,13 @@ DRIVER_VERSION=$(
         cut -d '.' -f 1
 )
 
-if [ ${DRIVER_VERSION} == '390' ] || [ ${DRIVER_VERSION} == '340' ]
-then
-    DRIVER_VERSION=v${DRIVER_VERSION}
-else
-    DRIVER_VERSION=last
-fi
+case ${DRIVER_VERSION} in
+    470|390|340)
+        DRIVER_VERSION=v${DRIVER_VERSION}
+        ;;
+    *)
+        DRIVER_VERSION=last
+esac
 
 DRIVER_FILES=(
     $(find "/opt/Nvidia/${DRIVER_VERSION}" ! -type d)
