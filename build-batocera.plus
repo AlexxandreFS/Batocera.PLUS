@@ -24,12 +24,11 @@ ALL_BIOS=true
 TEMP_DIR='./output'
 #TEMP_DIR='/media/Linux/tmp'
 
-# BatoceraZero image
-BATOCERA_ZERO='BatoceraZero3.7GB-1.7z' # image size: 3655701504
-#BATOCERA_ZERO='BatoceraZero4GB-1.7z'  # image size: 4G
-#BATOCERA_ZERO='BatoceraZero5GB-1.7z'  # image size: 5G
-#BATOCERA_ZERO='BatoceraZero6GB-1.7z'  # image size: 6G
-#BATOCERA_ZERO='BatoceraZero7GB-1.7z'  # image size: 7G
+# BatoceraZero (final image size)
+BATOCERA_ZERO='BatoceraZero4GB-1.7z'
+#BATOCERA_ZERO='BatoceraZero5GB-1.7z'
+#BATOCERA_ZERO='BatoceraZero6GB-1.7z'
+#BATOCERA_ZERO='BatoceraZero7GB-1.7z'
 
 # Batocera.PLUS extra files
 PLUS_DIR='plus'
