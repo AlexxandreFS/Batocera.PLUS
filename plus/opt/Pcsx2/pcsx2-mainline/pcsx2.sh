@@ -27,11 +27,14 @@ CONFIG_DIR="${HOME}/configs/pcsx2-mainline"
 
 ### EXPORTS
 
-export LD_LIBRARY_PATH="${EMU_DIR}/lib:${EMU_DIR}:${LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="${EMU_DIR}/lib:${LD_LIBRARY_PATH}"
+
 export GDK_PIXBUF_MODULEDIR='/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders'
 export GDK_PIXBUF_MODULE_FILE='/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache'
+
+export GSETTINGS_SCHEMA_DIR="${EMU_DIR}/pcsx2_rc/glib-2.0/schemas"
+
 export GDK_BACKEND=x11
-export GSETTINGS_SCHEMA_DIR="${EMU_DIR}/schemas"
 
 ################################################################################
 

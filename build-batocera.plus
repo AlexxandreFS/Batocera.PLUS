@@ -194,7 +194,6 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3_extra_libs-1.1.7z' # dep: rpcs3
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ryujinx_extras-1.1.7z' # dep: ryujinx
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pcsx2-legacy-apr-10-2021-2.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pcsx2_schemas.7z' # dep: pcsx2-mainline
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/p7zip-full-17.04-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/p7zip-gui-17.04-2.7z'
@@ -703,6 +702,10 @@ PCSX2_FILES=(
     libnotify.so.4
     libtiff.so.5
     libgdk-3.so.0
+    libgtk-3.so.0
+    libatk-bridge-2.0.so.0
+    libatspi.so.0
+    libpcap.so.0.8
     libwx_baseu-3.0.so.0
     libwx_gtk3u_adv-3.0.so.0
     libwx_gtk3u_core-3.0.so.0
