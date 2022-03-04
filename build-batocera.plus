@@ -297,7 +297,7 @@ URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/dow
 
 URL_RYUJINX='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ryujinx-1.0.7108-linux_x64.tar.gz' #Link provisório
 
-URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.2083/pcsx2-v1.7.2083-linux-AppImage-64bit.AppImage'
+URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.2410/pcsx2-v1.7.2410-linux-AppImage-64bit.AppImage'
 
 URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-e31173e33e4448632c5e74a46dd7deb354167a10/rpcs3-v0.0.18-12970-e31173e3_linux64.AppImage'
 
@@ -695,12 +695,14 @@ cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
 "${CURRENT_DIR}/${DOWNLOAD_DIR}/${PKG_NAME}" --appimage-extract
 cd "${CURRENT_DIR}"
 unset CURRENT_DIR
-mv "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/PCSX2"  "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline"
-mv "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/Langs"  "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline"
+mv "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/pcsx2" "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/PCSX2"
+sed -i 's|../share|pcsx2_rc|'                                       "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/PCSX2"
+mv "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/share"     "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/pcsx2_rc"
 PCSX2_FILES=(
     libjbig.so.0
     libnotify.so.4
     libtiff.so.5
+    libgdk-3.so.0
     libwx_baseu-3.0.so.0
     libwx_gtk3u_adv-3.0.so.0
     libwx_gtk3u_core-3.0.so.0
