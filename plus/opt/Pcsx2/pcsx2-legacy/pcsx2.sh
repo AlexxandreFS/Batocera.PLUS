@@ -33,25 +33,21 @@ function populate()
 {
     if ! [ -e "${HOME}/../system/configs/pcsx2-legacy/PCSX2_ui.ini" ]
     then
-        cat << '        EOF' > "${HOME}/../system/configs/pcsx2-legacy/PCSX2_ui.ini"
-            [Filenames]
-            BIOS=scph39001.bin
-
-            [ProgramLog]
-            Visible=disabled
-
-            [GSWindow]
-            AspectRatio=4:3
-        EOF
+        (echo '[Filenames]'
+         echo 'BIOS=scph39001.bin'
+         echo ''
+         echo '[ProgramLog]'
+         echo 'Visible=disabled'
+         echo ''
+         echo '[GSWindow]'
+         echo 'AspectRatio=4:3') > "${HOME}/../system/configs/pcsx2-legacy/PCSX2_ui.ini"
     fi
 
     if ! [ -e "${HOME}/../system/configs/pcsx2-legacy/GSdx.ini" ]
     then
-        cat << '        EOF' > "${HOME}/../system/configs/pcsx2-legacy/GSdx.ini"
-            vsync = 0
-            upscale_multiplier = 1
-            MaxAnisotropy = 0
-        EOF
+        (echo 'vsync = 0'
+         echo 'upscale_multiplier = 1'
+         echo 'MaxAnisotropy = 0') > "${HOME}/../system/configs/pcsx2-legacy/GSdx.ini"
     fi
 }
 

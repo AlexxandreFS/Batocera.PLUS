@@ -15,9 +15,10 @@ ANISOTROPIC_FILTERING="${8}"
 VSYNC="${9}"
 WSCRH="${10}"
 SPEEDHACKS="${11}"
+CUSTOM="${12}"
 
 PCSX2_DIR="$(dirname ${0})"
-PCSX2_SAVE_DIR='/userdata/saves/ps2'
+PCSX2_SAVE_DIR="/userdata/saves/ps2"
 PCSX2_UI_FILE="${HOME}/configs/${CORE}/PCSX2_ui.ini"
 PCSX2_VM_FILE="${HOME}/configs/${CORE}/PCSX2_vm.ini"
 PCSX2_GS_FILE="${HOME}/configs/${CORE}/GS.ini"
@@ -25,6 +26,13 @@ PCSX2_GS_FILE="${HOME}/configs/${CORE}/GS.ini"
 if [ "${CORE}" == 'pcsx2-legacy' ]
 then
     PCSX2_GS_FILE="${HOME}/configs/${CORE}/GSdx.ini"
+fi
+
+if [ "${CORE}" == 'PCSX2' ]
+then
+   PCSX2_GS_FILE="${HOME}/configs/${CORE}/inis/GSdx.ini"
+   PCSX2_VM_FILE="${HOME}/configs/${CORE}/inis/PCSX2_vm.ini"
+   PCSX2_UI_FILE="${HOME}/configs/${CORE}/inis/PCSX2_ui.ini"
 fi
 
 ################################################################################
@@ -59,18 +67,6 @@ function exitHotkeyStart()
 
 ################################################################################
 
-## CLOSE XJOYKILL
-
-function killXjoyKill()
-{
-    if [ "$(pidof -s xjoykill)" ]
-    then
-       killall -9 xjoykill
-    fi
-}
-
-################################################################################
-
 ### POPULATE
 
 function populate()
@@ -83,12 +79,14 @@ function populate()
              "${PCSX2_SAVE_DIR}/cheats" \
              "${PCSX2_SAVE_DIR}/cheats_ws" \
              "${PCSX2_SAVE_DIR}/memcards" \
-             "${PCSX2_SAVE_DIR}/inis-custom-${CORE}" \
-             "${HOME}/configs/${CORE}"
+             "${HOME}/configs/${CORE}" \
+             "${HOME}/.cache/pcsx2_cache"
+
+    /opt/Pcsx2/pcsx2/pcsx2.sh fristrun &
 
     for INDEX in {1..2}
     do
-        touch "${PCSX2_SAVE_DIR}/pcsx2/slot ${INDEX}/Shared Memory Card (8 MB).ps2"
+        touch "${PCSX2_SAVE_DIR}/pcsx2/Slot ${INDEX}/Shared Memory Card (8 MB).ps2"
 
         if ! [ -e "${PCSX2_SAVE_DIR}/memcards/Mcd00${INDEX}.ps2" ]
         then
@@ -97,6 +95,67 @@ function populate()
         fi
     done
 }
+
+################################################################################
+
+### CREATE CUSTOM INI FOLDER
+
+function createcustom()
+{
+  local CUSTOMINIPATCH="${PCSX2_SAVE_DIR}/custom/$(basename "${ROM%.*}")"
+  
+  if [ ! "$(ls -A "${CUSTOMINIPATCH}" 2> /dev/null)" ]
+  then
+      mkdir -p "${CUSTOMINIPATCH}"
+
+      echo '[EmuCore]'                        >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
+      echo 'EnableWideScreenPatches=disabled' >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
+      echo '[EmuCore/Speedhacks]'             >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
+      echo 'EECycleRate=0'                    >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
+      echo 'EECycleSkip=0'                    >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
+      echo 'fastCDVD=disabled'                >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
+      echo 'IntcStat=enabled'                 >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
+      echo 'WaitLoop=enabled'                 >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
+      echo 'vuFlagHack=enabled'               >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
+      echo 'vuThread=disabled'                >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
+      echo 'vu1Instant=enabled'               >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
+
+      echo 'PresetIndex=1'                    >> "${CUSTOMINIPATCH}/PCSX2_ui.ini"
+      echo '[Filenames]'                      >> "${CUSTOMINIPATCH}/PCSX2_ui.ini"
+      echo 'BIOS=scph39001.bin'               >> "${CUSTOMINIPATCH}/PCSX2_ui.ini"
+      echo '[ProgramLog]'                     >> "${CUSTOMINIPATCH}/PCSX2_ui.ini"
+      echo 'Visible=disabled'                 >> "${CUSTOMINIPATCH}/PCSX2_ui.ini"
+      echo '[GSWindow]'                       >> "${CUSTOMINIPATCH}/PCSX2_ui.ini"
+      echo 'AspectRatio=4:3'                  >> "${CUSTOMINIPATCH}/PCSX2_ui.ini"
+
+      echo 'vsync = 0'                        >> "${CUSTOMINIPATCH}/GS.ini"
+      echo 'upscale_multiplier = 1'           >> "${CUSTOMINIPATCH}/GS.ini"
+      echo 'MaxAnisotropy = 0'                >> "${CUSTOMINIPATCH}/GS.ini"
+      echo 'UserHacks = 0'                    >> "${CUSTOMINIPATCH}/GS.ini"
+  fi
+}
+
+################################################################################
+
+## CLOSE XJOYKILL
+
+function killXjoyKill()
+{
+    if [ "$(pidof -s xjoykill)" ]
+    then
+       killall -9 xjoykill
+    fi
+}
+
+################################################################################
+
+### PERGAME CONFIG
+
+if [ "${CUSTOM}" == '1' ]; then
+  if [ ! "$(ls -A "${HOME}/configs/${CORE}/custom/$(basename "${ROM%.*}")"  2> /dev/null)" ]; then
+    createcustom
+  fi
+fi
 
 ################################################################################
 
@@ -185,21 +244,26 @@ sed -i "s/^[ ]*EnableWideScreenPatches=.*/EnableWideScreenPatches=${WSCRH}/" "${
 
 populate
 
-if [ "${CORE}" == 'pcsx2-mainline' ]
-then
-    exitHotkeyStart
-    ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-mainline/pcsx2.sh \
-        "${ROM}"                "${FULLBOOT}" \
-        "${INTERNALRESOLUTION}" "${ANISOTROPIC_FILTERING}" \
-        "${WSCRH}"              "${SPEEDHACKS}"
-elif [ "${CORE}" == 'pcsx2-legacy' ]
-then
-    exitHotkeyStart
-    ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-legacy/pcsx2.sh \
-        "${ROM}"                "${FULLBOOT}"
-else
-    exit 1
-fi
+case ${CORE} in
+    pcsx2-mainline)
+                   exitHotkeyStart
+                   ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-mainline/pcsx2.sh \
+                       "${ROM}"                "${FULLBOOT}" \
+                       "${INTERNALRESOLUTION}" "${ANISOTROPIC_FILTERING}" \
+                       "${WSCRH}"              "${SPEEDHACKS}"
+                    ;;
+    pcsx2-legacy)
+                    exitHotkeyStart
+                        ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-legacy/pcsx2.sh \
+                        "${ROM}"                "${FULLBOOT}"
+                    ;;
+    PCSX2)
+                    /usr/bin/batocera-config-pcsx2
+                    ;;
+    *)
+                    exit 1
+
+esac
 
 killXjoyKill
 
