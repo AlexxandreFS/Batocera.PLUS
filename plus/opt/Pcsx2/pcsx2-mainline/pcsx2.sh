@@ -154,10 +154,10 @@ fi
 ### GRAPHICS API
 
 case ${API} in
-    12) sed -i s/'^Renderer =.*/Renderer = 12/'  "${CONFIG_DIR}/GS.ini" ;;
-    13) sed -i s/'^Renderer =.*/Renderer = 13/'  "${CONFIG_DIR}/GS.ini" ;;
-    14) sed -i s/'^Renderer =.*/Renderer = 14/'  "${CONFIG_DIR}/GS.ini" ;;
-    *)  sed -i s/'^Renderer =.*/Renderer = -1/'  "${CONFIG_DIR}/GS.ini"
+    12) sed -i s/'^Renderer =.*/Renderer = 12/'  "${CONFIG_DIR}/GS.ini" ;; # Vulkan
+    13) sed -i s/'^Renderer =.*/Renderer = 13/'  "${CONFIG_DIR}/GS.ini" ;; # OpenGL
+    14) sed -i s/'^Renderer =.*/Renderer = 14/'  "${CONFIG_DIR}/GS.ini" ;; # Software
+    *)  sed -i s/'^Renderer =.*/Renderer = -1/'  "${CONFIG_DIR}/GS.ini"    # Automatic
 esac
 
 
