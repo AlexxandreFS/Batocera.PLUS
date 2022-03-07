@@ -16,6 +16,21 @@ VSYNC="${9}"
 WSCRH="${10}"
 SPEEDHACKS="${11}"
 CUSTOM="${12}"
+API="${13}"
+
+#echo "${CORE}" > "${HOME}/../PARAMETROS.TXT"
+#echo "${P1GUID}" >> "${HOME}/../PARAMETROS.TXT"
+#echo "${ROM}" >> "${HOME}/../PARAMETROS.TXT" 
+#echo "${RATIO}" >> "${HOME}/../PARAMETROS.TXT"
+#echo "${VIDEOMODE}" >> "${HOME}/../PARAMETROS.TXT"
+#echo "${FULLBOOT}" >> "${HOME}/../PARAMETROS.TXT"
+#echo "${INTERNALRESOLUTION}" >> "${HOME}/../PARAMETROS.TXT"
+#echo "${ANISOTROPIC_FILTERING}" >> "${HOME}/../PARAMETROS.TXT"
+#echo "${VSYNC}" >> "${HOME}/../PARAMETROS.TXT"
+#echo "${WSCRH}" >> "${HOME}/../PARAMETROS.TXT"
+#echo "${SPEEDHACKS}" >> "${HOME}/../PARAMETROS.TXT"
+#echo "${CUSTOM}" >> "${HOME}/../PARAMETROS.TXT"
+#echo "${API}" >> "${HOME}/../PARAMETROS.TXT"
 
 PCSX2_DIR="$(dirname ${0})"
 PCSX2_SAVE_DIR="/userdata/saves/ps2"
@@ -98,45 +113,6 @@ function populate()
 
 ################################################################################
 
-### CREATE CUSTOM INI FOLDER
-
-function createcustom()
-{
-  local CUSTOMINIPATCH="${PCSX2_SAVE_DIR}/custom/$(basename "${ROM%.*}")"
-  
-  if [ ! "$(ls -A "${CUSTOMINIPATCH}" 2> /dev/null)" ]
-  then
-      mkdir -p "${CUSTOMINIPATCH}"
-
-      echo '[EmuCore]'                        >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
-      echo 'EnableWideScreenPatches=disabled' >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
-      echo '[EmuCore/Speedhacks]'             >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
-      echo 'EECycleRate=0'                    >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
-      echo 'EECycleSkip=0'                    >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
-      echo 'fastCDVD=disabled'                >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
-      echo 'IntcStat=enabled'                 >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
-      echo 'WaitLoop=enabled'                 >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
-      echo 'vuFlagHack=enabled'               >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
-      echo 'vuThread=disabled'                >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
-      echo 'vu1Instant=enabled'               >> "${CUSTOMINIPATCH}/PCSX2_vm.ini"
-
-      echo 'PresetIndex=1'                    >> "${CUSTOMINIPATCH}/PCSX2_ui.ini"
-      echo '[Filenames]'                      >> "${CUSTOMINIPATCH}/PCSX2_ui.ini"
-      echo 'BIOS=scph39001.bin'               >> "${CUSTOMINIPATCH}/PCSX2_ui.ini"
-      echo '[ProgramLog]'                     >> "${CUSTOMINIPATCH}/PCSX2_ui.ini"
-      echo 'Visible=disabled'                 >> "${CUSTOMINIPATCH}/PCSX2_ui.ini"
-      echo '[GSWindow]'                       >> "${CUSTOMINIPATCH}/PCSX2_ui.ini"
-      echo 'AspectRatio=4:3'                  >> "${CUSTOMINIPATCH}/PCSX2_ui.ini"
-
-      echo 'vsync = 0'                        >> "${CUSTOMINIPATCH}/GS.ini"
-      echo 'upscale_multiplier = 1'           >> "${CUSTOMINIPATCH}/GS.ini"
-      echo 'MaxAnisotropy = 0'                >> "${CUSTOMINIPATCH}/GS.ini"
-      echo 'UserHacks = 0'                    >> "${CUSTOMINIPATCH}/GS.ini"
-  fi
-}
-
-################################################################################
-
 ## CLOSE XJOYKILL
 
 function killXjoyKill()
@@ -146,16 +122,6 @@ function killXjoyKill()
        killall -9 xjoykill
     fi
 }
-
-################################################################################
-
-### PERGAME CONFIG
-
-if [ "${CUSTOM}" == '1' ]; then
-  if [ ! "$(ls -A "${HOME}/configs/${CORE}/custom/$(basename "${ROM%.*}")"  2> /dev/null)" ]; then
-    createcustom
-  fi
-fi
 
 ################################################################################
 
@@ -227,6 +193,67 @@ sed -i "s/^[ ]*vsync[ ]*=.*/vsync = ${VSYNC}/" "${PCSX2_GS_FILE}"
 
 ################################################################################
 
+### SPEED HACKS
+
+case ${SPEEDHACKS} in
+  safest)
+        sed -i s/'^EnablePresets=.*/EnablePresets=enabled/'  "${PCSX2_UI_FILE}"
+        sed -i s/'^PresetIndex=.*/PresetIndex=0/'            "${PCSX2_UI_FILE}"
+        sed -i s/'^vsync =.*/vsync = 1/'                     "${PCSX2_GS_FILE}"
+        ;;
+  default|auto)
+        sed -i s/'^EnablePresets=.*/EnablePresets=enabled/'  "${PCSX2_UI_FILE}"
+        sed -i s/'^PresetIndex=.*/PresetIndex=1/'            "${PCSX2_UI_FILE}"
+        sed -i s/'^vsync =.*/vsync = 1/'                     "${PCSX2_GS_FILE}"
+        ;;
+  balanced)
+        sed -i s/'^EnablePresets=.*/EnablePresets=enabled/'  "${PCSX2_UI_FILE}"
+        sed -i s/'^PresetIndex=.*/PresetIndex=2/'            "${PCSX2_UI_FILE}"
+        sed -i s/'^vsync =.*/vsync = 1/'                     "${PCSX2_GS_FILE}"
+        ;;
+  aggressive)
+        sed -i s/'^EnablePresets=.*/EnablePresets=disabled/' "${PCSX2_UI_FILE}"
+        sed -i s/'UserHacks =.*/UserHacks = 1/'              "${PCSX2_GS_FILE}"
+        sed -i s/'^vsync =.*/vsync = 0/'                     "${PCSX2_GS_FILE}"
+        sed -i s/'^EECycleRate=.*/EECycleRate=-1/'           "${PCSX2_VM_FILE}"
+        sed -i s/'^EECycleSkip=.*/EECycleSkip=0/'            "${PCSX2_VM_FILE}"
+        sed -i s/'^fastCDVD=.*/fastCDVD=disabled/'           "${PCSX2_VM_FILE}"
+        sed -i s/'^IntcStat=.*/IntcStat=enabled/'            "${PCSX2_VM_FILE}"
+        sed -i s/'^WaitLoop=.*/WaitLoop=enabled/'            "${PCSX2_VM_FILE}"
+        sed -i s/'^vuFlagHack=.*/vuFlagHack=enabled/'        "${PCSX2_VM_FILE}"
+        sed -i s/'^vuThread=.*/vuThread=enabled/'            "${PCSX2_VM_FILE}"
+        sed -i s/'^vu1Instant=.*/vu1Instant=enabled/'        "${PCSX2_VM_FILE}"
+        ;;
+  vaggressive)
+        sed -i s/'^EnablePresets=.*/EnablePresets=disabled/' "${PCSX2_UI_FILE}"
+        sed -i s/'UserHacks =.*/UserHacks = 1/'              "${PCSX2_GS_FILE}"
+        sed -i s/'^vsync =.*/vsync = 0/'                     "${PCSX2_GS_FILE}"
+        sed -i s/'^EECycleRate=.*/EECycleRate=-2/'           "${PCSX2_VM_FILE}"
+        sed -i s/'^EECycleSkip=.*/EECycleSkip=0/'            "${PCSX2_VM_FILE}"
+        sed -i s/'^fastCDVD=.*/fastCDVD=disabled/'           "${PCSX2_VM_FILE}"
+        sed -i s/'^IntcStat=.*/IntcStat=enabled/'            "${PCSX2_VM_FILE}"
+        sed -i s/'^WaitLoop=.*/WaitLoop=enabled/'            "${PCSX2_VM_FILE}"
+        sed -i s/'^vuFlagHack=.*/vuFlagHack=enabled/'        "${PCSX2_VM_FILE}"
+        sed -i s/'^vuThread=.*/vuThread=enabled/'            "${PCSX2_VM_FILE}"
+        sed -i s/'^vu1Instant=.*/vu1Instant=enabled/'        "${PCSX2_VM_FILE}"
+        ;;
+  mharmful)
+        sed -i s/'^EnablePresets=.*/EnablePresets=disabled/' "${PCSX2_UI_FILE}"
+        sed -i s/'UserHacks =.*/UserHacks = 1/'              "${PCSX2_GS_FILE}"
+        sed -i s/'^vsync =.*/vsync = 0/'                     "${PCSX2_GS_FILE}"
+        sed -i s/'^EECycleRate=.*/EECycleRate=1/'            "${PCSX2_VM_FILE}"
+        sed -i s/'^EECycleSkip=.*/EECycleSkip=1/'            "${PCSX2_VM_FILE}"
+        sed -i s/'^fastCDVD=.*/fastCDVD=disabled/'           "${PCSX2_VM_FILE}"
+        sed -i s/'^IntcStat=.*/IntcStat=enabled/'            "${PCSX2_VM_FILE}"
+        sed -i s/'^WaitLoop=.*/WaitLoop=enabled/'            "${PCSX2_VM_FILE}"
+        sed -i s/'^vuFlagHack=.*/vuFlagHack=enabled/'        "${PCSX2_VM_FILE}"
+        sed -i s/'^vuThread=.*/vuThread=enabled/'            "${PCSX2_VM_FILE}"
+        sed -i s/'^vu1Instant=.*/vu1Instant=enabled/'        "${PCSX2_VM_FILE}"
+        ;;
+esac
+
+################################################################################
+
 ### WIDE SCREEN HACK
 
 if [ "${WSCRH}" == '0' ] || [ "${WSCRH}" == 'auto' ]
@@ -246,11 +273,12 @@ populate
 
 case ${CORE} in
     pcsx2-mainline)
-                   exitHotkeyStart
-                   ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-mainline/pcsx2.sh \
+                    exitHotkeyStart
+                    ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-mainline/pcsx2.sh \
                        "${ROM}"                "${FULLBOOT}" \
                        "${INTERNALRESOLUTION}" "${ANISOTROPIC_FILTERING}" \
-                       "${WSCRH}"              "${SPEEDHACKS}"
+                       "${WSCRH}"              "${CUSTOM}" \
+                       "${API}"
                     ;;
     pcsx2-legacy)
                     exitHotkeyStart
