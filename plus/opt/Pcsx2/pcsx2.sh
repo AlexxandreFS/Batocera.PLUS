@@ -97,7 +97,7 @@ function populate()
              "${HOME}/configs/${CORE}" \
              "${HOME}/.cache/pcsx2_cache"
 
-    /opt/Pcsx2/pcsx2/pcsx2.sh fristrun &
+    /opt/Pcsx2/pcsx2/pcsx2.sh &
 
     for INDEX in {1..2}
     do

@@ -66,7 +66,14 @@ function createInis()
          echo '[ProgramLog]'
          echo 'Visible=disabled'
          echo '[GSWindow]'
-         echo 'AspectRatio=4:3') > "${CONFIG_DIR}/PCSX2_ui.ini"
+         echo 'AspectRatio=4:3'
+         echo '[MemoryCards]'
+         echo 'Slot1_Enable=enabled'
+         echo 'Slot1_Filename=Mcd001.ps2') > "${CONFIG_DIR}/PCSX2_ui.ini"
+    fi
+
+    if [ "${CUSTOM}" == '1' ]; then
+       sed -i "s|^Slot1_Filename=.*|Slot1_Filename=$(basename "${ROM%.*}")".ps2"|" "${CONFIG_DIR}/PCSX2_ui.ini"
     fi
 
     if ! [ -e "${CONFIG_DIR}/GS.ini" ]; then
@@ -84,93 +91,36 @@ function createInis()
 
 ################################################################################
 
-### CREATE CUSTOM INI FOLDER
+### CUSTOM CONFIG
 
-function createcustom()
-{
-  local CUSTOMINIPATCH="${SAVE_DIR}/custom/$(basename "${ROM%.*}")"
-  
-  if [ ! "$(ls -A "${CUSTOMINIPATCH}" 2> /dev/null)" ]
-  then
-      mkdir -p "${CUSTOMINIPATCH}"
-
-       if ! [ -e "${CUSTOMINIPATCH}/PCSX2_vm.ini" ]; then
-          (echo '[EmuCore]'
-           echo 'EnableWideScreenPatches=disabled'
-           echo '[EmuCore/Speedhacks]'
-           echo 'EECycleRate=0'
-           echo 'EECycleSkip=0'
-           echo 'fastCDVD=disabled'
-           echo 'IntcStat=enabled'
-           echo 'WaitLoop=enabled'
-           echo 'vuFlagHack=enabled'
-           echo 'vuThread=disabled'
-           echo 'vu1Instant=enabled') > "${CUSTOMINIPATCH}/PCSX2_vm.ini"
-       fi
-
-       if ! [ -e "${CUSTOMINIPATCH}/PCSX2_ui.ini" ]; then
-          (echo 'PresetIndex=1'
-           echo '[Filenames]'
-           echo 'BIOS=scph39001.bin'
-           echo '[ProgramLog]'
-           echo 'Visible=disabled'
-           echo '[GSWindow]'
-           echo 'AspectRatio=4:3'
-           echo '[MemoryCards]'
-           echo 'Slot1_Enable=enabled'
-           echo ''Slot1_Filename="$(basename "${ROM%.*}")".ps2'') > "${CUSTOMINIPATCH}/PCSX2_ui.ini"
-       fi
-
-       if ! [ -e "${CUSTOMINIPATCH}/GS.ini" ]; then
-          (echo 'vsync = 0'
-           echo 'upscale_multiplier = 1'
-           echo 'MaxAnisotropy = 0'
-           echo 'UserHacks = 0') > "${CUSTOMINIPATCH}/GS.ini"
-       fi
-  
-       if ! [ -e "${CUSTOMINIPATCH}/PAD.ini" ]; then
-          (echo 'first_time_wizard = 0'
-           echo 'options = 1') > "${CUSTOMINIPATCH}/PAD.ini"
-       fi
-  fi
-}
-
-################################################################################
-
-### PERGAME CONFIG
-
-if [ "${CUSTOM}" == '1' ]; then    
-    if ! [ -e "${SAVE_DIR}/custom/$(basename "${ROM%.*}")" ]
-    then
-        createcustom
-    fi
-    CUSTOM_INIS="${SAVE_DIR}/custom/$(basename "${ROM%.*}")"
+if [ "${CUSTOM}" == '1' ]; then
+   CONFIG_DIR="${SAVE_DIR}/custom/$(basename "${ROM%.*}")"
+   createInis
+else
+   createInis
 fi
-
-#echo "${CUSTOM_INIS}" >> "${HOME}/../PARAMETROS.TXT"
 
 ################################################################################
 
 ### GRAPHICS API
 
-case ${API} in
-    12) sed -i s/'^Renderer =.*/Renderer = 12/'  "${CONFIG_DIR}/GS.ini" ;; # Vulkan
-    13) sed -i s/'^Renderer =.*/Renderer = 13/'  "${CONFIG_DIR}/GS.ini" ;; # OpenGL
-    14) sed -i s/'^Renderer =.*/Renderer = 14/'  "${CONFIG_DIR}/GS.ini" ;; # Software
-    *)  sed -i s/'^Renderer =.*/Renderer = -1/'  "${CONFIG_DIR}/GS.ini"    # Automatic
-esac
-
+if [ "${CUSTOM}" != '1' ]; then
+   case ${API} in
+      12) sed -i s/'^Renderer =.*/Renderer = 12/'  "${CONFIG_DIR}/GS.ini" ;; # Vulkan
+      13) sed -i s/'^Renderer =.*/Renderer = 13/'  "${CONFIG_DIR}/GS.ini" ;; # OpenGL
+      14) sed -i s/'^Renderer =.*/Renderer = 14/'  "${CONFIG_DIR}/GS.ini" ;; # Software
+      *)  sed -i s/'^Renderer =.*/Renderer = -1/'  "${CONFIG_DIR}/GS.ini"    # Automatic
+   esac
+fi
 
 ################################################################################
 
 ### RUN
 
-if [ -e "${ROM}" ] && [ -e "${CUSTOM_INIS}" ]
-then
-    ${EMU_DIR}/PCSX2 --nogui --fullscreen --cfgpath="${CUSTOM_INIS}" \
+if [ -e "${ROM}" ] && [ "${CUSTOM}" == '1' ]; then
+    ${EMU_DIR}/PCSX2 --nogui --fullscreen --cfgpath="${CONFIG_DIR}" \
           ${FULLBOOT} "${ROM}" > ${HOME}/logs/pcsx2-mainline.log 2>&1
-elif [ -e "${ROM}" ]
-then
+elif [ -e "${ROM}" ]; then
     ${EMU_DIR}/PCSX2 --nogui --fullscreen ${FULLBOOT} \
         "${ROM}" > ${HOME}/logs/pcsx2-mainline.log 2>&1
 else
