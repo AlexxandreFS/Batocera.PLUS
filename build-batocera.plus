@@ -211,7 +211,6 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/preload-0.6.4-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/yad-0.40.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/strace-5.13-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/axel-2.17.11-1.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/GOverlay-libs.7z' # dep: goverlay
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vkBasalt-0.3.2.3-4.7z'
@@ -286,20 +285,20 @@ URL_JAVA="${URL_JAVA}#/$(echo ${URL_JAVA} | sed 's/File=/;/' | cut -d ';' -f 2 |
 
 URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/7.1.1/wine-mono-7.1.1-x86.tar.xz'
 URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.9.4/dxvk-1.9.4.tar.gz'
-URL_WINE_VKD3D_PROTON='https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.5/vkd3d-proton-2.5.tar.zst'
+URL_WINE_VKD3D_PROTON='https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.6/vkd3d-proton-2.6.tar.zst'
 URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.5.2/dxvk-nvapi-v0.5.2.tar.gz'
 
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 
-URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-921/yuzu-20220217-3b4016fa2.AppImage'
-URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-2496/Yuzu-EA-2496.AppImage'
+URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-952/yuzu-20220315-441b37bd2.AppImage'
+URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/continuous/yuzu-x86_64.AppImage'
 
-URL_RYUJINX='https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ryujinx-1.0.7108-linux_x64.tar.gz' #Link provisório
+URL_RYUJINX='https://github.com/Ryujinx/release-channel-master/releases/download/1.1.76/ryujinx-1.1.76-linux_x64.tar.gz' #Link provisório
 
-URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.2410/pcsx2-v1.7.2410-linux-AppImage-64bit.AppImage'
+URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.2464/pcsx2-v1.7.2464-linux-AppImage-64bit.AppImage'
 
-URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-e31173e33e4448632c5e74a46dd7deb354167a10/rpcs3-v0.0.18-12970-e31173e3_linux64.AppImage'
+URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-f3a325fe1af75aed7758b0ba8db9f4b032b3f044/rpcs3-v0.0.21-13349-f3a325fe_linux64.AppImage'
 
 URL_GOVERLAY='https://github.com/benjamimgois/goverlay/releases/download/0.6.1/goverlay_0_6_1.tar.xz'
 URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.5/MangoHud-0.6.5.r0.ge42002c.tar.gz'
@@ -754,7 +753,7 @@ RPCS3_FILES=(
     libxcb-render-util.so.0
     libQt5Multimedia.so.5
     libheimntlm.so.0
-    libpulse-simple.so.0
+    #libpulse-simple.so.0
     libxcb-render.so.0
     libQt5MultimediaGstTools.so.5
     libhx509.so.5
@@ -825,7 +824,7 @@ YUZU_FILES=(
     libQt5Widgets
     libQt5XcbQpa
     libxcb-render-util
-    libSDL2-2
+    #libSDL2-2
 )
 for FILE in ${YUZU_FILES[*]}
 do
@@ -840,6 +839,7 @@ gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract
 rm "${TEMP_DIR}/pkg-xtract/publish/LICENSE-Ryujinx.Audio.txt"
 rm "${TEMP_DIR}/pkg-xtract/publish/THIRDPARTY.md"
 mv "${TEMP_DIR}/pkg-xtract/publish" "${TEMP_DIR}/squashfs-root/opt/Ryujinx"
+chmod +x "${TEMP_DIR}/squashfs-root/opt/Ryujinx/publish/Ryujinx"
 ln -sf "${HOME}/logs/ryujinx" "${TEMP_DIR}/squashfs-root/opt/Ryujinx/publish/Logs"
 
 echo 'Install Nvidia Driver...'
