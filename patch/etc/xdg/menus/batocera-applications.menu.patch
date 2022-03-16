@@ -1,11 +1,28 @@
 --- batocera-applications.menu
 +++ batocera-applications.menu.plus
-@@ -10,7 +10,7 @@
+@@ -10,14 +10,22 @@
    <Menu>
      <Name>batocera.linux</Name>
      <Directory>batocera.directory</Directory>
--    <DefaultLayout inline="true" inline_limit="20" inline_header="false">
-+    <DefaultLayout inline="true" inline_limit="30" inline_header="false">
+-    <DefaultLayout inline="true" inline_limit="30" inline_header="false">
++    <DefaultLayout inline="true" inline_limit="100" inline_header="false">
        <Merge type="menus"/>
        <Merge type="files"/>
      </DefaultLayout>
++    <Include>
++      <Category>batocera.linux</Category>
++    </Include>
+     <Menu>
+-      <Name>batocera.linux</Name>
++      <Name>CONTROL PANEL</Name>
++      <Directory>batocera.directory</Directory>
++      <DefaultLayout inline="false" inline_limit="100" inline_header="false">
++        <Merge type="menus"/>
++        <Merge type="files"/>
++      </DefaultLayout>
+       <Include>
+-	<Category>batocera.linux</Category>
++        <Category>batocera.plus</Category>
+       </Include>
+     </Menu>
+   </Menu>
