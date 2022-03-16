@@ -4,7 +4,7 @@
    <Menu>
      <Name>batocera.linux</Name>
      <Directory>batocera.directory</Directory>
--    <DefaultLayout inline="true" inline_limit="30" inline_header="false">
+-    <DefaultLayout inline="true" inline_limit="20" inline_header="false">
 +    <DefaultLayout inline="true" inline_limit="100" inline_header="false">
        <Merge type="menus"/>
        <Merge type="files"/>
