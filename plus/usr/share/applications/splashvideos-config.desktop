@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Icon=openbox
+Exec=/opt/ControlPanel/splashvideos-config.plus
+Terminal=false
+Type=Application
+Categories=batocera.plus;
+Name=splashvideos-config
+Comment=Enables or disables the videos at Batocera.PLUS startup.
+NoDisplay=false

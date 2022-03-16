@@ -17,6 +17,7 @@ mkdir -p "$SHARE/system/configs/wine"
 ### Pasta splashvideos
 if ! [ -d "$SHARE/splashvideos" ]; then
     cp -r "${DATAINIT}/splashvideos" "${SHARE}"
+    ln -s '/opt/ControlPanel/splashvideos-config.plus' "${SHARE}/splashvideos/enable-disable-splashvideos.plus"
 fi
 
 ### Arquivo de auto execução personalizado pelo usuário.
