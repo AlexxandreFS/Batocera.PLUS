@@ -293,7 +293,7 @@ URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 
 URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-952/yuzu-20220315-441b37bd2.AppImage'
-URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/continuous/yuzu-x86_64.AppImage'
+URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-2557/Yuzu-EA-2557.AppImage'
 
 URL_RYUJINX='https://github.com/Ryujinx/release-channel-master/releases/download/1.1.76/ryujinx-1.1.76-linux_x64.tar.gz' #Link provisório
 
