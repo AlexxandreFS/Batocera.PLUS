@@ -285,8 +285,7 @@ URL_JAVA="$(wget -S --spider --max-redirect 0 'https://javadl.oracle.com/webapps
 URL_JAVA="${URL_JAVA}#/$(echo ${URL_JAVA} | sed 's/File=/;/' | cut -d ';' -f 2 | cut -d '&' -f 1)"
 
 URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/7.1.1/wine-mono-7.1.1-x86.tar.xz'
-URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.10/dxvk-1.10.tar.gz'
-
+URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.9.4/dxvk-1.9.4.tar.gz'
 URL_WINE_VKD3D_PROTON='https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.5/vkd3d-proton-2.5.tar.zst'
 URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.5.2/dxvk-nvapi-v0.5.2.tar.gz'
 
