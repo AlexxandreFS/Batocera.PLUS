@@ -1,0 +1,64 @@
+#!/bin/sh
+###
+### Batocera.PLUS
+###
+### Salva as modificações feitas na extrutura de arquivos interna do Batocera.PLUS. (batocera-save-overlay)
+### Este script só funciona com o sistema em execução, ao abrir o script escolha a opção executar.
+###
+### Saves changes made to the internal file structure of Batocera.PLUS. (batocera-save-overlay)
+### This script only works with the system running, when opening the script choose the option run.
+###
+
+RESP="$(yad --form --title='Batocera.PLUS' --fixed --center --window-icon='/usr/share/icons/Adwaita/64x64/places/user-home-symbolic.symbolic.png' \
+    --text=' Batocera.PLUS (batocera-save-overlay)\n\n 0MB (Erase Save) | 128MB Default' \
+    --field='Select size of save':CB '^default!256MB!196MB!128MB!100MB!64MB!50MB!32MB!20MB!16MB!10MB!8MB!5MB!4MB!0MB' \
+    --field='\n Save changes?\n':LBL \
+    --button="gtk-ok:0" \
+    --button="gtk-cancel:1" \
+    --borders=10)"
+echo 
+
+if [ "${?}" == '0' ]; then
+    case ${RESP%||} in
+        256MB|196MB|128MB|100MB|64MB|50MB|32MB|20MB|16MB|10MB|8MB|5MB|4MB)
+            RESP="${RESP%MB}"
+            ;;
+        default)
+            RESP='128'
+            ;;
+        0MB)
+            mount -o remount,rw /boot 2> /dev/null
+            rm -f /boot/boot/overlay  2> /dev/null
+            umount /boot              2> /dev/null
+
+            if [ /boot/boot/overlay ]; then
+                MSMBOX='sucess!'
+            else
+                MSMBOX='error'
+            fi
+
+            echo -e "\nErase /boot/boot/overlay ${MSMBOX}" | yad --title='Batocera.PLUS' --fixed --center --window-icon='/usr/share/icons/Adwaita/64x64/places/user-home-symbolic.symbolic.png' \
+                --text-info \
+                --text='LOG: batocera-save-overlay' \
+                --borders=10 \
+                --margins=10 \
+                --width="640" \
+                --height="480" \
+                --button=gtk-ok
+            exit 0
+            ;;
+        *)
+            exit -1
+    esac
+
+    batocera-save-overlay "${RESP%MB||}" | yad --title='Batocera.PLUS' --fixed --center --window-icon='/usr/share/icons/Adwaita/64x64/places/user-home-symbolic.symbolic.png' \
+        --text-info \
+        --text='LOG: batocera-save-overlay' \
+        --borders=10 \
+        --margins=10 \
+        --width="640" \
+        --height="480" \
+        --button=gtk-ok
+fi
+
+exit 0
