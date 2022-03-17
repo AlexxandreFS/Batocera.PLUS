@@ -825,7 +825,7 @@ YUZU_FILES=(
     libQt5Widgets
     libQt5XcbQpa
     libxcb-render-util
-    #libSDL2-2
+    libSDL2-2.0.so.0
 )
 for FILE in ${YUZU_FILES[*]}
 do
