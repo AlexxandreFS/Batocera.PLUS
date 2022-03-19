@@ -36,25 +36,10 @@
 		<genre>games</genre>
 	</game>
 	<game>
-		<path>./PARCEIROSDAEMULAÇÃO.txt</path>
-		<name>[SITE] PARCEIROS DA EMULAÇÃO</name>
-		<desc>Site, criado por sergio graças onde são disponiblizados rooms, temas, bios e imagens prontas de sistemas de retrogames Batocera e Recalbox.</desc>
-		<image>./downloaded_images/PARCEIROSDAEMULAÇÃO-image.png</image>
-		<genre>games</genre>
-	</game>
-	<game>
 		<path>./BATOCERAPLUS.txt</path>
 		<name>[CANAL YOUTUBE] BATOCERA.PLUS</name>
 		<desc>CANAL OFICIAL DO BATOCERA.PLUS, A IDEIA CENTRAL DESTE CANAL É PUBLICAR INFORMAÇÕES SOBRE AS NOVIDADES RELACIONADAS AO BATOCERA.PLUS.</desc>
 		<image>./downloaded_images/BATOCERAPLUS-image.png</image>
-		<genre>CANAL YOUTUBE</genre>
-	</game>
-	<game>
-		<path>./CLEBINHORJ.txt</path>
-		<name>[CANAL YOUTUBE] CLEBINHO RETRÔ-GAMES</name>
-		<desc>CANAL DEDICADO À SISTEMA DE RETRÔ-EMULAÇÃO, RECALBOX, BATOCERA, RASPBERRY PI3. PARA QUEM CURTE GAMES RETRÔ. AQUI VOCÊ ENCONTRA IMAGENS PRONTAS BASEADAS NO RECALBOX E BATOCERA E VÁRIOS PACK COLLECTIONS PARA ADICIONAR EM SEUS SISTEMAS E PACK DE ROMS.
-OBSERVAÇÃO: O CLEBER BATISTA É UMA DAS PESSOAS QUE APOIA O PROJETO COM TESTES, SUJESTÕES, TRABALHOS GRÁFICOS E O PRINCIPAL QUE É O APOIO MORAL. DEIXO O MEU MUITO OBRIGADO E A RECOMENDAÇÃO DO CANAL.</desc>
-		<image>./downloaded_images/CLEBINHORJ-image.png</image>
 		<genre>CANAL YOUTUBE</genre>
 	</game>
 	<game>
@@ -81,15 +66,6 @@ Fanpage: www.facebook.com/RuivoGameplays
 Blog do Ruivo: www.jogoretro.blogspot.com.br
 Instagram: www.instagram.com/ruivoplay</desc>
 		<image>./downloaded_images/RUIVO-image.png</image>
-		<genre>CANAL YOUTUBE</genre>
-	</game>
-	<game>
-		<path>./SERGIOGRAÇAS.txt</path>
-		<name>[CANAL YOUTUBE] SERGIO GRAÇAS</name>
-		<desc>CANAL PARA POSTAGENS DE VÍDEOS SOBRE INFORMÁTICA SOFTWARE LIVRE, ROBÓTICA LIVRE, TECNOLOGIA E EDUCAÇÃO.
-OBSERVAÇÃO: O SERGIO GRAÇAS É UM SER "NOTÁVEL" DENTRO DA COMUNIDADE, APOIA O PROJETO COM TESTES, SUJESTÕES, DIVULGAÇÃO E O PRINCIPAL QUE É O APOIO MORAL.
-DEIXO O MEU MUITO OBRIGADO E A RECOMENDAÇÃO DO CANAL.</desc>
-		<image>./downloaded_images/SERGIOGRAÇAS-image.png</image>
 		<genre>CANAL YOUTUBE</genre>
 	</game>
 	<game>
