@@ -6,4 +6,5 @@ GOVERLAY_DIR=/opt/GOverlay
 export PATH="${GOVERLAY_DIR}/bin:${MANGOHUD_DIR}:${PATH}"
 export LD_LIBRARY_PATH="${GOVERLAY_DIR}/lib:${LD_LIBRARY_PATH}"
 export QT_QPA_PLATFORM=xcb
-exec goverlay --style fusion
+
+exec mangohud --dlsym goverlay --style windows

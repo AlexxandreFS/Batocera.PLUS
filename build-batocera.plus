@@ -213,7 +213,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/axel-2.17.11-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/strace-5.13-1.7z'
 
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/GOverlay-libs.7z' # dep: goverlay
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/Goverlay-0.8.1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vkBasalt-0.3.2.3-4.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/git-2.31.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/parsec-2.7z'
@@ -301,7 +301,6 @@ URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.2464/pcsx2-v1.7
 
 URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-f3a325fe1af75aed7758b0ba8db9f4b032b3f044/rpcs3-v0.0.21-13349-f3a325fe_linux64.AppImage'
 
-URL_GOVERLAY='https://github.com/benjamimgois/goverlay/releases/download/0.6.1/goverlay_0_6_1.tar.xz'
 URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.5/MangoHud-0.6.5.r0.ge42002c.tar.gz'
 
 URL_ANTIMICRO='3.1.7'
@@ -339,7 +338,6 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_YUZU_MAINLINE}" \
            "${URL_YUZU_EARLY_ACCESS}" \
            "${URL_RYUJINX}" \
-           "${URL_GOVERLAY}" \
            "${URL_MANGOHUD}" \
            "${URL_ANTIMICRO}" \
            "${URL_PEAZIP}" \
@@ -607,10 +605,6 @@ rm "${TEMP_DIR}/pkg-xtract/README.md"
 rm "${TEMP_DIR}/pkg-xtract/LICENSE"
 cp -r "${TEMP_DIR}/pkg-xtract/"* "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
-
-echo 'Install GOverlay...'
-PKG_NAME="$(basename "${URL_GOVERLAY}")"
-xz -d -k -c -v "${DOWNLOAD_DIR}/${PKG_NAME}" | tar xv -C "${TEMP_DIR}/squashfs-root/opt/GOverlay/bin"
 
 echo 'Install MangoHud...'
 PKG_NAME="$(basename "${URL_MANGOHUD}")"
