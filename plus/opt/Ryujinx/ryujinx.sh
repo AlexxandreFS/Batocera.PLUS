@@ -33,17 +33,21 @@ export QT_PLUGIN_PATH=/opt/Ryujinx/plugins
 
 ### CREATE DIRS AND LINKS
 
-if ! [ -d "${SAVE_DIR}/Ryujinx" ]; then
-    # make save and log dirs
-    mkdir -p "${SAVE_DIR}/Ryujinx" \
-             "${HOME}/logs/ryujinx"
+function createDirs()
+{
+    if ! [ -d "${SAVE_DIR}/Ryujinx" ]; then
+        # make save and log dirs
+        mkdir -p "${SAVE_DIR}/Ryujinx"
 
-    # create bios dir for ryujinx
-    ln -s "${BIOS_DIR}" "${SAVE_DIR}/Ryujinx/system"
+        # create bios dir for ryujinx
+        ln -s "${BIOS_DIR}" "${SAVE_DIR}/Ryujinx/system"
+        cp -f "${RYUJINX_DIR}/default_config/Config.json" "${SAVE_DIR}/Ryujinx"
+    fi
 
-    cp -f "${RYUJINX_DIR}/default_config/Config.json" "${SAVE_DIR}/Ryujinx"
-
-fi
+    if ! [ -d "${HOME}/logs/ryujinx" ]; then
+        mkdir -p "${HOME}/logs/ryujinx"
+    fi
+}
 
 ################################################################################
 
@@ -122,6 +126,8 @@ fi
 ################################################################################
 
 ### EXECUTION
+
+createDirs
 
 if [ -e "${ROM}" ]; then
    $MANGOHUD_CMD $RYUJINX_EMU --fullscreen "${ROM}"

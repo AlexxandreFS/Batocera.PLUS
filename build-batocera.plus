@@ -699,20 +699,20 @@ mv "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/pcsx2" "${TEMP_DIR}
 sed -i 's|../share|pcsx2_rc|'                                       "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/PCSX2"
 mv "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/share"     "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/pcsx2_rc"
 PCSX2_FILES=(
-    libjbig.so.0
-    libnotify.so.4
-    libtiff.so.5
-    libgdk-3.so.0
-    libgtk-3.so.0
-    libatk-bridge-2.0.so.0
-    libatspi.so.0
-    libpcap.so.0.8
-    libwx_baseu-3.0.so.0
-    libwx_gtk3u_adv-3.0.so.0
-    libwx_gtk3u_core-3.0.so.0
+    libjbig
+    libnotify
+    libtiff
+    libgdk-3
+    libgtk-3
+    libatk-bridge-2
+    libatspi
+    libpcap
+    libwx_baseu-3
+    libwx_gtk3u_adv-3
+    libwx_gtk3u_core-3
 )
 for FILE in ${PCSX2_FILES[@]}; do
-    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}" "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/lib"
+    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/lib"
 done
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
@@ -732,71 +732,71 @@ cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/"*  "${TEMP_DIR}/sq
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Rpcs3/lib"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/optional/libstdc++/libstdc++."* "${TEMP_DIR}/squashfs-root/opt/Rpcs3/lib"
 RPCS3_FILES=(
-    libGLEW.so.2.2
-    libcurl.so.4
-    liblber-2.4.so.2
-    libxcb-icccm.so.4
-    libQt5Concurrent.so.5
-    libgssapi.so.3
-    libldap_r-2.4.so.2
-    libxcb-image.so.0
-    libQt5Core.so.5
-    libgssapi_krb5.so.2
-    libnghttp2.so.14
-    libxcb-keysyms.so.1
-    libQt5DBus.so.5
-    libhcrypto.so.4
-    libnsl.so.1
-    libxcb-randr.so.0
-    libQt5Gui.so.5
-    libheimbase.so.1
-    libpsl.so.5
-    libxcb-render-util.so.0
-    libQt5Multimedia.so.5
-    libheimntlm.so.0
-    #libpulse-simple.so.0
-    libxcb-render.so.0
-    libQt5MultimediaGstTools.so.5
-    libhx509.so.5
-    libpulsecommon-11.1.so
-    libxcb-shape.so.0
-    libQt5MultimediaWidgets.so.5
-    libicudata.so.60
-    libroken.so.18
-    libxcb-shm.so.0
-    libQt5Network.so.5
-    libicui18n.so.60
-    libsasl2.so.2
-    libxcb-sync.so.1
-    libQt5Svg.so.5
-    libicuuc.so.60
-    libxcb-util.so.1
-    libQt5Widgets.so.5
-    libidn2.so.0
-    libsystemd.so.0
-    libxcb-xfixes.so.0
-    libQt5XcbQpa.so.5
-    libk5crypto.so.3
-    libtinfo.so.5
-    libxcb-xinerama.so.0
-    libapparmor.so.1
-    libkeyutils.so.1
-    libunistring.so.2
-    libxcb-xinput.so.0
-    libasn1.so.8
-    libkrb5.so.26
-    libwind.so.0
-    libxcb-xkb.so.1
-    libkrb5.so.3
-    libwrap.so.0
-    libasyncns.so.0
-    libkrb5support.so.0
-    libxcb-glx.so.0
-    libSDL2-2.0.so.0
+    libGLEW
+    libcurl
+    liblber-2
+    libxcb-icccm
+    libQt5Concurrent
+    libgssapi
+    libldap_r-2
+    libxcb-image
+    libQt5Core
+    libgssapi_krb5
+    libnghttp2
+    libxcb-keysyms
+    libQt5DBus
+    libhcrypto
+    libnsl
+    libxcb-randr
+    libQt5Gui
+    libheimbase
+    libpsl
+    libxcb-render-util
+    libQt5Multimedia
+    libheimntlm
+    #libpulse-simple
+    libxcb-render
+    libQt5MultimediaGstTools
+    libhx509
+    libpulsecommon-11
+    libxcb-shape
+    libQt5MultimediaWidgets
+    libicudata
+    libroken
+    libxcb-shm
+    libQt5Network
+    libicui18n
+    libsasl2
+    libxcb-sync
+    libQt5Svg
+    libicuuc
+    libxcb-util
+    libQt5Widgets
+    libidn2
+    libsystemd
+    libxcb-xfixes
+    libQt5XcbQpa
+    libk5crypto
+    libtinfo
+    libxcb-xinerama
+    libapparmor
+    libkeyutils
+    libunistring
+    libxcb-xinput
+    libasn1
+    libkrb5
+    libwind
+    libxcb-xkb
+    libkrb5
+    libwrap
+    libasyncns
+    libkrb5support
+    libxcb-glx
+    libSDL2-2
 )
 for FILE in ${RPCS3_FILES[@]}
 do
-    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}" "${TEMP_DIR}/squashfs-root/opt/Rpcs3/lib"
+    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/squashfs-root/opt/Rpcs3/lib"
 done
 cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/plugins"      "${TEMP_DIR}/squashfs-root/opt/Rpcs3"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
@@ -825,7 +825,7 @@ YUZU_FILES=(
     libQt5Widgets
     libQt5XcbQpa
     libxcb-render-util
-    libSDL2-2.0.so.0
+    libSDL2-2
 )
 for FILE in ${YUZU_FILES[*]}
 do
