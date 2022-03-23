@@ -507,11 +507,16 @@ fi
 
 ### VIRTUAL_DESKTOP
 
-if [ "${VIRTUAL_DESKTOP}" == '1' ]; then
-    unset VIRTUAL_DESKTOP
-    VIRTUAL_DESKTOP="explorer /desktop=Batocera.PLUS,$(batocera-resolution currentMode)"
-elif [ "${VIRTUAL_DESKTOP}" ]; then
-    unset VIRTUAL_DESKTOP
+if [ "${VIRTUAL_DESKTOP}" ]; then
+    if [ "${VIRTUAL_DESKTOP}" == '1' ]; then
+        VIRTUAL_DESKTOP="explorer /desktop=Batocera.PLUS,${DEFAULT_RESOLUTION}"
+    else
+        if [ "${VIRTUAL_DESKTOP}" != "${DEFAULT_RESOLUTION}" ]; then
+            batocera-resolution setMode ${VIRTUAL_DESKTOP}
+        fi
+
+        VIRTUAL_DESKTOP="explorer /desktop=Batocera.PLUS,${VIRTUAL_DESKTOP}"
+    fi
 fi
 
 ################################################################################
@@ -575,7 +580,8 @@ function wineHelp() {
             '      WINEESYNC=1                   Enable ESYNC, improves load times but crashes some games\n' \
             '      INSTALL_EXTRAS=1              Install DirectX, Mono end extra files on a non default WINEPREFIX\n' \
             '      WINE_MF=1                     Enable support for some media foundation based games\n' \
-            '      WINE_LOADINGSCREEN=0          Disable default wine instalation screen image'
+            '      WINE_LOADINGSCREEN=0          Disable default wine instalation screen image\n' \
+            '      VIRTUAL_DESKTOP=1280x720      Change screen resolution'
 }
 
 

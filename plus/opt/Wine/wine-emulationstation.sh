@@ -365,8 +365,7 @@ fi
 ### Virtual Desktop (Video Mode)
 
 if [ "${VIDEOMODE}" != 'auto' ]; then
-    export VIRTUAL_DESKTOP=1
-    batocera-resolution setMode ${OPTION}
+    export VIRTUAL_DESKTOP=${VIDEOMODE}
 fi
 
 ################################################################################
