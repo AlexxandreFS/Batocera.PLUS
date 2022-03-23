@@ -1,10 +1,14 @@
-#!/bin/sh
+#!/bin/bash
+
+# Batocera.PLUS
+# copy MangoHud.json to /usr/share/vulkan/implicit_layer.d
 
 if [ "$#" -eq 0 ]; then
 	programname=`basename "$0"`
 	echo "ERROR: No program supplied"
 	echo
 	echo "Usage: $programname <program>"
+	echo "Usage: $programname --dlsym <program>"
 	exit 1
 fi
 
@@ -17,11 +21,6 @@ MANGOHUD_LIB_NAME="/opt/MangoHud/\$LIB/libMangoHud.so"
 
 if [ "$MANGOHUD_DLSYM" = "1" ]; then
 	MANGOHUD_LIB_NAME="/opt/MangoHud/\$LIB/libMangoHud_dlsym.so:${MANGOHUD_LIB_NAME}"
-fi
-
-if ! [ -e "${HOME}/.local/share/vulkan/implicit_layer.d/MangoHud.json" ]; then
-    mkdir -p "${HOME}/.local/share/vulkan/implicit_layer.d/"
-    ln -s /opt/MangoHud/MangoHud.json "${HOME}/.local/share/vulkan/implicit_layer.d/MangoHud.json"
 fi
 
 # Preload using the plain filesnames of the libs, the dynamic linker will

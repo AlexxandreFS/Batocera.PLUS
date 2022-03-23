@@ -23,11 +23,10 @@ readonly SCRIPT="${10}"
 readonly SYNC="${11}"
 readonly DIRECTX="${12}"
 readonly MANGOHUD="${13}"
-readonly VKBASALT="${14}"
-readonly OPTIMIZATIONS="${15}"
-readonly INGAME_VIDEOS="${16}"
-readonly JOYPAD="${17}"
-readonly VIDEOMODE="${18}"
+readonly OPTIMIZATIONS="${14}"
+readonly INGAME_VIDEOS="${15}"
+readonly JOYPAD="${16}"
+readonly VIDEOMODE="${17}"
 
 ################################################################################
 
@@ -286,36 +285,6 @@ case ${OPTIMIZATIONS} in
         none|auto)
             ;;
     esac
-
-################################################################################
-
-### Melhoramento de imagem.
-
-if [ "${VKBASALT}" != 'auto' ]; then
-    export ENABLE_VKBASALT=1
-    export VKBASALT_LOG_LEVEL=info
-    export VKBASALT_LOG_FILE="${LOG_DIR}/vkBasalt.log"
-
-    case ${VKBASALT} in
-        clarity)                
-            export VKBASALT_CONFIG_FILE=/opt/vkBasalt/profiles/vkBasalt.conf.clarity
-            ;;
-        fakehdr)
-            export VKBASALT_CONFIG_FILE=/opt/vkBasalt/profiles/vkBasalt.conf.fakehdr
-            ;;
-        gaussian)
-            export VKBASALT_CONFIG_FILE=/opt/vkBasalt/profiles/vkBasalt.conf.gaussian
-            ;;
-        reshade)
-            export VKBASALT_CONFIG_FILE=/opt/vkBasalt/profiles/vkBasalt.conf.reshade
-            ;;
-        user)
-            # Carrega uma config "vkBasalt.conf" na pasta do jogo
-            # caso não seja encontrado é carregado uma config em "${HOME}/.config/vkBasalt/vkBasalt.conf"
-            # previamente criada no goverlay
-            ;;
-    esac
-fi
 
 ################################################################################
 

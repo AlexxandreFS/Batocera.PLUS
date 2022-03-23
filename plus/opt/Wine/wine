@@ -521,14 +521,6 @@ fi
 
 ################################################################################
 
-### VKBASALT
-
-if [ "${ENABLE_VKBASALT}" == '1' ]; then
-    /opt/vkBasalt/vkbasalt &
-fi
-
-################################################################################
-
 ### AGUARDA O WINE ENCERRAR A EXECUÇÃO
 
 function wineWait() {
