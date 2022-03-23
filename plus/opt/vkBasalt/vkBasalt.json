@@ -3,7 +3,7 @@
   "layer" : {
     "name": "VK_LAYER_VKBASALT_post_processing",
     "type": "GLOBAL",
-    "library_path": "/opt/vkBasalt/lib/libvkbasalt.so",
+    "library_path": "/opt/vkBasalt/\$LIB/libvkbasalt.so",
     "api_version": "1.2.136",
     "implementation_version": "1",
     "description": "a post processing layer",
