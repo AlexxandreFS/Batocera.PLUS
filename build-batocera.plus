@@ -12,7 +12,7 @@ VERSION='2.21'
 # Remova esta linha para diminuir o tempo de compilação.
 # A imagem não será compactada e nem gerado o md5sum.
 # Serão dicionados pacotes experimentais.
-RELEASE='alpha'
+#RELEASE='alpha'
 
 # Squashfs compression level
 SQUASHFS_COMPRESSION='2'
@@ -301,7 +301,7 @@ URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.2464/pcsx2-v1.7
 
 URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-f3a325fe1af75aed7758b0ba8db9f4b032b3f044/rpcs3-v0.0.21-13349-f3a325fe_linux64.AppImage'
 
-URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.5/MangoHud-0.6.5.r0.ge42002c.tar.gz'
+URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.6-1/MangoHud-0.6.6.1.r0.gda573e8.tar.gz'
 
 URL_ANTIMICRO='3.1.7'
 URL_ANTIMICRO="https://github.com/AntiMicroX/antimicrox/releases/download/${URL_ANTIMICRO}/AntiMicroX-x86_64.AppImage#/AntiMicroX-${URL_ANTIMICRO}.AppImage"
@@ -610,7 +610,7 @@ echo 'Install MangoHud...'
 PKG_NAME="$(basename "${URL_MANGOHUD}")"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
 tar -xvf "${TEMP_DIR}/pkg-xtract/MangoHud/MangoHud-package.tar" -C "${TEMP_DIR}/pkg-xtract/MangoHud"
-mv "${TEMP_DIR}/pkg-xtract/MangoHud/usr/lib/mangohud/lib" "${TEMP_DIR}/squashfs-root/opt/MangoHud/lib64"
+mv "${TEMP_DIR}/pkg-xtract/MangoHud/usr/lib/mangohud/lib64" "${TEMP_DIR}/squashfs-root/opt/MangoHud/lib64"
 mv "${TEMP_DIR}/pkg-xtract/MangoHud/usr/lib/mangohud/lib32" "${TEMP_DIR}/squashfs-root/opt/MangoHud/lib"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
