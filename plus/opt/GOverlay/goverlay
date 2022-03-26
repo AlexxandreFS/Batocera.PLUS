@@ -2,9 +2,50 @@
 
 MANGOHUD_DIR=/opt/MangoHud
 GOVERLAY_DIR=/opt/GOverlay
+THEME=/tmp/yad.theme
+
+if [ "$(pidof goverlay)" ]; then
+    exit 1
+fi
+
+function splashScreen()
+{
+
+    # Make a black theme
+    cat << '    EOF' > "${THEME}"
+        style "default-style"
+        {
+            bg[NORMAL] = "#000000"
+            fg[NORMAL] = "#000000"
+        }
+        class "GtkWidget" style "default-style"
+    EOF
+    
+    GTK2_RC_FILES="${THEME}" yad \
+        --title='GOverlay 0.8.1' \
+        --window-icon='/usr/share/icons/batocera/goverlay.png' \
+        --filename='/usr/share/icons/batocera/goverlay.png' \
+        --geometry=150x150 \
+        --undecorated \
+        --no-buttons \
+        --on-top \
+        --no-escape \
+        --timeout=14 \
+        --picture \
+        --size=fit
+
+    rm "${THEME}"
+    
+    exit 2
+}
 
 export PATH="${GOVERLAY_DIR}/bin:${MANGOHUD_DIR}:${PATH}"
 export LD_LIBRARY_PATH="${GOVERLAY_DIR}/lib:${LD_LIBRARY_PATH}"
 export QT_QPA_PLATFORM=xcb
 
-exec mangohud --dlsym goverlay --style windows
+exec mangohud --dlsym goverlay --style windows &
+
+splashScreen
+
+exit 0
+
