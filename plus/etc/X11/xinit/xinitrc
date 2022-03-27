@@ -243,11 +243,16 @@ fi
 
 ################################################################################
 
+### Max open files
+ulimit -n 1048576
+
+################################################################################
+
 ### Start Emulationstation.
 
 # allow coredumps for ES
 ulimit -H -c unlimited
-ulimit -S -c unlimited emulationstation
+#ulimit -S -c unlimited emulationstation #only debug
 
 # dbus launch is required for the gio/gvfs/trash:///...
 eval `dbus-launch --sh-syntax --exit-with-session`

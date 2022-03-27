@@ -448,24 +448,6 @@ fi
 
 ################################################################################
 
-### MAXIMUM NUMBER OF OPEN FILES
-
-ulimit -n 1048576
-
-### UNLIMITED NUMBER OF CORE FILES CREATED (SOFT)
-
-ulimit -S -c unlimited wine
-ulimit -S -c unlimited wine64
-ulimit -S -c unlimited wineserver
-
-### UNLIMITED NUMBER OF CORE FILES CREATED (HARD)
-
-ulimit -H -c unlimited wine
-ulimit -H -c unlimited wine64
-ulimit -H -c unlimited wineserver
-
-################################################################################
-
 ### START WINESERVER
 
 case "${WINE_ARCH}" in wineserver|wineserver-wine-stable|wineserver-wine-staging|wineserver-wine-lutris|wineserver-proton|wineserver-proton-valve|wineserver-proton-ge-custom|wineserver-wine-old-stable)
