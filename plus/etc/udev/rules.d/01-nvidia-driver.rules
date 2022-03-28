@@ -3,7 +3,7 @@
 # Alexandre Freire dos Santos
 #
 # Database:
-# https://download.nvidia.com/XFree86/Linux-x86_64/510.54/README/supportedchips.html
+# https://download.nvidia.com/XFree86/Linux-x86_64/510.60.02/README/supportedchips.html
 #
 ACTION=="add", SUBSYSTEM=="pci", ATTRS{vendor}=="0x10de", ATTR{class}=="0x030000", GOTO="nvidia"
 ACTION=="add", SUBSYSTEM=="pci", ATTRS{vendor}=="0x10de", ATTR{class}=="0x030200", GOTO="nvidia"
@@ -228,6 +228,7 @@ ATTRS{device}=="0x1fa0", GOTO="nvidia_last"
 ATTRS{device}=="0x1fb0", GOTO="nvidia_last"
 ATTRS{device}=="0x1fb1", GOTO="nvidia_last"
 ATTRS{device}=="0x1fb2", GOTO="nvidia_last"
+ATTRS{device}=="0x1fb7", GOTO="nvidia_last"
 ATTRS{device}=="0x1fb8", GOTO="nvidia_last"
 ATTRS{device}=="0x1fb9", GOTO="nvidia_last"
 ATTRS{device}=="0x1fba", GOTO="nvidia_last"
@@ -281,6 +282,7 @@ ATTRS{device}=="0x249c", GOTO="nvidia_last"
 ATTRS{device}=="0x249d", GOTO="nvidia_last"
 ATTRS{device}=="0x24a0", GOTO="nvidia_last"
 ATTRS{device}=="0x24b0", GOTO="nvidia_last"
+ATTRS{device}=="0x24b1", GOTO="nvidia_last"
 ATTRS{device}=="0x24b6", GOTO="nvidia_last"
 ATTRS{device}=="0x24b7", GOTO="nvidia_last"
 ATTRS{device}=="0x24b8", GOTO="nvidia_last"
@@ -303,6 +305,7 @@ ATTRS{device}=="0x25a5", GOTO="nvidia_last"
 ATTRS{device}=="0x25a6", GOTO="nvidia_last"
 ATTRS{device}=="0x25a7", GOTO="nvidia_last"
 ATTRS{device}=="0x25a9", GOTO="nvidia_last"
+ATTRS{device}=="0x25aa", GOTO="nvidia_last"
 ATTRS{device}=="0x25b6", GOTO="nvidia_last"
 ATTRS{device}=="0x25b8", GOTO="nvidia_last"
 ATTRS{device}=="0x25e0", GOTO="nvidia_last"
