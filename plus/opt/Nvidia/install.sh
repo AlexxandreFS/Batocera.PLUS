@@ -1,17 +1,20 @@
 #!/bin/bash
 ###
 ### Batocera.PLUS
-### Alexxandre Freire dos Santos
+### Alexandre Freire dos Santos
 ###
-### Install Nvidia driver
+### Install Nvidia Driver
 ###
 
 ### PATH
 
 DRIVER_DIR="$(dirname $0)"
+
 XORG_CONF_IN=${DRIVER_DIR}/hybrid-nvidia-xorg.conf
 XORG_CONF_OUT=/usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf
+
 CONFIG_FILE=/boot/batocera-boot.conf
+
 DRIVER_VERSION=$(grep -E "^[ ]*nvidia-driver[ ]*=" ${CONFIG_FILE} | cut -d '=' -f 2 | xargs)
 
 case ${DRIVER_VERSION} in
@@ -39,9 +42,10 @@ esac
 ln -s ${DRIVER_DIR}/../nvidia-modprobe.conf \
       /etc/modprobe.d/nvidia-driver.conf
 
+### CREATE CONTROL PANEL ICON
+
 ln -s ${DRIVER_DIR}/../nvidia-config.desktop \
       /usr/share/applications/nvidia-config.desktop
-
 
 ### CREATE FOLDERS
 
@@ -52,7 +56,6 @@ do
     mkdir -p ${DIR}
 done
 
-
 ### LINK FILES
 
 FILES=$(find ${DRIVER_DIR} -type f | sed "s|${DRIVER_DIR}||")
@@ -62,7 +65,6 @@ do
     ln -sf ${DRIVER_DIR}${FILE} ${FILE}
 done
 
-
 ### COPY LINKS
 
 LINKS=$(find ${DRIVER_DIR} -type l | sed "s|${DRIVER_DIR}||")
@@ -71,7 +73,6 @@ for LINK in ${LINKS[*]}
 do
     cp -df ${DRIVER_DIR}${LINK} ${LINK}
 done
-
 
 ### LOAD MODULES
 
@@ -87,7 +88,6 @@ do
         modprobe ${i}
     fi
 done
-
 
 ### HYBRID NVIDIA
 
