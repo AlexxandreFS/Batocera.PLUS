@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-# Version.: Commits on Nov 24, 2021
-LIBRETRO_PCSX2_VERSION = 18e0685ed4f191796c8e923caf4f5e96a930057e
+# Version.: Commits on Mar 28, 2022
+LIBRETRO_PCSX2_VERSION = c68ba0b0cb4312d06fe7a4474a1720dbca2843e5
 LIBRETRO_PCSX2_SITE = https://github.com/libretro/pcsx2.git
 LIBRETRO_PCSX2_SITE_METHOD = git
 LIBRETRO_PCSX2_GIT_SUBMODULES = YES
@@ -24,11 +24,11 @@ LIBRETRO_PCSX2_CONF_OPTS += -DLIBRETRO=ON
 LIBRETRO_PCSX2_CONF_OPTS += -DDISABLE_ADVANCE_SIMD=ON
 LIBRETRO_PCSX2_CONF_OPTS += -DEXTRA_PLUGINS=TRUE
 
-#LIBRETRO_PCSX2_CONF_OPTS += -DARCH_FLAG="-O3 -mmmx -msse -msse2 -msse3 -mfxsr -m64"
-#LIBRETRO_PCSX2_CONF_OPTS += -DOPTIMIZATION_FLAG="-O3 -mmmx -msse -msse2 -msse3 -mfxsr -m64"
+LIBRETRO_PCSX2_CONF_OPTS += -DARCH_FLAG="-O3 -mmmx -msse -msse2 -msse3 -mfxsr -m64"
+LIBRETRO_PCSX2_CONF_OPTS += -DOPTIMIZATION_FLAG="-O3 -mmmx -msse -msse2 -msse3 -mfxsr -m64"
 
-LIBRETRO_PCSX2_CONF_OPTS += -DOPTIMIZATION_FLAG="-O3 -march=native"
-LIBRETRO_PCSX2_CONF_OPTS += -DARCH_FLAG="-O3 -march=native"
+#LIBRETRO_PCSX2_CONF_OPTS += -DOPTIMIZATION_FLAG="-O3 -march=native"
+#LIBRETRO_PCSX2_CONF_OPTS += -DARCH_FLAG="-O3 -march=native"
 
 define LIBRETRO_PCSX2_INSTALL_TARGET_CMDS
 	$(INSTALL) -D $(@D)/buildroot-build/pcsx2/pcsx2_libretro.so \
