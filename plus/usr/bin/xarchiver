@@ -4,6 +4,26 @@
 ### Alexandre Freire dos Santos
 ###
 
+# extract here = xarchiver   --extract-to          /userdata/minha-pasta          /userdata/meu-arquivo.zip
+# extract to   = xarchiver   --extract             /userdata/meu-arquivo.zip
+# compress     = xarchiver   --add-to              /userdata/meu-arquivo-ou-pasta
+#
+# extract here = file-roller --extract-to          file:///userdata/minha-pasta   /userdata/meu-arquivo.zip
+# extract to   = file-roller --extract             /userdata/meu-arquivo.zip
+# compress     = file-roller --add                 /userdata/meu-arquivo-ou-pasta
+#
+# extract here = squeeze     --extract-to          /userdata/minha-pasta          /userdata/meu-arquivo.zip
+# extract to   = squeeze     --extract             /userdata/meu-arquivo.zip
+# compress     = squeeze     --new                 /userdata/meu-arquivo-ou-pasta
+#
+# extract here = engrampa    --extract-to          file:///userdata/minha-pasta   /userdata/meu-arquivo.zip
+# extract to   = engrampa    --extract             /userdata/meu-arquivo.zip
+# compress     = engrampa    --add                 /userdata/meu-arquivo-ou-pasta
+#
+# extract here = ark         --batch --destination /userdata/minha-pasta          /userdata/meu-arquivo.zip
+# extract to   = ark         --batch --dialog      /userdata/meu-arquivo.zip
+# compress     = ark         --add   --dialog      /userdata/meu-arquivo-ou-pasta
+
 ################################################################################
 
 ACTION=
@@ -79,38 +99,16 @@ case ${ACTION} in
         rm -f "${LIST}"
         ;;
     extract-here)
-        FILE=$(echo "${1}" | sed s'|^file://||')
-        cd "${FILE}"
-        7zG x -slp- -- "${FILE}"
+        cd "$(echo "${1}" | sed s'|^file://||')" || exit 1
+        shift
+
+        while [ -e "${1}" ]; do
+            7zG x -slp- -- "$(echo "${1}" | sed s'|^file://||')"
+            shift
+        done
         ;;
     *)
         exit 2
 esac
 
 exit 0
-
-################################################################################
-
-### REFULGO
-
-#extract here = xarchiver   --extract-to          /userdata/minha-pasta          /userdata/meu-arquivo.zip
-#extract to   = xarchiver   --extract             /userdata/meu-arquivo.zip
-#compress     = xarchiver   --add-to              /userdata/meu-arquivo-ou-pasta
-
-#extract here = file-roller --extract-to          file:///userdata/minha-pasta   /userdata/meu-arquivo.zip
-#extract to   = file-roller --extract             /userdata/meu-arquivo.zip
-#compress     = file-roller --add                 /userdata/meu-arquivo-ou-pasta
-
-#extract here = squeeze     --extract-to          /userdata/minha-pasta          /userdata/meu-arquivo.zip
-#extract to   = squeeze     --extract             /userdata/meu-arquivo.zip
-#compress     = squeeze     --new                 /userdata/meu-arquivo-ou-pasta
-
-#extract here = engrampa    --extract-to          file:///userdata/minha-pasta   /userdata/meu-arquivo.zip
-#extract to   = engrampa    --extract             /userdata/meu-arquivo.zip
-#compress     = engrampa    --add                 /userdata/meu-arquivo-ou-pasta
-
-#extract here = ark         --batch --destination /userdata/minha-pasta          /userdata/meu-arquivo.zip
-#extract to   = ark         --batch --dialog      /userdata/meu-arquivo.zip
-#compress     = ark         --add   --dialog      /userdata/meu-arquivo-ou-pasta
-
-################################################################################
