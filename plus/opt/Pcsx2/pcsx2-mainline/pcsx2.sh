@@ -53,8 +53,8 @@ function createInis()
          echo 'vuFlagHack=enabled'
          echo 'vuThread=disabled'
          echo 'vu1Instant=enabled'
-		 echo '[EmuCore/GS]'
-		 echo 'VsyncEnable = 0') > "${CONFIG_DIR}/PCSX2_vm.ini"
+         echo '[EmuCore/GS]'
+         echo 'VsyncEnable = 0') > "${CONFIG_DIR}/PCSX2_vm.ini"
     fi
 
     if ! [ -e "${CONFIG_DIR}/PCSX2_ui.ini" ]; then
@@ -79,7 +79,7 @@ function createInis()
          echo 'upscale_multiplier = 1'
          echo 'MaxAnisotropy = 0'
          echo 'UserHacks = 0'
-		 echo 'UserHacks_align_sprite_X = 0') > "${CONFIG_DIR}/GS.ini"
+         echo 'UserHacks_align_sprite_X = 0') > "${CONFIG_DIR}/GS.ini"
     fi
 
     if ! [ -e "${CONFIG_DIR}/PAD.ini" ]; then

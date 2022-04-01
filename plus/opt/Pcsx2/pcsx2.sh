@@ -79,13 +79,13 @@ function populate()
              "${PCSX2_SAVE_DIR}/sstates" \
              "${PCSX2_SAVE_DIR}/cheats" \
              "${PCSX2_SAVE_DIR}/cheats_ws" \
-			 "${PCSX2_SAVE_DIR}/memcards" \
+             "${PCSX2_SAVE_DIR}/memcards" \
              "${PCSX2_SAVE_DIR}/textures" \
              "${HOME}/configs/${CORE}" \
              "${HOME}/.cache/pcsx2_cache"
 
     /opt/Pcsx2/pcsx2/pcsx2.sh
-	/opt/Pcsx2/pcsx2-mainline/pcsx2.sh 'fristrun'
+    /opt/Pcsx2/pcsx2-mainline/pcsx2.sh 'fristrun'
 
     for INDEX in {1..2}
     do
@@ -236,7 +236,7 @@ case ${SPEEDHACKS} in
         sed -i s/'^EnablePresets=.*/EnablePresets=disabled/' "${PCSX2_UI_FILE}"
         sed -i s/'UserHacks =.*/UserHacks = 1/'              "${PCSX2_GS_FILE}"
         sed -i s/'^vsync =.*/vsync = 0/'                     "${PCSX2_GS_FILE}"
-		sed -i s/'^VsyncEnable=.*/VsyncEnable = 0/'          "${PCSX2_VM_FILE}"
+        sed -i s/'^VsyncEnable=.*/VsyncEnable = 0/'          "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleRate=.*/EECycleRate=-2/'           "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleSkip=.*/EECycleSkip=0/'            "${PCSX2_VM_FILE}"
         sed -i s/'^fastCDVD=.*/fastCDVD=disabled/'           "${PCSX2_VM_FILE}"
