@@ -14,11 +14,7 @@
 
 ROM="${1}"
 FULLBOOT="${2}"
-I_RES="${3}"       #internal_resolution
-A_FILT="${4}"      #anisotropic_filtering
-WSCRH="${5}"       #widescreen hack
-CUSTOM="${6}"
-API="${7}"         #graphic API
+CUSTOM="${3}"
 
 EMU_DIR='/opt/Pcsx2/pcsx2-mainline'
 SAVE_DIR='/userdata/saves/ps2'
@@ -56,7 +52,9 @@ function createInis()
          echo 'WaitLoop=enabled'
          echo 'vuFlagHack=enabled'
          echo 'vuThread=disabled'
-         echo 'vu1Instant=enabled') > "${CONFIG_DIR}/PCSX2_vm.ini"
+         echo 'vu1Instant=enabled'
+		 echo '[EmuCore/GS]'
+		 echo 'VsyncEnable = 0') > "${CONFIG_DIR}/PCSX2_vm.ini"
     fi
 
     if ! [ -e "${CONFIG_DIR}/PCSX2_ui.ini" ]; then
@@ -80,7 +78,8 @@ function createInis()
         (echo 'vsync = 1'
          echo 'upscale_multiplier = 1'
          echo 'MaxAnisotropy = 0'
-         echo 'UserHacks = 0') > "${CONFIG_DIR}/GS.ini"
+         echo 'UserHacks = 0'
+		 echo 'UserHacks_align_sprite_X = 0') > "${CONFIG_DIR}/GS.ini"
     fi
 
     if ! [ -e "${CONFIG_DIR}/PAD.ini" ]; then
@@ -91,6 +90,15 @@ function createInis()
 
 ################################################################################
 
+### CREATE FRIST CONFIG FILES
+
+if [ "${ROM}" == 'fristrun' ]; then
+    createInis
+    exit 0
+fi
+
+################################################################################
+
 ### CUSTOM CONFIG
 
 if [ "${CUSTOM}" == '1' ]; then
@@ -98,19 +106,6 @@ if [ "${CUSTOM}" == '1' ]; then
    createInis
 else
    createInis
-fi
-
-################################################################################
-
-### GRAPHICS API
-
-if [ "${CUSTOM}" != '1' ]; then
-   case ${API} in
-      12) sed -i s/'^Renderer =.*/Renderer = 12/'  "${CONFIG_DIR}/GS.ini" ;; # Vulkan
-      13) sed -i s/'^Renderer =.*/Renderer = 13/'  "${CONFIG_DIR}/GS.ini" ;; # OpenGL
-      14) sed -i s/'^Renderer =.*/Renderer = 14/'  "${CONFIG_DIR}/GS.ini" ;; # Software
-      *)  sed -i s/'^Renderer =.*/Renderer = -1/'  "${CONFIG_DIR}/GS.ini"    # Automatic
-   esac
 fi
 
 ################################################################################

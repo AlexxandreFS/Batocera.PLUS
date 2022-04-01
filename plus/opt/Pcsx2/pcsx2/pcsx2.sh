@@ -5,8 +5,6 @@
 ###
 ################################################################################
 
-CREATECONFIG="${1}"
-
 PCSX2_SAVE_DIR="/userdata/saves/ps2"
 PCSX2_CONFIG_DIR="${HOME}/../system/configs/PCSX2"
 
@@ -76,15 +74,6 @@ function populate()
     done
 }
 
-## MAIN
-
 populate
-
-if [ "${CREATECONFIG}" == 'fristrun' ]
-then
-    exit 0
-fi
-
-################################################################################
 
 exit 0

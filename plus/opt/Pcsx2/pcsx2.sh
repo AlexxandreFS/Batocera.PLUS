@@ -18,20 +18,6 @@ SPEEDHACKS="${11}"
 CUSTOM="${12}"
 API="${13}"
 
-#echo "${CORE}" > "${HOME}/../PARAMETROS.TXT"
-#echo "${P1GUID}" >> "${HOME}/../PARAMETROS.TXT"
-#echo "${ROM}" >> "${HOME}/../PARAMETROS.TXT" 
-#echo "${RATIO}" >> "${HOME}/../PARAMETROS.TXT"
-#echo "${VIDEOMODE}" >> "${HOME}/../PARAMETROS.TXT"
-#echo "${FULLBOOT}" >> "${HOME}/../PARAMETROS.TXT"
-#echo "${INTERNALRESOLUTION}" >> "${HOME}/../PARAMETROS.TXT"
-#echo "${ANISOTROPIC_FILTERING}" >> "${HOME}/../PARAMETROS.TXT"
-#echo "${VSYNC}" >> "${HOME}/../PARAMETROS.TXT"
-#echo "${WSCRH}" >> "${HOME}/../PARAMETROS.TXT"
-#echo "${SPEEDHACKS}" >> "${HOME}/../PARAMETROS.TXT"
-#echo "${CUSTOM}" >> "${HOME}/../PARAMETROS.TXT"
-#echo "${API}" >> "${HOME}/../PARAMETROS.TXT"
-
 PCSX2_DIR="$(dirname ${0})"
 PCSX2_SAVE_DIR="/userdata/saves/ps2"
 PCSX2_UI_FILE="${HOME}/configs/${CORE}/PCSX2_ui.ini"
@@ -93,11 +79,13 @@ function populate()
              "${PCSX2_SAVE_DIR}/sstates" \
              "${PCSX2_SAVE_DIR}/cheats" \
              "${PCSX2_SAVE_DIR}/cheats_ws" \
-             "${PCSX2_SAVE_DIR}/memcards" \
+			 "${PCSX2_SAVE_DIR}/memcards" \
+             "${PCSX2_SAVE_DIR}/textures" \
              "${HOME}/configs/${CORE}" \
              "${HOME}/.cache/pcsx2_cache"
 
-    /opt/Pcsx2/pcsx2/pcsx2.sh &
+    /opt/Pcsx2/pcsx2/pcsx2.sh
+	/opt/Pcsx2/pcsx2-mainline/pcsx2.sh 'fristrun'
 
     for INDEX in {1..2}
     do
@@ -167,6 +155,17 @@ then
     INTERNALRESOLUTION=1
 fi
 
+### Fix for pcsx2-mainline split screen on high resolutions (only for pcsx2-mainline)
+if [ "${CORE}" == 'pcsx2-mainline' ] && [ "${INTERNALRESOLUTION}" -gt 1 ]
+then
+    sed -i "s/^[ ]*UserHacks[ ]*=.*/UserHacks = 1 /" "${PCSX2_GS_FILE}"
+    sed -i "s/^[ ]*UserHacks_align_sprite_X[ ]*=.*/UserHacks_align_sprite_X = 1 /" "${PCSX2_GS_FILE}"
+elif [ "${CORE}" == 'pcsx2-mainline' ]
+then
+    sed -i "s/^[ ]*UserHacks[ ]*=.*/UserHacks = 0 /" "${PCSX2_GS_FILE}"
+    sed -i "s/^[ ]*UserHacks_align_sprite_X[ ]*=.*/UserHacks_align_sprite_X = 0 /" "${PCSX2_GS_FILE}"
+fi
+
 sed -i "s/^[ ]*upscale_multiplier[ ]*=.*/upscale_multiplier = ${INTERNALRESOLUTION}/" "${PCSX2_GS_FILE}"
 
 ################################################################################
@@ -189,6 +188,11 @@ then
     VSYNC=1
 fi
 
+if [ "${CORE}" == 'pcsx2-mainline' ]
+then
+    sed -i "s/^[ ]*VsyncEnable[ ]*=.*/VsyncEnable = ${VSYNC}/" "${PCSX2_VM_FILE}"
+fi
+
 sed -i "s/^[ ]*vsync[ ]*=.*/vsync = ${VSYNC}/" "${PCSX2_GS_FILE}"
 
 ################################################################################
@@ -200,21 +204,25 @@ case ${SPEEDHACKS} in
         sed -i s/'^EnablePresets=.*/EnablePresets=enabled/'  "${PCSX2_UI_FILE}"
         sed -i s/'^PresetIndex=.*/PresetIndex=0/'            "${PCSX2_UI_FILE}"
         sed -i s/'^vsync =.*/vsync = 1/'                     "${PCSX2_GS_FILE}"
+        sed -i s/'^VsyncEnable=.*/VsyncEnable = 1/'          "${PCSX2_VM_FILE}"
         ;;
   default|auto)
         sed -i s/'^EnablePresets=.*/EnablePresets=enabled/'  "${PCSX2_UI_FILE}"
         sed -i s/'^PresetIndex=.*/PresetIndex=1/'            "${PCSX2_UI_FILE}"
         sed -i s/'^vsync =.*/vsync = 1/'                     "${PCSX2_GS_FILE}"
+        sed -i s/'^VsyncEnable=.*/VsyncEnable = 1/'          "${PCSX2_VM_FILE}"
         ;;
   balanced)
         sed -i s/'^EnablePresets=.*/EnablePresets=enabled/'  "${PCSX2_UI_FILE}"
         sed -i s/'^PresetIndex=.*/PresetIndex=2/'            "${PCSX2_UI_FILE}"
         sed -i s/'^vsync =.*/vsync = 1/'                     "${PCSX2_GS_FILE}"
+        sed -i s/'^VsyncEnable=.*/VsyncEnable = 1/'          "${PCSX2_VM_FILE}"
         ;;
   aggressive)
         sed -i s/'^EnablePresets=.*/EnablePresets=disabled/' "${PCSX2_UI_FILE}"
         sed -i s/'UserHacks =.*/UserHacks = 1/'              "${PCSX2_GS_FILE}"
         sed -i s/'^vsync =.*/vsync = 0/'                     "${PCSX2_GS_FILE}"
+        sed -i s/'^VsyncEnable=.*/VsyncEnable = 0/'          "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleRate=.*/EECycleRate=-1/'           "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleSkip=.*/EECycleSkip=0/'            "${PCSX2_VM_FILE}"
         sed -i s/'^fastCDVD=.*/fastCDVD=disabled/'           "${PCSX2_VM_FILE}"
@@ -228,6 +236,7 @@ case ${SPEEDHACKS} in
         sed -i s/'^EnablePresets=.*/EnablePresets=disabled/' "${PCSX2_UI_FILE}"
         sed -i s/'UserHacks =.*/UserHacks = 1/'              "${PCSX2_GS_FILE}"
         sed -i s/'^vsync =.*/vsync = 0/'                     "${PCSX2_GS_FILE}"
+		sed -i s/'^VsyncEnable=.*/VsyncEnable = 0/'          "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleRate=.*/EECycleRate=-2/'           "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleSkip=.*/EECycleSkip=0/'            "${PCSX2_VM_FILE}"
         sed -i s/'^fastCDVD=.*/fastCDVD=disabled/'           "${PCSX2_VM_FILE}"
@@ -241,6 +250,7 @@ case ${SPEEDHACKS} in
         sed -i s/'^EnablePresets=.*/EnablePresets=disabled/' "${PCSX2_UI_FILE}"
         sed -i s/'UserHacks =.*/UserHacks = 1/'              "${PCSX2_GS_FILE}"
         sed -i s/'^vsync =.*/vsync = 0/'                     "${PCSX2_GS_FILE}"
+		sed -i s/'^VsyncEnable=.*/VsyncEnable = 0/'          "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleRate=.*/EECycleRate=1/'            "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleSkip=.*/EECycleSkip=1/'            "${PCSX2_VM_FILE}"
         sed -i s/'^fastCDVD=.*/fastCDVD=disabled/'           "${PCSX2_VM_FILE}"
@@ -251,6 +261,21 @@ case ${SPEEDHACKS} in
         sed -i s/'^vu1Instant=.*/vu1Instant=enabled/'        "${PCSX2_VM_FILE}"
         ;;
 esac
+
+################################################################################
+
+### GRAPHICS API
+
+### Only change API if custom config is not enabled
+if [ "${CORE}" == 'pcsx2-mainline' ] && [ "${CUSTOM}" != '1' ]
+then
+    case ${API} in
+        12) sed -i s/'^Renderer =.*/Renderer = 12/'  "${PCSX2_GS_FILE}" ;; # Vulkan
+        13) sed -i s/'^Renderer =.*/Renderer = 13/'  "${PCSX2_GS_FILE}" ;; # OpenGL
+        14) sed -i s/'^Renderer =.*/Renderer = 14/'  "${PCSX2_GS_FILE}" ;; # Software
+        *)  sed -i s/'^Renderer =.*/Renderer = -1/'  "${PCSX2_GS_FILE}"    # Automatic
+    esac
+fi
 
 ################################################################################
 
@@ -276,9 +301,7 @@ case ${CORE} in
                     exitHotkeyStart
                     ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-mainline/pcsx2.sh \
                        "${ROM}"                "${FULLBOOT}" \
-                       "${INTERNALRESOLUTION}" "${ANISOTROPIC_FILTERING}" \
-                       "${WSCRH}"              "${CUSTOM}" \
-                       "${API}"
+                       "${CUSTOM}"
                     ;;
     pcsx2-legacy)
                     exitHotkeyStart
