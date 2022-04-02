@@ -38,6 +38,36 @@ fi
 
 ################################################################################
 
+### POPULATE ALL PCSX2 STANDALONE
+
+mkdir -p "${PCSX2_SAVE_DIR}/pcsx2/Slot 1" \
+         "${PCSX2_SAVE_DIR}/pcsx2/Slot 2" \
+         "${PCSX2_SAVE_DIR}/sstates" \
+         "${PCSX2_SAVE_DIR}/cheats" \
+         "${PCSX2_SAVE_DIR}/cheats_ws" \
+         "${PCSX2_SAVE_DIR}/memcards" \
+         "${PCSX2_SAVE_DIR}/textures" \
+         "${HOME}/configs/${CORE}" \
+         "${HOME}/.cache/pcsx2_cache"
+
+"${PCSX2_DIR}/pcsx2-mainline/pcsx2.sh" 'populate'
+"${PCSX2_DIR}/pcsx2-legacy/pcsx2.sh"   'populate'
+"${PCSX2_DIR}/pcsx2/pcsx2.sh"          'populate'
+
+
+for INDEX in {1..2}
+do
+    touch "${PCSX2_SAVE_DIR}/pcsx2/Slot ${INDEX}/Shared Memory Card (8 MB).ps2"
+
+    if ! [ -e "${PCSX2_SAVE_DIR}/memcards/Mcd00${INDEX}.ps2" ]
+    then
+        ln -s "${PCSX2_SAVE_DIR}/pcsx2/Slot ${INDEX}/Shared Memory Card (8 MB).ps2" \
+              "${PCSX2_SAVE_DIR}/memcards/Mcd00${INDEX}.ps2"
+    fi
+done
+
+################################################################################
+
 ## Exit game (hotkey + start)
 
 function exitHotkeyStart()
@@ -64,39 +94,6 @@ function exitHotkeyStart()
             sleep 5
         done &
     fi
-}
-
-################################################################################
-
-### POPULATE
-
-function populate()
-{
-    local INDEX=''
-
-    mkdir -p "${PCSX2_SAVE_DIR}/pcsx2/Slot 1" \
-             "${PCSX2_SAVE_DIR}/pcsx2/Slot 2" \
-             "${PCSX2_SAVE_DIR}/sstates" \
-             "${PCSX2_SAVE_DIR}/cheats" \
-             "${PCSX2_SAVE_DIR}/cheats_ws" \
-             "${PCSX2_SAVE_DIR}/memcards" \
-             "${PCSX2_SAVE_DIR}/textures" \
-             "${HOME}/configs/${CORE}" \
-             "${HOME}/.cache/pcsx2_cache"
-
-    /opt/Pcsx2/pcsx2/pcsx2.sh
-    /opt/Pcsx2/pcsx2-mainline/pcsx2.sh 'fristrun'
-
-    for INDEX in {1..2}
-    do
-        touch "${PCSX2_SAVE_DIR}/pcsx2/Slot ${INDEX}/Shared Memory Card (8 MB).ps2"
-
-        if ! [ -e "${PCSX2_SAVE_DIR}/memcards/Mcd00${INDEX}.ps2" ]
-        then
-            ln -s "${PCSX2_SAVE_DIR}/pcsx2/Slot ${INDEX}/Shared Memory Card (8 MB).ps2" \
-                  "${PCSX2_SAVE_DIR}/memcards/Mcd00${INDEX}.ps2"
-        fi
-    done
 }
 
 ################################################################################
@@ -250,7 +247,7 @@ case ${SPEEDHACKS} in
         sed -i s/'^EnablePresets=.*/EnablePresets=disabled/' "${PCSX2_UI_FILE}"
         sed -i s/'UserHacks =.*/UserHacks = 1/'              "${PCSX2_GS_FILE}"
         sed -i s/'^vsync =.*/vsync = 0/'                     "${PCSX2_GS_FILE}"
-		sed -i s/'^VsyncEnable=.*/VsyncEnable = 0/'          "${PCSX2_VM_FILE}"
+        sed -i s/'^VsyncEnable=.*/VsyncEnable = 0/'          "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleRate=.*/EECycleRate=1/'            "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleSkip=.*/EECycleSkip=1/'            "${PCSX2_VM_FILE}"
         sed -i s/'^fastCDVD=.*/fastCDVD=disabled/'           "${PCSX2_VM_FILE}"
@@ -270,10 +267,10 @@ esac
 if [ "${CORE}" == 'pcsx2-mainline' ] && [ "${CUSTOM}" != '1' ]
 then
     case ${API} in
-        12) sed -i s/'^Renderer =.*/Renderer = 12/'  "${PCSX2_GS_FILE}" ;; # Vulkan
-        13) sed -i s/'^Renderer =.*/Renderer = 13/'  "${PCSX2_GS_FILE}" ;; # OpenGL
-        14) sed -i s/'^Renderer =.*/Renderer = 14/'  "${PCSX2_GS_FILE}" ;; # Software
-        *)  sed -i s/'^Renderer =.*/Renderer = -1/'  "${PCSX2_GS_FILE}"    # Automatic
+        12) sed -i s/'^Renderer =.*/Renderer = 12/' "${PCSX2_GS_FILE}" ;; # Vulkan
+        13) sed -i s/'^Renderer =.*/Renderer = 13/' "${PCSX2_GS_FILE}" ;; # OpenGL
+        14) sed -i s/'^Renderer =.*/Renderer = 14/' "${PCSX2_GS_FILE}" ;; # Software
+        *)  sed -i s/'^Renderer =.*/Renderer = -1/' "${PCSX2_GS_FILE}"    # Automatic
     esac
 fi
 
@@ -294,25 +291,20 @@ sed -i "s/^[ ]*EnableWideScreenPatches=.*/EnableWideScreenPatches=${WSCRH}/" "${
 
 ### MAIN
 
-populate
-
 case ${CORE} in
     pcsx2-mainline)
-                    exitHotkeyStart
-                    ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-mainline/pcsx2.sh \
-                       "${ROM}"                "${FULLBOOT}" \
-                       "${CUSTOM}"
-                    ;;
+        exitHotkeyStart
+        ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-mainline/pcsx2.sh "${ROM}" "${FULLBOOT}" "${CUSTOM}"
+        ;;
     pcsx2-legacy|auto)
-                    exitHotkeyStart
-                        ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-legacy/pcsx2.sh \
-                        "${ROM}"                "${FULLBOOT}"
-                    ;;
+        exitHotkeyStart
+        ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-legacy/pcsx2.sh   "${ROM}" "${FULLBOOT}"
+        ;;
     PCSX2)
-                    /usr/bin/batocera-config-pcsx2
-                    ;;
+        /usr/bin/batocera-config-pcsx2
+        ;;
     *)
-                    exit 1
+        exit 1
 
 esac
 

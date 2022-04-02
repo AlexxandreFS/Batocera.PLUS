@@ -37,7 +37,7 @@ export GDK_BACKEND=x11
 
 ### DEFAULT CONFIG
 
-function createInis()
+function populate()
 {
     mkdir -p "${CONFIG_DIR}"
 
@@ -90,10 +90,10 @@ function createInis()
 
 ################################################################################
 
-### CREATE FRIST CONFIG FILES
+### CREATE FIRST CONFIG FILES
 
-if [ "${ROM}" == 'fristrun' ]; then
-    createInis
+if [ "${ROM}" == 'populate' ]; then
+    populate
     exit 0
 fi
 
@@ -103,9 +103,9 @@ fi
 
 if [ "${CUSTOM}" == '1' ]; then
    CONFIG_DIR="${SAVE_DIR}/custom/$(basename "${ROM%.*}")"
-   createInis
+   populate
 else
-   createInis
+   populate
 fi
 
 ################################################################################

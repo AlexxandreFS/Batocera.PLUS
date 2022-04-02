@@ -4,7 +4,7 @@
 ### Alexandre Freire dos Santos
 ###
 ################################################################################
-
+ROM="${1}"
 PCSX2_SAVE_DIR="/userdata/saves/ps2"
 PCSX2_CONFIG_DIR="${HOME}/../system/configs/PCSX2"
 
@@ -74,6 +74,9 @@ function populate()
     done
 }
 
-populate
+if [ "${ROM}" == 'populate' ]
+then
+    populate
+fi
 
 exit 0

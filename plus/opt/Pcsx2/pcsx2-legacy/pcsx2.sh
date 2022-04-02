@@ -15,7 +15,11 @@ readonly PCSX2_DIR="$(dirname ${0})"
 
 function main()
 {
-    populate
+    if [ "${ROM}" == 'populate' ]
+    then
+        populate
+        return 0
+    fi
 
     if [ -e "${ROM}" ]
     then
@@ -31,6 +35,8 @@ function main()
 
 function populate()
 {
+    mkdir -p "${HOME}/../system/configs/pcsx2-legacy"
+
     if ! [ -e "${HOME}/../system/configs/pcsx2-legacy/PCSX2_ui.ini" ]
     then
         (echo '[Filenames]'
