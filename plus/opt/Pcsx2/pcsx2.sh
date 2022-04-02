@@ -24,7 +24,7 @@ PCSX2_UI_FILE="${HOME}/configs/${CORE}/PCSX2_ui.ini"
 PCSX2_VM_FILE="${HOME}/configs/${CORE}/PCSX2_vm.ini"
 PCSX2_GS_FILE="${HOME}/configs/${CORE}/GS.ini"
 
-if [ "${CORE}" == 'pcsx2-legacy' ]
+if [ "${CORE}" == 'pcsx2-legacy' ] || [ "${CORE}" == 'auto' ]
 then
     PCSX2_GS_FILE="${HOME}/configs/${CORE}/GSdx.ini"
 fi
@@ -303,7 +303,7 @@ case ${CORE} in
                        "${ROM}"                "${FULLBOOT}" \
                        "${CUSTOM}"
                     ;;
-    pcsx2-legacy)
+    pcsx2-legacy|auto)
                     exitHotkeyStart
                         ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-legacy/pcsx2.sh \
                         "${ROM}"                "${FULLBOOT}"
