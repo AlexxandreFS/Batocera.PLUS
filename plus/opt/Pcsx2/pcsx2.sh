@@ -185,41 +185,29 @@ then
     VSYNC=1
 fi
 
-if [ "${CORE}" == 'pcsx2-mainline' ]
-then
-    sed -i "s/^[ ]*VsyncEnable[ ]*=.*/VsyncEnable = ${VSYNC}/" "${PCSX2_VM_FILE}"
-fi
-
-sed -i "s/^[ ]*vsync[ ]*=.*/vsync = ${VSYNC}/" "${PCSX2_GS_FILE}"
+sed -i "s/^[ ]*VsyncEnable[ ]*=.*/VsyncEnable = ${VSYNC}/" "${PCSX2_VM_FILE}"
+sed -i "s/^[ ]*vsync[ ]*=.*/vsync = ${VSYNC}/"             "${PCSX2_GS_FILE}"
 
 ################################################################################
 
 ### SPEED HACKS
 
 case ${SPEEDHACKS} in
-  safest)
+    safest)
         sed -i s/'^EnablePresets=.*/EnablePresets=enabled/'  "${PCSX2_UI_FILE}"
         sed -i s/'^PresetIndex=.*/PresetIndex=0/'            "${PCSX2_UI_FILE}"
-        sed -i s/'^vsync =.*/vsync = 1/'                     "${PCSX2_GS_FILE}"
-        sed -i s/'^VsyncEnable=.*/VsyncEnable = 1/'          "${PCSX2_VM_FILE}"
         ;;
-  default|auto)
+    default|auto)
         sed -i s/'^EnablePresets=.*/EnablePresets=enabled/'  "${PCSX2_UI_FILE}"
         sed -i s/'^PresetIndex=.*/PresetIndex=1/'            "${PCSX2_UI_FILE}"
-        sed -i s/'^vsync =.*/vsync = 1/'                     "${PCSX2_GS_FILE}"
-        sed -i s/'^VsyncEnable=.*/VsyncEnable = 1/'          "${PCSX2_VM_FILE}"
         ;;
-  balanced)
+    balanced)
         sed -i s/'^EnablePresets=.*/EnablePresets=enabled/'  "${PCSX2_UI_FILE}"
         sed -i s/'^PresetIndex=.*/PresetIndex=2/'            "${PCSX2_UI_FILE}"
-        sed -i s/'^vsync =.*/vsync = 1/'                     "${PCSX2_GS_FILE}"
-        sed -i s/'^VsyncEnable=.*/VsyncEnable = 1/'          "${PCSX2_VM_FILE}"
         ;;
-  aggressive)
+    aggressive)
         sed -i s/'^EnablePresets=.*/EnablePresets=disabled/' "${PCSX2_UI_FILE}"
         sed -i s/'UserHacks =.*/UserHacks = 1/'              "${PCSX2_GS_FILE}"
-        sed -i s/'^vsync =.*/vsync = 0/'                     "${PCSX2_GS_FILE}"
-        sed -i s/'^VsyncEnable=.*/VsyncEnable = 0/'          "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleRate=.*/EECycleRate=-1/'           "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleSkip=.*/EECycleSkip=0/'            "${PCSX2_VM_FILE}"
         sed -i s/'^fastCDVD=.*/fastCDVD=disabled/'           "${PCSX2_VM_FILE}"
@@ -229,11 +217,9 @@ case ${SPEEDHACKS} in
         sed -i s/'^vuThread=.*/vuThread=enabled/'            "${PCSX2_VM_FILE}"
         sed -i s/'^vu1Instant=.*/vu1Instant=enabled/'        "${PCSX2_VM_FILE}"
         ;;
-  vaggressive)
+    vaggressive)
         sed -i s/'^EnablePresets=.*/EnablePresets=disabled/' "${PCSX2_UI_FILE}"
         sed -i s/'UserHacks =.*/UserHacks = 1/'              "${PCSX2_GS_FILE}"
-        sed -i s/'^vsync =.*/vsync = 0/'                     "${PCSX2_GS_FILE}"
-        sed -i s/'^VsyncEnable=.*/VsyncEnable = 0/'          "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleRate=.*/EECycleRate=-2/'           "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleSkip=.*/EECycleSkip=0/'            "${PCSX2_VM_FILE}"
         sed -i s/'^fastCDVD=.*/fastCDVD=disabled/'           "${PCSX2_VM_FILE}"
@@ -243,11 +229,9 @@ case ${SPEEDHACKS} in
         sed -i s/'^vuThread=.*/vuThread=enabled/'            "${PCSX2_VM_FILE}"
         sed -i s/'^vu1Instant=.*/vu1Instant=enabled/'        "${PCSX2_VM_FILE}"
         ;;
-  mharmful)
+    mharmful)
         sed -i s/'^EnablePresets=.*/EnablePresets=disabled/' "${PCSX2_UI_FILE}"
         sed -i s/'UserHacks =.*/UserHacks = 1/'              "${PCSX2_GS_FILE}"
-        sed -i s/'^vsync =.*/vsync = 0/'                     "${PCSX2_GS_FILE}"
-        sed -i s/'^VsyncEnable=.*/VsyncEnable = 0/'          "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleRate=.*/EECycleRate=1/'            "${PCSX2_VM_FILE}"
         sed -i s/'^EECycleSkip=.*/EECycleSkip=1/'            "${PCSX2_VM_FILE}"
         sed -i s/'^fastCDVD=.*/fastCDVD=disabled/'           "${PCSX2_VM_FILE}"
@@ -305,7 +289,6 @@ case ${CORE} in
         ;;
     *)
         exit 1
-
 esac
 
 killXjoyKill
