@@ -50,9 +50,9 @@ mkdir -p "${PCSX2_SAVE_DIR}/pcsx2/Slot 1" \
          "${HOME}/configs/${CORE}" \
          "${HOME}/.cache/pcsx2_cache"
 
-"${PCSX2_DIR}/pcsx2-mainline/pcsx2.sh" 'populate'
-"${PCSX2_DIR}/pcsx2-legacy/pcsx2.sh"   'populate'
-"${PCSX2_DIR}/pcsx2/pcsx2.sh"          'populate'
+"${PCSX2_DIR}/pcsx2-mainline/pcsx2-mainline.sh" 'populate'
+"${PCSX2_DIR}/pcsx2-legacy/pcsx2-legacy.sh"     'populate'
+"${PCSX2_DIR}/pcsx2/pcsx2-pcsx2.sh"             'populate'
 
 
 for INDEX in {1..2}
@@ -294,11 +294,11 @@ sed -i "s/^[ ]*EnableWideScreenPatches=.*/EnableWideScreenPatches=${WSCRH}/" "${
 case ${CORE} in
     pcsx2-mainline)
         exitHotkeyStart
-        ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-mainline/pcsx2.sh "${ROM}" "${FULLBOOT}" "${CUSTOM}"
+        ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-mainline/pcsx2-mainline.sh "${ROM}" "${FULLBOOT}" "${CUSTOM}"
         ;;
     pcsx2-legacy|auto)
         exitHotkeyStart
-        ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-legacy/pcsx2.sh   "${ROM}" "${FULLBOOT}"
+        ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-legacy/pcsx2-legacy.sh     "${ROM}" "${FULLBOOT}"
         ;;
     PCSX2)
         /usr/bin/batocera-config-pcsx2
