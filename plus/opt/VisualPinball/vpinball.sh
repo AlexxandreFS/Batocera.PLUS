@@ -226,14 +226,8 @@ fi
 
 if [ -e "${VP_SDIR}/wine/user.reg" ]; then
     # fix Visual Pinball settings
-    sed -i s'/"FullScreen"=.*/"FullScreen"=dword:00000001/'   "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"UDAxis"=.*/"UDAxis"=dword:00000000/'           "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"UDAxisFlip"=.*/"UDAxisFlip"=dword:00000000/'   "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"PlungerAxis"=.*/"PlungerAxis"=dword:00000006/' "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"PlungerKey"=.*/"PlungerKey"=dword:0000001c/'   "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"LRAxis"=.*/"LRAxis"=dword:00000000/'           "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"LRAxisFlip"=.*/"LRAxisFlip"=dword:00000000/'   "${VP_SDIR}/wine/user.reg"
-
+    sed -i s'/"FullScreen"=.*/"FullScreen"=dword:00000001/'          "${VP_SDIR}/wine/user.reg"
+    
     # PinMAME fix settings
     sed -i s'/"cabinet_mode"=.*/"cabinet_mode"=dword:00000001/'      "${VP_SDIR}/wine/user.reg"
     sed -i s'/"showpindmd"=.*/"showpindmd"=dword:00000000/'          "${VP_SDIR}/wine/user.reg"
@@ -310,41 +304,42 @@ fi
 
 ### PAD TO KEYBOARD
 
-if [ "${JOYPAD}" != 'off' ]; then
-    # Visual Pinball keyboard fix settings ( if user change this setting )
-    sed -i s'/"PlungerKey"=.*/"PlungerKey"=dword:0000001c/' "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-    sed -i s'/"RFlipKey"=.*/"RFlipKey"=dword:00000036/'     "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-    sed -i s'/"LFlipKey"=.*/"LFlipKey"=dword:0000002a/'     "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-    sed -i s'/"RTiltKey"=.*/"RTiltKey"=dword:00000035/'     "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-    sed -i s'/"LTiltKey"=.*/"LTiltKey"=dword:0000002c/'     "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-    sed -i s'/"MechTilt"=.*/"MechTilt"=dword:00000014/'     "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+if [ "${JOYPAD}" ]; then
+    if [ "${JOYPAD}" != 'off' ]; then
+        # Visual Pinball keyboard fix settings ( if user change this setting )
+        sed -i s'/"PlungerKey"=.*/"PlungerKey"=dword:0000001c/'   "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+        sed -i s'/"RFlipKey"=.*/"RFlipKey"=dword:00000036/'       "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+        sed -i s'/"LFlipKey"=.*/"LFlipKey"=dword:0000002a/'       "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+        sed -i s'/"RTiltKey"=.*/"RTiltKey"=dword:00000035/'       "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+        sed -i s'/"LTiltKey"=.*/"LTiltKey"=dword:0000002c/'       "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+        sed -i s'/"MechTilt"=.*/"MechTilt"=dword:00000014/'       "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+	    sed -i s'/"UDAxis"=.*/"UDAxis"=dword:00000000/'           "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+        sed -i s'/"UDAxisFlip"=.*/"UDAxisFlip"=dword:00000000/'   "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+        sed -i s'/"PlungerAxis"=.*/"PlungerAxis"=dword:00000006/' "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+        sed -i s'/"PlungerKey"=.*/"PlungerKey"=dword:0000001c/'   "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+        sed -i s'/"LRAxis"=.*/"LRAxis"=dword:00000000/'           "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+        sed -i s'/"LRAxisFlip"=.*/"LRAxisFlip"=dword:00000000/'   "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
 
-    # Auto detect pluged controller
-    BRAND='Xbox X-Box PS3 PLAYSTATION another'
-    for i in ${BRAND}; do
-        if [ "$(echo "${P1NAME}" | grep "${i}")" ]; then
-            case $i in
-                PS3|PLAYSTATION)
-                    KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 42 42 14 10 42 42 42 52 97 28 65' ;;
-                X-Box|Xbox)
-                    KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 14 10 42 42 42 52 97 28 65 42 00' ;;
-                another)
-                    KEY_PAD='-device /dev/input/js0 -up 52 -down 65 -left 97 -right 28 -buttons 42 42 36 42 50 62 42 42 14 10 42 42 42 52 65 97 28' ;;
-            esac 
-            break
+        # Auto detect pluged controller
+	    if [ "$(echo "${P1NAME}" | grep 'PS3' )" ] || [ "$(echo "${P1NAME}" | grep 'PLAYSTATION' )" ]; then
+            KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 42 42 14 10 42 42 42 52 97 28 65'
+        elif [ "$(echo "${P1NAME}" | grep 'Xbox' )" ] || [ "$(echo "${P1NAME}" | grep 'X-Box' )" ]; then
+            KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 14 10 42 42 42 52 97 28 65 42 00'
+	    else
+	        KEY_PAD='-device /dev/input/js0 -up 52 -down 65 -left 97 -right 28 -buttons 42 42 36 42 50 62 42 42 14 10 42 42 42 52 65 97 28'
+	    fi
+
+        # Persistent mode gamepad detection
+        if [ -e '/dev/input/js0' ]; then
+            while :; do
+                nice -n -15 xjoypad ${KEY_PAD}
+                if [ ! "$(pidof "${EMU_PID}")" ]; then
+                    break
+                fi
+                sleep 5
+            done &
         fi
-    done
-
-    # persistent mode gamepad detection
-    if [ -e '/dev/input/js0' ]; then
-        while :; do
-            nice -n -15 xjoypad ${KEY_PAD}
-            if [ ! "$(pidof "${EMU_PID}")" ]; then
-                break
-            fi
-            sleep 5
-        done &
-    fi
+	fi
 fi
 
 ################################################################################
@@ -365,13 +360,15 @@ fi
 export VIRTUAL_DESKTOP=1
 case ${EMU_EXE} in
     "${VP_CDIR}/1062/VPinballX.exe")    
-        $WINE "${VP_CDIR}/run.exe" "${EMU_EXE}" "${JOGO}" ;;  # run visual pinball X
+                        $WINE "${VP_CDIR}/run.exe" \
+		                "${EMU_EXE}" "${JOGO}" ;;         # run visual pinball X
     "${VP_CDIR}/0995/VPinball995.exe")
-        $WINE "${VP_CDIR}/run.exe" "${EMU_EXE}" "${JOGO}" ;;  # run visual pinball 9
+                        $WINE "${VP_CDIR}/run.exe" \
+                        "${EMU_EXE}" "${JOGO}" ;;         # run visual pinball 9
     gui)
-        choseEmu                                              # opens selection menu
-        $WINE "${GUI}" ;;                                     # execute selected
-    *) exit 0
+                        choseEmu                          # opens selection menu
+                        $WINE "${GUI}" ;;                 # execute selected
+    *)                  exit 0
 esac
 
 ################################################################################
