@@ -110,14 +110,17 @@ function killXjoyKill()
 
 ################################################################################
 
-### GAME RATION (WIDESCREEN)
+### ASPECT RATION (WIDESCREEN)
 
 case "${RATIO}" in
-    4/3|1/1|16/15|3/2|3/4|4/4|5/4|6/5|7/9|8/7|auto|custom|squarepixel)
-        sed -i 's/^[ ]*AspectRatio=.*/AspectRatio=4:3/'  "${PCSX2_UI_FILE}"
+    4/3|auto)
+        sed -i 's/^[ ]*AspectRatio=.*/AspectRatio=4:3/'     "${PCSX2_UI_FILE}"
         ;;
-    16/9|19/12|19/14|2/1|21/9|30/17|32/9|4/1|8/3)
-        sed -i 's/^[ ]*AspectRatio=.*/AspectRatio=16:9/' "${PCSX2_UI_FILE}"
+    16/9)
+        sed -i 's/^[ ]*AspectRatio=.*/AspectRatio=16:9/'    "${PCSX2_UI_FILE}"
+        ;;
+    stretch)
+        sed -i 's/^[ ]*AspectRatio=.*/AspectRatio=Stretch/' "${PCSX2_UI_FILE}"
         ;;
 esac
 
