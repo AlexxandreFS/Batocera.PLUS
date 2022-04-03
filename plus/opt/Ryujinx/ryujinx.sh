@@ -16,7 +16,6 @@
 
 ROM="${1}"
 P1GUID="${2}"
-MOUSE="${3}"
 
 RYUJINX_EMU=/opt/Ryujinx/publish/Ryujinx
 RYUJINX_DIR=/opt/Ryujinx
@@ -93,14 +92,6 @@ sed -i 's/"check_updates_on_start":.*/"check_updates_on_start": false,/'        
 sed -i 's/"enable_discord_integration":.*/"enable_discord_integration": false,/'  "${SAVE_DIR}/Ryujinx/Config.json"
 sed -i 's/"show_confirm_exit":.*/"show_confirm_exit": false,/'                    "${SAVE_DIR}/Ryujinx/Config.json"
 sed -i 's/"audio_backend":.*/"audio_backend": "OpenAl",/'                         "${SAVE_DIR}/Ryujinx/Config.json"
-
-################################################################################
-
-### MOUSE
-
-if [ "${MOUSE}" == 'auto' ] || [ -z "${MOUSE}" ]; then
-    mouse-pointer on
-fi
 
 ################################################################################
 
