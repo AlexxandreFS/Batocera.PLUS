@@ -16,7 +16,6 @@ BIOS_DIR=/userdata/bios/yuzu
 ROM="${1}"
 CORE="${2}"
 P1GUID="${3}"
-MOUSE="${4}"
 
 ################################################################################
 
@@ -65,15 +64,6 @@ if [ ! -e "${SAVE_DIR}/yuzu/keys" ] && [ -d "${BIOS_DIR}/keys" ]
 then
     mkdir -p "${SAVE_DIR}/yuzu"
     ln -s "${BIOS_DIR}/keys" "${SAVE_DIR}/yuzu/keys"
-fi
-
-################################################################################
-
-### MOUSE POINTER
-
-if [ "${MOUSE}" == 'auto' ] || [ -z "${MOUSE}" ]
-then
-    mouse-pointer on
 fi
 
 ################################################################################
