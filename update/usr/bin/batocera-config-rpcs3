@@ -1,9 +1,7 @@
 #!/bin/bash
 ##
 ## Batocera.PLUS
-##
-## Código escrito por: Sérgio de Carvalho Júnior
-## Colaborador: Alexandre Freire dos Santos
+## Sérgio de Carvalho Júnior
 ## 
 ################################################################################
 
@@ -18,40 +16,40 @@ export QT_QPA_PLATFORM=xcb
 
 function CreateConfigs()
 {
-   mkdir -p "${RPCS3_SAVE_DIR}/GuiConfigs"
-   ln -sf "${RPCS3_SAVE_DIR}" "${HOME}/configs/rpcs3"
+    mkdir -p "${RPCS3_SAVE_DIR}/GuiConfigs"
+    ln -sf "${RPCS3_SAVE_DIR}" "${HOME}/configs/rpcs3"
 
-   touch "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   touch "${HOME}/configs/rpcs3/config.yml"
-   
-   echo '[GameList]'                                                            >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'hidden_list=@Invalid()'                                                >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'iconColor=@Variant(\0\0\0\x43\x1\xff\xff\xf0\xf0\xf0\xf0\xf0\xf0\0\0)' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'marginFactor=0.09'                                                     >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'textFactor=2'                                                          >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo '[Localization]'                                                        >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'language=en'                                                           >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo '[Logger]'                                                              >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'level=4'                                                               >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'stack=true'                                                            >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo '[main_window]'                                                         >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'infoBoxEnabledInstallPUP=false'                                        >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'infoBoxEnabledWelcome=false'                                           >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   echo 'lastExplorePathPUP=/userdata/system/../bios'                           >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
-   
-   echo 'Audio:'                                                                >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  Audio Channels: Downmix to Stereo'                                   >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  Renderer: ALSA'                                                      >> "${HOME}/configs/rpcs3/config.yml"
-   echo 'Core:'                                                                 >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  PPU Decoder: Recompiler (LLVM)'                                      >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  PPU LLVM Accurate Vector NaN values: true'                           >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  SPU Decoder: Recompiler (LLVM)'                                      >> "${HOME}/configs/rpcs3/config.yml"
-   echo 'Miscellaneous:'                                                        >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  Exit RPCS3 when process finishes: true'                              >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  Start games in fullscreen mode: true'                                >> "${HOME}/configs/rpcs3/config.yml"
-   echo 'Video:'                                                                >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  Frame limit: 60'                                                     >> "${HOME}/configs/rpcs3/config.yml"
-   echo '  Renderer: Vulkan'                                                    >> "${HOME}/configs/rpcs3/config.yml"
+    touch "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+    touch "${HOME}/configs/rpcs3/config.yml"
+
+    echo '[GameList]'                                                            >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+    echo 'hidden_list=@Invalid()'                                                >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+    echo 'iconColor=@Variant(\0\0\0\x43\x1\xff\xff\xf0\xf0\xf0\xf0\xf0\xf0\0\0)' >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+    echo 'marginFactor=0.09'                                                     >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+    echo 'textFactor=2'                                                          >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+    echo '[Localization]'                                                        >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+    echo 'language=en'                                                           >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+    echo '[Logger]'                                                              >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+    echo 'level=4'                                                               >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+    echo 'stack=true'                                                            >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+    echo '[main_window]'                                                         >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+    echo 'infoBoxEnabledInstallPUP=false'                                        >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+    echo 'infoBoxEnabledWelcome=false'                                           >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+    echo 'lastExplorePathPUP=/userdata/system/../bios'                           >> "${HOME}/configs/rpcs3/GuiConfigs/CurrentSettings.ini"
+
+    echo 'Audio:'                                                                >> "${HOME}/configs/rpcs3/config.yml"
+    echo '  Audio Channels: Downmix to Stereo'                                   >> "${HOME}/configs/rpcs3/config.yml"
+    echo '  Renderer: ALSA'                                                      >> "${HOME}/configs/rpcs3/config.yml"
+    echo 'Core:'                                                                 >> "${HOME}/configs/rpcs3/config.yml"
+    echo '  PPU Decoder: Recompiler (LLVM)'                                      >> "${HOME}/configs/rpcs3/config.yml"
+    echo '  PPU LLVM Accurate Vector NaN values: true'                           >> "${HOME}/configs/rpcs3/config.yml"
+    echo '  SPU Decoder: Recompiler (LLVM)'                                      >> "${HOME}/configs/rpcs3/config.yml"
+    echo 'Miscellaneous:'                                                        >> "${HOME}/configs/rpcs3/config.yml"
+    echo '  Exit RPCS3 when process finishes: true'                              >> "${HOME}/configs/rpcs3/config.yml"
+    echo '  Start games in fullscreen mode: true'                                >> "${HOME}/configs/rpcs3/config.yml"
+    echo 'Video:'                                                                >> "${HOME}/configs/rpcs3/config.yml"
+    echo '  Frame limit: 60'                                                     >> "${HOME}/configs/rpcs3/config.yml"
+    echo '  Renderer: Vulkan'                                                    >> "${HOME}/configs/rpcs3/config.yml"
 }
 
 if [ ! "$(ls -A "${HOME}/configs/rpcs3"  2> /dev/null)" ]; then
@@ -60,63 +58,63 @@ fi
 
 if [ "${FW}" == '--firmware' ]; then
 
-   ### CREATE BASE CONFIG FOR THE FRIST RUN
-   CreateConfigs   
-   
-   ### FIRMWARE INSTALL
-   if [ -f "${BIOS}/PS3UPDAT.PUP" ]; then
-       FILE="${BIOS}/PS3UPDAT.PUP"
-   else       	   
-	   ### INTERNET CONNECTION CHECK
-	   wget -q --spider http://google.com
-	   if [ $? -eq 0 ]; then
-	   
-	       ### LOADING SCREEN
-           batocera-load-screen -t 600 -i /opt/Ps3/fd.png &
-           
-		   ### DOWNLOADING FIRMWARE
-		   rm -f "${BIOS}/PS3UPDAT.PUP" # apaga download incompleto se houver
-	       curl -L -C - 'http://dbr01.ps3.update.playstation.net/update/ps3/image/br/2021_0601_a0b63a3e4ae92ed176d6b9a67ce447f0/PS3UPDAT.PUP' -o "${BIOS}/PS3UPDAT.PUP"
-	       FILE="${BIOS}/PS3UPDAT.PUP"
-		   
-		   ### STOP LOADING SCREEN
-           if [ "$(pidof yad)" ]; then
-               killall yad
-           fi
+    ### CREATE BASE CONFIG FOR THE FRIST RUN
+    CreateConfigs
 
-           wait
+    ### FIRMWARE INSTALL
 
-	   else
-           ### ABORT FIRMWARE DOWNLOADING
-           batocera-load-screen -t 600 -i /opt/Ps3/fdf.png &
-		   sleep 5
-		   killall yad
-		   exit 0		   
-       fi
-   fi
-   
-   ### INSTALLS FIRMWARE
-   exec /usr/bin/rpcs3 --installfw "${FILE}" &
-   
-   for i in {1..100}; do
-       if [ "$(pidof -s rpcs3)" ]; then
-		  sleep 5
-		  continue &
-	   fi
-	   
-       ### THIS THE LAST FILE MAKE BY RPCS3 DURING FW INSTALATION AND CACHE CREATION
-       if [ -f "${HOME}/../saves/rpcs3/cache/ppu-eLWQCfQ8qmSdw23gQR64uFJJVNbG-libavcenc_small.sprx/v4-kusa-VH8ciyP099htKknrbZvUsj-00000s-haswell.obj.gz" ]; then
-	       /opt/Rpcs3/killrpcs3
-	       break
-	   fi
-   done
-   
-   ### DELETE FIRMWARE AFTER INSTALATION, WHE DONT NEED ANYMORE
-   rm -f "${BIOS}/PS3UPDAT.PUP"
+    if [ -f "${BIOS}/PS3UPDAT.PUP" ]; then
+        FILE="${BIOS}/PS3UPDAT.PUP"
+    else
+        ### INTERNET CONNECTION CHECK
+        wget -q --spider http://google.com
 
-else 
-   ### RUN RPCS3 BY F1 MENU SHORTCUT   
-   exec /usr/bin/rpcs3
+        if [ $? -eq 0 ]; then
+            ### LOADING SCREEN
+            batocera-load-screen -t 600 -i /opt/Ps3/fd.png &
+
+            ### DOWNLOADING FIRMWARE
+            rm -f "${BIOS}/PS3UPDAT.PUP" # apaga download incompleto se houver
+            curl -L -C - 'http://dbr01.ps3.update.playstation.net/update/ps3/image/br/2021_0601_a0b63a3e4ae92ed176d6b9a67ce447f0/PS3UPDAT.PUP' -o "${BIOS}/PS3UPDAT.PUP"
+            FILE="${BIOS}/PS3UPDAT.PUP"
+
+            ### STOP LOADING SCREEN
+            if [ "$(pidof yad)" ]; then
+                killall yad
+            fi
+
+            wait
+        else
+            ### ABORT FIRMWARE DOWNLOADING
+            batocera-load-screen -t 600 -i /opt/Ps3/fdf.png &
+            sleep 5
+            killall yad
+            exit 0
+        fi
+    fi
+
+    ### INSTALLS FIRMWARE
+    exec /usr/bin/rpcs3 --installfw "${FILE}" &
+
+    for i in {1..100}; do
+        if [ "$(pidof -s rpcs3)" ]; then
+            sleep 5
+            continue &
+        fi
+
+        ### THIS THE LAST FILE MAKE BY RPCS3 DURING FW INSTALATION AND CACHE CREATION
+        if [ -f "${HOME}/../saves/rpcs3/cache/ppu-eLWQCfQ8qmSdw23gQR64uFJJVNbG-libavcenc_small.sprx/v4-kusa-VH8ciyP099htKknrbZvUsj-00000s-haswell.obj.gz" ]; then
+            /opt/Rpcs3/killrpcs3
+            break
+        fi
+    done
+
+    ### DELETE FIRMWARE AFTER INSTALATION, WHE DONT NEED ANYMORE
+    rm -f "${BIOS}/PS3UPDAT.PUP"
+
+else
+    ### RUN RPCS3 BY F1 MENU SHORTCUT
+    exec /usr/bin/rpcs3
 fi
 
 exit 0
