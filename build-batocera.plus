@@ -72,7 +72,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/atari800_libretro-feb-7-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/beetle-saturn_libretro-set-18-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/blastem_libretro-mar-09-2021-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bluemsx_libretro-feb-14-2021-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bluemsx_libretro-feb-13-2022-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bsnes_hd_libretro-jun-18-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/bsnes_libretro-aug-1-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cap32_libretro-mar-3-2021-1.7z'
@@ -274,7 +274,7 @@ URL_ES_THEME_A="https://github.com/AlexxandreFS/Batocera.PLUS-es-theme/archive/$
 URL_MUSIC='133b040ce3c04b6c462102a57ea1134ab73a80c7'
 URL_MUSIC="https://github.com/BatoceraPLUS/Batocera.PLUS-music/archive/${URL_MUSIC}.zip#/Batocera.PLUS-music-${URL_MUSIC}.zip"
 
-URL_ALL_BIOS='40a05cec704c911ab5a43a0803b5be9f8ddcff0f'
+URL_ALL_BIOS='9cce6e78f8bb502b41a417775c9d7e88162c0fd9'
 URL_ALL_BIOS="https://github.com/BatoceraPLUS/Batocera.PLUS-bios/archive/${URL_ALL_BIOS}.zip#/Batocera.PLUS-bios-${URL_ALL_BIOS}.zip"
 
 URL_WINDOWS_TOOLS='e5f2a8c02390a6fe78106c84960cb6d2326ddfda'
