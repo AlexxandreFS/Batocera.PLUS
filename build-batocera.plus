@@ -116,7 +116,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame0160_libretro-dec-21-2020-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame0174_libretro-jun-22-2020-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame0139_libretro-mar-7-2021-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame078plus_libretro-mar-7-2021-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame078plus_libretro-apr-6-2022-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mame037_libretro-feb-21-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mednafen_lynx_libretro-jan-14-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mednafen_ngp_libretro-feb-14-2021-1.7z'
@@ -274,7 +274,7 @@ URL_ES_THEME_A="https://github.com/AlexxandreFS/Batocera.PLUS-es-theme/archive/$
 URL_MUSIC='133b040ce3c04b6c462102a57ea1134ab73a80c7'
 URL_MUSIC="https://github.com/BatoceraPLUS/Batocera.PLUS-music/archive/${URL_MUSIC}.zip#/Batocera.PLUS-music-${URL_MUSIC}.zip"
 
-URL_ALL_BIOS='1976a189c3e6b7eb0a928b68581c18b0742906af'
+URL_ALL_BIOS='c8a70d89f3322214f73cf49fb118ae60a8602335'
 URL_ALL_BIOS="https://github.com/BatoceraPLUS/Batocera.PLUS-bios/archive/${URL_ALL_BIOS}.zip#/Batocera.PLUS-bios-${URL_ALL_BIOS}.zip"
 
 URL_WINDOWS_TOOLS='e5f2a8c02390a6fe78106c84960cb6d2326ddfda'
