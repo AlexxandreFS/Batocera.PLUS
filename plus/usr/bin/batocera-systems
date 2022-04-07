@@ -578,7 +578,7 @@ BIOS[palmos]="palmos,                 PalmOS
 
 #### Super Cassette Vision ####
 
-BIOS[scv]="super cassette vision,     Super Cassette Vision
+BIOS[scv]="scv,                       Super Cassette Vision
     929617bc739e58e550fe9025cae4158b, bios/epochtv.chr
     635a978fd40db9a18ee44eff449fc126, bios/upd7801g.s01"
 
