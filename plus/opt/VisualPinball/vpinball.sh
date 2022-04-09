@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Batocera.PLUS
 #
@@ -50,7 +50,6 @@ P1NAME="${5}"
 LOG_GAME="${JOGO}"
 WINE='wine-stable'
 
-
 ################################################################################
 
 ### CAMINHOS
@@ -94,7 +93,7 @@ fi
 
 ### NÃO EXECUTA O EMULADOR DUAS VEZES
 
-if [ "$(pidof wineserver)" ]; then
+if [ "$(pidof -s wineserver)" ]; then
     echo ' Visual Pinball Launcher já esta sendo executado'
     exit 1
 fi
@@ -120,23 +119,26 @@ function createFolders()
     cp -rf "${VP_DIR}/emulator/VPinMAME" "${VP_CDIR}"
     cp -rf "${VP_DIR}/emulator/0995"     "${VP_CDIR}"
     cp -rf "${VP_DIR}/emulator/1062"     "${VP_CDIR}"
-    cp -rf "${VP_DIR}/emulator/run.exe"  "${VP_CDIR}"
+    cp -f  "${VP_DIR}/emulator/run.exe"  "${VP_CDIR}"
 
     ### Create save dir
     mkdir -p "${VP_SDIR}/Music" \
              "${VP_SDIR}/wine" \
              "${VP_SDIR}/User"
+
     cp -rf "${VP_DIR}/deps/Scripts"      "${VP_SDIR}"
     cp -rf "${VP_DIR}/deps/samples"      "${VP_SDIR}"
     cp -rf "${VP_DIR}/deps/nvram"        "${VP_SDIR}"
 
     ### Create folders
     DIRS='artwork cfg diff hi inp memcard snap sta wave Scripts Music User'
+
     for i in ${DIRS}; do
         case ${i} in
             Scripts|User|Music)
                 ln -sf "${VP_SDIR}/$i" "${VP_CDIR}/0995"
-                ln -sf "${VP_SDIR}/$i" "${VP_CDIR}/1062" ;;
+                ln -sf "${VP_SDIR}/$i" "${VP_CDIR}/1062"
+                ;;
             *)
                 mkdir -p "${VP_SDIR}/$i"
         esac
@@ -150,25 +152,27 @@ function applyConfig()
     export WINE_LOADINGSCREEN=0
 
     ### install deps for future pinball
-	echo 'Install deps for future pinball...'
+    echo 'Install deps for future pinball...'
     batocera-load-screen -t 600 -i '/opt/VisualPinball/pinball_loading.jpg' &
 
     ### Apply default configs
     echo 'Apply visual pinball default configs...'
     $WINE regedit "${VP_DIR}/emulator/config.reg" 2>&1&> /dev/null
 	
-	### Install wsh57
+    ### Install wsh57
     echo 'Installing MS Windows Script Host 5.7...'
     ln -sf "${VP_DIR}/deps/wsh57/"* "$WINEPREFIX/drive_c/windows/syswow64"
-	DLL='dispex.dll jscript.dll scrobj.dll scrrun.dll vbscript.dll wshcon.dll wshext.dll'
+
+    DLL='dispex.dll jscript.dll scrobj.dll scrrun.dll vbscript.dll wshcon.dll wshext.dll'
+
     for i in $DLL; do
-	    $WINE regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/${i}" 2>&1&> /dev/null
-		echo "${i} Successfully registered!"
+        $WINE regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/${i}" 2>&1&> /dev/null
+        echo "${i} Successfully registered!"
 	done
 
     ### Install oleaut32
-	ln -sf "${VP_DIR}/deps/oleaut32/x32/oleaut32.dll" "$WINEPREFIX/drive_c/windows/system32" 2>&1&> /dev/null
-	ln -sf "${VP_DIR}/deps/oleaut32/x64/oleaut32.dll" "$WINEPREFIX/drive_c/windows/syswow64" 2>&1&> /dev/null
+    ln -sf "${VP_DIR}/deps/oleaut32/x32/oleaut32.dll" "$WINEPREFIX/drive_c/windows/system32" 2>&1&> /dev/null
+    ln -sf "${VP_DIR}/deps/oleaut32/x64/oleaut32.dll" "$WINEPREFIX/drive_c/windows/syswow64" 2>&1&> /dev/null
 
     sleep 0.5
 
@@ -177,14 +181,13 @@ function applyConfig()
     $WINE regsvr32 "${VP_CDIR}/VPinMAME/VPinMAME.dll" 2>&1&> /dev/null
     echo 'VPinMAME.dll Successfully registered!'
 	
-	while [ "$(pidof wineserver)" ]; do
-           sleep 1
+    while [ "$(pidof -s wineserver)" ]; do
+        sleep 1
     done
 
-    if [ "$(pidof yad)" ]; then
+    if [ "$(pidof -s yad)" ]; then
         killall yad
     fi
-
 }
 
 function choseEmu()
@@ -193,13 +196,13 @@ function choseEmu()
     sed -i s'/"WindowMaximized"=.*/"WindowMaximized"=dword:00000001/' "${VP_SDIR}/wine/user.reg"
 
     yad --form \
-    --title='VISUAL PINBALL' \
-    --window-icon='/usr/share/icons/batocera/vpinball.png' \
-    --text='\n  Choose a option.\n' \
-    --button='VISUAL PINBALL:0' \
-    --button='VISUAL PINBALX:1' \
-    --fixed --center \
-    --close-on-unfocus
+        --title='VISUAL PINBALL' \
+        --window-icon='/usr/share/icons/batocera/vpinball.png' \
+        --text='\n  Choose a option.\n' \
+        --button='VISUAL PINBALL:0' \
+        --button='VISUAL PINBALX:1' \
+        --fixed --center \
+        --close-on-unfocus
 
     case ${?} in
         0) GUI="${VP_CDIR}/0995/VPinball995.exe" ;;
@@ -215,6 +218,7 @@ function choseEmu()
 if [ -e "${VP_SDIR}/wine/.update-timestamp" ]; then # if wine version has changed
     SDIR_VERSION="$(cat -e "${VP_SDIR}/wine/.update-timestamp" | cut -d '^' -f 1)"
     OPT_WINE="$(stat -t "/opt/Wine/${WINE}/share/wine/wine.inf" | awk '{print $12}')"
+
     if [ "${OPT_WINE}" != "${SDIR_VERSION}" ] && [ -e "${VP_SDIR}/wine" ]; then
         rm -r "${VP_SDIR}/wine"
     fi
@@ -246,7 +250,7 @@ if [ -e "${VP_SDIR}/wine/user.reg" ]; then
 fi
 
 ################################################################################
-    
+
 ### RESOLUTION
 
 RES_START="$(batocera-resolution currentMode)"
@@ -260,8 +264,8 @@ else
     YRES="$(echo "${RESOLUTION}" | cut -d 'x' -f 2)"
 fi
 
-XRES="$( printf "%x\n" "${XRES}")"
-YRES="$( printf "%x\n" "${YRES}")"
+XRES="$(printf "%x\n" "${XRES}")"
+YRES="$(printf "%x\n" "${YRES}")"
 sed -i s'/"Width"=.*/"Width"=dword:00000'"${XRES}"'/'   "${VP_SDIR}/wine/user.reg"
 sed -i s'/"Height"=.*/"Height"=dword:00000'"${YRES}"'/' "${VP_SDIR}/wine/user.reg"
 
@@ -271,16 +275,23 @@ sed -i s'/"Height"=.*/"Height"=dword:00000'"${YRES}"'/' "${VP_SDIR}/wine/user.re
 
 if [ "${JOGO}" != '' ]; then
     ROM_EXTENSION='.vpt .VPT .vpx .VPX'
+
     for i in ${ROM_EXTENSION}; do
         if [ "$(echo "${JOGO}" | grep "${i}")" ]; then
             JOGO="$(echo "Z:${JOGO}" | sed -e 's#/#\\#g')"
+
             case $i in
-                .vpt|.VPT) EMU_EXE="${VP_CDIR}/0995/VPinball995.exe"
-                           EMU_PID='VPinball995.exe';;
-                .vpx|.VPX) EMU_EXE="${VP_CDIR}/1062/VPinballX.exe"
-                           EMU_PID='VPinballX.exe';;
+                .vpt|.VPT)
+                    EMU_EXE="${VP_CDIR}/0995/VPinball995.exe"
+                    EMU_PID='VPinball995.exe'
+                    ;;
+                .vpx|.VPX)
+                    EMU_EXE="${VP_CDIR}/1062/VPinballX.exe"
+                    EMU_PID='VPinballX.exe'
+                    ;;
             esac
-            break        
+
+            break
         fi
     done
 else
@@ -321,7 +332,7 @@ if [ "${JOYPAD}" ]; then
         sed -i s'/"RTiltKey"=.*/"RTiltKey"=dword:00000035/'       "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
         sed -i s'/"LTiltKey"=.*/"LTiltKey"=dword:0000002c/'       "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
         sed -i s'/"MechTilt"=.*/"MechTilt"=dword:00000014/'       "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-	    sed -i s'/"UDAxis"=.*/"UDAxis"=dword:00000000/'           "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+        sed -i s'/"UDAxis"=.*/"UDAxis"=dword:00000000/'           "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
         sed -i s'/"UDAxisFlip"=.*/"UDAxisFlip"=dword:00000000/'   "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
         sed -i s'/"PlungerAxis"=.*/"PlungerAxis"=dword:00000006/' "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
         sed -i s'/"PlungerKey"=.*/"PlungerKey"=dword:0000001c/'   "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
@@ -329,25 +340,26 @@ if [ "${JOYPAD}" ]; then
         sed -i s'/"LRAxisFlip"=.*/"LRAxisFlip"=dword:00000000/'   "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
 
         # Auto detect pluged controller
-	    if [ "$(echo "${P1NAME}" | grep 'PS3' )" ] || [ "$(echo "${P1NAME}" | grep 'PLAYSTATION' )" ]; then
+	if [ "$(echo "${P1NAME}" | grep 'PS3' )" ] || [ "$(echo "${P1NAME}" | grep 'PLAYSTATION' )" ]; then
             KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 42 42 14 10 42 42 42 52 97 28 65'
         elif [ "$(echo "${P1NAME}" | grep 'Xbox' )" ] || [ "$(echo "${P1NAME}" | grep 'X-Box' )" ]; then
             KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 14 10 42 42 42 52 97 28 65 42 00'
-	    else
-	        KEY_PAD='-device /dev/input/js0 -up 52 -down 65 -left 97 -right 28 -buttons 42 42 36 42 50 62 42 42 14 10 42 42 42 52 65 97 28'
-	    fi
+	else
+            KEY_PAD='-device /dev/input/js0 -up 52 -down 65 -left 97 -right 28 -buttons 42 42 36 42 50 62 42 42 14 10 42 42 42 52 65 97 28'
+	fi
 
         # Persistent mode gamepad detection
         if [ -e '/dev/input/js0' ]; then
             while :; do
                 nice -n -15 xjoypad ${KEY_PAD}
-                if [ ! "$(pidof "${EMU_PID}")" ]; then
+                if [ ! "$(pidof -s "${EMU_PID}")" ]; then
                     break
                 fi
+
                 sleep 5
             done &
         fi
-	fi
+    fi
 fi
 
 ################################################################################
@@ -355,10 +367,11 @@ fi
 ### LOGS
 
 echo "received: /opt/VirtualPinball/vpinball.sh ${LOG_GAME} ${RESOLUTION} ${RATIO} ${P1GUID} ${CTRL_TYPE}" > "${HOME}/logs/vpinball.log"
+
 if [ "${EMU_EXE}" == 'gui' ]; then
     echo "running: /opt/VirtualPinball/vpinball.sh ${EMU_EXE}" >> "${HOME}/logs/vpinball.log"
 else
-    echo "running: ${EMU_EXE} -minimized -exit -play ${JOGO}" >> "${HOME}/logs/vpinball.log"
+    echo "running: ${EMU_EXE} -minimized -exit -play ${JOGO}"  >> "${HOME}/logs/vpinball.log"
 fi
 
 ################################################################################
@@ -366,17 +379,25 @@ fi
 ### RUN
 
 export VIRTUAL_DESKTOP=1
+
 case ${EMU_EXE} in
-    "${VP_CDIR}/1062/VPinballX.exe")    
-                        $WINE "${VP_CDIR}/run.exe" \
-		                "${EMU_EXE}" "${JOGO}" ;;         # run visual pinball X
+    "${VP_CDIR}/1062/VPinballX.exe")
+        # run visual pinball X
+        $WINE "${VP_CDIR}/run.exe" "${EMU_EXE}" "${JOGO}"
+        ;;
     "${VP_CDIR}/0995/VPinball995.exe")
-                        $WINE "${VP_CDIR}/run.exe" \
-                        "${EMU_EXE}" "${JOGO}" ;;         # run visual pinball 9
+        # run visual pinball 9
+        $WINE "${VP_CDIR}/run.exe" "${EMU_EXE}" "${JOGO}"
+        ;;
     gui)
-                        choseEmu                          # opens selection menu
-                        $WINE "${GUI}" ;;                 # execute selected
-    *)                  exit 0
+        # opens selection menu
+        choseEmu
+
+        # execute selected
+        $WINE "${GUI}"
+        ;;
+    *)
+        exit 0
 esac
 
 ################################################################################
@@ -384,7 +405,7 @@ esac
 ### END OF EMULATOR EXECUTION
 
 # Wait the emulator to finish execution
-while [ "$(pidof wineserver)" ]; do
+while [ "$(pidof -s wineserver)" ]; do
     sleep 1
 done
 
