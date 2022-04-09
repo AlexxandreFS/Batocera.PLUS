@@ -120,7 +120,7 @@ function createFolders()
     cp -rf "${VP_DIR}/emulator/VPinMAME" "${VP_CDIR}"
     cp -rf "${VP_DIR}/emulator/0995"     "${VP_CDIR}"
     cp -rf "${VP_DIR}/emulator/1062"     "${VP_CDIR}"
-    cp -rf "${VP_DIR}/emulator/run.exe"  "${VP_CDIR}"
+    cp -r "${VP_DIR}/emulator/run.exe"  "${VP_CDIR}"
 
     ### Create save dir
     mkdir -p "${VP_SDIR}/Music" \
