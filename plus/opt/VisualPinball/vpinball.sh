@@ -36,6 +36,7 @@
 # https://github.com/vpinball/pinmame
 # https://www.vpforums.org/
 # https://vpuniverse.com/forums/
+# https://www.vpforums.org/index.php?showtopic=43650
 
 ################################################################################
 
@@ -47,7 +48,7 @@ P1GUID="${3}"
 JOYPAD="${4}"
 P1NAME="${5}"
 LOG_GAME="${JOGO}"
-WINE='wine-lutris'
+WINE='wine-stable'
 
 
 ################################################################################
@@ -119,7 +120,7 @@ function createFolders()
     cp -rf "${VP_DIR}/emulator/VPinMAME" "${VP_CDIR}"
     cp -rf "${VP_DIR}/emulator/0995"     "${VP_CDIR}"
     cp -rf "${VP_DIR}/emulator/1062"     "${VP_CDIR}"
-    cp -f "${VP_DIR}/emulator/run.exe"   "${VP_CDIR}"
+    cp -rf "${VP_DIR}/emulator/run.exe"  "${VP_CDIR}"
 
     ### Create save dir
     mkdir -p "${VP_SDIR}/Music" \
@@ -149,26 +150,34 @@ function applyConfig()
     export WINE_LOADINGSCREEN=0
 
     ### install deps for future pinball
+	echo 'Install deps for future pinball...'
     batocera-load-screen -t 600 -i '/opt/VisualPinball/pinball_loading.jpg' &
 
     ### Apply default configs
     echo 'Apply visual pinball default configs...'
-    $WINE regedit "${VP_DIR}/emulator/config.reg"
-
-    ### Install wsh57
+    $WINE regedit "${VP_DIR}/emulator/config.reg" 2>&1&> /dev/null
+	
+	### Install wsh57
     echo 'Installing MS Windows Script Host 5.7...'
     ln -sf "${VP_DIR}/deps/wsh57/"* "$WINEPREFIX/drive_c/windows/syswow64"
+	DLL='dispex.dll jscript.dll scrobj.dll scrrun.dll vbscript.dll wshcon.dll wshext.dll'
+    for i in $DLL; do
+	    $WINE regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/${i}" 2>&1&> /dev/null
+		echo "${i} Successfully registered!"
+	done
 
-    ### Install vcrun6
-    echo 'Installing Visual C++ 6 runtime libraries...'
-    ln -sf "${VP_DIR}/deps/vcrun6/x64/"* "$WINEPREFIX/drive_c/windows/syswow64"
+    ### Install oleaut32
+	ln -sf "${VP_DIR}/deps/oleaut32/x32/oleaut32.dll" "$WINEPREFIX/drive_c/windows/system32" 2>&1&> /dev/null
+	ln -sf "${VP_DIR}/deps/oleaut32/x64/oleaut32.dll" "$WINEPREFIX/drive_c/windows/syswow64" 2>&1&> /dev/null
+
+    sleep 0.5
 
     ### Install PinMAME.dll
     echo 'Installing VPinMAME...'
     $WINE regsvr32 "${VP_CDIR}/VPinMAME/VPinMAME.dll" 2>&1&> /dev/null
     echo 'VPinMAME.dll Successfully registered!'
-
-    while [ "$(pidof wineserver)" ]; do
+	
+	while [ "$(pidof wineserver)" ]; do
            sleep 1
     done
 
@@ -176,7 +185,6 @@ function applyConfig()
         killall yad
     fi
 
-    wait
 }
 
 function choseEmu()
