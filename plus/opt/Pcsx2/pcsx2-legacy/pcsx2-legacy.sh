@@ -7,6 +7,7 @@
 
 readonly ROM="${1}"
 readonly FULLBOOT="${2}"
+readonly CUSTOM="${3}"
 readonly PCSX2_DIR="$(dirname ${0})"
 
 ################################################################################
@@ -23,7 +24,13 @@ function main()
 
     if [ -e "${ROM}" ]
     then
-        execByES
+	    if [ -e "${ROM}" ] && [ "${CUSTOM}" == '2' ]
+		then
+            CONFIG_DIR="${HOME}/configs/pcsx2-legacy"
+	        execByF1custom
+		else
+            execByES
+		fi
     else
         execByF1
     fi
@@ -106,6 +113,21 @@ function execByF1()
     ${PCSX2_DIR}/PCSX2 \
         --gs=${PCSX2_DIR}/plugins/libGSdx.so \
         "${@}" > $HOME/logs/pcsx2-legacy.log 2>&1
+}
+
+################################################################################
+
+## Executa o emulador pelo aplicativo no menu F1 com uma configuração customizada.
+
+function execByF1custom()
+{
+    makeTheme
+
+    ${PCSX2_DIR}/PCSX2 \
+	    --portable \
+        --gs=${PCSX2_DIR}/plugins/libGSdx.so \
+		--cfgpath="${CONFIG_DIR}" \
+         "${ROM}" > $HOME/logs/pcsx2-legacy.log 2>&1
 }
 
 ################################################################################

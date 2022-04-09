@@ -70,7 +70,7 @@ function populate()
          echo 'Slot1_Filename=Mcd001.ps2') > "${CONFIG_DIR}/PCSX2_ui.ini"
     fi
 
-    if [ "${CUSTOM}" == '1' ]; then
+    if [ "${CUSTOM}" == '1' ] || [ "${CUSTOM}" == '2' ]; then
        sed -i "s|^Slot1_Filename=.*|Slot1_Filename=$(basename "${ROM%.*}")".ps2"|" "${CONFIG_DIR}/PCSX2_ui.ini"
     fi
 
@@ -101,7 +101,7 @@ fi
 
 ### CUSTOM CONFIG
 
-if [ "${CUSTOM}" == '1' ]; then
+if [ "${CUSTOM}" == '1' ] || [ "${CUSTOM}" == '2' ]; then
    CONFIG_DIR="${SAVE_DIR}/custom/$(basename "${ROM%.*}")"
    populate
 else
@@ -115,6 +115,9 @@ fi
 if [ -e "${ROM}" ] && [ "${CUSTOM}" == '1' ]; then
     ${EMU_DIR}/PCSX2 --nogui --fullscreen --cfgpath="${CONFIG_DIR}" \
           ${FULLBOOT} "${ROM}" > ${HOME}/logs/pcsx2-mainline.log 2>&1
+elif [ -e "${ROM}" ] && [ "${CUSTOM}" == '2' ]; then
+    ${EMU_DIR}/PCSX2 --cfgpath="${CONFIG_DIR}" \
+          "${ROM}" > ${HOME}/logs/pcsx2-mainline.log 2>&1
 elif [ -e "${ROM}" ]; then
     ${EMU_DIR}/PCSX2 --nogui --fullscreen ${FULLBOOT} \
         "${ROM}" > ${HOME}/logs/pcsx2-mainline.log 2>&1
