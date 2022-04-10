@@ -7,21 +7,24 @@
 #fxaa   - Fast Approximate Anti-Aliasing
 #smaa   - Enhanced Subpixel Morphological Antialiasing
 #lut    - Color LookUp Table
-effects = smaa:smaa:cas
+effects = cas
 
-#reshadeTexturePath = /opt/vkBasalt/reshade/Textures
-#reshadeIncludePath = /opt/vkBasalt/reshade/Shaders
-#depthCapture = off
+reshadeTexturePath = "/opt/vkBasalt/reshade/Textures"
+reshadeIncludePath = "/opt/vkBasalt/reshade/Shaders"
+depthCapture = off
 
 #toggleKey toggles the effects on/off
-toggleKey = F2
+toggleKey = F3
+
+#enableOnLaunch sets if the effects are emabled when started
+enableOnLaunch = True
 
 #casSharpness specifies the amount of sharpning in the CAS shader.
 #0.0 less sharp, less artefacts, but not off
 #1.0 maximum sharp more artefacts
 #Everything in between is possible
 #negative values sharpen even less, up to -1.0 make a visible difference
-casSharpness = 1.0
+casSharpness = 0.4
 
 #dlsSharpness specifies the amount of sharpening in the Denoised Luma Sharpening shader.
 #Increase to sharpen details within the image.
@@ -97,4 +100,4 @@ smaaCornerRounding = 25
 
 #lutFile is the path to the LUT file that will be used
 #supported are .CUBE files and .png with width == height * height
-lutFile = "/path/to/lut"
+lutFile = "/opt/vkBasalt/reshade/Textures/lut.png"

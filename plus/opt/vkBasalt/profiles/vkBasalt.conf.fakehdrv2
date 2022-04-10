@@ -319,57 +319,17 @@ casSharpness=0.0
 depthCapture = off
 
 ################### Effects ###################
-effects = Colourfulness:EyeAdaption:FilmGrain2:Levels:MagicBloom:GaussianBlur
-
+effects = FakeHDR:Technicolor2:qUINT_sharp
 
 ################### Shader Configs ###################
-[GaussianBlur.fx]
-GaussianBlurRadius = 1
-GaussianBlurOffset = 1.000000f
-GaussianBlurStrength = 0.200000f
 
-[Colourfulness.fx]
-backbuffer_bits = 8.000000f
-colourfulness = -0.310000f
-col_noise = 1
-enable_dither = 0
-lim_luma = 0.705000f
+[FakeHDR.fx]
+HDRPower=1.300000
+radius1=0.793000
+radius2=0.870000
 
-[EyeAdaption.fx]
-bAdp_BrightenEnable = 0
-bAdp_DarkenEnable = 1
-fAdp_BrightenBlack = 0.500000f
-fAdp_BrightenCurve = 0.700000f
-fAdp_BrightenDynamic = 0.500000f
-fAdp_BrightenMax = 0.062000f
-fAdp_BrightenSaturation = 0.000000f
-fAdp_BrightenThreshold = 0.162000f
-fAdp_DarkenCurve = 0.552000f
-fAdp_DarkenDynamic = 0.745000f
-fAdp_DarkenMax = 0.328000f
-fAdp_DarkenSaturation = 0.019000f
-fAdp_DarkenThreshold = 0.255000f
-fAdp_DarkenWhite = 0.714000f
-fAdp_Speed = 0.100000f
-
-[FilmGrain2.fx]
-coloramount = 0.600000f
-grainamount = 0.020000f
-grainsize = 1.600000f
-lumamount = 1.000000f
-
-[Levels.fx]
-BlackPoint = 16
-HighlightClipping = 0
-WhitePoint = 247
-
-[MagicBloom.fx]
-#f2Adapt_Clip = 0.042000f,0.289000f - has to be modified in the shader file itself. look for f2Adapt_Clip
-fAdapt_Sensitivity = 1.564000f
-fAdapt_Speed = 0.100000f
-fBloom_Intensity = 2.548000f
-fBloom_Threshold = 3.400000f
-fDirt_Intensity = 0.000000f
-fExposure = 0.259000f
-iAdapt_Precision = 2
-iDebug = 0
+[qUINT_sharp.fx]
+DEPTH_MASK_ENABLE=1
+RMS_MASK_ENABLE=1
+SHARPEN_MODE=1
+SHARP_STRENGTH=0.700000
