@@ -111,7 +111,7 @@ fi
 
 if [ -e "${ROM}" ] && [ "${CUSTOM}" == '1' ]; then
     ${EMU_DIR}/PCSX2 --nogui --fullscreen --cfgpath="${CONFIG_DIR}" \
-          ${FULLBOOT} "${ROM}" > ${HOME}/logs/pcsx2-mainline.log 2>&1
+        ${FULLBOOT} "${ROM}" > ${HOME}/logs/pcsx2-mainline.log 2>&1
 elif [ -e "${ROM}" ] && [ "${CUSTOM}" == '2' ]; then
     ${EMU_DIR}/PCSX2 --cfgpath="${CONFIG_DIR}" \
         "${ROM}" > ${HOME}/logs/pcsx2-mainline.log 2>&1
