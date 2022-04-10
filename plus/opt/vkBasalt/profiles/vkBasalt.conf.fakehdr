@@ -311,7 +311,7 @@ ZigZag = /opt/vkBasalt/reshade-shaders/Shaders/Radegast/ZigZag.fx
 ################### RTGI Shaders ###################
 
 ################### LutFile ###################
-lutFile = "/opt/vkBasalt/reshade/Textures/lut.png""
+lutFile = "/opt/vkBasalt/reshade/Textures/lut.png"
 
 ################### VkBasalt Configs ###################
 toggleKey = F3
