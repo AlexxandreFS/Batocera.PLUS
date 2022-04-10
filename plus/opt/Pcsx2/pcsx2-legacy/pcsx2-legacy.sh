@@ -145,7 +145,7 @@ function execByEScustom()
         --portable \
         --nogui \
         --fullscreen \
-		--cfgpath="${CONFIG_DIR}" \
+        --cfgpath="${CONFIG_DIR}" \
         --gs=${PCSX2_DIR}/plugins/libGSdx.so \
         "${ROM}" > $HOME/logs/pcsx2-legacy.log 2>&1
 }
@@ -167,8 +167,8 @@ function execByF1custom()
 
     ${PCSX2_DIR}/PCSX2 \
         --gs=${PCSX2_DIR}/plugins/libGSdx.so \
-		--cfgpath="${CONFIG_DIR}" \
-         "${ROM}" > $HOME/logs/pcsx2-legacy.log 2>&1
+        --cfgpath="${CONFIG_DIR}" \
+        "${ROM}" > $HOME/logs/pcsx2-legacy.log 2>&1
 }
 
 ################################################################################

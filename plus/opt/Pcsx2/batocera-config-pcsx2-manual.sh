@@ -5,9 +5,6 @@
 ## Código escrito por: Sérgio de Carvalho Júnior
 ## Supervisão: Alexandre Freire dos Santos
 ##
-## https://forums.pcsx2.net/Thread-PCSX2-Widescreen-Game-Patches?pid=271674#pid271674
-## https://www.mediafire.com/file/j48lgoeeli5evve/PCSX_Cheats_Pack_v1.1_-_Mateus_Auri.rar/file
-##
 ################################################################################
 
 ROMS_FOLDER=/userdata/roms/ps2
@@ -87,11 +84,11 @@ function mainList()
 
     RESP=$( yad \
         --title='PCSX2 MANUAL CONFIGURATOR' \
-	    --window-icon=/usr/share/icons/batocera/pcsx2.png \
+        --window-icon=/usr/share/icons/batocera/pcsx2.png \
         --fixed \
         --center \
         --no-headers \
-	    --list \
+        --list \
         --column='' < /tmp/LISTA.txt \
         --width=${X} \
         --height=${Y}
@@ -134,7 +131,7 @@ ROM=''
 while [ "${ROM}" == '' ]
 do
     mainSelector
-	mainList
+    mainList
 done
 
 $PCSX2 "${ROMS_FOLDER}/${ROM}" " " "2"
