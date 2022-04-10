@@ -14,7 +14,7 @@ yad --form \
     --button='PCSX2:0' \
     --button='PCSX2-LEGACY:1' \
     --button='PCSX2-MAINLINE:2' \
-	--button='MANUAL-CONFIG:3' \
+    --button='MANUAL-CONFIG:3' \
     --fixed \
     --center \
     --close-on-unfocus
@@ -23,7 +23,7 @@ case ${?} in
     0) /opt/Pcsx2/pcsx2.sh PCSX2          ;;
     1) /opt/Pcsx2/pcsx2.sh pcsx2-legacy   ;;
     2) /opt/Pcsx2/pcsx2.sh pcsx2-mainline ;;
-	3) /opt/Pcsx2/batocera-config-pcsx2-manual.sh ;;
+    3) /opt/Pcsx2/batocera-config-pcsx2-manual.sh ;;
     *) exit 0
 esac
 

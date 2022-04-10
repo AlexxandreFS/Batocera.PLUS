@@ -25,12 +25,12 @@ function main()
     if [ -e "${ROM}" ]
     then
 	    if [ -e "${ROM}" ] && [ "${CUSTOM}" == '2' ]
-		then
+        then
             CONFIG_DIR="${HOME}/configs/pcsx2-legacy"
-	        execByF1custom
-		else
+            execByF1custom
+        else
             execByES
-		fi
+        fi
     else
         execByF1
     fi

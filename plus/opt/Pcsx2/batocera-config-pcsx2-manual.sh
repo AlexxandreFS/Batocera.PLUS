@@ -63,7 +63,7 @@ function mainList()
     local RESOLUTION_Y=$(echo ${RESOLUTION} | cut -d x -f 1)
     local MAX_SIZE_X
     local MAX_SIZE_Y
-	local RESP
+    local RESP
 
     MAX_SIZE_X=800
     MAX_SIZE_Y=600
@@ -90,10 +90,10 @@ function mainList()
 	    --window-icon=/usr/share/icons/batocera/pcsx2.png \
         --fixed \
         --center \
-		--no-headers \
+        --no-headers \
 	    --list \
         --column='' < /tmp/LISTA.txt \
-	    --width=${X} \
+        --width=${X} \
         --height=${Y}
 	)
 
@@ -106,7 +106,7 @@ function mainSelector()
     case ${LANG%.*} in
         pt_BR) MSG='ESCOLHA UMA OPÇÃO' ;;
         es_ES) MSG='ESCOGE UNA OPCIÓN' ;;
-        *)     MSG='CHOOSE A OPTION'
+            *) MSG='CHOOSE A OPTION'
     esac
 
     yad --form \

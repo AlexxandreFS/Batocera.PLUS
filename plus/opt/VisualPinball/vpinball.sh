@@ -168,7 +168,7 @@ function applyConfig()
     for i in $DLL; do
         $WINE regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/${i}" 2>&1&> /dev/null
         echo "${i} Successfully registered!"
-	done
+    done
 
     ### Install oleaut32
     ln -sf "${VP_DIR}/deps/oleaut32/x32/oleaut32.dll" "$WINEPREFIX/drive_c/windows/system32" 2>&1&> /dev/null
