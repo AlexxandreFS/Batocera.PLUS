@@ -285,7 +285,7 @@ case ${CORE} in
         ;;
     pcsx2-legacy|auto)
         exitHotkeyStart
-        ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-legacy/pcsx2-legacy.sh     "${ROM}" "${FULLBOOT}"
+        ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-legacy/pcsx2-legacy.sh     "${ROM}" "${FULLBOOT}" "${CUSTOM}"
         ;;
     PCSX2)
         /usr/bin/batocera-config-pcsx2

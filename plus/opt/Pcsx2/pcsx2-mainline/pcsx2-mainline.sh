@@ -25,12 +25,9 @@ CONFIG_DIR="${HOME}/configs/pcsx2-mainline"
 ### EXPORTS
 
 export LD_LIBRARY_PATH="${EMU_DIR}/lib:${LD_LIBRARY_PATH}"
-
 export GDK_PIXBUF_MODULEDIR='/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders'
 export GDK_PIXBUF_MODULE_FILE='/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache'
-
 export GSETTINGS_SCHEMA_DIR="${EMU_DIR}/pcsx2_rc/glib-2.0/schemas"
-
 export GDK_BACKEND=x11
 
 ################################################################################
@@ -114,7 +111,7 @@ fi
 
 if [ -e "${ROM}" ] && [ "${CUSTOM}" == '1' ]; then
     ${EMU_DIR}/PCSX2 --nogui --fullscreen --cfgpath="${CONFIG_DIR}" \
-        ${FULLBOOT} "${ROM}" > ${HOME}/logs/pcsx2-mainline.log 2>&1
+          ${FULLBOOT} "${ROM}" > ${HOME}/logs/pcsx2-mainline.log 2>&1
 elif [ -e "${ROM}" ] && [ "${CUSTOM}" == '2' ]; then
     ${EMU_DIR}/PCSX2 --cfgpath="${CONFIG_DIR}" \
         "${ROM}" > ${HOME}/logs/pcsx2-mainline.log 2>&1

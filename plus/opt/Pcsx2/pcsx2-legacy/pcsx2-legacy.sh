@@ -2,6 +2,7 @@
 ###
 ### Batocera.PLUS
 ### Alexandre Freire dos Santos
+### Editado por: Sérgio de Carvalho Júnior
 ###
 ################################################################################
 
@@ -9,6 +10,8 @@ readonly ROM="${1}"
 readonly FULLBOOT="${2}"
 readonly CUSTOM="${3}"
 readonly PCSX2_DIR="$(dirname ${0})"
+CONFIG_DIR="${HOME}/../system/configs/pcsx2-legacy"
+SAVE_DIR='/userdata/saves/ps2'
 
 ################################################################################
 
@@ -23,14 +26,13 @@ function main()
     fi
 
     if [ -e "${ROM}" ]
-    then
-	    if [ -e "${ROM}" ] && [ "${CUSTOM}" == '2' ]
-        then
-            CONFIG_DIR="${HOME}/configs/pcsx2-legacy"
-            execByF1custom
-        else
-            execByES
-        fi
+    then	
+        case $CUSTOM in
+           auto|0) execByES ;;
+                1) execByEScustom ;;
+                2) execByF1custom ;;
+                *) exit 0
+        esac
     else
         execByF1
     fi
@@ -42,9 +44,9 @@ function main()
 
 function populate()
 {
-    mkdir -p "${HOME}/../system/configs/pcsx2-legacy"
+    mkdir -p "${CONFIG_DIR}"
 
-    if ! [ -e "${HOME}/../system/configs/pcsx2-legacy/PCSX2_ui.ini" ]
+    if ! [ -e "${CONFIG_DIR}/PCSX2_ui.ini" ]
     then
         (echo '[Filenames]'
          echo 'BIOS=scph39001.bin'
@@ -53,14 +55,21 @@ function populate()
          echo 'Visible=disabled'
          echo ''
          echo '[GSWindow]'
-         echo 'AspectRatio=4:3') > "${HOME}/../system/configs/pcsx2-legacy/PCSX2_ui.ini"
+         echo 'AspectRatio=4:3'
+         echo '[MemoryCards]'
+         echo 'Slot1_Enable=enabled'
+         echo 'Slot1_Filename=Mcd001.ps2') > "${CONFIG_DIR}/PCSX2_ui.ini"
     fi
 
-    if ! [ -e "${HOME}/../system/configs/pcsx2-legacy/GSdx.ini" ]
+    if [ "${CUSTOM}" == '1' ] || [ "${CUSTOM}" == '2' ]; then
+        sed -i "s|^Slot1_Filename=.*|Slot1_Filename=$(basename "${ROM%.*}")".ps2"|" "${CONFIG_DIR}/PCSX2_ui.ini"
+    fi
+
+    if ! [ -e "${CONFIG_DIR}/GSdx.ini" ]
     then
         (echo 'vsync = 0'
          echo 'upscale_multiplier = 1'
-         echo 'MaxAnisotropy = 0') > "${HOME}/../system/configs/pcsx2-legacy/GSdx.ini"
+         echo 'MaxAnisotropy = 0') > "${CONFIG_DIR}/GSdx.ini"
     fi
 }
 
@@ -110,9 +119,35 @@ function execByES()
 
 function execByF1()
 {
+    makeTheme
+
     ${PCSX2_DIR}/PCSX2 \
         --gs=${PCSX2_DIR}/plugins/libGSdx.so \
         "${@}" > $HOME/logs/pcsx2-legacy.log 2>&1
+}
+
+################################################################################
+
+## Executa o emulador pelo Emulationstation com uma configuração custom
+
+function execByEScustom()
+{
+    CONFIG_DIR="${SAVE_DIR}/custom-legacy/$(basename "${ROM%.*}")"
+
+    if ! [ -d "${CONFIG_DIR}" ]
+    then
+        populate
+    fi
+
+    makeTheme
+
+    ${PCSX2_DIR}/PCSX2 \
+        --portable \
+        --nogui \
+        --fullscreen \
+		--cfgpath="${CONFIG_DIR}" \
+        --gs=${PCSX2_DIR}/plugins/libGSdx.so \
+        "${ROM}" > $HOME/logs/pcsx2-legacy.log 2>&1
 }
 
 ################################################################################
@@ -121,10 +156,16 @@ function execByF1()
 
 function execByF1custom()
 {
+    CONFIG_DIR="${SAVE_DIR}/custom-legacy/$(basename "${ROM%.*}")"
+
+    if ! [ -d "${CONFIG_DIR}" ]
+    then
+        populate
+    fi
+
     makeTheme
 
     ${PCSX2_DIR}/PCSX2 \
-	    --portable \
         --gs=${PCSX2_DIR}/plugins/libGSdx.so \
 		--cfgpath="${CONFIG_DIR}" \
          "${ROM}" > $HOME/logs/pcsx2-legacy.log 2>&1
