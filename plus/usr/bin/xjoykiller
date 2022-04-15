@@ -1,0 +1,144 @@
+#!/bin/bash
+###
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+###
+### Stops running games and programs by pressing button combination
+### hotkey + start (or any other combination of two buttons)
+###
+################################################################################
+
+### PARAMETERS
+
+KILL_SCRIPT="${1}"
+P1INDEX=${2}
+P1GUID="${3}"
+
+### FILES
+
+ES_INPUT_FILES=(
+    "$HOME/configs/emulationstation/es_last_input.cfg"
+    "$HOME/configs/emulationstation/es_input.cfg"
+    '/usr/share/batocera/datainit/system/configs/emulationstation/es_input.cfg'
+)
+
+################################################################################
+
+### HELP
+
+function help()
+{
+    local EXEC="$(basename ${0})"
+
+    echo "Usage: ${EXEC} kill_script p1index p1guid"
+    echo "       ${EXEC} --exit"
+    echo
+    echo "Example: ${EXEC} /usr/bin/killwine 0 030000004c050000a00b000011810000"
+    echo
+
+    exit 1
+}
+
+################################################################################
+
+### EXIT (ABEND)
+
+function killMe()
+{
+    if [ "$(pidof -s xjoykill)" ]
+    then
+        killall -9 xjoykill
+    fi
+
+    exit 0
+}
+
+trap killMe SIGKILL SIGTERM SIGINT
+
+if [ "${KILL_SCRIPT}" == '--exit' ]
+then
+    killMe
+fi
+
+################################################################################
+
+### SANITY TEST
+
+if [ "${#}" != '3' ]
+then
+    help
+fi
+
+if ! [ -e "/dev/input/js${P1INDEX}" ]
+then
+    echo 'Gamepad not found'
+    help
+fi
+
+################################################################################
+
+### SEARCH FOR ES CONTROL CONFIGURATION FILE
+
+ES_INPUT_FILE=''
+
+for FILE in ${ES_INPUT_FILES[*]}
+do
+    if [ -e "${FILE}" ]
+    then
+        if grep -q "deviceGUID=\"${P1GUID}\">" "${FILE}"
+        then
+            ES_INPUT_FILE="${FILE}"
+            break
+        fi
+    fi
+done
+
+if [ -z "${ES_INPUT_FILE}" ]
+then
+    exit 2
+fi
+
+################################################################################
+
+### SEARCH FOR KEYS HOTKEY + START
+
+BUTTONS="$(xml sel -T -t -m "/inputList/inputConfig[@deviceGUID='${P1GUID}']/*" -v "concat(@name,'|', @id)" -n "${ES_INPUT_FILE}")"
+
+if [ -z "${BUTTONS}" ]
+then
+    exit 3
+fi
+
+HOTKEY="$(echo "${BUTTONS}" | grep 'hotkey' | cut -d '|' -f 2)"
+START="$( echo "${BUTTONS}" | grep 'start'  | cut -d '|' -f 2)"
+
+if [ -z "${HOTKEY}" ] || [ -z "${START}" ]
+then
+    exit 4
+fi
+
+################################################################################
+
+### END THE GAME BY PRESSING HOTKEY + START
+
+while :
+do
+    if pidof -s xjoykill > /dev/null
+    then
+        killall -9 xjoykill
+    fi
+
+    if [ -e "/dev/input/js${P1INDEX}" ]
+    then
+        nice -n 20 xjoykill -hotkey "${HOTKEY}" -start "${START}" -kill "${KILL_SCRIPT}"
+    fi
+
+    if [ -e "/dev/input/js${P1INDEX}" ]
+    then
+        break
+    fi
+
+    sleep 2
+done &
+
+exit 0
