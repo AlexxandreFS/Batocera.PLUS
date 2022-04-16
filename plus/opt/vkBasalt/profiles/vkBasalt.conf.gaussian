@@ -3,88 +3,57 @@ reshadeTexturePath = /opt/vkBasalt/reshade-shaders/Textures
 reshadeIncludePath = /opt/vkBasalt/reshade-shaders/Shaders
 
 ################### ReShade Shaders ###################
-3DFX = /opt/vkBasalt/reshade-shaders/Shaders/3DFX.fx
-AdaptiveFog = /opt/vkBasalt/reshade-shaders/Shaders/AdaptiveFog.fx
-AdaptiveSharpen = /opt/vkBasalt/reshade-shaders/Shaders/AdaptiveSharpen.fx
-AmbientLight = /opt/vkBasalt/reshade-shaders/Shaders/AmbientLight.fx
 ASCII = /opt/vkBasalt/reshade-shaders/Shaders/ASCII.fx
-AspectRatio = /opt/vkBasalt/reshade-shaders/Shaders/AspectRatio.fx
-Bloom = /opt/vkBasalt/reshade-shaders/Shaders/Bloom.fx
 Border = /opt/vkBasalt/reshade-shaders/Shaders/Border.fx
-Cartoon = /opt/vkBasalt/reshade-shaders/Shaders/Cartoon.fx
-ChromaKey = /opt/vkBasalt/reshade-shaders/Shaders/ChromaKey.fx
-ChromaticAberration = /opt/vkBasalt/reshade-shaders/Shaders/ChromaticAberration.fx
-CinematicDOF = /opt/vkBasalt/reshade-shaders/Shaders/CinematicDOF.fx
-Clarity = /opt/vkBasalt/reshade-shaders/Shaders/Clarity.fx
-ColorMatrix = /opt/vkBasalt/reshade-shaders/Shaders/ColorMatrix.fx
-Colourfulness = /opt/vkBasalt/reshade-shaders/Shaders/Colourfulness.fx
+CAS = /opt/vkBasalt/reshade-shaders/Shaders/CAS.fx
 CRT = /opt/vkBasalt/reshade-shaders/Shaders/CRT.fx
+Cartoon = /opt/vkBasalt/reshade-shaders/Shaders/Cartoon.fx
+ChromaticAberration = /opt/vkBasalt/reshade-shaders/Shaders/ChromaticAberration.fx
+Clarity = /opt/vkBasalt/reshade-shaders/Shaders/Clarity.fx
+Colourfulness = /opt/vkBasalt/reshade-shaders/Shaders/Colourfulness.fx
+ColorMatrix = /opt/vkBasalt/reshade-shaders/Shaders/ColorMatrix.fx
 Curves = /opt/vkBasalt/reshade-shaders/Shaders/Curves.fx
+DPX = /opt/vkBasalt/reshade-shaders/Shaders/DPX.fx
 Daltonize = /opt/vkBasalt/reshade-shaders/Shaders/Daltonize.fx
 Deband = /opt/vkBasalt/reshade-shaders/Shaders/Deband.fx
 Denoise = /opt/vkBasalt/reshade-shaders/Shaders/Denoise.fx
-Depth3D = /opt/vkBasalt/reshade-shaders/Shaders/Depth3D.fx
-Dephhaze = /opt/vkBasalt/reshade-shaders/Shaders/Dephhaze.fx
 DisplayDepth = /opt/vkBasalt/reshade-shaders/Shaders/DisplayDepth.fx
-DOF = /opt/vkBasalt/reshade-shaders/Shaders/DOF.fx
-DPX = /opt/vkBasalt/reshade-shaders/Shaders/DPX.fx
-Emphasize = /opt/vkBasalt/reshade-shaders/Shaders/Emphasize.fx
-EyeAdaption = /opt/vkBasalt/reshade-shaders/Shaders/EyeAdaption.fx
+FXAA = /opt/vkBasalt/reshade-shaders/Shaders/FXAA.fx
 FakeHDR = /opt/vkBasalt/reshade-shaders/Shaders/FakeHDR.fx
-FakeMotionBlur = /opt/vkBasalt/reshade-shaders/Shaders/FakeMotionBlur.fx
 FilmGrain = /opt/vkBasalt/reshade-shaders/Shaders/FilmGrain.fx
 FilmGrain2 = /opt/vkBasalt/reshade-shaders/Shaders/FilmGrain2.fx
-FilmicAnamorphSharpen = /opt/vkBasalt/reshade-shaders/Shaders/FilmicAnamorphSharpen.fx
-FilmicPass = /opt/vkBasalt/reshade-shaders/Shaders/FilmicPass.fx
-FineSharp = /opt/vkBasalt/reshade-shaders/Shaders/FineSharp.fx
-FXAA = /opt/vkBasalt/reshade-shaders/Shaders/FXAA.fx
-GaussianBlur = /opt/vkBasalt/reshade-shaders/Shaders/GaussianBlur.fx
-Glitch = /opt/vkBasalt/reshade-shaders/Shaders/Glitch.fx
-HighPassSharpen = /opt/vkBasalt/reshade-shaders/Shaders/HighPassSharpen.fx
-HQ4X = /opt/vkBasalt/reshade-shaders/Shaders/HQ4X.fx
-HSLShift = /opt/vkBasalt/reshade-shaders/Shaders/HSLShift.fx
-Layer = /opt/vkBasalt/reshade-shaders/Shaders/Layer.fx
-Levels = /opt/vkBasalt/reshade-shaders/Shaders/Levels.fx
-LevelsPlus = /opt/vkBasalt/reshade-shaders/Shaders/LevelsPlus.fx
-LiftGammaGain = /opt/vkBasalt/reshade-shaders/Shaders/LiftGammaGain.fx
-LightDoF = /opt/vkBasalt/reshade-shaders/Shaders/LightDoF.fx
-LumaSharpen = /opt/vkBasalt/reshade-shaders/Shaders/LumaSharpen.fx
 LUT = /opt/vkBasalt/reshade-shaders/Shaders/LUT.fx
 MagicBloom = /opt/vkBasalt/reshade-shaders/Shaders/MagicBloom.fx
+Layer = /opt/vkBasalt/reshade-shaders/Shaders/Layer.fx
+Levels = /opt/vkBasalt/reshade-shaders/Shaders/Levels.fx
+LiftGammaGain = /opt/vkBasalt/reshade-shaders/Shaders/LiftGammaGain.fx
+LumaSharpen = /opt/vkBasalt/reshade-shaders/Shaders/LumaSharpen.fx
 Monochrome = /opt/vkBasalt/reshade-shaders/Shaders/Monochrome.fx
-MultiLUT = /opt/vkBasalt/reshade-shaders/Shaders/MultiLUT.fx
-MXAO = /opt/vkBasalt/reshade-shaders/Shaders/MXAO.fx
-NightVision = /opt/vkBasalt/reshade-shaders/Shaders/NightVision.fx
 Nostalgia = /opt/vkBasalt/reshade-shaders/Shaders/Nostalgia.fx
-PerfectPerspective = /opt/vkBasalt/reshade-shaders/Shaders/PerfectPerspective.fx
-PPFX_Bloom = /opt/vkBasalt/reshade-shaders/Shaders/PPFX_Bloom.fx
-PPFX_Godrays = /opt/vkBasalt/reshade-shaders/Shaders/PPFX_Godrays.fx
-Prism = /opt/vkBasalt/reshade-shaders/Shaders/Prism.fx
-ReflectiveBumpMapping = /opt/vkBasalt/reshade-shaders/Shaders/ReflectiveBumpMapping.fx
-Sepia = /opt/vkBasalt/reshade-shaders/Shaders/Sepia.fx
 SMAA = /opt/vkBasalt/reshade-shaders/Shaders/SMAA.fx
+GaussianBlur = /opt/vkBasalt/reshade-shaders/Shaders/GaussianBlur.fx
+Sepia = /opt/vkBasalt/reshade-shaders/Shaders/Sepia.fx
 Splitscreen = /opt/vkBasalt/reshade-shaders/Shaders/Splitscreen.fx
-StageDepth = /opt/vkBasalt/reshade-shaders/Shaders/StageDepth.fx
-SurfaceBlur = /opt/vkBasalt/reshade-shaders/Shaders/SurfaceBlur.fx
 Technicolor = /opt/vkBasalt/reshade-shaders/Shaders/Technicolor.fx
 Technicolor2 = /opt/vkBasalt/reshade-shaders/Shaders/Technicolor2.fx
-TiltShift = /opt/vkBasalt/reshade-shaders/Shaders/TiltShift.fx
 Tonemap = /opt/vkBasalt/reshade-shaders/Shaders/Tonemap.fx
-TriDither = /opt/vkBasalt/reshade-shaders/Shaders/TriDither.fx
-UIDetect = /opt/vkBasalt/reshade-shaders/Shaders/UIDetect.fx
 UIMask = /opt/vkBasalt/reshade-shaders/Shaders/UIMask.fx
 Vibrance = /opt/vkBasalt/reshade-shaders/Shaders/Vibrance.fx
 Vignette = /opt/vkBasalt/reshade-shaders/Shaders/Vignette.fx
+qUINT_rtgi = /opt/vkBasalt/reshade-shaders/Shaders/qUINT_rtgi.fx
 
 ################### qUINT Shaders ###################
 qUINT_bloom = /opt/vkBasalt/reshade-shaders/Shaders/qUINT/qUINT_bloom.fx
 qUINT_deband = /opt/vkBasalt/reshade-shaders/Shaders/qUINT/qUINT_deband.fx
+qUINT_dof = /opt/vkBasalt/reshade-shaders/Shaders/qUINT/qUINT_dof.fx
 qUINT_lightroom = /opt/vkBasalt/reshade-shaders/Shaders/qUINT/qUINT_lightroom.fx
 qUINT_mxao = /opt/vkBasalt/reshade-shaders/Shaders/qUINT/qUINT_mxao.fx
 qUINT_sharp = /opt/vkBasalt/reshade-shaders/Shaders/qUINT/qUINT_sharp.fx
 qUINT_ssr = /opt/vkBasalt/reshade-shaders/Shaders/qUINT/qUINT_ssr.fx
 
 ################### PD80 Shaders ###################
+PD80_01A_RT_Correct_Contrast = /opt/vkBasalt/reshade-shaders/Shaders/PD80/PD80_01A_RT_Correct_Contrast.fx
+PD80_01B_RT_Correct_Color = /opt/vkBasalt/reshade-shaders/Shaders/PD80/PD80_01B_RT_Correct_Color.fx
 PD80_01_Color_Gamut = /opt/vkBasalt/reshade-shaders/Shaders/PD80/PD80_01_Color_Gamut.fx
 PD80_02_Bloom = /opt/vkBasalt/reshade-shaders/Shaders/PD80/PD80_02_Bloom.fx
 PD80_02_Bonus_LUT_pack = /opt/vkBasalt/reshade-shaders/Shaders/PD80/PD80_02_Bonus_LUT_pack.fx
@@ -113,6 +82,9 @@ PD80_06_Luma_Fade = /opt/vkBasalt/reshade-shaders/Shaders/PD80/PD80_06_Luma_Fade
 PD80_06_Posterize_Pixelate = /opt/vkBasalt/reshade-shaders/Shaders/PD80/PD80_06_Posterize_Pixelate.fx
 
 ################### Depth3D Shaders ###################
+SuperDepth3D = /opt/vkBasalt/reshade-shaders/Shaders/Depth3D/SuperDepth3D.fx
+SuperDepth3D_VR+ = /opt/vkBasalt/reshade-shaders/Shaders/Depth3D/SuperDepth3D_VR+.fx
+################ Depth3D Shaders Others ###############
 3DToElse = /opt/vkBasalt/reshade-shaders/Shaders/Depth3D/Others/3DToElse.fx
 Depth_Tool = /opt/vkBasalt/reshade-shaders/Shaders/Depth3D/Others/Depth_Tool.fx
 Dimension_Plus = /opt/vkBasalt/reshade-shaders/Shaders/Depth3D/Others/Dimension_Plus.fx
@@ -122,15 +94,27 @@ VirtualNose = /opt/vkBasalt/reshade-shaders/Shaders/Depth3D/Others/VirtualNose.f
 
 ################### AstrayFX Shaders ###################
 BloomingHDR = /opt/vkBasalt/reshade-shaders/Shaders/AstrayFX/BloomingHDR.fx
-Depth_Cues = /opt/vkBasalt/reshade-shaders/Shaders/AstrayFX/Depth_Cues.fx
+Clarity = /opt/vkBasalt/reshade-shaders/Shaders/AstrayFX/Clarity.fx
 DLAA_Plus = /opt/vkBasalt/reshade-shaders/Shaders/AstrayFX/DLAA_Plus.fx
+Depth_Cues = /opt/vkBasalt/reshade-shaders/Shaders/AstrayFX/Depth_Cues.fx
+Flair = /opt/vkBasalt/reshade-shaders/Shaders/AstrayFX/Flair.fx
+GloomAO = /opt/vkBasalt/reshade-shaders/Shaders/AstrayFX/GloomAO.fx
 NFAA = /opt/vkBasalt/reshade-shaders/Shaders/AstrayFX/NFAA.fx
+RadiantGI = /opt/vkBasalt/reshade-shaders/Shaders/AstrayFX/RadiantGI.fx
+Smart_Sharp = /opt/vkBasalt/reshade-shaders/Shaders/AstrayFX/Smart_Sharp.fx
 Temporal_AA = /opt/vkBasalt/reshade-shaders/Shaders/AstrayFX/Temporal_AA.fx
+TobiiEye_FreePie_AstrayFX = /opt/vkBasalt/reshade-shaders/Shaders/AstrayFX/TobiiEye_FreePie_AstrayFX.py
+Trails = /opt/vkBasalt/reshade-shaders/Shaders/AstrayFX/Trails.fx
+############### AstrayFX Shaders OneShot ############
+Limbo_Mod = /opt/vkBasalt/reshade-shaders/Shaders/AstrayFX/OneShot/Limbo_Mod.fx
+SnowScape = /opt/vkBasalt/reshade-shaders/Shaders/AstrayFX/OneShot/SnowScape.fx
 
 ################### OtisFX Shaders ###################
 AdaptiveFog = /opt/vkBasalt/reshade-shaders/Shaders/OtisFX/AdaptiveFog.fx
 CinematicDOF = /opt/vkBasalt/reshade-shaders/Shaders/OtisFX/CinematicDOF.fx
+DepthHaze = /opt/vkBasalt/reshade-shaders/Shaders/OtisFX/DepthHaze.fx
 DirectionalDepthBlur = /opt/vkBasalt/reshade-shaders/Shaders/OtisFX/DirectionalDepthBlur.fx
+Emphasize = /opt/vkBasalt/reshade-shaders/Shaders/OtisFX/Emphasize.fx
 GoldenRatio = /opt/vkBasalt/reshade-shaders/Shaders/OtisFX/GoldenRatio.fx
 Heightfog = /opt/vkBasalt/reshade-shaders/Shaders/OtisFX/Heightfog.fx
 MagicBorder = /opt/vkBasalt/reshade-shaders/Shaders/OtisFX/MagicBorder.fx
@@ -151,8 +135,10 @@ AspectRatioComposition = /opt/vkBasalt/reshade-shaders/Shaders/Daodan/AspectRati
 ColorfulPoster = /opt/vkBasalt/reshade-shaders/Shaders/Daodan/ColorfulPoster.fx
 ColorIsolation = /opt/vkBasalt/reshade-shaders/Shaders/Daodan/ColorIsolation.fx
 Comic = /opt/vkBasalt/reshade-shaders/Shaders/Daodan/Comic.fx
+HotsamplingHelper = /opt/vkBasalt/reshade-shaders/Shaders/Daodan/HotsamplingHelper.fx
 MeshEdges = /opt/vkBasalt/reshade-shaders/Shaders/Daodan/MeshEdges.fx
 MultiTonePoster = /opt/vkBasalt/reshade-shaders/Shaders/Daodan/MultiTonePoster.fx
+RemoveTint = /opt/vkBasalt/reshade-shaders/Shaders/Daodan/RemoveTint.fx
 RetroTint = /opt/vkBasalt/reshade-shaders/Shaders/Daodan/RetroTint.fx
 
 ################### Fubax Shaders ###################
@@ -166,8 +152,8 @@ FilmicSharpen = /opt/vkBasalt/reshade-shaders/Shaders/Fubax/FilmicSharpen.fx
 Flipbook = /opt/vkBasalt/reshade-shaders/Shaders/Fubax/Flipbook.fx
 Image = /opt/vkBasalt/reshade-shaders/Shaders/Fubax/Image.fx
 Interlaced = /opt/vkBasalt/reshade-shaders/Shaders/Fubax/Interlaced.fx
-Letterbox = /opt/vkBasalt/reshade-shaders/Shaders/Fubax/Letterbox.fx
 LUTTools = /opt/vkBasalt/reshade-shaders/Shaders/Fubax/LUTTools.fx
+Letterbox = /opt/vkBasalt/reshade-shaders/Shaders/Fubax/Letterbox.fx
 PerfectPerspective = /opt/vkBasalt/reshade-shaders/Shaders/Fubax/PerfectPerspective.fx
 PerfectPerspective2 = /opt/vkBasalt/reshade-shaders/Shaders/Fubax/PerfectPerspective2.fx
 Prism = /opt/vkBasalt/reshade-shaders/Shaders/Fubax/Prism.fx
@@ -176,7 +162,9 @@ SunsetFilter = /opt/vkBasalt/reshade-shaders/Shaders/Fubax/SunsetFilter.fx
 TiltShift = /opt/vkBasalt/reshade-shaders/Shaders/Fubax/TiltShift.fx
 
 ################### Insane Shaders ###################
+Bessel_Bloom = /opt/vkBasalt/reshade-shaders/Shaders/Insane-Shaders/Bessel_Bloom.fx
 BilateralComic = /opt/vkBasalt/reshade-shaders/Shaders/Insane-Shaders/BilateralComic.fx
+CMAA_2 = /opt/vkBasalt/reshade-shaders/Shaders/Insane-Shaders/CMAA_2.fx
 ContrastStretch = /opt/vkBasalt/reshade-shaders/Shaders/Insane-Shaders/ContrastStretch.fx
 DeepFry = /opt/vkBasalt/reshade-shaders/Shaders/Insane-Shaders/DeepFry.fx
 Dehaze = /opt/vkBasalt/reshade-shaders/Shaders/Insane-Shaders/Dehaze.fx
@@ -207,7 +195,6 @@ FlexibleCA = /opt/vkBasalt/reshade-shaders/Shaders/luluco250/FlexibleCA.fx
 FocalDOF = /opt/vkBasalt/reshade-shaders/Shaders/luluco250/FocalDOF.fx
 FramerateLimiter = /opt/vkBasalt/reshade-shaders/Shaders/luluco250/FramerateLimiter.fx
 HexLensFlare = /opt/vkBasalt/reshade-shaders/Shaders/luluco250/HexLensFlare.fx
-KeyCodes = /opt/vkBasalt/reshade-shaders/Shaders/luluco250/KeyCodes.fxh
 LiquidLens = /opt/vkBasalt/reshade-shaders/Shaders/luluco250/LiquidLens.fx
 MBMB = /opt/vkBasalt/reshade-shaders/Shaders/luluco250/MBMB.fx
 MagicHDR = /opt/vkBasalt/reshade-shaders/Shaders/luluco250/MagicHDR.fx
@@ -223,7 +210,6 @@ SCurve = /opt/vkBasalt/reshade-shaders/Shaders/luluco250/SCurve.fx
 Sketch = /opt/vkBasalt/reshade-shaders/Shaders/luluco250/Sketch.fx
 TrackingRays = /opt/vkBasalt/reshade-shaders/Shaders/luluco250/TrackingRays.fx
 UnrealLens = /opt/vkBasalt/reshade-shaders/Shaders/luluco250/UnrealLens.fx
-Unsharp = /opt/vkBasalt/reshade-shaders/Shaders/luluco250/Unsharp.fx
 VirtualResolution = /opt/vkBasalt/reshade-shaders/Shaders/luluco250/VirtualResolution.fx
 WhitepointFixer = /opt/vkBasalt/reshade-shaders/Shaders/luluco250/WhitepointFixer.fx
 
@@ -307,15 +293,23 @@ Wave = /opt/vkBasalt/reshade-shaders/Shaders/Radegast/Wave.fx
 ZigZag = /opt/vkBasalt/reshade-shaders/Shaders/Radegast/ZigZag.fx
 
 ################### CobraFX Shaders ###################
+Cobra_Mask = /opt/vkBasalt/reshade-shaders/Shaders/CobraFX/Cobra_Mask.fx
+ColorSort = /opt/vkBasalt/reshade-shaders/Shaders/CobraFX/ColorSort.fx
+Droste = /opt/vkBasalt/reshade-shaders/Shaders/CobraFX/Droste.fx
+Gravity = /opt/vkBasalt/reshade-shaders/Shaders/CobraFX/Gravity.fx
+RealLongExposure = /opt/vkBasalt/reshade-shaders/Shaders/CobraFX/RealLongExposure.fx
+computeGravity = /opt/vkBasalt/reshade-shaders/Shaders/CobraFX/computeGravity.fx
+
 ################### VRToolkit Shaders ###################
-################### RTGI Shaders ###################
+VRToolkit = /opt/vkBasalt/reshade-shaders/Shaders/VRToolkit/VRToolkit.fx
 
 ################### LutFile ###################
-lutFile = "/opt/vkBasalt/reshade/Textures/lut.png"
+lutFile = /opt/vkBasalt/reshade/Textures/lut.png"
 
 ################### VkBasalt Configs ###################
-toggleKey = F3
-casSharpness=0.0
+toggleKey = Home
+casSharpness = 0.0
+enableOnLaunch = True
 depthCapture = off
 
 ################### Effects ###################
