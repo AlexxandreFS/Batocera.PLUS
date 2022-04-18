@@ -13,4 +13,5 @@ RetroFlix         https://github.com/20GotoTen/es-theme-retrofix
 RVGM              https://github.com/Darknior/RVGM-BT-Theme
 UniFlyered        https://github.com/BatoceraPLUS/Theme-UniFlyered-PLUS
 Zoid              https://github.com/BatoceraPLUS/Theme-Zoid
- ComicscrapPLUS   https://github.com/LordOgro/ComicscrapPLUS
+ComicscrapPLUS    https://github.com/LordOgro/ComicscrapPLUS
+FakeXMB_PLUS      https://github.com/LordOgro/FakeXMB_PLUS
