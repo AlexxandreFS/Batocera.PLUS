@@ -56,6 +56,7 @@ function populate()
 
     if ! [ -e "${CONFIG_DIR}/PCSX2_ui.ini" ]; then
         (echo 'PresetIndex=1'
+         echo 'CurrentIso='
          echo '[Filenames]'
          echo 'BIOS=scph39001.bin'
          echo '[ProgramLog]'
@@ -69,6 +70,7 @@ function populate()
 
     if [ "${CUSTOM}" == '1' ] || [ "${CUSTOM}" == '2' ]; then
        sed -i "s|^Slot1_Filename=.*|Slot1_Filename=$(basename "${ROM%.*}")".ps2"|" "${CONFIG_DIR}/PCSX2_ui.ini"
+       sed -i "s|^[ ]*CurrentIso=.*|CurrentIso=${ROM}|" "${CONFIG_DIR}/PCSX2_ui.ini"
     fi
 
     if ! [ -e "${CONFIG_DIR}/GS.ini" ]; then
@@ -113,8 +115,7 @@ if [ -e "${ROM}" ] && [ "${CUSTOM}" == '1' ]; then
     ${EMU_DIR}/PCSX2 --nogui --fullscreen --cfgpath="${CONFIG_DIR}" \
         ${FULLBOOT} "${ROM}" > ${HOME}/logs/pcsx2-mainline.log 2>&1
 elif [ -e "${ROM}" ] && [ "${CUSTOM}" == '2' ]; then
-    ${EMU_DIR}/PCSX2 --cfgpath="${CONFIG_DIR}" \
-        "${ROM}" > ${HOME}/logs/pcsx2-mainline.log 2>&1
+    ${EMU_DIR}/PCSX2 --cfgpath="${CONFIG_DIR}" > ${HOME}/logs/pcsx2-mainline.log 2>&1
 elif [ -e "${ROM}" ]; then
     ${EMU_DIR}/PCSX2 --nogui --fullscreen ${FULLBOOT} \
         "${ROM}" > ${HOME}/logs/pcsx2-mainline.log 2>&1
