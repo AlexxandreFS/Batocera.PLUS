@@ -6,7 +6,7 @@ set -e
 
 ################################################################################
 
-# Batocera.PLUS Version 
+# Batocera.PLUS Version
 VERSION='2.21'
 
 # Remova esta linha para diminuir o tempo de compilação.
@@ -246,8 +246,9 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-470.103.01-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-390.147-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-340.108-2.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-64bits-21.1.6-1.7z'        # remove on update
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-32bits-21.1.6-3.7z'        # remove on update
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-32bits-21.3.8-1.7z'        # remove on update
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-64bits-21.3.8-1.7z'        # remove on update
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libLLVM-13.0.0-1.7z'              # dep: mesa3d # remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pipewire-0.3.31-1.7z'             # remove on update
 )
 
@@ -505,7 +506,7 @@ cp -r -f "$UPDATE_DIR/"* "$TEMP_DIR/squashfs-root"
 echo 'criando disco ram...'
 
 mkdir -p "${TEMP_DIR}/pkg-xtract"
-mount -t tmpfs -o size=1536M tmpfs "${TEMP_DIR}/pkg-xtract"
+mount -t tmpfs -o size=2048M tmpfs "${TEMP_DIR}/pkg-xtract"
 
 ################################################################################
 
