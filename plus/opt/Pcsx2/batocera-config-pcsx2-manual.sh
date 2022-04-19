@@ -15,8 +15,22 @@ PCSX2_DIR="$(dirname ${0})"
 
 ### CRIA LISTA TEMPORARIA
 
-LISTA="$( ls -al "${ROMS_FOLDER}" | grep -Ev '\.(txt|xml|mds)$' | egrep -v ^d | cut -b 58- | sed 's/^ *//' | sed '/^$/d' )"
-echo "${LISTA}" > /tmp/LISTA.txt
+echo -n > /tmp/LISTA.txt
+
+for LISTA in ${ROMS_FOLDER}/*
+do
+    if [ -d "${LISTA}" ]
+    then
+        continue
+    fi
+
+    if [ -z "$(echo "${LISTA}" | grep -Evi '.(txt|xml|mds)$')" ]
+    then
+        continue
+    fi
+
+    echo "$(basename "${LISTA}")" >> /tmp/LISTA.txt
+done
 
 ################################################################################
 
