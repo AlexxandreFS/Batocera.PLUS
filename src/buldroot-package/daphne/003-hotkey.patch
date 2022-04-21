@@ -1,0 +1,23 @@
+diff --git a/src/io/input.cpp b/src/io/input.cpp
+index 39fe902..7703d8b 100644
+--- a/src/io/input.cpp
++++ b/src/io/input.cpp
+@@ -643,7 +643,7 @@ void process_event(SDL_Event *event)
+         for (i = 0; i < SWITCH_COUNT; i++) {
+             if (event->jbutton.which == joystick_buttons_map[i][0]
+                             && event->jbutton.button == joystick_buttons_map[i][1]-1) {
+-                if (i == SWITCH_COIN1) hotkey = true;
++                if (i == SWITCH_COIN1 || i == SWITCH_QUIT) hotkey = true;
+                 input_enable(i);
+                 break;
+             }
+@@ -856,9 +856,6 @@ void input_enable(Uint8 move)
+     case SWITCH_PAUSE:
+         g_game->toggle_game_pause();
+         break;
+-    case SWITCH_QUIT:
+-        set_quitflag();
+-        break;
+     case SWITCH_START1:
+         if (hotkey)
+             set_quitflag();
