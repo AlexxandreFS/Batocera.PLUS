@@ -11,7 +11,6 @@
 ## ROM = Caminho do jogo até a iso ou rpx
 ## RENDER = vulkan, opengl ou auto
 ## SYNC = esync, fsync ou auto
-## PIGUID = parâmetro do emulatorlauncher.sh
 ## INTEL = use new intel graphics
 ##
 ## SITE QUE AJUDOU NA MONTAGEM DESTE SCRIPT
@@ -24,16 +23,15 @@
 JOGO="${1}"
 RENDER="${2}"
 SYNC="${3}"
-P1GUID="${4}"
-INTEL="${5}"
+INTEL="${4}"
 
 ################################################################################
 
 ### CAMINHOS
 
 CEMU_DIR='/opt/Cemu'
-CEMU="$HOME/configs/cemu"
-SAVE="$HOME/../saves/wiiu"
+CEMU="${HOME}/configs/cemu"
+SAVE="${HOME}/../saves/wiiu"
 WINE=proton-valve
 WINERUN="${WINE}-64"
 
@@ -64,13 +62,9 @@ function help()
     echo ' Cemu.sh [ROM] [OTIMIZATIONS] [RENDER] [SYNC] [DXVK] [P1GUID]'
     echo
     echo ' ROM          = Caminho do jogo até a .iso ou .rpx'
-    echo ' OTIMIZATIONS = nvidia, amd, intel ou auto'
     echo ' RENDER       = vulkan, opengl ou auto'
     echo ' SYNC         = esync, fsync ou auto'
-    echo ' DXVK         = on, off ou auto'
-    echo ' PIGUID       = parâmetro do emulatorlauncher.sh (OPICIONAL)'
     echo ' INTEL        = use new intel graphics'
-    echo ' SHADER       = 0 - auto, 1 - enable, 2 - disable'
     echo
 }
 
@@ -224,25 +218,6 @@ esac
 
 ################################################################################
 
-### HOTKEY
-
-BOTOES="$(/opt/Wine/getHotkeyStart "${P1GUID}")"
-BOTAO_HOTKEY="$(echo "${BOTOES}" | cut -d ' ' -f 1)"
-BOTAO_START="$(echo "${BOTOES}"  | cut -d ' ' -f 2)"
-
-if [ "${BOTAO_HOTKEY}" ] && [ "${BOTAO_START}" ]; then
-    # Impede que o xjoykill seja encerrado enquanto o jogo está em execução.
-    while : ; do
-        nice -n 20 xjoykill -hotkey "${BOTAO_HOTKEY}" -start "${BOTAO_START}" -kill /usr/bin/killwine
-        if ! [ "$(pidof wineserver)" ]; then
-            break
-        fi
-        sleep 5
-    done &
-fi
-
-################################################################################
-
 ### CAPTURA O JOGO
 
 # Checa se tem uma rom válida na variável JOGO
@@ -279,11 +254,11 @@ fi
 
 # Executa o Cemu com as configurações selecionadas
 if [ "${JOGO}" == '' ]; then
-    "$WINERUN" "${CEMU}/Cemu.exe"
+    $WINERUN "${CEMU}/Cemu.exe"
 elif [ "${JOGO}" != '' ] && [ "${INTEL}" == 'on' ]; then
-    "$WINERUN" "${CEMU}/Cemu.exe" -legacy -g "${JOGO}"
+    $WINERUN "${CEMU}/Cemu.exe" -legacy -g "${JOGO}"
 else
-    "$WINERUN" "${CEMU}/Cemu.exe" -g "${JOGO}"
+    $WINERUN "${CEMU}/Cemu.exe" -g "${JOGO}"
 fi
 
 ################################################################################
