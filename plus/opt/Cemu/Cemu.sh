@@ -156,9 +156,14 @@ if [ -e "${WINEPREFIX}/.update-timestamp" ]; then # if wine version has changed
 fi
 
 if [ ! "$(ls -A "${WINEPREFIX}" 2> /dev/null)" ]; then # if wineprefix if does not exist
-    export INSTALL_EXTRAS=1
-    export WINE_LOADINGSCREEN=0
-    batocera-load-screen -t 600 -i '/opt/Cemu/loading.jpg' &
+    if [ "$(pidof pcmanfm)" ]; then
+	    export INSTALL_EXTRAS=1
+    else
+        export INSTALL_EXTRAS=1
+        export WINE_LOADINGSCREEN=0
+        batocera-load-screen -t 600 -i '/opt/Cemu/loading.jpg' &
+	fi
+
     mkdir -p "${WINEPREFIX}"
 fi
 
