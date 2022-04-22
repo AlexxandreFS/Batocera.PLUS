@@ -324,27 +324,6 @@ fi
 
 ################################################################################
 
-### HOTKEY
-
-if [ "${P1GUID}" != '' ]; then
-    BOTOES="$(/opt/Wine/getHotkeyStart "${P1GUID}")"
-    BOTAO_HOTKEY="$(echo "${BOTOES}" | cut -d ' ' -f 1)"
-    BOTAO_START="$(echo "${BOTOES}"  | cut -d ' ' -f 2)"
-
-    if [ "${BOTAO_HOTKEY}" ] && [ "${BOTAO_START}" ]; then
-        # persistent mode for hotkey detection
-        while : ; do
-            nice -n 20 xjoykill -hotkey "${BOTAO_HOTKEY}" -start "${BOTAO_START}" -kill /opt/VisualPinball/killvpinball
-            if [ ! "$(pidof "${EMU_PID}")" ]; then
-                break
-            fi
-            sleep 5
-        done &
-    fi
-fi
-
-################################################################################
-
 ### PAD TO KEYBOARD
 
 if [ "${JOYPAD}" ]; then
@@ -401,11 +380,6 @@ fi
 ################################################################################
 
 ### RUN
-
-if [ "$(pidof -s yad)" ]; then
-    killall yad
-fi
-
 export VIRTUAL_DESKTOP=1
 
 case ${EMU_EXE} in
