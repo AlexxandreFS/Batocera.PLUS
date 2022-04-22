@@ -684,12 +684,6 @@ ln -s "${SAVE_DIR}/users"       "${WINEPREFIX}/drive_c/users"
 
 ### DIRECTX 9 + WINE-MONO (install)
 
-# Install Mono
-# (bug) As novas versões do wine só funcionam se o Mono for instalado antes da criação do prefixo
-# sem o Mono o directx não instala e o prefixo fica corrompido.
-mkdir -p "${WINEPREFIX}/drive_c/windows/mono"
-ln -s "${WINE_DIR}/apps/mono" "${WINEPREFIX}/drive_c/windows/mono/mono-2.0"
-
 # Se o usuário definir um WINEPREFIX o DirectX não será instalado, útil para
 # instalações em prefixos diferentes para evitar influências externas.
 if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ] || [ "${INSTALL_EXTRAS}" == '1' ]; then
@@ -698,6 +692,12 @@ if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ] || [ "${INSTALL_E
         unset WINEARCH
         exec "${WINE_BUILD}" "${@}"
     fi
+
+    # Install Mono
+    # (bug) As novas versões do wine só funcionam se o Mono for instalado antes da criação do prefixo
+    # sem o Mono o directx não instala e o prefixo fica corrompido.
+    mkdir -p "${WINEPREFIX}/drive_c/windows/mono"
+    ln -s "${WINE_DIR}/apps/mono" "${WINEPREFIX}/drive_c/windows/mono/mono-2.0"
 
     # Install Direct X
     ${WINE_DIR}/${WINE_BUILD}/bin/wine ${WINE_DIR}/apps/directx_Jun2010_redist/DXSETUP.exe /silent
