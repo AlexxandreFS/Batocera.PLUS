@@ -41,7 +41,7 @@ WINERUN="${WINE}-64"
 
 ### EXPORTS
 
-export WINEPREFIX="${SAVE}/wine"
+export WINEPREFIX="${HOME}/configs/wine/standalones/cemu"
 export WINEDLLOVERRIDES='keystone.dll=n,b;cemuhook.dll=n,b'
 export vblank_mode=0
 export mesa_glthread=true
@@ -143,6 +143,10 @@ fi
 
 ### ATUALIZA OU CRIA O PREFIXO SE NECESSÁRIO
 
+if [ -e "${HOME}/../saves/wiiu/wine" ]; then
+    rm -r "${HOME}/../saves/wiiu/wine"
+fi
+
 if [ -e "${WINEPREFIX}/.update-timestamp" ]; then # if wine version has changed
     SDIR_VERSION="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
     OPT_WINE="$(stat -t "/opt/Wine/$WINE/share/wine/wine.inf" | awk '{print $12}')"
@@ -153,6 +157,8 @@ fi
 
 if [ ! "$(ls -A "${WINEPREFIX}" 2> /dev/null)" ]; then # if wineprefix if does not exist
     export INSTALL_EXTRAS=1
+    export WINE_LOADINGSCREEN=0
+    batocera-load-screen -t 600 -i '/opt/Cemu/loading.jpg' &
     mkdir -p "${WINEPREFIX}"
 fi
 
