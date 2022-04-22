@@ -62,7 +62,7 @@ VP_CDIR="$HOME/configs/vpinball"
 
 ### EXPORTS
 
-export WINEPREFIX="${VP_SDIR}/wine"
+export WINEPREFIX="${HOME}/configs/wine/standalones/vpinball"
 
 ################################################################################
 
@@ -114,8 +114,9 @@ echo
 
 function createFolders()
 {
-    ### Create work dir
-    mkdir -p "${VP_CDIR}"
+    ### Create work dirs
+    mkdir -p "${VP_CDIR}" \
+	         "${WINEPREFIX}"
     cp -rf "${VP_DIR}/emulator/VPinMAME" "${VP_CDIR}"
     cp -rf "${VP_DIR}/emulator/0995"     "${VP_CDIR}"
     cp -rf "${VP_DIR}/emulator/1062"     "${VP_CDIR}"
@@ -123,7 +124,6 @@ function createFolders()
 
     ### Create save dir
     mkdir -p "${VP_SDIR}/Music" \
-             "${VP_SDIR}/wine" \
              "${VP_SDIR}/User"
 
     cp -rf "${VP_DIR}/deps/Scripts"      "${VP_SDIR}"
@@ -182,18 +182,17 @@ function applyConfig()
 	
     ### Install wsh57
     echo 'Installing MS Windows Script Host 5.7...'
-    ln -sf "${VP_DIR}/deps/wsh57/"* "$WINEPREFIX/drive_c/windows/syswow64"
+    ln -sf "${VP_DIR}/deps/wsh57/"* "${WINEPREFIX}/drive_c/windows/syswow64"
 
     DLL='dispex.dll jscript.dll scrobj.dll scrrun.dll vbscript.dll wshcon.dll wshext.dll'
-
     for i in $DLL; do
-        $WINE regsvr32 "$WINEPREFIX/drive_c/windows/syswow64/${i}" 2>&1&> /dev/null
+        $WINE regsvr32 "${WINEPREFIX}/drive_c/windows/syswow64/${i}" 2>&1&> /dev/null
         echo "${i} Successfully registered!"
     done
 
     ### Install oleaut32
-    ln -sf "${VP_DIR}/deps/oleaut32/x32/oleaut32.dll" "$WINEPREFIX/drive_c/windows/system32" 2>&1&> /dev/null
-    ln -sf "${VP_DIR}/deps/oleaut32/x64/oleaut32.dll" "$WINEPREFIX/drive_c/windows/syswow64" 2>&1&> /dev/null
+    ln -sf "${VP_DIR}/deps/oleaut32/x32/oleaut32.dll" "${WINEPREFIX}/drive_c/windows/system32" 2>&1&> /dev/null
+    ln -sf "${VP_DIR}/deps/oleaut32/x64/oleaut32.dll" "${WINEPREFIX}/drive_c/windows/syswow64" 2>&1&> /dev/null
 
     sleep 0.5
 
@@ -215,7 +214,7 @@ function applyConfig()
 function choseEmu()
 {
     # Open configurator in miximized window
-    sed -i s'/"WindowMaximized"=.*/"WindowMaximized"=dword:00000001/' "${VP_SDIR}/wine/user.reg"
+    sed -i s'/"WindowMaximized"=.*/"WindowMaximized"=dword:00000001/' "${WINEPREFIX}/user.reg"
 
     yad --form \
         --title='VISUAL PINBALL' \
@@ -237,20 +236,23 @@ function choseEmu()
 
 ### CHECK FOLDERS
 
-if [ -e "${VP_SDIR}/wine/.update-timestamp" ]; then # if wine version has changed
-    SDIR_VERSION="$(cat -e "${VP_SDIR}/wine/.update-timestamp" | cut -d '^' -f 1)"
-    OPT_WINE="$(stat -t "/opt/Wine/${WINE}/share/wine/wine.inf" | awk '{print $12}')"
+if [ -e "${HOME}/../saves/vpinball/wine" ]; then
+    rm -r "${HOME}/../saves/vpinball/wine"
+fi
 
-    if [ "${OPT_WINE}" != "${SDIR_VERSION}" ] && [ -e "${VP_SDIR}/wine" ]; then
-        rm -r "${VP_SDIR}/wine"
+if [ -e "${WINEPREFIX}/.update-timestamp" ]; then # if wine version has changed
+    SDIR_VERSION="$(cat -e "${WINEPREFIX}/.update-timestamp" | cut -d '^' -f 1)"
+    OPT_WINE="$(stat -t "/opt/Wine/$WINE/share/wine/wine.inf" | awk '{print $12}')"
+    if [ "${OPT_WINE}" != "${SDIR_VERSION}" ] && [ -e "${WINEPREFIX}" ]; then
+        rm -r "${WINEPREFIX}"
     fi
 fi
 
 if [ ! "$(ls -A "${VP_CDIR}" 2> /dev/null)" ] || [ ! "$(ls -A "${VP_SDIR}"  2> /dev/null)" ]; then # if is a new instalation
     createFolders
     applyConfig
-elif [ ! "$(ls -A "${VP_SDIR}/wine" 2> /dev/null)" ]; then # if wineprefix if does not exist
-    mkdir -p "${VP_SDIR}/wine"
+elif [ ! "$(ls -A  "${WINEPREFIX}" 2> /dev/null)" ]; then # if wineprefix if does not exist
+    mkdir -p  "${WINEPREFIX}"
     applyConfig
 fi
 
@@ -258,17 +260,17 @@ fi
 
 ### FORCE SOME SETTINGS
 
-if [ -e "${VP_SDIR}/wine/user.reg" ]; then
+if [ -e "${WINEPREFIX}/user.reg" ]; then
     # fix Visual Pinball settings
-    sed -i s'/"FullScreen"=.*/"FullScreen"=dword:00000001/'          "${VP_SDIR}/wine/user.reg"
+    sed -i s'/"FullScreen"=.*/"FullScreen"=dword:00000001/'          "${WINEPREFIX}/user.reg"
     
     # PinMAME fix settings
-    sed -i s'/"cabinet_mode"=.*/"cabinet_mode"=dword:00000001/'      "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"showpindmd"=.*/"showpindmd"=dword:00000000/'          "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"showwindmd"=.*/"showwindmd"=dword:00000001'           "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"skip_disclaimer"=.*/"skip_disclaimer"=dword:00000000' "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"skip_gameinfo"=.*/"skip_gameinfo"=dword:00000000'     "${VP_SDIR}/wine/user.reg"
-    sed -i s'/"dmd_doublesize"=.*/"dmd_doublesize"=dword:00000001'   "${VP_SDIR}/wine/user.reg"
+    sed -i s'/"cabinet_mode"=.*/"cabinet_mode"=dword:00000001/'      "${WINEPREFIX}/user.reg"
+    sed -i s'/"showpindmd"=.*/"showpindmd"=dword:00000000/'          "${WINEPREFIX}/user.reg"
+    sed -i s'/"showwindmd"=.*/"showwindmd"=dword:00000001'           "${WINEPREFIX}/user.reg"
+    sed -i s'/"skip_disclaimer"=.*/"skip_disclaimer"=dword:00000000' "${WINEPREFIX}/user.reg"
+    sed -i s'/"skip_gameinfo"=.*/"skip_gameinfo"=dword:00000000'     "${WINEPREFIX}/user.reg"
+    sed -i s'/"dmd_doublesize"=.*/"dmd_doublesize"=dword:00000001'   "${WINEPREFIX}/user.reg"
 fi
 
 ################################################################################
@@ -288,8 +290,8 @@ fi
 
 XRES="$(printf "%x\n" "${XRES}")"
 YRES="$(printf "%x\n" "${YRES}")"
-sed -i s'/"Width"=.*/"Width"=dword:00000'"${XRES}"'/'   "${VP_SDIR}/wine/user.reg"
-sed -i s'/"Height"=.*/"Height"=dword:00000'"${YRES}"'/' "${VP_SDIR}/wine/user.reg"
+sed -i s'/"Width"=.*/"Width"=dword:00000'"${XRES}"'/'   "${WINEPREFIX}/user.reg"
+sed -i s'/"Height"=.*/"Height"=dword:00000'"${YRES}"'/' "${WINEPREFIX}/user.reg"
 
 ################################################################################
 
@@ -348,18 +350,18 @@ fi
 if [ "${JOYPAD}" ]; then
     if [ "${JOYPAD}" != 'off' ]; then
         # Visual Pinball keyboard fix settings ( if user change this setting )
-        sed -i s'/"PlungerKey"=.*/"PlungerKey"=dword:0000001c/'   "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-        sed -i s'/"RFlipKey"=.*/"RFlipKey"=dword:00000036/'       "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-        sed -i s'/"LFlipKey"=.*/"LFlipKey"=dword:0000002a/'       "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-        sed -i s'/"RTiltKey"=.*/"RTiltKey"=dword:00000035/'       "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-        sed -i s'/"LTiltKey"=.*/"LTiltKey"=dword:0000002c/'       "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-        sed -i s'/"MechTilt"=.*/"MechTilt"=dword:00000014/'       "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-        sed -i s'/"UDAxis"=.*/"UDAxis"=dword:00000000/'           "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-        sed -i s'/"UDAxisFlip"=.*/"UDAxisFlip"=dword:00000000/'   "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-        sed -i s'/"PlungerAxis"=.*/"PlungerAxis"=dword:00000006/' "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-        sed -i s'/"PlungerKey"=.*/"PlungerKey"=dword:0000001c/'   "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-        sed -i s'/"LRAxis"=.*/"LRAxis"=dword:00000000/'           "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
-        sed -i s'/"LRAxisFlip"=.*/"LRAxisFlip"=dword:00000000/'   "${VP_SDIR}/wine/user.reg" 2>&1&> /dev/null
+        sed -i s'/"PlungerKey"=.*/"PlungerKey"=dword:0000001c/'   "${WINEPREFIX}/user.reg" 2>&1&> /dev/null
+        sed -i s'/"RFlipKey"=.*/"RFlipKey"=dword:00000036/'       "${WINEPREFIX}/user.reg" 2>&1&> /dev/null
+        sed -i s'/"LFlipKey"=.*/"LFlipKey"=dword:0000002a/'       "${WINEPREFIX}/user.reg" 2>&1&> /dev/null
+        sed -i s'/"RTiltKey"=.*/"RTiltKey"=dword:00000035/'       "${WINEPREFIX}/user.reg" 2>&1&> /dev/null
+        sed -i s'/"LTiltKey"=.*/"LTiltKey"=dword:0000002c/'       "${WINEPREFIX}/user.reg" 2>&1&> /dev/null
+        sed -i s'/"MechTilt"=.*/"MechTilt"=dword:00000014/'       "${WINEPREFIX}/user.reg" 2>&1&> /dev/null
+        sed -i s'/"UDAxis"=.*/"UDAxis"=dword:00000000/'           "${WINEPREFIX}/user.reg" 2>&1&> /dev/null
+        sed -i s'/"UDAxisFlip"=.*/"UDAxisFlip"=dword:00000000/'   "${WINEPREFIX}/user.reg" 2>&1&> /dev/null
+        sed -i s'/"PlungerAxis"=.*/"PlungerAxis"=dword:00000006/' "${WINEPREFIX}/user.reg" 2>&1&> /dev/null
+        sed -i s'/"PlungerKey"=.*/"PlungerKey"=dword:0000001c/'   "${WINEPREFIX}/user.reg" 2>&1&> /dev/null
+        sed -i s'/"LRAxis"=.*/"LRAxis"=dword:00000000/'           "${WINEPREFIX}/user.reg" 2>&1&> /dev/null
+        sed -i s'/"LRAxisFlip"=.*/"LRAxisFlip"=dword:00000000/'   "${WINEPREFIX}/user.reg" 2>&1&> /dev/null
 
         # Auto detect pluged controller
 	if [ "$(echo "${P1NAME}" | grep 'PS3' )" ] || [ "$(echo "${P1NAME}" | grep 'PLAYSTATION' )" ]; then
