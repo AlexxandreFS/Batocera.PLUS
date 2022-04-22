@@ -147,13 +147,34 @@ function createFolders()
 
 function applyConfig()
 {
+
     ### Install wine extras on wine prefix
-    export INSTALL_EXTRAS=1
     export WINE_LOADINGSCREEN=0
+    export INSTALL_EXTRAS=1
 
     ### install deps for future pinball
     echo 'Install deps for future pinball...'
-    batocera-load-screen -t 600 -i '/opt/VisualPinball/pinball_loading.jpg' &
+    if [ "$(pidof pcmanfm)" ]; then
+	    LANG="$(batocera-settings -command load -key system.language)"
+        case $LANG in
+            pt_BR) PICTURE=/opt/Wine/launcher_ptbr.png    ;;
+            es_ES) PICTURE=/opt/Wine/launcher_eses.png    ;;
+                *) PICTURE=/opt/Wine/launcher_default.png ;;
+        esac
+        
+        yad --title='VPINBALL LAUNCHER' \
+            --window-icon='/usr/share/icons/batocera/wine.png' \
+            --image="${PICTURE}" \
+            --image-on-top \
+            --undecorated \
+            --on-top \
+            --fixed \
+            --center \
+            --no-escape \
+            --no-buttons &
+    else
+        batocera-load-screen -t 600 -i '/opt/VisualPinball/pinball_loading.jpg' &
+    fi
 
     ### Apply default configs
     echo 'Apply visual pinball default configs...'
@@ -185,9 +206,10 @@ function applyConfig()
         sleep 1
     done
 
-    if [ "$(pidof -s yad)" ]; then
+    while [ "$(pidof -s yad)" ]; do
         killall yad
-    fi
+    done
+
 }
 
 function choseEmu()
@@ -377,6 +399,10 @@ fi
 ################################################################################
 
 ### RUN
+
+if [ "$(pidof -s yad)" ]; then
+    killall yad
+fi
 
 export VIRTUAL_DESKTOP=1
 
