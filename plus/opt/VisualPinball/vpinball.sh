@@ -44,9 +44,9 @@
 
 JOGO="${1}"
 RESOLUTION="${2}"
-P1GUID="${3}"
-JOYPAD="${4}"
-P1NAME="${5}"
+JOYPAD="${3}"
+P1NAME="${4}"
+
 LOG_GAME="${JOGO}"
 WINE='wine-stable'
 
@@ -343,13 +343,13 @@ if [ "${JOYPAD}" ]; then
         sed -i s'/"LRAxisFlip"=.*/"LRAxisFlip"=dword:00000000/'   "${WINEPREFIX}/user.reg" 2>&1&> /dev/null
 
         # Auto detect pluged controller
-	if [ "$(echo "${P1NAME}" | grep 'PS3' )" ] || [ "$(echo "${P1NAME}" | grep 'PLAYSTATION' )" ]; then
+	    if [ "$(echo "${P1NAME}" | grep 'PS3' )" ] || [ "$(echo "${P1NAME}" | grep 'PLAYSTATION' )" ]; then
             KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 42 42 14 10 42 42 42 52 97 28 65'
         elif [ "$(echo "${P1NAME}" | grep 'Xbox' )" ] || [ "$(echo "${P1NAME}" | grep 'X-Box' )" ]; then
             KEY_PAD='-device /dev/input/js0 -up 42 -down 42 -left 42 -right 42 -buttons 36 42 42 42 50 62 14 10 42 42 42 52 97 28 65 42 00'
-	else
+	    else
             KEY_PAD='-device /dev/input/js0 -up 52 -down 65 -left 97 -right 28 -buttons 42 42 36 42 50 62 42 42 14 10 42 42 42 52 65 97 28'
-	fi
+	    fi
 
         # Persistent mode gamepad detection
         if [ -e '/dev/input/js0' ]; then
