@@ -143,7 +143,6 @@ BIOS[pc98]="pc98,                     NEC PC-98
 #### Nintendo ####
 
 BIOS[fds]="fds,                       Family Computer Disk System
-    7bfe8c0540ed4bd6a0f1e2a0f0118ced, bios/NstDatabase.xml
     ca30b50f880eb660a320674ed365ef7a, bios/disksys.rom"
 
 BIOS[gb]="gb,                         Game Boy
