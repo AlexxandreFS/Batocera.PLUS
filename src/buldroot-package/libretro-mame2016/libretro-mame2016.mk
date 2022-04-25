@@ -3,8 +3,8 @@
 # MAME2016
 #
 ################################################################################
-# Version.: Commits on Jun 22, 2020
-LIBRETRO_MAME2016_VERSION = d53c379892b0bd91b4a52fc2de491e1199f03e32
+# Version.: Commits on Apr 6, 2022
+LIBRETRO_MAME2016_VERSION = 01058613a0109424c4e7211e49ed83ac950d3993
 LIBRETRO_MAME2016_SITE = $(call github,libretro,mame2016-libretro,$(LIBRETRO_MAME2016_VERSION))
 LIBRETRO_MAME2016_LICENSE="MAME"
 
@@ -26,6 +26,11 @@ define LIBRETRO_MAME2016_BUILD_CMDS
 endef
 
 define LIBRETRO_MAME2016_INSTALL_TARGET_CMDS
+	# Bios
+	mkdir -p $(TARGET_DIR)/usr/share/batocera/datainit/bios/mame2016/samples
+	cp -r $(@D)/metadata/* \
+		$(TARGET_DIR)/usr/share/batocera/datainit/bios/mame2016
+
 	$(INSTALL) -D $(@D)/mame2016_libretro.so \
 		$(TARGET_DIR)/usr/lib/libretro/mame0174_libretro.so
 endef

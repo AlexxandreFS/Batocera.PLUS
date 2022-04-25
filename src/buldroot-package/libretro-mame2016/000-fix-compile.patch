@@ -1,0 +1,13 @@
+diff --git a/scripts/build/msgfmt.py b/scripts/build/msgfmt.py
+index 97d30f4c..24e7e582 100644
+--- a/scripts/build/msgfmt.py
++++ b/scripts/build/msgfmt.py
+@@ -112,7 +112,7 @@ def generate():
+                          7*4,               # start of key index
+                          7*4+len(keys)*8,   # start of value index
+                          0, 0)              # size and offset of hash table
+-    if sys.version_info[1] >= 2:
++    if sys.version_info[1] >= 8:
+         output += array.array("i", offsets).tobytes()
+     else:
+         output += array.array("i", offsets).tostring()
