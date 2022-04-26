@@ -264,6 +264,8 @@ if [ -z "${RELEASE}" ]; then
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/obs-studio-extra-libs-1.7z' #dep: obs-studio
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/shared-mime-info-1.44-1.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xdotool-aug-4-2021.7z'
+        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-cuda-510.60.02-1.7z'   # dep: nvidia-driver
+        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-opencl-510.60.02-1.7z' # dep: nvidia-driver
     )
 fi
 
