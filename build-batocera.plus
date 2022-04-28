@@ -296,6 +296,9 @@ URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.10.1/dxvk-
 URL_WINE_VKD3D_PROTON='https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.6/vkd3d-proton-2.6.tar.zst'
 URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.5.4/dxvk-nvapi-v0.5.4.tar.gz'
 
+URL_WINE_WINETRICKS=20220411
+URL_WINE_WINETRICKS="https://raw.githubusercontent.com/Winetricks/winetricks/${URL_WINE_WINETRICKS}/src/winetricks#/winetricks-${URL_WINE_WINETRICKS}"
+
 URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 
@@ -340,6 +343,7 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_WINE_DXVK}" \
            "${URL_WINE_VKD3D_PROTON}" \
            "${URL_WINE_NVAPI}" \
+           "${URL_WINE_WINETRICKS}" \
            "${URL_CEMU}" \
            "${URL_CEMUHOOK}" \
            "${URL_YUZU_MAINLINE}" \
@@ -594,7 +598,7 @@ mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x32"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x64"
 if ! [ -f /usr/bin/zstd ]; then
     # Este bloco if foi adicionado para não quebrar a compilação do batocera.plus em versões mais antigas (batocera.plus 2.0)
-    # Remova este bloco if quando sair a pŕoxima imagem stable.
+    # Remova este bloco if quando sair a próxima imagem stable.
     "${TEMP_DIR}/squashfs-root/usr/bin/zstd" -d -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar -xvC "${TEMP_DIR}/pkg-xtract" || exit $?
 else
     # Não remova esta linha quando remover o bloco if.
@@ -611,6 +615,16 @@ gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract
 rm "${TEMP_DIR}/pkg-xtract/README.md"
 rm "${TEMP_DIR}/pkg-xtract/LICENSE"
 cp -r "${TEMP_DIR}/pkg-xtract/"* "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi"
+rm -r "${TEMP_DIR}/pkg-xtract/"*
+
+echo 'Install Winetricks...'
+PKG_NAME="$(basename "${URL_WINE_WINETRICKS}")"
+cp "${DOWNLOAD_DIR}/${PKG_NAME}" "${TEMP_DIR}/pkg-xtract/winetricks"
+for FILE in proton-ge-custom proton-valve wine-lutris wine-old-stable wine-stable wine-staging; do
+    ln -s winetricks "${TEMP_DIR}/pkg-xtract/winetricks-${FILE}"
+done
+chmod 755 "${TEMP_DIR}/pkg-xtract/"*
+cp -pP "${TEMP_DIR}/pkg-xtract/"* "${TEMP_DIR}/squashfs-root/usr/bin"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install MangoHud...'

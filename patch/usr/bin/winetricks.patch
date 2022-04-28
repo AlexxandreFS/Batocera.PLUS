@@ -1,11 +1,10 @@
 --- winetricks.original
 +++ winetricks.modificado
-@@ -1,4 +1,32 @@
- #!/bin/sh
+@@ -1,4 +1,30 @@
+-#!/bin/sh
++#!/bin/bash
 +
-+################################################################################
-+
-+### Batocera.PLUS
++# Batocera.PLUS Start
 +
 +echo 'Batocera.PLUS'
 +
@@ -28,83 +27,80 @@
 +
 +unset WINE_BUILD
 +
-+################################################################################
++# Batocera.PLUS Stop
 +
  # shellcheck disable=SC2030,SC2031
  # SC2030: Modification of WINE is local (to subshell caused by (..) group).
  # SC2031: WINE was modified in a subshell. That change might be lost
-@@ -3364,6 +3392,9 @@
+@@ -3418,6 +3444,10 @@
  
  winetricks_latest_version_check()
  {
-+    # Batocera.PLUS Disable Update
-+    return
++    # Batocera.PLUS Start
++    return 0
++    # Batocera.PLUS Stop
 +
      if [ "${WINETRICKS_LATEST_VERSION_CHECK}" = 'disabled' ] || [ -f "${WINETRICKS_CONFIG}/disable-latest-version-check" ] ; then
          w_info "winetricks latest version check update disabled"
          return
-@@ -3468,9 +3499,11 @@
-         WINETRICKS_GUI=kdialog
-         WINETRICKS_GUI_VERSION="$(kdialog --version)"
-     else
--        echo "No arguments given, so tried to start GUI, but zenity not found."
--        echo "Please install zenity if you want a graphical interface, or "
--        echo "run with --help for more options."
-+        # Batocera.PLUS Start
-+        #echo "No arguments given, so tried to start GUI, but zenity not found."
-+        #echo "Please install zenity if you want a graphical interface, or "
-+        #echo "run with --help for more options."
-+        # Batocera.PLUS Stop
-         exit 1
-     fi
- 
-@@ -5169,11 +5202,13 @@
-         W_COMMONFILES_WIN="$(w_expand_env CommonProgramW6432)"
+@@ -3527,8 +3557,10 @@
+             WINETRICKS_MENU_HEIGHT=500
+             WINETRICKS_MENU_WIDTH=1010
+         else
+-            echo "Invalid argument for --gui"
+-            echo "Valid options are 'zenity' and 'kdialog'"
++            # Batocera.PLUS Start
++            # echo "Invalid argument for --gui"
++            # echo "Valid options are 'zenity' and 'kdialog'"
++            # Batocera.PLUS Stop
+             exit 1
+         fi
+     elif [ "${XDG_CURRENT_DESKTOP}" = "KDE" ] && test -x "$(command -v kdialog 2>/dev/null)"; then
+@@ -5313,11 +5345,13 @@
          W_COMMONFILES="$(w_pathconv -u "${W_COMMONFILES_WIN}")"
  
-+        # Batocera.PLUS Start
          # 64-bit prefixes still have plenty of issues:
 -        case ${LANG} in
 -            ru*) w_warn "Вы используете 64-битный WINEPREFIX. Важно: многие ветки устанавливают только 32-битные версии пакетов. Если у вас возникли проблемы, пожалуйста, проверьте еще раз на чистом 32-битном WINEPREFIX до отправки отчета об ошибке." ;;
+-            pt*) w_warn "Você está usando um WINEPREFIX de 64-bit. Observe que muitos casos instalam apenas versões de pacotes de 32-bit. Se você encontrar problemas, teste novamente em um WINEPREFIX limpo de 32-bit antes de relatar um bug." ;;
 -            *) w_warn "You are using a 64-bit WINEPREFIX. Note that many verbs only install 32-bit versions of packages. If you encounter problems, please retest in a clean 32-bit WINEPREFIX before reporting a bug." ;;
 -        esac
-+        #case ${LANG} in
-+        #    ru*) w_warn "Вы используете 64-битный WINEPREFIX. Важно: многие ветки устанавливают только 32-битные версии пакетов. Если у вас возникли проблемы, пожалуйста, проверьте еще раз на чистом 32-битном WINEPREFIX до отправки отчета об ошибке." ;;
-+        #    *) w_warn "You are using a 64-bit WINEPREFIX. Note that many verbs only install 32-bit versions of packages. If you encounter problems, please retest in a clean 32-bit WINEPREFIX before reporting a bug." ;;
-+        #esac
-+        # Batocera.PLUS Stopt
++        # Batocera.PLUS Start
++        # case ${LANG} in
++        #     ru*) w_warn "Вы используете 64-битный WINEPREFIX. Важно: многие ветки устанавливают только 32-битные версии пакетов. Если у вас возникли проблемы, пожалуйста, проверьте еще раз на чистом 32-битном WINEPREFIX до отправки отчета об ошибке." ;;
++        #     pt*) w_warn "Você está usando um WINEPREFIX de 64-bit. Observe que muitos casos instalam apenas versões de pacotes de 32-bit. Se você encontrar problemas, teste novamente em um WINEPREFIX limpo de 32-bit antes de relatar um bug." ;;
++        #     *) w_warn "You are using a 64-bit WINEPREFIX. Note that many verbs only install 32-bit versions of packages. If you encounter problems, please retest in a clean 32-bit WINEPREFIX before reporting a bug." ;;
++        # esac
++        # Batocera.PLUS Stop
      else
          WINE64="false"
          WINE_ARCH="${WINE}"
-@@ -5308,10 +5343,12 @@
-         USERNAME="${LOGNAME}"
+@@ -5454,9 +5488,11 @@
      fi
  
-+    # Batocera.PLUS Start
      # Running Wine as root is (generally) bad, mmkay?
 -    if [ "$(id -u)" = 0 ]; then
 -        w_warn "Running Wine/winetricks as root is highly discouraged. See https://wiki.winehq.org/FAQ#Should_I_run_Wine_as_root.3F"
 -    fi
-+    #if [ "$(id -u)" = 0 ]; then
-+    #    w_warn "Running Wine/winetricks as root is highly discouraged. See https://wiki.winehq.org/FAQ#Should_I_run_Wine_as_root.3F"
-+    #fi
++    # Batocera.PLUS Start
++    # if [ "$(id -u)" = 0 ]; then
++    #     w_warn "Running Wine/winetricks as root is highly discouraged. See https://wiki.winehq.org/FAQ#Should_I_run_Wine_as_root.3F"
++    # fi
 +    # Batocera.PLUS Stop
  
      # Ephemeral files for this run
      WINETRICKS_WORKDIR="${W_TMP_EARLY}/w.${LOGNAME}.$$"
-@@ -5500,11 +5537,13 @@
-     # wine-2.8
-     _wine_version_stripped="$(echo "${WINETRICKS_WINE_VERSION}" | cut -d ' ' -f1 | sed -e 's/wine-//' -e 's/-rc.*//')"
+@@ -5653,9 +5689,11 @@
  
-+    # Batocera.PLUS Start
      # If WINE is < 5.0, warn user:
      # 5.0 doesn't do what I thought it would
 -    if w_wine_version_in ,4.99 ; then
 -        w_warn "Your version of wine ${_wine_version_stripped} is no longer supported upstream. You should upgrade to 5.x"
 -    fi
-+    #if w_wine_version_in ,4.99 ; then
-+    #    w_warn "Your version of wine ${_wine_version_stripped} is no longer supported upstream. You should upgrade to 5.x"
-+    #fi
++    # Batocera.PLUS Start
++    # if w_wine_version_in ,4.99 ; then
++    #     w_warn "Your version of wine ${_wine_version_stripped} is no longer supported upstream. You should upgrade to 5.x"
++    # fi
 +    # Batocera.PLUS Stop
  
      winetricks_set_wineprefix "$1"
