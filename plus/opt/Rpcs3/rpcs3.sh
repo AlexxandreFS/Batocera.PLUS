@@ -8,7 +8,6 @@
 ### DIRECTORIES, FILES AND PARAMETERS
 
 GAME="${1}"
-P1GUID="${2}"
 
 MAINLINE_DIR=/opt/Rpcs3
 MAINLINE_SAVE_DIR="${HOME}/../saves/ps3"
@@ -162,10 +161,9 @@ function choseEmu()
 if [ "${GAME}" == '--help' ]; then
     echo
     echo ' Linha de comando:'
-    echo ' rpcs3.sh [ROM] [P1GUID]'
+    echo ' rpcs3.sh [ROM]'
     echo
     echo ' ROM          = Caminho do jogo até a pasta do jogo'
-    echo ' PIGUID       = Parâmetro do emulatorlauncher.sh (OPICIONAL)'
     echo
 
     exit 0
@@ -218,27 +216,6 @@ sed -i 's/Start games in fullscreen mode:.*/Start games in fullscreen mode: true
 
 ################################################################################
 
-### HOTKEY
-
-if [ "${P1GUID}" ]; then
-    BOTOES="$(${MAINLINE_DIR}/getHotkeyStart ${P1GUID})"
-    BOTAO_HOTKEY=$(echo "${BOTOES}" | cut -d ' ' -f 1)
-    BOTAO_START=$(echo  "${BOTOES}" | cut -d ' ' -f 2)
-
-    if [ "${BOTAO_HOTKEY}" ] && [ "${BOTAO_START}" ]; then
-        # Impede que o xjoykill seja encerrado enquanto o jogo está em execução.
-        while : ; do
-            nice -n 20 xjoykill -hotkey ${BOTAO_HOTKEY} -start ${BOTAO_START} -kill "${MAINLINE_DIR}/killrpcs3"
-            if ! [ "$(pidof rpcs3)" ]; then
-                break
-            fi
-            sleep 5
-        done &
-    fi
-fi
-
-################################################################################
-
 ### EXPORTS
 
 export HOME="${MAINLINE_SAVE_DIR}"
@@ -256,14 +233,6 @@ if [ -e "${GAME}" ]; then
     ${MANGOHUD_CMD} "${MAINLINE_DIR}/bin/rpcs3" "${GAME}/PS3_GAME/USRDIR/EBOOT.BIN" --no-gui
 elif [ "${GUI}" ]; then
     "${MAINLINE_DIR}/bin/rpcs3"
-fi
-
-################################################################################
-
-### CLOSE XJOYKILL
-
-if [ "$(pidof -s xjoykill)" ]; then
-    killall -9 xjoykill
 fi
 
 exit 0
