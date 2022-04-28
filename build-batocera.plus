@@ -48,7 +48,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-stable-6.0.2-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-staging-7.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-lutris-7.2-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-extra-libs-8.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-extra-libs-9.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/DX9Jun2010.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/msttcorefonts-2.7z'
