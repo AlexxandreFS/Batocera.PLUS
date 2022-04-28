@@ -273,7 +273,9 @@ URL_BATOCERA_LINUX='https://batocera.org/upgrades/x86_64/stable/last/archives/20
 
 URL_BATOCERA_ZERO="https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/${BATOCERA_ZERO}"
 
-URL_PCI_IDS='http://pci-ids.ucw.cz/v2.2/pci.ids.gz'
+URL_PCI_IDS='2.2'
+URL_PCI_IDS="http://pci-ids.ucw.cz/v${URL_PCI_IDS}/pci.ids.gz#/pci.ids-${URL_PCI_IDS}.gz"
+
 URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/510.60.02/NVIDIA-Linux-x86_64-510.60.02.run'
 
 URL_ES_THEME_A='bb029877d0074587d9f96645db21bd7159f6a551'
@@ -288,19 +290,25 @@ URL_ALL_BIOS="https://github.com/BatoceraPLUS/Batocera.PLUS-bios/archive/${URL_A
 URL_WINDOWS_TOOLS='e5f2a8c02390a6fe78106c84960cb6d2326ddfda'
 URL_WINDOWS_TOOLS="https://github.com/AlexxandreFS/Batocera.PLUS-tools/archive/${URL_WINDOWS_TOOLS}.zip#/Batocera.PLUS-tools-${URL_WINDOWS_TOOLS}.zip"
 
-URL_JAVA="$(wget -S --spider --max-redirect 0 'https://javadl.oracle.com/webapps/download/AutoDL?BundleId=244575_d7fc238d0cbf4b0dac67be84580cfb4b' 2>&1 | grep -E '^  Location: ' | cut -d ' ' -f 4)"
-URL_JAVA="${URL_JAVA}#/$(echo ${URL_JAVA} | sed 's/File=/;/' | cut -d ';' -f 2 | cut -d '&' -f 1)"
+URL_JAVA='jre-8u291-linux-x64.tar.gz'
+if ! [ -e "${DOWNLOAD_DIR}/${URL_JAVA}" ]; then
+    URL_JAVA="$(wget -S --spider --max-redirect 0 'https://javadl.oracle.com/webapps/download/AutoDL?BundleId=244575_d7fc238d0cbf4b0dac67be84580cfb4b' 2>&1 | grep -E '^  Location: ' | cut -d ' ' -f 4)"
+    URL_JAVA="${URL_JAVA}#/$(echo ${URL_JAVA} | sed 's/File=/;/' | cut -d ';' -f 2 | cut -d '&' -f 1)"
+fi
 
 URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/7.2.0/wine-mono-7.2.0-x86.tar.xz'
 URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.10.1/dxvk-1.10.1.tar.gz'
 URL_WINE_VKD3D_PROTON='https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.6/vkd3d-proton-2.6.tar.zst'
 URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.5.4/dxvk-nvapi-v0.5.4.tar.gz'
 
-URL_WINE_WINETRICKS=20220411
+URL_WINE_WINETRICKS='20220411'
 URL_WINE_WINETRICKS="https://raw.githubusercontent.com/Winetricks/winetricks/${URL_WINE_WINETRICKS}/src/winetricks#/winetricks-${URL_WINE_WINETRICKS}"
 
-URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
-URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
+URL_CEMU='https://cemu.info/releases/cemu_1.26.2.zip'
+#URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
+
+URL_CEMUHOOK='https://files.sshnuke.net/cemuhook_1262d_0577.zip'
+#URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 
 URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-952/yuzu-20220315-441b37bd2.AppImage'
 URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-2557/Yuzu-EA-2557.AppImage'
@@ -318,7 +326,8 @@ URL_ANTIMICRO="https://github.com/AntiMicroX/antimicrox/releases/download/${URL_
 
 URL_PEAZIP='https://github.com/peazip/PeaZip/releases/download/8.2.0/peazip_portable-8.2.0.LINUX.GTK2.x86_64.tar.gz'
 
-URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
+URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/91.8.0esr/linux-x86_64/en-US/firefox-91.8.0esr.tar.bz2'
+#URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
 
 URL_QBITTORRENT='https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.3.8.10/qBittorrent-Enhanced-Edition.AppImage'
 URL_QBITTORRENT=$(echo ${URL_QBITTORRENT}#/$(basename ${URL_QBITTORRENT} | sed "s/.AppImage/-$(basename $(dirname ${URL_QBITTORRENT}) | cut -d '-' -f 2).AppImage/"))
