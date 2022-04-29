@@ -376,6 +376,22 @@ done
 
 ################################################################################
 
+# CLEAN
+
+echo -e '\nLimpando a pasta temporária...'
+
+umount  -fl /dev/loop6               2> /dev/null || :
+umount  -fl /dev/loop7               2> /dev/null || :
+
+losetup -d  /dev/loop6               2> /dev/null || :
+losetup -d  /dev/loop7               2> /dev/null || :
+
+umount  -fl "${TEMP_DIR}/pkg-xtract" 2> /dev/null || :
+
+rm -rf "${TEMP_DIR}/"*               2> /dev/null || :
+
+################################################################################
+
 echo -e '\nDescompactando Batocera.Linux...'
 PKG_NAME="$(basename "${URL_BATOCERA_LINUX}")"
 mkdir -p "${TEMP_DIR}"
@@ -710,7 +726,7 @@ mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-mainline/bin"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu" "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-mainline/bin"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
-echo 'Install PCSX2...'
+echo 'Install pcsx2-mainline...'
 PKG_NAME="$(basename "${URL_PCSX2}")"
 chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
 mkdir -p "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
@@ -723,25 +739,15 @@ mv "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/pcsx2" "${TEMP_DIR}
 sed -i 's|../share|pcsx2_rc|'                                       "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/PCSX2"
 mv "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/share"     "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/pcsx2_rc"
 PCSX2_FILES=(
-    libjbig
-    libnotify
-    libtiff
-    libgdk-3
-    libgtk-3
-    libatk-bridge-2
-    libatspi
-    libpcap
-    libwx_baseu-3
-    libwx_gtk3u_adv-3
-    libwx_gtk3u_core-3
+    libjbig       libnotify         libtiff  libgdk-3
+    libgtk-3      libatk-bridge-2   libatspi libpcap
+    libwx_baseu-3 libwx_gtk3u_adv-3 libwx_gtk3u_core-3
 )
 for FILE in ${PCSX2_FILES[@]}; do
     cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/lib"
 done
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
-# Batocera.PLUS do not have this lib required for RPCS3
-# 'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3_extra_libs-1.1.7z'
 echo 'Install RPCS3...'
 PKG_NAME="$(basename "${URL_RPCS3}")"
 chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
@@ -756,73 +762,27 @@ cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/"*  "${TEMP_DIR}/sq
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Rpcs3/lib"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/optional/libstdc++/libstdc++."* "${TEMP_DIR}/squashfs-root/opt/Rpcs3/lib"
 RPCS3_FILES=(
-    libGLEW
-    libcurl
-    liblber-2
-    libxcb-icccm
-    libQt5Concurrent
-    libgssapi
-    libldap_r-2
-    libxcb-image
-    libQt5Core
-    libgssapi_krb5
-    libnghttp2
-    libxcb-keysyms
-    libQt5DBus
-    libhcrypto
-    libnsl
-    libxcb-randr
-    libQt5Gui
-    libheimbase
-    libpsl
-    libxcb-render-util
-    libQt5Multimedia
-    libheimntlm
-    #libpulse-simple
-    libxcb-render
-    libQt5MultimediaGstTools
-    libhx509
-    libpulsecommon-11
-    libxcb-shape
-    libQt5MultimediaWidgets
-    libicudata
-    libroken
-    libxcb-shm
-    libQt5Network
-    libicui18n
-    libsasl2
-    libxcb-sync
-    libQt5Svg
-    libicuuc
-    libxcb-util
-    libQt5Widgets
-    libidn2
-    libsystemd
-    libxcb-xfixes
-    libQt5XcbQpa
-    libk5crypto
-    libtinfo
-    libxcb-xinerama
-    libapparmor
-    libkeyutils
-    libunistring
-    libxcb-xinput
-    libasn1
-    libkrb5
-    libwind
-    libxcb-xkb
-    libkrb5
-    libwrap
-    libasyncns
-    libkrb5support
-    libxcb-glx
-    libSDL2-2
+    libGLEW          libcurl           liblber-2     libxcb-icccm
+    libQt5Concurrent libgssapi         libldap_r-2   libxcb-image
+    libQt5Core       libgssapi_krb5    libnghttp2    libxcb-keysyms
+    libQt5DBus       libhcrypto        libnsl        libxcb-randr
+    libQt5Gui        libheimbase       libpsl        libxcb-render-util
+    libQt5Multimedia libheimntlm       libxcb-render libQt5MultimediaGstTools
+    libhx509         libpulsecommon-11 libxcb-shape  libQt5MultimediaWidgets
+    libicudata       libroken          libxcb-shm    libQt5Network
+    libicui18n       libsasl2          libxcb-sync   libQt5Svg
+    libicuuc         libxcb-util       libQt5Widgets libidn2
+    libsystemd       libxcb-xfixes     libQt5XcbQpa  libk5crypto
+    libtinfo         libxcb-xinerama   libapparmor   libkeyutils
+    libunistring     libxcb-xinput     libasn1       libkrb5
+    libwind          libxcb-xkb        libkrb5       libwrap
+    libasyncns       libkrb5support    libxcb-glx    libSDL2-2
 )
 for FILE in ${RPCS3_FILES[@]}
 do
     cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/squashfs-root/opt/Rpcs3/lib"
 done
-cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/plugins"      "${TEMP_DIR}/squashfs-root/opt/Rpcs3"
+cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/plugins"        "${TEMP_DIR}/squashfs-root/opt/Rpcs3"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Yuzu Early Access...'
@@ -839,17 +799,9 @@ cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu"              
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/optional/libstdc++/libstdc++."* "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
 YUZU_FILES=(
-    libboost_context
-    libicudata
-    libicui18n
-    libicuuc
-    libQt5Core
-    libQt5DBus
-    libQt5Gui
-    libQt5Widgets
-    libQt5XcbQpa
-    libxcb-render-util
-    libSDL2-2
+    libboost_context libicudata         libicui18n libicuuc
+    libQt5Core       libQt5DBus         libQt5Gui  libQt5Widgets
+    libQt5XcbQpa     libxcb-render-util libSDL2-2
 )
 for FILE in ${YUZU_FILES[*]}
 do
