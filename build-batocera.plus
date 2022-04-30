@@ -41,6 +41,8 @@ PATCH_DIR='patch'
 
 # DOWNLOADS LINKS
 
+echo -e "\nBuild Batocera.PLUS-${VERSION}-${RELEASE}..."
+
 URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-valve-6.3-8c-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-ge-custom-7.0rc6-GE-1.7z'
@@ -367,11 +369,40 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_QBITTORRENT}"
 do
     PKG_NAME="$(basename "${URL}")"
-    echo -e "\nBaixando ${PKG_NAME}..."
 
-    if ! [ -f "${DOWNLOAD_DIR}/${PKG_NAME}" ]; then
-        curl -L -C - "${URL}" -o "${DOWNLOAD_DIR}/${PKG_NAME}" || exit $?
+    # Delete incomplete download
+    if [ -e "${DOWNLOAD_DIR}/${PKG_NAME}.lock" ]; then
+        rm -f "${DOWNLOAD_DIR}/${PKG_NAME}"
     fi
+
+    # Skip previously downloaded file
+    if [ -e "${DOWNLOAD_DIR}/${PKG_NAME}" ]; then
+        continue
+    fi
+
+    echo -e "\nDownload ${PKG_NAME}...\n"
+
+    touch "${DOWNLOAD_DIR}/${PKG_NAME}.lock"
+
+    # Try download accelerator
+    if [ -e '/usr/bin/axel' ]; then
+        if axel --insecure --num-connections=4 --alternate  "${URL}" --output "${DOWNLOAD_DIR}/${PKG_NAME}"; then
+            rm "${DOWNLOAD_DIR}/${PKG_NAME}.lock"
+            continue
+        fi
+        rm -f "${DOWNLOAD_DIR}/${PKG_NAME}.st"
+    fi
+
+    # Nornal Download
+    if curl -L -k --proxy-insecure "${URL}" -o "${DOWNLOAD_DIR}/${PKG_NAME}"; then
+        rm "${DOWNLOAD_DIR}/${PKG_NAME}.lock"
+        continue
+    fi
+
+    echo -e "\nERROR DOWNLOAD: \"${PKG_NAME}\""
+    echo -e "URL = ${URL}\n"
+
+    exit 1
 done
 
 ################################################################################
