@@ -4,7 +4,6 @@ Alekfull-NX-PLUS  https://github.com/BatoceraPLUS/Theme-Alekfull-NX-PLUS
 Art-Book          https://github.com/BatoceraPLUS/Theme-Art-Book
 Batocera-PLUS-dev https://github.com/AlexxandreFS/ES-Theme-Batocera-PLUS
 Bluray            https://github.com/BatoceraPLUS/Theme-Bluray
-ComicScrap        https://github.com/lehcimcramtrebor/es-theme-comicscrap
 Cosmic-Rise       https://github.com/BatoceraPLUS/Theme-Cosmic-Rise
 ES-PLUS           https://github.com/marciorenato87/ES-PLUS
 Fundamental       https://github.com/BatoceraPLUS/Theme-Fundamental
