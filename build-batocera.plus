@@ -446,6 +446,10 @@ echo 'Removendo arquivos desnecessários...'
 # Remova apenas se atualizar o pacote completo dos shaders para o retroarch.
 rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/shaders"
 
+# Remove a pasta de bios que vem por padrão com o batocera.linux
+# Remova apenas quando todos os emuladores que adionam os respectivos arquivos estiverem atualizados
+rm -rf "${TEMP_DIR}/squashfs-root/usr/share/batocera/datainit/bios/"*
+
 # Remove icones duplicados e fora do padrão para um próximo update.
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/scummvm.desktop"
 rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/dolphin-emu.desktop"
@@ -610,8 +614,7 @@ rm -r  "${TEMP_DIR}/pkg-xtract/"*
 if [ "${ALL_BIOS}" == 'true' ]; then
     echo 'Install All Bios...'
     PKG_NAME="$(basename "${URL_ALL_BIOS}")"
-    busybox unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" || exit $?
-    rm -rf "${TEMP_DIR}/squashfs-root/usr/share/batocera/datainit/bios/"*
+    unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" || exit $?
     cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* \
            "${TEMP_DIR}/squashfs-root/usr/share/batocera/datainit/bios" || exit $?
     rm -r "${TEMP_DIR}/pkg-xtract/"*
