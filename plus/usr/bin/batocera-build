@@ -54,19 +54,6 @@ fi
 
 ################################################################################
 
-# CLEAN
-
-umount /dev/loop6 2> /dev/null
-umount /dev/loop7 2> /dev/null
-
-losetup -d /dev/loop6 2> /dev/null
-losetup -d /dev/loop7 2> /dev/null
-
-umount "${BUILD}/pkg-xtract" 2> /dev/null
-rm -rf "${BUILD}/output/"*
-
-################################################################################
-
 # BUILD
 
 cd "${BUILD}" || exit $?
