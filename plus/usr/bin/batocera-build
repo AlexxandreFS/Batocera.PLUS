@@ -32,7 +32,7 @@ BUILD="${TMP}/$(basename ${SOURCE%.zip})"
 
 # DOWNLOAD
 
-echo "Donload: ${URL}"
+echo "Download: ${URL}"
 echo "Save as: ${SOURCE}"
 
 if ! [ -f "${SOURCE}" ]
