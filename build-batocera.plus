@@ -50,13 +50,31 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-stable-6.0.2-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-staging-7.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-lutris-7.2-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-extra-libs-9.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-extra-libs-10.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/DX9Jun2010.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/msttcorefonts-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk-1.5.1-3.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk-proton-ge-custom-7.0rc6-GE-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine_mf-1.0.7z'
+
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gstreamer1-1.7z' # dep: wine
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gst1-libav-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gst1-plugins-bad-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gst1-plugins-base-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gst1-plugins-good-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gst1-plugins-ugly-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mpg123-1.7z' #dep: gstreamer1
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/orc-1.7z'    #dep: gstreamer1
+
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gstreamer1-32bits-1.7z' # dep: wine
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gst1-libav-32bits-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gst1-plugins-bad-32bits-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gst1-plugins-base-32bits-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gst1-plugins-good-32bits-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gst1-plugins-ugly-32bits-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mpg123-32bits-1.7z' #dep: gstreamer1-32bits
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/orc-32bits-1.7z'    #dep: gstreamer1-32bits
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-1.9.9-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/retroarch-assets-1.9.9-1.7z'
