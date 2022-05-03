@@ -568,29 +568,27 @@ function wineCheckLibs() {
     ${WINE_DIR}/${WINE_BUILD}/bin/wine${WINE_ARCH} --check-libs 2> /dev/null | grep ': missing'
 
     # GSTREAMER TEST
-    #gst-launch-1.0-xx videotestsrc ! autovideosink
-    #gst-launch-1.0-xx audiotestsrc ! autoaudiosink videotestsrc ! autovideosink
-    #gst-launch-1.0-xx playbin uri=file:///usr/share/batocera/splash/splash.mp4
-    #gst-launch-1.0-xx --gst-debug-level=0
+    #gst-launch-1.0 videotestsrc ! autovideosink
+    #gst-launch-1.0 audiotestsrc ! autoaudiosink videotestsrc ! autovideosink
+    #gst-launch-1.0 playbin uri=file:///usr/share/batocera/splash/splash.mp4
+    #gst-launch-1.0 --gst-debug-level=0
+
+    LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/userdata/extractions/gstreamer/gstreamer-32bit/lib32"
 
     if [ "${WINE_ARCH}" == 64 ]; then
         wineWait
         exit 0
     fi
 
-    for DEP in lib32 \
-               lib64 \
-               lib32/gstreamer-1.0 \
-               lib64/gstreamer-1.0 \
-               lib32/mpg123 \
-               lib64/mpg123 \
-               ${WINE_BUILD}/bin \
+    for DEP in ${WINE_BUILD}/bin \
+               lib32 \
                ${WINE_BUILD}/lib32 \
-               ${WINE_BUILD}/lib64 \
                ${WINE_BUILD}/lib32/wine \
+               ${WINE_BUILD}/lib32/wine/i386-unix \
+               lib64 \
+               ${WINE_BUILD}/lib64 \
                ${WINE_BUILD}/lib64/wine \
-               ${WINE_BUILD}/lib32/wine/fakedlls \
-               ${WINE_BUILD}/lib64/wine/fakedlls
+               ${WINE_BUILD}/lib64/wine/x86_64-unix
     do
         ldd ${WINE_DIR}/${DEP}/* 2> /dev/null | grep 'not found'
     done
