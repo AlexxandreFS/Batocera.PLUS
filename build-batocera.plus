@@ -249,8 +249,10 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-390.147-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-340.108-2.7z'
 
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-32bits-22.0.2-1.7z'        # remove on update
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-64bits-22.0.2-1.7z'        # remove on update
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-32bits-21.3.8-1.7z'        # remove on update
+   #'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-32bits-22.0.2-1.7z'        # remove on update
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-64bits-21.3.8-1.7z'        # remove on update
+   #'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-64bits-22.0.2-1.7z'        # remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xlib_libXv-1.0.11-1.7z'           # dep: nvidia-driver (nvidia-settings)
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xdriver_xf86-video-all-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xfont_extras-1.7z'
