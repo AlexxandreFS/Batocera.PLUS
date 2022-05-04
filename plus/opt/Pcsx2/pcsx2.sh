@@ -36,6 +36,8 @@ then
    PCSX2_UI_FILE="${HOME}/configs/${CORE}/inis/PCSX2_ui.ini"
 fi
 
+GAME_CONTROLLER_DATABASE_FILE="${HOME}/../bios/gamecontrollerdb.txt"
+
 ################################################################################
 
 ### POPULATE ALL PCSX2 STANDALONE
@@ -231,6 +233,14 @@ else
 fi
 
 sed -i "s/^[ ]*EnableWideScreenPatches=.*/EnableWideScreenPatches=${WSCRH}/" "${PCSX2_VM_FILE}"
+
+################################################################################
+
+### SDL GAME CONTROLLER DATABASE
+
+if [ -e "${GAME_CONTROLLER_DATABASE_FILE}" ]; then
+    export SDL_GAMECONTROLLERCONFIG="$(grep -E ',platform:Linux,$' ${GAME_CONTROLLER_DATABASE_FILE})"
+fi
 
 ################################################################################
 

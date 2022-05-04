@@ -343,6 +343,9 @@ URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build
 
 URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.6-1/MangoHud-0.6.6.1.r0.gda573e8.tar.gz'
 
+URL_GAMECONTROLLERDB='7d886c96d3b9eab15ab687d2d3f872518b18fbc0'
+URL_GAMECONTROLLERDB="https://raw.githubusercontent.com/gabomdq/SDL_GameControllerDB/${URL_GAMECONTROLLERDB}/gamecontrollerdb.txt#/gamecontrollerdb-${URL_GAMECONTROLLERDB}.txt"
+
 URL_ANTIMICRO='3.1.7'
 URL_ANTIMICRO="https://github.com/AntiMicroX/antimicrox/releases/download/${URL_ANTIMICRO}/AntiMicroX-x86_64.AppImage#/AntiMicroX-${URL_ANTIMICRO}.AppImage"
 
@@ -381,6 +384,7 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_YUZU_EARLY_ACCESS}" \
            "${URL_RYUJINX}" \
            "${URL_MANGOHUD}" \
+           "${URL_GAMECONTROLLERDB}" \
            "${URL_ANTIMICRO}" \
            "${URL_PEAZIP}" \
            "${URL_PCSX2}" \
@@ -639,6 +643,11 @@ if [ "${ALL_BIOS}" == 'true' ]; then
            "${TEMP_DIR}/squashfs-root/usr/share/batocera/datainit/bios" || exit $?
     rm -r "${TEMP_DIR}/pkg-xtract/"*
 fi
+
+echo 'Install GameControllerDB...'
+PKG_NAME="$(basename "${URL_GAMECONTROLLERDB}")"
+cp -f "${DOWNLOAD_DIR}/${PKG_NAME}" \
+      "${TEMP_DIR}/squashfs-root/usr/share/batocera/datainit/bios/gamecontrollerdb.txt"
 
 echo 'Install Music...'
 PKG_NAME="$(basename "${URL_MUSIC}")"
