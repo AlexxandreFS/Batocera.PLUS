@@ -408,7 +408,7 @@ function mfUninstall()
 }
 
 if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
-    MF_DLL='colorcnv.dll sqmapi.dll msmpeg2adec.dll msmpeg2vdec.dll mf.dll mferror.dll mfplat.dll mfplay.dll mfreadwrite.dll mfps.dll wmadmod.dll wmvdecod.dll'
+    MF_DLL='colorcnv.dll sqmapi.dll msmpeg2adec.dll msmpeg2vdec.dll mf.dll mferror.dll mfplat.dll mfplay.dll mfreadwrite.dll mfps.dll wmadmod.dll wmvdecod.dll wmasf.dll wmp.dll wmvcore.dll'
 
     if [ "${WINE_MF}" == '1' ]; then
         if ! [ -f "${WINEPREFIX}/drive_c/windows/syswow64/msmpeg2adec.dll" ]; then
