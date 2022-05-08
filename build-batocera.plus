@@ -300,6 +300,8 @@ URL_PCI_IDS="http://pci-ids.ucw.cz/v${URL_PCI_IDS}/pci.ids.gz#/pci.ids-${URL_PCI
 
 URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/510.60.02/NVIDIA-Linux-x86_64-510.60.02.run'
 
+URL_LINUX_FIRMWARE='https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20220411.tar.gz'
+
 URL_ES_THEME_A='bb029877d0074587d9f96645db21bd7159f6a551'
 URL_ES_THEME_A="https://github.com/AlexxandreFS/Batocera.PLUS-es-theme/archive/${URL_ES_THEME_A}.zip#/Batocera.PLUS-es-theme-${URL_ES_THEME_A}.zip"
 
@@ -372,6 +374,7 @@ for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
            "${URL_WINDOWS_TOOLS}" \
            "${URL_PCI_IDS}" \
            "${URL_NVIDIA_DRIVER}" \
+           "${URL_LINUX_FIRMWARE}" \
            "${URL_JAVA}" \
            "${URL_WINE_MONO}" \
            "${URL_WINE_DXVK}" \
@@ -894,6 +897,20 @@ cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk3.so."*           "${TE
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-encode.so."*         "${TEMP_DIR}/squashfs-root/usr/lib/"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvcuvid.so."*               "${TEMP_DIR}/squashfs-root/usr/lib/libnvcuvid.so.1"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
+
+echo 'Update Linux firmware...'
+PKG_NAME="$(basename "${URL_LINUX_FIRMWARE}")"
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
+# https://github.com/batocera-linux/batocera.linux/blob/master/package/batocera/alllinuxfirmwares/alllinuxfirmwares.mk#L33
+ln -sf   rtl8192eu_nic.bin                              "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/rtlwifi/rtl8192eefw.bin"
+ln -sf   rtl8723bu_ap_wowlan.bin                        "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/rtlwifi/rtl8723bs_ap_wowlan.bin"
+ln -sf   rtl8723bu_nic.bin                              "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/rtlwifi/rtl8723bs_nic.bin"
+ln -sf   rtl8723bs_config-OBDA8723.bin                  "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/rtl_bt/rtl8723bs_config-OBDA0623.bin"
+ln -sf   rtl8821c_config.bin                            "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/rtl_bt/rtl8821a_config.bin"
+cp -rfpP "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/"* "${TEMP_DIR}/squashfs-root/lib/firmware"
+rm -rf                                                  "${TEMP_DIR}/squashfs-root/lib/firmware/liquidio"
+rm -rf                                                  "${TEMP_DIR}/squashfs-root/lib/firmware/netronome"
+rm -rf                                                  "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install pci ids database...'
 PKG_NAME="$(basename "${URL_PCI_IDS}")"
