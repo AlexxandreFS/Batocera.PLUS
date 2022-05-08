@@ -35,12 +35,13 @@ echo '  ___.             __
    |___  /(____  /|__|  \____/  \___  >\___  >|__|   (____  /
        \/      \/                   \/     \/             \/.__
                                                           __|  |___
-   BY ALEXANDRE FREIRE DOS SANTOS                        /__    __/'
+   BY ALEXANDRE FREIRE DOS SANTOS                        /__    __/
+   AND SERGIO DE CARVALHO JUNIOR                            |__|'
 echo -n "   Version: $(cat $BATOCERA_VERSION | cut -d' ' -f 1)"
 echo -n "   Release: $(cat $BATOCERA_VERSION | cut -d' ' -f 2)"
 echo -n "   Arch: $(cat $RECALBOX_ARCH)"
-echo    '       |__|'
-echo    "   Based on version $(cat $RECALBOX_VERSION | cut -d' ' -f 1) of the batocera.linux"
+echo ' '
+echo -n "   Based on version $(cat $RECALBOX_VERSION | cut -d' ' -f 1) of the batocera.linux"
 echo
 
 BATOCERA_INFO="$(env DISPLAY= batocera-info 2>/dev/null)"
