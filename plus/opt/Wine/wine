@@ -104,9 +104,8 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 ### GSTREAMER
 
 export GST_REGISTRY_UPDATE=no
-export GST_PLUGIN_PATH=${WINE_DIR}/lib32/gstreamer-1.0:${WINE_DIR}/lib64/gstreamer-1.0
-export GST_PLUGIN_SYSTEM_PATH=${WINE_DIR}/lib32/gstreamer-1.0:${WINE_DIR}/lib64/gstreamer-1.0
-export GST_PLUGIN_SCANNER=${WINE_DIR}/lib32/gstreamer-1.0:${WINE_DIR}/lib64/gstreamer-1.0
+export GST_PLUGIN_PATH='/lib32/gstreamer-1.0:/usr/lib/gstreamer-1.0'
+export GST_PLUGIN_SYSTEM_PATH="${GST_PLUGIN_PATH}"
 
 ### MISC
 
