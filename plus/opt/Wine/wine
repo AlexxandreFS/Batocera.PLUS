@@ -304,6 +304,7 @@ function mfInstall()
 {    
     #this dll files does not exist default wine prefix 'colorcnv.dll msmpeg2adec.dll msmpeg2vdec.dll sqmapi.dll mfps.dll wmadmod.dll wmvdecod.dll'
     #this dll files exist default wine prefix          'mf.dll mferror.dll mfplat.dll mfplay.dll mfreadwrite.dll'
+	#Windows media player dlls                         'l3codeca.acm wmasf.dll wmp.dll wmplayer.exe wmpnssci.dll wmvcore.dll'
 
     if ! [ "$(grep "^[ ]*\"msmpeg2adec-AACDecoderV2AddInEnable\"=dword:00000001" "${WINEPREFIX}/system.reg")" ]; then
         if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
@@ -323,14 +324,14 @@ function mfInstall()
         case "${DLL}" in colorcnv.dll|msmpeg2adec.dll|msmpeg2vdec.dll|sqmapi.dll|mfps.dll|wmadmod.dll|wmvdecod.dll)
             if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
                 if ! [ -f "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}" ]; then
-                    cp -f "${WINE_DIR}/apps/mf/syswow64/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64"
+                    cp -f "${MS_FILES}/syswow64/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64"
                 fi
                 if ! [ -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}" ]; then
-                    cp -f "${WINE_DIR}/apps/mf/system32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32"
+                    cp -f "${MS_FILES}/system32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32"
                 fi
             else
                 if ! [ -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}" ]; then
-                    cp -f "${WINE_DIR}/apps/mf/syswow64/${DLL}" "${WINEPREFIX}/drive_c/windows/system32"
+                    cp -f "${MS_FILES}/syswow64/${DLL}" "${WINEPREFIX}/drive_c/windows/system32"
                 fi
             fi
         esac
@@ -346,27 +347,39 @@ function mfInstall()
                 mv -f "${WINEPREFIX}/drive_c/windows/system32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}.backup"
             fi
         fi
+
+        # Redirect to bios folder
+        case ${DLL} in wmasf.dll|wmp.dll|wmvcore.dll)
+            MS_FILES="${HOME}/../bios/wine/mf"
+        esac
         
         # Install
-        if [ ! -e "${WINE_DIR}/apps/mf/syswow64/${DLL}" ] || [ ! -e "${WINE_DIR}/apps/mf/system32/${DLL}" ]; then
+        if [ ! -e "${MS_FILES}/syswow64/${DLL}" ] || [ ! -e "${MS_FILES}/system32/${DLL}" ]; then
             continue
         fi
-        
+
+        # mf DLLs 
         if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
             # Win WOW
-            if [ "$(readlink "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}")" != "${WINE_DIR}/apps/mf/syswow64/${DLL}" ]; then
-                ln -sf "${WINE_DIR}/apps/mf/syswow64/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
+            if [ "$(readlink "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}")" != "${MS_FILES}/syswow64/${DLL}" ]; then				
+                ln -sf "${MS_FILES}/syswow64/${DLL}" "${WINEPREFIX}/drive_c/windows/syswow64/${DLL}"
             fi
-            if [ "$(readlink "${WINEPREFIX}/drive_c/windows/system32/${DLL}")" != "${WINE_DIR}/apps/mf/system32/${DLL}" ]; then
-                ln -sf "${WINE_DIR}/apps/mf/system32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+            if [ "$(readlink "${WINEPREFIX}/drive_c/windows/system32/${DLL}")" != "${MS_FILES}/system32/${DLL}" ]; then
+                ln -sf "${MS_FILES}/system32/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
             fi
         else
             # Win32
-            if [ "$(readlink "${WINEPREFIX}/drive_c/windows/system32/${DLL}")" != "${WINE_DIR}/apps/mf/syswow64/${DLL}" ]; then
-                ln -sf "${WINE_DIR}/apps/mf/syswow64/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
+            if [ "$(readlink "${WINEPREFIX}/drive_c/windows/system32/${DLL}")" != "${MS_FILES}/syswow64/${DLL}" ]; then
+                ln -sf "${MS_FILES}/syswow64/${DLL}" "${WINEPREFIX}/drive_c/windows/system32/${DLL}"
             fi
         fi
 
+        # back to WINE_DIR
+        case ${DLL} in wmasf.dll|wmp.dll|wmvcore.dll)
+            MS_FILES="${WINE_DIR}/apps/mf"
+        esac
+
+        # Registry extra DLLS
         case ${DLL} in colorcnv.dll|msmpeg2adec.dll|msmpeg2vdec.dll|mfps.dll|wmadmod.dll|wmvdecod.dll)
             if ! [ "$( grep "${DLL}" "${WINEPREFIX}/system.reg" )" ]; then
                 if [ -d "${WINEPREFIX}/drive_c/windows/syswow64" ]; then
@@ -409,6 +422,7 @@ function mfUninstall()
 
 if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
     MF_DLL='colorcnv.dll sqmapi.dll msmpeg2adec.dll msmpeg2vdec.dll mf.dll mferror.dll mfplat.dll mfplay.dll mfreadwrite.dll mfps.dll wmadmod.dll wmvdecod.dll wmasf.dll wmp.dll wmvcore.dll'
+    MS_FILES="${WINE_DIR}/apps/mf"
 
     if [ "${WINE_MF}" == '1' ]; then
         if ! [ -f "${WINEPREFIX}/drive_c/windows/syswow64/msmpeg2adec.dll" ]; then
@@ -419,6 +433,7 @@ if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
     fi
 
     unset MF_DLL
+    unset MS_FILES
 fi
 
 ################################################################################
