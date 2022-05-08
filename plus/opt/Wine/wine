@@ -347,8 +347,22 @@ function mfInstall()
             fi
         fi
 
-        # Redirect to bios folder
+        # Go to bios folder
         case ${DLL} in wmasf.dll|wmp.dll|wmvcore.dll)
+            if [ ! -d "${HOME}/../bios/wine/mf/system32" ] || [ ! -d "${HOME}/../bios/wine/mf/syswow64" ]; then
+                mkdir -p "${HOME}/../bios/wine/mf/system32" "${HOME}/../bios/wine/mf/syswow64"
+            fi
+            # Create link to fake dlls if real M$ dlls does not exit in bios folder
+            if [ -L "${HOME}/../bios/wine/mf/syswow64/${DLL}" ] || [ ! -e "${HOME}/../bios/wine/mf/syswow64/${DLL}" ] ||
+               [ -L "${HOME}/../bios/wine/mf/system32/${DLL}" ] || [ ! -e "${HOME}/../bios/wine/mf/system32/${DLL}" ]; then
+                if [ "${WINE_BUILD}" == 'wine-staging' ] || [ "${WINE_BUILD}" == 'wine-lutris' ] || [ "${WINE_BUILD}" == 'proton-ge-custom' ]; then
+                   ln -sf "${WINE_DIR}/${WINE_BUILD}/lib32/wine/i386-windows/${DLL}" "${HOME}/../bios/wine/mf/system32/${DLL}"
+                   ln -sf "${WINE_DIR}/${WINE_BUILD}/lib64/wine/x86_64-windows/${DLL}" "${HOME}/../bios/wine/mf/syswow64/${DLL}"
+                else
+                   ln -sf "${WINE_DIR}/${WINE_BUILD}/lib32/wine/fakedlls/${DLL}" "${HOME}/../bios/wine/mf/system32/${DLL}"
+                   ln -sf "${WINE_DIR}/${WINE_BUILD}/lib64/wine/fakedlls/${DLL}" "${HOME}/../bios/wine/mf/syswow64/${DLL}"
+                fi
+            fi
             MS_FILES="${HOME}/../bios/wine/mf"
         esac
         
