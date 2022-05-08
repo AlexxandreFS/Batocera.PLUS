@@ -302,7 +302,7 @@ URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/510.60.02/NVI
 
 URL_LINUX_FIRMWARE='https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20220411.tar.gz'
 
-URL_ES_THEME_A='bb029877d0074587d9f96645db21bd7159f6a551'
+URL_ES_THEME_A='b4de6b88a3a98288deeca7f1d3e8cafc259ddeb1'
 URL_ES_THEME_A="https://github.com/AlexxandreFS/Batocera.PLUS-es-theme/archive/${URL_ES_THEME_A}.zip#/Batocera.PLUS-es-theme-${URL_ES_THEME_A}.zip"
 
 URL_MUSIC='133b040ce3c04b6c462102a57ea1134ab73a80c7'
