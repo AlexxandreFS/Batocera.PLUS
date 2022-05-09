@@ -35,13 +35,13 @@ fi
 BUTTONS="$(xml sel -T -t -m "/inputList/inputConfig[@deviceGUID='${1}']/*" -v "concat(@name,'|', @id)" -n "${ES_INPUT}")"
 
 if [ "${BUTTONS}" ]; then
-    HOTKEY="$(echo "${BUTTONS}" | grep 'hotkey' | cut -d '|' -f 2)"
+    HOTKEY="$(echo "${BUTTONS}" | grep 'hotkey' | tail -n 1 | cut -d '|' -f 2)"
 
     if ! [ "${HOTKEY}" ]; then
         exit 1
     fi
 
-    START="$(echo "${BUTTONS}" | grep 'start' | cut -d '|' -f 2)"
+    START="$(echo "${BUTTONS}" | grep 'start' | tail -n 1 | cut -d '|' -f 2)"
 
     if ! [ "${START}" ]; then
         exit 1

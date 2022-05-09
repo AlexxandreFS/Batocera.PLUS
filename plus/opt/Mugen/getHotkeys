@@ -40,7 +40,7 @@ if [ "${BUTTONS}" ]; then
 
     for i in hotkey start select
     do
-        HOTKEY="$(echo "${BUTTONS}" | grep -E "^${i}" | cut -d '|' -f 2)"
+        HOTKEY="$(echo "${BUTTONS}" | grep -E "^${i}" | tail -n 1 | cut -d '|' -f 2)"
 
         if ! [ "${HOTKEY}" ]
         then

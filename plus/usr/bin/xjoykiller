@@ -109,8 +109,8 @@ then
     exit 3
 fi
 
-HOTKEY="$(echo "${BUTTONS}" | grep 'hotkey' | cut -d '|' -f 2)"
-START="$( echo "${BUTTONS}" | grep 'start'  | cut -d '|' -f 2)"
+HOTKEY="$(echo "${BUTTONS}" | grep 'hotkey' | tail -n 1 | cut -d '|' -f 2)"
+START="$( echo "${BUTTONS}" | grep 'start'  | tail -n 1 | cut -d '|' -f 2)"
 
 if [ -z "${HOTKEY}" ] || [ -z "${START}" ]
 then
