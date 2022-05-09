@@ -232,6 +232,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/yad-0.40.0-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/axel-2.17.11-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/strace-5.13-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ltrace-0.7.91-1.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/Goverlay-0.8.1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vkbasalt-0.3.2.5-2.7z'
