@@ -288,6 +288,8 @@ if [ -z "${RELEASE}" ]; then
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xdotool-aug-4-2021.7z'
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-cuda-510.60.02-1.7z'   # dep: nvidia-driver
         'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-opencl-510.60.02-1.7z' # dep: nvidia-driver
+        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ruffle-apr-11-2022-1.7z'   # remove on update
+        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/lightspark-apr-11-2022.7z' # remove on update
     )
 fi
 
