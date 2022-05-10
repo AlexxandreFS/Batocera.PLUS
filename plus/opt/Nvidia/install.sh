@@ -96,6 +96,18 @@ then
     exit 0
 fi
 
+BUSID=$(lspci -nn | grep -E '[ ]3D[ ]' | grep -E '[ ]\[10de:' | head -n 1 | cut -d ' ' -f 1 | sed s/[.]/:/g)
+
+if [ -z "${BUSID}" ]
+then
+    BUSID=$(lspci -nn | grep -E '[ ]VGA[ ]' | grep -E '[ ]\[10de:' | head -n 1 | cut -d ' ' -f 1 | sed s/[.]/:/g)
+
+    if [ -z "${BUSID}" ]
+    then
+        exit 1
+    fi
+fi
+
 function convert()
 {
     local A=$(echo "${1}" | cut -d ':' -f 1)
@@ -108,13 +120,6 @@ function convert()
 
     echo -n "${OA}:${OB}:${OC}"
 }
-
-BUSID=$(lspci | grep -E 'controller: NVIDIA' | cut -d ' ' -f 1 | sed s/[.]/:/g)
-
-if [ -z "${BUSID}" ]
-then
-    exit 1
-fi
 
 PCIID="PCI:$(convert "${BUSID}")"
 
