@@ -1,6 +1,6 @@
---- winetricks.original
-+++ winetricks.modificado
-@@ -1,4 +1,30 @@
+--- winetricks-original
++++ winetricks-modificado
+@@ -1,4 +1,32 @@
 -#!/bin/sh
 +#!/bin/bash
 +
@@ -27,12 +27,14 @@
 +
 +unset WINE_BUILD
 +
++XDG_CACHE_HOME='/userdata/downloads'
++
 +# Batocera.PLUS Stop
 +
  # shellcheck disable=SC2030,SC2031
  # SC2030: Modification of WINE is local (to subshell caused by (..) group).
  # SC2031: WINE was modified in a subshell. That change might be lost
-@@ -3418,6 +3444,10 @@
+@@ -3418,6 +3446,10 @@
  
  winetricks_latest_version_check()
  {
@@ -43,7 +45,7 @@
      if [ "${WINETRICKS_LATEST_VERSION_CHECK}" = 'disabled' ] || [ -f "${WINETRICKS_CONFIG}/disable-latest-version-check" ] ; then
          w_info "winetricks latest version check update disabled"
          return
-@@ -3527,8 +3557,10 @@
+@@ -3527,8 +3559,10 @@
              WINETRICKS_MENU_HEIGHT=500
              WINETRICKS_MENU_WIDTH=1010
          else
@@ -56,7 +58,7 @@
              exit 1
          fi
      elif [ "${XDG_CURRENT_DESKTOP}" = "KDE" ] && test -x "$(command -v kdialog 2>/dev/null)"; then
-@@ -5313,11 +5345,13 @@
+@@ -5313,11 +5347,13 @@
          W_COMMONFILES="$(w_pathconv -u "${W_COMMONFILES_WIN}")"
  
          # 64-bit prefixes still have plenty of issues:
@@ -75,7 +77,7 @@
      else
          WINE64="false"
          WINE_ARCH="${WINE}"
-@@ -5454,9 +5488,11 @@
+@@ -5454,9 +5490,11 @@
      fi
  
      # Running Wine as root is (generally) bad, mmkay?
@@ -90,7 +92,7 @@
  
      # Ephemeral files for this run
      WINETRICKS_WORKDIR="${W_TMP_EARLY}/w.${LOGNAME}.$$"
-@@ -5653,9 +5689,11 @@
+@@ -5653,9 +5691,11 @@
  
      # If WINE is < 5.0, warn user:
      # 5.0 doesn't do what I thought it would
