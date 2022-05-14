@@ -282,86 +282,158 @@ URL_BATOCERA_PLUS_PKG=(
 )
 
 # Estes pacotes são compilados apenas nas imagens de desenvolvimento.
+URL_BATOCERA_PLUS_PKG_DEV=("${URL_BATOCERA_PLUS_PKG[@]}"
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/obs-studio-27.0.1-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/obs-studio-extra-libs-1.7z' #dep: obs-studio
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/shared-mime-info-1.44-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xdotool-aug-4-2021.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-cuda-510.60.02-1.7z'   # dep: nvidia-driver
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-opencl-510.60.02-1.7z' # dep: nvidia-driver
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ruffle-apr-11-2022-1.7z'   # remove on update
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/lightspark-apr-11-2022.7z' # remove on update
+)
 if [ -z "${RELEASE}" ]; then
     URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}"
-        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/obs-studio-27.0.1-1.7z'
-        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/obs-studio-extra-libs-1.7z' #dep: obs-studio
-        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/shared-mime-info-1.44-1.7z'
-        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xdotool-aug-4-2021.7z'
-        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-cuda-510.60.02-1.7z'   # dep: nvidia-driver
-        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-opencl-510.60.02-1.7z' # dep: nvidia-driver
-        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ruffle-apr-11-2022-1.7z'   # remove on update
-        'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/lightspark-apr-11-2022.7z' # remove on update
+        "${URL_BATOCERA_PLUS_PKG_DEV[@]}"
     )
 fi
 
 URL_BATOCERA_LINUX='https://batocera.org/upgrades/x86_64/stable/last/archives/20201001/batocera-5.27.2-x86_64-20201001.img.gz'
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_BATOCERA_LINUX}")
 
 URL_BATOCERA_ZERO="https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/${BATOCERA_ZERO}"
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_BATOCERA_ZERO}")
 
 URL_PCI_IDS='2.2'
 URL_PCI_IDS="http://pci-ids.ucw.cz/v${URL_PCI_IDS}/pci.ids.gz#/pci.ids-${URL_PCI_IDS}.gz"
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_PCI_IDS}")
 
 URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/510.60.02/NVIDIA-Linux-x86_64-510.60.02.run'
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_NVIDIA_DRIVER}")
 
 URL_LINUX_FIRMWARE='https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20220411.tar.gz'
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_LINUX_FIRMWARE}")
 
 URL_ES_THEME_A='b4de6b88a3a98288deeca7f1d3e8cafc259ddeb1'
 URL_ES_THEME_A="https://github.com/AlexxandreFS/Batocera.PLUS-es-theme/archive/${URL_ES_THEME_A}.zip#/Batocera.PLUS-es-theme-${URL_ES_THEME_A}.zip"
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_ES_THEME_A}")
 
 URL_MUSIC='133b040ce3c04b6c462102a57ea1134ab73a80c7'
 URL_MUSIC="https://github.com/BatoceraPLUS/Batocera.PLUS-music/archive/${URL_MUSIC}.zip#/Batocera.PLUS-music-${URL_MUSIC}.zip"
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_MUSIC}")
 
 URL_ALL_BIOS='0cf9a1231d81d3ba1c2230a93cb9a47fa98ffbfb'
 URL_ALL_BIOS="https://github.com/BatoceraPLUS/Batocera.PLUS-bios/archive/${URL_ALL_BIOS}.zip#/Batocera.PLUS-bios-${URL_ALL_BIOS}.zip"
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_ALL_BIOS}")
 
 URL_WINDOWS_TOOLS='e5f2a8c02390a6fe78106c84960cb6d2326ddfda'
 URL_WINDOWS_TOOLS="https://github.com/AlexxandreFS/Batocera.PLUS-tools/archive/${URL_WINDOWS_TOOLS}.zip#/Batocera.PLUS-tools-${URL_WINDOWS_TOOLS}.zip"
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_WINDOWS_TOOLS}")
 
 URL_JAVA='jre-8u291-linux-x64.tar.gz'
 if ! [ -e "${DOWNLOAD_DIR}/${URL_JAVA}" ]; then
     URL_JAVA="$(wget -S --spider --max-redirect 0 'https://javadl.oracle.com/webapps/download/AutoDL?BundleId=244575_d7fc238d0cbf4b0dac67be84580cfb4b' 2>&1 | grep -E '^  Location: ' | cut -d ' ' -f 4)"
     URL_JAVA="${URL_JAVA}#/$(echo ${URL_JAVA} | sed 's/File=/;/' | cut -d ';' -f 2 | cut -d '&' -f 1)"
 fi
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_JAVA}")
 
 URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/7.2.0/wine-mono-7.2.0-x86.tar.xz'
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_WINE_MONO}")
+
 URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.10.1/dxvk-1.10.1.tar.gz'
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_WINE_DXVK}")
+
 URL_WINE_VKD3D_PROTON='https://github.com/HansKristian-Work/vkd3d-proton/releases/download/v2.6/vkd3d-proton-2.6.tar.zst'
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_WINE_VKD3D_PROTON}")
+
 URL_WINE_NVAPI='https://github.com/jp7677/dxvk-nvapi/releases/download/v0.5.4/dxvk-nvapi-v0.5.4.tar.gz'
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_WINE_NVAPI}")
 
 URL_WINE_WINETRICKS='20220411'
 URL_WINE_WINETRICKS="https://raw.githubusercontent.com/Winetricks/winetricks/${URL_WINE_WINETRICKS}/src/winetricks#/winetricks-${URL_WINE_WINETRICKS}"
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_WINE_WINETRICKS}")
 
 URL_CEMU='https://cemu.info/releases/cemu_1.26.2.zip'
 #URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_CEMU}")
 
 URL_CEMUHOOK='https://files.sshnuke.net/cemuhook_1262d_0577.zip'
 #URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_CEMUHOOK}")
 
 URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-952/yuzu-20220315-441b37bd2.AppImage'
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_YUZU_MAINLINE}")
+
 URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-2557/Yuzu-EA-2557.AppImage'
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_YUZU_EARLY_ACCESS}")
 
 URL_RYUJINX='https://github.com/Ryujinx/release-channel-master/releases/download/1.1.76/ryujinx-1.1.76-linux_x64.tar.gz' #Link provisório
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_RYUJINX}")
 
 URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.2464/pcsx2-v1.7.2464-linux-AppImage-64bit.AppImage'
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_PCSX2}")
 
 URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-f3a325fe1af75aed7758b0ba8db9f4b032b3f044/rpcs3-v0.0.21-13349-f3a325fe_linux64.AppImage'
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_RPCS3}")
 
 URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.6-1/MangoHud-0.6.6.1.r0.gda573e8.tar.gz'
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_MANGOHUD}")
 
 URL_GAMECONTROLLERDB='7d886c96d3b9eab15ab687d2d3f872518b18fbc0'
 URL_GAMECONTROLLERDB="https://raw.githubusercontent.com/gabomdq/SDL_GameControllerDB/${URL_GAMECONTROLLERDB}/gamecontrollerdb.txt#/gamecontrollerdb-${URL_GAMECONTROLLERDB}.txt"
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_GAMECONTROLLERDB}")
 
 URL_ANTIMICRO='3.1.7'
 URL_ANTIMICRO="https://github.com/AntiMicroX/antimicrox/releases/download/${URL_ANTIMICRO}/AntiMicroX-x86_64.AppImage#/AntiMicroX-${URL_ANTIMICRO}.AppImage"
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_ANTIMICRO}")
 
 URL_PEAZIP='https://github.com/peazip/PeaZip/releases/download/8.2.0/peazip_portable-8.2.0.LINUX.GTK2.x86_64.tar.gz'
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_PEAZIP}")
 
 URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/91.8.0esr/linux-x86_64/en-US/firefox-91.8.0esr.tar.bz2'
 #URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_FIREFOX}")
 
 URL_QBITTORRENT='https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.3.8.10/qBittorrent-Enhanced-Edition.AppImage'
 URL_QBITTORRENT=$(echo ${URL_QBITTORRENT}#/$(basename ${URL_QBITTORRENT} | sed "s/.AppImage/-$(basename $(dirname ${URL_QBITTORRENT}) | cut -d '-' -f 2).AppImage/"))
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_QBITTORRENT}")
+
+################################################################################
+
+# CLEAR
+
+echo -e '\nLimpando a pasta temporária...'
+
+umount  -fl /dev/loop6               2> /dev/null || :
+umount  -fl /dev/loop7               2> /dev/null || :
+
+losetup -d  /dev/loop6               2> /dev/null || :
+losetup -d  /dev/loop7               2> /dev/null || :
+
+umount  -fl "${TEMP_DIR}/pkg-xtract" 2> /dev/null || :
+
+rm -rf "${TEMP_DIR}/"*               2> /dev/null || :
+
+if [ "${RELEASE}" ]; then
+    echo -e '\nLimpando a pasta de download...\n'
+
+    for FILE in "${DOWNLOAD_DIR}/"*; do
+        FOUND=FALSE
+
+        for URL in "${URL_BATOCERA_PLUS_PKG[@]}" "${URL_BATOCERA_PLUS_PKG_DEV[@]}"; do
+            if [ "${DOWNLOAD_DIR}/$(basename ${URL})" == "${FILE}" ]; then
+                echo "[Found] : ${FILE}"
+                FOUND=TRUE
+                break
+            fi
+        done
+
+        if [ "${FOUND}" == 'FALSE' ]; then
+            echo "[Delete]: ${FILE}"
+            rm -rf "${FILE}"
+        fi
+    done
+fi
 
 ################################################################################
 
@@ -369,36 +441,7 @@ URL_QBITTORRENT=$(echo ${URL_QBITTORRENT}#/$(basename ${URL_QBITTORRENT} | sed "
 
 mkdir -p "${DOWNLOAD_DIR}"
 
-for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
-           "${URL_BATOCERA_LINUX}" \
-           "${URL_BATOCERA_ZERO}" \
-           "${URL_ES_THEME_A}" \
-           "${URL_ALL_BIOS}" \
-           "${URL_MUSIC}" \
-           "${URL_WINDOWS_TOOLS}" \
-           "${URL_PCI_IDS}" \
-           "${URL_NVIDIA_DRIVER}" \
-           "${URL_LINUX_FIRMWARE}" \
-           "${URL_JAVA}" \
-           "${URL_WINE_MONO}" \
-           "${URL_WINE_DXVK}" \
-           "${URL_WINE_VKD3D_PROTON}" \
-           "${URL_WINE_NVAPI}" \
-           "${URL_WINE_WINETRICKS}" \
-           "${URL_CEMU}" \
-           "${URL_CEMUHOOK}" \
-           "${URL_YUZU_MAINLINE}" \
-           "${URL_YUZU_EARLY_ACCESS}" \
-           "${URL_RYUJINX}" \
-           "${URL_MANGOHUD}" \
-           "${URL_GAMECONTROLLERDB}" \
-           "${URL_ANTIMICRO}" \
-           "${URL_PEAZIP}" \
-           "${URL_PCSX2}" \
-           "${URL_RPCS3}" \
-           "${URL_FIREFOX}" \
-           "${URL_QBITTORRENT}"
-do
+for URL in "${URL_BATOCERA_PLUS_PKG[@]}"; do
     PKG_NAME="$(basename "${URL}")"
 
     # Delete incomplete download
@@ -435,22 +478,6 @@ do
 
     exit 1
 done
-
-################################################################################
-
-# CLEAN
-
-echo -e '\nLimpando a pasta temporária...'
-
-umount  -fl /dev/loop6               2> /dev/null || :
-umount  -fl /dev/loop7               2> /dev/null || :
-
-losetup -d  /dev/loop6               2> /dev/null || :
-losetup -d  /dev/loop7               2> /dev/null || :
-
-umount  -fl "${TEMP_DIR}/pkg-xtract" 2> /dev/null || :
-
-rm -rf "${TEMP_DIR}/"*               2> /dev/null || :
 
 ################################################################################
 
