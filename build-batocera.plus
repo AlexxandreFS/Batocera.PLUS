@@ -351,6 +351,11 @@ URL_WINE_WINETRICKS='20220411'
 URL_WINE_WINETRICKS="https://raw.githubusercontent.com/Winetricks/winetricks/${URL_WINE_WINETRICKS}/src/winetricks#/winetricks-${URL_WINE_WINETRICKS}"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_WINE_WINETRICKS}")
 
+URL_SOUNDFONT_GS='GeneralUser_GS_1.471.zip'
+# http://www.schristiancollins.com/generaluser.php
+URL_SOUNDFONT_GS="https://www.dropbox.com/s/4x27l49kxcwamp5/${URL_SOUNDFONT_GS}?dl=1#/${URL_SOUNDFONT_GS}"
+URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_SOUNDFONT_GS}")
+
 URL_CEMU='https://cemu.info/releases/cemu_1.26.2.zip'
 #URL_CEMU="$(curl -s http://cemu.info | grep -i 'cemu_.*' | tail -n 1 | cut -d '"' -f 2 | cut -d ' ' -f 1)"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_CEMU}")
@@ -445,7 +450,7 @@ fi
 mkdir -p "${DOWNLOAD_DIR}"
 
 for URL in "${URL_BATOCERA_PLUS_PKG[@]}" \
-           "${URL_BATOCERA_PLUS_PKG_DEV[@]}" \
+           "${URL_BATOCERA_PLUS_DEV_PKG[@]}" \
            "${URL_EXTERNAL_PKG[@]}"
 do
     PKG_NAME="$(basename "${URL}")"
@@ -730,6 +735,15 @@ chmod 755 "${TEMP_DIR}/pkg-xtract/"*
 cp -pP "${TEMP_DIR}/pkg-xtract/"* "${TEMP_DIR}/squashfs-root/usr/bin"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
+echo 'Install SoundFont GeneralUser GS for fluidsynth...'
+PKG_NAME="$(basename "${URL_SOUNDFONT_GS}")" 
+unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract"
+mkdir -p "${TEMP_DIR}/squashfs-root/usr/share/soundfonts"
+mv "${TEMP_DIR}"/pkg-xtract/GeneralUser*/GeneralUser*.sf2 \
+   "${TEMP_DIR}/squashfs-root/usr/share/soundfonts/GeneralUser_GS.sf2"
+ln -s GeneralUser_GS.sf2 "${TEMP_DIR}/squashfs-root/usr/share/soundfonts/default.sf2"
+rm -r "${TEMP_DIR}/pkg-xtract/"*
+
 echo 'Install MangoHud...'
 PKG_NAME="$(basename "${URL_MANGOHUD}")"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
@@ -954,7 +968,7 @@ done
 
 echo 'Criando arquivo de versão do Batocera.PLUS...'
 mv   "${TEMP_DIR}/squashfs-root/usr/share/batocera/batocera.version" "${TEMP_DIR}/squashfs-root/usr/share/batocera/recalbox.version"
-echo "${VERSION $(date +'%Y/%m/%d %H:%M')" >                         "${TEMP_DIR}/squashfs-root/usr/share/batocera/batocera.version"
+echo "${VERSION} $(date +'%Y/%m/%d %H:%M')" >                        "${TEMP_DIR}/squashfs-root/usr/share/batocera/batocera.version"
 
 echo 'Adicionando versão BATOCERA.PLUS no ES'
 sed -i 's/BATOCERA.LINUX/BATOCERA.PLUS /' "${TEMP_DIR}/squashfs-root/usr/bin/emulationstation"
