@@ -318,6 +318,10 @@ URL_ES_THEME_A='b4de6b88a3a98288deeca7f1d3e8cafc259ddeb1'
 URL_ES_THEME_A="https://github.com/AlexxandreFS/Batocera.PLUS-es-theme/archive/${URL_ES_THEME_A}.zip#/Batocera.PLUS-es-theme-${URL_ES_THEME_A}.zip"
 URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_ES_THEME_A}")
 
+URL_ES_THEME_B='5ff5eb45d692a39f05b7ca6980a9150e446e65fd'
+URL_ES_THEME_B="https://github.com/LordOgro/Carbon-2.0_PLUS/archive/${URL_ES_THEME_B}.zip#/Carbon-2.0_PLUS-${URL_ES_THEME_B}.zip"
+URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_ES_THEME_B}")
+
 URL_MUSIC='133b040ce3c04b6c462102a57ea1134ab73a80c7'
 URL_MUSIC="https://github.com/BatoceraPLUS/Batocera.PLUS-music/archive/${URL_MUSIC}.zip#/Batocera.PLUS-music-${URL_MUSIC}.zip"
 URL_BATOCERA_PLUS_PKG=("${URL_BATOCERA_PLUS_PKG[@]}" "${URL_MUSIC}")
@@ -508,11 +512,14 @@ rm -r "$TEMP_DIR/squashfs-root/usr/share/batocera/shaders"
 # Remova apenas quando todos os emuladores que adionam os respectivos arquivos estiverem atualizados
 rm -rf "${TEMP_DIR}/squashfs-root/usr/share/batocera/datainit/bios/"*
 
+# Remove o tema padrão do emulationstation
+rm -rf "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/es-theme-carbon"
+
 # Remove icones duplicados e fora do padrão para um próximo update.
-rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/scummvm.desktop"
-rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/dolphin-emu.desktop"
-rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/retroarch.desktop"
-rm -r "$TEMP_DIR/squashfs-root/usr/share/applications/pcmanfm-desktop-pref.desktop"
+rm -f "$TEMP_DIR/squashfs-root/usr/share/applications/scummvm.desktop"
+rm -f "$TEMP_DIR/squashfs-root/usr/share/applications/dolphin-emu.desktop"
+rm -f "$TEMP_DIR/squashfs-root/usr/share/applications/retroarch.desktop"
+rm -f "$TEMP_DIR/squashfs-root/usr/share/applications/pcmanfm-desktop-pref.desktop"
 
 # Remove roms que por padrão já vem com o sistema
 for x in c64 gba megadrive nes pcengine prboom snes; do
@@ -667,6 +674,13 @@ PKG_NAME="$(basename "${URL_ES_THEME_A}")"
 unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract"
 cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
        "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus"
+rm -r  "${TEMP_DIR}/pkg-xtract/"*
+
+echo 'Install Carbon-2.0_PLUS theme...'
+PKG_NAME="$(basename "${URL_ES_THEME_B}")"
+unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract"
+cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
+       "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/Carbon-2.0_PLUS"
 rm -r  "${TEMP_DIR}/pkg-xtract/"*
 
 if [ "${ALL_BIOS}" == 'true' ]; then
