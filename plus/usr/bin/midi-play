@@ -1,0 +1,27 @@
+#!/bin/bash
+###
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+### Play midi music with fluidsynth
+###
+
+MUSIC="${1}"
+
+if ! [ -e '/dev/snd/seq' ]
+then
+    modprobe snd_seq
+    sleep 0.5
+fi
+
+if ! [ -e "${MUSIC}" ]
+then
+    echo "usage: $(basename "${0}") my-music.mid"
+    exit 1
+fi
+
+exec fluidsynth --midi-driver alsa_seq \
+                --audio-driver alsa \
+                --no-shell \
+                /usr/share/soundfonts/default.sf2 \
+                "${1}"
+                

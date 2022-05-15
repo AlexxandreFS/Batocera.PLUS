@@ -1,0 +1,61 @@
+#!/bin/bash
+###
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+### Start FluidSynth as a server process
+###
+
+function startFluidsynth()
+{
+    if ! [ -e '/dev/snd/seq' ]
+    then
+        modprobe snd_seq
+    fi
+
+    if ! [ -e '/dev/snd/seq' ]
+    then
+        return 1
+    fi
+
+    fluidsynth --midi-driver  alsa_seq \
+               --audio-driver alsa \
+               --no-shell \
+               --server \
+               --quiet \
+               /usr/share/soundfonts/default.sf2 \
+               > /dev/null 2>&1
+}
+
+function stopFluidsynth()
+{
+    killall -9 fluidsynth > /dev/null 2>&1
+
+    if ! [ -e '/dev/snd/seq' ]
+    then
+        modprobe -r snd_seq
+    fi
+}
+
+function restartFluidsynth()
+{
+    startDaemon
+    sleep 0.5
+    stopDaemon
+}
+
+case ${1} in
+    start)
+        startFluidsynth &
+        ;;
+    stop)
+        stopFluidsynth
+        ;;
+    restart)
+        restartFluidsynth
+        ;;
+    *)
+        echo "usage: $(basename "${0}") start | stop | restart"
+        exit 1 
+esac
+
+exit 0
