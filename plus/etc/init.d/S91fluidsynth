@@ -38,9 +38,9 @@ function stopFluidsynth()
 
 function restartFluidsynth()
 {
-    startDaemon
+    startFluidsynth
     sleep 0.5
-    stopDaemon
+    stopFluidsynth
 }
 
 case ${1} in
