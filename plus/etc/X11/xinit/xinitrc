@@ -83,6 +83,7 @@ if [ -e "/lib/modules/$(uname -r)/extra/nvidia.ko" ]; then
 
     # Hybrid Nvidia
     if grep -q ' BusID ' /usr/share/X11/xorg.conf.d/10-nvidia-drm-outputclass.conf; then
+        export DRI_PRIME=1
         # https://us.download.nvidia.com/XFree86/Linux-x86_64/450.57/README/primerenderoffload.html
         # Nvidia Driver >= 435.17
         export __NV_PRIME_RENDER_OFFLOAD=1
