@@ -2,6 +2,9 @@
 
 ### Batocera.PLUS
 ### Alexandre Freire dos Santos
+###
+### A Linux kernel module for creating a compressed block device in RAM
+###
 
 set -e
 
@@ -29,7 +32,7 @@ function zRamStop()
         vm.dirty_background_ratio=10 \
         vm.dirty_ratio=20 \
         vm.page-cluster=3 \
-        vm.max_map_count = 65530
+        vm.max_map_count=65530
 }
 
 function zRamStart()
@@ -79,7 +82,7 @@ function zRamStart()
         vm.dirty_ratio=50 \
         vm.dirty_background_ratio=5 \
         vm.page-cluster=2 \
-        vm.max_map_count = 262144
+        vm.max_map_count=262144
 }
 
 case "$1" in
