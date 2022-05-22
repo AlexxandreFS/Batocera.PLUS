@@ -28,7 +28,8 @@ function zRamStop()
         vm.vfs_cache_pressure=100 \
         vm.dirty_background_ratio=10 \
         vm.dirty_ratio=20 \
-        vm.page-cluster=3
+        vm.page-cluster=3 \
+        vm.max_map_count = 65530
 }
 
 function zRamStart()
@@ -77,7 +78,8 @@ function zRamStart()
         vm.vfs_cache_pressure=50 \
         vm.dirty_ratio=50 \
         vm.dirty_background_ratio=5 \
-        vm.page-cluster=2
+        vm.page-cluster=2 \
+        vm.max_map_count = 262144
 }
 
 case "$1" in
