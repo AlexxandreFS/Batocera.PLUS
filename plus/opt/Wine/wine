@@ -104,6 +104,7 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 ### GSTREAMER
 
 export GST_REGISTRY_UPDATE=no
+export GST_REGISTRY_FORK=no
 export GST_PLUGIN_PATH='/lib32/gstreamer-1.0:/usr/lib/gstreamer-1.0'
 export GST_PLUGIN_SYSTEM_PATH="${GST_PLUGIN_PATH}"
 
@@ -601,8 +602,6 @@ function wineCheckLibs() {
     #gst-launch-1.0 playbin uri=file:///usr/share/batocera/splash/splash.mp4
     #gst-launch-1.0 --gst-debug-level=0
 
-    LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/userdata/extractions/gstreamer/gstreamer-32bit/lib32"
-
     if [ "${WINE_ARCH}" == 64 ]; then
         wineWait
         exit 0
@@ -746,6 +745,10 @@ if [ "${WINEPREFIX}" == "${HOME}/configs/wine/${WINE_BUILD}" ] || [ "${INSTALL_E
     done
 
     unset MS_FONTS_DIR MS_FONT
+
+    # Gstreamer create cache
+    gst-launch-1.0    --version > /dev/null 2>&1
+    gst-launch-1.0-32 --version > /dev/null 2>&1
 
     wineWait
 fi
