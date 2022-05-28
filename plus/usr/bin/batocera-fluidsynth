@@ -2,7 +2,7 @@
 ###
 ### Batocera.PLUS
 ### Alexandre Freire dos Santos
-### Start FluidSynth as a server process
+### Start/Stop FluidSynth as a server process
 ###
 
 function startFluidsynth()
@@ -10,11 +10,11 @@ function startFluidsynth()
     if ! [ -e '/dev/snd/seq' ]
     then
         modprobe snd_seq
-    fi
 
-    if ! [ -e '/dev/snd/seq' ]
-    then
-        return 1
+        if ! [ -e '/dev/snd/seq' ]
+        then
+            return 1
+        fi
     fi
 
     fluidsynth --midi-driver  alsa_seq \
@@ -28,9 +28,12 @@ function startFluidsynth()
 
 function stopFluidsynth()
 {
-    killall -9 fluidsynth > /dev/null 2>&1
+    if [ "$(pidof -s fluidsynth)" ]
+    then
+        killall -15 fluidsynth > /dev/null 2>&1
+    fi
 
-    if ! [ -e '/dev/snd/seq' ]
+    if lsmod | grep -qE '^[ ]*snd_seq[ ]'
     then
         modprobe -r snd_seq
     fi
