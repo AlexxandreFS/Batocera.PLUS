@@ -1,0 +1,3 @@
+
+ Lista completa das opções disponível em:
+ https://github.com/mozilla/policy-templates/blob/master/README.md

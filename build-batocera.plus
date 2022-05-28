@@ -354,6 +354,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_WINE_WINETRICKS}")
 URL_SOUNDFONT_GS='GeneralUser_GS_1.471.zip'
 # http://www.schristiancollins.com/generaluser.php
 URL_SOUNDFONT_GS="https://www.dropbox.com/s/4x27l49kxcwamp5/${URL_SOUNDFONT_GS}?dl=1#/${URL_SOUNDFONT_GS}"
+#URL_SOUNDFONT_GS="https://ftp.kaist.ac.kr/macports/distfiles/generaluser-soundfont/${URL_SOUNDFONT_GS}"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_SOUNDFONT_GS}")
 
 URL_CEMU='https://cemu.info/releases/cemu_1.26.2.zip'
@@ -396,6 +397,9 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_PEAZIP}")
 URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/91.9.1esr/linux-x86_64/en-US/firefox-91.9.1esr.tar.bz2'
 #URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_FIREFOX}")
+
+URL_FIREFOX_OLD='https://download-installer.cdn.mozilla.net/pub/firefox/releases/84.0.2/linux-x86_64/en-US/firefox-84.0.2.tar.bz2'
+URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_FIREFOX_OLD}")
 
 URL_QBITTORRENT='https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-4.3.8.10/qBittorrent-Enhanced-Edition.AppImage'
 URL_QBITTORRENT=$(echo ${URL_QBITTORRENT}#/$(basename ${URL_QBITTORRENT} | sed "s/.AppImage/-$(basename $(dirname ${URL_QBITTORRENT}) | cut -d '-' -f 2).AppImage/"))
@@ -774,10 +778,17 @@ rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Firefox...'
 PKG_NAME="$(basename "${URL_FIREFOX}")"
-bunzip2 -d -k -v -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar x -v -C "${TEMP_DIR}/squashfs-root/opt/Firefox"
-mv    "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox/"* \
-      "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-esr"
-rmdir "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox"
+bunzip2 -d -k -v -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar x -v -C "${TEMP_DIR}/pkg-xtract"
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-esr"
+cp -rf "${TEMP_DIR}/pkg-xtract/firefox/"* "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-esr"
+rm -r "${TEMP_DIR}/pkg-xtract/"*
+
+echo 'Install Firefox old version...'
+PKG_NAME="$(basename "${URL_FIREFOX_OLD}")"
+bunzip2 -d -k -v -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar x -v -C "${TEMP_DIR}/pkg-xtract"
+mkdir -p "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-old"
+cp -rf "${TEMP_DIR}/pkg-xtract/firefox/"* "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-old"
+rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install qBittorrent...'
 PKG_NAME="$(basename "${URL_QBITTORRENT}")"

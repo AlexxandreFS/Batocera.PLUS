@@ -1,0 +1,7 @@
+{
+  "policies": {
+    "DisableAppUpdate": true,
+    "DontCheckDefaultBrowser": true,
+    "DefaultDownloadDirectory": "\\userdata\\Downloads"
+  }
+}
