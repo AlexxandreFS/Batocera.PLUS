@@ -1,34 +1,70 @@
 # batocera-audio alsa config
-# dmix + softvol
-
-pcm.!default {
-	type            plug
-	slave.pcm       "softvol"
-}
+# dmix + asym + softvol
+#--------------------------------------------------------------------------------------
+# Estudos futuros:
+# https://superuser.com/questions/712172/alsa-dmix-plugin-supports-only-playback-stream-error-when-using-dmix-on-beagle
+# https://forums.gentoo.org/viewtopic.php?p=958187
+# https://alsa.opensrc.org/How_to_use_softvol_to_control_the_master_volume
+# https://alsa.opensrc.org/Xorg_Multihead_and_alsa#Make_applications_use_it
+# https://forums.gentoo.org/viewtopic-t-443324-start-0.html
+# https://www.mythtv.org/wiki/index.php/Configuring_Digital_Sound#How_do_I_set_up_Myth_plugins_to_use_digital_sound_with_mplayer.3F
+# https://noisybox.net/blog/2016/01/alsa_recording_of_device_output
+# https://unix.stackexchange.com/questions/310164/create-virtual-device-in-asoundrc-file
+# https://alsa.opensrc.org/Jack_and_Loopback_device_as_Alsa-to-Jack_bridge
+# https://bbs.archlinux.org/viewtopic.php?id=167830
+# https://bbs.archlinux.org/viewtopic.php?id=147852
+# https://bbs.archlinux.org/viewtopic.php?id=251591
+#----------------------------------------------------------------------------------------
 
 ctl.!default {
 	type            hw 
 	card            %CARDNO%
 }
 
-pcm.ddmix {
-	ipc_key         1024
-	type            dmix
-	slave {
-		pcm         "hw:%CARDNO%,%DEVICENO%"
-		period_time 0
-		period_size 2048
-		buffer_size 8192
-	}
+pcm.!default {
+    type            asym
+    playback.pcm {
+        type        plug
+        slave.pcm   "softvol"
+    }
+    capture.pcm {
+        type        plug
+        slave.pcm   "loopback" # Estudos Futuros - WIP
+    }
 }
 
 pcm.softvol {
 	type            softvol
 	slave {
-		pcm         "ddmix"
+		pcm         "dmixer"
 	}
 	control {
 		name        "Master"
 		card        %CARDNO%
 	}
 }
+
+pcm.dmixer {
+    type dmix
+    ipc_key 1024
+    slave {
+        pcm "hw:%CARDNO%,%DEVICENO%"
+        period_time 0
+		period_size 2048
+		buffer_size 8192
+    } 
+    bindings {
+        0 0
+        1 1
+    }
+}
+
+pcm.dsp0 {
+    type            plug
+    slave.pcm       "dmixer"
+}
+
+#-----------------------------------
+# LOOPBACK AREA
+#-----------------------------------
+
