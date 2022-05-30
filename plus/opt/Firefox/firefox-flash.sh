@@ -62,4 +62,4 @@ done
 
 export HOME="${SAVE_DIR}"
 
-exec "${FIREFOX_DIR}/firefox-legacy/firefox" --profile "${SAVE_DIR}" "${ROM}"
+exec "${FIREFOX_DIR}/firefox-legacy/firefox" -no-remote --profile "${SAVE_DIR}" "${ROM}"

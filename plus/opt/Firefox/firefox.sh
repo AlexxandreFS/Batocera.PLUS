@@ -94,7 +94,7 @@ fi
 ################################################################################
 
 ### Configura o navegador para abrir com todas orelhas fechadas.
-### Faz backup do arquivo de configuração do navegaor antes de fazer alterações.
+### Faz backup do arquivo de configuração do navegador antes de fazer alterações.
 cp "${SAVE_DIR}/sessionstore.jsonlz4" "${SAVE_DIR}/sessionstore.jsonlz4.original"
 
 ### Fecha todas orelhas.
@@ -107,7 +107,7 @@ sed -i s/'^user_pref("browser.startup.page", .*/user_pref("browser.startup.page"
 if [ "${SYSTEM}" == 'internet' ]
 then
     ### Abre o navegador com todas as orelhas fechadas
-    HOME="${SAVE_DIR}" "${FIREFOX_DIR}/firefox" --profile "${SAVE_DIR}" "$(head -n 1 "${ROM}")"
+    HOME="${SAVE_DIR}" "${FIREFOX_DIR}/firefox" --profile "${SAVE_DIR}" $(head -n 1 "${ROM}")
 fi
 
 ################################################################################
