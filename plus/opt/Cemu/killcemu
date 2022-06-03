@@ -1,0 +1,25 @@
+#!/bin/sh
+##
+## Batocera.PLUS
+## Encerra a execução de todos os programas executados pelo wine.
+##
+## Código escrito por: Sérgio de Carvalho Júnior
+## 
+################################################################################
+
+CEMU_PID="$(pidof -s 'Cemu.exe')"
+
+if [ "${CEMU_PID}" != '' ]; then
+    kill -15 ${CEMU_PID}
+    sleep 0.2
+fi
+
+if [ -z "${CEMU_PID}" ]; then
+    echo 'Cemu closed!'
+elif [ "${CEMU_PID}" != '' ]; then
+    sleep 0.5
+    kill -9 ${CEMU_PID}
+    echo 'Cemu is dead!'
+fi
+
+exit 0
