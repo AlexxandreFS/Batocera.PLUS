@@ -195,7 +195,7 @@ if [ ! "$(ls -A "${MAINLINE_SAVE_DIR}/.config/rpcs3" 2> /dev/null)" ] ||
 fi
 
 # no controller config found warning
-if [ ! -f "${MAINLINE_SAVE_DIR}/.config/rpcs3/config_input.yml" ] && [ "${GAME}" ]; then
+if [ ! -f "${MAINLINE_SAVE_DIR}/.config/rpcs3/input_configs/global/Default.yml" ] && [ "${GAME}" ]; then
     TextLocalization
     ControllerWarning
 fi
