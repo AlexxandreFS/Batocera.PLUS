@@ -1,0 +1,5 @@
+config BR2_PACKAGE_NSXIV
+        bool "nsxiv"
+
+        help
+          A image viewer.

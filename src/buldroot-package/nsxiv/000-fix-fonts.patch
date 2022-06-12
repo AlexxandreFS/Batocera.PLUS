@@ -1,0 +1,13 @@
+diff --git a/Makefile b/Makefile
+index 0ada98d..d603d00 100644
+--- a/Makefile
++++ b/Makefile
+@@ -3,7 +3,7 @@
+ include config.mk
+ 
+ inc_fonts_0 =
+-inc_fonts_1 = -I/usr/include/freetype2 -I$(PREFIX)/include/freetype2
++inc_fonts_1 = -I/x86_64/host/x86_64-buildroot-linux-gnu/sysroot/usr/include/freetype2
+ lib_fonts_0 =
+ lib_fonts_1 = -lXft -lfontconfig
+ lib_exif_0 =

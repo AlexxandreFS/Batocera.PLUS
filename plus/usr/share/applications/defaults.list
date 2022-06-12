@@ -3,6 +3,27 @@ text/plain=leafpad.desktop
 x-scheme-handler/http=firefox.desktop
 application/x-ms-dos-executable=wine-launcher.desktop
 
+image/bmp=nsxiv.desktop
+image/gif=nsxiv.desktop
+image/jpeg=nsxiv.desktop
+image/jpg=nsxiv.desktop
+image/png=nsxiv.desktop
+image/tiff=nsxiv.desktop
+image/x-bmp=nsxiv.desktop
+image/x-portable-anymap=nsxiv.desktop
+image/x-portable-bitmap=nsxiv.desktop
+image/x-portable-graymap=nsxiv.desktop
+image/x-tga=nsxiv.desktop
+image/x-xpixmap=nsxiv.desktop
+image/webp=nsxiv.desktop
+image/heic=nsxiv.desktop
+image/svg+xml=nsxiv.desktop
+application/postscript=nsxiv.desktop
+image/jp2=nsxiv.desktop
+image/jxl=nsxiv.desktop
+image/avif=nsxiv.desktop
+image/heif=nsxiv.desktop
+
 application/bzip2=peazip.desktop
 application/gzip=peazip.desktop
 application/vnd.android.package-archive=peazip.desktop

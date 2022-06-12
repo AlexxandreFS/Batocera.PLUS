@@ -188,6 +188,16 @@
             <fullscreen></fullscreen>
         </application>
 
+        <application name="nsxiv">
+            <decor>yes</decor>
+            <fullscreen></fullscreen>
+            <maximized></maximized>
+            <position type="normal">
+                <x>center</x>
+                <y>center</y>
+            </position>
+        </application>
+
         <application name="peazip">
             <decor>yes</decor>
             <fullscreen></fullscreen>

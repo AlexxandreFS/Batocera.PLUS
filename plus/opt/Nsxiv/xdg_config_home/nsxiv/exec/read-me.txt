@@ -1,0 +1,4 @@
+#
+# See all examples:
+#
+# https://codeberg.org/nsxiv/nsxiv/src/branch/master/examples
