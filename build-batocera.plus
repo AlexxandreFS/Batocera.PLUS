@@ -36,6 +36,7 @@ UPDATE_DIR='update'
 BOOT_DIR='boot'
 DOWNLOAD_DIR='download'
 PATCH_DIR='patch'
+SCRIPT_DIR='script'
 
 ################################################################################
 
@@ -934,6 +935,10 @@ cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk2.so."*           "${TE
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk3.so."*           "${TEMP_DIR}/squashfs-root/usr/lib"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-encode.so."*         "${TEMP_DIR}/squashfs-root/usr/lib/"
 cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvcuvid.so."*               "${TEMP_DIR}/squashfs-root/usr/lib/libnvcuvid.so.1"
+echo 'Create udev rules to Nvidia Driver ...'
+"${SCRIPT_DIR}/nvidia-driver-udev-rules.sh" \
+    "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/supported-gpus/supported-gpus.json" \
+    "${TEMP_DIR}/squashfs-root/etc/udev/rules.d/01-nvidia-driver.rules"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Update Linux firmware...'
