@@ -373,7 +373,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_YUZU_MAINLINE}")
 URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-2557/Yuzu-EA-2557.AppImage'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_YUZU_EARLY_ACCESS}")
 
-URL_RYUJINX='https://github.com/Ryujinx/release-channel-master/releases/download/1.1.76/ryujinx-1.1.76-linux_x64.tar.gz' #Link provisório
+URL_RYUJINX='https://github.com/Ryujinx/release-channel-master/releases/download/1.1.150/ryujinx-1.1.150-linux_x64.tar.gz' #Link provisório
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_RYUJINX}")
 
 URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.2464/pcsx2-v1.7.2464-linux-AppImage-64bit.AppImage'
