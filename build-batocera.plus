@@ -379,7 +379,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_RYUJINX}")
 URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.2464/pcsx2-v1.7.2464-linux-AppImage-64bit.AppImage'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_PCSX2}")
 
-URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-f3a325fe1af75aed7758b0ba8db9f4b032b3f044/rpcs3-v0.0.21-13349-f3a325fe_linux64.AppImage'
+URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-42627946689d20869cbd195a716d4070eb57d166/rpcs3-v0.0.22-13800-42627946_linux64.AppImage'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_RPCS3}")
 
 URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.7-1/MangoHud-0.6.7.1.r0.g58e277a.tar.gz'
