@@ -834,7 +834,8 @@ rm -r "${TEMP_DIR}/pkg-xtract/"*
 echo 'Install pcsx2-mainline...'
 PKG_NAME="$(basename "${URL_PCSX2}")"
 chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
-mkdir -p "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
+mkdir -p "${TEMP_DIR}/pkg-xtract/${PKG_NAME}" \
+         "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/lib"
 CURRENT_DIR="$(pwd)"
 cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
 "${CURRENT_DIR}/${DOWNLOAD_DIR}/${PKG_NAME}" --appimage-extract
