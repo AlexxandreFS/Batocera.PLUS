@@ -25,7 +25,7 @@ else
     WINE_BUILD="${CORE}"
 fi
 
-case "${WINE_BUILD}" in 
+case "${WINE_BUILD}" in
     wine|wine64|wineserver)
         WINE_BUILD='wine-stable'
         ;;
@@ -482,27 +482,6 @@ fi
 case "${WINE_ARCH}" in wineserver|wineserver-wine-stable|wineserver-wine-staging|wineserver-wine-lutris|wineserver-proton|wineserver-proton-valve|wineserver-proton-ge-custom|wineserver-wine-old-stable)
     exec "${WINE_DIR}/${WINE_BUILD}/bin/wineserver" "${@}"
 esac
-
-################################################################################
-
-### COMPATIBILITY WHITH WINEPREFIX OF Batocera.PLUS 2.0
-
-if [ -f "${HOME}/configs/wine/${WINE_BUILD}/.update-timestamp" ]; then
-    WINEPREFIX_BASE="${HOME}/configs/wine"
-
-    for FILE in "${WINEPREFIX_BASE}/${WINE_BUILD}/"*; do
-        LINK="${WINEPREFIX_BASE}/$(basename "${FILE}")"
-        if [ "${LINK}" ] && [ ! "$(readlink "${LINK}")" == "${LINK}" ]; then
-            rm -rf "${LINK}"
-            ln -sf "${FILE}" "${LINK}"
-        fi
-    done
-
-    sleep 0.3
-
-    unset LINK
-    unset WINEPREFIX_BASE
-fi
 
 ################################################################################
 

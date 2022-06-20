@@ -27,6 +27,35 @@ readonly OPTIMIZATIONS="${14}"
 readonly INGAME_VIDEOS="${15}"
 readonly JOYPAD="${16}"
 readonly VIDEOMODE="${17}"
+readonly WINE_LEGACY="${18}"
+
+################################################################################
+
+### Wine Legacy
+
+if  [ "${WINE_LEGACY}" ] && [ "${WINE_LEGACY}" != 'auto' ]; then
+
+    WINE_LEGACY_CORE_DIR='/userdata/wine-legacy'
+
+    # Desmonta se ainda montado por algum bug.
+    if df | grep -q "/opt/Wine/${CORE}$"; then
+        umount -f "/opt/Wine/${CORE}"
+    fi
+
+    # Monta o wine legacy
+    if [ -e "${WINE_LEGACY_CORE_DIR}/${WINE_LEGACY}.plus" ]; then
+        if ! mount -o ro "${WINE_LEGACY_CORE_DIR}/${WINE_LEGACY}.plus" "/opt/Wine/${CORE}"; then
+            exit 1
+        fi
+
+        export WINEPREFIX="${HOME}/configs/wine/${WINE_LEGACY}"
+        mkdir -p "${WINEPREFIX}"
+    else
+        exit 2
+    fi
+
+    unset WINE_LEGACY_CORE_DIR
+fi
 
 ################################################################################
 
@@ -471,6 +500,14 @@ if [ "${ROM}" == "${MOUNT_DIR}" ]; then
 
     rmdir "${MOUNT_DIR}"
     rm -r "${OVERLAY_DIR}"
+fi
+
+################################################################################
+
+### Desmonta Wine Legacy
+
+if [ "${WINE_LEGACY}" != 'auto' ]; then
+    umount -f /opt/Wine/${CORE}
 fi
 
 ################################################################################
