@@ -307,7 +307,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_PCI_IDS}")
 URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/510.60.02/NVIDIA-Linux-x86_64-510.60.02.run'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_NVIDIA_DRIVER}")
 
-URL_LINUX_FIRMWARE='https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20220509.tar.gz'
+URL_LINUX_FIRMWARE='https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20220610.tar.gz'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_LINUX_FIRMWARE}")
 
 URL_ES_THEME_A='b4de6b88a3a98288deeca7f1d3e8cafc259ddeb1'
@@ -337,7 +337,7 @@ if ! [ -e "${DOWNLOAD_DIR}/${URL_JAVA}" ]; then
 fi
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_JAVA}")
 
-URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/7.2.0/wine-mono-7.2.0-x86.tar.xz'
+URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/7.3.0/wine-mono-7.3.0-x86.tar.xz'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_WINE_MONO}")
 
 URL_WINE_DXVK='https://github.com/doitsujin/dxvk/releases/download/v1.10.1/dxvk-1.10.1.tar.gz'
@@ -385,7 +385,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_RPCS3}")
 URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.7-1/MangoHud-0.6.7.1.r0.g58e277a.tar.gz'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_MANGOHUD}")
 
-URL_GAMECONTROLLERDB='7d886c96d3b9eab15ab687d2d3f872518b18fbc0'
+URL_GAMECONTROLLERDB='b3676f19c119c957181e36e73e57473e1bb316f7'
 URL_GAMECONTROLLERDB="https://raw.githubusercontent.com/gabomdq/SDL_GameControllerDB/${URL_GAMECONTROLLERDB}/gamecontrollerdb.txt#/gamecontrollerdb-${URL_GAMECONTROLLERDB}.txt"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_GAMECONTROLLERDB}")
 
@@ -396,7 +396,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_ANTIMICRO}")
 URL_PEAZIP='https://github.com/peazip/PeaZip/releases/download/8.2.0/peazip_portable-8.2.0.LINUX.GTK2.x86_64.tar.gz'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_PEAZIP}")
 
-URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/91.9.1esr/linux-x86_64/en-US/firefox-91.9.1esr.tar.bz2'
+URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/91.10.0esr/linux-x86_64/en-US/firefox-91.10.0esr.tar.bz2'
 #URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_FIREFOX}")
 
