@@ -35,7 +35,7 @@ readonly WINE_LEGACY="${18}"
 
 if  [ "${WINE_LEGACY}" ] && [ "${WINE_LEGACY}" != 'auto' ]; then
 
-    WINE_LEGACY_CORE_DIR='/userdata/wine-legacy'
+    WINE_LEGACY_CORE_DIR="${SAVES_DIR}/Batocera.PLUS/wine-legacy"
 
     # Desmonta se ainda montado por algum bug.
     if df | grep -q "/opt/Wine/${CORE}$"; then
