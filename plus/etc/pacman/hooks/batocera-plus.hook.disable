@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+When = PostTransaction
+Exec = bin/sh -c 'isso eh apenas um teste pode remover este arquivo se não for usar'
