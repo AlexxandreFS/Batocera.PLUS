@@ -274,11 +274,4 @@ fi
 
 ################################################################################
 
-### FINALIZA A EXECUÇÃO DO JOGO
-
-# Aguarda o Cemu encerrar a execução
-while [ "$(pidof wineserver)" ]; do
-    sleep 1
-done
-
 exit 0
