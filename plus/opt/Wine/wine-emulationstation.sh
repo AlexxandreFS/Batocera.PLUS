@@ -50,6 +50,8 @@ if  [ "${WINE_LEGACY}" ] && [ "${WINE_LEGACY}" != 'auto' ]; then
 
         export WINEPREFIX="${HOME}/configs/wine/${WINE_LEGACY}"
         mkdir -p "${WINEPREFIX}"
+
+        export INSTALL_EXTRAS=1
     else
         exit 2
     fi
