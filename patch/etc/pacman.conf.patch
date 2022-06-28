@@ -10,8 +10,8 @@
 -[batocera]
 -Server            = https://store.batocera.org/
 +[batocera.plus]
-+Server            = https://raw.githubusercontent.com/AlexxandreFS/Batocera.PLUS-pacman/master/
-+Server            = https://raw.githubusercontent.com/AlexxandreFS/Batocera.PLUS-pacman/master/repo/
++Server            = https://raw.githubusercontent.com/BatoceraPLUS/Batocera.PLUS-pacman/master/
++Server            = https://raw.githubusercontent.com/BatoceraPLUS/Batocera.PLUS-pacman/master/repo/
 +#Server            = file:///userdata/saves/Batocera.PLUS/repo-local/
 +#Server            = file:///userdata/saves/Batocera.PLUS/repo-local/repo/
  
