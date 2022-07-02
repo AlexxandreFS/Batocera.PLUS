@@ -1,0 +1,2 @@
+Server = https://raw.githubusercontent.com/BatoceraPLUS/Batocera.PLUS-pacman/master/
+Server = https://raw.githubusercontent.com/BatoceraPLUS/Batocera.PLUS-pacman/master/repo/

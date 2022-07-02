@@ -1,18 +1,12 @@
-#
-# Add Batocera.PLUS server to pacman
-#
 --- pacman.conf.original
 +++ pacman.conf.modificado
-@@ -9,7 +9,10 @@
+@@ -9,7 +9,6 @@
  DisableDownloadTimeout
  ILoveCandy
  
 -[batocera]
 -Server            = https://store.batocera.org/
+-
 +[batocera.plus]
-+Server            = https://raw.githubusercontent.com/BatoceraPLUS/Batocera.PLUS-pacman/master/
-+Server            = https://raw.githubusercontent.com/BatoceraPLUS/Batocera.PLUS-pacman/master/repo/
-+#Server            = file:///userdata/saves/Batocera.PLUS/repo-local/
-+#Server            = file:///userdata/saves/Batocera.PLUS/repo-local/repo/
- 
++Include           = /userdata/saves/Batocera.PLUS/pacman/pacman.conf
  Include           = /userdata/system/pacman/pacman.conf

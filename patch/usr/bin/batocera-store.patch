@@ -1,5 +1,6 @@
 #
 # Clean download cache.
+# Download list server from Batocera.PLUS github
 #
 --- batocera-store.original
 +++ batocera-store.modificado
@@ -12,3 +13,25 @@
  	fi
  	;;
      "remove")
+@@ -33,6 +35,21 @@
+ 
+ 	;;
+     "update")
++	LIST_OFFLINE=/userdata/saves/Batocera.PLUS/pacman/pacman.conf
++	LIST_ONLINE=https://raw.githubusercontent.com/AlexxandreFS/Batocera.PLUS-pacman/master/pacman.txt
++
++	if [ -e "${LIST_OFFLINE}" ]
++	then
++		if curl -sfL "${LIST_ONLINE}" -o "${LIST_OFFLINE}.tmp"
++		then
++			mv -f "${LIST_OFFLINE}.tmp" "${LIST_OFFLINE}"
++		else
++			rm -f "${LIST_OFFLINE}.tmp"
++		fi
++	else
++		mkdir -p "$(dirname "${LIST_OFFLINE}")"
++		curl -sfL "${LIST_ONLINE}" -o "${LIST_OFFLINE}"
++	fi
+ 	pacman --noconfirm -Syu
+ 	;;
+     *)
