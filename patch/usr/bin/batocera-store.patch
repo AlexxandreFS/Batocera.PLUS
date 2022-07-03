@@ -1,10 +1,31 @@
-#
-# Clean download cache.
-# Download list server from Batocera.PLUS github
-#
 --- batocera-store.original
 +++ batocera-store.modificado
-@@ -13,6 +13,8 @@
+@@ -1,5 +1,24 @@
+ #!/bin/bash
+ 
++PACMAN_DIR=/userdata/saves/Batocera.PLUS/pacman
++
++LIST_OFFLINE=${PACMAN_DIR}/pacman.conf
++LIST_ONLINE=https://raw.githubusercontent.com/AlexxandreFS/Batocera.PLUS/master/pacman.txt
++
++if [ ! -e "${LIST_OFFLINE}" ] || [ ! -L "${HOME}/pacman" ]
++then
++	mkdir -p "${PACMAN_DIR}"
++	rm -rf   "${HOME}/pacman"
++	ln -s    "${PACMAN_DIR}" "${HOME}/pacman"
++
++	if curl -sfL "${LIST_ONLINE}" -o "${LIST_OFFLINE}"
++	then
++		pacman --noconfirm -Syu
++	else
++		exit 1
++	fi
++fi
++
+ ACTION=$1
+ shift
+ 
+@@ -13,6 +32,8 @@
  	if [ $? -eq 1 ]; then
  		sleep 1
  		pgrep pacman >/dev/null || rm -f /userdata/system/pacman/db/db.lck
@@ -13,24 +34,24 @@
  	fi
  	;;
      "remove")
-@@ -33,6 +35,21 @@
+@@ -24,7 +45,7 @@
+ 	fi
+ 	;;
+     "list")
+-	if test ! -e /userdata/system/pacman/db/sync/batocera.db
++	if test ! -e /userdata/system/pacman/db/sync/batocera.plus.db
+ 	then
+ 		pacman --noconfirm -Syu
+ 	fi
+@@ -33,6 +54,12 @@
  
  	;;
      "update")
-+	LIST_OFFLINE=/userdata/saves/Batocera.PLUS/pacman/pacman.conf
-+	LIST_ONLINE=https://raw.githubusercontent.com/AlexxandreFS/Batocera.PLUS-pacman/master/pacman.txt
-+
-+	if [ -e "${LIST_OFFLINE}" ]
++	if curl -sfL "${LIST_ONLINE}" -o /tmp/pacman.conf.tmp
 +	then
-+		if curl -sfL "${LIST_ONLINE}" -o "${LIST_OFFLINE}.tmp"
-+		then
-+			mv -f "${LIST_OFFLINE}.tmp" "${LIST_OFFLINE}"
-+		else
-+			rm -f "${LIST_OFFLINE}.tmp"
-+		fi
++		mv -f /tmp/pacman.conf.tmp "${LIST_OFFLINE}"
 +	else
-+		mkdir -p "$(dirname "${LIST_OFFLINE}")"
-+		curl -sfL "${LIST_ONLINE}" -o "${LIST_OFFLINE}"
++		rm -f /tmp/pacman.conf.tmp
 +	fi
  	pacman --noconfirm -Syu
  	;;

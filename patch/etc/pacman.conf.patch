@@ -1,12 +1,12 @@
 --- pacman.conf.original
 +++ pacman.conf.modificado
-@@ -9,7 +9,6 @@
+@@ -9,7 +9,5 @@
  DisableDownloadTimeout
  ILoveCandy
  
 -[batocera]
 -Server            = https://store.batocera.org/
 -
+-Include           = /userdata/system/pacman/pacman.conf
 +[batocera.plus]
 +Include           = /userdata/saves/Batocera.PLUS/pacman/pacman.conf
- Include           = /userdata/system/pacman/pacman.conf
