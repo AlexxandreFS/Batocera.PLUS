@@ -10,17 +10,32 @@ O Batocera.PLUS não é uma imagem pronta com jogos, temas e customizações, tr
 
 O Batocera.PLUS não é um fork do projeto original e sim de um conjunto de scripts, patch, programas, etc… que adiciona diversas funcionalidades ao sistema original.
 
+### Como compilar
 
-### O nascimento do Batocera.PLUS
+A imagem do Batocera.PLUS é compilada usando a versão anterior do próprio Batocera.PLUS.
 
-O conceito do Batocera.PLUS surgiu como uma resposta para um problema.
+As imagens mais recentes do Batocera.PLUS podem ser baixadas diretamente na comunidade do Batocera.PLUS no discord do progeto.
 
-No princípio, pelas comunidades na internet eu compartilhava alguns programas, scripts, emuladores, métodos de dualboot, entre outros para serem instalados pelo usuário no batocera.linux mas muitos usuários não conseguiam seguir os procedimentos para fazer as instalações, então surgiu a ideia de criar uma imagem com todas estas modificações já implementadas e assim surgiu o Batocera.PLUS.
+Para compilar a imagem é necessário ter pelo menos 30GB de espaço livre em disco, este espaço será usado apenas durante o processo de compilação.
+A partição precisa ter sido formatada em algum tipo de sistema de arquivos Linux (ext4, btrfs, etc), não são suportadas partições do tipo Windows (fat, ntfs, extat)
 
+Recomenda-se que o computador tenha 6GB ou mais de memória Ram.
 
-### Como baixar o código fonte
+Durante a compilação serão baixados diversos arquivos da internet. Estima-se que serão baixados cerca de 5GB a 8GB de arquivos. Ao final da compilação os arquivos baixados não serão removido, portanto quando uma nova compilação for necessária somente os arquivos que foram atualizados serão baixados dinuindo o tempo de download.
 
-O Batocera.PLUS já vem com o git instalado. Clone o repositório.
+Levando em consideração que todos os arquivos já foram baixados o processo de compilação propriamente dito leva em torno de 10 a 60 minutos a depender do processador usado e principalmente da velocidade de leitura/gravação do HD/SSD/NVME.
+
+<b>Modo fácil</b>
+
+O Batocera.PLUS possui um simples script que automatiza todo o processo de compilação gerando a imagem com as últimas atualizações disponíveis. O script se encarrega de baixar todos os arquivos e gerar a imagem pronta para uso, sendo indicado para quem deseja apenas ter uma imagem atualizada.
+
+Para compilar apenas crie uma pasta com qualquer nome e acesse a pasta, em seguida abra um terminal pressionando a tecla F4 e no terminal execute este comando.
+
+    batocera-build
+
+<b>Modo difícil</b>
+
+O Batocera.PLUS já vem com o git instalado, então clone o repositório.
 
     git clone https://github.com/AlexxandreFS/Batocera.PLUS.git
 
@@ -34,42 +49,19 @@ Atualize o repositório.
     git clean -f
     git pull https://github.com/AlexxandreFS/Batocera.PLUS.git
 
-
-### Como compilar
-
-<b>A Imagem do Batocera.PLUS é compilada usando a versão anterior do próprio Batocera.PLUS.</b>
-
-A pasta temporária usada na compilação precisa ficar em uma partição do tipo Linux (ext4, btrfs, etc)
-
 Acesse a pasta onde estão os arquivos pelo terminal (win + f4) ou (f1 e depois f4) e execute o script de criação da imagem.
 
     ./build-batocera.plus
 
-Durante a compilação vários pacotes extras serão baixados, seja paciente.
-
-
 ### Compilando no debian e derivados
-
-Instale os seguintes pacotes: (apt-get install)
-
-    p7zip
-    unzip
-    gzip
-    zstd
-    squashfs-tools
-    coreutils
-    wget
-    curl
-
-Execute o script de criação da imagem como usuário root, (su "sua senha de root") e siga com a compilação normal conforme explicado no passo anterior.
 
 Não prestamos suporte para problemas de compilação em outros sistemas operacionais.
 
+Instale os seguintes pacotes:
 
-### Compilar a imagem Nvidia Legancy Driver 390
+    apt-get install p7zip unzip gzip zstd squashfs-tools coreutils wget curl
 
-Edite e altere o valor da variável NVIDIA_LEGACY para 1 no início do script de compilação "build-batocera.plus" e siga com a compilação normalmente.
-
+Siga com a compilação normal conforme explicado no passo anterior executando o script de compilação como root.
 
 ### Download de imagens de teste e suporte pela comunidade
 
