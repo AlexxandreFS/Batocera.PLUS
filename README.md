@@ -25,7 +25,7 @@ Durante a compilação serão baixados diversos arquivos da internet. Estima-se 
 
 Levando em consideração que todos os arquivos já foram baixados o processo de compilação propriamente dito leva em torno de 10 a 60 minutos a depender do processador usado e principalmente da velocidade de leitura/gravação do HD/SSD/NVME.
 
-<b>Modo fácil</b>
+<b>Compilação modo fácil</b>
 
 O Batocera.PLUS possui um simples script que automatiza todo o processo de compilação gerando a imagem com as últimas atualizações disponíveis. O script se encarrega de baixar todos os arquivos e gerar a imagem pronta para uso, sendo indicado para quem deseja apenas ter uma imagem atualizada.
 
@@ -33,7 +33,7 @@ Para compilar apenas crie uma pasta com qualquer nome e acesse a pasta, em segui
 
     batocera-build
 
-<b>Modo difícil</b>
+<b>Compilação modo difícil</b>
 
 O Batocera.PLUS já vem com o git instalado, então clone o repositório.
 
@@ -59,7 +59,7 @@ Não prestamos suporte para problemas de compilação em outros sistemas operaci
 
 Instale os seguintes pacotes:
 
-    apt-get install p7zip unzip gzip zstd squashfs-tools coreutils wget curl
+    apt-get install coreutils p7zip unzip gzip zstd xz-utils bzip2 tar patch squashfs-tools kmod jq wget curl axel
 
 Siga com a compilação normal conforme explicado no passo anterior executando o script de compilação como root.
 
@@ -67,4 +67,3 @@ Siga com a compilação normal conforme explicado no passo anterior executando o
 
 DISCORD
 https://discord.gg/ktyGckZ
-
