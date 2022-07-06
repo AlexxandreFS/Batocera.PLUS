@@ -1,9 +1,9 @@
 #
 # Resolve o bug do PC não desligar / reiniciar em algumas placa mãe.
 #
---- inittab
-+++ inittab
-@@ -23,7 +23,7 @@
+--- inittab.original
++++ inittab.modificado
+@@ -24,7 +24,7 @@
  # Stuff to do before rebooting
  shd0:06:wait:/etc/init.d/rcK
  shd1:06:wait:/sbin/swapoff -a

@@ -40,6 +40,17 @@ SCRIPT_DIR='script'
 
 ################################################################################
 
+# Corrige erros de compilação em sistemas que não usam o busybox
+# Debian, Ubuntu, etc...
+
+# fix: try 1
+
+if [ "$(readlink $(whereis -b cp | cut -d ' ' -f 2))" != 'busybox' ]; then
+    alias cp='cp -b'
+fi
+
+################################################################################
+
 # DOWNLOADS LINKS
 
 echo -e "\nBuild Batocera.PLUS-${VERSION}-${RELEASE}..."
@@ -608,8 +619,8 @@ mv    "${TEMP_DIR}/squashfs-root/etc/init.d/S50triggerhappy" "${TEMP_DIR}/squash
 ################################################################################
 
 echo 'Copiando arquivos do batocera.plus...'
-cp -r -f "$PLUS_DIR/"*   "${TEMP_DIR}/squashfs-root"
-cp -r -f "$UPDATE_DIR/"* "${TEMP_DIR}/squashfs-root"
+cp -a "$PLUS_DIR/"*   "${TEMP_DIR}/squashfs-root"
+cp -a "$UPDATE_DIR/"* "${TEMP_DIR}/squashfs-root"
 
 ################################################################################
 
@@ -641,7 +652,7 @@ do
         rm -f  "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/batocera.plus" || exit $?
     fi
 
-    cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* "${TEMP_DIR}/squashfs-root" || exit $?
+    cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* "${TEMP_DIR}/squashfs-root" || exit $?
     rm -r "${TEMP_DIR}/pkg-xtract/"*
 done
 
@@ -650,36 +661,36 @@ done
 echo 'Install batocera.plus theme...'
 PKG_NAME="$(basename "${URL_ES_THEME_A}")"
 unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract"
-cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
-       "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus"
-rm -r  "${TEMP_DIR}/pkg-xtract/"*
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
+      "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/batocera-plus"
+rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Carbon-2.0_PLUS theme...'
 PKG_NAME="$(basename "${URL_ES_THEME_B}")"
 unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract"
-cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
-       "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/Carbon-2.0_PLUS"
-rm -r  "${TEMP_DIR}/pkg-xtract/"*
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
+      "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/Carbon-2.0_PLUS"
+rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 if [ "${ALL_BIOS}" == 'true' ]; then
     echo 'Install All Bios...'
     PKG_NAME="$(basename "${URL_ALL_BIOS}")"
     unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" || exit $?
-    cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* \
-           "${TEMP_DIR}/squashfs-root/usr/share/batocera/datainit/bios" || exit $?
+    cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* \
+          "${TEMP_DIR}/squashfs-root/usr/share/batocera/datainit/bios" || exit $?
     rm -r "${TEMP_DIR}/pkg-xtract/"*
 fi
 
 echo 'Install GameControllerDB...'
 PKG_NAME="$(basename "${URL_GAMECONTROLLERDB}")"
-cp -f "${DOWNLOAD_DIR}/${PKG_NAME}" \
+cp -a "${DOWNLOAD_DIR}/${PKG_NAME}" \
       "${TEMP_DIR}/squashfs-root/usr/share/batocera/datainit/bios/gamecontrollerdb.txt"
 
 echo 'Install Music...'
 PKG_NAME="$(basename "${URL_MUSIC}")"
 unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" || exit $?
 rm -rf "${TEMP_DIR}/squashfs-root/usr/share/batocera/music/"*
-cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* \
+cp -a  "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* \
        "${TEMP_DIR}/squashfs-root/usr/share/batocera/music" || exit $?
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
@@ -698,7 +709,7 @@ echo 'Install Wine DXVK...'
 PKG_NAME="$(basename "${URL_WINE_DXVK}")"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
-cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk"
 ln -s '/opt/Wine/apps/vkd3d-proton/x32/d3d12.dll'  "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x32/d3d12.dll"
 ln -s '/opt/Wine/apps/vkd3d-proton/x64/d3d12.dll'  "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x64/d3d12.dll"
 ln -s '/opt/Wine/apps/nvapi/x32/nvapi.dll'         "${TEMP_DIR}/squashfs-root/opt/Wine/apps/dxvk/x32/nvapi.dll"
@@ -718,8 +729,8 @@ else
     # Não remova esta linha quando remover o bloco if.
     zstd -d -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar -xvC "${TEMP_DIR}/pkg-xtract" || exit $?
 fi
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x86/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x32"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x64/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x64"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x86/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x32"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.zst}/x64/d3d12.dll" "${TEMP_DIR}/squashfs-root/opt/Wine/apps/vkd3d-proton/x64"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Wine Nvidia NVAPI...'
@@ -728,17 +739,17 @@ mkdir -p "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
 rm "${TEMP_DIR}/pkg-xtract/README.md"
 rm "${TEMP_DIR}/pkg-xtract/LICENSE"
-cp -r "${TEMP_DIR}/pkg-xtract/"* "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi"
+cp -a "${TEMP_DIR}/pkg-xtract/"* "${TEMP_DIR}/squashfs-root/opt/Wine/apps/nvapi"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Winetricks...'
 PKG_NAME="$(basename "${URL_WINE_WINETRICKS}")"
-cp "${DOWNLOAD_DIR}/${PKG_NAME}" "${TEMP_DIR}/pkg-xtract/winetricks"
+cp -a "${DOWNLOAD_DIR}/${PKG_NAME}" "${TEMP_DIR}/pkg-xtract/winetricks"
 for FILE in proton-ge-custom proton-valve wine-lutris wine-old-stable wine-stable wine-staging; do
     ln -s winetricks "${TEMP_DIR}/pkg-xtract/winetricks-${FILE}"
 done
 chmod 755 "${TEMP_DIR}/pkg-xtract/"*
-cp -pP "${TEMP_DIR}/pkg-xtract/"* "${TEMP_DIR}/squashfs-root/usr/bin"
+cp -a "${TEMP_DIR}/pkg-xtract/"* "${TEMP_DIR}/squashfs-root/usr/bin"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install SoundFont GeneralUser GS for fluidsynth...'
@@ -768,33 +779,33 @@ cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
 cd "${CURRENT_DIR}"
 unset CURRENT_DIR
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/AntiMicroX"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/antimicrox" "${TEMP_DIR}/squashfs-root/opt/AntiMicroX"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/antimicrox" "${TEMP_DIR}/squashfs-root/opt/AntiMicroX"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Peazip...'
 PKG_NAME="$(basename "${URL_PEAZIP}")"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Peazip"
-cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/"* "${TEMP_DIR}/squashfs-root/opt/Peazip"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/"* "${TEMP_DIR}/squashfs-root/opt/Peazip"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Firefox...'
 PKG_NAME="$(basename "${URL_FIREFOX}")"
 bunzip2 -d -k -v -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar x -v -C "${TEMP_DIR}/pkg-xtract"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-esr"
-cp -rf "${TEMP_DIR}/pkg-xtract/firefox/"* "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-esr"
+cp -a "${TEMP_DIR}/pkg-xtract/firefox/"* "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-esr"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Firefox legacy...'
 PKG_NAME="$(basename "${URL_FIREFOX_LEGACY}")"
 bunzip2 -d -k -v -c "${DOWNLOAD_DIR}/${PKG_NAME}" | tar x -v -C "${TEMP_DIR}/pkg-xtract"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-legacy"
-cp -rf "${TEMP_DIR}/pkg-xtract/firefox/"* "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-legacy"
+cp -a "${TEMP_DIR}/pkg-xtract/firefox/"* "${TEMP_DIR}/squashfs-root/opt/Firefox/firefox-legacy"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install qBittorrent...'
 PKG_NAME="$(basename "${URL_QBITTORRENT}")"
-cp "${DOWNLOAD_DIR}/${PKG_NAME}" "${TEMP_DIR}/squashfs-root/opt/qBittorrent/qBittorrent-Enhanced-Edition.AppImage"
+cp -a "${DOWNLOAD_DIR}/${PKG_NAME}" "${TEMP_DIR}/squashfs-root/opt/qBittorrent/qBittorrent-Enhanced-Edition.AppImage"
 chmod +x "${TEMP_DIR}/squashfs-root/opt/qBittorrent/qBittorrent-Enhanced-Edition.AppImage"
 
 echo 'Install Java...'
@@ -828,7 +839,7 @@ cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
 cd "${CURRENT_DIR}"
 unset CURRENT_DIR
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-mainline/bin"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu" "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-mainline/bin"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu" "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-mainline/bin"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install pcsx2-mainline...'
@@ -850,7 +861,7 @@ PCSX2_FILES=(
     libwx_baseu-3 libwx_gtk3u_adv-3 libwx_gtk3u_core-3
 )
 for FILE in ${PCSX2_FILES[@]}; do
-    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/lib"
+    cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/squashfs-root/opt/Pcsx2/pcsx2-mainline/lib"
 done
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
@@ -864,9 +875,9 @@ cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
 cd "${CURRENT_DIR}"
 unset CURRENT_DIR
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Rpcs3/bin"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/"*  "${TEMP_DIR}/squashfs-root/opt/Rpcs3/bin"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/"*  "${TEMP_DIR}/squashfs-root/opt/Rpcs3/bin"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Rpcs3/lib"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/optional/libstdc++/libstdc++."* "${TEMP_DIR}/squashfs-root/opt/Rpcs3/lib"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/optional/libstdc++/libstdc++."* "${TEMP_DIR}/squashfs-root/opt/Rpcs3/lib"
 RPCS3_FILES=(
     libGLEW          libcurl           liblber-2     libxcb-icccm
     libQt5Concurrent libgssapi         libldap_r-2   libxcb-image
@@ -886,9 +897,9 @@ RPCS3_FILES=(
 )
 for FILE in ${RPCS3_FILES[@]}
 do
-    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/squashfs-root/opt/Rpcs3/lib"
+    cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/squashfs-root/opt/Rpcs3/lib"
 done
-cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/plugins"        "${TEMP_DIR}/squashfs-root/opt/Rpcs3"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/plugins"        "${TEMP_DIR}/squashfs-root/opt/Rpcs3"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Yuzu Early Access...'
@@ -901,9 +912,9 @@ cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
 cd "${CURRENT_DIR}"
 unset CURRENT_DIR
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access/bin"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu"                       "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access/bin"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu"                    "${TEMP_DIR}/squashfs-root/opt/Yuzu/yuzu-early-access/bin"
 mkdir -p "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/optional/libstdc++/libstdc++."* "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/optional/libstdc++/libstdc++."* "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
 YUZU_FILES=(
     libboost_context libicudata         libicui18n libicuuc
     libQt5Core       libQt5DBus         libQt5Gui  libQt5Widgets
@@ -911,9 +922,9 @@ YUZU_FILES=(
 )
 for FILE in ${YUZU_FILES[*]}
 do
-    cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
+    cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/squashfs-root/opt/Yuzu/lib"
 done
-cp -r "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/plugins"        "${TEMP_DIR}/squashfs-root/opt/Yuzu"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/plugins"        "${TEMP_DIR}/squashfs-root/opt/Yuzu"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Ryujinx...'
@@ -930,12 +941,12 @@ PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"
 chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
 "${DOWNLOAD_DIR}/${PKG_NAME}" -x --target "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}"
 mkdir -p "${TEMP_DIR}/squashfs-root/usr/share/nvidia"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-settings"               "${TEMP_DIR}/squashfs-root/usr/bin"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-application-profiles-"* "${TEMP_DIR}/squashfs-root/usr/share/nvidia"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk2.so."*           "${TEMP_DIR}/squashfs-root/usr/lib"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk3.so."*           "${TEMP_DIR}/squashfs-root/usr/lib"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-encode.so."*         "${TEMP_DIR}/squashfs-root/usr/lib/"
-cp "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvcuvid.so."*               "${TEMP_DIR}/squashfs-root/usr/lib/libnvcuvid.so.1"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-settings"               "${TEMP_DIR}/squashfs-root/usr/bin"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/nvidia-application-profiles-"* "${TEMP_DIR}/squashfs-root/usr/share/nvidia"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk2.so."*           "${TEMP_DIR}/squashfs-root/usr/lib"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-gtk3.so."*           "${TEMP_DIR}/squashfs-root/usr/lib"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvidia-encode.so."*         "${TEMP_DIR}/squashfs-root/usr/lib/"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/libnvcuvid.so."*               "${TEMP_DIR}/squashfs-root/usr/lib/libnvcuvid.so.1"
 echo 'Create udev rules to Nvidia Driver ...'
 "${SCRIPT_DIR}/nvidia-driver-udev-rules.sh" \
     "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.run}/supported-gpus/supported-gpus.json" \
@@ -951,7 +962,7 @@ ln -sf   rtl8723bu_ap_wowlan.bin                        "${TEMP_DIR}/pkg-xtract/
 ln -sf   rtl8723bu_nic.bin                              "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/rtlwifi/rtl8723bs_nic.bin"
 ln -sf   rtl8723bs_config-OBDA8723.bin                  "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/rtl_bt/rtl8723bs_config-OBDA0623.bin"
 ln -sf   rtl8821c_config.bin                            "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/rtl_bt/rtl8821a_config.bin"
-cp -rfpP "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/"* "${TEMP_DIR}/squashfs-root/lib/firmware"
+cp -a    "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/"* "${TEMP_DIR}/squashfs-root/lib/firmware"
 rm -rf                                                  "${TEMP_DIR}/squashfs-root/lib/firmware/liquidio"
 rm -rf                                                  "${TEMP_DIR}/squashfs-root/lib/firmware/netronome"
 rm -rf                                                  "${TEMP_DIR}/pkg-xtract/"*
@@ -959,7 +970,7 @@ rm -rf                                                  "${TEMP_DIR}/pkg-xtract/
 echo 'Install pci ids database...'
 PKG_NAME="$(basename "${URL_PCI_IDS}")"
 mkdir -p  "${TEMP_DIR}/squashfs-root/usr/share/hwdata"
-cp -f     "${DOWNLOAD_DIR}/${PKG_NAME}"      "${TEMP_DIR}/squashfs-root/usr/share/pci.ids.gz"
+cp -a     "${DOWNLOAD_DIR}/${PKG_NAME}"      "${TEMP_DIR}/squashfs-root/usr/share/pci.ids.gz"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c > "${TEMP_DIR}/squashfs-root/usr/share/hwdata/pci.ids"
 ln -sf    '/usr/share/hwdata/pci.ids'        "${TEMP_DIR}/squashfs-root/usr/share/pci.ids"
 
@@ -975,7 +986,7 @@ umount "${TEMP_DIR}/pkg-xtract/"
 ### PATCH
 
 echo 'Aplicando Patch...'
-cp -f "${TEMP_DIR}/squashfs-root/etc/samba/smb.conf" "${TEMP_DIR}/squashfs-root/etc/samba/smb-ps2smb.conf"
+cp -a "${TEMP_DIR}/squashfs-root/etc/samba/smb.conf" "${TEMP_DIR}/squashfs-root/etc/samba/smb-ps2smb.conf"
 for i in $(du -a "${PATCH_DIR}" | grep -F '.patch' | awk '{print $2}' | sed "s#${PATCH_DIR}/##"); do
     patch -p1 "${TEMP_DIR}/squashfs-root/${i%.patch}" "${PATCH_DIR}/${i}" || exit $?
 done
@@ -1027,15 +1038,15 @@ mv "${TEMP_DIR}/batocera" "${TEMP_DIR}/BatoceraZero/boot/batocera"
 
 echo 'Copiando arquivos da pasta boot para o BatoceraZero...'
 rm    "${TEMP_DIR}/BATOCERA/boot/syslinux/ldlinux.sys"
-cp -r "${TEMP_DIR}/BATOCERA/"* "${TEMP_DIR}/BatoceraZero"
+cp -a "${TEMP_DIR}/BATOCERA/"* "${TEMP_DIR}/BatoceraZero"
 
 echo 'Copiando arquivos extras para o BatoceraZero...'
-cp -rf "$BOOT_DIR/"* "${TEMP_DIR}/BatoceraZero"
+cp -a "$BOOT_DIR/"* "${TEMP_DIR}/BatoceraZero"
 
 echo 'Copiando programas de windows (tools) para o BatoceraZero...'
 PKG_NAME="$(basename "${URL_WINDOWS_TOOLS}")"
 unzip  "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" || exit $?
-cp -rf "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* \
+cp -a  "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* \
        "${TEMP_DIR}/BatoceraZero/tools" || exit $?
 rm -r  "${TEMP_DIR}/pkg-xtract/"*
 
@@ -1095,9 +1106,9 @@ mv "${TEMP_DIR}/BatoceraZero.img" "${TEMP_DIR}/Batocera.PLUS.img"
 
 if [ "${RELEASE}" ]; then
     echo 'Copiando arquivos extra para a release...'
-    cp -f  "${BOOT_DIR}/batocera-hd-edition/grub.cfg"                "${TEMP_DIR}"                       || exit $?
-    cp -f  "${BOOT_DIR}/batocera-hd-edition/leia-me.txt"             "${TEMP_DIR}/dualboot-leia-me.txt"  || exit $?
-   #cp -f  "whatsnew.txt"                                            "${TEMP_DIR}"                       || exit $?
+    cp -a  "${BOOT_DIR}/batocera-hd-edition/grub.cfg"                "${TEMP_DIR}"                       || exit $?
+    cp -a  "${BOOT_DIR}/batocera-hd-edition/leia-me.txt"             "${TEMP_DIR}/dualboot-leia-me.txt"  || exit $?
+   #cp -a  "whatsnew.txt"                                            "${TEMP_DIR}"                       || exit $?
    #sed -i "1s/^/#### Batocera.PLUS-${VERSION}-${RELEASE} ####\n\n/" "${TEMP_DIR}/whatsnew.txt"          || exit $?
 
     echo 'Compactando imagem final...'
