@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ### Batocera.PLUS
 ### Encerra a execução de todos os programas executados pelo wine.
@@ -15,22 +15,20 @@ fi
  ##
 function setWinePrefix() {
 
-    if [ -z "$(pidof -s wineserver)" ]; then
+    local PID_WINESERVER="$(pidof -s wineserver)"
+
+    if [ -z "${PID_WINESERVER}" ]; then
         return 1
     fi
 
-    WINEPREFIX="/$(ls -l "/proc/$(pidof -s wineserver)/fd" |
-                          grep -E '/drive_c/windows/system32$' |
-                          cut -d  '/' -f 2- |
-                          sed 's+/drive_c/windows/system32$++')"
+    for WINEPREFIX in /proc/${PID_WINESERVER}/fd/*; do
+        if [ -e "${WINEPREFIX}/system.reg" ]; then
+            export WINEPREFIX
+            return 0
+        fi
+    done
 
-    if [ -z "${WINEPREFIX}" ]; then
-        return 1
-    else
-        export WINEPREFIX
-    fi
-
-    return 0
+    return 1
 }
 
 ##
