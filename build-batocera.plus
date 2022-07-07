@@ -43,10 +43,9 @@ SCRIPT_DIR='script'
 # Corrige erros de compilação em sistemas que não usam o busybox
 # Debian, Ubuntu, etc...
 
-# fix: try 1
-
 if [ "$(readlink $(whereis -b cp | cut -d ' ' -f 2))" != 'busybox' ]; then
-    alias cp='cp -b'
+    shopt -s expand_aliases
+    alias cp='cp --remove-destination'
 fi
 
 ################################################################################
@@ -614,7 +613,7 @@ done
 ################################################################################
 
 echo 'Desativando servicos...'
-mv    "${TEMP_DIR}/squashfs-root/etc/init.d/S50triggerhappy" "${TEMP_DIR}/squashfs-root/etc/init.d/K50triggerhappy"
+mv "${TEMP_DIR}/squashfs-root/etc/init.d/S50triggerhappy" "${TEMP_DIR}/squashfs-root/etc/init.d/K50triggerhappy"
 
 ################################################################################
 
