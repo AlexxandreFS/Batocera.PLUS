@@ -13,4 +13,4 @@ RVGM              https://github.com/Darknior/RVGM-BT-Theme
 UniFlyered        https://github.com/BatoceraPLUS/Theme-UniFlyered-PLUS
 Zoid              https://github.com/BatoceraPLUS/Theme-Zoid
 ComicscrapPLUS    https://github.com/LordOgro/ComicscrapPLUS
-FakeXMB_PLUS-3.0  https://github.com/LordOgro/FakeXMB_PLUS-3.0
+FakeXMB_PLUS-3.5  https://github.com/LordOgro/FakeXMB_PLUS-3.5
