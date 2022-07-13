@@ -1,0 +1,45 @@
+#!/bin/bash
+###
+### Batocera.PLUS
+### Alexandre Freire dos Santos
+###
+################################################################################
+
+### Tempo de duração do vídeo em segundos
+TEMPO=07
+
+### Qualidade do vídeo
+### 15 = Alta
+### 25 = Média
+### 35 = Baixa
+QUALIDADE=25
+
+################################################################################
+
+mkdir -p video
+
+for FILE in *
+do
+    if [ -f "${FILE}" ]
+    then
+        ffmpeg -y \
+               -i "${FILE}" \
+               -ss 00:00:00.000 \
+               -to 00:00:${TEMPO}.000 \
+               -c:v libx264 \
+               -preset placebo \
+               -crf ${QUALIDADE} \
+               -pix_fmt yuv420p \
+               -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" \
+               -map 0:v:0? \
+               -an \
+               -sn \
+               -map_chapters 0 \
+               -map_metadata 0 \
+               -f mp4 \
+               -threads 0 \
+               "video/${FILE}"
+    fi
+done
+
+exit 0
