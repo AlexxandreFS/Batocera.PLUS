@@ -12,7 +12,7 @@ VERSION='2.25'
 # Remova esta linha para diminuir o tempo de compilação.
 # A imagem não será compactada e nem gerado o md5sum.
 # Serão dicionados pacotes experimentais.
-#RELEASE='alpha'
+RELEASE='alpha'
 
 # Squashfs compression level
 SQUASHFS_COMPRESSION='2'
@@ -320,7 +320,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_NVIDIA_DRIVER}")
 URL_LINUX_FIRMWARE='https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20220610.tar.gz'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_LINUX_FIRMWARE}")
 
-URL_ES_THEME_A='b4de6b88a3a98288deeca7f1d3e8cafc259ddeb1'
+URL_ES_THEME_A='a1a72aa0a9062084f850cbb60618337b9810f539'
 URL_ES_THEME_A="https://github.com/AlexxandreFS/Batocera.PLUS-es-theme/archive/${URL_ES_THEME_A}.zip#/Batocera.PLUS-es-theme-${URL_ES_THEME_A}.zip"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_ES_THEME_A}")
 
