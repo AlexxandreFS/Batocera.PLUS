@@ -1,0 +1,37 @@
+diff --git a/shell/libretro/oslib.cpp b/shell/libretro/oslib.cpp
+index 9ebd745..b07b374 100644
+--- a/shell/libretro/oslib.cpp
++++ b/shell/libretro/oslib.cpp
+@@ -39,12 +39,12 @@ std::string getVmuPath(const std::string& port)
+ 		   || per_content_vmus == 2)
+    {
+       sprintf(filename, "%s.%s.bin", content_name, port.c_str());
+-      return std::string(vmu_dir_no_slash) + std::string(path_default_slash()) + filename;
++      return std::string("/userdata/saves/dreamcast") + std::string(path_default_slash()) + filename;
+    }
+    else
+    {
+       sprintf(filename, "vmu_save_%s.bin", port.c_str());
+-      return std::string(game_dir_no_slash) + std::string(path_default_slash()) + filename;
++      return std::string("/userdata/saves/dreamcast") + std::string(path_default_slash()) + filename;
+    }
+ }
+ 
+@@ -55,7 +55,7 @@ std::string getArcadeFlashPath()
+ 
+ std::string findFlash(const std::string& prefix, const std::string& names_ro)
+ {
+-   std::string root(game_dir_no_slash);
++   std::string root("/userdata/saves/dreamcast");
+    root += "/";
+ 
+ 	char base[512];
+@@ -90,7 +90,7 @@ std::string findFlash(const std::string& prefix, const std::string& names_ro)
+ 
+ std::string getFlashSavePath(const std::string& prefix, const std::string& name)
+ {
+-   std::string root(game_dir_no_slash);
++   std::string root("/userdata/saves/dreamcast");
+ 
+ 	return root + path_default_slash() + prefix + name;
+ }
