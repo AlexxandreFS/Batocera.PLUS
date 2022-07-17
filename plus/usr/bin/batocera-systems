@@ -339,6 +339,32 @@ BIOS[naomi]="naomi,                   Sega Naomi
     cedfe439,                         bios/dc/naomi.zip/epr-21576a.ic27
     71f9c918,                         bios/dc/naomi.zip/epr-21579.ic27
     33513691,                         bios/dc/naomi.zip/epr-21579d.ic27
+    08c0add7,                         bios/naomigd.zip/epr-21576e.ic27
+    d2a1c6bf,                         bios/naomigd.zip/epr-21576g.ic27
+    d4895685,                         bios/naomigd.zip/epr-21576h.ic27
+    cf36e97b,                         bios/naomigd.zip/epr-21577e.ic27
+    25f64af7,                         bios/naomigd.zip/epr-21577g.ic27
+    fdf17452,                         bios/naomigd.zip/epr-21577h.ic27
+    087f09a3,                         bios/naomigd.zip/epr-21578e.ic27
+    55413214,                         bios/naomigd.zip/epr-21578g.ic27
+    7b452946,                         bios/naomigd.zip/epr-21578h.ic27
+    fea29cbb,                         bios/naomigd.zip/main_eeprom.bin
+    08c0add7,                         bios/dc/naomigd.zip/epr-21576e.ic27
+    d2a1c6bf,                         bios/dc/naomigd.zip/epr-21576g.ic27
+    d4895685,                         bios/dc/naomigd.zip/epr-21576h.ic27
+    cf36e97b,                         bios/dc/naomigd.zip/epr-21577e.ic27
+    25f64af7,                         bios/dc/naomigd.zip/epr-21577g.ic27
+    fdf17452,                         bios/dc/naomigd.zip/epr-21577h.ic27
+    087f09a3,                         bios/dc/naomigd.zip/epr-21578e.ic27
+    55413214,                         bios/dc/naomigd.zip/epr-21578g.ic27
+    7b452946,                         bios/dc/naomigd.zip/epr-21578h.ic27
+    fea29cbb,                         bios/dc/naomigd.zip/main_eeprom.bin
+    297ea6ed,                         bios/naomi2.zip/epr-23605c.ic27
+    750e254b,                         bios/naomi2.zip/epr-23607c.ic27
+    6ef1dd8e,                         bios/naomi2.zip/epr-23608c.ic27
+    297ea6ed,                         bios/dc/naomi2.zip/epr-23605c.ic27
+    750e254b,                         bios/dc/naomi2.zip/epr-23607c.ic27
+    6ef1dd8e,                         bios/dc/naomi2.zip/epr-23608c.ic27
     a21bef24,                         bios/airlbios.zip/epr-21801.ic27
     a77c6b1c,                         bios/airlbios.zip/epr-21802.ic27
     fea29cbb,                         bios/airlbios.zip/main_eeprom.bin
