@@ -124,7 +124,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/fbneo_libretro-apr-4-2022-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/fceumm_libretro-mar-8-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/flycast2019_libretro-aug-13-2019-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/flycast_libretro-may-17-2021-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/flycast_libretro-may-jul-15-2022-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/fmsx_libretro-mar-3-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/freechaf_libretro-jan-2-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/freej2me_libretro-may-22-2021-1.7z'
@@ -209,6 +209,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/yabause_libretro-set-22-2021-1.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dolphin-emu-5.0-13603-feb-3-2021-2.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/flycast-aug-30-2021-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/freej2me-may-22-2021-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/hypseus-singe-mar-24-2022-1.7z' # remove on update.
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ppsspp-mar-2-2021-1.7z'
