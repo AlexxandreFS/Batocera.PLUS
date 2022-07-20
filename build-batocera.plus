@@ -1077,6 +1077,9 @@ echo "$(
             echo
             echo '# open a terminal (Win + F4) type xrandr to see all supported resolutions'
             echo '#global.videomode=1280x720'
+            echo
+            echo "# radeon-prime enables the amd-radeon gpu over the intel gpu in case you've an amd-radeon hybrid gpu"
+            echo '#radeon-prime=true'
         fi
     done < "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"
 )" > "${TEMP_DIR}/BatoceraZero/batocera-boot.conf"

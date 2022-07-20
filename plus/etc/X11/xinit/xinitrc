@@ -99,6 +99,15 @@ fi
 
 ################################################################################
 
+### Hybrid AMD GPU
+
+if [ "$(grep -E "^[ ]*radeon-prime[ ]*=" /boot/batocera-boot.conf | cut -d '=' -f 2 | xargs)" == 'true' ]
+then
+    export DRI_PRIME=1
+fi
+
+################################################################################
+
 ### Forces resolution
 
 # set user desired resolution
