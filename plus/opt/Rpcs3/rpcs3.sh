@@ -10,9 +10,16 @@
 GAME="${1}"
 
 MAINLINE_DIR=/opt/Rpcs3
-MAINLINE_SAVE_DIR="${HOME}/../saves/ps3"
-RPCS3_CONFIG_DIR="${HOME}/configs/rpcs3"
+
+MAINLINE_SAVE_DIR="${HOME}/../saves/ps3/.config/rpcs3"
+MAINLINE_CONFIG_DIR="${HOME}/configs/rpcs3"
 MAINLINE_CACHE_DIR="${HOME}/../saves/rpcs3_mainline"
+
+LEGACY_SAVE_DIR="${HOME}/../saves/ps3"
+LEGACY_CONFIG_DIR="${HOME}/configs/rpcs3"
+LEGACY_CACHE_DIR="${HOME}/../saves/rpcs3"
+
+################################################################################
 
 if [ "$(pidof rpcs3)" ]; then
     echo ' RPCS3 launcher já está em execução'
@@ -25,27 +32,29 @@ fi
 
 function CreateFolders()
 {
-    mkdir -p "${MAINLINE_SAVE_DIR}/.config/rpcs3/GuiConfigs" \
-             "${MAINLINE_SAVE_DIR}/.config/rpcs3/dev_hdd0/home/00000001" \
+    mkdir -p "${MAINLINE_SAVE_DIR}/GuiConfigs" \
+             "${LEGACY_SAVE_DIR}/dev_hdd0/home/00000001" \
              "${MAINLINE_SAVE_DIR}/dev_hdd0/home/00000001/savedata" \
              "${MAINLINE_SAVE_DIR}/dev_hdd0/home/00000001/trophy" \
              "${MAINLINE_SAVE_DIR}/dev_hdd0/home/00000001/exdata" \
              "${MAINLINE_SAVE_DIR}/dev_hdd0/game" \
              "${MAINLINE_SAVE_DIR}/dev_flash" \
-             "${MAINLINE_CACHE_DIR}"
+             "${MAINLINE_CACHE_DIR}" \
+             "${LEGACY_CACHE_DIR}"
 
-    ln -sf "${MAINLINE_SAVE_DIR}/dev_hdd0/home/00000001/savedata" "${MAINLINE_SAVE_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
-    ln -sf "${MAINLINE_SAVE_DIR}/dev_hdd0/home/00000001/trophy"   "${MAINLINE_SAVE_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
-    ln -sf "${MAINLINE_SAVE_DIR}/dev_hdd0/home/00000001/exdata"   "${MAINLINE_SAVE_DIR}/.config/rpcs3/dev_hdd0/home/00000001"
-    ln -sf "/usr/share/rpcs3/GuiConfigs/"*                        "${MAINLINE_SAVE_DIR}/.config/rpcs3/GuiConfigs"
-    ln -sf "${MAINLINE_SAVE_DIR}/dev_hdd0/game"                   "${MAINLINE_SAVE_DIR}/.config/rpcs3/dev_hdd0/"
-    ln -sf /usr/share/rpcs3/Icons                                 "${MAINLINE_SAVE_DIR}/.config/rpcs3"
-    ln -sf "${MAINLINE_SAVE_DIR}/dev_flash"                       "${MAINLINE_SAVE_DIR}/.config/rpcs3"
+    ln -sf "${MAINLINE_SAVE_DIR}/dev_hdd0/home/00000001/"* "${LEGACY_SAVE_DIR}/dev_hdd0/home/00000001"
+	ln -sf "${MAINLINE_SAVE_DIR}/dev_flash"                "${LEGACY_SAVE_DIR}/dev_flash"
+	ln -sf "${MAINLINE_SAVE_DIR}/dev_hdd0/game"            "${LEGACY_SAVE_DIR}/dev_hdd0/"
+    ln -sf "${LEGACY_SAVE_DIR}"                            "${LEGACY_CONFIG_DIR}"
+	
+	# Já tem na imagem
+    ln -sf "/usr/share/rpcs3/GuiConfigs/"*                 "${MAINLINE_SAVE_DIR}/GuiConfigs"
+    ln -sf /usr/share/rpcs3/Icons                          "${MAINLINE_SAVE_DIR}"
 }
 
 function CreateConfigs()
 {
-    if [ ! -f "${MAINLINE_SAVE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini" ]; then
+    if [ ! -f "${MAINLINE_SAVE_DIR}/GuiConfigs/CurrentSettings.ini" ]; then
        (echo '[GameList]'
         echo 'hidden_list=@Invalid()'
         echo 'iconColor=@Variant(\0\0\0\x43\x1\xff\xff\xf0\xf0\xf0\xf0\xf0\xf0\0\0)'
@@ -66,15 +75,17 @@ function CreateConfigs()
         echo 'confirmationBoxExitGame=false'
         echo 'infoBoxEnabledInstallPUP=false'
         echo 'infoBoxEnabledWelcome=false'
-        echo 'lastExplorePathPUP=/userdata/system/../bios') > "${MAINLINE_SAVE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
+        echo 'lastExplorePathPUP=/userdata/system/../bios') > "${MAINLINE_SAVE_DIR}/GuiConfigs/CurrentSettings.ini"
     fi
 
-    if [ ! -f "${MAINLINE_SAVE_DIR}/.config/rpcs3/config.yml" ]; then
+    if [ ! -f "${MAINLINE_SAVE_DIR}/config.yml" ]; then
        (echo 'Miscellaneous:'
         echo '  Exit RPCS3 when process finishes: true'
-        echo '  Start games in fullscreen mode: true') > "${MAINLINE_SAVE_DIR}/.config/rpcs3/config.yml"
+        echo '  Start games in fullscreen mode: true') > "${MAINLINE_SAVE_DIR}/config.yml"
     fi
 }
+
+################################################################################
 
 function TextLocalization()
 {
@@ -98,6 +109,8 @@ function TextLocalization()
     esac
 }
 
+################################################################################
+
 function ControllerWarning()
 {
     yad --form \
@@ -116,6 +129,8 @@ function ControllerWarning()
         exit 0
 }
 
+################################################################################
+
 function FirmwareWarning()
 {
     yad --form \
@@ -133,6 +148,8 @@ function FirmwareWarning()
 
         exit 0
 }
+
+################################################################################
 
 function choseEmu()
 {
@@ -156,25 +173,6 @@ function choseEmu()
 
 ################################################################################
 
-### CALL HELP
-
-if [ "${GAME}" == '--help' ]; then
-    echo
-    echo ' Linha de comando:'
-    echo ' rpcs3.sh [ROM]'
-    echo
-    echo ' ROM          = Caminho do jogo até a pasta do jogo'
-    echo
-
-    exit 0
-else
-    echo
-    echo ' RPCS3 launcher for Batocera.PLUS'
-    echo
-fi
-
-################################################################################
-
 ### MENU
 
 if [ ! -e "${GAME}" ] && [ ! -e "${P1GUID}" ]; then
@@ -187,21 +185,21 @@ fi
 ### BUILD FOLDERS AND FILES
 
 # new install
-if [ ! "$(ls -A "${MAINLINE_SAVE_DIR}/.config/rpcs3" 2> /dev/null)" ] ||
-   [ ! "$(ls -A "${MAINLINE_CACHE_DIR}"              2> /dev/null)" ] ||
-   [ ! "$(ls -l "${RPCS3_CONFIG_DIR}"                2> /dev/null)" ]; then
+if [ ! "$(ls -A "${MAINLINE_SAVE_DIR}"   2> /dev/null)" ] ||
+   [ ! "$(ls -A "${MAINLINE_CONFIG_DIR}" 2> /dev/null)" ] ||
+   [ ! "$(ls -l "${MAINLINE_CACHE_DIR}"  2> /dev/null)" ]; then
     CreateFolders
     CreateConfigs
 fi
 
 # no controller config found warning
-if [ ! -f "${MAINLINE_SAVE_DIR}/.config/rpcs3/input_configs/global/Default.yml" ] && [ "${GAME}" ]; then
+if [ ! -f "${MAINLINE_SAVE_DIR}/input_configs/global/Default.yml" ] && [ "${GAME}" ]; then
     TextLocalization
     ControllerWarning
 fi
 
 # no firmware found warning
-if [ -z "${MAINLINE_SAVE_DIR}/.config/rpcs3/dev_flash/vsh" ] && [ "${GAME}" ]; then
+if [ -z "${MAINLINE_SAVE_DIR}/dev_flash/vsh" ] && [ "${GAME}" ]; then
     TextLocalization
     FirmwareWarning
 fi
@@ -210,15 +208,15 @@ fi
 
 ### FORCE SETTINGS
 
-sed -i 's/confirmationBoxExitGame=.*/confirmationBoxExitGame=false/'                   "${MAINLINE_SAVE_DIR}/.config/rpcs3/GuiConfigs/CurrentSettings.ini"
-sed -i 's/Exit RPCS3 when process finishes:.*/Exit RPCS3 when process finishes: true/' "${MAINLINE_SAVE_DIR}/.config/rpcs3/config.yml"
-sed -i 's/Start games in fullscreen mode:.*/Start games in fullscreen mode: true/'     "${MAINLINE_SAVE_DIR}/.config/rpcs3/config.yml"
+sed -i 's/confirmationBoxExitGame=.*/confirmationBoxExitGame=false/'                   "${MAINLINE_SAVE_DIR}/GuiConfigs/CurrentSettings.ini"
+sed -i 's/Exit RPCS3 when process finishes:.*/Exit RPCS3 when process finishes: true/' "${MAINLINE_SAVE_DIR}/config.yml"
+sed -i 's/Start games in fullscreen mode:.*/Start games in fullscreen mode: true/'     "${MAINLINE_SAVE_DIR}/config.yml"
 
 ################################################################################
 
 ### EXPORTS
 
-export HOME="${MAINLINE_SAVE_DIR}"
+export HOME="${LEGACY_SAVE_DIR}"
 export LD_LIBRARY_PATH="${MAINLINE_DIR}/lib:${LD_LIBRARY_PATH}"
 export XDG_CACHE_HOME="${MAINLINE_CACHE_DIR}"
 export XDG_RUNTIME_DIR=/tmp/runtime-root
