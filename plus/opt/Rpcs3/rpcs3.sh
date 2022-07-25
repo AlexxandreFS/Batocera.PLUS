@@ -46,6 +46,7 @@ function CreateFolders()
 	ln -sf "${MAINLINE_SAVE_DIR}/dev_flash"                "${LEGACY_SAVE_DIR}/dev_flash"
 	ln -sf "${MAINLINE_SAVE_DIR}/dev_hdd0/game"            "${LEGACY_SAVE_DIR}/dev_hdd0/"
     ln -sf "${LEGACY_SAVE_DIR}"                            "${LEGACY_CONFIG_DIR}"
+    ln -sf "${HOME}/../screenshots"                        "${MAINLINE_SAVE_DIR}/captures"
 	
 	# Já tem na imagem
     ln -sf "/usr/share/rpcs3/GuiConfigs/"*                 "${MAINLINE_SAVE_DIR}/GuiConfigs"
@@ -73,6 +74,7 @@ function CreateConfigs()
         echo 'stack=true'
         echo '[main_window]'
         echo 'confirmationBoxExitGame=false'
+        echo 'infoBoxEnabledInstallPKG=false'
         echo 'infoBoxEnabledInstallPUP=false'
         echo 'infoBoxEnabledWelcome=false'
         echo 'lastExplorePathPUP=/userdata/system/../bios') > "${MAINLINE_SAVE_DIR}/GuiConfigs/CurrentSettings.ini"
