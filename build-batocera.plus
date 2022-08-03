@@ -12,7 +12,7 @@ VERSION='2.25'
 # Remova esta linha para diminuir o tempo de compilação.
 # A imagem não será compactada e nem gerado o md5sum.
 # Serão dicionados pacotes experimentais.
-RELEASE='alpha'
+#RELEASE='alpha'
 
 # Squashfs compression level
 SQUASHFS_COMPRESSION='2'
@@ -328,6 +328,10 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_ES_THEME_A}")
 URL_ES_THEME_B='5ff5eb45d692a39f05b7ca6980a9150e446e65fd'
 URL_ES_THEME_B="https://github.com/LordOgro/Carbon-2.0_PLUS/archive/${URL_ES_THEME_B}.zip#/Carbon-2.0_PLUS-${URL_ES_THEME_B}.zip"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_ES_THEME_B}")
+
+URL_BEZELS='ac821e502dfd2ef7237ff1698503eb75909e1b42'
+URL_BEZELS="https://github.com/AlexxandreFS/Batocera.PLUS-bezels/archive/${URL_BEZELS}.zip#/Batocera.PLUS-bezels-${URL_BEZELS}.zip"
+URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_BEZELS}")
 
 URL_MUSIC='133b040ce3c04b6c462102a57ea1134ab73a80c7'
 URL_MUSIC="https://github.com/BatoceraPLUS/Batocera.PLUS-music/archive/${URL_MUSIC}.zip#/Batocera.PLUS-music-${URL_MUSIC}.zip"
@@ -671,6 +675,14 @@ unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract"
 cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}" \
       "${TEMP_DIR}/squashfs-root/usr/share/emulationstation/themes/Carbon-2.0_PLUS"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
+
+echo 'Install Bezels...'
+PKG_NAME="$(basename "${URL_BEZELS}")"
+unzip  "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" 2> /dev/null
+rm -rf "${TEMP_DIR}/squashfs-root/usr/share/batocera/datainit/decorations/"*
+cp -a  "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* \
+       "${TEMP_DIR}/squashfs-root/usr/share/batocera/datainit/decorations"
+rm -r  "${TEMP_DIR}/pkg-xtract/"*
 
 if [ "${ALL_BIOS}" == 'true' ]; then
     echo 'Install All Bios...'
