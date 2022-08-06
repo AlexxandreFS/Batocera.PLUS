@@ -25,8 +25,8 @@ TEMP_DIR='./output'
 #TEMP_DIR='/media/Linux/tmp'
 
 # BatoceraZero (final image size)
-BATOCERA_ZERO='BatoceraZero4GB-1.7z'
-#BATOCERA_ZERO='BatoceraZero5GB-1.7z'
+#BATOCERA_ZERO='BatoceraZero4GB-1.7z'
+BATOCERA_ZERO='BatoceraZero5GB-1.7z'
 #BATOCERA_ZERO='BatoceraZero6GB-1.7z'
 #BATOCERA_ZERO='BatoceraZero7GB-1.7z'
 
@@ -343,11 +343,8 @@ URL_WINDOWS_TOOLS='e5f2a8c02390a6fe78106c84960cb6d2326ddfda'
 URL_WINDOWS_TOOLS="https://github.com/AlexxandreFS/Batocera.PLUS-tools/archive/${URL_WINDOWS_TOOLS}.zip#/Batocera.PLUS-tools-${URL_WINDOWS_TOOLS}.zip"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_WINDOWS_TOOLS}")
 
-URL_JAVA='jre-8u291-linux-x64.tar.gz'
-if ! [ -e "${DOWNLOAD_DIR}/${URL_JAVA}" ]; then
-    URL_JAVA="$(wget -S --spider --max-redirect 0 'https://javadl.oracle.com/webapps/download/AutoDL?BundleId=244575_d7fc238d0cbf4b0dac67be84580cfb4b' 2>&1 | grep -E '^  Location: ' | cut -d ' ' -f 4)"
-    URL_JAVA="${URL_JAVA}#/$(echo ${URL_JAVA} | sed 's/File=/;/' | cut -d ';' -f 2 | cut -d '&' -f 1)"
-fi
+URL_JAVA='https://download.oracle.com/java/18/latest/jdk-18_linux-x64_bin.tar.gz'
+#https://www.oracle.com/java/technologies/downloads/
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_JAVA}")
 
 URL_WINE_MONO='https://dl.winehq.org/wine/wine-mono/7.3.0/wine-mono-7.3.0-x86.tar.xz'
@@ -820,8 +817,9 @@ chmod +x "${TEMP_DIR}/Batocera.PLUS/opt/qBittorrent/qBittorrent-Enhanced-Edition
 
 echo 'Install Java...'
 PKG_NAME="$(basename "${URL_JAVA}")"
-gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/Batocera.PLUS/opt"
-mv "${TEMP_DIR}/Batocera.PLUS/opt/jre"*  "${TEMP_DIR}/Batocera.PLUS/opt/Java"
+gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
+mv "${TEMP_DIR}/pkg-xtract/jdk"* "${TEMP_DIR}/pkg-xtract/Java"
+mv "${TEMP_DIR}/pkg-xtract/Java" "${TEMP_DIR}/Batocera.PLUS/opt"
 
 echo 'Install Cemu...'
 PKG_NAME="$(basename "${URL_CEMU%.*}")"
