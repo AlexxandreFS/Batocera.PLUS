@@ -397,7 +397,7 @@ case ${JOYPAD} in
 
         ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus"     /f /v "DisableHidraw" /t REG_DWORD /d "0"
 
-        if [ "${CORE}" == 'proton-valve' ]; then
+        if [ "${CORE}" == 'proton-valve' ] || [ "${CORE}" == 'proton-ge-custom' ]; then
             ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus" /f /v "Enable SDL"    /t REG_DWORD /d "1"
         else
             ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus" /f /v "Enable SDL"    /t REG_DWORD /d "0"
@@ -406,7 +406,7 @@ case ${JOYPAD} in
     *)
         ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus"     /f /v "Enable SDL"    /t REG_DWORD /d "1"
 
-        if [ "${CORE}" == 'proton-valve' ]; then
+        if [ "${CORE}" == 'proton-valve' ] || [ "${CORE}" == 'proton-ge-custom' ]; then
             ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus" /f /v "DisableHidraw" /t REG_DWORD /d "1"
         else
             ${CORE} reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WineBus" /f /v "DisableHidraw" /t REG_DWORD /d "0"
