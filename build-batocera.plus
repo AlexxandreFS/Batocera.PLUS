@@ -55,7 +55,7 @@ fi
 echo -e "\nBuild Batocera.PLUS-${VERSION}-${RELEASE}..."
 
 URL_BATOCERA_PLUS_PKG=(
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-valve-7.0-2-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-valve-7.0-3-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/proton-ge-custom-7.18-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-old-stable-5.0.5-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine-stable-6.0.2-1.7z'
