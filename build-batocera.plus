@@ -223,6 +223,9 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/model3-1.1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/visual_pinball-1.0.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vpinball_fonts-1.0.7z' # dep: visual pinball
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/openbor-4432-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/openbor-6330-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/openbor-7142-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3_extra_libs-1.1.7z' # dep: rpcs3
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ryujinx_extras-1.1.7z' # dep: ryujinx
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pcsx2-legacy-apr-10-2021-2.7z'
