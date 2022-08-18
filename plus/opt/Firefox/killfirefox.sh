@@ -1,7 +1,7 @@
 #!/bin/bash
 ##
 ## Batocera.PLUS
-## Alexxandre Freire dos Santos
+## Alexandre Freire dos Santos
 ##
 ## Encerra a execução do firefox.
 ## 
