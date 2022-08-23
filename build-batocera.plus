@@ -389,7 +389,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_YUZU_EARLY_ACCESS}")
 URL_RYUJINX='https://github.com/Ryujinx/release-channel-master/releases/download/1.1.150/ryujinx-1.1.150-linux_x64.tar.gz' #Link provisório
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_RYUJINX}")
 
-URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.2464/pcsx2-v1.7.2464-linux-AppImage-64bit.AppImage'
+URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.3154/pcsx2-v1.7.3154-linux-AppImage-64bit-wxWidgets.AppImage'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_PCSX2}")
 
 URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-42627946689d20869cbd195a716d4070eb57d166/rpcs3-v0.0.22-13800-42627946_linux64.AppImage'
@@ -867,8 +867,8 @@ mv "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/pcsx2" "${TEMP_DIR}
 sed -i 's|../share|pcsx2_rc|'                                       "${TEMP_DIR}/Batocera.PLUS/opt/Pcsx2/pcsx2-mainline/PCSX2"
 mv "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/share"     "${TEMP_DIR}/Batocera.PLUS/opt/Pcsx2/pcsx2-mainline/pcsx2_rc"
 PCSX2_FILES=(
-    libjbig       libnotify         libtiff  libgdk-3
-    libgtk-3      libatk-bridge-2   libatspi libpcap
+    libjbig       libnotify         libtiff            libgdk-3
+    libgtk-3      libatk-bridge-2   libatspi           libpcap
     libwx_baseu-3 libwx_gtk3u_adv-3 libwx_gtk3u_core-3
 )
 for FILE in ${PCSX2_FILES[@]}; do
