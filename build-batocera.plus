@@ -398,7 +398,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_RPCS3}")
 URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.7-1/MangoHud-0.6.7.1.r0.g58e277a.tar.gz'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_MANGOHUD}")
 
-URL_GAMECONTROLLERDB='b3676f19c119c957181e36e73e57473e1bb316f7'
+URL_GAMECONTROLLERDB='8726a689915fabce760fd2034e57e6cd4543ff6c'
 URL_GAMECONTROLLERDB="https://raw.githubusercontent.com/gabomdq/SDL_GameControllerDB/${URL_GAMECONTROLLERDB}/gamecontrollerdb.txt#/gamecontrollerdb-${URL_GAMECONTROLLERDB}.txt"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_GAMECONTROLLERDB}")
 
