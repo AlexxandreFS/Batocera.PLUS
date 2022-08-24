@@ -34,6 +34,10 @@ fi
 ### Ativa o ponteiro do mouse.
 mouse-pointer on
 
+### Hack provisório! Precisa atualizar o tema.
+### Mantém as cores do tema sóbrio
+export GTK_THEME=Adwaita:light
+
 ################################################################################
 
 ### Bibliotecas extras.

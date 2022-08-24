@@ -96,7 +96,17 @@
             </size>
         </application>
 
+        <!-- Firefox Legacy for flash support -->
         <application class="Firefox">
+            <decor>yes</decor>
+            <fullscreen>no</fullscreen>
+        </application>
+
+        <application class="firefox">
+            <decor>yes</decor>
+            <fullscreen>no</fullscreen>
+        </application>
+        <application class="firefox-esr">
             <decor>yes</decor>
             <fullscreen>no</fullscreen>
         </application>
