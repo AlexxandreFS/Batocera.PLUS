@@ -389,7 +389,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_YUZU_EARLY_ACCESS}")
 URL_RYUJINX='https://github.com/Ryujinx/release-channel-master/releases/download/1.1.150/ryujinx-1.1.150-linux_x64.tar.gz' #Link provisório
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_RYUJINX}")
 
-URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.3154/pcsx2-v1.7.3154-linux-AppImage-64bit-wxWidgets.AppImage'
+URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.3241/pcsx2-v1.7.3241-linux-AppImage-64bit-wxWidgets.AppImage'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_PCSX2}")
 
 URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-42627946689d20869cbd195a716d4070eb57d166/rpcs3-v0.0.22-13800-42627946_linux64.AppImage'
