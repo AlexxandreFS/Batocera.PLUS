@@ -16,6 +16,7 @@
 
 ROM="${1}"
 P1GUID="${2}"
+RENDER="${3}"
 
 RYUJINX_EMU=/opt/Ryujinx/publish/Ryujinx
 RYUJINX_DIR=/opt/Ryujinx
@@ -84,6 +85,12 @@ if [ -z "$(ls -A "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered" 2> /dev/nu
     FirmwareWarning
 fi
 
+if [ "${RENDER}" == 'vulkan' ]; then
+    sed -i 's/"graphics_backend":.*/"graphics_backend": "Vulkan",/' "${SAVE_DIR}/Ryujinx/Config.json"
+else
+    sed -i 's/"graphics_backend":.*/"graphics_backend": "OpenGl",/' "${SAVE_DIR}/Ryujinx/Config.json"
+fi
+
 ################################################################################
 
 ### Fix some settings
@@ -92,27 +99,6 @@ sed -i 's/"check_updates_on_start":.*/"check_updates_on_start": false,/'        
 sed -i 's/"enable_discord_integration":.*/"enable_discord_integration": false,/'  "${SAVE_DIR}/Ryujinx/Config.json"
 sed -i 's/"show_confirm_exit":.*/"show_confirm_exit": false,/'                    "${SAVE_DIR}/Ryujinx/Config.json"
 sed -i 's/"audio_backend":.*/"audio_backend": "OpenAl",/'                         "${SAVE_DIR}/Ryujinx/Config.json"
-
-################################################################################
-
-### HOTKEY
-
-if [ "${P1GUID}" ]; then
-    BOTOES="$(${RYUJINX_DIR}/getHotkeyStart ${P1GUID})"
-    BOTAO_HOTKEY=$(echo "${BOTOES}" | cut -d ' ' -f 1)
-    BOTAO_START=$(echo  "${BOTOES}" | cut -d ' ' -f 2)
-
-    if [ "${BOTAO_HOTKEY}" ] && [ "${BOTAO_START}" ]; then
-        # Impede que o xjoykill seja encerrado enquanto o jogo está em execução.
-        while : ; do
-            nice -n 20 xjoykill -hotkey ${BOTAO_HOTKEY} -start ${BOTAO_START} -kill "${RYUJINX_DIR}/killryujinx"
-            if ! [ "$(pidof Ryujinx)" ]; then
-                break
-            fi
-            sleep 5
-        done &
-    fi
-fi
 
 ################################################################################
 
@@ -127,11 +113,5 @@ else
 fi
 
 ################################################################################
-
-### FINALIZATION
-
-if [ "$(pidof xjoykill)" ]; then
-    killall -9 xjoykill
-fi
 
 exit 0

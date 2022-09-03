@@ -16,6 +16,7 @@ BIOS_DIR=/userdata/bios/yuzu
 ROM="${1}"
 CORE="${2}"
 P1GUID="${3}"
+RENDER="${4}"
 
 ################################################################################
 
@@ -81,6 +82,10 @@ then
         echo 'confirmClose=false\n'
         echo 'confirmClose\default=false'
 
+        echo '[Renderer]'
+        echo 'backend=0'
+        echo 'backend\default=true'
+
        # Controller config
        echo '[Controls]'
        ${YUZU_DIR}/gamepad-autoconf.sh 0 ${P1GUID}
@@ -89,27 +94,12 @@ fi
 
 ################################################################################
 
-### EXIT GAME (hotkey + start)
-
-if [ "${P1GUID}" ]
-then
-    BOTOES="$(${YUZU_DIR}/getHotkeyStart ${P1GUID})"
-    BOTAO_HOTKEY=$(echo "${BOTOES}" | cut -d ' ' -f 1)
-    BOTAO_START=$(echo  "${BOTOES}" | cut -d ' ' -f 2)
-
-    if [ "${BOTAO_HOTKEY}" ] && [ "${BOTAO_START}" ]
-    then
-        # Impede que o xjoykill seja encerrado enquanto o jogo está em execução.
-        while :
-        do
-            nice -n 20 xjoykill -hotkey ${BOTAO_HOTKEY} -start ${BOTAO_START} -kill "${YUZU_DIR}/killyuzu"
-            if ! [ "$(pidof yuzu)" ]
-            then
-                break
-            fi
-            sleep 5
-        done &
-    fi
+if [ "${RENDER}" == 'vulkan' ]; then
+    sed -i 's/backend=.*/backend=1/' "${HOME_DIR}/.config/yuzu/qt-config.ini"
+    sed -i 's|backend\\default=.*|backend\\default=false|' "${HOME_DIR}/.config/yuzu/qt-config.ini"
+else
+    sed -i 's/backend=.*/backend=0/' "${HOME_DIR}/.config/yuzu/qt-config.ini"
+    sed -i 's|backend\\default=.*|backend\\default=true|' "${HOME_DIR}/.config/yuzu/qt-config.ini"
 fi
 
 ################################################################################
@@ -150,12 +140,5 @@ else
 fi
 
 ################################################################################
-
-### CLOSE xjoykill
-
-if [ "$(pidof xjoykill)" ]
-then
-    killall -9 xjoykill
-fi
 
 exit 0
