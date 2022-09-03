@@ -386,13 +386,13 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_YUZU_MAINLINE}")
 URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-2557/Yuzu-EA-2557.AppImage'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_YUZU_EARLY_ACCESS}")
 
-URL_RYUJINX='https://github.com/Ryujinx/release-channel-master/releases/download/1.1.150/ryujinx-1.1.150-linux_x64.tar.gz' #Link provisório
+URL_RYUJINX='https://github.com/Ryujinx/release-channel-master/releases/download/1.1.228/ryujinx-1.1.228-linux_x64.tar.gz' #Link provisório
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_RYUJINX}")
 
-URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.3241/pcsx2-v1.7.3241-linux-AppImage-64bit-wxWidgets.AppImage'
+URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.3256/pcsx2-v1.7.3256-linux-AppImage-64bit-wxWidgets.AppImage'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_PCSX2}")
 
-URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-42627946689d20869cbd195a716d4070eb57d166/rpcs3-v0.0.22-13800-42627946_linux64.AppImage'
+URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-698c3415eaedf1a494d5eca20e41228d3ff29d68/rpcs3-v0.0.23-14088-698c3415_linux64.AppImage'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_RPCS3}")
 
 URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.7-1/MangoHud-0.6.7.1.r0.g58e277a.tar.gz'
@@ -941,7 +941,6 @@ rm -r "${TEMP_DIR}/pkg-xtract/"*
 echo 'Install Ryujinx...'
 PKG_NAME="$(basename "${URL_RYUJINX}")"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
-rm "${TEMP_DIR}/pkg-xtract/publish/LICENSE-Ryujinx.Audio.txt"
 rm "${TEMP_DIR}/pkg-xtract/publish/THIRDPARTY.md"
 mv "${TEMP_DIR}/pkg-xtract/publish" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx"
 chmod +x "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/publish/Ryujinx"
