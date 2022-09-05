@@ -103,6 +103,7 @@ int getKeyCode(char *key)
     {
         return alt;
     }
+
     return 0;
 }
 
@@ -161,6 +162,7 @@ int procargs(int argc, char *argv[])
             return 1;
         }
     }
+
     return 0;
 }
 
@@ -180,33 +182,33 @@ int sendKey(int keycode)
  */
 int sendEvent(int typ, int keycode)
 {
-	XEvent event;
-	Window win;
-	int    revert_to;
+    XEvent event;
+    Window win;
+    int    revert_to;
     struct timeb t;
 
     ftime(&t);
-  
-	XGetInputFocus(mydisp, &win, &revert_to);
+ 
+    XGetInputFocus(mydisp, &win, &revert_to);
 
-	event.xkey.type        = typ;
-	event.xkey.serial      = 0;
-	event.xkey.send_event  = True;
-	event.xkey.display     = mydisp;
-	event.xkey.window      = win;
-	event.xkey.root        = XDefaultRootWindow(mydisp);
-	event.xkey.subwindow   = None;
-	event.xkey.time        = t.time * 1000 + t.millitm;
-	event.xkey.x           = 0;
-	event.xkey.y           = 0;
-	event.xkey.x_root      = 0;
-	event.xkey.state       = 0;
-	event.xkey.keycode     = keycode;
-	event.xkey.same_screen = True;
+    event.xkey.type        = typ;
+    event.xkey.serial      = 0;
+    event.xkey.send_event  = True;
+    event.xkey.display     = mydisp;
+    event.xkey.window      = win;
+    event.xkey.root        = XDefaultRootWindow(mydisp);
+    event.xkey.subwindow   = None;
+    event.xkey.time        = t.time * 1000 + t.millitm;
+    event.xkey.x           = 0;
+    event.xkey.y           = 0;
+    event.xkey.x_root      = 0;
+    event.xkey.state       = 0;
+    event.xkey.keycode     = keycode;
+    event.xkey.same_screen = True;
 
-	XSendEvent(mydisp, InputFocus, True, 3, &event);
+    XSendEvent(mydisp, InputFocus, True, 3, &event);
     XFlush(mydisp);
 
-	return 0;
+    return 0;
 }
 

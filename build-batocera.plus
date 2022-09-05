@@ -248,6 +248,10 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/axel-2.17.11-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/strace-5.13-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ltrace-0.7.91-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/numlockx-1.2.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libXtst-6.1.0.7z'          # dep: java, numlockx
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/msr-tools-1.3-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pipewire-0.3.31-1.7z'             # remove on update
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/Goverlay-0.8.1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vkbasalt-0.3.2.5-2.7z'
@@ -272,7 +276,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/portaudio-2.0-1.7z'        # dep: pcsx2 #remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libyaml-cpp-0.6.3-1.7z'    # dep: pcsx2 #remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/adwaita-blue-light-167841-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/flash-player-32.0.0.465-(FlashPatch-1.5)-1.7z' # dep: firefox
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/flash-player-32.0.0.465-(FlashPatch-1.5)-1.7z' # dep: firefox-legacy
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/user-manual-2.7z'
 
@@ -290,9 +294,6 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xdriver_xf86-video-all-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xfont_extras-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libLLVM-13.0.0-1.7z'              # dep: mesa3d # remove on update
-
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/msr-tools-1.3-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pipewire-0.3.31-1.7z'             # remove on update
 )
 
 URL_BATOCERA_PLUS_DEV_PKG=(

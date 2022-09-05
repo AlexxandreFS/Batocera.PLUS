@@ -69,6 +69,12 @@ settings_output="`$systemsetting -command load -key global.dpi`"
 
 ################################################################################
 
+### Enable numlock on boot
+
+numlockx on
+
+################################################################################
+
 ### Nvidia Driver
 
 if [ -e "/lib/modules/$(uname -r)/extra/nvidia.ko" ]; then
