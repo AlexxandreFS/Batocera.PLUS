@@ -110,7 +110,9 @@ fi
 
 ### INTERNAL RESOLUTION
 
-if [ "${INTERNALRESOLUTION}" == 'auto' ] || [ "${INTERNALRESOLUTION}" == '0' ]
+if [ "${INTERNALRESOLUTION}" == 'auto' ] || 
+   [ "${INTERNALRESOLUTION}" == '0' ]    ||
+   [ "${INTERNALRESOLUTION}" == '' ]
 then
     INTERNALRESOLUTION=1
 fi
@@ -239,7 +241,7 @@ sed -i "s/^[ ]*EnableWideScreenPatches=.*/EnableWideScreenPatches=${WSCRH}/" "${
 ### SDL GAME CONTROLLER DATABASE
 
 if [ -e "${GAME_CONTROLLER_DATABASE_FILE}" ]; then
-    export SDL_GAMECONTROLLERCONFIG="$(grep -E ',platform:Linux,$' ${GAME_CONTROLLER_DATABASE_FILE})"
+    export SDL_GAMECONTROLLERCONFIG="$(grep -E ',# Linux,$' ${GAME_CONTROLLER_DATABASE_FILE})"
 fi
 
 ################################################################################
