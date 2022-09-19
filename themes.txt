@@ -15,3 +15,4 @@ Zoid              https://github.com/BatoceraPLUS/Theme-Zoid
 ComicscrapPLUS    https://github.com/LordOgro/ComicscrapPLUS
 FakeXMB_PLUS-3.5  https://github.com/LordOgro/FakeXMB_PLUS-3.5
 DynamicBox_PLUS   https://github.com/LordOgro/DynamicBox_PLUS
+Famicom_MINI_PLUS https://github.com/LordOgro/Famicom_MINI_PLUS
