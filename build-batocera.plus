@@ -237,6 +237,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/zstd-1.4.3-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libcap-2.27-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/squashfs-tools-4.4-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/strip-b5.27.2-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/popstationr-1.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/imagemagic-7.0.8-59-1.7z'
@@ -1043,7 +1044,7 @@ echo 'Montando imagem do BatoceraZero...'
 mkdir "${TEMP_DIR}/BatoceraZero"
 mount /dev/loop6 "${TEMP_DIR}/BatoceraZero"
 
-echo 'Movendo arquivo compactado squashfs para o BatoceraZero...'
+echo 'Movendo arquivo compactado squashfs para BatoceraZero...'
 rm "${TEMP_DIR}/Batocera.Linux/boot/batocera"
 mv "${TEMP_DIR}/batocera" "${TEMP_DIR}/BatoceraZero/boot/batocera"
 
