@@ -324,7 +324,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_NVIDIA_DRIVER}")
 URL_LINUX_FIRMWARE='https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20220815.tar.gz'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_LINUX_FIRMWARE}")
 
-URL_ES_THEME_A='a574cce7f4db651a64ed8561e300aff16dbbb406'
+URL_ES_THEME_A='4614712f610f8083df9e5289f256f0662b7b1ca0'
 URL_ES_THEME_A="https://github.com/AlexxandreFS/Batocera.PLUS-es-theme/archive/${URL_ES_THEME_A}.zip#/Batocera.PLUS-es-theme-${URL_ES_THEME_A}.zip"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_ES_THEME_A}")
 
