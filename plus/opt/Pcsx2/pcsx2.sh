@@ -253,11 +253,9 @@ fi
 
 case ${CORE} in
     pcsx2-mainline)
-        exitHotkeyStart
         ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-mainline/pcsx2-mainline.sh "${ROM}" "${FULLBOOT}" "${CUSTOM}"
         ;;
     pcsx2-legacy|auto)
-        exitHotkeyStart
         ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-legacy/pcsx2-legacy.sh     "${ROM}" "${FULLBOOT}" "${CUSTOM}"
         ;;
     PCSX2)
