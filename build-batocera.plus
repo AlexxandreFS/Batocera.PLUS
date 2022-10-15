@@ -215,6 +215,8 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ppsspp-mar-2-2021-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3-0.0.15-3.7z' # remove on update.
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xemu-mar-23-2022-1.7z' # remove on update.
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/yuzu-2022-10-15.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/yuzu-extra-libs-1.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemuextras-1.7.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/cemufakefiles-1.0.7z'
@@ -381,12 +383,6 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_CEMU}")
 URL_CEMUHOOK='https://files.sshnuke.net/cemuhook_1262d_0577.zip'
 #URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_CEMUHOOK}")
-
-URL_YUZU_MAINLINE='https://github.com/yuzu-emu/yuzu-mainline/releases/download/mainline-0-952/yuzu-20220315-441b37bd2.AppImage'
-URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_YUZU_MAINLINE}")
-
-URL_YUZU_EARLY_ACCESS='https://github.com/pineappleEA/pineapple-src/releases/download/EA-2557/Yuzu-EA-2557.AppImage'
-URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_YUZU_EARLY_ACCESS}")
 
 URL_RYUJINX='https://github.com/Ryujinx/release-channel-master/releases/download/1.1.299/ryujinx-1.1.299-linux_x64.tar.gz' #Link provisório
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_RYUJINX}")
@@ -842,19 +838,6 @@ rm -r "${TEMP_DIR}/Batocera.PLUS/opt/${PKG_NAME}/Go to project website for updat
 mv "${TEMP_DIR}/Batocera.PLUS/opt/${PKG_NAME}/"* "${TEMP_DIR}/Batocera.PLUS/opt/Cemu/cemuhook"
 rmdir "${TEMP_DIR}/Batocera.PLUS/opt/${PKG_NAME}"
 
-echo 'Install Yuzu Mainline...'
-PKG_NAME="$(basename "${URL_YUZU_MAINLINE}")"
-chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
-mkdir -p "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
-CURRENT_DIR="$(pwd)"
-cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
-"${CURRENT_DIR}/${DOWNLOAD_DIR}/${PKG_NAME}" --appimage-extract
-cd "${CURRENT_DIR}"
-unset CURRENT_DIR
-mkdir -p "${TEMP_DIR}/Batocera.PLUS/opt/Yuzu/yuzu-mainline/bin"
-cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu" "${TEMP_DIR}/Batocera.PLUS/opt/Yuzu/yuzu-mainline/bin"
-rm -r "${TEMP_DIR}/pkg-xtract/"*
-
 echo 'Install pcsx2-mainline...'
 PKG_NAME="$(basename "${URL_PCSX2}")"
 chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
@@ -913,31 +896,6 @@ do
     cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/Batocera.PLUS/opt/Rpcs3/lib"
 done
 cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/plugins"        "${TEMP_DIR}/Batocera.PLUS/opt/Rpcs3"
-rm -r "${TEMP_DIR}/pkg-xtract/"*
-
-echo 'Install Yuzu Early Access...'
-PKG_NAME="$(basename "${URL_YUZU_EARLY_ACCESS}")"
-chmod +x "${DOWNLOAD_DIR}/${PKG_NAME}"
-mkdir -p "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
-CURRENT_DIR="$(pwd)"
-cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
-"${CURRENT_DIR}/${DOWNLOAD_DIR}/${PKG_NAME}" --appimage-extract
-cd "${CURRENT_DIR}"
-unset CURRENT_DIR
-mkdir -p "${TEMP_DIR}/Batocera.PLUS/opt/Yuzu/yuzu-early-access/bin"
-cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/yuzu"                    "${TEMP_DIR}/Batocera.PLUS/opt/Yuzu/yuzu-early-access/bin"
-mkdir -p "${TEMP_DIR}/Batocera.PLUS/opt/Yuzu/lib"
-cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/optional/libstdc++/libstdc++."* "${TEMP_DIR}/Batocera.PLUS/opt/Yuzu/lib"
-YUZU_FILES=(
-    libboost_context libicudata         libicui18n libicuuc
-    libQt5Core       libQt5DBus         libQt5Gui  libQt5Widgets
-    libQt5XcbQpa     libxcb-render-util libSDL2-2
-)
-for FILE in ${YUZU_FILES[*]}
-do
-    cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/Batocera.PLUS/opt/Yuzu/lib"
-done
-cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/plugins"        "${TEMP_DIR}/Batocera.PLUS/opt/Yuzu"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Ryujinx...'
