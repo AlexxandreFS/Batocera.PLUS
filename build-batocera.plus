@@ -556,7 +556,7 @@ done
 
 # Desativa por padrão o jogo MrBoom
 mv ${TEMP_DIR}/Batocera.PLUS/usr/share/batocera/datainit/roms/mrboom/MrBoom.libretro \
-   ${TEMP_DIR}/Batocera.PLUS/usr/share/batocera/datainit/roms/mrboom/MrBoom.libretro.disable \
+   ${TEMP_DIR}/Batocera.PLUS/usr/share/batocera/datainit/roms/mrboom/MrBoom.libretro.disable
 
 # Remove o driver antigo da Nvidia
 KERNEL_VERSION="$(ls ${TEMP_DIR}/Batocera.PLUS/lib/modules)"
