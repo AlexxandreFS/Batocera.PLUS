@@ -21,14 +21,11 @@ SQUASHFS_COMPRESSION='2'
 ALL_BIOS=true
 
 # Temporary folder on a linux partition
-#TEMP_DIR='./output'
-TEMP_DIR='/media/Linux/tmp'
+TEMP_DIR='./output'
+#TEMP_DIR='/media/Linux/tmp'
 
 # BatoceraZero (final image size)
-#BATOCERA_ZERO='BatoceraZero4GB-1.7z'
 BATOCERA_ZERO='BatoceraZero5GB-1.7z'
-#BATOCERA_ZERO='BatoceraZero6GB-1.7z'
-#BATOCERA_ZERO='BatoceraZero7GB-1.7z'
 
 # Batocera.PLUS extra files
 PLUS_DIR='plus'
