@@ -1,0 +1,73 @@
+#!/bin/bash
+###
+### Batocera.PLUS
+### Criado por Sérgio de Carvalho Júnuior
+### Revisado por Alexandre Freire dos Santos
+################################################################################
+
+function start()
+{
+    if [ -d /var/storage ]
+    then
+        return 1
+    fi
+
+    for HD in /media/*
+    do
+        local FOLDER="$(basename "${HD}")"
+
+        case ${FOLDER} in
+            SHARE|BATOCERA) continue ;;
+        esac
+
+        if [ -f "${HD}/batocera/system/batocera.conf" ]
+        then
+            continue
+        fi
+
+        mkdir -p "/var/storage/${FOLDER}"
+
+        if ! mount --bind "${HD}" "/var/storage/${FOLDER}"
+        then
+            return 2
+        fi
+    done
+
+    return 0
+}
+
+function stop()
+{
+    if ! [ -d /var/storage ]
+    then
+        return 1
+    fi
+
+    if umount /var/storage/*
+    then
+        rmdir /var/storage/*
+        rmdir /var/storage
+    else
+        return 2
+    fi
+
+    return 0
+}
+
+case "${1}" in
+    start)
+        start || echo "erro ao iniciar serviço, código ${?}"
+        ;;
+    stop)
+        stop  || echo "erro ao parar serviço, código ${?}"
+        ;;
+    restart)
+        stop  || echo "erro ao parar serviço, código ${?}"
+        start || echo "erro ao iniciar serviço, código ${?}"
+        ;;
+    *)
+        echo "Usage: ${0} {start|stop|restart}"
+        exit 4
+esac
+
+exit 0
