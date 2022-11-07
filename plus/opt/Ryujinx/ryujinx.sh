@@ -55,8 +55,7 @@ function createDirs()
 
 function TextLocalization()
 {
-   LANG="$(batocera-settings -command load -key system.language)"
-   case $LANG in
+   case ${LANG%.*} in
       pt_BR) MSG[1]='\n NENHUM FIRMWARE FOI INSTALADO, INSTALE ANTES DE EXECUTAR O JOGO. \n' ;;
       es_ES) MSG[1]='\n NO SE HA INSTALADO FIRMWARE, INSTALAR ANTES DE EJECUTAR UN JUEGO. \n' ;;
       *)     MSG[1]='\n NO FIRMWARE HAS BEEN INSTALLED, INSTALL BEFORE RUN A GAME. \n'

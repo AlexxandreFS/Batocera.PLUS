@@ -22,8 +22,7 @@ RENDER="${4}"
 
 function TextLocalization()
 {
-    LANG="$(batocera-settings -command load -key system.language)"
-    case $LANG in
+    case ${LANG%.*} in
         pt_BR) MSG[1]='\n ESCOLHA UMA OPÇÃO. \n' ;;
         es_ES) MSG[1]='\n ESCOGE UNA OPCIÓN. \n' ;;
         *)     MSG[1]='\n CHOOSE A OPTION. \n'

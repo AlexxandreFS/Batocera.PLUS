@@ -185,8 +185,7 @@ sync
 
 ### LINGUAGEM
 
-SLANG="$(batocera-settings -command load -key system.language)"
-case ${SLANG} in
+case ${LANG%.*} in
     fr_FR)       sed -i 's/<language>.*/<language>80<\/language>/'  "${CEMU}/settings.xml" ;;
     en_US|en_GB) sed -i 's/<language>.*/<language>57<\/language>/'  "${CEMU}/settings.xml" ;;
     de_DE)       sed -i 's/<language>.*/<language>89<\/language>/'  "${CEMU}/settings.xml" ;;

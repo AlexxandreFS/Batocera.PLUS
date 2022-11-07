@@ -91,9 +91,7 @@ function CreateConfigs()
 
 function TextLocalization()
 {
-    local SYSTEM_LANG="$(echo "${LANG}" | cut -d '.' -f 1)"
-
-    case ${SYSTEM_LANG} in
+    case ${LANG%.*} in
         pt_BR)
             MSG[1]='\n NENHUMA CONFIGURAÇÃO DE CONTROLE FOI FEITA, FAÇA UMA ANTES DE EXECUTAR O JOGO. \n'
             MSG[2]='\n NENHUM FIRMWARE FOI INSTALADO, INSTALE ANTES DE EXECUTAR O JOGO. \n'
