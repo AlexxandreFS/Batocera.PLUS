@@ -85,6 +85,14 @@ if [ -z "$(ls -A "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered" 2> /dev/nu
     FirmwareWarning
 fi
 
+################################################################################
+
+### Check dirs
+
+createDirs
+
+################################################################################
+
 if [ "${RENDER}" == 'vulkan' ]; then
     sed -i 's/"graphics_backend":.*/"graphics_backend": "Vulkan",/' "${SAVE_DIR}/Ryujinx/Config.json"
 else
