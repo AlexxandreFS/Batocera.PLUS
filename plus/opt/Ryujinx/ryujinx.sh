@@ -1,3 +1,4 @@
+#!/bin/bash
 ##
 ## Batocera.PLUS
 ##
@@ -21,10 +22,10 @@ RENDER="${3}"
 RYUJINX_EMU=/opt/Ryujinx/publish/Ryujinx
 RYUJINX_DIR=/opt/Ryujinx
 SAVE_DIR=/userdata/saves/switch
-BIOS_DIR="${HOME}/../bios/yuzu/keys"
+BIOS_DIR="${HOME}/../bios/switch"
 
 export XDG_CONFIG_HOME="${SAVE_DIR}"
-export LD_LIBRARY_PATH=/opt/Ryujinx/lib:$LD_LIBRARY_PATH
+#export LD_LIBRARY_PATH=/opt/Ryujinx/lib:$LD_LIBRARY_PATH
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 export GSETTINGS_SCHEMA_DIR=/opt/Ryujinx/gschemas
 export QT_PLUGIN_PATH=/opt/Ryujinx/plugins
@@ -37,10 +38,14 @@ function createDirs()
 {
     if ! [ -d "${SAVE_DIR}/Ryujinx" ]; then
         # make save and log dirs
-        mkdir -p "${SAVE_DIR}/Ryujinx"
+        mkdir -p "${SAVE_DIR}/Ryujinx/system" \
+                 "${SAVE_DIR}/Ryujinx/bis/system/Contents"
 
-        # create bios dir for ryujinx
-        ln -s "${BIOS_DIR}" "${SAVE_DIR}/Ryujinx/system"
+        # create bios and firmware dirs for ryujinx
+        ln -s "${BIOS_DIR}/keys/prod.keys"  "${SAVE_DIR}/Ryujinx/system"
+        ln -s "${BIOS_DIR}/keys/title.keys" "${SAVE_DIR}/Ryujinx/system"
+        ln -sf "${BIOS_DIR}/firmware"       "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered"
+
         cp -f "${RYUJINX_DIR}/default_config/Config.json" "${SAVE_DIR}/Ryujinx"
     fi
 
@@ -110,8 +115,6 @@ sed -i 's/"audio_backend":.*/"audio_backend": "OpenAl",/'                       
 ################################################################################
 
 ### EXECUTION
-
-createDirs
 
 if [ -e "${ROM}" ]; then
    $MANGOHUD_CMD $RYUJINX_EMU --fullscreen "${ROM}"

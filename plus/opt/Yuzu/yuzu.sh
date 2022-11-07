@@ -11,7 +11,7 @@ YUZU_DIR="$(dirname ${0})"
 
 HOME_DIR="${HOME}/configs/yuzu"
 SAVE_DIR=/userdata/saves/switch
-BIOS_DIR=/userdata/bios/yuzu
+BIOS_DIR=/userdata/bios/switch
 
 ROM="${1}"
 CORE="${2}"
@@ -62,8 +62,15 @@ fi
 
 if [ ! -e "${SAVE_DIR}/yuzu/keys" ] && [ -d "${BIOS_DIR}/keys" ]
 then
-    mkdir -p "${SAVE_DIR}/yuzu"
-    ln -s "${BIOS_DIR}/keys" "${SAVE_DIR}/yuzu/keys"
+    mkdir -p "${SAVE_DIR}/yuzu/keys"
+    ln -s "${BIOS_DIR}/keys/prod.keys"  "${SAVE_DIR}/yuzu/keys"
+    ln -s "${BIOS_DIR}/keys/title.keys" "${SAVE_DIR}/yuzu/keys"
+fi
+
+if [ ! -e "${SAVE_DIR}/yuzu/nand/system/Contents/registered" ] && [ -d "${BIOS_DIR}/firmware" ]
+then
+    mkdir -p "${SAVE_DIR}/yuzu/nand/system/Contents"
+    ln -sf "${BIOS_DIR}/firmware"  "${SAVE_DIR}/yuzu/nand/system/Contents/registered"
 fi
 
 ################################################################################
