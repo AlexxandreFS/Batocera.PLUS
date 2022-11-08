@@ -899,7 +899,7 @@ echo 'Install Ryujinx...'
 PKG_NAME="$(basename "${URL_RYUJINX}")"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
 rm "${TEMP_DIR}/pkg-xtract/publish/THIRDPARTY.md"
-mv "${TEMP_DIR}/pkg-xtract/publish" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx"
+cp -a "${TEMP_DIR}/pkg-xtract/publish" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx"
 chmod +x "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/publish/Ryujinx"
 
 echo 'Install Nvidia Driver...'
