@@ -1,4 +1,11 @@
 #!/bin/bash
+##
+## Batocera.PLUS
+##
+## Código escrito por: Sérgio de Carvalho Júnior
+## Supervisão: Alexandre Freire dos Santos
+##
+################################################################################
 
 case ${LANG%.*} in
     pt_BR) MSG='ESCOLHA UMA OPÇÃO' ;;

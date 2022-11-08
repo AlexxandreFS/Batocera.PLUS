@@ -4,7 +4,8 @@
 ## Alexxandre Freire dos Santos
 ##
 ## Encerra a execução do pcsx2.
-## 
+##
+################################################################################ 
 
 PCSX2_PID="$(pidof -s PCSX2)"
 

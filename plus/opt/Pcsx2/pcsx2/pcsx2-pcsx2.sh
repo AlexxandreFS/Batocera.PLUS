@@ -4,10 +4,11 @@
 ### Alexandre Freire dos Santos
 ###
 ################################################################################
-ROM="${1}"
+
+readonly ROM="${1}"
+
 PCSX2_SAVE_DIR="/userdata/saves/ps2"
 PCSX2_CONFIG_DIR="${HOME}/../system/configs/PCSX2"
-
 
 ################################################################################
 

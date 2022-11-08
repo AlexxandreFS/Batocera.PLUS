@@ -12,9 +12,9 @@
 
 ### DIRECTORIES, FILES AND PARAMETERS
 
-ROM="${1}"
-FULLBOOT="${2}"
-CUSTOM="${3}"
+readonly ROM="${1}"
+readonly FULLBOOT="${2}"
+readonly CUSTOM="${3}"
 
 EMU_DIR='/opt/Pcsx2/pcsx2-mainline'
 SAVE_DIR='/userdata/saves/ps2'

@@ -10,6 +10,7 @@ readonly ROM="${1}"
 readonly FULLBOOT="${2}"
 readonly CUSTOM="${3}"
 readonly PCSX2_DIR="$(dirname ${0})"
+
 CONFIG_DIR="${HOME}/../system/configs/pcsx2-legacy"
 SAVE_DIR='/userdata/saves/ps2'
 
