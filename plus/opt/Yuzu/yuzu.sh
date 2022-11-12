@@ -58,19 +58,25 @@ fi
 
 ################################################################################
 
-### NINTENDO SWITCH KEYS
+### NINTENDO SWITCH KEYS AND FIRMWARES
 
-if [ ! -e "${SAVE_DIR}/yuzu/keys" ] && [ -d "${BIOS_DIR}/keys" ]
+mkdir -p "${SAVE_DIR}/keys"
+mkdir -p "${SAVE_DIR}/yuzu/nand/system/Contents/registered"
+
+if [ -f "${BIOS_DIR}/keys/prod.keys" ] && [ -f "${BIOS_DIR}/keys/title.keys" ]
 then
-    mkdir -p "${SAVE_DIR}/yuzu/keys"
-    ln -s "${BIOS_DIR}/keys/prod.keys"  "${SAVE_DIR}/yuzu/keys"
-    ln -s "${BIOS_DIR}/keys/title.keys" "${SAVE_DIR}/yuzu/keys"
+    rm -r "${SAVE_DIR}/yuzu/keys/"* 2> /dev/null
+    ln -sf "${BIOS_DIR}/keys/"*  "${SAVE_DIR}/yuzu/keys"
+else
+    rm -rf "${SAVE_DIR}/yuzu/keys/"* 2> /dev/null
 fi
 
-if [ ! -e "${SAVE_DIR}/yuzu/nand/system/Contents/registered" ] && [ -d "${BIOS_DIR}/firmware" ]
+if [ "$(ls -A "${BIOS_DIR}/firmware" 2> /dev/null)" ]
 then
-    mkdir -p "${SAVE_DIR}/yuzu/nand/system/Contents"
-    ln -sf "${BIOS_DIR}/firmware"  "${SAVE_DIR}/yuzu/nand/system/Contents/registered"
+    rm -r  "${SAVE_DIR}/yuzu/nand/system/Contents/registered/"* 2> /dev/null
+    ln -sf "${BIOS_DIR}/firmware/"* "${SAVE_DIR}/yuzu/nand/system/Contents/registered/"
+else
+    rm -r  "${SAVE_DIR}/yuzu/nand/system/Contents/registered/"* 2> /dev/null
 fi
 
 ################################################################################
@@ -95,6 +101,10 @@ then
        # Controller config
        echo '[Controls]'
        ${YUZU_DIR}/gamepad-autoconf.sh 0 ${P1GUID}
+
+       # Controller config
+       echo '[UI]'
+       Paths\gamedirs\4\path=/userdata/roms/switch
     ) > "${HOME_DIR}/.config/yuzu/qt-config.ini"
 fi
 

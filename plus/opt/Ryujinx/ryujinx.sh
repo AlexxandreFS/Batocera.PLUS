@@ -24,8 +24,8 @@ RYUJINX_DIR=/opt/Ryujinx
 SAVE_DIR=/userdata/saves/switch
 BIOS_DIR="${HOME}/../bios/switch"
 
-export XDG_CONFIG_HOME="${SAVE_DIR}"
 export LD_LIBRARY_PATH=/opt/Ryujinx/lib:$LD_LIBRARY_PATH
+export XDG_CONFIG_HOME="${SAVE_DIR}"
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 export GSETTINGS_SCHEMA_DIR=/opt/Ryujinx/gschemas
 export QT_PLUGIN_PATH=/opt/Ryujinx/plugins
@@ -37,18 +37,30 @@ export QT_PLUGIN_PATH=/opt/Ryujinx/plugins
 function createDirs()
 {
     if ! [ -d "${SAVE_DIR}/Ryujinx" ]; then
-        # make save and log dirs
-        mkdir -p "${SAVE_DIR}/Ryujinx/system" \
-                 "${SAVE_DIR}/Ryujinx/bis/system/Contents"
-
-        # create bios and firmware dirs for ryujinx
-        ln -s "${BIOS_DIR}/keys/prod.keys"  "${SAVE_DIR}/Ryujinx/system"
-        ln -s "${BIOS_DIR}/keys/title.keys" "${SAVE_DIR}/Ryujinx/system"
-        ln -sf "${BIOS_DIR}/firmware"       "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered"
-
+        # make config dir
+        mkdir -p "${SAVE_DIR}/Ryujinx/system" \   # keys folder
+                 "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered" # firmware folder
         cp -f "${RYUJINX_DIR}/default_config/Config.json" "${SAVE_DIR}/Ryujinx"
     fi
 
+    # create keys dir
+	if [ -f "${BIOS_DIR}/keys/prod.keys" ] && [ -f "${BIOS_DIR}/keys/title.keys" ]; then
+	    rm -r "${SAVE_DIR}/Ryujinx/system/"* 2> /dev/null
+        ln -sf "${BIOS_DIR}/keys/"*  "${SAVE_DIR}/Ryujinx/system"
+    else
+	    rm -r "${SAVE_DIR}/Ryujinx/system/"* 2> /dev/null
+    fi
+
+    # create firmware dir
+    if [ "$(ls -A "${BIOS_DIR}/firmware" 2> /dev/null)" ]; then
+        rm -r  "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered"
+        ln -sf "${BIOS_DIR}/firmware" "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered"
+    else
+        rm -r  "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered" 2> /dev/null
+        mkdir -r "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered"
+    fi
+
+    # make log dir
     if ! [ -d "${HOME}/logs/ryujinx" ]; then
         mkdir -p "${HOME}/logs/ryujinx"
     fi
@@ -97,7 +109,7 @@ createDirs
 
 ################################################################################
 
-if [ "${RENDER}" == 'vulkan' ]; then
+if [ "${RENDER}" != 'vulkan' ]; then
     sed -i 's/"graphics_backend":.*/"graphics_backend": "Vulkan",/' "${SAVE_DIR}/Ryujinx/Config.json"
 else
     sed -i 's/"graphics_backend":.*/"graphics_backend": "OpenGl",/' "${SAVE_DIR}/Ryujinx/Config.json"
