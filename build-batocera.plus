@@ -1039,8 +1039,11 @@ echo "$(
             echo '# enable the splash video on startup /userdata/splashvideo (remove the # to enable video)'
             echo '#splash.video=true'
             echo
-            echo '# open a terminal (Win + F4) type xrandr to see all supported resolutions'
+            echo '# video resolution, open a terminal (Win + F4) type xrandr to see all supported resolutions'
             echo '#global.videomode=1280x720'
+            echo
+            echo '# playstation dualshock 4 led colors, red green blue values accept [0 - 255], example: 20 40 255'
+            echo '#dualshock4-led-colors=0 0 0'
             echo
             echo "# radeon-prime enables the amd-radeon gpu over the intel gpu in case you've an amd-radeon hybrid gpu"
             echo '#radeon-prime=true'

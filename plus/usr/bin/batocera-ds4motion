@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ## 
  # Resolve o bug de indentificar 2 controles de PS4 com apenas 1 controle conectado.
  # Funciona apenas com controle de PlayStation 4.
@@ -43,31 +43,33 @@ WIRELESS=usb-Sony_Interactive_Entertainment_DUALSHOCK®4_USB_Wireless_Adaptor-ev
 ##
  # Diretório onde o log é gravado.
  ##
-#LOG_FILE=/userdata/system/logs/$(basename $0 .sh).log
+#LOG_FILE=/userdata/system/logs/$(basename ${0} .sh).log
 LOG_FILE=/dev/null
 
-echo '' >> $LOG_FILE
-echo "Data: $(date -Iseconds -u)" >> $LOG_FILE
+echo '' >> ${LOG_FILE}
+echo "Data: $(date -Iseconds -u)" >> ${LOG_FILE}
 
 ##
  # Desativa o controle extra indesejado.
  ##
-if (( $CONTROLE == 0 )); then
+if [ "${CONTROLE}" == '0' ]
+then
+    echo 'Procurando por controle...' >> ${LOG_FILE}
 
-    echo 'Procurando por controle...' >> $LOG_FILE
-
-    if [ -e /dev/input/by-id/$USB ]; then
-        echo 'Controle encontrado em: Cabo USB' >> $LOG_FILE
-        rm /dev/input/$(ls -l /dev/input/by-id/$USB | cut -d "/" -f 6) || exit 1
-        rm /dev/input/by-id/$USB || exit 1
-        echo 'O controle extra foi desativado.' >> $LOG_FILE
-    elif [ -e /dev/input/by-id/$WIRELESS ]; then
-        echo 'Controle encontrado em: Adaptador Wireless Oficial Sony' >> $LOG_FILE
-        rm /dev/input/$(ls -l /dev/input/by-id/$WIRELESS | cut -d "/" -f 6) || exit 1
-        rm /dev/input/by-id/$WIRELESS || exit 1
-        echo 'O controle extra foi desativado.' >> $LOG_FILE
+    if [ -e "/dev/input/by-id/${USB}" ]
+    then
+        echo 'Controle encontrado em: Cabo USB' >> ${LOG_FILE}
+        rm /dev/input/$(ls -l /dev/input/by-id/${USB} | cut -d '/' -f 6) || exit 1
+        rm /dev/input/by-id/${USB} || exit 1
+        echo 'O controle extra foi desativado.' >> ${LOG_FILE}
+    elif [ -e "/dev/input/by-id/${WIRELESS}" ]
+    then
+        echo 'Controle encontrado em: Adaptador Wireless Oficial Sony' >> ${LOG_FILE}
+        rm /dev/input/$(ls -l /dev/input/by-id/${WIRELESS} | cut -d '/' -f 6) || exit 1
+        rm /dev/input/by-id/${WIRELESS} || exit 1
+        echo 'O controle extra foi desativado.' >> ${LOG_FILE}
     else
-        echo 'Controle não encontrado.' >> $LOG_FILE
+        echo 'Controle não encontrado.' >> ${LOG_FILE}
         exit 1
     fi
 fi
