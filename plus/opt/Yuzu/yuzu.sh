@@ -61,7 +61,7 @@ fi
 ### NINTENDO SWITCH KEYS AND FIRMWARES
 
 mkdir -p "${SAVE_DIR}/keys"
-mkdir -p "${SAVE_DIR}/yuzu/nand/system/Contents/registered"
+mkdir -p "${SAVE_DIR}/yuzu/nand/system/Contents"
 
 if [ -f "${BIOS_DIR}/keys/prod.keys" ] && [ -f "${BIOS_DIR}/keys/title.keys" ]
 then
@@ -71,12 +71,10 @@ else
     rm -rf "${SAVE_DIR}/yuzu/keys/"* 2> /dev/null
 fi
 
-if [ "$(ls -A "${BIOS_DIR}/firmware" 2> /dev/null)" ]
+if [ ! -d "${SAVE_DIR}/yuzu/nand/system/Contents/registered" ]
 then
-    rm -r  "${SAVE_DIR}/yuzu/nand/system/Contents/registered/"* 2> /dev/null
-    ln -sf "${BIOS_DIR}/firmware/"* "${SAVE_DIR}/yuzu/nand/system/Contents/registered/"
-else
-    rm -r  "${SAVE_DIR}/yuzu/nand/system/Contents/registered/"* 2> /dev/null
+    mkdir -p "${BIOS_DIR}/firmware"
+    ln -s "${BIOS_DIR}/firmware" "${SAVE_DIR}/yuzu/nand/system/Contents/registered"
 fi
 
 ################################################################################

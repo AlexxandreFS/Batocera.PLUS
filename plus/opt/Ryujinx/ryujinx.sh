@@ -38,8 +38,8 @@ function createDirs()
 {
     if ! [ -d "${SAVE_DIR}/Ryujinx" ]; then
         # make config dir
-        mkdir -p "${SAVE_DIR}/Ryujinx/system" \   # keys folder
-                 "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered" # firmware folder
+        mkdir -p "${SAVE_DIR}/Ryujinx/system" \  # keys folder
+                 "${SAVE_DIR}/Ryujinx/bis/system/Contents"
         cp -f "${RYUJINX_DIR}/default_config/Config.json" "${SAVE_DIR}/Ryujinx"
     fi
 
@@ -52,12 +52,9 @@ function createDirs()
     fi
 
     # create firmware dir
-    if [ "$(ls -A "${BIOS_DIR}/firmware" 2> /dev/null)" ]; then
-        rm -r  "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered"
-        ln -sf "${BIOS_DIR}/firmware" "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered"
-    else
-        rm -r  "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered" 2> /dev/null
-        mkdir -r "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered"
+    if [ ! -d "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered" ]; then # frist execution
+        mkdir -r "${BIOS_DIR}/firmware"
+        ln -s "${BIOS_DIR}/firmware" "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered"
     fi
 
     # make log dir
