@@ -689,7 +689,7 @@ fi
 echo 'Install GameControllerDB...'
 PKG_NAME="$(basename "${URL_GAMECONTROLLERDB}")"
 cp -a "${DOWNLOAD_DIR}/${PKG_NAME}" \
-      "${TEMP_DIR}/Batocera.PLUS/usr/share/batocera/datainit/bios/gamecontrollerdb.txt"
+      "${TEMP_DIR}/Batocera.PLUS/opt/SDLControllFinder/gamecontrollerdb.txt"
 
 echo 'Install Music...'
 PKG_NAME="$(basename "${URL_MUSIC}")"
