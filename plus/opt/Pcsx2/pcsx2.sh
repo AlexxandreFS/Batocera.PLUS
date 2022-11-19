@@ -36,8 +36,6 @@ then
    PCSX2_UI_FILE="${HOME}/configs/${CORE}/inis/PCSX2_ui.ini"
 fi
 
-GAME_CONTROLLER_DATABASE_FILE="${HOME}/../bios/gamecontrollerdb.txt"
-
 ################################################################################
 
 ### POPULATE ALL PCSX2 STANDALONE
@@ -240,12 +238,7 @@ sed -i "s/^[ ]*EnableWideScreenPatches=.*/EnableWideScreenPatches=${WSCRH}/" "${
 
 ### SDL GAME CONTROLLER DATABASE
 
-if [ -e "${GAME_CONTROLLER_DATABASE_FILE}" ]; then
-    #export SDL_GAMECONTROLLERCONFIG="$(grep -E ',# Linux,$' ${GAME_CONTROLLER_DATABASE_FILE})"
-    ln -sf "${GAME_CONTROLLER_DATABASE_FILE}" "${PCSX2_DIR}/pcsx2-mainline/pcsx2_rc/PCSX2/resources/game_controller_db.txt"
-else
-    ln -sf /usr/share/batocera/datainit/bios/gamecontrollerdb.txt "${PCSX2_DIR}/pcsx2-mainline/pcsx2_rc/PCSX2/resources/game_controller_db.txt"
-fi
+source /opt/Pcsx2/ctrl-find
 
 ################################################################################
 
