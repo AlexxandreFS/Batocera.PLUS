@@ -406,11 +406,6 @@ esac
 
 ### END OF EMULATOR EXECUTION
 
-# Wait the emulator to finish execution
-while [ "$(pidof -s wineserver)" ]; do
-    sleep 1
-done
-
 # Kill keyboard emulator
 if [ "$(pidof -s xjoypad)" ]; then
     killall -9 xjoypad
