@@ -320,7 +320,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_PCI_IDS}")
 URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/510.60.02/NVIDIA-Linux-x86_64-510.60.02.run'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_NVIDIA_DRIVER}")
 
-URL_LINUX_FIRMWARE='https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20221012.tar.gz'
+URL_LINUX_FIRMWARE='https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20221109.tar.gz'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_LINUX_FIRMWARE}")
 
 URL_ES_THEME_A='4614712f610f8083df9e5289f256f0662b7b1ca0'
@@ -927,7 +927,7 @@ rm -rf             "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/liquidio"
 rm -rf             "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/netronome"
 rm -rf             "${TEMP_DIR}/Batocera.PLUS/lib/firmware/"*
 cd                 "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}"
-./copy-firmware.sh "${TEMP_DIR}/Batocera.PLUS/lib/firmware"
+./copy-firmware.sh "../../Batocera.PLUS/lib/firmware"
 cd -
 rm -rf             "${TEMP_DIR}/pkg-xtract/"*
 
