@@ -28,7 +28,6 @@ chmod +x .ci/scripts/linux/exec.sh
 
 # Build
 
-read x
 .ci/scripts/linux/exec.sh
 
 cd ..
@@ -40,6 +39,13 @@ cd ..
 # Download
 
 git clone --recursive https://github.com/pineappleEA/pineapple-src.git
+
+MODULES=$(cat yuzu-mainline/.gitmodules | grep -E '^*path[ ]*=[ ]*' | cut -d '/' -f 2-)
+
+for MODULE in ${MODULES}
+do
+    cp -af yuzu-mainline/externals/${MODULE} pineapple-src/externals/$(dirname ${MODULE})
+done
 
 # Fix
 
@@ -54,7 +60,6 @@ chmod +x .github/workflows/appimage.sh
 
 # Build
 
-read x
 sudo chown -R 1027 ./
 
 docker run -e AZURECIREPO \
