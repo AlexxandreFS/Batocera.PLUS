@@ -397,6 +397,9 @@ URL_GAMECONTROLLERDB='8726a689915fabce760fd2034e57e6cd4543ff6c'
 URL_GAMECONTROLLERDB="https://raw.githubusercontent.com/gabomdq/SDL_GameControllerDB/${URL_GAMECONTROLLERDB}/gamecontrollerdb.txt#/gamecontrollerdb-${URL_GAMECONTROLLERDB}.txt"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_GAMECONTROLLERDB}")
 
+URL_GAMEPADTOOLS='https://generalarcade.com/gamepadtool/linux/gamepad-tool-amd64_1.1.3.zip'
+URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_GAMEPADTOOLS}")
+
 URL_ANTIMICRO='3.1.7'
 URL_ANTIMICRO="https://github.com/AntiMicroX/antimicrox/releases/download/${URL_ANTIMICRO}/AntiMicroX-x86_64.AppImage#/AntiMicroX-${URL_ANTIMICRO}.AppImage"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_ANTIMICRO}")
@@ -690,6 +693,14 @@ echo 'Install GameControllerDB...'
 PKG_NAME="$(basename "${URL_GAMECONTROLLERDB}")"
 cp -a "${DOWNLOAD_DIR}/${PKG_NAME}" \
       "${TEMP_DIR}/Batocera.PLUS/opt/SDLControllFinder/gamecontrollerdb.txt"
+
+echo 'Install SDL2 Gamepad Tool...'
+PKG_NAME="$(basename "${URL_GAMEPADTOOLS}")"
+mkdir -p "${TEMP_DIR}/Batocera.PLUS/opt/SDLControllFinder/bin"
+unzip  "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" 2> /dev/null
+cp -a "${TEMP_DIR}/pkg-xtract/bin/gamepad-tool" \
+      "${TEMP_DIR}/Batocera.PLUS/opt/SDLControllFinder/bin"
+rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Music...'
 PKG_NAME="$(basename "${URL_MUSIC}")"

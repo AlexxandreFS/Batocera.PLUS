@@ -1,0 +1,47 @@
+#!/bin/bash
+##
+## Batocera.PLUS
+##
+## Código escrito por: Sérgio de Carvalho Júnior
+## Supervisão: Alexandre Freire dos Santos
+##
+################################################################################
+
+JOY_DETECT=$(LC_ALL=C sdl2-jstest -l | grep -E '^Joystick GUID:[ ]*' | cut -d ':' -f 2 | xargs)
+
+function TextLocalization()
+{
+   case ${LANG%.*} in
+      pt_BR) MSG[1]='\n POR FAVOR, CONECTE UM CONTROLE. \n' ;;
+      es_ES) MSG[1]='\n CONECTE UN CONTROLADOR. \n' ;;
+      *)     MSG[1]='\n PLEASE CONECT A GAMEPAD. \n'
+   esac
+}
+
+function FirmwareWarning()
+{
+   yad --form \
+   --title='WARNING' \
+   --window-icon='/usr/share/icons/batocera/gamepad-tool.png' \
+   --text=''"${MSG[1]}"'' \
+   --undecorated \
+   --text-align=center \
+   --on-top \
+   --fixed \
+   --center \
+   --no-escape \
+   --timeout=3 \
+   --no-buttons &
+   exit 0
+}
+
+if [ "${JOY_DETECT}" != '' ]; then
+    export QT_QPA_PLATFORM=xcb
+    source /opt/Pcsx2/ctrl-find
+    /opt/SDLControllFinder/bin/gamepad-tool
+else
+    TextLocalization
+    FirmwareWarning
+fi
+
+exit 0
