@@ -77,6 +77,16 @@ then
     ln -s "${BIOS_DIR}/firmware" "${SAVE_DIR}/yuzu/nand/system/Contents/registered"
 fi
 
+if [ ! -d "${SAVE_DIR}/yuzu/log" ]
+then
+   ln -sf "${HOME}/logs"  "${SAVE_DIR}/yuzu/log"
+fi
+
+if [ ! -d "${SAVE_DIR}/yuzu/screenshots" ]
+then
+   ln -sf "${HOME}/../screenshots"  "${SAVE_DIR}/yuzu/screenshots"
+fi
+
 ################################################################################
 
 ### FIRST RUN
