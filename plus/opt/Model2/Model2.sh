@@ -32,7 +32,6 @@ VSYNC="${6}"
 ANISOTROPICFILTER="${7}"
 DRAWCROSS="${8}"
 RUMBLE="${9}"
-P1GUID="${10}"
 
 ################################################################################
 
@@ -232,25 +231,6 @@ sed -i s/'^FullMode=.*/FullMode=4/' "${MODEL2}/Emulator.ini"
 
 ################################################################################
 
-### HOTKEY
-
-BOTOES="$(/opt/Wine/getHotkeyStart "${P1GUID}")"
-BOTAO_HOTKEY="$(echo "${BOTOES}" | cut -d ' ' -f 1)"
-BOTAO_START="$(echo "${BOTOES}"  | cut -d ' ' -f 2)"
-
-if [ "${BOTAO_HOTKEY}" ] && [ "${BOTAO_START}" ]; then
-    # Impede que o xjoykill seja encerrado enquanto o jogo está em execução.
-    while : ; do
-        nice -n 20 xjoykill -hotkey "${BOTAO_HOTKEY}" -start "${BOTAO_START}" -kill /usr/bin/killwine
-        if ! [ "$(pidof wineserver)" ]; then
-            break
-        fi
-        sleep 5
-    done &
-fi
-
-################################################################################
-
 ### EXECUTA O JOGO
 
 cd "${MODEL2}" || exit $?
@@ -272,11 +252,10 @@ fi
 
 ### FINALIZA A EXECUÇÃO DO JOGO
 
-# Mata o emulador de teclado ###
-if [ "$(pidof -s xjoykill)" ]; then
-    killall -9 xjoykill
-elif [ "$(pidof -s xjoykill-mugen)" ]; then
-    killall -9 xjoykill-mugen
+# restore resolution if changed
+RES_STOP="$(batocera-resolution currentResolution)"
+if [ "${RES_START}" != "${RES_STOP}" ]; then
+    batocera-resolution setMode "${RES_START}"
 fi
 
 exit 0
