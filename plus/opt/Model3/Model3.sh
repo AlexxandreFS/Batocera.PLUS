@@ -55,6 +55,13 @@ SAVE="${HOME}/../saves/model3"
 
 ################################################################################
 
+### EXPORTS
+
+export WINEPREFIX="${HOME}/configs/wine/standalones/model3"
+export INSTALL_EXTRAS=1
+
+################################################################################
+
 ### HELP
 
 function help()
@@ -129,6 +136,10 @@ if [ ! "$(ls -A "${MODEL3}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/
 
     # Criando links simbólicos para "system/configs/model2"
     ln -sf "${SAVE}/"*                              "${MODEL3}"
+fi
+
+if [ ! -d "${WINEPREFIX}" ]; then
+    mkdir -p "${WINEPREFIX}" 
 fi
 
 ################################################################################
