@@ -56,11 +56,6 @@ function createDirs()
         mkdir -r "${BIOS_DIR}/firmware"
         ln -s "${BIOS_DIR}/firmware" "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered"
     fi
-
-    # make log dir
-    if ! [ -d "${HOME}/logs/ryujinx" ]; then
-        mkdir -p "${HOME}/logs/ryujinx"
-    fi
 }
 
 ################################################################################
