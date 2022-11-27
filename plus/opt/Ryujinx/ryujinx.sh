@@ -74,6 +74,13 @@ function TextLocalization()
       es_ES) MSG[1]='\n NO SE HA INSTALADO FIRMWARE, INSTALAR ANTES DE EJECUTAR UN JUEGO. \n' ;;
       *)     MSG[1]='\n NO FIRMWARE HAS BEEN INSTALLED, INSTALL BEFORE RUN A GAME. \n'
    esac
+
+   if [ ${LANG%.*} == 'pt_BR' ] || [ ${LANG%.*} == 'es_ES' ]; then
+       sed -i 's/"language_code":.*/"language_code": "'"${LANG%.*}"'",/' "${SAVE_DIR}/Ryujinx/Config.json"
+   else
+       sed -i 's/"language_code":.*/"language_code": "'"${LANG%.*}"'",/' "${SAVE_DIR}/Ryujinx/Config.json"
+   fi
+
 }
 
 function FirmwareWarning()
@@ -106,10 +113,16 @@ createDirs
 
 ################################################################################
 
+### LOCALIZATION
+
+TextLocalization
+
+################################################################################
+
 if [ "${RENDER}" != 'vulkan' ]; then
-    sed -i 's/"graphics_backend":.*/"graphics_backend": "Vulkan",/' "${SAVE_DIR}/Ryujinx/Config.json"
-else
     sed -i 's/"graphics_backend":.*/"graphics_backend": "OpenGl",/' "${SAVE_DIR}/Ryujinx/Config.json"
+else
+    sed -i 's/"graphics_backend":.*/"graphics_backend": "Vulkan",/' "${SAVE_DIR}/Ryujinx/Config.json"
 fi
 
 ################################################################################
