@@ -17,4 +17,7 @@ SDL_DB_FILTRED=$(
     done
 )
 
-export SDL_GAMECONTROLLERCONFIG=$( echo "${SDL_DB_FILTRED}" | uniq)
+# Se algum controle estiver ligado ele será mapeado
+if [ "${JOY_ID}" != '' ]; then
+    export SDL_GAMECONTROLLERCONFIG=$( echo "${SDL_DB_FILTRED}" | uniq)
+fi

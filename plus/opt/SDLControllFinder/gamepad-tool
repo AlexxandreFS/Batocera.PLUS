@@ -7,7 +7,7 @@
 ##
 ################################################################################
 
-JOY_DETECT=$(LC_ALL=C sdl2-jstest -l | grep -E '^Joystick GUID:[ ]*' | cut -d ':' -f 2 | xargs)
+source /opt/SDLControllFinder/ctrl-find
 
 function TextLocalization()
 {
@@ -35,9 +35,8 @@ function FirmwareWarning()
    exit 0
 }
 
-if [ "${JOY_DETECT}" != '' ]; then
+if [ "${SDL_GAMECONTROLLERCONFIG}" != '' ]; then
     export QT_QPA_PLATFORM=xcb
-    source /opt/Pcsx2/ctrl-find
     /opt/SDLControllFinder/bin/gamepad-tool
 else
     TextLocalization

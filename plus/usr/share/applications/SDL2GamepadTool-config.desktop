@@ -1,12 +1,12 @@
 [Desktop Entry]
 Version=1.0
 Icon=/usr/share/icons/batocera/gamepad-tool.png
-Exec=/opt/SDLControllFinder/controller_test
+Exec=/opt/SDLControllFinder/gamepad-tool
 Terminal=false
 Type=Application
 Categories=batocera.plus;
 Name=SDL2 Gamepad Tool
 GenericName=SDL2 Gamepad Tool
 Comment=It's a simple GUI tool to create/modify gamepad mappings for games that use SDL2 Game Controller API. Created to be an alternative to Steam Bigpicture gamepad configurator.
-Keywords=goverlay;mangohud;vkbasalt; 
+Keywords=gamepad; sdl2;
 NoDisplay=false
