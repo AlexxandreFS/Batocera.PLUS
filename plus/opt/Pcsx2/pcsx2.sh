@@ -17,6 +17,7 @@ WSCRH="${10}"
 SPEEDHACKS="${11}"
 CUSTOM="${12}"
 API="${13}"
+TXT="${14}"
 
 PCSX2_DIR="$(dirname ${0})"
 PCSX2_SAVE_DIR="/userdata/saves/ps2"
@@ -115,7 +116,19 @@ then
     INTERNALRESOLUTION=1
 fi
 
+################################################################################
+
+### Fix PCSX2-mainline not boot by ES
+
+if [ "${CORE}" == 'pcsx2-mainline' ]
+then
+    sed -i s/'^EnableRecordingTools=.*/EnableRecordingTools=disabled/' "${CONFIG_DIR}/PCSX2_vm.ini"
+fi
+
+################################################################################
+
 ### Fix for pcsx2-mainline split screen on high resolutions (only for pcsx2-mainline)
+
 if [ "${CORE}" == 'pcsx2-mainline' ] && [ "${INTERNALRESOLUTION}" -gt 1 ]
 then
     sed -i "s/^[ ]*UserHacks[ ]*=.*/UserHacks = 1 /" "${PCSX2_GS_FILE}"
@@ -223,6 +236,22 @@ fi
 
 ################################################################################
 
+### PCSX2-Mainline new texture engine
+
+if [ "${CORE}" == 'pcsx2-mainline' ]
+then
+    if [ "${TXT}" == '1' ]
+    then
+        sed -i s/'^LoadTextureReplacements =.*/LoadTextureReplacements = 1/' "${PCSX2_GS_FILE}"
+	    sed -i s/'^LoadTextureReplacementsAsync =.*/LoadTextureReplacementsAsync = 1/' "${PCSX2_GS_FILE}"
+	else
+        sed -i s/'^LoadTextureReplacements =.*/LoadTextureReplacements = 0/' "${PCSX2_GS_FILE}"
+	    sed -i s/'^LoadTextureReplacementsAsync =.*/LoadTextureReplacementsAsync = 1/' "${PCSX2_GS_FILE}"
+    fi
+fi
+
+################################################################################
+
 ### WIDE SCREEN HACK
 
 if [ "${WSCRH}" == '0' ] || [ "${WSCRH}" == 'auto' ]
@@ -246,7 +275,7 @@ source /usr/bin/batocera-sdl2-controller
 
 case ${CORE} in
     pcsx2-mainline)
-        ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-mainline/pcsx2-mainline.sh "${ROM}" "${FULLBOOT}" "${CUSTOM}"
+        ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-mainline/pcsx2-mainline.sh "${ROM}" "${FULLBOOT}" "${CUSTOM}" "${TXT}"
         ;;
     pcsx2-legacy|auto)
         ${MANGOHUD_CMD} /opt/Pcsx2/pcsx2-legacy/pcsx2-legacy.sh     "${ROM}" "${FULLBOOT}" "${CUSTOM}"

@@ -98,11 +98,6 @@ if [ "${ROM}" == 'populate' ]; then
 fi
 
 ################################################################################
-### Fix PCSX2-mainline not boot by ES
-
-sed -i s/'^EnableRecordingTools=.*/EnableRecordingTools=disabled/' "${CONFIG_DIR}/PCSX2_vm.ini"
-
-################################################################################
 
 ### CUSTOM CONFIG
 
