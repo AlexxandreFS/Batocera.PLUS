@@ -692,14 +692,14 @@ fi
 echo 'Install GameControllerDB...'
 PKG_NAME="$(basename "${URL_GAMECONTROLLERDB}")"
 cp -a "${DOWNLOAD_DIR}/${PKG_NAME}" \
-      "${TEMP_DIR}/Batocera.PLUS/opt/SDLControllFinder/gamecontrollerdb.txt"
+      "${TEMP_DIR}/Batocera.PLUS/opt/Gamecontrollerdb/gamecontrollerdb.txt"
 
 echo 'Install SDL2 Gamepad Tool...'
 PKG_NAME="$(basename "${URL_GAMEPADTOOLS}")"
-mkdir -p "${TEMP_DIR}/Batocera.PLUS/opt/SDLControllFinder/bin"
+mkdir -p "${TEMP_DIR}/Batocera.PLUS/opt/Gamecontrollerdb/bin"
 unzip  "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" 2> /dev/null
 cp -a "${TEMP_DIR}/pkg-xtract/bin/gamepad-tool" \
-      "${TEMP_DIR}/Batocera.PLUS/opt/SDLControllFinder/bin"
+      "${TEMP_DIR}/Batocera.PLUS/opt/Gamecontrollerdb/bin"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Music...'

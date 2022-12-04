@@ -37,7 +37,7 @@ function FirmwareWarning()
 
 if [ "${SDL_GAMECONTROLLERCONFIG}" != '' ]; then
     export QT_QPA_PLATFORM=xcb
-    /opt/SDLControllFinder/bin/gamepad-tool
+    /opt/Gamecontrollerdb/gamepad-tool
 else
     TextLocalization
     FirmwareWarning

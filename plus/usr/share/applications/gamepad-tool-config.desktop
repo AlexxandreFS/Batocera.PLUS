@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Icon=/usr/share/icons/batocera/gamepad-tool.png
-Exec=/opt/SDLControllFinder/gamepad-tool
+Exec=/opt/Gamecontrollerdb/gamepad-tool
 Terminal=false
 Type=Application
 Categories=batocera.plus;
