@@ -7,7 +7,7 @@
 ##
 ################################################################################
 
-source /opt/SDLControllFinder/ctrl-find
+source /usr/bin/batocera-sdl2-controller
 
 function TextLocalization()
 {
