@@ -41,6 +41,7 @@ function populate()
     if ! [ -e "${CONFIG_DIR}/PCSX2_vm.ini" ]; then
         (echo '[EmuCore]'
          echo 'EnableWideScreenPatches=disabled'
+         echo 'EnableRecordingTools=disabled'
          echo '[EmuCore/Speedhacks]'
          echo 'EECycleRate=0'
          echo 'EECycleSkip=0'
@@ -95,6 +96,11 @@ if [ "${ROM}" == 'populate' ]; then
     populate
     exit 0
 fi
+
+################################################################################
+### Fix PCSX2-mainline not boot by ES
+
+sed -i s/'^EnableRecordingTools=.*/EnableRecordingTools=disabled/' "${CONFIG_DIR}/PCSX2_vm.ini"
 
 ################################################################################
 

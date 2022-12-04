@@ -238,7 +238,7 @@ sed -i "s/^[ ]*EnableWideScreenPatches=.*/EnableWideScreenPatches=${WSCRH}/" "${
 
 ### SDL GAME CONTROLLER DATABASE
 
-source /opt/Pcsx2/ctrl-find
+source /usr/bin/batocera-sdl2-controller
 
 ################################################################################
 
