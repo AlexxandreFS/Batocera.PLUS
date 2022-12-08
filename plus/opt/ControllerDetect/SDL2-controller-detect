@@ -1,0 +1,30 @@
+#!/bin/bash
+##
+## Batocera.PLUS
+##
+## Código escrito por: Sérgio de Carvalho Júnior
+## Supervisão: Alexandre Freire dos Santos
+## 
+##  Esse script serve para filtrar o banco de dados "gamecontrollerdb.txt"
+## retornando apenas os controles conectados ao batocera.plus desta forma 
+## não excede o limite de espaço permitido pelo linux dentro uma variavel
+##
+##  ex: export SDL_GAMECONTROLLERCONFIG=$(SDL2-controller-detect)
+## 
+################################################################################
+
+JOY_ID=$(LC_ALL=C sdl2-jstest -l | grep -E '^Joystick GUID:[ ]*' | cut -d ':' -f 2 | xargs)
+
+SDL_DB="$(cat /opt/ControllerDetect/gamecontrollerdb.txt | grep -E ',platform:Linux,$')"
+
+SDL_DB_FILTRED=$(
+    for ID in ${JOY_ID}
+    do
+        echo "${SDL_DB}" | grep -E "${ID}"
+    done
+)
+
+# Se algum controle estiver ligado ele será mapeado
+if [ "${JOY_ID}" != '' ]; then
+    echo "${SDL_DB_FILTRED}" | uniq
+fi

@@ -7,7 +7,7 @@
 ##
 ################################################################################
 
-source /usr/bin/batocera-sdl2-controller
+export SDL_GAMECONTROLLERCONFIG=$(batocera-sdl2-controller)
 
 function TextLocalization()
 {
@@ -37,7 +37,7 @@ function FirmwareWarning()
 
 if [ "${SDL_GAMECONTROLLERCONFIG}" != '' ]; then
     export QT_QPA_PLATFORM=xcb
-    /opt/Gamecontrollerdb/bin/gamepad-tool
+    /opt/Gamepadtool/bin/gamepad-tool
 else
     TextLocalization
     FirmwareWarning
