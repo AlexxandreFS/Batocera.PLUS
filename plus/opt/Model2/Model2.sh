@@ -123,7 +123,14 @@ if [ ! "$(ls -A "${MODEL2}" 2> /dev/null)" ] || [ ! "$(ls -A "${SAVE}"  2> /dev/
 fi
 
 if [ ! -d "${WINEPREFIX}" ]; then
-    mkdir -p "${WINEPREFIX}" 
+    if [ "$(pidof pcmanfm)" ]; then
+	    export INSTALL_EXTRAS=1
+    else
+        export INSTALL_EXTRAS=1
+        export WINE_LOADINGSCREEN=0
+        batocera-load-screen -t 600 -i '/opt/Model2/loading.jpg' &
+	fi
+    mkdir -p "${WINEPREFIX}"
 fi
 
 ################################################################################
