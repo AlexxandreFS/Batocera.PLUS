@@ -16,15 +16,13 @@
 ### DIRECTORIES, FILES AND PARAMETERS
 
 ROM="${1}"
-P1GUID="${2}"
-RENDER="${3}"
+RENDER="${2}"
 
 RYUJINX_EMU=/opt/Ryujinx/publish/Ryujinx
 RYUJINX_DIR=/opt/Ryujinx
 SAVE_DIR=/userdata/saves/switch
 BIOS_DIR="${HOME}/../bios/switch"
 
-export LD_LIBRARY_PATH=/opt/Ryujinx/lib:$LD_LIBRARY_PATH
 export XDG_CONFIG_HOME="${SAVE_DIR}"
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 export GSETTINGS_SCHEMA_DIR=/opt/Ryujinx/gschemas
@@ -39,7 +37,7 @@ function createDirs()
     if ! [ -d "${SAVE_DIR}/Ryujinx" ]; then
         # make config dir
         mkdir -p "${SAVE_DIR}/Ryujinx/system" \  # keys folder
-                 "${SAVE_DIR}/Ryujinx/bis/system/Contents"
+                 "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered"
         cp -f "${RYUJINX_DIR}/default_config/Config.json" "${SAVE_DIR}/Ryujinx"
     fi
 
@@ -49,12 +47,6 @@ function createDirs()
         ln -sf "${BIOS_DIR}/keys/"*  "${SAVE_DIR}/Ryujinx/system"
     else
 	    rm -r "${SAVE_DIR}/Ryujinx/system/"* 2> /dev/null
-    fi
-
-    # create firmware dir
-    if [ ! -d "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered" ]; then # frist execution
-        mkdir -r "${BIOS_DIR}/firmware"
-        ln -s "${BIOS_DIR}/firmware" "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered"
     fi
 }
 

@@ -15,8 +15,7 @@ BIOS_DIR=/userdata/bios/switch
 
 ROM="${1}"
 CORE="${2}"
-P1GUID="${3}"
-RENDER="${4}"
+RENDER="${3}"
 
 ################################################################################
 
@@ -61,7 +60,7 @@ fi
 ### NINTENDO SWITCH KEYS AND FIRMWARES
 
 mkdir -p "${SAVE_DIR}/keys"
-mkdir -p "${SAVE_DIR}/yuzu/nand/system/Contents"
+mkdir -p "${SAVE_DIR}/yuzu/nand/system/Contents/registered"
 
 if [ -f "${BIOS_DIR}/keys/prod.keys" ] && [ -f "${BIOS_DIR}/keys/title.keys" ]
 then
@@ -69,12 +68,6 @@ then
     ln -sf "${BIOS_DIR}/keys/"*  "${SAVE_DIR}/yuzu/keys"
 else
     rm -rf "${SAVE_DIR}/yuzu/keys/"* 2> /dev/null
-fi
-
-if [ ! -d "${SAVE_DIR}/yuzu/nand/system/Contents/registered" ]
-then
-    mkdir -p "${BIOS_DIR}/firmware"
-    ln -s "${BIOS_DIR}/firmware" "${SAVE_DIR}/yuzu/nand/system/Contents/registered"
 fi
 
 if [ ! -d "${SAVE_DIR}/yuzu/log" ]
