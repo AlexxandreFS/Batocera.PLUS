@@ -101,16 +101,31 @@ BIOS[msx]="msx,                       MSX
 #### NEC ####
 
 BIOS[pcengine]="pcengine,             PC Engine
-    ff1a674273fe3540ccef576376407d1d, bios/syscard3.pce"
+    9f770275393b8627cf9d24e5c56d2ab9, bios/syscard1.pce
+    424f1d6bf93259bf255afa7d1dc9f721, bios/syscard2.pce
+    94279f315e8b52904f65ab3108542afe, bios/syscard2u.pce
+    ff1a674273fe3540ccef576376407d1d, bios/syscard3.pce
+    0754f903b52e3b3342202bdafb13efa5, bios/syscard3u.pce
+    6d2cb14fc3e1f65ceb135633d1694122, bios/gexpress.pce"
+
+BIOS[pcenginecd]="pcenginecd,             PC Engine CD
+    9f770275393b8627cf9d24e5c56d2ab9, bios/syscard1.pce
+    424f1d6bf93259bf255afa7d1dc9f721, bios/syscard2.pce
+    94279f315e8b52904f65ab3108542afe, bios/syscard2u.pce
+    ff1a674273fe3540ccef576376407d1d, bios/syscard3.pce
+    0754f903b52e3b3342202bdafb13efa5, bios/syscard3u.pce
+    6d2cb14fc3e1f65ceb135633d1694122, bios/gexpress.pce"
+
+BIOS[supergrafx]="supergrafx,         Supergrafx
+    9f770275393b8627cf9d24e5c56d2ab9, bios/syscard1.pce
+    424f1d6bf93259bf255afa7d1dc9f721, bios/syscard2.pce
+    94279f315e8b52904f65ab3108542afe, bios/syscard2u.pce
+    ff1a674273fe3540ccef576376407d1d, bios/syscard3.pce
+    0754f903b52e3b3342202bdafb13efa5, bios/syscard3u.pce
+    6d2cb14fc3e1f65ceb135633d1694122, bios/gexpress.pce"
 
 BIOS[pcfx]="pcfx,                     PC-FXs
     08e36edbea28a017f79f8d4f7ff9b6d7, bios/pcfx.rom"
-
-BIOS[supergrafx]="supergrafx,         Supergrafx
-    ff1a674273fe3540ccef576376407d1d, bios/syscard3.pce
-    424f1d6bf93259bf255afa7d1dc9f721, bios/syscard2.pce
-    9f770275393b8627cf9d24e5c56d2ab9, bios/syscard1.pce
-    6d2cb14fc3e1f65ceb135633d1694122, bios/gexpress.pce"
 
 BIOS[pc88]="pc88,                     NEC PC-88
     4f984e04a99d56c4cfe36115415d6eb8, bios/quasi88/N88.ROM

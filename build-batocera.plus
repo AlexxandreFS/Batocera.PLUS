@@ -339,7 +339,7 @@ URL_MUSIC='133b040ce3c04b6c462102a57ea1134ab73a80c7'
 URL_MUSIC="https://github.com/BatoceraPLUS/Batocera.PLUS-music/archive/${URL_MUSIC}.zip#/Batocera.PLUS-music-${URL_MUSIC}.zip"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_MUSIC}")
 
-URL_ALL_BIOS='f40e0ee4bf06d4d9f12b262e0e2b48d34d3b2631'
+URL_ALL_BIOS='2b52afedec82921432c74107f81184ca5073cdf5'
 URL_ALL_BIOS="https://github.com/BatoceraPLUS/Batocera.PLUS-bios/archive/${URL_ALL_BIOS}.zip#/Batocera.PLUS-bios-${URL_ALL_BIOS}.zip"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_ALL_BIOS}")
 
