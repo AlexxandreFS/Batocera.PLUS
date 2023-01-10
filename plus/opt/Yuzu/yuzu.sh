@@ -59,7 +59,7 @@ fi
 
 ### NINTENDO SWITCH KEYS AND FIRMWARES
 
-mkdir -p "${SAVE_DIR}/keys"
+mkdir -p "${SAVE_DIR}/yuzu/keys"
 mkdir -p "${SAVE_DIR}/yuzu/nand/system/Contents/registered"
 
 if [ -f "${BIOS_DIR}/keys/prod.keys" ] && [ -f "${BIOS_DIR}/keys/title.keys" ]
@@ -105,7 +105,28 @@ then
 
        # Controller config
        echo '[UI]'
-       Paths\gamedirs\4\path=/userdata/roms/switch
+       echo 'Paths\gamedirs\1\deep_scan=false'
+       echo 'Paths\gamedirs\1\deep_scan\default=true'
+       echo 'Paths\gamedirs\1\expanded=true'
+       echo 'Paths\gamedirs\1\expanded\default=true'
+       echo 'Paths\gamedirs\1\path=SDMC'
+       echo 'Paths\gamedirs\2\deep_scan=false'
+       echo 'Paths\gamedirs\2\deep_scan\default=true'
+       echo 'Paths\gamedirs\2\expanded=true'
+       echo 'Paths\gamedirs\2\expanded\default=true'
+       echo 'Paths\gamedirs\2\path=UserNAND'
+       echo 'Paths\gamedirs\3\deep_scan=false'
+       echo 'Paths\gamedirs\3\deep_scan\default=true'
+       echo 'Paths\gamedirs\3\expanded=true'
+       echo 'Paths\gamedirs\3\expanded\default=true'
+       echo 'Paths\gamedirs\3\path=SysNAND'
+       echo 'Paths\gamedirs\4\path=/userdata/roms/switch'
+       echo 'Paths\gamedirs\4\deep_scan=false'
+       echo 'Paths\gamedirs\4\deep_scan\default=true'
+       echo 'Paths\gamedirs\4\expanded=true'
+       echo 'Paths\gamedirs\4\expanded\default=true'
+       echo 'Paths\gamedirs\4\path=/userdata/roms/switch'
+       echo 'Paths\gamedirs\size=4'
     ) > "${HOME_DIR}/.config/yuzu/qt-config.ini"
 fi
 
