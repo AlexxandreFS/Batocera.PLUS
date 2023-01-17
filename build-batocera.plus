@@ -879,7 +879,7 @@ cd "${TEMP_DIR}/pkg-xtract/${PKG_NAME}"
 cd "${CURRENT_DIR}"
 unset CURRENT_DIR
 mkdir -p "${TEMP_DIR}/Batocera.PLUS/opt/Rpcs3/bin"
-cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/"*  "${TEMP_DIR}/Batocera.PLUS/opt/Rpcs3/bin"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/bin/"* "${TEMP_DIR}/Batocera.PLUS/opt/Rpcs3/bin"
 mkdir -p "${TEMP_DIR}/Batocera.PLUS/opt/Rpcs3/lib"
 cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/optional/libstdc++/libstdc++."* "${TEMP_DIR}/Batocera.PLUS/opt/Rpcs3/lib"
 RPCS3_FILES=(
@@ -903,15 +903,15 @@ for FILE in ${RPCS3_FILES[@]}
 do
     cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/lib/${FILE}."* "${TEMP_DIR}/Batocera.PLUS/opt/Rpcs3/lib"
 done
-cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/plugins"        "${TEMP_DIR}/Batocera.PLUS/opt/Rpcs3"
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME}/squashfs-root/usr/plugins" "${TEMP_DIR}/Batocera.PLUS/opt/Rpcs3"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install Ryujinx...'
 PKG_NAME="$(basename "${URL_RYUJINX}")"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
-rm "${TEMP_DIR}/pkg-xtract/publish/THIRDPARTY.md"
-cp -a "${TEMP_DIR}/pkg-xtract/publish" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx"
-chmod +x "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/publish/Ryujinx"
+mkdir -p  "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/publish"
+cp -a     "${TEMP_DIR}/pkg-xtract/publish/Ryujinx" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/publish/Ryujinx"
+chmod +x  "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/publish/Ryujinx"
 
 echo 'Install Nvidia Driver...'
 PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"
