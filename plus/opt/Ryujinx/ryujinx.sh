@@ -18,15 +18,17 @@
 ROM="${1}"
 RENDER="${2}"
 
-RYUJINX_EMU=/opt/Ryujinx/publish/Ryujinx
 RYUJINX_DIR=/opt/Ryujinx
 SAVE_DIR=/userdata/saves/switch
 BIOS_DIR="${HOME}/../bios/switch"
 
+export LD_LIBRARY_PATH="${RYUJINX_DIR}/lib:${LD_LIBRARY_PATH}"
+
 export XDG_CONFIG_HOME="${SAVE_DIR}"
+export GSETTINGS_SCHEMA_DIR=${RYUJINX_DIR}/gschemas
+export QT_PLUGIN_PATH=${RYUJINX_DIR}/plugins
+
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
-export GSETTINGS_SCHEMA_DIR=/opt/Ryujinx/gschemas
-export QT_PLUGIN_PATH=/opt/Ryujinx/plugins
 
 ################################################################################
 
@@ -42,17 +44,17 @@ function createDirs()
     fi
 
     # create keys dir
-	if [ -f "${BIOS_DIR}/keys/prod.keys" ] && [ -f "${BIOS_DIR}/keys/title.keys" ]; then
-	    rm -r "${SAVE_DIR}/Ryujinx/system/"* 2> /dev/null
-        ln -sf "${BIOS_DIR}/keys/"*  "${SAVE_DIR}/Ryujinx/system"
+    if [ -f "${BIOS_DIR}/keys/prod.keys" ] && [ -f "${BIOS_DIR}/keys/title.keys" ]; then
+        rm -rf "${SAVE_DIR}/Ryujinx/system/"*
+        ln -sf "${BIOS_DIR}/keys/"* "${SAVE_DIR}/Ryujinx/system"
     else
-	    rm -r "${SAVE_DIR}/Ryujinx/system/"* 2> /dev/null
+        rm -rf "${SAVE_DIR}/Ryujinx/system/"*
     fi
 }
 
 ################################################################################
 
-### Firmware check
+### FIRMWARE CHECK
 
 function TextLocalization()
 {
@@ -73,17 +75,18 @@ function TextLocalization()
 function FirmwareWarning()
 {
    yad --form \
-   --title='WARNING' \
-   --window-icon='/usr/share/icons/batocera/ryujinx.png' \
-   --text=''"${MSG[1]}"'' \
-   --undecorated \
-   --text-align=center \
-   --on-top \
-   --fixed \
-   --center \
-   --no-escape \
-   --timeout=3 \
-   --no-buttons &
+       --title='WARNING' \
+       --window-icon='/usr/share/icons/batocera/ryujinx.png' \
+       --text=''"${MSG[1]}"'' \
+       --undecorated \
+       --text-align=center \
+       --on-top \
+       --fixed \
+       --center \
+       --no-escape \
+       --timeout=3 \
+       --no-buttons &
+
    exit 0
 }
 
@@ -94,7 +97,7 @@ fi
 
 ################################################################################
 
-### Check dirs
+### CHECK DIRS
 
 createDirs
 
@@ -114,21 +117,21 @@ fi
 
 ################################################################################
 
-### Fix some settings
+### FIX SOME SETTINGS
 
-sed -i 's/"check_updates_on_start":.*/"check_updates_on_start": false,/'          "${SAVE_DIR}/Ryujinx/Config.json"
-sed -i 's/"enable_discord_integration":.*/"enable_discord_integration": false,/'  "${SAVE_DIR}/Ryujinx/Config.json"
-sed -i 's/"show_confirm_exit":.*/"show_confirm_exit": false,/'                    "${SAVE_DIR}/Ryujinx/Config.json"
-sed -i 's/"audio_backend":.*/"audio_backend": "OpenAl",/'                         "${SAVE_DIR}/Ryujinx/Config.json"
+sed -i 's/"check_updates_on_start":.*/"check_updates_on_start": false,/'         "${SAVE_DIR}/Ryujinx/Config.json"
+sed -i 's/"enable_discord_integration":.*/"enable_discord_integration": false,/' "${SAVE_DIR}/Ryujinx/Config.json"
+sed -i 's/"show_confirm_exit":.*/"show_confirm_exit": false,/'                   "${SAVE_DIR}/Ryujinx/Config.json"
+sed -i 's/"audio_backend":.*/"audio_backend": "OpenAl",/'                        "${SAVE_DIR}/Ryujinx/Config.json"
 
 ################################################################################
 
 ### EXECUTION
 
 if [ -e "${ROM}" ]; then
-   $MANGOHUD_CMD $RYUJINX_EMU --fullscreen "${ROM}"
+   ${MANGOHUD_CMD}  ${RYUJINX_DIR}/publish/Ryujinx --fullscreen "${ROM}"
 else
-   $RYUJINX_EMU
+   ${RYUJINX_DIR}/publish/Ryujinx
 fi
 
 ################################################################################
