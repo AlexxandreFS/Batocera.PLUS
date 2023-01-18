@@ -226,7 +226,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/openbor-6330-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/openbor-7142-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/rpcs3_extra_libs-1.1.7z' # dep: rpcs3
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ryujinx_extras-1.2.7z' # dep: ryujinx
+    #'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ryujinx_extras-1.2.7z' # dep: ryujinx
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pcsx2-legacy-apr-10-2021-2.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/p7zip-full-17.04-1.7z'
@@ -381,7 +381,7 @@ URL_CEMUHOOK='https://files.sshnuke.net/cemuhook_1262d_0577.zip'
 #URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_CEMUHOOK}")
 
-URL_RYUJINX='https://github.com/Ryujinx/release-channel-master/releases/download/1.1.299/ryujinx-1.1.299-linux_x64.tar.gz' #Link provisório
+URL_RYUJINX='https://github.com/Ryujinx/release-channel-master/releases/download/1.1.515/ryujinx-1.1.515-linux_x64.tar.gz' #Link provisório
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_RYUJINX}")
 
 URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.3411/pcsx2-v1.7.3411-linux-AppImage-64bit-wxWidgets.AppImage'
@@ -912,6 +912,8 @@ gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract
 mkdir -p  "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/publish"
 cp -a     "${TEMP_DIR}/pkg-xtract/publish/Ryujinx" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/publish/Ryujinx"
 chmod +x  "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/publish/Ryujinx"
+mkdir -p  "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib"
+cp -a     "${TEMP_DIR}/pkg-xtract/publish/libSDL2.so" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libSDL2.so"
 
 echo 'Install Nvidia Driver...'
 PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"

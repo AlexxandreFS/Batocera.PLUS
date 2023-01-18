@@ -23,10 +23,8 @@ SAVE_DIR=/userdata/saves/switch
 BIOS_DIR="${HOME}/../bios/switch"
 
 export LD_LIBRARY_PATH="${RYUJINX_DIR}/lib:${LD_LIBRARY_PATH}"
-
 export XDG_CONFIG_HOME="${SAVE_DIR}"
-export GSETTINGS_SCHEMA_DIR=${RYUJINX_DIR}/gschemas
-export QT_PLUGIN_PATH=${RYUJINX_DIR}/plugins
+#export GSETTINGS_SCHEMA_DIR=${RYUJINX_DIR}/gschemas
 
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 
