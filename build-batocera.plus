@@ -909,11 +909,11 @@ rm -r "${TEMP_DIR}/pkg-xtract/"*
 echo 'Install Ryujinx...'
 PKG_NAME="$(basename "${URL_RYUJINX}")"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
-mkdir -p  "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/publish"
-cp -a     "${TEMP_DIR}/pkg-xtract/publish/Ryujinx" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/publish/Ryujinx"
-chmod +x  "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/publish/Ryujinx"
+mkdir -p  "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/bin"
+cp -a     "${TEMP_DIR}/pkg-xtract/bin/Ryujinx" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/bin/Ryujinx"
+chmod +x  "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/bin/Ryujinx"
 mkdir -p  "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib"
-cp -a     "${TEMP_DIR}/pkg-xtract/publish/libSDL2.so" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libSDL2.so"
+cp -a     "${TEMP_DIR}/pkg-xtract/bin/libSDL2.so" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libSDL2.so"
 
 echo 'Install Nvidia Driver...'
 PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"

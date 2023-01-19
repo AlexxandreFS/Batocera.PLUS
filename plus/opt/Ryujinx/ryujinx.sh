@@ -24,9 +24,9 @@ BIOS_DIR="${HOME}/../bios/switch"
 
 export LD_LIBRARY_PATH="${RYUJINX_DIR}/lib:${LD_LIBRARY_PATH}"
 export XDG_CONFIG_HOME="${SAVE_DIR}"
-#export GSETTINGS_SCHEMA_DIR=${RYUJINX_DIR}/gschemas
-
+export PATH="${RYUJINX_DIR}/bin:${PATH}"
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+export DOTNET_EnableAlternateStackCheck=1
 
 ################################################################################
 
@@ -38,7 +38,7 @@ function createDirs()
         # make config dir
         mkdir -p "${SAVE_DIR}/Ryujinx/system" \  # keys folder
                  "${SAVE_DIR}/Ryujinx/bis/system/Contents/registered"
-        cp -f "${RYUJINX_DIR}/default_config/Config.json" "${SAVE_DIR}/Ryujinx"
+        cp -f "${RYUJINX_DIR}/Config.json" "${SAVE_DIR}/Ryujinx"
     fi
 
     # create keys dir
@@ -127,9 +127,9 @@ sed -i 's/"audio_backend":.*/"audio_backend": "OpenAl",/'                       
 ### EXECUTION
 
 if [ -e "${ROM}" ]; then
-   ${MANGOHUD_CMD}  ${RYUJINX_DIR}/publish/Ryujinx --fullscreen "${ROM}"
+   ${MANGOHUD_CMD}  ${RYUJINX_DIR}/bin/Ryujinx --fullscreen "${ROM}"
 else
-   ${RYUJINX_DIR}/publish/Ryujinx
+   ${RYUJINX_DIR}/bin/Ryujinx
 fi
 
 ################################################################################
