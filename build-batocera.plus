@@ -283,9 +283,9 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wii-u-gc-adapter-mar-6-2021-3.7z' # remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xow-apr-8-2021-1.7z'              # remove on update
 
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-510.60.02-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-470.103.01-1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-390.147-2.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-535.86.05-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-470.199.02-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-390.157-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-340.108-2.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-32bits-21.3.8-2.7z'        # remove on update
@@ -301,8 +301,8 @@ URL_BATOCERA_PLUS_DEV_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/obs-studio-extra-libs-1.7z' #dep: obs-studio
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/shared-mime-info-1.44-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xdotool-aug-4-2021.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-cuda-510.60.02-1.7z'   # dep: nvidia-driver
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-opencl-510.60.02-1.7z' # dep: nvidia-driver
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-cuda-535.86.05-1.7z'   # dep: nvidia-driver
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-opencl-535.86.05-1.7z' # dep: nvidia-driver
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/ruffle-apr-11-2022-1.7z'   # remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/lightspark-apr-11-2022.7z' # remove on update
 )
@@ -317,7 +317,7 @@ URL_PCI_IDS='2.2'
 URL_PCI_IDS="http://pci-ids.ucw.cz/v${URL_PCI_IDS}/pci.ids.gz#/pci.ids-${URL_PCI_IDS}.gz"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_PCI_IDS}")
 
-URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/510.60.02/NVIDIA-Linux-x86_64-510.60.02.run'
+URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/535.86.05/NVIDIA-Linux-x86_64-535.86.05.run'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_NVIDIA_DRIVER}")
 
 URL_LINUX_FIRMWARE='https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20221109.tar.gz'
