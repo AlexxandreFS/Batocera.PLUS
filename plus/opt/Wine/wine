@@ -48,9 +48,11 @@ case ${WINE_ARCH} in
     wineserver|wineserver-wine-stable|wineserver-wine-staging|wineserver-wine-lutris|wineserver-proton|wineserver-proton-valve|wineserver-proton-ge-custom|wineserver-wine-old-stable)
         LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib32/wine/i386-unix:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64/wine/x86_64-unix:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LIBGL_DRIVERS_PATH="/lib32/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
         LIBGL_DRIVERS_PATH="/usr/lib/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
         export LIBGL_DRIVERS_PATH
@@ -59,9 +61,11 @@ case ${WINE_ARCH} in
         WINE_ARCH=''
         LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib32/wine/i386-unix:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64/wine/x86_64-unix:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LIBGL_DRIVERS_PATH="/lib32/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
         LIBGL_DRIVERS_PATH="/usr/lib/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
         export LIBGL_DRIVERS_PATH
@@ -70,12 +74,14 @@ case ${WINE_ARCH} in
         WINE_ARCH='64'
         LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64/wine/x86_64-unix:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         export WINEARCH='win64'
         ;;
     win32)
         WINE_ARCH=''
         LD_LIBRARY_PATH="${WINE_DIR}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib32/wine/i386-unix:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="/lib32:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LIBGL_DRIVERS_PATH="/lib32/dri:${LIBGL_DRIVERS_PATH:+:$LIBGL_DRIVERS_PATH}"
         export LIBGL_DRIVERS_PATH
@@ -84,6 +90,7 @@ case ${WINE_ARCH} in
         WINE_ARCH='64'
         LD_LIBRARY_PATH="${WINE_DIR}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH="${WINE_DIR}/${WINE_BUILD}/lib64/wine/x86_64-unix:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
         ;;
     *)
         exit -1
@@ -233,7 +240,7 @@ function dxvkExport() {
 
 if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
 
-    DXVK_DLL='nvapi64.dll nvapi.dll d3d12.dll d3d11.dll d3d10core.dll d3d10.dll d3d10_1.dll d3d9.dll dxgi.dll dxvk_config.dll'
+    DXVK_DLL='nvapi64.dll nvapi.dll d3d12.dll d3d11.dll d3d10core.dll d3d9.dll dxgi.dll'
 
     if [ "${DXVK}" ]; then
         if ! [ ${DXVK_HUD} ]; then
@@ -580,7 +587,7 @@ function wineCheckLibs() {
     #gst-launch-1.0 audiotestsrc ! autoaudiosink videotestsrc ! autovideosink
     #gst-launch-1.0 playbin uri=file:///usr/share/batocera/splash/splash.mp4
     #gst-launch-1.0 --gst-debug-level=0
-
+   
     if [ "${WINE_ARCH}" == 64 ]; then
         wineWait
         exit 0
