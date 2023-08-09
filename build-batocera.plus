@@ -407,7 +407,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_ANTIMICRO}")
 URL_PEAZIP='https://github.com/peazip/PeaZip/releases/download/8.2.0/peazip_portable-8.2.0.LINUX.GTK2.x86_64.tar.gz'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_PEAZIP}")
 
-URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/102.2.0esr/linux-x86_64/en-US/firefox-102.2.0esr.tar.bz2'
+URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/115.1.0esr/linux-x86_64/en-US/firefox-115.1.0esr.tar.bz2'
 #URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_FIREFOX}")
 
