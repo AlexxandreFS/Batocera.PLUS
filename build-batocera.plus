@@ -390,7 +390,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_PCSX2}")
 URL_RPCS3='https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/build-0737c788fc8b8b33d79c620065c5fc4990dbed80/rpcs3-v0.0.24-14263-0737c788_linux64.AppImage'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_RPCS3}")
 
-URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.8/MangoHud-0.6.8.r0.gefdcc6d.tar.gz'
+URL_MANGOHUD='https://github.com/flightlessmango/MangoHud/releases/download/v0.6.9-1/MangoHud-0.6.9.1.r0.g7f94562.tar.gz'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_MANGOHUD}")
 
 URL_GAMECONTROLLERDB='adf7ec1edfc0371ebf5fb469b61f301b8e26ec81'
