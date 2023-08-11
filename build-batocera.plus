@@ -288,10 +288,10 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-390.157-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/nvidia-driver-340.108-2.7z'
 
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-32bits-21.3.8-2.7z'        # remove on update
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-64bits-21.3.8-1.7z'        # remove on update
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-32bits-23.1.5-1.7z'        # remove on update
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/mesa3d-64bits-23.1.5-1.7z'        # remove on update
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xlib_libXv-1.0.11-1.7z'           # dep: nvidia-driver (nvidia-settings)
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xdriver_xf86-video-all-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xdriver_xf86-video-all-2.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/xfont_extras-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/libLLVM-13.0.0-1.7z'              # dep: mesa3d # remove on update
 )
@@ -932,12 +932,12 @@ echo 'Create udev rules to Nvidia Driver ...'
 rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Update Linux firmware...'
-# https://github.com/batocera-linux/batocera.linux/blob/master/package/batocera/firmwares/alllinuxfirmwares/alllinuxfirmwares.mk
 PKG_NAME="$(basename "${URL_LINUX_FIRMWARE}")"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
 rm -rf             "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/liquidio"
 rm -rf             "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/netronome"
 rm -rf             "${TEMP_DIR}/Batocera.PLUS/lib/firmware/"*
+sed -i 's|realpath -m -s|realpath 2> /dev/null|g' "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}/copy-firmware.sh"
 cd                 "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}"
 ./copy-firmware.sh "../../Batocera.PLUS/lib/firmware"
 cd -
