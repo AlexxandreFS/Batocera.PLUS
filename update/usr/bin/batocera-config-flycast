@@ -1,0 +1,14 @@
+#!/bin/bash
+
+export DISPLAY=:0.0
+
+export XDG_CONFIG_HOME=/userdata/system/configs
+export XDG_DATA_DIRS=${XDG_CONFIG_HOME}
+
+export XDG_DATA_HOME=/userdata/saves/dreamcast
+export FLYCAST_DATADIR=${XDG_DATA_HOME}
+
+export XDG_DATA_DIRS=/userdata/bios
+export FLYCAST_BIOS_PATH=${XDG_DATA_DIRS}
+
+exec /usr/bin/flycast.elf
