@@ -254,7 +254,7 @@ URL_BATOCERA_PLUS_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/pipewire-0.3.31-1.7z'             # remove on update
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/Goverlay-0.8.1.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vkbasalt-0.3.2.5-2.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/vkbasalt-0.3.2.10-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/git-2.31.1-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/parsec-2.7z'
 
