@@ -681,14 +681,15 @@ cp -a  "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* \
        "${TEMP_DIR}/Batocera.PLUS/usr/share/batocera/datainit/decorations"
 rm -r  "${TEMP_DIR}/pkg-xtract/"*
 
+echo 'Install All Bios...'
+"${TEMP_DIR}/Batocera.PLUS/usr/bin/batocera-systems" --createReadme > "${TEMP_DIR}/pkg-xtract/readme.txt"
 if [ "${ALL_BIOS}" == 'true' ]; then
-    echo 'Install All Bios...'
     PKG_NAME="$(basename "${URL_ALL_BIOS}")"
     unzip "${DOWNLOAD_DIR}/${PKG_NAME}" -d "${TEMP_DIR}/pkg-xtract" || exit $?
-    cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* \
-          "${TEMP_DIR}/Batocera.PLUS/usr/share/batocera/datainit/bios" || exit $?
-    rm -r "${TEMP_DIR}/pkg-xtract/"*
 fi
+cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.*}/"* \
+      "${TEMP_DIR}/Batocera.PLUS/usr/share/batocera/datainit/bios" || exit $?
+rm -r "${TEMP_DIR}/pkg-xtract/"*
 
 echo 'Install GameControllerDB...'
 PKG_NAME="$(basename "${URL_GAMECONTROLLERDB}")"
