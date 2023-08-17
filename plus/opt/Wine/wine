@@ -240,7 +240,7 @@ function dxvkExport() {
 
 if [ -f "${WINEPREFIX}/.update-timestamp" ]; then
 
-    DXVK_DLL='nvapi64.dll nvapi.dll d3d12.dll d3d11.dll d3d10core.dll d3d9.dll dxgi.dll'
+    DXVK_DLL='d3d12.dll d3d11.dll d3d10.dll d3d10_1.dll d3d10core.dll d3d9.dll d3d8.dll ddraw.dll dxgi.dll nvapi64.dll nvapi.dll'
 
     if [ "${DXVK}" ]; then
         if ! [ ${DXVK_HUD} ]; then

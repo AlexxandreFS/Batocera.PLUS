@@ -62,8 +62,9 @@ URL_BATOCERA_PLUS_PKG=(
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/DX9Jun2010.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/msttcorefonts-2.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk-1.5.1-3.7z'
-    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk-proton-ge-custom-8-11-1.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk-1.5.1-4.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/dxvk-proton-ge-custom-8-11-2.7z'
+    'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/d8vk-2023-08-16-1.7z'
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/wine_mf-1.0.7z'
 
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/gstreamer1-1.18.6-64bits-1.7z' # dep: wine
@@ -728,6 +729,8 @@ gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract
 cp -a "${TEMP_DIR}/pkg-xtract/${PKG_NAME%.tar.gz}" "${TEMP_DIR}/Batocera.PLUS/opt/Wine/apps/dxvk"
 ln -s '/opt/Wine/apps/vkd3d-proton/x32/d3d12.dll'  "${TEMP_DIR}/Batocera.PLUS/opt/Wine/apps/dxvk/x32/d3d12.dll"
 ln -s '/opt/Wine/apps/vkd3d-proton/x64/d3d12.dll'  "${TEMP_DIR}/Batocera.PLUS/opt/Wine/apps/dxvk/x64/d3d12.dll"
+ln -s '/opt/Wine/apps/d8vk/x32/nvapi.dll'          "${TEMP_DIR}/Batocera.PLUS/opt/Wine/apps/dxvk/x32/nvapi.dll"
+ln -s '/opt/Wine/apps/d8vk/x64/nvapi64.dll'        "${TEMP_DIR}/Batocera.PLUS/opt/Wine/apps/dxvk/x64/nvapi64.dll"
 ln -s '/opt/Wine/apps/nvapi/x32/nvapi.dll'         "${TEMP_DIR}/Batocera.PLUS/opt/Wine/apps/dxvk/x32/nvapi.dll"
 ln -s '/opt/Wine/apps/nvapi/x64/nvapi64.dll'       "${TEMP_DIR}/Batocera.PLUS/opt/Wine/apps/dxvk/x64/nvapi64.dll"
 rm -r "${TEMP_DIR}/pkg-xtract/"*
