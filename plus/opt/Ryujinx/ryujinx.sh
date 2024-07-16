@@ -12,6 +12,9 @@
 ## https://emulation.gametechwiki.com/index.php/Shader_caches
 
 ################################################################################
+### ALTERA A OPÇÃO DE MEMÓRIA
+
+sysctl -w vm.max_map_count=524288 
 
 ### DIRECTORIES, FILES AND PARAMETERS
 
