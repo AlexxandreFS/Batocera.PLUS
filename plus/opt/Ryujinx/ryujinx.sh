@@ -30,7 +30,7 @@ export XDG_CONFIG_HOME="${SAVE_DIR}"
 export PATH="${RYUJINX_DIR}/bin:${PATH}"
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 export DOTNET_EnableAlternateStackCheck=1
-
+export DOTNET_SYSTEM_GLOBALIZATION_PREDEFINED_CULTURES_ONLY=false
 ################################################################################
 
 ### CREATE DIRS AND LINKS
