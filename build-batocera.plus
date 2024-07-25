@@ -382,7 +382,7 @@ URL_CEMUHOOK='https://files.sshnuke.net/cemuhook_1262d_0577.zip'
 #URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_CEMUHOOK}")
 
-URL_RYUJINX='https://github.com/Ryujinx/release-channel-master/releases/download/1.1.1346/ryujinx-1.1.1346-linux_x64.tar.gz' #Link provisório
+URL_RYUJINX='https://github.com/Ryujinx/release-channel-master/releases/download/1.1.1359/ryujinx-1.1.1359-linux_x64.tar.gz' #Link provisório
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_RYUJINX}")
 
 URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.3411/pcsx2-v1.7.3411-linux-AppImage-64bit-wxWidgets.AppImage'
@@ -408,7 +408,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_ANTIMICRO}")
 URL_PEAZIP='https://github.com/peazip/PeaZip/releases/download/8.2.0/peazip_portable-8.2.0.LINUX.GTK2.x86_64.tar.gz'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_PEAZIP}")
 
-URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/115.1.0esr/linux-x86_64/en-US/firefox-115.1.0esr.tar.bz2'
+URL_FIREFOX='https://download-installer.cdn.mozilla.net/pub/firefox/releases/128.0esr/linux-x86_64/en-US/firefox-128.0esr.tar.bz2'
 #URL_FIREFOX="$(wget -S --spider --max-redirect 0 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US' 2>&1 | grep 'esr.tar.bz2$' | cut -d ' ' -f 4)"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_FIREFOX}")
 
