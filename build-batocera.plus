@@ -321,7 +321,7 @@ URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_PCI_IDS}")
 URL_NVIDIA_DRIVER='http://download.nvidia.com/XFree86/Linux-x86_64/535.86.05/NVIDIA-Linux-x86_64-535.86.05.run'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_NVIDIA_DRIVER}")
 
-URL_LINUX_FIRMWARE='https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20230804.tar.gz'
+URL_LINUX_FIRMWARE='https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20240709.tar.gz'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_LINUX_FIRMWARE}")
 
 URL_ES_THEME_A='4614712f610f8083df9e5289f256f0662b7b1ca0'
