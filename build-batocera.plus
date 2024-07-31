@@ -919,6 +919,15 @@ cp -a     "${TEMP_DIR}/pkg-xtract/publish/Ryujinx" "${TEMP_DIR}/Batocera.PLUS/op
 chmod +x  "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/bin/Ryujinx"
 mkdir -p  "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib"
 cp -a     "${TEMP_DIR}/pkg-xtract/publish/libSDL2.so" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libSDL2.so"
+cp -a     "${TEMP_DIR}/pkg-xtract/publish/libarmeilleure-jitsupport.dylib" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libarmeilleure-jitsupport.dylib"
+cp -a     "${TEMP_DIR}/pkg-xtract/publish/libavcodec.so.59" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libavcodec.so.59"
+cp -a     "${TEMP_DIR}/pkg-xtract/publish/libavutil.so.57" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libavutil.so.57"
+cp -a     "${TEMP_DIR}/pkg-xtract/publish/libglfw.so.3.3" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libglfw.so.3.3"
+cp -a     "${TEMP_DIR}/pkg-xtract/publish/libglfw-wayland.so.3.3" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libglfw-wayland.so.3.3"
+cp -a     "${TEMP_DIR}/pkg-xtract/publish/libHarfBuzzSharp.so" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libHarfBuzzSharp.so"
+cp -a     "${TEMP_DIR}/pkg-xtract/publish/libSkiaSharp.so" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libSkiaSharp.so"
+cp -a     "${TEMP_DIR}/pkg-xtract/publish/libsoundio.so" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libsoundio.so"
+cp -a     "${TEMP_DIR}/pkg-xtract/publish/Ryujinx.SDL2.Common.dll.config" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/Ryujinx.SDL2.Common.dll.config"
 
 echo 'Install Nvidia Driver...'
 PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"
