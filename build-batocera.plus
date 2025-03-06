@@ -308,7 +308,7 @@ URL_BATOCERA_PLUS_DEV_PKG=(
     'https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/lightspark-apr-11-2022.7z' # remove on update
 )
 
-URL_BATOCERA_LINUX='https://batocera.org/upgrades/x86_64/stable/last/archives/20201001/batocera-5.27.2-x86_64-20201001.img.gz'
+URL_BATOCERA_LINUX='https://mirrors.o2switch.fr/batocera/x86_64/stable/5.27.2/batocera-5.27.2-x86_64-20201001.img.gz'
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_BATOCERA_LINUX}")
 
 URL_BATOCERA_ZERO="https://github.com/AlexxandreFS/Batocera.PLUS-pkg/raw/main/${BATOCERA_ZERO}"
