@@ -382,7 +382,7 @@ URL_CEMUHOOK='https://files.sshnuke.net/cemuhook_1262d_0577.zip'
 #URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_CEMUHOOK}")
 
-URL_RYUJINX='https://github.com/Ryujinx/release-channel-master/releases/download/1.1.1359/ryujinx-1.1.1359-linux_x64.tar.gz' #Link provisório
+URL_RYUJINX='https://git.frfrnocap.men/ryujinx-archive/releases/releases/download/v1.1.1403/ryujinx-1.1.1403-linux_x64.tar.gz' #Link provisório
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_RYUJINX}")
 
 URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.3411/pcsx2-v1.7.3411-linux-AppImage-64bit-wxWidgets.AppImage'
