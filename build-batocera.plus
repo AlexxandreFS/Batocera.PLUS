@@ -382,7 +382,7 @@ URL_CEMUHOOK='https://files.sshnuke.net/cemuhook_1262d_0577.zip'
 #URL_CEMUHOOK="$(curl -s https://cemuhook.sshnuke.net/ | grep -A 2 -F '<h2>Current versions</h2>' | grep '.zip' | cut -d '"' -f 2)"
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_CEMUHOOK}")
 
-URL_RYUJINX='https://git.frfrnocap.men/ryujinx-archive/releases/releases/download/v1.1.1403/ryujinx-1.1.1403-linux_x64.tar.gz' #Link provisório
+URL_RYUJINX='https://github.com/Kenji-NX/Kenji-NX/releases/download/2.0.1/ryujinx-2.0.1-linux_x64.tar.gz' #Link provisório
 URL_EXTERNAL_PKG=("${URL_EXTERNAL_PKG[@]}" "${URL_RYUJINX}")
 
 URL_PCSX2='https://github.com/PCSX2/pcsx2/releases/download/v1.7.3411/pcsx2-v1.7.3411-linux-AppImage-64bit-wxWidgets.AppImage'
@@ -914,20 +914,20 @@ rm -r "${TEMP_DIR}/pkg-xtract/"*
 echo 'Install Ryujinx...'
 PKG_NAME="$(basename "${URL_RYUJINX}")"
 gunzip -k "${DOWNLOAD_DIR}/${PKG_NAME}" -c | tar x -v -C "${TEMP_DIR}/pkg-xtract"
-mkdir -p  "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/bin"
-cp -a     "${TEMP_DIR}/pkg-xtract/publish/Ryujinx" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/bin/Ryujinx"
-chmod +x  "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/bin/Ryujinx"
-mkdir -p  "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib"
-cp -a     "${TEMP_DIR}/pkg-xtract/publish/libSDL2.so" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libSDL2.so"
-cp -a     "${TEMP_DIR}/pkg-xtract/publish/libarmeilleure-jitsupport.dylib" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libarmeilleure-jitsupport.dylib"
-cp -a     "${TEMP_DIR}/pkg-xtract/publish/libavcodec.so.59" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libavcodec.so.59"
-cp -a     "${TEMP_DIR}/pkg-xtract/publish/libavutil.so.57" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libavutil.so.57"
-cp -a     "${TEMP_DIR}/pkg-xtract/publish/libglfw.so.3.3" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libglfw.so.3.3"
-cp -a     "${TEMP_DIR}/pkg-xtract/publish/libglfw-wayland.so.3.3" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libglfw-wayland.so.3.3"
-cp -a     "${TEMP_DIR}/pkg-xtract/publish/libHarfBuzzSharp.so" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libHarfBuzzSharp.so"
-cp -a     "${TEMP_DIR}/pkg-xtract/publish/libSkiaSharp.so" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libSkiaSharp.so"
-cp -a     "${TEMP_DIR}/pkg-xtract/publish/libsoundio.so" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libsoundio.so"
-cp -a     "${TEMP_DIR}/pkg-xtract/publish/Ryujinx.SDL2.Common.dll.config" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/Ryujinx.SDL2.Common.dll.config"
+mkdir -p "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/bin"
+cp -a "${TEMP_DIR}/pkg-xtract/Ryujinx" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/bin/Ryujinx"
+chmod +x "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/bin/Ryujinx"
+mkdir -p "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib"
+cp -a "${TEMP_DIR}/pkg-xtract/libglfw-wayland.so.3.3" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libglfw-wayland.so.3.3"
+cp -a "${TEMP_DIR}/pkg-xtract/libglfw.so.3.3" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libglfw.so.3.3"
+cp -a "${TEMP_DIR}/pkg-xtract/libavutil.so.58" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libavutil.so.58"
+cp -a "${TEMP_DIR}/pkg-xtract/libavcodec.so.60" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libavcodec.so.60"
+cp -a "${TEMP_DIR}/pkg-xtract/Ryujinx.SDL2.Common.dll.config" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/Ryujinx.SDL2.Common.dll.config"
+cp -a "${TEMP_DIR}/pkg-xtract/Ryujinx.Headless.SDL2" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/Ryujinx.Headless.SDL2"
+cp -a "${TEMP_DIR}/pkg-xtract/libHarfBuzzSharp.so" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libHarfBuzzSharp.so"
+cp -a "${TEMP_DIR}/pkg-xtract/libSDL2.so" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libSDL2.so"
+cp -a "${TEMP_DIR}/pkg-xtract/libSkiaSharp.so" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libSkiaSharp.so"
+cp -a "${TEMP_DIR}/pkg-xtract/libsoundio.so" "${TEMP_DIR}/Batocera.PLUS/opt/Ryujinx/lib/libsoundio.so"
 
 echo 'Install Nvidia Driver...'
 PKG_NAME="$(basename "${URL_NVIDIA_DRIVER}")"
